@@ -1,6 +1,6 @@
-baseURL = "https://example.com/"
+baseURL = "https://kongjianyang.github.io/"
 languageCode = "en-us"
-title = "Hugo-HT"
+title = "KJY"
 theme = "hugo-ht"
 footnotereturnlinkcontents = "↩"
 enableRobotsTXT = true
@@ -41,7 +41,7 @@ posts = "/posts/:year/:month/:day/:slug/"
     weight = 3
 
 [params]
-    description = "Peronal website of Your Name"
+    description = "Peronal website"
     homeText = "You just need a Hugo blog from scratch"
     # Please make sure `blogDirNmae` matches the name used in `menu` above:
     blogDirName = "posts"
@@ -49,7 +49,7 @@ posts = "/posts/:year/:month/:day/:slug/"
     defaultLang = "en"
     MathJaxCDN = "//cdnjs.cloudflare.com/ajax/libs" 
     MathJaxVersion = "2.7.5"
-    favicon = "media/hugo-logo.png"
+    # favicon = "media/hugo-logo.png"
     # Edit by yourself:
     GithubEdit = "https://github.com/USERNAME/REPONAME/edit/master/content/"
     copyright = "&copy;"
