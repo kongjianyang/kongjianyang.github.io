@@ -3,7 +3,7 @@ languageCode = "en-us"
 title = "KJY"
 theme = "hugo-ht"
 footnotereturnlinkcontents = "↩"
-enableRobotsTXT = true
+# enableRobotsTXT = true
 # enableGitInfo = true
 
 [permalinks]
@@ -61,16 +61,16 @@ posts = "/posts/:year/:month/:day/:slug/"
 
 [params.logo]
   # Change the logo picture as your prefer:
-  url = "hugo-logo.png"
-  width = 50.0
-  height = 50.0
-  alt = "Hugo-ht"
+  # url = "hugo-logo.png"
+  # width = 50.0
+  # height = 50.0
+  # alt = "Hugo-ht"
 
 [params.lang]
 
     [params.lang.author]
-      en = "Your Name"
-      cn = "你的名字"
+      en = "KJY"
+      cn = "KJY"
 
     [params.lang.madeWith]
       en = "Made with"

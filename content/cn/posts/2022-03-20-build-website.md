@@ -1,8 +1,23 @@
+---
+title: "使用GitHub page建立站点"
+date: 2022-03-20T13:42:27-05:00
+author: KJY
+slug: second-post-cn
+draft: false
+toc: true
+categories:
+  - test
+tags:
+  - article
+---
+
+
+
 记录第一次使用GitHub page建立站点的步骤:
 
 主要参考这篇文章：[郝鸿涛：Hongtao Hao](https://hongtaoh.com/cn/2021/03/02/personal-website-tutorial/)
 
-
+[TOC]
 
 ## 1. 安装Hugo
 
