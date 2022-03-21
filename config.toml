@@ -54,6 +54,7 @@ posts = "/posts/:year/:month/:day/:slug/"
     GithubEdit = "https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/"
     copyright = "&copy;"
     copyrightYear = "2018-2021"
+    since = "2018"            # Site creation time          # 站点建立时间
     # Edit by yourself:
     GithubRepo = "https://github.com/kongjianyang/kongjianyang.github.io"
     # Edit by yourself:
