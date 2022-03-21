@@ -6,7 +6,7 @@
 <script src=https://cdn.jsdelivr.net/npm/vega-lite@4.17.0></script>
 <script src=https://cdn.jsdelivr.net/npm/vega-embed@6.12.2></script>
 <script>hljs.initHighlightingOnLoad()</script></head><body><div class=wrapper><header class=header><nav class=nav><a href=/ class=nav-logo><img src=/media/%3cnil%3e width height alt></a><ul class=nav-links><li><a href=/cn/about/>关于</a></li><li><a href=/cn/posts/>日志</a></li><li><a href=/>English</a></li></ul></nav></header><main class=content role=main><div style=text-align:center><h1>使用GitHub page建立站点</h1><p>KJY
-/ 2022-03-20</p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2022-03-20-build-website.md style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title=编辑本页></i></a></span><aside class=toc>Table of Contents:<nav id=TableOfContents><ol><li><a href=#1-安装hugo>1. 安装Hugo</a></li><li><a href=#2-新建一个-hugo-网站>2. 新建一个 Hugo 网站</a></li><li><a href=#3-新建-github-仓库>3. 新建 GitHub 仓库</a></li><li><a href=#4-上传到github>4. 上传到GitHub</a></li><li><a href=#5一些修改>5.一些修改</a></li></ol></nav></aside><div class="body-text list-text"><p>记录第一次使用GitHub page建立站点的步骤:</p><p>主要参考这篇文章：<a href=https://hongtaoh.com/cn/2021/03/02/personal-website-tutorial/ target=_blank rel="noreferrer noopener">郝鸿涛：Hongtao Hao</a></p><p>[TOC]</p><h2 id=1-安装hugo>1. 安装Hugo<a href=#1-安装hugo class=header-anchor arialabel=Anchor> #</a></h2><p>在 Terminal 中输入</p><pre tabindex=0><code>brew install hugo 
+/ 2022-03-20</p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2022-03-20-build-website.md style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title=编辑本页></i></a></span><aside class=toc>Table of Contents:<nav id=TableOfContents><ol><li><a href=#1-安装hugo>1. 安装Hugo</a></li><li><a href=#2-新建一个-hugo-网站>2. 新建一个 Hugo 网站</a></li><li><a href=#3-新建-github-仓库>3. 新建 GitHub 仓库</a></li><li><a href=#4-上传到github>4. 上传到GitHub</a></li><li><a href=#5一些修改>5.一些修改</a></li><li><a href=#6-一些原理>6. 一些原理</a></li></ol></nav></aside><div class="body-text list-text"><p>记录第一次使用GitHub page建立站点的步骤:</p><p>主要参考这篇文章：<a href=https://hongtaoh.com/cn/2021/03/02/personal-website-tutorial/ target=_blank rel="noreferrer noopener">郝鸿涛：Hongtao Hao</a></p><p>[TOC]</p><h2 id=1-安装hugo>1. 安装Hugo<a href=#1-安装hugo class=header-anchor arialabel=Anchor> #</a></h2><p>在 Terminal 中输入</p><pre tabindex=0><code>brew install hugo 
 </code></pre><p>完成后，在 Terminal 中输入 <code>hugo version</code>, 如果显示 <code>Hugo Static Site Generator...</code> 证明安装成功。</p><h2 id=2-新建一个-hugo-网站>2. 新建一个 Hugo 网站<a href=#2-新建一个-hugo-网站 class=header-anchor arialabel=Anchor> #</a></h2><p>Hugo 博客就是一个文件夹。首先你要确定把这个文件夹放在哪里。到达自己需要的地址之后使用以下命令</p><pre tabindex=0><code>hugo new site liang.github.io **# quickstart 可以换成任何你想用的名称**
 cd quickstart/themes
 git clone https://github.com/hongtaoh/hugo-ht
@@ -74,9 +74,19 @@ open content/cn/hobby/_index.md -a TextEdit
     name = &#34;兴趣&#34;
     url = &#34;/hobby/&#34;
     weight = 4
-</code></pre><p>新加文件</p><p>你可以直接把文件，比如 <code>myPDF.pdf</code> 放到 <code>static</code> 文件夹，这样的话，这个文件的地址就是 <code>https://USERNAME.github.io/myPDF.pdf</code>。当你的文件比较多时，建议你在 <code>static</code> 文件夹下新建一个子文件夹，比如 <code>files</code>，然后把文件统一放到 <code>files</code> 里，这样的话，地址就是 <code>https://USERNAME.github.io/files/myPDF.pdf</code></p><p style=color:#777>最后一次修改于 2022-03-20</p></div><a href=#top><i class="fa fa-chevron-up" style=font-size:30px;color:#000></i></a></main><footer class=footer><script src=https://utteranc.es/client.js repo=kongjianyang/kongjianyang.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><script type=text/javascript src=/js/math-code.js></script>
+</code></pre><p>新加文件</p><p>你可以直接把文件，比如 <code>myPDF.pdf</code> 放到 <code>static</code> 文件夹，这样的话，这个文件的地址就是 <code>https://USERNAME.github.io/myPDF.pdf</code>。当你的文件比较多时，建议你在 <code>static</code> 文件夹下新建一个子文件夹，比如 <code>files</code>，然后把文件统一放到 <code>files</code> 里，这样的话，地址就是 <code>https://USERNAME.github.io/files/myPDF.pdf</code></p><h2 id=6-一些原理>6. 一些原理<a href=#6-一些原理 class=header-anchor arialabel=Anchor> #</a></h2><p>整个网站的结构应该是</p><pre tabindex=0><code>$ tree blog
+blog
+├── archetypes # 包括内容类型，在创建新内容时自动生成内容的配置。
+│   └── default.md
+├── config.toml # config.toml 是整个网站的配置文件
+├── content # 包括网站内容，全部使用 markdown 格式。
+├── data
+├── layouts # 包括了网站的模版，决定内容如何呈现，目录下模板优先级高于 /themes/&lt;THEME&gt;/layouts/，可以用来小规模的定制主题。
+├── static # 包括了 css, js, fonts, media 等，决定网站的外观。
+└── themes
+</code></pre><p style=color:#777>最后一次修改于 2022-03-20</p></div><a href=#top><i class="fa fa-chevron-up" style=font-size:30px;color:#000></i></a></main><footer class=footer><script src=https://utteranc.es/client.js repo=kongjianyang/kongjianyang.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><script type=text/javascript src=/js/math-code.js></script>
 <script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 <script type=text/javascript src=/js/center-img.js></script><ul class=footer-links><li><a href=/cn/posts/index.xml type=application/rss+xml title="RSS feed">订阅</a></li><li><a href=http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>版权
 <i class="fa fa-cc" aria-hidden=true title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a></li></ul><div class=copyright-text>©
 KJY
-2020-2021</div></footer>
+2018-2021</div></footer>
