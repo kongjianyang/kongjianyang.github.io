@@ -200,3 +200,26 @@ open content/cn/hobby/_index.md -a TextEdit
 
 你可以直接把文件，比如 `myPDF.pdf` 放到 `static` 文件夹，这样的话，这个文件的地址就是 `https://USERNAME.github.io/myPDF.pdf`。当你的文件比较多时，建议你在 `static` 文件夹下新建一个子文件夹，比如 `files`，然后把文件统一放到 `files` 里，这样的话，地址就是 `https://USERNAME.github.io/files/myPDF.pdf`
 
+
+
+## 6. 一些原理
+
+
+
+整个网站的结构应该是
+
+
+
+```
+$ tree blog
+blog
+├── archetypes # 包括内容类型，在创建新内容时自动生成内容的配置。
+│   └── default.md
+├── config.toml # config.toml 是整个网站的配置文件
+├── content # 包括网站内容，全部使用 markdown 格式。
+├── data
+├── layouts # 包括了网站的模版，决定内容如何呈现，目录下模板优先级高于 /themes/<THEME>/layouts/，可以用来小规模的定制主题。
+├── static # 包括了 css, js, fonts, media 等，决定网站的外观。
+└── themes
+```
+
