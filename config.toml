@@ -51,11 +51,11 @@ posts = "/posts/:year/:month/:day/:slug/"
     MathJaxVersion = "2.7.5"
     # favicon = "media/hugo-logo.png"
     # Edit by yourself:
-    GithubEdit = "https://github.com/USERNAME/REPONAME/edit/master/content/"
+    GithubEdit = "https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/"
     copyright = "&copy;"
     copyrightYear = "2020-2021"
     # Edit by yourself:
-    GithubRepo = "https://github.com/USERNAME/REPONAME"
+    GithubRepo = "https://github.com/kongjianyang/kongjianyang.github.io"
     # Edit by yourself:
     ContentSource = "https://raw.githubusercontent.com/USERNAME/REPONAME/master/content/" 
 
@@ -65,6 +65,13 @@ posts = "/posts/:year/:month/:day/:slug/"
   # width = 50.0
   # height = 50.0
   # alt = "Hugo-ht"
+
+## 配置 utteranc评论,教程参考 https://utteranc.es/
+[params.utteranc]
+  enable = false
+  repo = "yunxd/hugoblogtalks" ##换成自己得
+  issueTerm = "pathname"
+  theme = "github-light"
 
 [params.lang]
 
