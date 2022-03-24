@@ -1,0 +1,248 @@
+---
+title: Heatmap.2 and pheatmap in R practice
+author: Liang
+date: '2018-07-17'
+slug: heatmap-2-and-pheatmap-in-r-practice
+categories:
+  - R
+tags:
+  - R
+---
+
+
+# Part 1 heatmap.2
+
+## 1. get the data
+```{r}
+
+library(gplots)
+library(RColorBrewer)
+
+data <- read.table(header = T, text = "
+                   ,var1,var2,var3,var4
+measurement1,0.094,0.668,0.4153,0.4613
+measurement2,0.1138,-0.3847,0.2671,0.1529
+measurement3,0.1893,0.3303,0.5821,0.2632
+measurement4,-0.0102,-0.4259,-0.5967,0.18
+measurement5,0.1587,0.2948,0.153,-0.2208
+measurement6,-0.4558,0.2244,0.6619,0.0457
+measurement7,-0.6241,-0.3119,0.3642,0.2003
+measurement8,-0.227,0.499,0.3067,0.3289
+measurement9,0.7365,-0.0872,-0.069,-0.4252
+measurement10,0.9761,0.4355,0.8663,0.8107", fill = T, sep =",", row.names = 1)
+data
+```
+
+transform the data to matrix
+```{r}
+mat_data <- data.matrix(data)
+mat_data
+str(mat_data)
+rownames(mat_data)
+```
+
+## 2. choose color palettes and breaks
+
+```{r}
+my_palette <- colorRampPalette(c("red", "yellow", "green"))(n=299) # n =299 define how many individuals colors used, the higher of the number of individual colors, the smoother the transitin will be
+col_breaks = c(seq(-1,0,length = 100), # for red
+               seq(0.01,0.8, length = 100), # for yellow
+               seq(0.81, 1, length = 100) # for green
+               )
+```
+
+## 3. plootting the heat map
+
+```{r message=FALSE, warning=FALSE}
+heatmap.2(mat_data,
+          cellnote = mat_data, # same data set for cell labels
+          main = "correlation", # title
+          notecol = "black", # change the font color of cell labels
+          notecex = 0.7, # change the font size
+          cexCol = 1, srtCol=45, # change the column labels size 
+          cexRow = 0.7, srtRow = 45, # change the row labels size
+          density.info = "none", # turn off density info in the color legend
+          trace = "none", # turn off the trace inside
+          #margins = c(3,7), # widens margins 
+          col = my_palette, # use my_palette as color
+          breaks = col_breaks, # use color transition at specified limits
+          dendrogram = "row", # only draw the row dendrogram
+          Colv = "NA", # turn off the column clustering
+          
+          # add row side bar
+          RowSideColors = c(    # grouping row-variables into different
+           rep("gray", 3),   # categories, Measurement 1-3: green
+           rep("blue", 3),    # Measurement 4-6: blue
+           rep("black", 4))    # Measurement 7-10: red
+          )
+
+# add the color legend
+par(lend = 1)           # square line ends for the color legend
+legend("topright",      # location of the legend on the heatmap plot
+    legend = c("category1", "category2", "category3"), # category labels
+    col = c("gray", "blue", "black"),  # color key
+    lty= 1,             # line style
+    lwd = 10,           # line width
+    cex = 0.7)          # text size  
+```
+
+# Part 2 pheatmap
+
+## random data
+
+
+```{r}
+set.seed(42)
+random_sting <- function(n){
+  substr(paste(sample(letters), collapse = ""), 1, n)
+}
+
+mat <- matrix(rgamma(1000, shape = 1)*5, ncol = 50)
+
+colnames(mat) <- paste(
+  rep(1:3, each = ncol(mat) / 3), 
+  replicate(ncol(mat), random_sting(5)),
+  sep = ""
+)
+
+rownames(mat) <- replicate(nrow(mat), random_sting(3))
+
+# see the data
+mat[1:5,1:5]
+```
+
+split the data into 3 groups
+```{r}
+col_groups <- substr(colnames(mat), 1, 1)
+table(col_groups)
+```
+increase the data
+```{r}
+mat[,col_groups == "1"] <- mat[, col_groups == "1"]*5
+```
+
+
+see the data distribution
+
+```{r}
+library(ggplot2)
+#Set the theme for all the following plots.
+theme_set(theme_bw(base_size = 16))
+
+dat <- data.frame(values = as.numeric(mat))
+ggplot(dat, aes(values)) + geom_density(bw = "SJ")
+```
+## make the heatmap
+
+```{r}
+library(pheatmap)
+library(RColorBrewer) # color palette
+library(viridis) # color palette
+
+
+# Data frame with column annotations
+mat_col <- data.frame(group = col_groups)
+rownames(mat_col) <- colnames(mat)
+
+# list with colors for each annotation
+mat_colors <- list(group = brewer.pal(3, "Set1"))
+names(mat_colors$group) <- unique(col_groups)
+
+pheatmap(
+  mat = mat,
+  color = inferno(10), # inferno can be used to get the color
+  border_color = NA, #color for cell borders
+  cluster_rows = T, 
+  cluster_cols = T,
+  show_colnames = F,
+  show_rownames = F,
+  annotation_col = mat_col,
+  annotation_colors = mat_colors,
+  drop_levels = T, # unused levels are also shown in the legend
+  fontsize = 14,
+  main = "Default Heatmap"
+)
+```
+
+
+see the breaks
+
+```{r}
+quantile_breaks <- function(xs, n = 10){
+  breaks <- quantile(xs, probs = seq(0, 1, length.out = n)) # produce the sample quantiles corresponding to the given probabilities
+  breaks[!duplicated(breaks)]
+}
+
+mat_breaks <- quantile_breaks(mat, n = 11)
+
+# see the new break
+mat_breaks
+```
+
+
+```{r}
+pheatmap(
+  mat               = mat,
+  color             = inferno(length(mat_breaks) - 1),
+  breaks            = mat_breaks,
+  border_color      = NA,
+  show_colnames     = FALSE,
+  show_rownames     = FALSE,
+  annotation_col    = mat_col,
+  annotation_colors = mat_colors,
+  drop_levels       = TRUE,
+  fontsize          = 14,
+  main              = "Quantile Color Scale"
+)
+```
+
+## Sorting the dendrograms
+
+```{r}
+mat_cluster_cols <- hclust(dist(t(mat)))
+plot(mat_cluster_cols, main = "Unsorted Dendrogram", xlab = "", sub = "")
+```
+
+
+flip the branches to sort the dendrogram. The most similar columns will appear clustered toward the left side of the plot. The columns that are more distant from each other will appear clustered toward the right side of the plot.
+
+
+```{r}
+library(dendsort)
+
+sort_hclust <- function(...) as.hclust(dendsort(as.dendrogram(...)))
+
+mat_cluster_cols <- sort_hclust(mat_cluster_cols)
+plot(mat_cluster_cols, main = "Sorted Dendrogram", xlab = "", sub = "")
+```
+
+
+get the new heatmap 
+
+```{r}
+mat_cluster_rows <- sort_hclust(hclust(dist(mat)))
+pheatmap(
+  mat               = mat,
+  color             = inferno(length(mat_breaks) - 1), 
+  breaks            = mat_breaks,
+  border_color      = NA,
+  cluster_cols      = mat_cluster_cols,
+  cluster_rows      = mat_cluster_rows,
+  show_colnames     = FALSE,
+  show_rownames     = FALSE,
+  annotation_col    = mat_col,
+  annotation_colors = mat_colors,
+  drop_levels       = TRUE,
+  fontsize          = 14,
+  main              = "Sorted Dendrograms"
+)
+```
+
+
+
+
+
+
+
+
+

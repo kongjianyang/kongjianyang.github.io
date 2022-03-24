@@ -1,0 +1,188 @@
+<a name=top></a><!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>KJY</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/fonts.css><link href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css rel=stylesheet><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/vega@5.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-lite@4.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-embed@6.12.2></script>
+<script>hljs.initHighlightingOnLoad()</script></head><body><div class=wrapper><header class=header><nav class=nav><a href=/ class=nav-logo><img src=/media/%3cnil%3e width height alt></a><ul class=nav-links><li><a href=/>Home</a></li><li><a href=/en/about/>About</a></li><li><a href=/en/posts/>Posts</a></li><li><a href=/cn/posts/>中文</a></li></ul></nav></header><main class=content role=main><div style=text-align:center><h1>Heatmap.2 and pheatmap in R practice</h1><p>Liang
+/ 2018-07-17</p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/en/posts/2018-07-17-heatmap-2-and-pheatmap-in-r-practice.Rmd style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title="Suggest an edit of this page"></i></a></span><div class="body-text list-text"><div id=part-1-heatmap.2 class="section level1"><h1>Part 1 heatmap.2</h1><div id=get-the-data class="section level2"><h2>1. get the data</h2><pre class=r><code>library(gplots)</code></pre><pre><code>## 
+## Attaching package: &#39;gplots&#39;</code></pre><pre><code>## The following object is masked from &#39;package:stats&#39;:
+## 
+##     lowess</code></pre><pre class=r><code>library(RColorBrewer)
+
+data &lt;- read.table(header = T, text = &quot;
+                   ,var1,var2,var3,var4
+measurement1,0.094,0.668,0.4153,0.4613
+measurement2,0.1138,-0.3847,0.2671,0.1529
+measurement3,0.1893,0.3303,0.5821,0.2632
+measurement4,-0.0102,-0.4259,-0.5967,0.18
+measurement5,0.1587,0.2948,0.153,-0.2208
+measurement6,-0.4558,0.2244,0.6619,0.0457
+measurement7,-0.6241,-0.3119,0.3642,0.2003
+measurement8,-0.227,0.499,0.3067,0.3289
+measurement9,0.7365,-0.0872,-0.069,-0.4252
+measurement10,0.9761,0.4355,0.8663,0.8107&quot;, fill = T, sep =&quot;,&quot;, row.names = 1)
+data</code></pre><pre><code>##                  var1    var2    var3    var4
+## measurement1   0.0940  0.6680  0.4153  0.4613
+## measurement2   0.1138 -0.3847  0.2671  0.1529
+## measurement3   0.1893  0.3303  0.5821  0.2632
+## measurement4  -0.0102 -0.4259 -0.5967  0.1800
+## measurement5   0.1587  0.2948  0.1530 -0.2208
+## measurement6  -0.4558  0.2244  0.6619  0.0457
+## measurement7  -0.6241 -0.3119  0.3642  0.2003
+## measurement8  -0.2270  0.4990  0.3067  0.3289
+## measurement9   0.7365 -0.0872 -0.0690 -0.4252
+## measurement10  0.9761  0.4355  0.8663  0.8107</code></pre><p>transform the data to matrix</p><pre class=r><code>mat_data &lt;- data.matrix(data)
+mat_data</code></pre><pre><code>##                  var1    var2    var3    var4
+## measurement1   0.0940  0.6680  0.4153  0.4613
+## measurement2   0.1138 -0.3847  0.2671  0.1529
+## measurement3   0.1893  0.3303  0.5821  0.2632
+## measurement4  -0.0102 -0.4259 -0.5967  0.1800
+## measurement5   0.1587  0.2948  0.1530 -0.2208
+## measurement6  -0.4558  0.2244  0.6619  0.0457
+## measurement7  -0.6241 -0.3119  0.3642  0.2003
+## measurement8  -0.2270  0.4990  0.3067  0.3289
+## measurement9   0.7365 -0.0872 -0.0690 -0.4252
+## measurement10  0.9761  0.4355  0.8663  0.8107</code></pre><pre class=r><code>str(mat_data)</code></pre><pre><code>##  num [1:10, 1:4] 0.094 0.1138 0.1893 -0.0102 0.1587 ...
+##  - attr(*, &quot;dimnames&quot;)=List of 2
+##   ..$ : chr [1:10] &quot;measurement1&quot; &quot;measurement2&quot; &quot;measurement3&quot; &quot;measurement4&quot; ...
+##   ..$ : chr [1:4] &quot;var1&quot; &quot;var2&quot; &quot;var3&quot; &quot;var4&quot;</code></pre><pre class=r><code>rownames(mat_data)</code></pre><pre><code>##  [1] &quot;measurement1&quot;  &quot;measurement2&quot;  &quot;measurement3&quot;  &quot;measurement4&quot; 
+##  [5] &quot;measurement5&quot;  &quot;measurement6&quot;  &quot;measurement7&quot;  &quot;measurement8&quot; 
+##  [9] &quot;measurement9&quot;  &quot;measurement10&quot;</code></pre></div><div id=choose-color-palettes-and-breaks class="section level2"><h2>2. choose color palettes and breaks</h2><pre class=r><code>my_palette &lt;- colorRampPalette(c(&quot;red&quot;, &quot;yellow&quot;, &quot;green&quot;))(n=299) # n =299 define how many individuals colors used, the higher of the number of individual colors, the smoother the transitin will be
+col_breaks = c(seq(-1,0,length = 100), # for red
+               seq(0.01,0.8, length = 100), # for yellow
+               seq(0.81, 1, length = 100) # for green
+               )</code></pre></div><div id=plootting-the-heat-map class="section level2"><h2>3. plootting the heat map</h2><pre class=r><code>heatmap.2(mat_data,
+          cellnote = mat_data, # same data set for cell labels
+          main = &quot;correlation&quot;, # title
+          notecol = &quot;black&quot;, # change the font color of cell labels
+          notecex = 0.7, # change the font size
+          cexCol = 1, srtCol=45, # change the column labels size 
+          cexRow = 0.7, srtRow = 45, # change the row labels size
+          density.info = &quot;none&quot;, # turn off density info in the color legend
+          trace = &quot;none&quot;, # turn off the trace inside
+          #margins = c(3,7), # widens margins 
+          col = my_palette, # use my_palette as color
+          breaks = col_breaks, # use color transition at specified limits
+          dendrogram = &quot;row&quot;, # only draw the row dendrogram
+          Colv = &quot;NA&quot;, # turn off the column clustering
+          
+          # add row side bar
+          RowSideColors = c(    # grouping row-variables into different
+           rep(&quot;gray&quot;, 3),   # categories, Measurement 1-3: green
+           rep(&quot;blue&quot;, 3),    # Measurement 4-6: blue
+           rep(&quot;black&quot;, 4))    # Measurement 7-10: red
+          )
+
+# add the color legend
+par(lend = 1)           # square line ends for the color legend
+legend(&quot;topright&quot;,      # location of the legend on the heatmap plot
+    legend = c(&quot;category1&quot;, &quot;category2&quot;, &quot;category3&quot;), # category labels
+    col = c(&quot;gray&quot;, &quot;blue&quot;, &quot;black&quot;),  # color key
+    lty= 1,             # line style
+    lwd = 10,           # line width
+    cex = 0.7)          # text size  </code></pre><p><img src=/en/2018-07-17-heatmap-2-and-pheatmap-in-r-practice_files/figure-html/unnamed-chunk-4-1.png width=672></p></div></div><div id=part-2-pheatmap class="section level1"><h1>Part 2 pheatmap</h1><div id=random-data class="section level2"><h2>random data</h2><pre class=r><code>set.seed(42)
+random_sting &lt;- function(n){
+  substr(paste(sample(letters), collapse = &quot;&quot;), 1, n)
+}
+
+mat &lt;- matrix(rgamma(1000, shape = 1)*5, ncol = 50)
+
+colnames(mat) &lt;- paste(
+  rep(1:3, each = ncol(mat) / 3), 
+  replicate(ncol(mat), random_sting(5)),
+  sep = &quot;&quot;
+)
+
+rownames(mat) &lt;- replicate(nrow(mat), random_sting(3))
+
+# see the data
+mat[1:5,1:5]</code></pre><pre><code>##        1tshyr     1kxdlq   1nmrwk    1vjqot     1mwjly
+## rcs 9.6964789  9.1728114 2.827695 0.3945351  8.0549350
+## elh 0.9020955 15.5758530 4.328376 2.0908362 34.3081971
+## dxc 2.6721643  3.1270386 1.765077 0.3404244  2.3428120
+## nwd 0.1198261  0.3569485 4.980206 1.7912319  2.4935602
+## fji 2.1388712  4.6040106 9.897896 0.1263967  0.3518315</code></pre><p>split the data into 3 groups</p><pre class=r><code>col_groups &lt;- substr(colnames(mat), 1, 1)
+table(col_groups)</code></pre><pre><code>## col_groups
+##  1  2  3 
+## 18 16 16</code></pre><p>increase the data</p><pre class=r><code>mat[,col_groups == &quot;1&quot;] &lt;- mat[, col_groups == &quot;1&quot;]*5</code></pre><p>see the data distribution</p><pre class=r><code>library(ggplot2)
+#Set the theme for all the following plots.
+theme_set(theme_bw(base_size = 16))
+
+dat &lt;- data.frame(values = as.numeric(mat))
+ggplot(dat, aes(values)) + geom_density(bw = &quot;SJ&quot;)</code></pre><p><img src=/en/2018-07-17-heatmap-2-and-pheatmap-in-r-practice_files/figure-html/unnamed-chunk-8-1.png width=672> ## make the heatmap</p><pre class=r><code>library(pheatmap)
+library(RColorBrewer) # color palette
+library(viridis) # color palette</code></pre><pre><code>## Loading required package: viridisLite</code></pre><pre class=r><code># Data frame with column annotations
+mat_col &lt;- data.frame(group = col_groups)
+rownames(mat_col) &lt;- colnames(mat)
+
+# list with colors for each annotation
+mat_colors &lt;- list(group = brewer.pal(3, &quot;Set1&quot;))
+names(mat_colors$group) &lt;- unique(col_groups)
+
+pheatmap(
+  mat = mat,
+  color = inferno(10), # inferno can be used to get the color
+  border_color = NA, #color for cell borders
+  cluster_rows = T, 
+  cluster_cols = T,
+  show_colnames = F,
+  show_rownames = F,
+  annotation_col = mat_col,
+  annotation_colors = mat_colors,
+  drop_levels = T, # unused levels are also shown in the legend
+  fontsize = 14,
+  main = &quot;Default Heatmap&quot;
+)</code></pre><p><img src=/en/2018-07-17-heatmap-2-and-pheatmap-in-r-practice_files/figure-html/unnamed-chunk-9-1.png width=672></p><p>see the breaks</p><pre class=r><code>quantile_breaks &lt;- function(xs, n = 10){
+  breaks &lt;- quantile(xs, probs = seq(0, 1, length.out = n)) # produce the sample quantiles corresponding to the given probabilities
+  breaks[!duplicated(breaks)]
+}
+
+mat_breaks &lt;- quantile_breaks(mat, n = 11)
+
+# see the new break
+mat_breaks</code></pre><pre><code>##           0%          10%          20%          30%          40% 
+## 1.699323e-03 7.035943e-01 1.594124e+00 2.489215e+00 3.777056e+00 
+##          50%          60%          70%          80%          90% 
+## 5.095493e+00 7.017412e+00 9.508040e+00 1.445645e+01 2.794179e+01 
+##         100% 
+## 1.715410e+02</code></pre><pre class=r><code>pheatmap(
+  mat               = mat,
+  color             = inferno(length(mat_breaks) - 1),
+  breaks            = mat_breaks,
+  border_color      = NA,
+  show_colnames     = FALSE,
+  show_rownames     = FALSE,
+  annotation_col    = mat_col,
+  annotation_colors = mat_colors,
+  drop_levels       = TRUE,
+  fontsize          = 14,
+  main              = &quot;Quantile Color Scale&quot;
+)</code></pre><p><img src=/en/2018-07-17-heatmap-2-and-pheatmap-in-r-practice_files/figure-html/unnamed-chunk-11-1.png width=672></p></div><div id=sorting-the-dendrograms class="section level2"><h2>Sorting the dendrograms</h2><pre class=r><code>mat_cluster_cols &lt;- hclust(dist(t(mat)))
+plot(mat_cluster_cols, main = &quot;Unsorted Dendrogram&quot;, xlab = &quot;&quot;, sub = &quot;&quot;)</code></pre><p><img src=/en/2018-07-17-heatmap-2-and-pheatmap-in-r-practice_files/figure-html/unnamed-chunk-12-1.png width=672></p><p>flip the branches to sort the dendrogram. The most similar columns will appear clustered toward the left side of the plot. The columns that are more distant from each other will appear clustered toward the right side of the plot.</p><pre class=r><code>library(dendsort)
+
+sort_hclust &lt;- function(...) as.hclust(dendsort(as.dendrogram(...)))
+
+mat_cluster_cols &lt;- sort_hclust(mat_cluster_cols)
+plot(mat_cluster_cols, main = &quot;Sorted Dendrogram&quot;, xlab = &quot;&quot;, sub = &quot;&quot;)</code></pre><p><img src=/en/2018-07-17-heatmap-2-and-pheatmap-in-r-practice_files/figure-html/unnamed-chunk-13-1.png width=672></p><p>get the new heatmap</p><pre class=r><code>mat_cluster_rows &lt;- sort_hclust(hclust(dist(mat)))
+pheatmap(
+  mat               = mat,
+  color             = inferno(length(mat_breaks) - 1), 
+  breaks            = mat_breaks,
+  border_color      = NA,
+  cluster_cols      = mat_cluster_cols,
+  cluster_rows      = mat_cluster_rows,
+  show_colnames     = FALSE,
+  show_rownames     = FALSE,
+  annotation_col    = mat_col,
+  annotation_colors = mat_colors,
+  drop_levels       = TRUE,
+  fontsize          = 14,
+  main              = &quot;Sorted Dendrograms&quot;
+)</code></pre><p><img src=/en/2018-07-17-heatmap-2-and-pheatmap-in-r-practice_files/figure-html/unnamed-chunk-14-1.png width=672></p></div></div><p style=color:#777>Last modified on 2018-07-17</p></div><a href=#top><i class="fa fa-chevron-up" style=font-size:30px;color:#000></i></a></main><footer class=footer><script src=https://utteranc.es/client.js repo=kongjianyang/kongjianyang.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><script type=text/javascript src=/js/math-code.js></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type=text/javascript src=/js/center-img.js></script><ul class=footer-links><li><a href=/en/posts/index.xml type=application/rss+xml title="RSS feed">Subscribe</a></li><li><a href=http://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank>License
+<i class="fa fa-cc" aria-hidden=true title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a></li></ul><div class=copyright-text>©
+KJY
+2018-2021</div></footer>

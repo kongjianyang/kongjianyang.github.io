@@ -1,0 +1,75 @@
+---
+title: Figure with error bar and significant markers based on ggplot2
+author: Liang
+date: '2018-07-19'
+slug: add-error-bar-and-significant-markers-to-the-figure-based-on-ggplot2
+categories:
+  - R
+tags:
+  - R
+---
+
+Create the data set 
+
+```{r}
+library(ggplot2)
+df <- data.frame(treatment = factor(c(1, 1, 1, 2, 2, 2, 3, 3, 3)), response = c(2, 5, 4, 6, 9, 7, 3, 5, 8),group = factor(c(1, 2, 3, 1, 2, 3, 1, 2, 3)),se = c(0.4, 0.2, 0.4, 0.5, 0.3, 0.2, 0.4, 0.6, 0.7))
+
+head(df)
+```
+
+use geom_errorbar() to draw the histogram
+
+```{r}
+
+# position should consistent with geom_bar(), because the default setting is 0.9, so we should set the value as 0.9 for geom_errorbar.
+ggplot(data=df, aes(x = treatment, y = response, fill = group)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  geom_errorbar(aes(ymax = response +se, ymin = response-se), position = position_dodge(0.9), width = 0.15) +
+  scale_fill_brewer(palette = "Set1")
+```
+
+add significant mark, compared with group 1
+
+```{r}
+label <- c("", "*", "**", "", "**", "*", "", "", "*") 
+
+ggplot(data = df, aes(x = treatment, y = response, fill = group)) + 
+geom_bar(stat = "identity", position = "dodge") + 
+geom_errorbar(aes(ymax = response + se, ymin = response -  se), 
+position = position_dodge(0.9), width = 0.15) + 
+geom_text(aes(y = response +  1.5 * se, label = label, group = group), 
+position = position_dodge(0.9), size = 5, fontface = "bold") + 
+scale_fill_brewer(palette = "Set1")
+```
+
+
+arrange a set of figure 
+
+```{r}
+library(ggpubr)
+# 将四幅图放置于一个页面中
+p <- ggplot(data = df, aes(x = treatment, y = response, fill = group)) + 
+geom_bar(stat = "identity", position = "dodge") + 
+geom_errorbar(aes(ymax = response + se, ymin = response -  se), 
+position = position_dodge(0.9), width = 0.15) + 
+scale_fill_brewer(palette = "Set1")
+p1 <- p + ggtitle("add title")
+p2 <- p + ggtitle("add title") + xlab("treatment") + ylab("response")
+p3 <- ggplot(data = df, aes(x = treatment, y = response, fill = group)) + 
+geom_bar(stat = "identity", position = "dodge") + 
+geom_errorbar(aes(ymax = response + se, ymin = response -  se), 
+position = position_dodge(0.9), width = 0.15) + 
+geom_text(aes(y = response +  1.5 * se, label = label, group = group), 
+position = position_dodge(0.9), size = 5, fontface = "bold") + 
+scale_fill_brewer(palette = "Set1")
+ggarrange(p, p1, p2, p3)
+```
+
+
+
+
+
+
+
+
