@@ -1,0 +1,70 @@
+---
+title: R中的循环多图处理技巧
+author: Liang
+date: '2018-12-12'
+slug: R中的循环多图处理技巧
+categories:
+  - R
+tags: []
+lastmod: '2018-12-12T16:22:09-05:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+
+
+
+<div class="section level1">
+<h1>1.制造一些图</h1>
+<p>制造一些图片，为后续的操作做准备</p>
+<pre class="r"><code>library(ggplot2)
+
+# This example uses the ChickWeight dataset, which comes with ggplot2
+# First plot
+p1 &lt;- ggplot(ChickWeight, aes(x=Time, y=weight, colour=Diet, group=Chick)) +
+    geom_line() +
+    ggtitle(&quot;Growth curve for individual chicks&quot;)
+
+# Second plot
+p2 &lt;- ggplot(ChickWeight, aes(x=Time, y=weight, colour=Diet)) +
+    geom_point(alpha=.3) +
+    geom_smooth(alpha=.2, size=1) +
+    ggtitle(&quot;Fitted growth curve per diet&quot;)
+
+# Third plot
+p3 &lt;- ggplot(subset(ChickWeight, Time==21), aes(x=weight, colour=Diet)) +
+    geom_density() +
+    ggtitle(&quot;Final weight, by diet&quot;)
+
+# Fourth plot
+p4 &lt;- ggplot(subset(ChickWeight, Time==21), aes(x=weight, fill=Diet)) +
+    geom_histogram(colour=&quot;black&quot;, binwidth=50) +
+    facet_grid(Diet ~ .) +
+    ggtitle(&quot;Final weight, by diet&quot;) +
+    theme(legend.position=&quot;none&quot;)        # No legend (redundant in this graph)    </code></pre>
+</div>
+<div class="section level1">
+<h1>图片列表</h1>
+<p>使用ggarrange函数进行合并，可指定列和行</p>
+<pre class="r"><code>library(ggpubr)
+plist &lt;- list(p1, p2, p3, p4)
+do.call(&quot;ggarrange&quot;, c(plist, ncol=2, nrow=2))</code></pre>
+<p><img src="/cn/2018-12-12-R%E4%B8%AD%E7%9A%84%E5%BE%AA%E7%8E%AF%E5%A4%9A%E5%9B%BE%E5%A4%84%E7%90%86%E6%8A%80%E5%B7%A7_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>使用一些其他的也可以例如cowplot的函数和grid.arrange函数，但是我更加喜欢ggarrange.</p>
+</div>

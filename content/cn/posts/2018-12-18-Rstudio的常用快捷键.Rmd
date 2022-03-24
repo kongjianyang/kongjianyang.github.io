@@ -1,0 +1,190 @@
+---
+title: Rstudio的常用快捷键
+author: Liang
+date: '2018-12-18'
+slug: Rstudio的常用快捷键
+categories:
+  - R
+tags: []
+lastmod: '2018-12-18T22:53:56-05:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+
+
+[Rstudio IDE Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf)
+
+# 0. 常用
+
+
+|         Windows          |          Mac         |                      |
+|:------------------------:|:--------------------:|:-----------------------:|
+|        清空控制台        |        Ctrl+L        |        Command+L        |
+|       新建一个文件       |     Ctrl+Shift+N     |     Command+Shift+N     |
+|         打开文件         |        Ctrl+O        |        Command+O        |
+|       保存当前文件       |        Ctrl+S        |        Command+S        |
+|       关闭当前文件       |        Ctrl+W        |        Command+W        |
+|    关闭所有打开的文件    |     Ctrl+Shift+W     |     Command+Shift+W     |
+|  运行当前/被选中的代码   |      Ctrl+Enter      |      Command+Enter      |
+|       运行当前文件       |      Ctrl+Alt+R      |    Command+Option+R     |
+|      运行当前代码块      |      Ctrl+Alt+C      |    Command+Option+C     |
+|     运行下一个代码块     |      Ctrl+Alt+N      |    Command+Option+N     |
+| 执行一个外部文件中的代码 |     Ctrl+Shift+O     |     Command+Shift+O     |
+|   执行当前文件中的代码   |     Ctrl+Shift+S     |     Command+Shift+S     |
+|       折叠选中代码       |        Alt+L         |    Command+Option+L     |
+|       打开选中代码       |     Shift+Alt+L      | Command+Shift+Option+L  |
+|       折叠所有代码       |        Alt+0         |    Command+Option+0     |
+|       打开所有代码       |     Shift+Alt+0      | Command+Shift+Option+0  |
+|     切换到前一个tab      |    Ctrl+Alt+Left     |    Ctrl+Option+Left     |
+|     切换到下一个tab      |    Ctrl+Alt+Right    |    Ctrl+Option+Right    |
+|     切换到第一个tab      | Ctrl+Shift+Alt+Left  | Ctrl+Shift+Option+Left  |
+|    切换到最后一个tab     | Ctrl+Shift+Alt+Right | Ctrl+Shift+Option+Right |
+|   注释/取消注释当前行    |     Ctrl+Shift+C     |     Command+Shift+C     |
+
+
+# 1. 控制台Console
+
+
+|       Windows      |     Mac      |               |
+|:------------------:|:------------:|:-------------:|
+| 将光标定位到控制台 |    Ctrl+2    |    Ctrl+2     |
+|     清空控制台     |    Ctrl+L    |   Command+L   |
+|  将光标定位到行首  |     Home     | Command+Left  |
+|  将光标定位到行末  |     End      | Command+Right |
+|  在历史命令中导航  |   Up/Down    |    Up/Down    |
+|   弹出历史命令框   |   Ctrl+Up    |  Command+Up   |
+| 中断当前命令的执行 |     Esc      |      Esc      |
+|    改变工作目录    | Ctrl+Shift+K | Ctrl+Shift+K  |
+
+# 2. Source
+
+|                Windows                 |           Mac        |                         |
+|:--------------------------------------:|:--------------------:|:-----------------------:|
+|            跳转到文件/函数             |        Ctrl+.        |         Ctrl+.          |
+|          光标定位到源码编辑器          |        Ctrl+1        |         Ctrl+1          |
+|              新建一个文件              |     Ctrl+Shift+N     |     Command+Shift+N     |
+|                打开文件                |        Ctrl+O        |        Command+O        |
+|              保存当前文件              |        Ctrl+S        |        Command+S        |
+|              关闭当前文件              |        Ctrl+W        |        Command+W        |
+|      关闭当前文件(仅适用于Chrome)      |     Ctrl+Shift+Z     |     Command+Shift+Z     |
+|           关闭所有打开的文件           |     Ctrl+Shift+W     |     Command+Shift+W     |
+|             在HTML里面预览             |     Ctrl+Shift+Y     |     Command+Shift+Y     |
+|                 插入块                 |      Ctrl+Alt+I      |    Command+Option+I     |
+|               插入代码段               |     Ctrl+Shift+R     |     Command+Shift+R     |
+|         运行当前/被选中的代码          |      Ctrl+Enter      |      Command+Enter      |
+|            再次运行以前区域            |     Ctrl+Shift+P     |     Command+Shift+P     |
+|              运行当前文件              |      Ctrl+Alt+R      |    Command+Option+R     |
+|   运行文件中从开头到光标所在处的代码   |      Ctrl+Alt+B      |    Command+Option+B     |
+| 运行文件中从光标所在处到文件末尾的代码 |      Ctrl+Alt+E      |    Command+Option+E     |
+|          运行当前函数定义代码          |      Ctrl+Alt+F      |    Command+Option+F     |
+|             运行当前代码块             |      Ctrl+Alt+C      |    Command+Option+C     |
+|            运行下一个代码块            |      Ctrl+Alt+N      |    Command+Option+N     |
+|        执行一个外部文件中的代码        |     Ctrl+Shift+O     |     Command+Shift+O     |
+|          执行当前文件中的代码          |     Ctrl+Shift+S     |     Command+Shift+S     |
+|     执行当前文件中的代码（并输出）     |   Ctrl+Shift+Enter   |   Command+Shift+Enter   |
+|              折叠选中代码              |        Alt+L         |    Command+Option+L     |
+|              打开选中代码              |     Shift+Alt+L      | Command+Shift+Option+L  |
+|              折叠所有代码              |        Alt+0         |    Command+Option+0     |
+|              打开所有代码              |     Shift+Alt+0      | Command+Shift+Option+0  |
+|              跳转到指定行              |     Shift+Alt+G      | Command+Shift+Option+G  |
+|                 跳转到                 |     Shift+Alt+J      | Command+Shift+Option+J  |
+|                切换tab                 |    Ctrl+Alt+Down     |    Ctrl+Option+Down     |
+|            切换到前一个tab             |    Ctrl+Alt+Left,    |    Ctrl+Option+Left     |
+|            切换到下一个tab             |   Ctrl+Alt+Right,    |    Ctrl+Option+Right    |
+|            切换到第一个tab             | Ctrl+Shift+Alt+Left  | Ctrl+Shift+Option+Left  |
+|           切换到最后一个tab            | Ctrl+Shift+Alt+Right | Ctrl+Shift+Option+Right |
+|        向前切换（类似浏览器→）         |       Ctrl+F9        |       Command+F9        |
+|        向后导航（类似浏览器←）         |       Ctrl+F10       |       Command+F10       |
+|         从选中的代码中提取函数         |     Ctrl+Shift+U     |     Command+Shift+U     |
+|          注释/取消注释当前行           |     Ctrl+Shift+C     |     Command+Shift+C     |
+|           向上/向下移动一行            |     Alt+Up/Down      |     Option+Up/Down      |
+|               查找并替换               |        Ctrl+F        |        Command+F        |
+|               查找下一个               |         F3,          |        Command+G        |
+|               查找上一个               |      Shift+F3,       |     Command+Shift+G     |
+|               替换并查找               |        Ctrl+=        |        Command+=        |
+|              在文件中查找              |        Ctrl+F        |        Command+F        |
+|                拼写检查                |          F7          |           F7            |
+
+
+# 3. Editing (Console and Source)编辑
+
+|       Windows        |           Mac         |                         |
+|:--------------------:|:---------------------:|:-----------------------:|
+|         撤销         |        Ctrl+Z         |        Command+Z        |
+|     重复上次操作     |     Ctrl+Shift+Z      |     Command+Shift+Z     |
+|         剪切         |        Ctrl+X         |        Command+X        |
+|         复制         |        Ctrl+C         |        Command+C        |
+|         粘贴         |        Ctrl+V         |        Command+V        |
+|         全选         |        Ctrl+A         |        Command+A        |
+|      跳转到单词      |    Ctrl+Left/Right    |    Option+Left/Right    |
+|        删除行        |        Ctrl+D         |        Command+D        |
+|         选择         |     Shift+[Arrow]     |      Shift+[Arrow]      |
+|      选择一个词      | Ctrl+Shift+Left/Right | Option+Shift+Left/Right |
+| 查看光标处的函数帮助 |          F1           |           F1            |
+| 查看光标处的函数代码 |          F2           |           F2            |
+
+
+# 4. Views视图
+
+|          Windows       |   Mac   |            |
+|:----------------------:|:-------:|:----------:|
+|    跳转到文件/函数     | Ctrl+.  |   Ctrl+.   |
+| 将光标定位到代码编辑器 | Ctrl+1  |   Ctrl+1   |
+|   将光标定位到控制台   | Ctrl+2  |   Ctrl+2   |
+|    将焦点定位到帮助    | Ctrl+3  |   Ctrl+3   |
+|        显示历史        | Ctrl+4  |   Ctrl+4   |
+|        显示文件        | Ctrl+5  |   Ctrl+5   |
+|        显示图像        | Ctrl+6  |   Ctrl+6   |
+|         显示包         | Ctrl+7  |   Ctrl+7   |
+|      显示工作空间      | Ctrl+8  |   Ctrl+8   |
+|      显示Git/SVN       | Ctrl+9  |   Ctrl+9   |
+|       显示Build        | Ctrl+0  |   Ctrl+0   |
+|  同步编辑器和PDF预览   | Ctrl+F8 | Command+F8 |
+
+　   　
+
+
+# 5. Build
+
+|       Windows      |      Mac     |                 |
+|:------------------:|:------------:|:---------------:|
+|     编译和重载     | Ctrl+Shift+B | Command+Shift+B |
+| 加载所有(devtools) | Ctrl+Shift+L | Command+Shift+L |
+|       检查包       | Ctrl+Shift+E | Command+Shift+E |
+
+# 6. Plots绘图
+
+|   Windows   |          Mac        |                        |
+|:-----------:|:-------------------:|:----------------------:|
+| 上一个图像  |  Ctrl+Shift+PageUp  |  Command+Shift+PageUp  |
+| 下一个图像  | Ctrl+Shift+PageDown | Command+Shift+PageDown |
+| 显示操作者  |    Ctrl+Shift+M     |    Command+Shift+M     |
+
+# 7. Git/SVN
+
+|           Windows           |      Mac     |                 |
+|:---------------------------:|:------------:|:---------------:|
+|      对比当前源码文件       | Ctrl+Shift+D | Command+Shift+D |
+|          提交修改           | Ctrl+Shift+M | Command+Shift+M |
+|        滚动查看不同         | Ctrl+Up/Down |  Ctrl+Up/Down   |
+|     Stage/Unstage(Git)      |   Spacebar   |    Spacebar     |
+| Stage/Unstage&movenext(Git) |    Enter     |      Enter      |
+
+

@@ -1,0 +1,74 @@
+---
+title: R向文本文件插入内容
+author: Liang
+date: '2018-11-25'
+slug: R向文本文件插入内容
+categories:
+  - R
+tags: []
+lastmod: '2018-11-25T14:14:25-05:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: no
+mathjaxEnableSingleDollar: no
+mathjaxEnableAutoNumber: no
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+
+
+
+<div class="section level2">
+<h2>1. 创造文件并写入</h2>
+<pre class="r"><code>fileConn&lt;-file(&quot;./output.txt&quot;) #创造一个文件
+writeLines(c(&quot;Hello&quot;,&quot;World&quot;), fileConn) #写入内容到文件内
+close(fileConn)</code></pre>
+</div>
+<div class="section level2">
+<h2>2. 替代方法</h2>
+<p>可以使用sink和cat命令写入文件</p>
+<p>sink函数将输出结果重定向到文件。</p>
+<p>使用方式：sink(file = NULL, append = FALSE, type = c(“output”, “message”),split = FALSE)</p>
+<p>append参数：布尔值。TRUE时，输出内容追加到文件尾部。FALSE，覆盖文件原始内容。</p>
+<p>cat函数即能输出到屏幕，也能输出到文件.</p>
+<p>使用方式：cat(… , file = “”, sep = &quot; “, fill = FALSE, labels = NULL,append = FALSE)</p>
+<p>有file时，输出到file。无file时，输出到屏幕。</p>
+<p>append参数：布尔值。TRUE时，输出内容追加到文件尾部。FALSE，覆盖文件原始内容。</p>
+<pre class="r"><code>sink(&quot;./outfile2.txt&quot;)
+cat(&quot;hello\nworld&quot;)</code></pre>
+<pre><code>## hello
+## world</code></pre>
+<pre class="r"><code>sink()</code></pre>
+</div>
+<div id="2" class="section level2">
+<h2>3. 替代方法2</h2>
+<p>R中还有一个write函数，可以直接写入内容到文件内</p>
+<pre class="r"><code>line=&quot;hello\nworld&quot;
+write(line,file=&quot;./outfile3.txt&quot;)</code></pre>
+</div>
+<div class="section level2">
+<h2>4. 插入文件到文本指定位置</h2>
+<p>创造文件</p>
+<pre class="r"><code>line=&quot;hello\nworld&quot;
+write(line,file=&quot;./outfile3.txt&quot;)</code></pre>
+<p>读取文件</p>
+<pre class="r"><code>txt_cont &lt;- readLines(&quot;./outfile3.txt&quot;, warn=FALSE)
+length(txt_cont)</code></pre>
+<pre><code>## [1] 2</code></pre>
+<p>在文件的第二行插入内容重新写入</p>
+<pre class="r"><code>txt_cont &lt;- paste(txt_cont[1], &quot;my&quot;, txt_cont[2], sep = &quot;\n&quot;)
+#不能用+，和Python不同，字符串不能加
+writeLines(txt_cont, &quot;./outfile4.txt&quot;)</code></pre>
+</div>

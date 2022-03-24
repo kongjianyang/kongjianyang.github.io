@@ -1,0 +1,96 @@
+---
+title: NCBI上基因组文件格式及解释.h
+author: Liang
+date: '2018-11-24'
+slug: NCBI上基因组文件格式及解释.h
+categories:
+  - 生信修炼
+tags: []
+lastmod: '2018-11-24T22:51:22-04:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: no
+mathjaxEnableSingleDollar: no
+mathjaxEnableAutoNumber: no
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCBI上基因组文件格式及解释</title>
+    <style type="text/css" media="all">
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: #777;
+        background-color: white;
+      }
+      .container {
+        width: 700px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .post {
+        font-family: Georgia, "Times New Roman", Times, "SimSun", serif;
+        position: relative;
+        padding: 70px;
+        bottom: 0;
+        overflow-y: auto;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 25px;
+        color: #515151;
+      }
+
+      .post h1{
+        font-size: 50px;
+        font-weight: 500;
+        line-height: 60px;
+        margin-bottom: 40px;
+        color: inherit;
+      }
+
+      .post p {
+        margin: 0 0 35px 0;
+      }
+
+      .post img {
+        border: 1px solid #D9D9D9;
+      }
+
+      .post a {
+        color: #28A1C5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="post">
+        <h1 class="title">NCBI上基因组文件格式及解释</h1>
+        <div class="show-content">
+          <p>最近在对于一些关于基因组的数据进行处理，发现如果在NCBI上下载一个物种例如E. coil的基因组序列之后，有很多并不常见的文件类型，例如<i>.asn</i>.faa<i>.ffn</i>.fna *.val 等等，处于好奇，特意去查了这些文件的意义是什么，总结如下：<a href="" target="_blank"><br></a></p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/3014937-f3972c560de112da.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/3014937-f3972c560de112da.jpg?imageMogr2/auto-orient/strip" data-image-slug="f3972c560de112da" data-width="261" data-height="147"><br><div class="image-caption"></div>
+</div><p>*.asn = ASN.1 (Abstract Syntax Notation 1) file 是NCBI的一种特定格式，包括完整的注释信息，可以用如sequin等软件打开。</p><p>*.faa = FASTA Amino Acid file 全部蛋白序列文件</p><p>*.ffn = FASTA nucleotide coding regions file 全部核酸序列文件</p><p>*.fna = FASTA Nucleic Acid file 完整的基因组序列文件（一条序列）</p><p>*.gbk = GenBank flat file format 不用说了，genbank格式的基因组注释信息</p><p>*.ptt = Protein Table 包含各个CDS（coding sequence）的完整信息表（很有用，可以方便的导入excel等软件来看）</p><p>以上这些软件都是文本类型的文件，所以可以用记事本打开，但是更加建议使用notepad++打开，会保证格式不会变化。</p><p>其中*.val是一个二进制格式的文件。</p><p>*.val = Nucleotide sequence, in ASN.1 binary format（ASN.1二进制的核苷酸序列）</p><p>我本次使用的文件类型是.fna，也就是一条完整的基因组序列文件。</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

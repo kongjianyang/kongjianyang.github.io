@@ -1,0 +1,51 @@
+---
+title: R中的箱线图进阶
+author: Liang
+date: '2018-12-12'
+slug: R中的箱线图进阶
+categories:
+  - R
+tags: []
+lastmod: '2018-12-12T16:38:04-05:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+
+
+
+<p>箱线图能够显示出离群点（outlier），离群点也叫做异常值，通过箱线图能够很容易识别出数据中的异常值。</p>
+<p>geom_boxplot函数中有outlier开头的多个参数，用于修改离群点的属性：</p>
+<ul>
+<li>outlier.colour：离群点的颜色</li>
+<li>outlier.fill：离群点的填充色</li>
+<li>outlier.shape：离群点的形状</li>
+<li>outlier.size：离群点的大小</li>
+<li>outlier.alpha：离群点的透明度</li>
+</ul>
+<p>绘制散点图，并标记异常值：</p>
+<pre class="r"><code>ToothGrowth$dose &lt;- as.factor(ToothGrowth$dose)
+ggplot(ToothGrowth, aes(x=dose, y=len,color=dose)) + 
+  geom_boxplot(outlier.colour=&quot;red&quot;, outlier.shape=7,outlier.size=4)+
+  scale_color_manual(values=c(&quot;#999999&quot;, &quot;#E69F00&quot;, &quot;#56B4E9&quot;))+
+  theme_bw() + 
+  theme(legend.position=&quot;right&quot;)+
+  labs(title=&quot;Plot of length  per dose&quot;,x=&quot;Dose (mg)&quot;, y = &quot;Length&quot;)+
+  geom_dotplot(binaxis=&#39;y&#39;, stackdir=&#39;center&#39;, stackratio=1.5, dotsize=1.2)</code></pre>
+<p><img src="/cn/2018-12-12-R%E4%B8%AD%E7%9A%84%E7%AE%B1%E7%BA%BF%E5%9B%BE%E8%BF%9B%E9%98%B6_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>

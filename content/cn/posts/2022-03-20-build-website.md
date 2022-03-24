@@ -206,9 +206,18 @@ open content/cn/hobby/_index.md -a TextEdit
 
 
 
+[**Hugo**](https://github.com/gohugoio/hugo)是由Go语言实现的静态网站生成。 具有简单、易用、高效、易扩展、快速部署等优点。可将markdown格式的文本结合自定义的主题生成静态的html。
+
+[**GithubPages**](https://help.github.com/articles/what-is-github-pages/)是一个静态站点托管服务，旨在直接从GitHub存储库托管您的个人，组织或项目页面。
+
+Hugo+GithubPages的方案相比于传统的博客系统有以下优点：
+
+- 低成本: 无需单独购买VSP服务器或者域名空间，并且不限流量。
+- 高度定制化：可以方便的定义网站功能模块，增加个性化功能。
+- 方便管理: 由于不需要使用数据库，所有数据均以md形式保存，可直接使用git 行管理，对于博客系统尤其适用。
+- 更专业: 对于开源项目的文档，可以使用git与项目版本同步。
+
 整个网站的结构应该是
-
-
 
 ```
 $ tree blog
@@ -220,6 +229,6 @@ blog
 ├── data
 ├── layouts # 包括了网站的模版，决定内容如何呈现，目录下模板优先级高于 /themes/<THEME>/layouts/，可以用来小规模的定制主题。
 ├── static # 包括了 css, js, fonts, media 等，决定网站的外观。
-└── themes
+└── themes # 主题目录，可从网站下载hugo主题
 ```
 

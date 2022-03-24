@@ -1,0 +1,189 @@
+---
+title: R语言文本处理
+author: Liang
+date: '2018-12-27'
+slug: R语言文本处理
+categories:
+  - R
+tags: []
+lastmod: '2018-12-27T10:30:09-07:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+
+# 常见函数
+
+trimws(x)删去字符型向量x的每个元素的开头和结尾的所有空格。加选项which='left'可以仅删去开头的空格， 选项which='right'可以仅删去结尾的空格。
+
+```{r}
+trimws(c("  李明", "李明  ", "  李明  ", "李  明"))
+```
+
+sprintf是C语言中sprintf的向量化版本，可以把一个元素或一个向量的各个元素按照C语言输出格式转换为字符型向量。 
+
+```{r}
+sprintf('tour%02d.jpg', 1:10)
+```
+
+substring函数求字符串字串， 用开始字符位置和结束字符位置设定字串位置。
+
+```{r}
+substring(c("123456789", "abcdefg"), 3, 5)
+```
+
+用gsub(pattern, replacement, x, fixed=TRUE) 把字符型向量x中每个元素中出现的子串 pattern都替换为replacement。
+
+```{r}
+gsub('the', '**',
+     c('New theme', 'Old times', 'In the present theme'),
+     fixed=TRUE)
+```
+
+strsplit(x,split,fixed=TRUE)可以把字符型向量x的每一个元素按分隔符split拆分为一个字符型向量， strsplit的结果为一个列表， 每个列表元素对应于x的每个元素。
+
+```{r}
+strsplit('31,32,33,34', split=',', fixed=TRUE)[[1]]
+```
+
+# 正则表达式
+
+在正则表达式的模式(pattern)中，
+
+> .*+?{}\[]^$()
+
+等字符是特殊字符， 除了'\'之外的其它12个都称为“元字符”（meta characters）。
+
+regexpr函数的一般用法为：
+
+> regexpr(pattern, text, ignore.case = FALSE, perl = FALSE,
+        fixed = FALSE, useBytes = FALSE)
+
+```{r}
+x <- c('New theme', 'Old times', 'In the present theme')
+
+grep('the', x, perl=TRUE)
+
+grep('the', x, perl=TRUE, value=TRUE)
+```
+
+正则表达式的模式一般是区分大小写的。 为了不区分大小写匹配， 可以在grep等函数调用时加选项ignore.case=TRUE
+
+```{r}
+grep('dr', c("Dr. Wang", 'DR. WANG', 'dR. W.R.'), ignore.case=TRUE, value = TRUE)
+```
+
+在模式中用“.”匹配任意一个字符，用“[.]”表示句点则将句点不做特殊解释，也可以使用“\.”表示
+
+```{r}
+grep('a.txt', c('a.txt', 'a0txt'), perl=TRUE)
+
+grep('a[.]txt', c('a.txt', 'a0txt'), perl=TRUE)
+
+grep('a\\.txt', c('a.txt', 'a0txt'), perl=TRUE)
+```
+
+匹配空白，表示空白的元字符有:
+
+```
+\f 换页符
+\n 换行符
+\r 回车符
+\t 制表符
+\v 垂直制表符
+```
+
+不同操作系统的文本文件的行分隔符不同， 为了匹配Windows格式的文本文件中的空行， 用“\r\n\r\n”； 为了匹配Unix格式的文本文件中的空行则用“\r\r”。写成R的字符型常量时， 这些表示本身也是R的相应字符的表示，所以在R字符型常量中这些字符不需要用两个\表示一个\。
+
+匹配任意一个空白字符用“\s”， 这等价于“[ \f\n\r\t\v]”。 大写的“\S”则匹配任意一个非空白的字符。
+
+用\d匹配一个数字，相当于[0-9]。 用\D匹配一个非数字。
+
+```{r}
+grep("n\\d[.]xls", c("n1.xls", "na.xls"), perl=TRUE, value = T)
+```
+
+模式匹配相当于在字符串内部搜索某种模式， 如果要从字符串开头匹配， 在模式中取第一个字符为^或\A。 如果模式中最后一个字符是$或\Z， 则需要匹配到字符串末尾。
+
+匹配字母、数字、下划线字符用\w， 等价于[a-zA-Z0-9_]。 \W匹配这些字符以外的字符。
+
+```{r}
+m <- regexpr("s\\w[.]", c("file-s1.xls", "s#.xls"), perl=TRUE)
+regmatches(c("file-s1.xls", "s#.xls"), m)
+
+m <- regexpr("s\\W[.]", c("file-s1.xls", "s#.xls"), perl=TRUE)
+regmatches(c("file-s1.xls", "s#.xls"), m)
+```
+
+模式中在一个字符或字符集合后加后缀+表示一个或多个前一字符。
+
+```{r}
+s <- c("sa1", "dsa123")
+mres <- regexpr("sa[[:digit:]]+", s, perl=TRUE)
+regmatches(s, mres)
+```
+
+在模式中方括号内可以用[:digit:] 表示任意一个字母。 比如，[[:digit:]]匹配任意一个字母（外层的方括号表示字符集合，内层的方括号是POSIX字符类的固有界定符）
+
+在一个字符或字符集合后加后缀*表示零个或多个前一字符，后缀?表示零个或一个前一字符。
+
+问号可以表示零个或一个， 而加号、星号重复不能控制重复次数。在后缀大括号中写一个整数表示精确的重复次数。
+
+```{r}
+grep('[[:digit:]]{3}', c('1', '12', '123', '1234'), value = TRUE)
+```
+
+## 贪婪匹配和懒惰匹配
+
+无上限的重复匹配如'*, +, {3,}' 等缺省是贪婪型的， 重复直到文本中能匹配的最长范围。
+
+如果要求尽可能短的匹配， 使用'*?, +?, {3,}?'等“懒惰型”重复模式。 在无上限重复标志后面加问号表示懒惰性重复。
+
+```{r}
+s <- '<B>1st</B> other <B>2nd</B>'
+p1 <- '<[Bb]>.*</[Bb]>'
+m1 <- regexpr(p1, s, perl=TRUE)
+regmatches(s, m1)[[1]]
+
+s <- '<B>1st</B> other <B>2nd</B>'
+p2 <- '<[Bb]>.*?</[Bb]>'
+m2 <- regexpr(p2, s, perl=TRUE)
+regmatches(s, m2)[[1]]
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

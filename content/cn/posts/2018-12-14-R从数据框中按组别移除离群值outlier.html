@@ -1,0 +1,130 @@
+---
+title: R从数据框中按组别移除离群值(outlier)
+author: Liang
+date: '2018-12-14'
+slug: R从数据框中按组别移除离群值(outlier)
+categories:
+  - R
+tags: []
+lastmod: '2018-12-14T17:28:53-05:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+
+
+
+<p>离群值(outlier)通常被定义为小于 QL - l.5 IQR 或者 大于 Qu + 1.5 IQR的值，QL称为下四分位数， Qu称为上四分位数，IQR称为四分位数间距，是Qu上四分位数和QL下四分位数之差，其间包括了全部观察值的一半。</p>
+<div class="section level1">
+<h1>1.方法一：</h1>
+<p>定义功能剔除离群值</p>
+<pre class="r"><code>remove_outliers &lt;- function(x, na.rm = TRUE, ...) {
+  qnt &lt;- quantile(x, probs=c(.25, .75), na.rm = na.rm, ...)
+  H &lt;- 1.5 * IQR(x, na.rm = na.rm)
+  y &lt;- x
+  y[x &lt;= (qnt[1] - H)] &lt;- NA
+  y[x &gt;= (qnt[2] + H)] &lt;- NA
+  y
+}</code></pre>
+<p>制造数据框</p>
+<pre class="r"><code>element &lt;- sample(letters[1:5], 1e4, replace=T)
+value &lt;- rnorm(1e4)
+df &lt;- data.frame(element, value)
+head(df)</code></pre>
+<pre><code>##   element      value
+## 1       b  1.1945698
+## 2       b  1.4646831
+## 3       c -0.9740408
+## 4       d  1.1871266
+## 5       a -0.0244541
+## 6       d  0.1584528</code></pre>
+<pre class="r"><code>ggplot(df, aes(x=element, y=value,color=element)) + 
+  geom_boxplot(outlier.colour=&quot;red&quot;, outlier.shape=7,outlier.size=1) + #指出离群值
+  theme_bw() + 
+  theme(legend.position=&quot;right&quot;)+
+  labs(title=&quot;&quot;,x=&quot;&quot;, y = &quot;&quot;)</code></pre>
+<p><img src="/cn/2018-12-14-R%E4%BB%8E%E6%95%B0%E6%8D%AE%E6%A1%86%E4%B8%AD%E6%8C%89%E7%BB%84%E5%88%AB%E7%A7%BB%E9%99%A4%E7%A6%BB%E7%BE%A4%E5%80%BCoutlier_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>由图可以看出确实有很多离群值</p>
+<p>测试下分组剔除离群值</p>
+<pre class="r"><code>df2 &lt;- df %&gt;%
+  group_by(element) %&gt;%
+  mutate(value = remove_outliers(value))
+head(df2)</code></pre>
+<pre><code>## # A tibble: 6 x 2
+## # Groups:   element [4]
+##   element   value
+##   &lt;fct&gt;     &lt;dbl&gt;
+## 1 b        1.19  
+## 2 b        1.46  
+## 3 c       -0.974 
+## 4 d        1.19  
+## 5 a       -0.0245
+## 6 d        0.158</code></pre>
+<pre class="r"><code>df2 &lt;- na.omit(df2) # 移除NA值</code></pre>
+<pre class="r"><code>ggplot(df2, aes(x=element, y=value,color=element)) + 
+  geom_boxplot(outlier.colour=&quot;red&quot;, outlier.shape=7,outlier.size=1) + #指出离群值
+  theme_bw() + 
+  theme(legend.position=&quot;right&quot;)+
+  labs(title=&quot;&quot;,x=&quot;&quot;, y = &quot;&quot;)</code></pre>
+<p><img src="/cn/2018-12-14-R%E4%BB%8E%E6%95%B0%E6%8D%AE%E6%A1%86%E4%B8%AD%E6%8C%89%E7%BB%84%E5%88%AB%E7%A7%BB%E9%99%A4%E7%A6%BB%E7%BE%A4%E5%80%BCoutlier_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>由图可以看出已经移除了大部分的离群值。</p>
+</div>
+<div class="section level1">
+<h1>2.方法二</h1>
+<pre class="r"><code>element &lt;- sample(letters[1:5], 1e4, replace=T)
+value &lt;- rnorm(1e4)
+df &lt;- data.frame(element, value)
+
+means.without.ols &lt;- tapply(value, element, function(x) {
+  mean(x[!(abs(x - median(x)) &gt; 2*sd(x))])
+})
+
+df1 = df %&gt;%
+  group_by(element) %&gt;%
+  summarise_each(funs(mean), value)
+
+means.without.ols</code></pre>
+<pre><code>##             a             b             c             d             e 
+##  0.0006870323 -0.0881612981 -0.0523121887 -0.0026486967  0.0108376882</code></pre>
+<pre class="r"><code>df1</code></pre>
+<pre><code>## # A tibble: 5 x 2
+##   element    value
+##   &lt;fct&gt;      &lt;dbl&gt;
+## 1 a        0.0110 
+## 2 b       -0.0505 
+## 3 c       -0.0432 
+## 4 d        0.00230
+## 5 e        0.00847</code></pre>
+<pre class="r"><code>element &lt;- sample(letters[1:5], 1e4, replace=T)
+value &lt;- rnorm(1e4)
+df &lt;- data.frame(element, value)
+
+means.without.ols &lt;- tapply(value, element, function(x) {
+  mean(x[!(abs(x - median(x)) &gt; 2*sd(x))])
+})
+
+# df1 = df %&gt;%
+#   group_by(element) %&gt;%
+#   filter(!(abs(value - median(value)) &gt; 2*sd(value))) %&gt;%
+#   summarise_each(funs(mean), value)
+
+means.without.ols</code></pre>
+<pre><code>##            a            b            c            d            e 
+##  0.016652511 -0.039851375  0.013454980 -0.015648452  0.001179449</code></pre>
+</div>
