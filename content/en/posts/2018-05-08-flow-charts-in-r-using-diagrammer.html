@@ -1,0 +1,68 @@
+---
+title: Flow charts in R using DiagrammeR
+author: Liang
+date: '2018-05-08'
+slug: flow-charts-in-r-using-diagrammer
+categories:
+  - R
+tags:
+  - R
+---
+
+<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/d3/d3.min.js"></script>
+<script src="/rmarkdown-libs/dagre/dagre-d3.min.js"></script>
+<link href="/rmarkdown-libs/mermaid/dist/mermaid.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/mermaid/dist/mermaid.slim.min.js"></script>
+<link href="/rmarkdown-libs/DiagrammeR-styles/styles.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/chromatography/chromatography.js"></script>
+<script src="/rmarkdown-libs/DiagrammeR-binding/DiagrammeR.js"></script>
+
+
+<pre class="r"><code>library(DiagrammeR)
+DiagrammeR(&quot;graph LR;
+           A--&gt;B;
+           B--&gt;C;
+           B--&gt;D&quot;)</code></pre>
+<div id="htmlwidget-1" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"diagram":"graph LR;\n           A-->B;\n           B-->C;\n           B-->D"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>library(DiagrammeR)
+DiagrammeR(&quot;graph TB;
+    A(Rounded)--&gt;B[Squared];
+    B---C{Rhombus!};
+    C--&gt;D&gt;flag shape];
+    C--&gt;E((Circle));&quot;)</code></pre>
+<div id="htmlwidget-2" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"diagram":"graph TB;\n    A(Rounded)-->B[Squared];\n    B---C{Rhombus!};\n    C-->D>flag shape];\n    C-->E((Circle));"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>library(DiagrammeR)
+
+DiagrammeR(&quot;
+  graph TD;
+    A[rect]-- add style --&gt;A2[rect + style];
+    B{rhombus}---|+ some style|B2{rhombus + style};
+    C(rounded);   D((circle)); 
+    style A2 fill:#c12,stroke-width:5px;
+    style B2 fill:none, stroke-dasharray:10;
+&quot;)</code></pre>
+<div id="htmlwidget-3" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"diagram":"\n  graph TD;\n    A[rect]-- add style -->A2[rect + style];\n    B{rhombus}---|+ some style|B2{rhombus + style};\n    C(rounded);   D((circle)); \n    style A2 fill:#c12,stroke-width:5px;\n    style B2 fill:none, stroke-dasharray:10;\n"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>library(DiagrammeR)
+# workflow of a post graph
+DiagrammeR(&quot;
+  graph TD;
+    hw{htmlwidget} --&gt;experiments;
+    hw --&gt;content;
+    experiments --&gt;RMarkdown
+    content --&gt;RMarkdown
+    RMarkdown --&gt;|R/knitr|Markdown;
+    Markdown --&gt;|Pandoc|HTML;
+    HTML --&gt;|git push| Github;
+    HTML --&gt;|copy/paste| Squarespace ;
+&quot;)</code></pre>
+<div id="htmlwidget-4" style="width:672px;height:480px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"diagram":"\n  graph TD;\n    hw{htmlwidget} -->experiments;\n    hw -->content;\n    experiments -->RMarkdown\n    content -->RMarkdown\n    RMarkdown -->|R/knitr|Markdown;\n    Markdown -->|Pandoc|HTML;\n    HTML -->|git push| Github;\n    HTML -->|copy/paste| Squarespace ;\n"},"evals":[],"jsHooks":[]}</script>
+<p>waiting continue…</p>
+<div id="reference" class="section level2">
+<h2>Reference</h2>
+<p><a href="http://timelyportfolio.github.io/buildingwidgets/week01/">Easy Flowcharts and Diagrams</a></p>
+</div>

@@ -1,0 +1,276 @@
+---
+title: Add p value and significant marker for ggplot based on ggpubr
+author: Liang
+date: '2018-06-07'
+slug: add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr
+categories:
+  - Bioinfo
+tags:
+  - Bioinfo
+---
+
+
+
+<blockquote>
+<p>The ‘ggpubr’ package provides some easy-to-use functions for creating and customizing ‘ggplot2’- based publication ready plots. -A. Kassambara.</p>
+</blockquote>
+<p><a href="http://www.sthda.com/english/rpkgs/ggpubr">Reference</a></p>
+<div id="preparation" class="section level1">
+<h1>1. Preparation</h1>
+<p>install the package</p>
+<pre class="r"><code>install.packages(&quot;ggpubr&quot;)</code></pre>
+<p>or you can install the latest version form github</p>
+<pre class="r"><code>if(!require(devtools)) install.packages(&quot;devtools&quot;) # if havn`t install devtools before, install it first
+devtools::install_github(&quot;kassambara/ggpubr&quot;)</code></pre>
+<p>load package</p>
+<pre class="r"><code>library(ggpubr)</code></pre>
+<p>load data</p>
+<pre class="r"><code>data(&quot;ToothGrowth&quot;)
+head(ToothGrowth)</code></pre>
+<pre><code>##    len supp dose
+## 1  4.2   VC  0.5
+## 2 11.5   VC  0.5
+## 3  7.3   VC  0.5
+## 4  5.8   VC  0.5
+## 5  6.4   VC  0.5
+## 6 10.0   VC  0.5</code></pre>
+</div>
+<div id="comparing-means-in-r" class="section level1">
+<h1>2. Comparing means in R</h1>
+<p>Reference here: <a href="http://www.sthda.com/english/wiki/comparing-means-in-r" class="uri">http://www.sthda.com/english/wiki/comparing-means-in-r</a></p>
+<p>a short summary here</p>
+<table>
+<thead>
+<tr class="header">
+<th>Methods</th>
+<th>R function</th>
+<th>Describe</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>T test</td>
+<td>t.test()</td>
+<td>two groups (parametric)</td>
+</tr>
+<tr class="even">
+<td>Wilcoxon test</td>
+<td>wilcox.test</td>
+<td>two groups (nonparametric)</td>
+</tr>
+<tr class="odd">
+<td>ANOVA</td>
+<td>anova()</td>
+<td>multiple groups (parametric)</td>
+</tr>
+<tr class="even">
+<td>Kruskal-Wallis</td>
+<td>kruskal.test()</td>
+<td>multiple groups (nonparametric)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="two-functions" class="section level1">
+<h1>3. Two functions</h1>
+<ul>
+<li>compare_means()</li>
+<li>stat_compare_means()</li>
+</ul>
+<p>usage</p>
+<pre><code>compare_means(formula, data, method=&quot;wilcox.test&quot;, paired=FALSE, 
+              group.by=NULL, ref.group = NULL, ...)</code></pre>
+<blockquote>
+<p>formula: a formula of the form x ~ group where x is a numeric variable giving the data values and group is a factor with one or multiple levels giving the corresponding groups</p>
+</blockquote>
+<blockquote>
+<p>ref.group: a character string specifying the reference group. If specified, for a given grouping variable, each of the group levels will be compared to the reference group</p>
+</blockquote>
+<pre><code>stat_compare_means(mapping = NULL, 
+                   comparisons = NULL,
+                   hide.ns = FALSE,
+                   label = NULL,
+                   label.x = NULL,
+                   label.y = NULL)</code></pre>
+</div>
+<div id="compare-two-group" class="section level1">
+<h1>4. Compare two group</h1>
+<pre class="r"><code>compare_means(len ~ supp, data = ToothGrowth) </code></pre>
+<pre><code>## # A tibble: 1 x 8
+##   .y.   group1 group2      p p.adj p.format p.signif method  
+##   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
+## 1 len   OJ     VC     0.0645 0.064 0.064    ns       Wilcoxon</code></pre>
+<pre class="r"><code>p &lt;- ggboxplot(ToothGrowth, x=&quot;supp&quot;,
+               y = &quot;len&quot;, color = &quot;supp&quot;, add = &quot;point&quot;)
+# add p value
+p + stat_compare_means() # the default method for comparision is wilcox.test() </code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>change comparision method</p>
+<pre class="r"><code>p + stat_compare_means(method = &quot;t.test&quot;)</code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>add the p.signif and change the location</p>
+<pre class="r"><code>p + stat_compare_means(aes(label = ..p.signif..),
+                       label.x = 1.5, 
+                       label.y = 40)</code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="compare-two-paired-group" class="section level1">
+<h1>5. Compare two paired group</h1>
+<pre class="r"><code>compare_means(len ~ supp, data = ToothGrowth, paired = TRUE)</code></pre>
+<pre><code>## # A tibble: 1 x 8
+##   .y.   group1 group2       p  p.adj p.format p.signif method  
+##   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
+## 1 len   OJ     VC     0.00431 0.0043 0.0043   **       Wilcoxon</code></pre>
+<pre class="r"><code>ggpaired(ToothGrowth, x=&quot;supp&quot;, y=&quot;len&quot;,
+         color=&quot;supp&quot;, line.color=&quot;gray&quot;,
+         line.size=0.4, palette = &quot;point&quot;) + 
+    stat_compare_means(paired = TRUE)</code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="multiple-group-comparision" class="section level1">
+<h1>6. multiple group comparision</h1>
+<p>global test</p>
+<pre class="r"><code>compare_means(len ~ dose, data = ToothGrowth, method = &quot;anova&quot;)</code></pre>
+<pre><code>## # A tibble: 1 x 6
+##   .y.          p    p.adj p.format p.signif method
+##   &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt; 
+## 1 len   9.53e-16 9.50e-16 9.5e-16  ****     Anova</code></pre>
+<pre class="r"><code>ggboxplot(ToothGrowth, x = &quot;dose&quot;, y = &quot;len&quot;, color = &quot;dose&quot;, add = &quot;point&quot;) + 
+    stat_compare_means(method = &quot;anova&quot;)</code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>you can specify the comparison group</p>
+<pre class="r"><code>my_comparisons &lt;- list(c(&quot;0.5&quot;,&quot;1&quot;), c(&quot;1&quot;, &quot;2&quot;),
+                       c(&quot;0.5&quot;, &quot;2&quot;))
+ggboxplot(ToothGrowth, x=&quot;dose&quot;, y=&quot;len&quot;,
+          color=&quot;dose&quot;, add = &quot;point&quot;) +
+    stat_compare_means(comparisons = my_comparisons) + #add comparision group p value 
+    stat_compare_means(label.y = 50) # add global p value </code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+<div id="multiple-group-comparision-with-a-reference-group" class="section level1">
+<h1>7. multiple group comparision with a reference group</h1>
+<pre class="r"><code>compare_means(len ~ dose, data = ToothGrowth,
+              ref.group = &quot;0.5&quot;, 
+              method = &quot;t.test&quot;)</code></pre>
+<pre><code>## # A tibble: 2 x 8
+##   .y.   group1 group2        p    p.adj p.format p.signif method
+##   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt; 
+## 1 len   0.5    1      1.27e- 7 1.30e- 7 1.3e-07  ****     T-test
+## 2 len   0.5    2      4.40e-14 8.80e-14 4.4e-14  ****     T-test</code></pre>
+<p>Visualize the result</p>
+<pre class="r"><code>ggboxplot(ToothGrowth, x=&quot;dose&quot;, y=&quot;len&quot;,
+          color=&quot;dose&quot;, add = &quot;point&quot;) + 
+    stat_compare_means(method=&quot;anova&quot;, label.y=40) + # add global p value 
+    stat_compare_means(label=&quot;p.signif&quot;, method=&quot;t.test&quot;,
+                       ref.group = &quot;0.5&quot;) # add signif marker</code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>use all data as the base-mean do the paired comparison</p>
+<pre class="r"><code># Load myeloma data from GitHub
+myeloma &lt;- read.delim(&quot;https://raw.githubusercontent.com/kassambara/data/master/myeloma.txt&quot;)
+
+compare_means(DEPDC1 ~ molecular_group,  data = myeloma,
+              ref.group = &quot;.all.&quot;, method = &quot;t.test&quot;)</code></pre>
+<pre><code>## # A tibble: 7 x 8
+##   .y.    group1 group2                 p    p.adj p.format p.signif method
+##   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;              &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt; 
+## 1 DEPDC1 .all.  Cyclin D-1       2.88e-1  1.00e+0 0.29     ns       T-test
+## 2 DEPDC1 .all.  Cyclin D-2       4.24e-1  1.00e+0 0.42     ns       T-test
+## 3 DEPDC1 .all.  Hyperdiploid     2.73e-8  1.90e-7 2.7e-08  ****     T-test
+## 4 DEPDC1 .all.  Low bone dis…    5.26e-6  3.20e-5 5.3e-06  ****     T-test
+## 5 DEPDC1 .all.  MAF              2.54e-1  1.00e+0 0.25     ns       T-test
+## 6 DEPDC1 .all.  MMSET            5.78e-1  1.00e+0 0.58     ns       T-test
+## 7 DEPDC1 .all.  Proliferation    2.39e-5  1.20e-4 2.4e-05  ****     T-test</code></pre>
+<pre class="r"><code>ggboxplot(myeloma, x=&quot;molecular_group&quot;, y=&quot;DEPDC1&quot;,
+          color=&quot;molecular_group&quot;, add=&quot;jitter&quot;,
+          legend=&quot;none&quot;) + 
+    rotate_x_text(angle = 45) + 
+    geom_hline(yintercept = mean(myeloma$DEPDC1),
+               linetype=2) + #  add base mean
+     stat_compare_means(method = &quot;anova&quot;, label.y = 1600)+        # Add global annova p-value
+  stat_compare_means(label = &quot;p.signif&quot;, method = &quot;t.test&quot;,
+                     ref.group = &quot;.all.&quot;)                      # Pairwise comparison against all</code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+<div id="generate-sub-figure" class="section level1">
+<h1>8. generate sub figure</h1>
+<pre class="r"><code>p &lt;- ggboxplot(ToothGrowth, x = &quot;supp&quot;, y = &quot;len&quot;,
+          color = &quot;supp&quot;,
+          add = &quot;point&quot;,
+          facet.by = &quot;dose&quot;, short.panel.labs = FALSE)
+# Use only p.format as label. Remove method name.
+p + stat_compare_means(label = &quot;p.format&quot;)</code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<pre class="r"><code># Or use significance symbol as label
+p + stat_compare_means(label =  &quot;p.signif&quot;, label.x = 1.5)</code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>put all figure in one</p>
+<pre class="r"><code>p &lt;- ggboxplot(ToothGrowth, x = &quot;dose&quot;, y = &quot;len&quot;,
+          color = &quot;supp&quot;, palette = &quot;jco&quot;,
+          add = &quot;jitter&quot;)
+p + stat_compare_means(aes(group = supp))</code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<pre class="r"><code># only p value 
+p + stat_compare_means(aes(group = supp), label = &quot;p.format&quot;)</code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+</div>
+<div id="other-figure" class="section level1">
+<h1>9. Other figure</h1>
+<pre class="r"><code># barplot add mean_se
+ggbarplot(ToothGrowth, x = &quot;dose&quot;, y = &quot;len&quot;, add = &quot;mean_se&quot;)+
+  stat_compare_means() +                                         # Global p-value
+  stat_compare_means(ref.group = &quot;0.5&quot;, label = &quot;p.signif&quot;,
+                     label.y = c(22, 29))                   # compare to ref.group</code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<pre class="r"><code>ggline(ToothGrowth, x = &quot;dose&quot;, y = &quot;len&quot;, add = &quot;mean_se&quot;)+
+  stat_compare_means() +                                         # Global p-value
+  stat_compare_means(ref.group = &quot;0.5&quot;, label = &quot;p.signif&quot;,
+                     label.y = c(22, 29))  </code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<pre class="r"><code>ggbarplot(ToothGrowth, x = &quot;dose&quot;, y = &quot;len&quot;, add = &quot;mean_se&quot;,
+          color = &quot;supp&quot;, palette = &quot;jco&quot;, 
+          position = position_dodge(0.8))+
+  stat_compare_means(aes(group = supp), label = &quot;p.signif&quot;, label.y = 29)</code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<pre class="r"><code>ggline(ToothGrowth, x = &quot;dose&quot;, y = &quot;len&quot;, add = &quot;mean_se&quot;,
+          color = &quot;supp&quot;, palette = &quot;jco&quot;)+
+  stat_compare_means(aes(group = supp), label = &quot;p.signif&quot;, 
+                     label.y = c(16, 25, 29))</code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<div id="sessioninfo" class="section level2">
+<h2>SessionInfo</h2>
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>## R version 3.5.0 (2018-04-23)
+## Platform: x86_64-apple-darwin15.6.0 (64-bit)
+## Running under: macOS  10.14
+## 
+## Matrix products: default
+## BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] bindrcpp_0.2.2  ggpubr_0.1.8    magrittr_1.5    forcats_0.3.0  
+##  [5] stringr_1.3.1   dplyr_0.7.7     purrr_0.2.5     readr_1.1.1    
+##  [9] tidyr_0.8.1     tibble_1.4.2    ggplot2_3.0.0   tidyverse_1.2.1
+## 
+## loaded via a namespace (and not attached):
+##  [1] tidyselect_0.2.5 xfun_0.3         haven_1.1.2      lattice_0.20-35 
+##  [5] colorspace_1.3-2 htmltools_0.3.6  yaml_2.2.0       utf8_1.1.4      
+##  [9] rlang_0.2.2      pillar_1.3.0     glue_1.3.0       withr_2.1.2     
+## [13] modelr_0.1.2     readxl_1.1.0     bindr_0.1.1      plyr_1.8.4      
+## [17] ggsignif_0.4.0   munsell_0.5.0    blogdown_0.8     gtable_0.2.0    
+## [21] cellranger_1.1.0 ggsci_2.9        rvest_0.3.2      evaluate_0.12   
+## [25] labeling_0.3     knitr_1.20       fansi_0.4.0      broom_0.5.0     
+## [29] Rcpp_0.12.19     scales_1.0.0     backports_1.1.2  jsonlite_1.5    
+## [33] hms_0.4.2        digest_0.6.18    stringi_1.2.4    bookdown_0.7    
+## [37] grid_3.5.0       rprojroot_1.3-2  cli_1.0.1        tools_3.5.0     
+## [41] lazyeval_0.2.1   crayon_1.3.4     pkgconfig_2.0.2  xml2_1.2.0      
+## [45] lubridate_1.7.4  assertthat_0.2.0 rmarkdown_1.10   httr_1.3.1      
+## [49] rstudioapi_0.8   R6_2.3.0         nlme_3.1-137     compiler_3.5.0</code></pre>
+</div>
+</div>

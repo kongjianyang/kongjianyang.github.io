@@ -1,0 +1,62 @@
+---
+title: Figure with error bar and significant markers based on ggplot2
+author: Liang
+date: '2018-07-19'
+slug: add-error-bar-and-significant-markers-to-the-figure-based-on-ggplot2
+categories:
+  - R
+tags:
+  - R
+---
+
+
+
+<p>Create the data set</p>
+<pre class="r"><code>library(ggplot2)
+df &lt;- data.frame(treatment = factor(c(1, 1, 1, 2, 2, 2, 3, 3, 3)), response = c(2, 5, 4, 6, 9, 7, 3, 5, 8),group = factor(c(1, 2, 3, 1, 2, 3, 1, 2, 3)),se = c(0.4, 0.2, 0.4, 0.5, 0.3, 0.2, 0.4, 0.6, 0.7))
+
+head(df)</code></pre>
+<pre><code>##   treatment response group  se
+## 1         1        2     1 0.4
+## 2         1        5     2 0.2
+## 3         1        4     3 0.4
+## 4         2        6     1 0.5
+## 5         2        9     2 0.3
+## 6         2        7     3 0.2</code></pre>
+<p>use geom_errorbar() to draw the histogram</p>
+<pre class="r"><code># position should consistent with geom_bar(), because the default setting is 0.9, so we should set the value as 0.9 for geom_errorbar.
+ggplot(data=df, aes(x = treatment, y = response, fill = group)) +
+  geom_bar(stat = &quot;identity&quot;, position = &quot;dodge&quot;) +
+  geom_errorbar(aes(ymax = response +se, ymin = response-se), position = position_dodge(0.9), width = 0.15) +
+  scale_fill_brewer(palette = &quot;Set1&quot;)</code></pre>
+<p><img src="/en/2018-07-19-add-error-bar-and-significant-markers-to-the-figure-based-on-ggplot2_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>add significant mark, compared with group 1</p>
+<pre class="r"><code>label &lt;- c(&quot;&quot;, &quot;*&quot;, &quot;**&quot;, &quot;&quot;, &quot;**&quot;, &quot;*&quot;, &quot;&quot;, &quot;&quot;, &quot;*&quot;) 
+
+ggplot(data = df, aes(x = treatment, y = response, fill = group)) + 
+geom_bar(stat = &quot;identity&quot;, position = &quot;dodge&quot;) + 
+geom_errorbar(aes(ymax = response + se, ymin = response -  se), 
+position = position_dodge(0.9), width = 0.15) + 
+geom_text(aes(y = response +  1.5 * se, label = label, group = group), 
+position = position_dodge(0.9), size = 5, fontface = &quot;bold&quot;) + 
+scale_fill_brewer(palette = &quot;Set1&quot;)</code></pre>
+<p><img src="/en/2018-07-19-add-error-bar-and-significant-markers-to-the-figure-based-on-ggplot2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>arrange a set of figure</p>
+<pre class="r"><code>library(ggpubr)
+# 将四幅图放置于一个页面中
+p &lt;- ggplot(data = df, aes(x = treatment, y = response, fill = group)) + 
+geom_bar(stat = &quot;identity&quot;, position = &quot;dodge&quot;) + 
+geom_errorbar(aes(ymax = response + se, ymin = response -  se), 
+position = position_dodge(0.9), width = 0.15) + 
+scale_fill_brewer(palette = &quot;Set1&quot;)
+p1 &lt;- p + ggtitle(&quot;add title&quot;)
+p2 &lt;- p + ggtitle(&quot;add title&quot;) + xlab(&quot;treatment&quot;) + ylab(&quot;response&quot;)
+p3 &lt;- ggplot(data = df, aes(x = treatment, y = response, fill = group)) + 
+geom_bar(stat = &quot;identity&quot;, position = &quot;dodge&quot;) + 
+geom_errorbar(aes(ymax = response + se, ymin = response -  se), 
+position = position_dodge(0.9), width = 0.15) + 
+geom_text(aes(y = response +  1.5 * se, label = label, group = group), 
+position = position_dodge(0.9), size = 5, fontface = &quot;bold&quot;) + 
+scale_fill_brewer(palette = &quot;Set1&quot;)
+ggarrange(p, p1, p2, p3)</code></pre>
+<p><img src="/en/2018-07-19-add-error-bar-and-significant-markers-to-the-figure-based-on-ggplot2_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>

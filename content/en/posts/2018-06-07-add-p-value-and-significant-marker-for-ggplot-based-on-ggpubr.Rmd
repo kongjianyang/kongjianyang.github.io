@@ -1,0 +1,255 @@
+---
+title: Add p value and significant marker for ggplot based on ggpubr
+author: Liang
+date: '2018-06-07'
+slug: add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr
+categories:
+  - Bioinfo
+tags:
+  - Bioinfo
+---
+
+>The ‘ggpubr’ package provides some easy-to-use functions for creating and customizing ‘ggplot2’- based publication ready plots. -A. Kassambara.
+
+[Reference](http://www.sthda.com/english/rpkgs/ggpubr)
+
+# 1. Preparation
+
+install the package
+
+```{r eval=FALSE, message=FALSE, warning=FALSE}
+install.packages("ggpubr")
+```
+or you can install the latest version form github 
+
+```{r eval=FALSE}
+if(!require(devtools)) install.packages("devtools") # if havn`t install devtools before, install it first
+devtools::install_github("kassambara/ggpubr")
+```
+load package 
+
+```{r}
+library(ggpubr)
+```
+
+load data
+
+```{r}
+data("ToothGrowth")
+head(ToothGrowth)
+```
+
+# 2. Comparing means in R 
+
+Reference here:
+http://www.sthda.com/english/wiki/comparing-means-in-r
+
+
+a short summary here
+
+Methods | R function | Describe
+-------|------------|----------
+T test | t.test() | two groups (parametric)
+Wilcoxon test | wilcox.test | two groups (nonparametric)
+ANOVA | anova() | multiple groups (parametric)
+Kruskal-Wallis | kruskal.test() | multiple groups (nonparametric)
+
+# 3. Two functions 
+
+* compare_means()
+* stat_compare_means()
+
+usage
+
+```
+compare_means(formula, data, method="wilcox.test", paired=FALSE, 
+              group.by=NULL, ref.group = NULL, ...)
+```
+
+>formula: a formula of the form x ~ group where x is a numeric variable giving the data values and group is a factor with one or multiple levels giving the corresponding groups 
+
+>ref.group: a character string specifying the reference group. If specified, for a given grouping variable, each of the group levels will be compared to the reference group
+
+```
+stat_compare_means(mapping = NULL, 
+                   comparisons = NULL,
+                   hide.ns = FALSE,
+                   label = NULL,
+                   label.x = NULL,
+                   label.y = NULL)
+```
+
+# 4. Compare two group 
+
+```{r message=FALSE, warning=FALSE}
+compare_means(len ~ supp, data = ToothGrowth) 
+```
+
+```{r}
+p <- ggboxplot(ToothGrowth, x="supp",
+               y = "len", color = "supp", add = "point")
+# add p value
+p + stat_compare_means() # the default method for comparision is wilcox.test() 
+```
+
+change comparision method
+
+```{r}
+p + stat_compare_means(method = "t.test")
+```
+
+add the p.signif and change the location
+```{r}
+p + stat_compare_means(aes(label = ..p.signif..),
+                       label.x = 1.5, 
+                       label.y = 40)
+```
+
+# 5. Compare two paired group 
+
+```{r}
+compare_means(len ~ supp, data = ToothGrowth, paired = TRUE)
+
+ggpaired(ToothGrowth, x="supp", y="len",
+         color="supp", line.color="gray",
+         line.size=0.4, palette = "point") + 
+    stat_compare_means(paired = TRUE)
+```
+
+# 6. multiple group comparision 
+
+global test 
+
+```{r}
+compare_means(len ~ dose, data = ToothGrowth, method = "anova")
+```
+
+```{r}
+ggboxplot(ToothGrowth, x = "dose", y = "len", color = "dose", add = "point") + 
+    stat_compare_means(method = "anova")
+```
+
+you can specify the comparison group
+
+```{r}
+my_comparisons <- list(c("0.5","1"), c("1", "2"),
+                       c("0.5", "2"))
+ggboxplot(ToothGrowth, x="dose", y="len",
+          color="dose", add = "point") +
+    stat_compare_means(comparisons = my_comparisons) + #add comparision group p value 
+    stat_compare_means(label.y = 50) # add global p value 
+```
+
+# 7. multiple group comparision with a reference group 
+
+```{r}
+compare_means(len ~ dose, data = ToothGrowth,
+              ref.group = "0.5", 
+              method = "t.test")
+```
+
+Visualize the result 
+
+```{r}
+ggboxplot(ToothGrowth, x="dose", y="len",
+          color="dose", add = "point") + 
+    stat_compare_means(method="anova", label.y=40) + # add global p value 
+    stat_compare_means(label="p.signif", method="t.test",
+                       ref.group = "0.5") # add signif marker
+```
+
+use all data as the base-mean do the paired comparison
+
+```{r}
+# Load myeloma data from GitHub
+myeloma <- read.delim("https://raw.githubusercontent.com/kassambara/data/master/myeloma.txt")
+
+compare_means(DEPDC1 ~ molecular_group,  data = myeloma,
+              ref.group = ".all.", method = "t.test")
+```
+
+```{r}
+ggboxplot(myeloma, x="molecular_group", y="DEPDC1",
+          color="molecular_group", add="jitter",
+          legend="none") + 
+    rotate_x_text(angle = 45) + 
+    geom_hline(yintercept = mean(myeloma$DEPDC1),
+               linetype=2) + #  add base mean
+     stat_compare_means(method = "anova", label.y = 1600)+        # Add global annova p-value
+  stat_compare_means(label = "p.signif", method = "t.test",
+                     ref.group = ".all.")                      # Pairwise comparison against all
+```
+
+# 8. generate sub figure 
+
+```{r}
+p <- ggboxplot(ToothGrowth, x = "supp", y = "len",
+          color = "supp",
+          add = "point",
+          facet.by = "dose", short.panel.labs = FALSE)
+# Use only p.format as label. Remove method name.
+p + stat_compare_means(label = "p.format")
+```
+
+```{r}
+# Or use significance symbol as label
+p + stat_compare_means(label =  "p.signif", label.x = 1.5)
+```
+
+put all figure in one
+
+```{r}
+p <- ggboxplot(ToothGrowth, x = "dose", y = "len",
+          color = "supp", palette = "jco",
+          add = "jitter")
+p + stat_compare_means(aes(group = supp))
+```
+
+```{r}
+# only p value 
+p + stat_compare_means(aes(group = supp), label = "p.format")
+```
+
+# 9. Other figure 
+
+```{r}
+# barplot add mean_se
+ggbarplot(ToothGrowth, x = "dose", y = "len", add = "mean_se")+
+  stat_compare_means() +                                         # Global p-value
+  stat_compare_means(ref.group = "0.5", label = "p.signif",
+                     label.y = c(22, 29))                   # compare to ref.group
+```
+
+```{r}
+ggline(ToothGrowth, x = "dose", y = "len", add = "mean_se")+
+  stat_compare_means() +                                         # Global p-value
+  stat_compare_means(ref.group = "0.5", label = "p.signif",
+                     label.y = c(22, 29))  
+```
+
+```{r}
+ggbarplot(ToothGrowth, x = "dose", y = "len", add = "mean_se",
+          color = "supp", palette = "jco", 
+          position = position_dodge(0.8))+
+  stat_compare_means(aes(group = supp), label = "p.signif", label.y = 29)
+```
+
+```{r}
+ggline(ToothGrowth, x = "dose", y = "len", add = "mean_se",
+          color = "supp", palette = "jco")+
+  stat_compare_means(aes(group = supp), label = "p.signif", 
+                     label.y = c(16, 25, 29))
+```
+
+## SessionInfo
+
+```{r}
+sessionInfo()
+```
+
+
+
+
+
+
+

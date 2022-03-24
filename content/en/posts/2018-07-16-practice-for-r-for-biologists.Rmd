@@ -1,0 +1,259 @@
+---
+title: Practice for 'R for Biologists'
+author: Liang
+date: '2018-07-16'
+slug: practice-for-r-for-biologists
+categories:
+  - R
+tags:
+  - R
+---
+
+# Part 1 Basic
+R displays 7 digits by default. You can display more digits with options(). More than 15 digits could be unreliable. This is a **global option**; remains in effect until further notice
+```{r}
+options(digits = 15)
+2/3; 2.1^3.1
+```
+
+built-in mathematical constants and functions
+```{r}
+2*pi
+sin(2*pi)
+ 
+# This is e
+exp(1)               
+ 
+sqrt(2)
+```
+
+cat() function concatenates strings, inside double quotes, and interpolated values of variables  
+
+```{r}
+x= 2.1
+cat("x =", x, "\n")
+cat("root2 =", sqrt(2), "\n", "root3 =", sqrt(3), "\n")
+```
+
+# Part 2 Help
+
+```{r}
+# To see a sequence of simple graphics pictures
+demo(graphics)        
+ 
+# To see a sequence of 3D graphics
+#demo(persp)           
+ 
+# To list available demonstrations in base package of R
+#demo() 
+```
+
+
+```{r}
+# To list all arithmetic operators in R
+help(Arithmetic)      
+ 
+# To get help on the log function
+help(log)             
+ 
+# To display R help on the plot() function
+help(plot)            
+ 
+# Same as help(plot)
+?plot                 
+ 
+# To see example of the usage of plot function
+example(plot)         
+ 
+# To list all R commands containing the string plot; could be too much info
+help.search("plot")   
+ 
+# Same as help.search("plot")
+??plot   
+```
+
+: operator has higher predecence than the arithmetical operations.
+
+```{r}
+sequence_1 = 0 : 10 - 2
+print(sequence_1)
+ 
+sequence_2 = 0 : (10 - 2)
+print(sequence_2)
+```
+
+```{r}
+x = seq(from = 0, to = 10, by = 0.5)
+square_root_x = sqrt(x)
+ 
+plot(x, square_root_x)
+```
+
+
+# Part 3 Graphics
+
+```{r}
+x = seq(from =0, to =10, by=0.5)
+square_root_x = sqrt(x)
+plot(x, square_root_x)
+
+# To pause between plots
+par(ask = TRUE) 
+
+# To add title
+plot(x, square_root_x, main = "My First Plot")                         
+ 
+# To add label to y-axis
+plot(x, square_root_x, main = "My First Plot", ylab = "sqrt(x)")        
+ 
+# To set limits of y-axis
+plot(x, square_root_x, main = "My First Plot", ylab = "sqrt(x)", ylim = c(0, 10))  
+ 
+
+# add color
+plot(x, square_root_x, main = "my fisrt plot", ylab = "sqrt(x)", ylim = c(0,10), col = "blue")
+
+# To over strike with both plotting characters, pch, and connecting lines
+plot(x, square_root_x, main = "My First Plot", ylab = "sqrt(x)", ylim = c(0, 10),col = "blue", type = "o")  
+
+# To set the line type
+plot(x, square_root_x, main = "My First Plot", ylab = "sqrt(x)", ylim = c(0, 10), col = "blue", type = "o", lty = "dotted") 
+
+# To set plotting character 
+plot(x, square_root_x, main = "My First Plot", ylab = "sqrt(x)", ylim = c(0, 10), col = "blue", type = "o", lty = "dotted", pch = 22)   
+```
+
+
+plot() is a high-level plotting function that opens a new plotting window, using low-level functions, one can add to the open plot,some of the commonly used adding functions are: points(), lines(), abline(), legend(), text() 
+
+```{r}
+t = seq(from = 0, to = 10, by = 0.5)
+        
+# To pause between plots
+#par(ask = TRUE)                                           
+    
+plot(t, sqrt(2 * t), main = "Adding to Plot", sub = "A function and its inverse", xlab = "", ylab = "", xlim = c(0, 10), ylim = c(0, 10), pch = 16, type = "o") 
+ 
+# To add the inverse function
+points(t, 0.5 * t * t, col = "red" , pch = 16, type = "o")    
+ 
+# To add the line with intercept = 0, slope = 1
+abline(0, 1, col = "gray", lwd = 3, lty = "dashed")      
+ 
+# To add text
+text(7, 7.3, "45-degree line", srt = 45)                 
+legend("bottomright", legend = c("funtion", "inverse"), pch = 16, col = c("black", "red"))
+ 
+# One can add graphs of mathematical functions using, for example:
+x = seq(from =0, to =10, by=0.5)
+lines(curve(sin(x) + cos(x) + 5,  add = TRUE))
+```
+
+curve() is also a high-level mathematical plotting function that opens a new plotting window, Variable in the mathematical formula must be x, add more graphs by setting add = TRUE
+```{r}
+curve(sin(x), xlim = c(-4*pi, 4*pi), ylim = c(-2, 2), col = "red", ylab = "")
+ 
+# To plot horizontal line using h
+abline(h=0, lty= "dotted")    
+ 
+# To mark the origin      
+points(0, 0, pch = 3)                
+ 
+curve(cos(x),  col = "blue", add = TRUE) 
+curve(sin(x) + cos(x),  col = "purple", lwd = 3, add = TRUE)
+ 
+title("sin(x) + cos(x)")
+ 
+legend("bottomright", legend = c("sin(x)", "cos(x)", "sin(x) + cos(x)"), 
+        lty = 1, col = c("red", "blue", "purple"))
+```
+
+par() command can set the multi plot environment. mfcol = c(nr,nc) partitions the graphic window as a matrix of nr rows and nc columns, the plots are then drawn in columns. mfrow = c(nr,nc) partitions the graphic window as a matrix of nr rows and nc columns, the plots are then drawn in rows. You can get fancy partitions of the plotting window with layout() function
+
+```{r}
+# Prepare for 2x2 plots, to be filled by rows
+par(mfrow = c(2, 2))          
+ 
+t = seq(0, 10, 0.2)
+plot(t, sin(t)) 
+curve(sinh(x), -5, 5)
+curve(tan(x), n = 500, -5, 5)
+curve(round(x), n = 500, -5, 5) 
+ 
+# Return to single plot
+par(mfrow = c(1, 1))          
+ 
+curve(sin(x), -5, 5) 
+```
+
+
+# Part 4 Curve Fitting
+
+Linear Model function lm(y~x) computes the least square fit line to data points; y as a function of x. Type ?formula for help with legal formulas. lm() can also be used to fit nonlinear models where the parameters enter into model linearly
+
+```{r}
+# fit a line to two data points
+x2 = c(1,2)
+y2 = c(1.5,2.5)
+plot(x2,y2, main = "Unique line through 2 points", xlim = c(0,4), ylim = c(0, 4))
+
+# compute the least square line 
+
+ls_fit_line = lm(y2~x2)
+print(ls_fit_line)
+
+# plot the least square line stored in ls_fit_line
+abline(ls_fit_line, col = "red")
+
+# plot the vector contain the intercept and slope 
+print(coef(ls_fit_line))
+
+# more information
+print(summary(ls_fit_line))
+```
+
+```{r}
+# Compute least-square line fit for 3 data points
+x3 = c(1, 2, 3)
+y3 = c(1.5, 2.5, 2.8)
+ 
+plot(x3, y3, main="Best-fit line through 3 points", xlim=c(0, 4), ylim = c(0, 4)) 
+fit3 = lm(y3 ~ x3)
+abline(fit3, col = "red")
+```
+
+```{r}
+print(fit3)
+print(summary(fit3))
+```
+```{r}
+# Compute the parabola through 3 data points
+ 
+plot(x3, y3, main="Unique parabola through 3 points", xlim=c(0, 6), ylim = c(0, 6)) 
+fit_parabola3 = lm(y3 ~ x3 + I(x3^2))
+print(fit_parabola3 )
+curve(coef(fit_parabola3)[1] + coef(fit_parabola3)[2]* x + coef(fit_parabola3)[3]*x^2, 0, 6, col = "red", add=TRUE)
+```
+
+```{r}
+# Compute a best-fit parabola for 4 data points
+ 
+x4 = c(1, 2, 3, 4)
+y4 = c(1.5, 2.5, 2.8, 1.7)
+ 
+plot(x4, y4, main="Best-fit parabola through 4 points", xlim=c(0, 6), ylim = c(0, 6)) 
+fit_parabola4 = lm(y4 ~ x4 + I(x4^2))
+curve(coef(fit_parabola4)[1] + coef(fit_parabola4)[2]* x + coef(fit_parabola4)[3]*x^2, 0, 6, col = "red", add=TRUE)
+ 
+# Add the predicted points
+points(x4, predict(fit_parabola4), col = "green") 
+
+print(fit_parabola4)
+```
+
+
+
+
+
+
+
