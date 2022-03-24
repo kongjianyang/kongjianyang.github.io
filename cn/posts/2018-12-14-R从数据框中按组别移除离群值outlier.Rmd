@@ -1,0 +1,130 @@
+---
+title: R从数据框中按组别移除离群值(outlier)
+author: Liang
+date: '2018-12-14'
+slug: R从数据框中按组别移除离群值(outlier)
+categories:
+  - R
+tags: []
+lastmod: '2018-12-14T17:28:53-05:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+
+离群值(outlier)通常被定义为小于 QL - l.5 IQR 或者 大于 Qu + 1.5 IQR的值，QL称为下四分位数， Qu称为上四分位数，IQR称为四分位数间距，是Qu上四分位数和QL下四分位数之差，其间包括了全部观察值的一半。
+
+# 1.方法一：
+
+定义功能剔除离群值
+
+```{r}
+remove_outliers <- function(x, na.rm = TRUE, ...) {
+  qnt <- quantile(x, probs=c(.25, .75), na.rm = na.rm, ...)
+  H <- 1.5 * IQR(x, na.rm = na.rm)
+  y <- x
+  y[x <= (qnt[1] - H)] <- NA
+  y[x >= (qnt[2] + H)] <- NA
+  y
+}
+```
+
+
+制造数据框
+
+```{r}
+element <- sample(letters[1:5], 1e4, replace=T)
+value <- rnorm(1e4)
+df <- data.frame(element, value)
+head(df)
+```
+
+```{r}
+ggplot(df, aes(x=element, y=value,color=element)) + 
+  geom_boxplot(outlier.colour="red", outlier.shape=7,outlier.size=1) + #指出离群值
+  theme_bw() + 
+  theme(legend.position="right")+
+  labs(title="",x="", y = "")
+```
+
+由图可以看出确实有很多离群值
+
+测试下分组剔除离群值
+
+```{r}
+df2 <- df %>%
+  group_by(element) %>%
+  mutate(value = remove_outliers(value))
+head(df2)
+```
+
+```{r}
+df2 <- na.omit(df2) # 移除NA值
+```
+
+
+```{r}
+ggplot(df2, aes(x=element, y=value,color=element)) + 
+  geom_boxplot(outlier.colour="red", outlier.shape=7,outlier.size=1) + #指出离群值
+  theme_bw() + 
+  theme(legend.position="right")+
+  labs(title="",x="", y = "")
+```
+
+由图可以看出已经移除了大部分的离群值。
+
+# 2.方法二
+
+```{r message=FALSE, warning=FALSE}
+element <- sample(letters[1:5], 1e4, replace=T)
+value <- rnorm(1e4)
+df <- data.frame(element, value)
+
+means.without.ols <- tapply(value, element, function(x) {
+  mean(x[!(abs(x - median(x)) > 2*sd(x))])
+})
+
+df1 = df %>%
+  group_by(element) %>%
+  summarise_each(funs(mean), value)
+
+means.without.ols
+
+df1
+```
+
+```{r}
+element <- sample(letters[1:5], 1e4, replace=T)
+value <- rnorm(1e4)
+df <- data.frame(element, value)
+
+means.without.ols <- tapply(value, element, function(x) {
+  mean(x[!(abs(x - median(x)) > 2*sd(x))])
+})
+
+# df1 = df %>%
+#   group_by(element) %>%
+#   filter(!(abs(value - median(value)) > 2*sd(value))) %>%
+#   summarise_each(funs(mean), value)
+
+means.without.ols
+```
+
+
+

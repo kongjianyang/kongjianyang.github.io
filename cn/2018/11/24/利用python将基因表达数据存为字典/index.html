@@ -1,0 +1,42 @@
+<a name=top></a><!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>KJY</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/fonts.css><link href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css rel=stylesheet><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/vega@5.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-lite@4.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-embed@6.12.2></script>
+<script>hljs.initHighlightingOnLoad()</script></head><body><div class=wrapper><header class=header><nav class=nav><a href=/ class=nav-logo><img src=/media/%3cnil%3e width height alt></a><ul class=nav-links><li><a href=/cn/about/>关于</a></li><li><a href=/cn/posts/>日志</a></li><li><a href=/>English</a></li></ul></nav></header><main class=content role=main><div style=text-align:center><h1>利用Python将基因表达数据存为字典</h1><p>Liang
+/ 2018-11-24</p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-%e5%88%a9%e7%94%a8Python%e5%b0%86%e5%9f%ba%e5%9b%a0%e8%a1%a8%e8%be%be%e6%95%b0%e6%8d%ae%e5%ad%98%e4%b8%ba%e5%ad%97%e5%85%b8.md style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title=编辑本页></i></a></span><div class="body-text list-text"><h2 id=1-问题>1. 问题<a href=#1-问题 class=header-anchor arialabel=Anchor> #</a></h2><p>我们的基因表达数据如下表所示</p><pre tabindex=0><code> cond1  cond2   cond3
+gene1  1.57   2.52   12.05
+gene2  0.01   8.90   31.20   
+gene3  57.05  12.14  50.76
+</code></pre><p>我们希望能够利用Python将这个基因表达文件存为一个dictionary，这样我们能很容易的通过基因名和样品名得到基因的表达量，我们还可以筛选表达量大于某个值的所有基因和样品， 如下：</p><pre tabindex=0><code>myDict[(&#39;gene1&#39;,&#39;cond1&#39;)] = 1.57
+myDict[(&#39;gene1&#39;,&#39;cond2&#39;)] = 2.52
+myDict[(&#39;gene1&#39;,&#39;cond3&#39;)] = 12.05
+myDict[(&#39;gene2&#39;,&#39;cond1&#39;)] = 0.01
+...
+</code></pre><h2 id=2-python解决>2. Python解决<a href=#2-python解决 class=header-anchor arialabel=Anchor> #</a></h2><p>利用Python的逻辑是首先将基因名和样品名存为一个元祖，然后将此元祖作为字典里面的key，将基因表达量作为字典里面的value。</p><pre tabindex=0><code>data = open(input_file, &#39;rU&#39;)
+l = data.readline().rstrip(&#34;\r\n&#34;)
+conds = l.split(&#34;\t&#34;)
+conds.pop(0)
+d = dict()
+for l in data:
+    l = l.rstrip(&#34;\r\n&#34;)
+    vals = l.split(&#34;\t&#34;)
+    gene = vals[0]
+    vals.pop(0)
+    valIdx = 0
+    for val in vals:
+        cond = conds[valIdx]
+        d[(gene, cond)] = float(val)
+        valIdx += 1
+## 额外部分，想得到基因表达量大于12的基因和样品
+value12={k:v for k,v in d.items() if v&gt;12}
+for items in value12.keys():
+    print (str(items) +&#39;\t&#39; + str(value12[items]))
+</code></pre><h2 id=3-总结>3. 总结<a href=#3-总结 class=header-anchor arialabel=Anchor> #</a></h2><p>解决这个问题的做法比较多，这不是唯一的方法，甚至利用R解决可能会更加简洁。但是这种方法利用了比较多的Python中的基础知识，值得学习和借鉴。</p><p style=color:#777>最后一次修改于 2018-11-24</p></div><a href=#top><i class="fa fa-chevron-up" style=font-size:30px;color:#000></i></a></main><footer class=footer><script src=https://utteranc.es/client.js repo=kongjianyang/kongjianyang.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><script type=text/javascript src=/js/math-code.js></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type=text/javascript src=/js/center-img.js></script><ul class=footer-links><li><a href=/cn/posts/index.xml type=application/rss+xml title="RSS feed">订阅</a></li><li><a href=http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>版权
+<i class="fa fa-cc" aria-hidden=true title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a></li></ul><div class=copyright-text>©
+KJY
+2018-2021</div></footer>

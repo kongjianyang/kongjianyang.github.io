@@ -1,0 +1,46 @@
+<a name=top></a><!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>KJY</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/fonts.css><link href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css rel=stylesheet><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/vega@5.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-lite@4.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-embed@6.12.2></script>
+<script>hljs.initHighlightingOnLoad()</script></head><body><div class=wrapper><header class=header><nav class=nav><a href=/ class=nav-logo><img src=/media/%3cnil%3e width height alt></a><ul class=nav-links><li><a href=/cn/about/>关于</a></li><li><a href=/cn/posts/>日志</a></li><li><a href=/>English</a></li></ul></nav></header><main class=content role=main><div style=text-align:center><h1>R中的sweep函数</h1><p>Liang
+/ 2018-11-24</p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-R%e4%b8%ad%e7%9a%84sweep%e5%87%bd%e6%95%b0.md style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title=编辑本页></i></a></span><div class="body-text list-text"><h3 id=函数的用途>函数的用途<a href=#函数的用途 class=header-anchor arialabel=Anchor> #</a></h3><p>base包中sweep()函数是处理统计量的工具。所以一般结合apply()函数来使用，一般我们需要将apply()统计出来的统计量要代回原数据集去对应操作的时候就需要用到sweep()。</p><blockquote><p>扫除、清除也是sweep单词的本义。</p></blockquote><h3 id=函数的参数>函数的参数<a href=#函数的参数 class=header-anchor arialabel=Anchor> #</a></h3><pre tabindex=0><code class=language-source-r data-lang=source-r>sweep(x, MARGIN, STATS, FUN = &#34;-&#34;, check.margin = TRUE, ...)
+</code></pre><ul><li>x:即要处理的原数据集</li><li>MARGIN：对行或列，或者数列的其他维度进行操作</li><li>STATS：需要对原数据集操作用到的统计量</li><li>FUN：操作需要用到的四则运算，默认为减法"-"，当然可以修改成"+","*","/&ldquo;即加、乘、除</li><li>check.margin:是否需要检查维度是否适宜的问题，默认为TRUE。</li><li>……</li></ul><h3 id=实例分析>实例分析<a href=#实例分析 class=header-anchor arialabel=Anchor> #</a></h3><p>1、比如我们需要将原数据集所有数据都减去各列的平均数，所以我们需要用apply()计算出每列的平均数，然后用sweep()完成。</p><pre tabindex=0><code class=language-{r} data-lang={r}>require(stats)  # for mean
+head(attitude, 10)
+</code></pre><pre tabindex=0><code>##    rating complaints privileges learning raises critical advance
+## 1      43         51         30       39     61       92      45
+## 2      63         64         51       54     63       73      47
+## 3      71         70         68       69     76       86      48
+## 4      61         63         45       47     54       84      35
+## 5      81         78         56       66     71       83      47
+## 6      43         55         49       44     54       49      34
+## 7      58         67         42       56     66       68      35
+## 8      71         75         50       55     70       66      41
+## 9      72         82         72       67     71       83      31
+## 10     67         61         45       47     62       80      41
+</code></pre><pre tabindex=0><code class=language-{r} data-lang={r}>mean.att &lt;- apply(attitude, 2, mean)
+mean.att
+</code></pre><pre tabindex=0><code>##     rating complaints privileges   learning     raises   critical 
+##      64.63      66.60      53.13      56.37      64.63      74.77 
+##    advance 
+##      42.93
+</code></pre><p>所有数据都减去各列的平均数</p><pre tabindex=0><code class=language-{r} data-lang={r}>head(sweep(data.matrix(attitude), 2, mean.att, FUN = &#34;-&#34;), 10) 
+</code></pre><pre tabindex=0><code>##        rating complaints privileges learning  raises critical advance
+##  [1,] -21.633      -15.6    -23.133 -17.3667  -3.633   17.233   2.067
+##  [2,]  -1.633       -2.6     -2.133  -2.3667  -1.633   -1.767   4.067
+##  [3,]   6.367        3.4     14.867  12.6333  11.367   11.233   5.067
+##  [4,]  -3.633       -3.6     -8.133  -9.3667 -10.633    9.233  -7.933
+##  [5,]  16.367       11.4      2.867   9.6333   6.367    8.233   4.067
+##  [6,] -21.633      -11.6     -4.133 -12.3667 -10.633  -25.767  -8.933
+##  [7,]  -6.633        0.4    -11.133  -0.3667   1.367   -6.767  -7.933
+##  [8,]   6.367        8.4     -3.133  -1.3667   5.367   -8.767  -1.933
+##  [9,]   7.367       15.4     18.867  10.6333   6.367    8.233 -11.933
+## [10,]   2.367       -5.6     -8.133  -9.3667  -2.633    5.233  -1.933
+</code></pre><p>sweep函数和apply函数相似，但是sweep主要用于array的一些分类计算，而apply更多的是矩阵计算，data.frame也行。array是高于2维的数据</p><p style=color:#777>最后一次修改于 2018-11-24</p></div><a href=#top><i class="fa fa-chevron-up" style=font-size:30px;color:#000></i></a></main><footer class=footer><script src=https://utteranc.es/client.js repo=kongjianyang/kongjianyang.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><script type=text/javascript src=/js/math-code.js></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type=text/javascript src=/js/center-img.js></script><ul class=footer-links><li><a href=/cn/posts/index.xml type=application/rss+xml title="RSS feed">订阅</a></li><li><a href=http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>版权
+<i class="fa fa-cc" aria-hidden=true title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a></li></ul><div class=copyright-text>©
+KJY
+2018-2021</div></footer>

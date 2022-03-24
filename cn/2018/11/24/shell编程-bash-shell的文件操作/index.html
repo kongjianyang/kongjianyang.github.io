@@ -1,0 +1,42 @@
+<a name=top></a><!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>KJY</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/fonts.css><link href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css rel=stylesheet><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/vega@5.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-lite@4.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-embed@6.12.2></script>
+<script>hljs.initHighlightingOnLoad()</script></head><body><div class=wrapper><header class=header><nav class=nav><a href=/ class=nav-logo><img src=/media/%3cnil%3e width height alt></a><ul class=nav-links><li><a href=/cn/about/>关于</a></li><li><a href=/cn/posts/>日志</a></li><li><a href=/>English</a></li></ul></nav></header><main class=content role=main><div style=text-align:center><h1>shell编程-bash-shell的文件操作</h1><p>Liang
+/ 2018-11-24</p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-shell%e7%bc%96%e7%a8%8b-bash-shell%e7%9a%84%e6%96%87%e4%bb%b6%e6%93%8d%e4%bd%9c.md style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title=编辑本页></i></a></span><div class="body-text list-text"><h2 id=1-基本操作>1. 基本操作<a href=#1-基本操作 class=header-anchor arialabel=Anchor> #</a></h2><p>ls 命令显示文件基本属性，d 表示目录，- 表示普通文件（或者硬链接），l 表示符号链接，p 表示管道文件，b 和 c 分别表示块设备和字符设备。除此之外还可以使用stat命令，stat以文字的格式来显示inode的内容。</p><pre tabindex=0><code>$ stat bin/
+16777220 8608385535 drwxr-xr-x 37 root wheel 0 1184 &#34;Nov 23 09:06:38 2018&#34; &#34;Nov 10 01:38:56 2018&#34; &#34;Nov 10 01:38:56 2018&#34; &#34;Sep 21 00:17:17 2018&#34; 4096 0 0x88000 bin/
+</code></pre><p>file命令也可以给出文件的基本信息</p><pre tabindex=0><code>$ file bin
+bin: directory
+</code></pre><p>可以使用chmod给文件添加权限</p><pre tabindex=0><code>chmod 777 regular_file
+</code></pre><p>可以使用passwd命令给用户修改自己的密码</p><pre tabindex=0><code>passwd #普通用户通过执行该命令，修改自己的密码
+</code></pre><p>可以使用tree显示目录树</p><pre tabindex=0><code>$ tree #当前目录
+</code></pre><h2 id=2-压缩与解压缩文件>2. 压缩与解压缩文件<a href=#2-压缩与解压缩文件 class=header-anchor arialabel=Anchor> #</a></h2><pre tabindex=0><code>#tar
+$ tar -cf file.tar file   #压缩
+$ tar -xf file.tar    #解压
+#gz
+$ gzip  -9 file
+$ gunzip file
+# tar.gz
+$ tar -zcf file.tar.gz file
+$ tar -zxf file.tar.gz
+# bz2
+$ bzip2 file
+$ bunzip2 file
+#tar.bz2
+$ tar -jcf file.tar.bz2 file
+$ tar -jxf file.tar.bz2
+</code></pre><h2 id=3-文件搜索>3. 文件搜索<a href=#3-文件搜索 class=header-anchor arialabel=Anchor> #</a></h2><p>寻找目录下所有的.doc文件或者.pptx的文件</p><pre tabindex=0><code>$ find ./ -name &#34;*.doc&#34; -o -name &#34;*.pptx&#34; # -o是或者
+</code></pre><p>可以对找到的所有C文件移动到c_files文件夹下</p><pre tabindex=0><code>$ find ./ -name &#34;*.c&#34; -o -name &#34;*.h&#34; | xargs -i mv &#39;{}&#39; ./c_files/
+</code></pre><p>此外，Linux 下还有命令查找工具：which 和 whereis，前者用于返回某个命令的全路径，而后者用于返回某个命令、源文件、man 文件的路径。例如，查找find` 命令的绝对路径：</p><pre tabindex=0><code>$ which find
+/usr/bin/find
+$ whereis find
+find: /usr/bin/find /usr/X11R6/bin/find /usr/bin/X11/find /usr/X11/bin/find /usr/man/man1/find.1.gz /usr/share/man/man1/find.1.gz /usr/X11/man/man1/find.1.gz
+</code></pre><p>如果想根据文件的内容搜索文件，那么 find 和 updatedb+locate 以及 which，whereis 都无能为力啦，可选的方法是 grep，sed 等命令</p><p style=color:#777>最后一次修改于 2018-11-24</p></div><a href=#top><i class="fa fa-chevron-up" style=font-size:30px;color:#000></i></a></main><footer class=footer><script src=https://utteranc.es/client.js repo=kongjianyang/kongjianyang.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><script type=text/javascript src=/js/math-code.js></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type=text/javascript src=/js/center-img.js></script><ul class=footer-links><li><a href=/cn/posts/index.xml type=application/rss+xml title="RSS feed">订阅</a></li><li><a href=http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>版权
+<i class="fa fa-cc" aria-hidden=true title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a></li></ul><div class=copyright-text>©
+KJY
+2018-2021</div></footer>

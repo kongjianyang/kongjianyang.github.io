@@ -1,0 +1,118 @@
+---
+title: R语言中的调色板
+author: Liang
+date: '2018-12-20'
+slug: R语言中的调色板
+categories:
+  - R
+tags: []
+lastmod: '2018-12-20T20:29:32-07:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+
+使用RColorBrewer包实现R图形的亚瑟个性化
+
+```{r}
+library(RColorBrewer)
+display.brewer.all()
+```
+
+- 连续型调色板（第一个颜色列表），适用于从低到高（梯度）的有序数据。调色板名称是：Blues，BuGn，BuPu，GnBu，Greens，Grays，Oranges，OrRd，PuBu，PuBuGn，PuRd，Purples，RdPu，Reds，YlGn，YlGnBu YlOrBr，YlOrRd。
+
+- 定性调色板（第二种颜色列表），最适合表示名义或分类数据。它们并不意味着群体之间的巨大差异。 调色板名称为：Accent，Dark2，Paired，Pastel1，Pastel2，Set1，Set2，Set3。
+
+- 差异调色板（第三种颜色列表），强调数据范围两端颜色相反。分散的调色板是：BrBG，PiYG，PRGn，PuOr，RdBu，RdGy，RdYlBu，RdYlGn，Spectral
+
+-仅显示色盲友好的调色板，要仅显示色盲友好的brewer调色板，请指定colorblindFriendly选项= TRUE，如下所示：
+
+```{r}
+display.brewer.all(colorblindFriendly = TRUE)
+```
+
+```
+# 1. Visualize a single RColorBrewer palette 
+# by specifying its name
+display.brewer.pal(n, name)
+
+# 2. Return the hexadecimal color code of the palette
+brewer.pal(n, name)
+```
+
+函数参数的描述：n：调色板中不同颜色的数量，最小值为3，最大值取决于调色板。
+name：上面列表中的调色板名称。 例如name = RdBu。
+
+以下R代码演示了如何显示一个单一的r颜色brewer调色板。
+
+```{r}
+# View a single RColorBrewer palette by specifying its name
+display.brewer.pal(n = 8, name = 'Dark2')
+# Hexadecimal color specification 
+brewer.pal(n = 8, name = "Dark2")
+```
+
+在ggplot2中使用RColorBrewer调色板，创建一个由组着色的基本ggplot，使用iris演示数据集创建基本ggplots。 我们将创建两组不同颜色的图：散点图和箱形图。
+
+```{r}
+library(ggplot2)
+# Box plot: changing the fill color by Species
+bp <- ggplot(iris, aes(Species, Sepal.Length)) + 
+  geom_boxplot(aes(fill = Species)) +
+  theme_minimal() +
+  theme(legend.position = "top")
+bp
+
+# Scatter plot: changing points color by Species
+sp <- ggplot(iris, aes(Sepal.Length, Sepal.Width)) + 
+  geom_point(aes(color = Species)) +
+  theme_minimal()+
+  theme(legend.position = "top")
+sp
+```
+
+使用r color brewer palettes更改ggplot组颜色
+
+
+>ggplot2中提供了两种色标功能，用于使用rcolorbrewer调色板：
+>scale_fill_brewer（）用于箱形图，条形图，小提琴图，点图等
+>scale_color_brewer（）用于行和点
+
+```{r}
+# Box plot
+bp + scale_fill_brewer(palette = "Dark2")
+
+# Scatter plot
+sp + scale_color_brewer(palette = "Dark2")
+```
+
+在基础图中使用RColorBrewer调色板，brewer.pal（）函数用于生成颜色矢量。
+
+```{r}
+# Barplot using RColorBrewer
+barplot(c(2,5,7), col = brewer.pal(n = 3, name = "RdBu"))
+```
+
+```{r}
+data <- read.csv("~/Desktop/test.csv")
+knitr::kable(data, align = "c")
+```
+
+
+

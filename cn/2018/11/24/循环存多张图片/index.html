@@ -1,0 +1,39 @@
+<a name=top></a><!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>KJY</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/fonts.css><link href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css rel=stylesheet><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/vega@5.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-lite@4.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-embed@6.12.2></script>
+<script>hljs.initHighlightingOnLoad()</script></head><body><div class=wrapper><header class=header><nav class=nav><a href=/ class=nav-logo><img src=/media/%3cnil%3e width height alt></a><ul class=nav-links><li><a href=/cn/about/>关于</a></li><li><a href=/cn/posts/>日志</a></li><li><a href=/>English</a></li></ul></nav></header><main class=content role=main><div style=text-align:center><h1>循环存多张图片</h1><p>Liang
+/ 2018-11-24</p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-%e5%be%aa%e7%8e%af%e5%ad%98%e5%a4%9a%e5%bc%a0%e5%9b%be%e7%89%87.md style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title=编辑本页></i></a></span><div class="body-text list-text"><pre tabindex=0><code class=language-{r} data-lang={r}>library(ggpubr)
+trait_names &lt;- colnames(Het_Ind)[5:18]
+plot &lt;- list()
+for (i in 1:length(trait_names)){
+  trait_data &lt;- Het_Ind[, c(&#34;Genotype&#34;, &#34;NRate&#34;, trait_names[i])]
+  colnames(trait_data) &lt;- c(&#34;Genotype&#34;, &#34;Nitrogen&#34;, &#34;Value&#34;)
+  trait_data$Genotype &lt;- factor(trait_data$Genotype, levels = sort(c(&#34;B73xILP1&#34;, &#34;B73xPH207&#34;, &#34;B73xIHP1&#34;, &#34;B73xPHG84&#34;, &#34;B73xLH82&#34;, &#34;B73xMo17&#34;)))
+  trait_data$Nitrogen &lt;- factor(trait_data$Nitrogen, levels = c(&#34;LN&#34;, &#34;HN&#34;))
+  plot[[i]] &lt;- ggplot(trait_data, aes(x=Genotype, y=Value, fill = Nitrogen)) + 
+    geom_bar(stat = &#34;identity&#34;, position= &#34;dodge&#34;, width=0.8) + theme_bw() + 
+    geom_text(aes(label=round(trait_data$Value, digits = 2)), 
+              position = position_dodge(width = 0.8), size =2.5) +
+      labs(title= trait_names[i], x = &#34;Genotype&#34;, y = &#34;log2(Hybrid / MP)&#34;) + 
+      theme(axis.text.x = element_text(angle = 45,size = 8, face = &#34;bold&#34;, vjust = 1, hjust = 1), 
+            axis.text.y = element_text(size = 8), 
+            plot.title = element_text(size = 9), 
+            axis.title = element_text(size = 8), plot.margin=unit(rep(1,4),&#39;lines&#39;)) +
+      scale_fill_manual(values=c(&#34;#00BFC4&#34;, &#34;#F8766D&#34;))
+}
+do.call(ggarrange ,plot)
+library(gridExtra)
+ggsave(&#34;arrange2x2.pdf&#34;, marrangeGrob(grobs = plot, nrow=2, ncol=2))
+marrangeGrob(grobs = plot, nrow=2, ncol=2)
+multi.page &lt;- ggpubr::ggarrange(plotlist = plot, nrow = 2, ncol = 2) 
+ggpubr::ggexport(multi.page, filename = &#34;multi.page.ggplot2.pdf&#34;)
+</code></pre><p>ggpubr使用完美，ggsave和gridExtra都有毛病</p><p style=color:#777>最后一次修改于 2018-11-24</p></div><a href=#top><i class="fa fa-chevron-up" style=font-size:30px;color:#000></i></a></main><footer class=footer><script src=https://utteranc.es/client.js repo=kongjianyang/kongjianyang.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><script type=text/javascript src=/js/math-code.js></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type=text/javascript src=/js/center-img.js></script><ul class=footer-links><li><a href=/cn/posts/index.xml type=application/rss+xml title="RSS feed">订阅</a></li><li><a href=http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>版权
+<i class="fa fa-cc" aria-hidden=true title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a></li></ul><div class=copyright-text>©
+KJY
+2018-2021</div></footer>

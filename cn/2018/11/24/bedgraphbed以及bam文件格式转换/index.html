@@ -1,0 +1,33 @@
+<a name=top></a><!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>KJY</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/fonts.css><link href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css rel=stylesheet><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/vega@5.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-lite@4.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-embed@6.12.2></script>
+<script>hljs.initHighlightingOnLoad()</script></head><body><div class=wrapper><header class=header><nav class=nav><a href=/ class=nav-logo><img src=/media/%3cnil%3e width height alt></a><ul class=nav-links><li><a href=/cn/about/>关于</a></li><li><a href=/cn/posts/>日志</a></li><li><a href=/>English</a></li></ul></nav></header><main class=content role=main><div style=text-align:center><h1>bedGraph，bed以及bam文件格式转换</h1><p>Liang
+/ 2018-11-24</p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-bedGraph%ef%bc%8cbed%e4%bb%a5%e5%8f%8abam%e6%96%87%e4%bb%b6%e6%a0%bc%e5%bc%8f%e8%bd%ac%e6%8d%a2.md style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title=编辑本页></i></a></span><div class="body-text list-text"><p>感兴趣的基因信息包含在bedGraph文件中，下面命令是对其文件格式进行转换，一般进行到bam文件可视化的效果比较好。</p><h1 id=1-bedgraph转bed文件>1. bedGraph转bed文件<a href=#1-bedgraph转bed文件 class=header-anchor arialabel=Anchor> #</a></h1><p>BedGraph ，的数据和bed文件很类似，ChIPseq数据做完peak calling后的bed文件最短只有三列，染色体序号，染色体起始位置和结束位置。如下所示，前面的声明和Wig类似，后面的四列分别表示染色体序号，起始位置，结束位置和value值。相当于为bed文件的延伸格式。</p><pre tabindex=0><code>track type=bedGraph name=&#34;BedGraph Format&#34; description=&#34;BedGraph format&#34; visibility=full color=200,100,0 altColor=0,100,200 priority=20
+chr19 49302000 49302300 -1.0
+chr19 49302300 49302600 -0.75
+chr19 49302600 49302900 -0.50
+chr19 49302900 49303200 -0.25
+chr19 49303200 49303500 0.0
+chr19 49303500 49303800 0.25
+chr19 49303800 49304100 0.50
+chr19 49304100 49304400 0.75
+chr19 49304400 49304700 1.00
+</code></pre><p>所以我们想要得到bed文件只需要提取bedGraph的前三列即可，同时注意不要第一行，利用grep -v命令</p><pre tabindex=0><code># Convert bedGraph to bed file
+grep -v track GSM1252087_edm2-4_RNAseq.bedGraph | cut -f 1-3 &gt; GSM1252087_edm2-4_RNAseq.bed
+</code></pre><h1 id=2-建立genome-size文件>2. 建立genome size文件<a href=#2-建立genome-size文件 class=header-anchor arialabel=Anchor> #</a></h1><p>genome size文件是为了最后一步转化为bam文件所必须的，samtools可以很简单的建立index文件</p><pre tabindex=0><code># Build genome index file
+samtools faidx Arabidopsis_thaliana.TAIR10.dna.toplevel.fa
+</code></pre><p>生成的索引文件genome.fasta.fai,是一个文本文件，分成了5列。第一列是子序列的名称；第二列是子序列的长度；个人认为“第三列是序列所在的位置”，因为该数字从上往下逐渐变大，最后的数字是genome.fasta文件的大小；第4和5列不知是啥意思。于是通过此文件，可以定位子序列在fasta文件在磁盘上的存放位置，直接快速调出子序列。</p><p>genome size文件包含index文件的前两行，也就是chromosome信息和子序列的长度，所以我们可以提取作为genome size。</p><pre tabindex=0><code># Build the genome size file
+awk {&#39;print &#34;Chr&#34;$1,&#34;\t&#34;,$2&#39;} Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.fai &gt; Arabidopsis_genomeFile.txt
+</code></pre><h1 id=3-bed转bam>3. bed转bam<a href=#3-bed转bam class=header-anchor arialabel=Anchor> #</a></h1><p>bedtools工具提供的bedtobam命令</p><pre tabindex=0><code># Change the bed file to bam file
+cat GSM1252087_edm2-4_RNAseq.bed | awk &#39;{x++; printf &#34;%s\tread%d\n&#34;,$0,x}&#39; | bedtools bedtobam -g Arabidopsis_genomeFile.txt -i - &gt; GSM1252087_edm2-4_RNAseq.bam
+</code></pre><p>Ref:
+http://www.chenlianfu.com/?p=1399</p><p style=color:#777>最后一次修改于 2018-11-24</p></div><a href=#top><i class="fa fa-chevron-up" style=font-size:30px;color:#000></i></a></main><footer class=footer><script src=https://utteranc.es/client.js repo=kongjianyang/kongjianyang.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><script type=text/javascript src=/js/math-code.js></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type=text/javascript src=/js/center-img.js></script><ul class=footer-links><li><a href=/cn/posts/index.xml type=application/rss+xml title="RSS feed">订阅</a></li><li><a href=http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>版权
+<i class="fa fa-cc" aria-hidden=true title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a></li></ul><div class=copyright-text>©
+KJY
+2018-2021</div></footer>

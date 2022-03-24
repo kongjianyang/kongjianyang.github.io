@@ -1,0 +1,74 @@
+---
+title: NMF包绘制热图
+author: Liang
+date: '2018-12-30'
+slug: NMF包绘制热图
+categories:
+  - R
+tags: []
+lastmod: '2018-12-30T15:19:18-07:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+
+# 1. 数据和模型
+
+```{r message=FALSE, warning=FALSE}
+library(NMF)
+
+# random data that follow an 3-rank NMF model (with quite some noise: sd=2)
+X <- syntheticNMF(100, 3, 20, noise=2)
+# row annotations and covariates
+n <- nrow(X)
+d <- rnorm(n)
+e <- unlist(mapply(rep, c('X', 'Y', 'Z'), 10))
+e <- c(e, rep(NA, n-length(e)))
+rdata <- data.frame(Var=d, Type=e)
+# column annotations and covariates
+p <- ncol(X)
+a <- sample(c('alpha', 'beta', 'gamma'), p, replace=TRUE)
+c <- rnorm(p)
+# gather them in a data.frame
+covariates <- data.frame(a, X$pData, c)
+```
+
+查看下生成的注释数据：
+
+```{r}
+head(rdata)
+
+head(covariates)
+```
+
+这里X实际是一个矩阵，rdata是行注释，covariates是列注释。
+
+# 2. 绘图
+
+```{r message=FALSE, warning=FALSE}
+par(mfrow = c(1, 2))
+aheatmap(X, annCol = covariates, annRow = X$fData)
+aheatmap(X)
+```
+
+
+
+
+
+

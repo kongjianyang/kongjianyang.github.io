@@ -1,0 +1,65 @@
+<a name=top></a><!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>KJY</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/fonts.css><link href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css rel=stylesheet><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/vega@5.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-lite@4.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-embed@6.12.2></script>
+<script>hljs.initHighlightingOnLoad()</script></head><body><div class=wrapper><header class=header><nav class=nav><a href=/ class=nav-logo><img src=/media/%3cnil%3e width height alt></a><ul class=nav-links><li><a href=/cn/about/>关于</a></li><li><a href=/cn/posts/>日志</a></li><li><a href=/>English</a></li></ul></nav></header><main class=content role=main><div style=text-align:center><h1>tidyverse包简介</h1><p>Liang
+/ 2018-11-24</p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-tidyverse%e5%8c%85%e7%ae%80%e4%bb%8b.md style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title=编辑本页></i></a></span><div class="body-text list-text"><p>tidyverse包是对一些具有相同思想，且可以一同工作的R包的收集。
+载入tidyverse包的时候提醒哪些包是一同载入的，哪些包是有冲突的。</p><pre tabindex=0><code>&gt; library(tidyverse)
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 2.2.1     ✔ purrr   0.2.5
+✔ tibble  1.4.2     ✔ dplyr   0.7.6
+✔ tidyr   0.8.1     ✔ stringr 1.3.1
+✔ readr   1.1.1     ✔ forcats 0.3.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+</code></pre><p>这些包按照功能可以分为数据导入、数据整理、数据转换、可视化、建模、编程。</p><h1 id=1-数据导入>1. 数据导入<a href=#1-数据导入 class=header-anchor arialabel=Anchor> #</a></h1><ul><li>readr：read_csv(); read_tsv(); read_delim(); read_fwf(); read_table(); - read_log();</li><li>readxl：read_xls(); read_xlsx();</li><li>haven：打开SAS 、SPSS、Stata等外部数据</li></ul><p>这里要提一下，read.table()是R自带的，而read_table()是readr包有的。</p><h1 id=2-数据整理>2. 数据整理<a href=#2-数据整理 class=header-anchor arialabel=Anchor> #</a></h1><ul><li>tibble: 对data.frame的改进，一种数据格式</li><li>tidyr:清洗数据 gather(); spread();</li></ul><p>Tibble是数据框的一种形式，但是比数据框更整洁，结构更加紧凑，可以理解为tidy table之意。可以通过转置函数as_tibble()来将data.frame格式的数据转化为tibble格式的数据。tibble数据输出到console上只会显示前10行，和所有列，这和data.frame不同。</p><p>spread函数</p><p>分散函数是将变量中的值拆分成新的变量，这个过程概括为就是将为成「列」的值，进行拆分，并指定其他列作为「值」，组合成「键-值」对的形式</p><h2 id=spread函数>spread函数<a href=#spread函数 class=header-anchor arialabel=Anchor> #</a></h2><pre tabindex=0><code>#spread函数语法
+spread(data, key= , value=, )
+#以table2数据集为例子
+table2 #查看数据集
+table2 %&gt;% 
+  spread(key = &#39;type&#39;, value = &#39;count&#39;)
+</code></pre><p>将type列的值拆分作为「键」，count列的值则作为每个键下的「值」，进而将变量值进行拆分。</p><h2 id=gather函数>gather函数<a href=#gather函数 class=header-anchor arialabel=Anchor> #</a></h2><pre tabindex=0><code>#gather函数语法
+gather(data, set_colums, key= , value=, ...)
+
+# 以tidyverse包中的table4a数据为例
+table4a #查看数据集
+table4a %&gt;% 
+  gather(`1999`, `2000`, 
+  key = &#39;year&#39;, value = &#39;cases&#39;)
+</code></pre><h1 id=3-数据转换>3. 数据转换<a href=#3-数据转换 class=header-anchor arialabel=Anchor> #</a></h1><ul><li>dplyr:处理数据 mutate();select(); filter(); summarise();arrange();</li><li>lubridate：处理时间数据</li><li>stringr：处理字符串类型</li><li>forcats：处理因子变量（factors）</li></ul><p>dplyr包必须掌握的一些基础且常用的功能：</p><blockquote><p>变量筛选函数 select
+记录筛选函数 filter
+排序函数 arrange
+变形（计算）函数 mutate
+汇总函数 summarize
+分组函数 group_by
+多步操作连接符 %>%
+随机抽样函数 sample_n,sample_frac</p></blockquote><h1 id=4-数据可视化>4. 数据可视化<a href=#4-数据可视化 class=header-anchor arialabel=Anchor> #</a></h1><ul><li>ggplot2</li></ul><h1 id=5-编程>5. 编程<a href=#5-编程 class=header-anchor arialabel=Anchor> #</a></h1><ul><li>magrittr：管道运算符</li><li>purrr：通过提供一些完整连贯用于函数和向量的工具集，增强R的函数编程。</li></ul><h2 id=magrittr常见功能>magrittr常见功能<a href=#magrittr常见功能 class=header-anchor arialabel=Anchor> #</a></h2><h3 id=51--从左向右顺序操作>5.1 %>% 从左向右顺序操作<a href=#51--从左向右顺序操作 class=header-anchor arialabel=Anchor> #</a></h3><pre tabindex=0><code>x %&gt;% f 等于 f(x)
+x %&gt;% f(y) 等于 f(x, y)
+x %&gt;% f %&gt;% g %&gt;% h 等于 h(g(f(x)))
+x %&gt;% f(y, .) 等于 f(y, x)
+x %&gt;% f(y, z = .) 等于 f(y, z = x)
+</code></pre><h3 id=52-t-向左操作符>5.2 %T>% 向左操作符<a href=#52-t-向左操作符 class=header-anchor arialabel=Anchor> #</a></h3><pre tabindex=0><code>rnorm(200) %&gt;%
+matrix(ncol = 2) %T&gt;%
+plot %&gt;% # plot的结果我们不需要，%T&gt;%帮助我们把左边的结果传给plot后保留下来再传给colSums。
+colSums
+</code></pre><p><img src=http://upload-images.jianshu.io/upload_images/3014937-05353577cb9f17f3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt=image></p><h3 id=53--解释操作符>5.3 %$% 解释操作符<a href=#53--解释操作符 class=header-anchor arialabel=Anchor> #</a></h3><p>%$% 的作用是把左侧数据的属性名传给右侧，让右侧的调用函数直接通过名字，就可以获取左侧的数据。比如，我们获得一个data.frame类型的数据集，通过使用 %$%，在右侧的函数中可以直接使用列名操作数据。</p><pre tabindex=0><code>&gt; set.seed(1)
+&gt; data.frame(x=1:10,y=rnorm(10),z=letters[1:10]) %$% .[which(x&gt;5),]
+   x          y z
+6   6 -0.8204684 f
+7   7  0.4874291 g
+8   8  0.7383247 h
+9   9  0.5757814 i
+10 10 -0.3053884 j
+</code></pre><p>同时这不能被%>%所实现</p><h3 id=54--复合赋值操作符>5.4 %&lt;>% 复合赋值操作符<a href=#54--复合赋值操作符 class=header-anchor arialabel=Anchor> #</a></h3><p>%&lt;>%复合赋值操作符， 功能与 %>% 基本是一样的，对了一项额外的操作，就是把结果写到左侧对象</p><pre tabindex=0><code>&gt; set.seed(1)
+&gt; x&lt;-rnorm(100) %&lt;&gt;% abs %&gt;% sort %&gt;% head(10)
+&gt; x
+</code></pre><p>注意 %&lt;>% 必须要用在第一个管道的对象处，才能完成赋值的操作</p><p style=color:#777>最后一次修改于 2018-11-24</p></div><a href=#top><i class="fa fa-chevron-up" style=font-size:30px;color:#000></i></a></main><footer class=footer><script src=https://utteranc.es/client.js repo=kongjianyang/kongjianyang.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><script type=text/javascript src=/js/math-code.js></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type=text/javascript src=/js/center-img.js></script><ul class=footer-links><li><a href=/cn/posts/index.xml type=application/rss+xml title="RSS feed">订阅</a></li><li><a href=http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>版权
+<i class="fa fa-cc" aria-hidden=true title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a></li></ul><div class=copyright-text>©
+KJY
+2018-2021</div></footer>

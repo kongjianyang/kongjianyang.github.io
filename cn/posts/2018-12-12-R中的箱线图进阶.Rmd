@@ -1,0 +1,64 @@
+---
+title: R中的箱线图进阶
+author: Liang
+date: '2018-12-12'
+slug: R中的箱线图进阶
+categories:
+  - R
+tags: []
+lastmod: '2018-12-12T16:38:04-05:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+
+箱线图能够显示出离群点（outlier），离群点也叫做异常值，通过箱线图能够很容易识别出数据中的异常值。
+
+geom_boxplot函数中有outlier开头的多个参数，用于修改离群点的属性：
+
+- outlier.colour：离群点的颜色
+- outlier.fill：离群点的填充色
+- outlier.shape：离群点的形状
+- outlier.size：离群点的大小
+- outlier.alpha：离群点的透明度
+
+绘制散点图，并标记异常值：
+
+
+```{r, message=FALSE, warning=FALSE}
+ToothGrowth$dose <- as.factor(ToothGrowth$dose)
+ggplot(ToothGrowth, aes(x=dose, y=len,color=dose)) + 
+  geom_boxplot(outlier.colour="red", outlier.shape=7,outlier.size=4)+
+  scale_color_manual(values=c("#999999", "#E69F00", "#56B4E9"))+
+  theme_bw() + 
+  theme(legend.position="right")+
+  labs(title="Plot of length  per dose",x="Dose (mg)", y = "Length")+
+  geom_dotplot(binaxis='y', stackdir='center', stackratio=1.5, dotsize=1.2)
+```
+
+
+
+
+
+
+
+
+
+
+

@@ -74,7 +74,9 @@ open content/cn/hobby/_index.md -a TextEdit
     name = &#34;兴趣&#34;
     url = &#34;/hobby/&#34;
     weight = 4
-</code></pre><p>新加文件</p><p>你可以直接把文件，比如 <code>myPDF.pdf</code> 放到 <code>static</code> 文件夹，这样的话，这个文件的地址就是 <code>https://USERNAME.github.io/myPDF.pdf</code>。当你的文件比较多时，建议你在 <code>static</code> 文件夹下新建一个子文件夹，比如 <code>files</code>，然后把文件统一放到 <code>files</code> 里，这样的话，地址就是 <code>https://USERNAME.github.io/files/myPDF.pdf</code></p><h2 id=6-一些原理>6. 一些原理<a href=#6-一些原理 class=header-anchor arialabel=Anchor> #</a></h2><p>整个网站的结构应该是</p><pre tabindex=0><code>$ tree blog
+</code></pre><p>新加文件</p><p>你可以直接把文件，比如 <code>myPDF.pdf</code> 放到 <code>static</code> 文件夹，这样的话，这个文件的地址就是 <code>https://USERNAME.github.io/myPDF.pdf</code>。当你的文件比较多时，建议你在 <code>static</code> 文件夹下新建一个子文件夹，比如 <code>files</code>，然后把文件统一放到 <code>files</code> 里，这样的话，地址就是 <code>https://USERNAME.github.io/files/myPDF.pdf</code></p><h2 id=6-一些原理>6. 一些原理<a href=#6-一些原理 class=header-anchor arialabel=Anchor> #</a></h2><p><a href=https://github.com/gohugoio/hugo target=_blank rel="noreferrer noopener"><strong>Hugo</strong></a>
+是由Go语言实现的静态网站生成。 具有简单、易用、高效、易扩展、快速部署等优点。可将markdown格式的文本结合自定义的主题生成静态的html。</p><p><a href=https://help.github.com/articles/what-is-github-pages/ target=_blank rel="noreferrer noopener"><strong>GithubPages</strong></a>
+是一个静态站点托管服务，旨在直接从GitHub存储库托管您的个人，组织或项目页面。</p><p>Hugo+GithubPages的方案相比于传统的博客系统有以下优点：</p><ul><li>低成本: 无需单独购买VSP服务器或者域名空间，并且不限流量。</li><li>高度定制化：可以方便的定义网站功能模块，增加个性化功能。</li><li>方便管理: 由于不需要使用数据库，所有数据均以md形式保存，可直接使用git 行管理，对于博客系统尤其适用。</li><li>更专业: 对于开源项目的文档，可以使用git与项目版本同步。</li></ul><p>整个网站的结构应该是</p><pre tabindex=0><code>$ tree blog
 blog
 ├── archetypes # 包括内容类型，在创建新内容时自动生成内容的配置。
 │   └── default.md
@@ -83,7 +85,7 @@ blog
 ├── data
 ├── layouts # 包括了网站的模版，决定内容如何呈现，目录下模板优先级高于 /themes/&lt;THEME&gt;/layouts/，可以用来小规模的定制主题。
 ├── static # 包括了 css, js, fonts, media 等，决定网站的外观。
-└── themes
+└── themes # 主题目录，可从网站下载hugo主题
 </code></pre><p style=color:#777>最后一次修改于 2022-03-20</p></div><a href=#top><i class="fa fa-chevron-up" style=font-size:30px;color:#000></i></a></main><footer class=footer><script src=https://utteranc.es/client.js repo=kongjianyang/kongjianyang.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><script type=text/javascript src=/js/math-code.js></script>
 <script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 <script type=text/javascript src=/js/center-img.js></script><ul class=footer-links><li><a href=/cn/posts/index.xml type=application/rss+xml title="RSS feed">订阅</a></li><li><a href=http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>版权

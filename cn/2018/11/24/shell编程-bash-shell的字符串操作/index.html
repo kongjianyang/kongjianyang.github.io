@@ -1,0 +1,95 @@
+<a name=top></a><!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>KJY</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/fonts.css><link href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css rel=stylesheet><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/vega@5.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-lite@4.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-embed@6.12.2></script>
+<script>hljs.initHighlightingOnLoad()</script></head><body><div class=wrapper><header class=header><nav class=nav><a href=/ class=nav-logo><img src=/media/%3cnil%3e width height alt></a><ul class=nav-links><li><a href=/cn/about/>关于</a></li><li><a href=/cn/posts/>日志</a></li><li><a href=/>English</a></li></ul></nav></header><main class=content role=main><div style=text-align:center><h1>shell编程-bash-shell的字符串操作</h1><p>Liang
+/ 2018-11-24</p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-shell%e7%bc%96%e7%a8%8b-bash-shell%e7%9a%84%e5%ad%97%e7%ac%a6%e4%b8%b2%e6%93%8d%e4%bd%9c.md style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title=编辑本页></i></a></span><div class="body-text list-text"><h2 id=1字符串属性>1.字符串属性<a href=#1字符串属性 class=header-anchor arialabel=Anchor> #</a></h2><p>字符有可能是数字、字母、空格、其他特殊字符，而字符串有可能是它们中的一种或者多种的组合，在组合之后还可能形成具有特定意义的字符串，诸如邮件地址，URL地址等。</p><p>数字或者数字组合</p><pre tabindex=0><code>$ i=5;j=9423483247234;
+$ echo $i | grep &#34;^[0-9]$&#34;
+5
+$ echo $j | grep &#34;^[0-9]\+$&#34;
+9423483247234
+</code></pre><p>字符组合</p><pre tabindex=0><code>$ c=&#34;A&#34;; d=&#34;fwefewjuew&#34;; e=&#34;fewfEFWefwefe&#34;
+$ echo $c | grep &#34;^[A-Z]$&#34;
+A
+$ echo $d | grep &#34;^[a-z]\+&#34;
+fwefewjuew
+$ echo $e | grep &#34;^[a-zA-Z]\+$&#34;
+fewfEFWefwefe
+</code></pre><p>字母和数字的组合</p><pre tabindex=0><code>$ ic=&#34;432fwfwefeFWEwefwef&#34;
+$ echo $ic | grep &#34;^[0-9a-zA-Z]\+$&#34;
+432fwfwefeFWEwefwef
+</code></pre><p>匹配邮件地址</p><pre tabindex=0><code>$ echo &#34;test2007@lzu.cn&#34; | grep &#34;[0-9a-zA-Z\.]*@[0-9a-zA-Z\.]*&#34;
+test2007@lzu.cn
+</code></pre><p>匹配 URL 地址</p><pre tabindex=0><code>$ echo &#34;http://news.lzu.edu.cn/article.jsp?newsid=10135&#34; | grep &#34;^http://[0-9a-zA-Z\./=?]\+$&#34;
+http://news.lzu.edu.cn/article.jsp?newsid=10135
+</code></pre><h2 id=2字符串长度>2.字符串长度<a href=#2字符串长度 class=header-anchor arialabel=Anchor> #</a></h2><p>即计算所有字符的个数，计算方法五花八门，下面是几个例子</p><pre tabindex=0><code>$ var=&#34;get the length of me&#34;
+$ echo ${var}     # 这里等同于$var
+get the length of me
+$ echo ${#var}
+20
+$ expr length &#34;$var&#34;
+20
+$ echo $var | awk &#39;{printf(&#34;%d\n&#34;, length($0));}&#39;
+20
+$ echo -n $var |  wc -c
+20
+</code></pre><h2 id=3拆分字符串>3.拆分字符串<a href=#3拆分字符串 class=header-anchor arialabel=Anchor> #</a></h2><p>Bash 提供的数组数据结构，以数字为下标的，和 C 语言从 0 开始的下标一样，我们写个脚本，命名为split_string.sh，内容如下</p><pre tabindex=0><code>#!/bin/bas
+var=&#34;get the length of me&#34;
+var_arr=($var)    #把字符串var存放到字符串数组var_arr中，默认以空格作为分割符
+echo ${var_arr[0]} ${var_arr[1]} ${var_arr[2]} ${var_arr[3]} ${var_arr[4]}
+echo ${var_arr[@]}    #整个字符串，可以用*代替@，下同
+echo ${#var_arr[@]}   #类似于求字符串长度，`#`操作符也可用来求数组元素个数
+</code></pre><p>运行结果如下</p><pre tabindex=0><code>get the length of me
+get the length of me
+5
+</code></pre><h2 id=4-字符串常规操作>4. 字符串常规操作<a href=#4-字符串常规操作 class=header-anchor arialabel=Anchor> #</a></h2><p><strong>取子串</strong></p><p>awk 默认把一行按照空格分割为多个域，并可以通过 $1，$2，$3 &mldr; 来获取，$0 表示整行。</p><pre tabindex=0><code>$ var=&#34;get the length of me&#34;
+$ echo ${var:0:3}
+get
+$ echo ${var:(-2)}   # 方向相反呢
+me
+$ echo $var | awk &#39;{printf(&#34;%s\n&#34;, substr($0, 9, 6))}&#39;
+length
+$ echo $var | awk &#39;{printf(&#34;%s\n&#34;, $1)}&#39;
+get
+$ echo $var | awk &#39;{printf(&#34;%s\n&#34;, $5)}&#39;
+me
+</code></pre><p>cut也可以用来截取子串，-d指定分割符，如同awk用-F指定分割符一样；-f指定“域”，如同awk的$数字。</p><pre tabindex=0><code>echo $var | cut -d &#34; &#34; -f 5
+</code></pre><p><strong>匹配字符求子串</strong>
+tr 也可以用来取子串，它可以类似#和 % 来“拿掉”一些字符串来实现取子串，tr 的 -c 选项是 complement 的缩写，即 invert，而 -d 选项是删除，tr -cd &ldquo;[a-z]&rdquo; 这样一来就变成保留所有的字母</p><pre tabindex=0><code>$ echo $var | tr -d &#34; &#34;
+getthelengthofme
+$ echo $var | tr -cd &#34;[a-z]&#34; #把所有的空格都拿掉了，仅仅保留字母字符串，注意-c和-d的用法
+getthelengthofme
+</code></pre><p>还可以使用head和tail截取字符串</p><pre tabindex=0><code>$ echo &#34;abcdefghijk&#34; | head -c 4
+abcd
+$ echo -n &#34;abcdefghijk&#34; | tail -c 4
+hijk
+</code></pre><p><strong>查询子串在目标串中的位置</strong></p><pre tabindex=0><code>$ var=&#34;get the length of me&#34;
+$ echo $var | awk &#39;{printf(&#34;%d\n&#34;, match($0, &#34;the&#34;))}&#39;
+5
+</code></pre><p><strong>子串替换</strong>
+使用{}替换</p><pre tabindex=0><code>$ var=&#34;get the length of me&#34;
+$ echo ${var/ /_}        #把第一个空格替换成下划线
+get_the length of me
+$ echo ${var// /_}       #把所有空格都替换成下划线
+get_the_length_of_me
+</code></pre><p>用 awk，awk 提供了转换的最小替换函数 sub 和全局替换函数 gsub，类似 / 和 //</p><pre tabindex=0><code>$ echo $var | awk &#39;{sub(&#34; &#34;, &#34;_&#34;, $0); printf(&#34;%s\n&#34;, $0);}&#39; #先替换之后再输出，sub最小替换
+get_the length of me
+$ echo $var | awk &#39;{gsub(&#34; &#34;, &#34;_&#34;, $0); printf(&#34;%s\n&#34;, $0);}&#39; #gsub全局替换
+get_the_length_of_me
+</code></pre><p>用 sed，流编辑器，sed全名叫stream editor，用程序的方式来编辑文本：</p><pre tabindex=0><code>$ echo $var | sed -e &#39;s/ /_/&#39;    #s &lt;= substitude
+get_the length of me
+$ echo $var | sed -e &#39;s/ /_/g&#39;   #看到没有，简短两个命令就实现了最小匹配和最大匹配g &lt;= global
+get_the_length_of_me
+</code></pre><p>用tr命令替换，tr(translate)命令是sed命令的简化版，tr命令能实现的功能， sed都能实现</p><pre tabindex=0><code>$ echo $var | tr &#34; &#34; &#34;_&#34;
+get_the_length_of_me
+$ echo $var | tr &#39;[a-z]&#39; &#39;[A-Z]&#39;   #这个可有意思了，把所有小写字母都替换为大写字母
+GET THE LENGTH OF ME
+</code></pre><p style=color:#777>最后一次修改于 2018-11-24</p></div><a href=#top><i class="fa fa-chevron-up" style=font-size:30px;color:#000></i></a></main><footer class=footer><script src=https://utteranc.es/client.js repo=kongjianyang/kongjianyang.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><script type=text/javascript src=/js/math-code.js></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type=text/javascript src=/js/center-img.js></script><ul class=footer-links><li><a href=/cn/posts/index.xml type=application/rss+xml title="RSS feed">订阅</a></li><li><a href=http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>版权
+<i class="fa fa-cc" aria-hidden=true title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a></li></ul><div class=copyright-text>©
+KJY
+2018-2021</div></footer>
