@@ -16,6 +16,7 @@ Long and difficult as the journey may be, sustained actions will take us to the 
 
 不要为过去的自己而感到羞耻，记录就是过去的自己
 
+这是自己的一个长期主义的试验田
 
 
 <!--more-->
