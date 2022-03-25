@@ -1,0 +1,31 @@
+<a name=top></a><!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>KJY</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/fonts.css><link href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css rel=stylesheet><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/vega@5.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-lite@4.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-embed@6.12.2></script>
+<script>hljs.initHighlightingOnLoad()</script></head><body><div class=wrapper><header class=header><nav class=nav><a href=/ class=nav-logo><img src=/media/%3cnil%3e width height alt></a><ul class=nav-links><li><a href=/cn/about/>关于</a></li><li><a href=/cn/posts/>日志</a></li><li><a href=/>English</a></li></ul></nav></header><main class=content role=main><div style=text-align:center><h1>创建自己的newsletter信息</h1><p>KJY
+/ 2022-03-23</p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2022-03-23-newsletter.md style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title=编辑本页></i></a></span><aside class=toc>Table of Contents:<nav id=TableOfContents><ol><li><a href=#1-克隆并更新到自己的仓库>1. 克隆并更新到自己的仓库</a><ol><li><a href=#克隆别人的仓库到本地>克隆别人的仓库到本地</a></li><li><a href=#删除原来git版本控制>删除原来git版本控制</a></li><li><a href=#初始化自己的仓库>初始化自己的仓库</a></li></ol></li></ol></nav></aside><div class="body-text list-text"><p>记录使用GitHub创建自己的newsletter信息：</p><p>结构参考这篇仓库：<a href=https://github.com/ShixiangWang/weekly target=_blank rel="noreferrer noopener">ShixiangWang/weekly: 生信爱好者周刊（每周日发布） (github.com)</a></p><p>[TOC]</p><h2 id=1-克隆并更新到自己的仓库>1. 克隆并更新到自己的仓库<a href=#1-克隆并更新到自己的仓库 class=header-anchor arialabel=Anchor> #</a></h2><h3 id=克隆别人的仓库到本地>克隆别人的仓库到本地<a href=#克隆别人的仓库到本地 class=header-anchor arialabel=Anchor> #</a></h3><pre tabindex=0><code>git clone git@github.com:ShixiangWang/weekly.git
+</code></pre><p>并在自己的github创建自己的仓库</p><h3 id=删除原来git版本控制>删除原来git版本控制<a href=#删除原来git版本控制 class=header-anchor arialabel=Anchor> #</a></h3><p>进入project的<a href="https://so.csdn.net/so/search?q=%e6%a0%b9%e7%9b%ae%e5%bd%95&spm=1001.2101.3001.7020" target=_blank rel="noreferrer noopener">根目录</a>
+中，右击鼠标打开Git Bash
+输入 <code>find . -name ".git" | xargs rm -Rf</code></p><h3 id=初始化自己的仓库>初始化自己的仓库<a href=#初始化自己的仓库 class=header-anchor arialabel=Anchor> #</a></h3><div class=highlight><pre tabindex=0 style=-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ touch README.md
+</span></span><span style=display:flex><span>$ git init
+</span></span><span style=display:flex><span>$ git add *
+</span></span><span style=display:flex><span>$ git commit -m <span style=color:#ba2121>&#34;此处可添加提交代码相关的注释&#34;</span>
+</span></span><span style=display:flex><span>$ git remote add origin https://github.com/yourUserName/repositoryName.git
+</span></span><span style=display:flex><span>$ git push -u origin master
+</span></span><span style=display:flex><span><span style=color:#666>123456</span>
+</span></span></code></pre></div><p>origin 是代码仓库地址的别称
+<a href=https://www.jianshu.com/p/d1c1191819c8 target=_blank rel="noreferrer noopener">git详细教程</a></p><p>.gitignore文件编写</p><p>该文件内容是不想提交到仓库的文件或文件夹。
+忽略某个文件夹下面所有内容要带星号*
+pyqt5/build/*
+pyqt5/dist/*
+time_format/build/*
+time_format/dist/*
+time_format/img/*</p><p style=color:#777>最后一次修改于 2022-03-23</p></div><a href=#top><i class="fa fa-chevron-up" style=font-size:30px;color:#000></i></a></main><footer class=footer><script src=https://utteranc.es/client.js repo=kongjianyang/kongjianyang.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><script type=text/javascript src=/js/math-code.js></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type=text/javascript src=/js/center-img.js></script><ul class=footer-links><li><a href=/cn/posts/index.xml type=application/rss+xml title="RSS feed">订阅</a></li><li><a href=http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>版权
+<i class="fa fa-cc" aria-hidden=true title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a></li></ul><div class=copyright-text>©
+KJY
+2018-2021</div></footer>
