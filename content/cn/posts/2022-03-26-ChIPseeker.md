@@ -1,3 +1,22 @@
+---
+title: "ChIPseeker使用介绍"
+date: 2022-03-26T14:42:27-05:00
+author: KJY
+slug: second-post-cn
+draft: false
+toc: true
+categories:
+  - test
+tags:
+  - article
+---
+
+
+
+主要参考这篇文章：
+
+[190-学习一遍ChIPseeker使用 | BIOINFOPLANET (jieandze1314.com)](https://www.jieandze1314.com/post/cnposts/190/)
+
 ### 1 ChIP-seq简介
 
 ChIP是指染色质免疫沉淀，它通特异结合抗体将DNA结合蛋白免疫沉淀，可以用于捕获蛋白质（如转录因子，组蛋白修饰）的DNA靶点。之前结合芯片就有ChIP-on-chip，后来二代测序加持诞生了ChIP-seq。优点是：不再需要设计探针（探针往往存在着一定的偏向性）
