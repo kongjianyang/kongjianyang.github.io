@@ -1,14 +1,6 @@
 ---
-title: "KJY"
-type : list-single
-toc: true
+title: '周刊'
+date: ''
 ---
 
-KJY
-
-
-
-
-
-
-
+## 周刊
