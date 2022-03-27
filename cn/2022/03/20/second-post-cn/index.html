@@ -6,7 +6,7 @@
 <script src=https://cdn.jsdelivr.net/npm/vega-lite@4.17.0></script>
 <script src=https://cdn.jsdelivr.net/npm/vega-embed@6.12.2></script>
 <script>hljs.initHighlightingOnLoad()</script></head><body><div class=wrapper><header class=header><nav class=nav><a href=/ class=nav-logo><img src=/media/%3cnil%3e width height alt></a><ul class=nav-links><li><a href=/cn/about/>关于</a></li><li><a href=/cn/posts/>日志</a></li><li><a href=/>English</a></li></ul></nav></header><main class=content role=main><div style=text-align:center><h1>使用GitHub page建立站点</h1><p>KJY
-/ 2022-03-20</p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2022-03-20-build-website.md style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title=编辑本页></i></a></span><aside class=toc>Table of Contents:<nav id=TableOfContents><ol><li><a href=#1-安装hugo>1. 安装Hugo</a></li><li><a href=#2-新建一个-hugo-网站>2. 新建一个 Hugo 网站</a></li><li><a href=#3-新建-github-仓库>3. 新建 GitHub 仓库</a></li><li><a href=#4-上传到github>4. 上传到GitHub</a></li><li><a href=#5一些修改>5.一些修改</a></li><li><a href=#6-一些原理>6. 一些原理</a></li></ol></nav></aside><div class="body-text list-text"><p>记录第一次使用GitHub page建立站点的步骤:</p><p>主要参考这篇文章：<a href=https://hongtaoh.com/cn/2021/03/02/personal-website-tutorial/ target=_blank rel="noreferrer noopener">郝鸿涛：Hongtao Hao</a></p><p>[TOC]</p><h2 id=1-安装hugo>1. 安装Hugo<a href=#1-安装hugo class=header-anchor arialabel=Anchor> #</a></h2><p>在 Terminal 中输入</p><pre tabindex=0><code>brew install hugo 
+/ 2022-03-20</p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2022-03-20-build-website.md style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title=编辑本页></i></a></span><aside class=toc>Table of Contents:<nav id=TableOfContents><ol><li><a href=#1-安装hugo>1. 安装Hugo</a></li><li><a href=#2-新建一个-hugo-网站>2. 新建一个 Hugo 网站</a></li><li><a href=#3-新建-github-仓库>3. 新建 GitHub 仓库</a></li><li><a href=#4-上传到github>4. 上传到GitHub</a></li><li><a href=#5一些修改>5.一些修改</a></li><li><a href=#6-一些原理>6. 一些原理</a></li><li><a href=#hexo和hugo的区别>Hexo和Hugo的区别</a></li></ol></nav></aside><div class="body-text list-text"><p>记录第一次使用GitHub page建立站点的步骤:</p><p>主要参考这篇文章：<a href=https://hongtaoh.com/cn/2021/03/02/personal-website-tutorial/ target=_blank rel="noreferrer noopener">郝鸿涛：Hongtao Hao</a></p><p>[TOC]</p><h2 id=1-安装hugo>1. 安装Hugo<a href=#1-安装hugo class=header-anchor arialabel=Anchor> #</a></h2><p>在 Terminal 中输入</p><pre tabindex=0><code>brew install hugo 
 </code></pre><p>完成后，在 Terminal 中输入 <code>hugo version</code>, 如果显示 <code>Hugo Static Site Generator...</code> 证明安装成功。</p><h2 id=2-新建一个-hugo-网站>2. 新建一个 Hugo 网站<a href=#2-新建一个-hugo-网站 class=header-anchor arialabel=Anchor> #</a></h2><p>Hugo 博客就是一个文件夹。首先你要确定把这个文件夹放在哪里。到达自己需要的地址之后使用以下命令</p><pre tabindex=0><code>hugo new site liang.github.io **# quickstart 可以换成任何你想用的名称**
 cd quickstart/themes
 git clone https://github.com/hongtaoh/hugo-ht
@@ -65,8 +65,23 @@ git push -u origin master
 </span></span><span style=display:flex><span><span style=color:#19177c>msg</span><span style=color:#666>=</span><span style=color:#ba2121>&#34;updating site on </span><span style=color:green;font-weight:700>$(</span>date<span style=color:green;font-weight:700>)</span><span style=color:#ba2121>&#34;</span> 
 </span></span><span style=display:flex><span>git commit -m <span style=color:#ba2121>&#34;</span><span style=color:#19177c>$msg</span><span style=color:#ba2121>&#34;</span>
 </span></span><span style=display:flex><span>git push origin master
-</span></span></code></pre></div><p>新加博客</p><pre tabindex=0><code>hugo new cn/posts/2021-04-06-a-new-post.md
-</code></pre><p>新加 <a href=https://hugo-ht.hongtaoh.com/cn/about/ target=_blank rel="noreferrer noopener">关于</a>
+</span></span></code></pre></div><p>新加博客</p><div class=highlight><pre tabindex=0 style=-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>hugo new cn/posts/2021-04-06-a-new-post.md
+</span></span><span style=display:flex><span>hugo new about.md
+</span></span><span style=display:flex><span>hugo new  --kind post post/my-article-name.md
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>$ cat content/about.md
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>title: <span style=color:#ba2121>&#34;About&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>date: 2018-07-21T15:27:10+08:00
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>draft: <span style=color:green>true</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#408080;font-style:italic># 关于我</span>
+</span></span></code></pre></div><blockquote><p>注意当<code>draft: true</code>的时候，视为草稿，<code>hugo server -D</code>会显示，正式发布效果用<code>hugo server -w</code>查看。</p></blockquote><p>新加 <a href=https://hugo-ht.hongtaoh.com/cn/about/ target=_blank rel="noreferrer noopener">关于</a>
 这样的单独页面</p><pre tabindex=0><code>mkdir content/cn/hobby # hobby 可以换成别的名字
 cp content/cn/about/_index.md content/cn/hobby # hobby 可以换成别的名字
 open content/cn/hobby/_index.md -a TextEdit 
@@ -78,15 +93,22 @@ open content/cn/hobby/_index.md -a TextEdit
 是由Go语言实现的静态网站生成。 具有简单、易用、高效、易扩展、快速部署等优点。可将markdown格式的文本结合自定义的主题生成静态的html。</p><p><a href=https://help.github.com/articles/what-is-github-pages/ target=_blank rel="noreferrer noopener"><strong>GithubPages</strong></a>
 是一个静态站点托管服务，旨在直接从GitHub存储库托管您的个人，组织或项目页面。</p><p>Hugo+GithubPages的方案相比于传统的博客系统有以下优点：</p><ul><li>低成本: 无需单独购买VSP服务器或者域名空间，并且不限流量。</li><li>高度定制化：可以方便的定义网站功能模块，增加个性化功能。</li><li>方便管理: 由于不需要使用数据库，所有数据均以md形式保存，可直接使用git 行管理，对于博客系统尤其适用。</li><li>更专业: 对于开源项目的文档，可以使用git与项目版本同步。</li></ul><p>整个网站的结构应该是</p><pre tabindex=0><code>$ tree blog
 blog
-├── archetypes # 包括内容类型，在创建新内容时自动生成内容的配置。
+├── archetypes # 包括内容类型，在创建新内容/构建新文章时自动生成内容的配置。
 │   └── default.md
 ├── config.toml # config.toml 是整个网站的配置文件
 ├── content # 包括网站内容，全部使用 markdown 格式。
 ├── data
-├── layouts # 包括了网站的模版，决定内容如何呈现，目录下模板优先级高于 /themes/&lt;THEME&gt;/layouts/，可以用来小规模的定制主题。
+├── layouts # 网站如何展示的一些前端的东西，包括了网站的模版，决定内容如何呈现，目录下模板优先级高于 /themes/&lt;THEME&gt;/layouts/，可以用来小规模的定制主题。
 ├── static # 包括了 css, js, fonts, media 等，决定网站的外观。
 └── themes # 主题目录，可从网站下载hugo主题
-</code></pre><p style=color:#777>最后一次修改于 2022-03-20</p></div><a href=#top><i class="fa fa-chevron-up" style=font-size:30px;color:#000></i></a></main><footer class=footer><script src=https://utteranc.es/client.js repo=kongjianyang/kongjianyang.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><script type=text/javascript src=/js/math-code.js></script>
+</code></pre><h2 id=hexo和hugo的区别>Hexo和Hugo的区别<a href=#hexo和hugo的区别 class=header-anchor arialabel=Anchor> #</a></h2><p><a href=https://jekyllrb.com/ target=_blank rel="noreferrer noopener">Jekyll</a>
+是最早开始流行的静态网站构建工具，使用Ruby语言开发，开源已有9个年头了，是Github Pages默认的静态网站构建工具。当前互联网上有大量基于jekyll构建的静态网站，包括现在流行的开源容器编排调度引擎<a href=https://kubernetes/io target=_blank rel="noreferrer noopener">kubernetes的官网</a>
+。</p><p><a href=https://hexo.io/ target=_blank rel="noreferrer noopener">Hexo</a>
+是一款使用<a href=https://nodejs.org/ target=_blank rel="noreferrer noopener">node.js</a>
+开发的静态网站构建工具，便于构建华丽绚烂的页面。</p><p><a href=https://gohugo.io/ target=_blank rel="noreferrer noopener">Hugo</a>
+是由<a href=http://spf13.com/ target=_blank rel="noreferrer noopener">Steve Francis</a>
+基于Go语言开发的静态网站构建工具。</p><p>下面是三款静态网站构建工具的简要对比：</p><table><thead><tr><th>工具名称</th><th>开发语言</th><th>构建效率</th><th>典型用例</th><th>特点</th></tr></thead><tbody><tr><td><a href=https://jekyllrb.com/ target=_blank rel="noreferrer noopener">jekyll</a></td><td>ruby</td><td>比较慢</td><td>GitHub Pages默认的静态网站构建工具、<a href=https://kubernetes/io target=_blank rel="noreferrer noopener">kubernetes官网</a></td><td>历史悠久，开源已9年，模板和插件众多，但是构建速度慢</td></tr><tr><td><a href=https://hexo.io/ target=_blank rel="noreferrer noopener">hexo</a></td><td>node.js</td><td>一般</td><td>个人博客、产品展示</td><td>页面酷炫，前端开发者用户居多</td></tr><tr><td><a href=https://gohugo.io/ target=_blank rel="noreferrer noopener">hugo</a></td><td>go</td><td>极快</td><td>个人博客、产品展示</td><td>Go大神<a href=https://github.com/spf13 target=_blank rel="noreferrer noopener">spf13</a>
+开发，开源已4年，升级活跃，构建速度极快，后端开发者用户居多</td></tr></tbody></table><p>以上工具都可以将markdown内容转换为静态页面。</p><p style=color:#777>最后一次修改于 2022-03-20</p></div><a href=#top><i class="fa fa-chevron-up" style=font-size:30px;color:#000></i></a></main><footer class=footer><script src=https://utteranc.es/client.js repo=kongjianyang/kongjianyang.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><script type=text/javascript src=/js/math-code.js></script>
 <script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 <script type=text/javascript src=/js/center-img.js></script><ul class=footer-links><li><a href=/cn/posts/index.xml type=application/rss+xml title="RSS feed">订阅</a></li><li><a href=http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>版权
 <i class="fa fa-cc" aria-hidden=true title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a></li></ul><div class=copyright-text>©
