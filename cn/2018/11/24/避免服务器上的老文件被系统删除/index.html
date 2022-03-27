@@ -5,7 +5,7 @@
 <script src=https://cdn.jsdelivr.net/npm/vega@5.17.0></script>
 <script src=https://cdn.jsdelivr.net/npm/vega-lite@4.17.0></script>
 <script src=https://cdn.jsdelivr.net/npm/vega-embed@6.12.2></script>
-<script>hljs.initHighlightingOnLoad()</script></head><body><div class=wrapper><header class=header><nav class=nav><a href=/ class=nav-logo><img src=/media/%3cnil%3e width height alt></a><ul class=nav-links><li><a href=/cn/about/>关于</a></li><li><a href=/cn/posts/>日志</a></li><li><a href=/>English</a></li></ul></nav></header><main class=content role=main><div style=text-align:center><h1>避免服务器上的老文件被系统删除</h1><p>Liang
+<script>hljs.initHighlightingOnLoad()</script></head><body><div class=wrapper><header class=header><nav class=nav><a href=/ class=nav-logo><img src=/media/%3cnil%3e width height alt></a><ul class=nav-links><li><a href=/cn/about/>关于</a></li><li><a href=/cn/posts/>日志</a></li><li><a href=/cn/newsletter/>周刊</a></li><li><a href=/>English</a></li></ul></nav></header><main class=content role=main><div style=text-align:center><h1>避免服务器上的老文件被系统删除</h1><p>Liang
 / 2018-11-24</p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-%e9%81%bf%e5%85%8d%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%8a%e7%9a%84%e8%80%81%e6%96%87%e4%bb%b6%e8%a2%ab%e7%b3%bb%e7%bb%9f%e5%88%a0%e9%99%a4.md style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title=编辑本页></i></a></span><div class="body-text list-text"><p>学校规定服务器上的文件大于60天没有修改或者接触就会被系统删除，之前吃过这个亏，最近又收到系统提醒，所以写个小脚本避免文件被删除</p><pre tabindex=0><code>#! /bin/bash
 purgelist | tail -n +9 &gt; purgelist.txt # purgelist用来寻找系统内大于60天没有被修改或者接触的文件，前9行是一些无关信息，将要移除的文件存到purgelist.txt中
 
