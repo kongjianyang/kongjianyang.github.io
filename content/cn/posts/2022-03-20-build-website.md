@@ -173,9 +173,32 @@ git push origin master
 
  新加博客
 
-```
+```bash
 hugo new cn/posts/2021-04-06-a-new-post.md
+hugo new about.md
+hugo new  --kind post post/my-article-name.md
 ```
+
+```bash
+$ cat content/about.md
+
+---
+
+title: "About"
+
+date: 2018-07-21T15:27:10+08:00
+
+draft: true
+
+---
+
+# 关于我
+```
+
+
+
+
+> 注意当`draft: true`的时候，视为草稿，`hugo server -D`会显示，正式发布效果用`hugo server -w`查看。
 
 新加 [关于](https://hugo-ht.hongtaoh.com/cn/about/) 这样的单独页面
 
@@ -222,13 +245,30 @@ Hugo+GithubPages的方案相比于传统的博客系统有以下优点：
 ```
 $ tree blog
 blog
-├── archetypes # 包括内容类型，在创建新内容时自动生成内容的配置。
+├── archetypes # 包括内容类型，在创建新内容/构建新文章时自动生成内容的配置。
 │   └── default.md
 ├── config.toml # config.toml 是整个网站的配置文件
 ├── content # 包括网站内容，全部使用 markdown 格式。
 ├── data
-├── layouts # 包括了网站的模版，决定内容如何呈现，目录下模板优先级高于 /themes/<THEME>/layouts/，可以用来小规模的定制主题。
+├── layouts # 网站如何展示的一些前端的东西，包括了网站的模版，决定内容如何呈现，目录下模板优先级高于 /themes/<THEME>/layouts/，可以用来小规模的定制主题。
 ├── static # 包括了 css, js, fonts, media 等，决定网站的外观。
 └── themes # 主题目录，可从网站下载hugo主题
 ```
 
+## Hexo和Hugo的区别
+
+[Jekyll](https://jekyllrb.com/) 是最早开始流行的静态网站构建工具，使用Ruby语言开发，开源已有9个年头了，是Github Pages默认的静态网站构建工具。当前互联网上有大量基于jekyll构建的静态网站，包括现在流行的开源容器编排调度引擎[kubernetes的官网](https://kubernetes/io)。
+
+[Hexo](https://hexo.io/)是一款使用[node.js](https://nodejs.org/)开发的静态网站构建工具，便于构建华丽绚烂的页面。
+
+[Hugo](https://gohugo.io/)是由[Steve Francis](http://spf13.com/)基于Go语言开发的静态网站构建工具。
+
+下面是三款静态网站构建工具的简要对比：
+
+| 工具名称                        | 开发语言 | 构建效率 | 典型用例                                                     | 特点                                                         |
+| ------------------------------- | -------- | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [jekyll](https://jekyllrb.com/) | ruby     | 比较慢   | GitHub Pages默认的静态网站构建工具、[kubernetes官网](https://kubernetes/io) | 历史悠久，开源已9年，模板和插件众多，但是构建速度慢          |
+| [hexo](https://hexo.io/)        | node.js  | 一般     | 个人博客、产品展示                                           | 页面酷炫，前端开发者用户居多                                 |
+| [hugo](https://gohugo.io/)      | go       | 极快     | 个人博客、产品展示                                           | Go大神[spf13](https://github.com/spf13)开发，开源已4年，升级活跃，构建速度极快，后端开发者用户居多 |
+
+以上工具都可以将markdown内容转换为静态页面。
