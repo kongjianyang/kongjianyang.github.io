@@ -2,11 +2,11 @@
 title: "创建自己的newsletter信息"
 date: 2022-03-23T13:42:27-05:00
 author: KJY
-slug: second-post-cn
+slug: newsletter
 draft: false
 toc: true
 categories:
-  - test
+  - newsletter
 tags:
   - article
 ---

@@ -255,6 +255,27 @@ blog
 └── themes # 主题目录，可从网站下载hugo主题
 ```
 
+文章的头文件
+
+```bash
+---
+title: "使用GitHub page建立站点"
+date: 2022-03-20T13:42:27-05:00
+author: KJY
+slug: second-post-cn # slug是指wordpress在启用了伪静态后，你的文章(post)与页面(page)、标签(tag)、分类(Category)在访问的时候显示在浏览器地址栏上域名后面的地址。
+draft: false
+toc: true
+categories:
+  - test
+tags:
+  - article
+---
+```
+
+
+
+
+
 ## Hexo和Hugo的区别
 
 [Jekyll](https://jekyllrb.com/) 是最早开始流行的静态网站构建工具，使用Ruby语言开发，开源已有9个年头了，是Github Pages默认的静态网站构建工具。当前互联网上有大量基于jekyll构建的静态网站，包括现在流行的开源容器编排调度引擎[kubernetes的官网](https://kubernetes/io)。

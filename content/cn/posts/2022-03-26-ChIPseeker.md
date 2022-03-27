@@ -2,11 +2,11 @@
 title: "ChIPseeker使用介绍"
 date: 2022-03-26T14:42:27-05:00
 author: KJY
-slug: second-post-cn
+slug: ChIPseeker
 draft: false
 toc: true
 categories:
-  - test
+  - ChIPseeker
 tags:
   - article
 ---
