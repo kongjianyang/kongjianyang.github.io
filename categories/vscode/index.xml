@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>vscode on KJY</title><link>https://kongjianyang.github.io/categories/vscode/</link><description>Recent content in vscode on KJY</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 14 Mar 2019 14:32:27 -0500</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/vscode/index.xml" rel="self" type="application/rss+xml"/><item><title>vscode使用技巧</title><link>https://kongjianyang.github.io/cn/2019/03/14/vscode/</link><pubDate>Thu, 14 Mar 2019 14:32:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2019/03/14/vscode/</guid><description>VS code 的层级树太浅怎么解决，子目录的缩进不够深
+通过修改workbench&amp;gt;Tree: indent的结构
+一些详细介绍：
+一、User Guide（用户指南）🔗 参考官方文档：Basic Editing in Visual Studio Code 更改显示语言🔗 通过安装插件 Chinese (Simplified) Language Pack for Visual Studio Code 来启用中文（需要重启）
+默认情况下，Visual Studio Code 附带英语作为显示语言，而其他语言则依赖于 Marketplace 提供的语言包扩展。
+VS Code 检测到操作系统的 UI 语言，并会提示您安装适当的语言包（如果在 Marketplace 上可用）。
+保存/自动保存🔗 默认情况下，VS 代码需要一个明确的行动，将更改保存到磁盘，按Ctrl + S。
+您也可以使用文件 &amp;gt; 自动保存从顶级菜单切换自动保存。
+要进一步控制自动保存，请打开配置文件settings.json，然后找到相关的设置（如果没有则直接添加）：
+它可以具有以下值：
+off -禁用自动保存。
+afterDelay - 在配置的延迟（默认 1000 毫秒）后保存文件。
+onFocusChange - 当焦点移出脏文件的编辑器时保存文件。
+onWindowChange - 当焦点移出 VS Code 窗口时保存文件。</description></item></channel></rss>

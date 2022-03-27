@@ -1,25 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>test on KJY</title><link>https://kongjianyang.github.io/categories/test/</link><description>Recent content in test on KJY</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 26 Mar 2022 14:42:27 -0500</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/test/index.xml" rel="self" type="application/rss+xml"/><item><title>ChIPseeker使用介绍</title><link>https://kongjianyang.github.io/cn/2022/03/26/second-post-cn/</link><pubDate>Sat, 26 Mar 2022 14:42:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2022/03/26/second-post-cn/</guid><description>主要参考这篇文章：
-190-学习一遍ChIPseeker使用 | BIOINFOPLANET (jieandze1314.com) 1 ChIP-seq简介 ChIP是指染色质免疫沉淀，它通特异结合抗体将DNA结合蛋白免疫沉淀，可以用于捕获蛋白质（如转录因子，组蛋白修饰）的DNA靶点。之前结合芯片就有ChIP-on-chip，后来二代测序加持诞生了ChIP-seq。优点是：不再需要设计探针（探针往往存在着一定的偏向性）
-2007年来自三个不同的实验室，几乎是同时间出来（最长差不了3个月），分别发CNS，一起定义了这个ChIPseq技术
-Johnson DS, Mortazavi A et al. (2007) Genome-wide mapping of in vivo protein–DNA interactions. Science 316: 1497–1502 Robertson G et al.(2007) Genome-wide profiles of STAT1 DNA association using chromatin immunoprecipitation and massively parallel sequencing. Nature Methods 4: 651–657 Schmid et al. (2007) ChIP-Seq Data reveal nucleosome architecture of human promoters. Cell 131: 831–832 主要有4步：Cross-linking、Sonication、IP、Sequencing
-简而言之是：DNA和蛋白质交联(cross-linking)、超声(sonication)将染色体随机切割、利用抗原抗体的特异性识别(IP)、把目标蛋白相结合的DNA片段沉淀下来，反交联释放DNA片段，最后是测序(sequencing)
-分析流程示例图1： 分析流程示例图2： 原始数据=》质控=》比对=》拿到DNA片段在染色体上的位置信息=》peak calling （去除背景噪音）=》拿到peaks（protein binding site）=》下游分析（可视化、找相关基因、motif分析等等）</description></item><item><title>tmux多窗口管理</title><link>https://kongjianyang.github.io/cn/2022/03/25/second-post-cn/</link><pubDate>Fri, 25 Mar 2022 14:42:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2022/03/25/second-post-cn/</guid><description>[TOC]
-主要参考这篇文章：还在为 iTerm 多窗口操作烦恼？tmux 这款神器轻松帮你解决_Java极客技术-程序员信息网 - 程序员信息网 (i4k.xyz) Tmux 使用教程 - 阮一峰的网络日志 (ruanyifeng.com) 安装tmux
-brew install tmux 会话管理 新建 session
-使用 tmux 之前我们首先需要新建一个 Session，命令如下：
-# 新建 session，使用 -s 自定义 session 名字 tmux new -s &amp;lt;session-name&amp;gt; 保存会话
-进入会话之后，进行相关操作，比如使用 SSH 连上远端服务器。这时如果想退出去的时候，可以保存当前会话信息。下次可以直接重新进入这个会话，不用重新再次使用 SSH 连接了。
-# 保存当前会话 tmux detach 接入会话
-tmux attach 可以接入上次保存的会话。
-# 可以使用 -t 指定会话名字。 tmux attach -t &amp;lt;session-name&amp;gt; 查看会话
-如果之前同时保存了多个会话，我们可以使用 tmux ls 查看当前所有会话。
-# 查看会话 tmux ls 杀死会话
-使用 tmux kill-session 我们可以杀死某个会话。</description></item><item><title>创建自己的newsletter信息</title><link>https://kongjianyang.github.io/cn/2022/03/23/second-post-cn/</link><pubDate>Wed, 23 Mar 2022 13:42:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2022/03/23/second-post-cn/</guid><description>记录使用GitHub创建自己的newsletter信息：
-结构参考这篇仓库：ShixiangWang/weekly: 生信爱好者周刊（每周日发布） (github.com) [TOC]
-1. 克隆并更新到自己的仓库 克隆别人的仓库到本地 git clone git@github.com:ShixiangWang/weekly.git 并在自己的github创建自己的仓库
-删除原来git版本控制 进入project的根目录 中，右击鼠标打开Git Bash 输入 find . -name &amp;quot;.git&amp;quot; | xargs rm -Rf
-初始化自己的仓库 $ touch README.md $ git init $ git add * $ git commit -m &amp;#34;此处可添加提交代码相关的注释&amp;#34; $ git remote add origin https://github.com/yourUserName/repositoryName.git $ git push -u origin master 123456 origin 是代码仓库地址的别称 git详细教程 .gitignore文件编写
-该文件内容是不想提交到仓库的文件或文件夹。 忽略某个文件夹下面所有内容要带星号* pyqt5/build/* pyqt5/dist/* time_format/build/* time_format/dist/* time_format/img/*</description></item><item><title>使用GitHub page建立站点</title><link>https://kongjianyang.github.io/cn/2022/03/20/second-post-cn/</link><pubDate>Sun, 20 Mar 2022 13:42:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2022/03/20/second-post-cn/</guid><description>记录第一次使用GitHub page建立站点的步骤:
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>test on KJY</title><link>https://kongjianyang.github.io/categories/test/</link><description>Recent content in test on KJY</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 20 Mar 2022 13:42:27 -0500</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/test/index.xml" rel="self" type="application/rss+xml"/><item><title>使用GitHub page建立站点</title><link>https://kongjianyang.github.io/cn/2022/03/20/second-post-cn/</link><pubDate>Sun, 20 Mar 2022 13:42:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2022/03/20/second-post-cn/</guid><description>记录第一次使用GitHub page建立站点的步骤:
 主要参考这篇文章：郝鸿涛：Hongtao Hao [TOC]
 1. 安装Hugo 在 Terminal 中输入
 brew install hugo 完成后，在 Terminal 中输入 hugo version, 如果显示 Hugo Static Site Generator... 证明安装成功。
