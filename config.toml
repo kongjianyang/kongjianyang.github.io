@@ -37,8 +37,8 @@ posts = "/posts/:year/:month/:day/:slug/"
     weight = 2
 [[menu.main]]
     name = "周刊"
-    # url = "cn/newsletter/"
-    url = https://github.com/kongjianyang/Newsletter
+    url = "cn/newsletter/"
+    # url = https://github.com/kongjianyang/Newsletter
     weight = 3
 [[menu.cn]]
     name = "English"
