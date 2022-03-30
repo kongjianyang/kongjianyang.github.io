@@ -1383,6 +1383,8 @@ nYear.my_person <- function(obj,n){
 # 由类创建对象
 Tom <- my_person("Godden", 19, 176)
 
+class(Tom)
+
 # 第一个泛型函数派送
 display(Tom)
 ## Last name :  Godden 

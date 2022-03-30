@@ -5,8 +5,8 @@
 <script src=https://cdn.jsdelivr.net/npm/vega@5.17.0></script>
 <script src=https://cdn.jsdelivr.net/npm/vega-lite@4.17.0></script>
 <script src=https://cdn.jsdelivr.net/npm/vega-embed@6.12.2></script>
-<script>hljs.initHighlightingOnLoad()</script></head><body><div class=wrapper><header class=header><nav class=nav><a href=/ class=nav-logo><img src=/media/%3cnil%3e width height alt></a><ul class=nav-links><li><a href=/cn/about/>关于</a></li><li><a href=/cn/posts/>日志</a></li><li><a href=/cn/newsletter/>周刊</a></li><li><a href=/>English</a></li></ul></nav></header><main class=content role=main><div style=text-align:center><h1>R语言基于S3的面向对象编程.md</h1><p>KJY
-/ 2022-03-29</p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2022-03-29-R%e8%af%ad%e8%a8%80%e5%9f%ba%e4%ba%8eS3%e7%9a%84%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1%e7%bc%96%e7%a8%8b.md style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title=编辑本页></i></a></span><aside class=toc>Table of Contents:<nav id=TableOfContents><ol><li><a href=#s3对象的介绍>S3对象的介绍</a></li><li><a href=#创建s3对象>创建S3对象</a></li><li><a href=#泛型函数和方法调用>泛型函数和方法调用</a></li><li><a href=#查看s3对象的函数>查看S3对象的函数</a></li><li><a href=#s3对象的继承关系>S3对象的继承关系</a></li><li><a href=#s3对象的缺点>S3对象的缺点</a></li><li><a href=#实用的例子>实用的例子</a></li></ol></nav></aside><div class="body-text list-text"><p>参考这篇文章：</p><p><a href=https://dataxujing.github.io/R_oop/S3.html#s3 target=_blank rel="noreferrer noopener">R语言面向对象编程 (dataxujing.github.io)</a></p><h2 id=s3对象的介绍>S3对象的介绍<a href=#s3对象的介绍 class=header-anchor arialabel=Anchor> #</a></h2><p>在R语言中，基于S3对象的面向对象编程，是一种基于泛型函数的实现方式。<strong>泛型函数</strong>是一种特殊的函数，根据传入对象的类型决定调用那个具体的方法。基于S3对象实现面向对象编程，不同其他语言的面型对象编程，是一种动态函数调用的模拟实现。S3对象被广泛应用于R的早期的开发包中。</p><p><strong>R的S3系统有三个组成部分:属性(attribute)(尤其是class属性)、泛型函数(genericfunction)和方法(method)</strong></p><h2 id=创建s3对象>创建S3对象<a href=#创建s3对象 class=header-anchor arialabel=Anchor> #</a></h2><p>注意：本文会用到pryr,为了方便我们检查对象的类型，引入pryr包作为辅助工具。</p><pre tabindex=0><code>library(pryr)
+<script>hljs.initHighlightingOnLoad()</script></head><body><div class=wrapper><header class=header><nav class=nav><a href=/ class=nav-logo><img src=/media/%3cnil%3e width height alt></a><ul class=nav-links><li><a href=/cn/about/>关于</a></li><li><a href=/cn/posts/>日志</a></li><li><a href=/cn/newsletter/>周刊</a></li><li><a href=/>English</a></li></ul></nav></header><main class=content role=main><div style=text-align:center><h1>R语言基于S3的面向对象编程</h1><p>KJY
+/ 2022-03-29</p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2022-03-29-R%e8%af%ad%e8%a8%80%e5%9f%ba%e4%ba%8eS3%e7%9a%84%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1%e7%bc%96%e7%a8%8b.md style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title=编辑本页></i></a></span><aside class=toc>Table of Contents:<nav id=TableOfContents><ol><li><a href=#s3对象的介绍>S3对象的介绍</a></li><li><a href=#创建s3对象>创建S3对象</a></li><li><a href=#泛型函数和方法调用>泛型函数和方法调用</a></li><li><a href=#查看s3对象的函数>查看S3对象的函数</a></li><li><a href=#s3对象的继承关系>S3对象的继承关系</a></li><li><a href=#s3对象的缺点>S3对象的缺点</a></li><li><a href=#与python区别>与python区别</a></li><li><a href=#实用的例子>实用的例子</a></li></ol></nav></aside><div class="body-text list-text"><p>参考这篇文章：</p><p><a href=https://dataxujing.github.io/R_oop/S3.html#s3 target=_blank rel="noreferrer noopener">R语言面向对象编程 (dataxujing.github.io)</a></p><h2 id=s3对象的介绍>S3对象的介绍<a href=#s3对象的介绍 class=header-anchor arialabel=Anchor> #</a></h2><p>在R语言中，基于S3对象的面向对象编程，是一种基于泛型函数的实现方式。<strong>泛型函数</strong>是一种特殊的函数，根据传入对象的类型决定调用那个具体的方法。基于S3对象实现面向对象编程，不同其他语言的面型对象编程，是一种动态函数调用的模拟实现。S3对象被广泛应用于R的早期的开发包中。</p><p><strong>R的S3系统有三个组成部分:属性(attribute)(尤其是class属性)、泛型函数(genericfunction)和方法(method)</strong></p><h2 id=创建s3对象>创建S3对象<a href=#创建s3对象 class=header-anchor arialabel=Anchor> #</a></h2><p>注意：本文会用到pryr,为了方便我们检查对象的类型，引入pryr包作为辅助工具。</p><pre tabindex=0><code>library(pryr)
 
 #通过变量创建S3对象
 x &lt;- 1
@@ -197,9 +197,9 @@ doit(x)
 # With STRING class attribute
 # With God class attribute
 # UNKNOWN class attribute
-</code></pre><p>- 循环最外层从CLASS属性向量第一个“已知”类属性开始，依次嵌套</p><p>- default方法在循环最内层，而且不管有几个“未知”类属性，它只执行一次</p><p>- 循环层次和“未知”类属性的位置无关</p><h2 id=s3对象的缺点>S3对象的缺点<a href=#s3对象的缺点 class=header-anchor arialabel=Anchor> #</a></h2><p>从上面S3对象的介绍上来看，S3对象并不是完全的面向对象实现，而是一种通过泛型函数模拟的面向对象的实现。</p><ul><li><p>S3用起来简单，但在实际的面向对象编程的过程中，当对象关系有一定的复杂度，S3对象所表达的意义就变得不太清楚</p></li><li><p>S3封装的内部函数，可以绕过泛型函数的检查，以直接被调用</p></li><li><p>S3参数的class属性，可以被任意设置，没有预处理的检查</p></li><li><p>S3参数，只能通过调用class属性进行函数调用，其他属性则不会被class()函数执行</p></li><li><p>S3参数的class属性有多个值时，调用时会被按照程序赋值顺序来调用第一个合法的函数</p></li></ul><p>所以，S3只是R语言面向对象的一种简单的实现。</p><h2 id=实用的例子>实用的例子<a href=#实用的例子 class=header-anchor arialabel=Anchor> #</a></h2><pre tabindex=0><code>j &lt;- list(name = &#34;Joe&#34;, salary=5000, union=T)
+</code></pre><p>- 循环最外层从CLASS属性向量第一个“已知”类属性开始，依次嵌套</p><p>- default方法在循环最内层，而且不管有几个“未知”类属性，它只执行一次</p><p>- 循环层次和“未知”类属性的位置无关</p><h2 id=s3对象的缺点>S3对象的缺点<a href=#s3对象的缺点 class=header-anchor arialabel=Anchor> #</a></h2><p>从上面S3对象的介绍上来看，S3对象并不是完全的面向对象实现，而是一种通过泛型函数模拟的面向对象的实现。</p><ul><li><p>S3用起来简单，但在实际的面向对象编程的过程中，当对象关系有一定的复杂度，S3对象所表达的意义就变得不太清楚</p></li><li><p>S3封装的内部函数，可以绕过泛型函数的检查，以直接被调用</p></li><li><p>S3参数的class属性，可以被任意设置，没有预处理的检查</p></li><li><p>S3参数，只能通过调用class属性进行函数调用，其他属性则不会被class()函数执行</p></li><li><p>S3参数的class属性有多个值时，调用时会被按照程序赋值顺序来调用第一个合法的函数</p></li></ul><p>所以，S3只是R语言面向对象的一种简单的实现。</p><h2 id=与python区别>与python区别<a href=#与python区别 class=header-anchor arialabel=Anchor> #</a></h2><p>Python是面向对象的语言，类的定义很简介，一个类的属性和方法都是在一个代码块中，很容易让人理解。但是R不一样了，R的类属性和方法是分离的，需要泛型函数将他们连接起来。Python是实实在在对对象进行编程，不存在方法派送的问题，而R中的S3似乎更像是面向函数的编程。</p><h2 id=实用的例子>实用的例子<a href=#实用的例子 class=header-anchor arialabel=Anchor> #</a></h2><pre tabindex=0><code>j &lt;- list(name = &#34;Joe&#34;, salary=5000, union=T)
 
-class(j) &lt;- &#34;employee&#34;
+class(j) &lt;- &#34;employee&#34; ## 创建了类，employee
 
 print.employee &lt;- function(wrkr){
 cat(&#34;Name:&#34;, wrkr$name, &#34;\n&#34;)
@@ -214,9 +214,10 @@ print(j)
 # Salary:  5000 
 # Union member:  TRUE 
 </code></pre><div class=highlight><pre tabindex=0 style=-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span># 创建类
+</span></span><span style=display:flex><span>## 使用函数创建了一个类，一句话创建类
 </span></span><span style=display:flex><span>my_person &lt;- function(ln, a, ht){
 </span></span><span style=display:flex><span>  structure(list(lastName = ln, age = a, height = ht), class = &#34;my_person&#34;)
-</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>} 
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>## 创建第一个泛型函数
 </span></span><span style=display:flex><span>display &lt;- function(obj) UseMethod(&#34;display&#34;)
