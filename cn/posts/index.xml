@@ -21,7 +21,8 @@ tmux attach 可以接入上次保存的会话。
 如果之前同时保存了多个会话，我们可以使用 tmux ls 查看当前所有会话。
 # 查看会话 tmux ls 杀死会话
 使用 tmux kill-session 我们可以杀死某个会话。</description></item><item><title>MACS2使用</title><link>https://kongjianyang.github.io/cn/2022/03/25/bioinfo/</link><pubDate>Fri, 25 Mar 2022 14:32:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2022/03/25/bioinfo/</guid><description>参考资料：
-这可能是最棒的MACS2使用说明 (360doc.com) 使用MACS2进行差异peak分析_生信修炼手册的博客-CSDN博客 MACS2作为使用最广泛的peak calling软件，在v2版本中添加了差异peak分析的功能，所有的子命令功能描述如下
+这可能是最棒的MACS2使用说明 (360doc.com) 使用MACS2进行差异peak分析_生信修炼手册的博客-CSDN博客 MACS2：Model-based analysis of ChiP-Seq. 最初的设计是用来鉴定转录因子的结合位点，但是它也可以用于其他类型的富集方式测序。
+MACS2作为使用最广泛的peak calling软件，在v2版本中添加了差异peak分析的功能，所有的子命令功能描述如下
 通过bdgdiff子命令来进行差异peak分析， 该命令不需要基于已有的peak calling结果，只需要输入每个样本对应的bedGraph格式的文件。需要注意的是，该命令只针对两个样本间的差异peak进行设计，适用于没有生物学重复的情况。
 对于使用macs2来进行差异peak的完整流程，官方给出了详细的说明文档，链接如下
 https://github.com/taoliu/MACS/wiki/Call-differential-binding-events
