@@ -45,4 +45,4 @@ Long and difficult as the journey may be, sustained actions will take us to the 
 <!-- Prepare a container for your calendar. -->
 
 
-<img src="https://ghchart.rshah.org/kongjianyang" alt="???'s Github chart" />
+<img src="https://ghchart.rshah.org/kongjianyang" alt="KJY's Github chart" />
