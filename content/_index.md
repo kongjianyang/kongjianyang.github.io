@@ -43,3 +43,6 @@ Long and difficult as the journey may be, sustained actions will take us to the 
     new GitHubCalendar(".calendar", "kongjianyang");
 </script>
 <!-- Prepare a container for your calendar. -->
+
+
+<img src="https://ghchart.rshah.org/kongjianyang" alt="???'s Github chart" />
