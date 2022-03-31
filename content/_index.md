@@ -22,8 +22,6 @@ Long and difficult as the journey may be, sustained actions will take us to the 
 
 This site is a praxis for my long-termism
 
-<!--more-->
-
 <!-- Prepare a container for your calendar. -->
 <script
   src="https://cdn.rawgit.com/IonicaBizau/github-calendar/gh-pages/dist/github-calendar.min.js"
@@ -37,6 +35,7 @@ This site is a praxis for my long-termism
 />
 
 <!-- Prepare a container for your calendar. -->
+
 <div class="calendar">
     <!-- Loading stuff -->
     Loading the data just for you.
@@ -50,3 +49,11 @@ This site is a praxis for my long-termism
 可以通过utteranc给我留言。
 
 Leave me a message by utteranc.
+
+
+
+<details>
+<summary>试试这里/Try here</summary>
+<p>KJY means Kongjian Yang</p>
+<p>Just start coding for interest</p>
+</details>
