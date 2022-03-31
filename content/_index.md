@@ -42,7 +42,7 @@ This site is a praxis for my long-termism
 </div>
 
 <script>
-    new GitHubCalendar(".calendar", "kongjianyang");
+    new GitHubCalendar(".calendar", "kongjianyang", { responsive: true });
 </script>
 
 可以通过utteranc给我留言。
@@ -72,7 +72,7 @@ Leave me a message by utteranc.
 <!-- Prepare a container for your calendar. -->
 <div class="calendar">
     <!-- Loading stuff -->
-    Loading the data just for you.
+    aaaaaa
 </div>
 
 <script>
