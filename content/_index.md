@@ -58,7 +58,7 @@ Leave me a message by utteranc.
 </details>
 
 
-!-- Prepare a container for your calendar. -->
+<!-- Prepare a container for your calendar. -->
 <script
   src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"
 >
