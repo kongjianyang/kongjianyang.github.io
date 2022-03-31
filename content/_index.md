@@ -47,10 +47,6 @@ This site is a praxis for my long-termism
 </script>
 <!-- Prepare a container for your calendar. -->
 
-
-<img src="https://ghchart.rshah.org/kongjianyang" alt="KJY's Github chart" />
-
-
 可以通过utteranc给我留言。
 
 Leave me a message by utteranc.
