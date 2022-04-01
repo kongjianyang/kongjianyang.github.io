@@ -1399,8 +1399,107 @@ nYear(Tom,7)
 ## S4 for programming
 
 ```{r}
+# 创建Class - Person
+setClass("Person", slots = list(name = "character", age = "numeric"))
+
+# 创建Class - Employee，利用contains表明参数继承自Person。
+setClass("Employee", slots = list(boss = "Person"), contains = "Person")
+
+# 设置基于Class - Person的对象
+alice <- new("Person", name = "Alice", age = 40)
+
+# 设置基于Class - Employee的对象
+john <- new("Employee", name = "John", age = 20, boss = alice)
+
+
+str(alice)
+str(john) # 可以看到jhon多了一个slot，即@boss
+```
+
+
+```{r}
+# Formal class 'Employee' [package ".GlobalEnv"] with 3 slots
+#   ..@ boss:Formal class 'Person' [package ".GlobalEnv"] with 2 slots
+#   .. .. ..@ name: chr "Alice"
+#   .. .. ..@ age : num 40
+#   ..@ name: chr "John"
+#   ..@ age : num 20
+```
+
+
+```{r}
+setClass("Person", slots = list(name = "character", age = "numeric"), prototype = list(age = 20))
+
+setValidity("Person",  
+ function(object){
+ if (object@age < 18)
+ "he/she is too yong to get the job."
+ })
+
+new("Person", name = "Penny", age = 17)
+
+# Error in validObject(.Object) : invalid class “Person” object: he/she is too yong to get the job.
+```
+
+
+```{r}
+# 查看alice对象的name属性
+alice@name
+
+slot(alice, "age")
+
+alice@age
+```
+
+
+```{r}
+getClasses()
+```
+
+
+```{r}
+work<-function(x) cat(x, "is working")
+work('Conan')
+```
+
+
+```{r}
+# S4的方法
+# 定义Person对象
+setClass("Person",slots=list(name="character",age="numeric"))
+# 定义泛型函数work，即接口
+setGeneric("work",function(object) standardGeneric("work"))
+# 定义work的现实，并指定参数类型为Person对象
+setMethod("work", signature(object = "Person"), function(object) cat(object@name , "is working") )
+# 创建一个Person对象a
+a<-new("Person",name="Conan",age=16)
+# 把对象a传入work函数
+work(a)
+# Conan is working
+```
+
+```{r}
+ftype(work)
+```
+
+
+
+```{r}
 
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
