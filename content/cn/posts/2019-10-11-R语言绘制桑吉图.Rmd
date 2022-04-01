@@ -1,0 +1,202 @@
+---
+title: R语言绘制桑吉图
+author: KJY
+date: '2019-10-11'
+slug: R语言绘制桑吉图
+categories:
+  - R
+tags: []
+lastmod: '2019-10-11T15:19:18-07:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+
+## 快速入门
+
+需要使用networkD3这个包
+
+networkD3是基于D3JS的R包交互式绘图工具，用于转换R语言生成的图为交互式网页嵌套图。目前支持网络图，桑基图，树枝图等。
+
+networkD3包基于D3.JS(最流行的可视化库之一)构建，还可以和R中常见的网络可视化包例如network、igraph等连用，支持管道操作符%>%(dplyr中常用，读者可自行学习)和ggplot2语法，是一个非常灵活的网络可视化包
+
+桑吉图(sankey diagram)使用来研究同一个变量在其不同分类中的比例或者说是流动的.实体(或者说是节点,node)一般使用长方形或者文字来表示.箭头和弧线用来表示在他们之间的流动.
+
+```{r}
+library(networkD3)
+library(tidyverse)
+
+## create a dataframe with 10 nodes
+nodes = data.frame("name" = c("Node_0", "Node_1", "Node_2", "Node_3", "Node_4", "Node_5", 
+                              "Node_6", "Node_7", "Node_8", "Node_9"))
+
+## create edges with weights
+links = as.data.frame(matrix(c(0, 5, 2, # node 0 -> node 5 with weight 2
+                               0, 6, 1, # node 0 -> node 6 with weight 1
+                               1, 7, 3, # node 1 -> node 7 with weight 3
+                               2, 8, 2, # node 2 -> node 8 with weight 2
+                               2, 9, 3, # node 2 -> node 9 with weight 3
+                               3, 5, 1, # node 3 -> node 5 with weight 1
+                               3, 9, 5, # node 3 -> node 9 with weight 5
+                               4, 9, 2  # node 4 -> node 9 with weight 2
+                               ), byrow = TRUE, ncol = 3))
+
+## set column names for links
+names(links) = c("source", "target", "value")
+
+links
+
+## Draw Sankey Diagram
+p = sankeyNetwork(Links = links, Nodes = nodes,
+ Source = "source", Target = "target",
+ Value = "value", NodeID = "name",
+ fontSize = 16, nodeWidth = 40)
+p
+```
+
+另外一个例子
+
+```{r}
+links <- data.frame(
+  source = c("group_A","group_A", "group_B", "group_C", "group_C", "group_E"), 
+  target = c("group_C","group_D", "group_E", "group_F", "group_G", "group_H"), 
+  value = c(2,3, 2, 3, 1, 3)
+  )
+head(links)
+```
+
+```{r}
+##构建connection data frame中所有nodes的data frame
+nodes <- data.frame(
+  name = c(as.character(links$source), 
+  as.character(links$target)) %>% unique()
+)
+
+nodes
+
+#然后我们需要将每个node的名字代替为其在node data frame中的位置index,注意是要从哦开始计算.
+links$IDsource <- match(links$source, nodes$name) - 1 
+links$IDtarget <- match(links$target, nodes$name) - 1
+
+links
+```
+
+```{r}
+#开始创建桑吉图
+p <- networkD3::sankeyNetwork(
+  Links = links,
+  Nodes = nodes,
+  Source = "IDsource",
+  Target = "IDtarget",
+  Value = "value",
+  NodeID = "name",
+  sinksRight = FALSE
+)
+p
+```
+
+
+## 改变node颜色
+
+```{r}
+library(networkD3)
+
+## create a dataframe with 10 nodes
+nodes = data.frame("name" = c("Node_0", "Node_1", "Node_2", "Node_3", "Node_4", "Node_5", 
+                              "Node_6", "Node_7", "Node_8", "Node_9"))
+
+## create edges with weights
+links = as.data.frame(matrix(c(0, 5, 2, # node 0 -> node 5 with weight 2
+                               0, 6, 1, # node 0 -> node 6 with weight 1
+                               1, 7, 3, # node 1 -> node 7 with weight 3
+                               2, 8, 2, # node 2 -> node 8 with weight 2
+                               2, 9, 3, # node 2 -> node 9 with weight 3
+                               3, 5, 1, # node 3 -> node 5 with weight 1
+                               3, 9, 5, # node 3 -> node 9 with weight 5
+                               4, 9, 2  # node 4 -> node 9 with weight 2
+                               ), byrow = TRUE, ncol = 3))
+
+## set column names for links
+names(links) = c("source", "target", "value")
+
+## Create custom color list using d3 for each node
+node_color <- 'd3.scaleOrdinal() .domain(["Node_0", "Node_1", "Node_2", "Node_3", "Node_4",
+"Node_5", "Node_6", "Node_7", "Node_8", "Node_9"]) .range(["red", "blue", "orange" , 
+"yellow", "cyan", "green", "magenta", "dodgerblue", "pink", "black"])'
+
+## Draw Sankey Diagram
+p = sankeyNetwork(Links = links, Nodes = nodes,
+ Source = "source", Target = "target",
+ Value = "value", NodeID = "name",
+ fontSize = 16, nodeWidth = 40,
+ colourScale = node_color)
+p
+```
+
+## 改变node和edge的颜色
+
+```{r}
+library(networkD3)
+
+## create a dataframe with 10 nodes
+nodes = data.frame("name" = c("Node_0", "Node_1", "Node_2", "Node_3", "Node_4", "Node_5",
+                              "Node_6", "Node_7", "Node_8", "Node_9"))
+
+## create edges with weights
+links = as.data.frame(matrix(c(0, 5, 2, # node 0 -> node 5 with weight 2
+                               0, 6, 1, # node 0 -> node 6 with weight 1
+                               1, 7, 3, # node 1 -> node 7 with weight 3
+                               2, 8, 2, # node 2 -> node 8 with weight 2
+                               2, 9, 3, # node 2 -> node 9 with weight 3
+                               3, 5, 1, # node 3 -> node 5 with weight 1
+                               3, 9, 5, # node 3 -> node 9 with weight 5
+                               4, 9, 2  # node 4 -> node 9 with weight 2
+                               ), byrow = TRUE, ncol = 3))
+
+## set column names for links
+names(links) = c("source", "target", "value")
+
+## add edge types for coloring purpose
+links$group = c("type_0", 
+                "type_0",
+                "type_1", 
+                "type_2",
+                "type_2",
+                "type_3",
+                "type_3",
+                "type_4")
+
+## Create custom color list using d3 for each node
+node_color <- 'd3.scaleOrdinal() .domain(["Node_0", "Node_1", "Node_2", "Node_3", "Node_4", 
+"Node_5", "Node_6", "Node_7", "Node_8", "Node_9", "type_0", "type_1", "type_2", 
+"type_3", "type_4"]) .range(["red", "blue", "orange" , "yellow", "cyan", "green", "magenta", 
+"dodgerblue", "pink", "black", "red", "blue", "orange" , "yellow", "cyan"])'
+
+## Draw Sankey Diagram
+p = sankeyNetwork(Links = links, Nodes = nodes,
+ Source = "source", Target = "target",
+ Value = "value", NodeID = "name",
+ fontSize = 16, nodeWidth = 40,
+ colourScale = node_color,
+ LinkGroup="group")
+p
+```
+
+
+
