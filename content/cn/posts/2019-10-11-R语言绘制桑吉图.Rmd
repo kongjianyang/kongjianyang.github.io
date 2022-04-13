@@ -198,5 +198,68 @@ p = sankeyNetwork(Links = links, Nodes = nodes,
 p
 ```
 
+## 一个例子讲数据准备
+
+```{r}
+df = structure(list(firstY = c("N/A", "1", "3a", "3a", "3b", "1", 
+"2", "1", "5", "3b"), secondY = c("N/A", "1", "2", "3a", "4", 
+"1", "N/A", "1", "5", "3b"), ThirdY = c("N/A", "1", "N/A", "3b", 
+"4", "1", "N/A", "1", "N/A", "3b"), FourthY = c("N/A", "1", "N/A", 
+"3a", "4", "1", "N/A", "1", "N/A", "3a"), FifthY = c("N/A", "1", 
+"N/A", "2", "5", "1", "N/A", "N/A", "N/A", "3b")), class = c("tbl_df", 
+"tbl", "data.frame"), row.names = c(NA, -10L))
+
+df
+```
+
+```{r}
+# put your df in two columns, and preserve the ordering in many levels (columns) with paste0
+links <- data.frame(source = c(paste0(df$firstY,'_1'),paste0(df$secondY,'_2'),paste0(df$ThirdY,'_3'),paste0(df$FourthY,'_4')),
+                  target   = c(paste0(df$secondY,'_2'),paste0(df$ThirdY,'_3'),paste0(df$FourthY,'_4'),paste0(df$FifthY,'_5')))
+
+
+links
+
+# now convert as character
+links$source <- as.character(links$source)
+links$target<- as.character(links$target)
+
+links
+```
+
+```{r}
+nodes <- data.frame(name = unique(c(links$source, links$target)))
+
+nodes
+```
+
+
+```{r}
+links$source <- match(links$source, nodes$name) - 1
+links$target <- match(links$target, nodes$name) - 1
+links$value <- 1 # add also a value
+
+links
+```
+
+```{r}
+sankeyNetwork(Links = links, Nodes = nodes, Source = 'source',
+              Target = 'target', Value = 'value', NodeID = 'name')
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
