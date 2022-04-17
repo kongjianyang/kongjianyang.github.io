@@ -11,6 +11,8 @@ title: Home
 
 这个网站是自己的一个长期主义的试验田
 
+永远追求先进
+
 
 <!-- Bioinformatics Scholar. Data Scientist. -->
 
