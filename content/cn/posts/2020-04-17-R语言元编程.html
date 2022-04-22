@@ -370,11 +370,11 @@ pre code {
 </div>
 
 
-<blockquote>
-<h2 id="excerpt">Excerpt</h2>
-<p>元编程概念：编写运行时动态修改程序本身的代码（编写产生代码的代码）【使用编程语言来操作或修改自己的代码,代码就是数据】</p>
-</blockquote>
-<hr />
+<p>参考： <a href="https://wly.supernum.tech/2019/06/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E8%AF%AD%E8%A8%80%E7%9A%84%E7%BC%96%E7%A8%8B/" class="uri">https://wly.supernum.tech/2019/06/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E8%AF%AD%E8%A8%80%E7%9A%84%E7%BC%96%E7%A8%8B/</a>
+<a href="https://wutaoblog.com.cn/2021/01/14/r-meta/#%E5%9F%BA%E4%BA%8E%E8%AF%AD%E8%A8%80%E7%9A%84%E8%AE%A1%E7%AE%97-%E5%85%83%E7%BC%96%E7%A8%8B" class="uri">https://wutaoblog.com.cn/2021/01/14/r-meta/#%E5%9F%BA%E4%BA%8E%E8%AF%AD%E8%A8%80%E7%9A%84%E8%AE%A1%E7%AE%97-%E5%85%83%E7%BC%96%E7%A8%8B</a>
+<a href="https://shixiangwang.github.io/home/cn/post/2019-11-20-meta-programming/" class="uri">https://shixiangwang.github.io/home/cn/post/2019-11-20-meta-programming/</a></p>
+<p>Metaprogramming (元编程1) 是指程序在运行前/时，
+将代码自身作为数据进行处理，从而在更高的层面扩展了编程语法的表达力。</p>
 <blockquote>
 <p>元编程概念：编写运行时动态修改程序本身的代码（编写产生代码的代码）【使用编程语言来操作或修改自己的代码,代码就是数据】</p>
 </blockquote>
@@ -873,6 +873,55 @@ mtcars %&gt;% mutate(!!!parse_exprs(e2))</code></pre>
 ## Maserati Bora             1
 ## Volvo 142E                2</code></pre>
 </div>
+</div>
+<div id="一些补充内容" class="section level1">
+<h1>一些补充内容</h1>
+<p>作为一门实时交互的脚本语言，在R语言中输入的代码总是会被立即执行，所以我们往往只能得到代码运行结果。但有的时候我们不希望代码被立即执行，而是想要先捕获代码，然后在特定的条件下再执行代码。</p>
+<p>quote函数</p>
+<pre class="r"><code>for_evaluation &lt;- quote(2+2)
+for_evaluation1 &lt;- quote(a &lt;- 2+2)</code></pre>
+<p>如果要执行for_evaluation这个表达式，那么可以使用eval函数。</p>
+<pre class="r"><code>eval(for_evaluation)</code></pre>
+<pre><code>## [1] 4</code></pre>
+<pre class="r"><code>eval(for_evaluation1)
+a</code></pre>
+<pre><code>## [1] 4</code></pre>
+<p>如果原始R代码是字符串格式的，可以用parse函数进行转化，再用eval函数进行评估。</p>
+<pre class="r"><code>tpt_string &lt;- &quot;1:5&quot;
+
+tpt_expression &lt;- parse(text = tpt_string)
+
+eval(tpt_expression)</code></pre>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<p>parse的逆运算，叫做deparse，可以把表达式转化为字符串。</p>
+<pre class="r"><code>for_evaluation </code></pre>
+<pre><code>## 2 + 2</code></pre>
+<pre class="r"><code>deparse(for_evaluation)</code></pre>
+<pre><code>## [1] &quot;2 + 2&quot;</code></pre>
+<div id="总共可以分为三步" class="section level2">
+<h2>总共可以分为三步</h2>
+<p>捕获表达式：将表达式本身存储为变量的形式，防止表达式的直接执行(执行了还修改什么)；使用函数quote()</p>
+<p>修改表达式：当一个表达式被捕获为调用对象后，可以将其当作列表来修改</p>
+<p>执行表达式：捕获表达式后，下一步就是对其求值，可使用eval()函数</p>
+</div>
+<div id="r-变量名称和字符串的转换" class="section level2">
+<h2>R 变量名称和字符串的转换</h2>
+<p>使用assign 和 get函数</p>
+<p>get()：返回与字符串同名的变量的值
+assign():为字符串变量的字符串赋值</p>
+<p>The get function <strong>searches and calls a data object</strong>.
+The assign R function assigns values to a variable name.</p>
+<p>这和上面的不一样，这个只是在变量名和字符串之间转换，上面的是字符串和整个命令之间的转换</p>
+<p><a href="https://statisticsglobe.com/get-r-function-example">get R
+Function (5 Example Codes) | Call Vector or Column of Data Frame
+(statisticsglobe.com)</a></p>
+<p><a href="https://statisticsglobe.com/assign-function-in-r">assign
+Function in R (2 Examples) | How to Store Values in Variable Name
+(statisticsglobe.com)</a></p>
+</div>
+</div>
+<div id="section" class="section level1">
+<h1></h1>
 </div>
 
 
