@@ -471,13 +471,128 @@ The assign R function assigns values to a variable name.
 
 [assign Function in R (2 Examples) | How to Store Values in Variable Name (statisticsglobe.com)](https://statisticsglobe.com/assign-function-in-r)
 
-# 
+
+强制运算符(Forcing operators)(!!及!!!)
+
+大家熟知的!符号的作用可能都是逻辑运算，用来表示否定的逻辑。但实际上它们还有另一个作用，就是Forcing operators。Forcing operators一共有两种，!!是bang-bang operator，!!!是big-bang operator。如果我们在Rstudio的帮助功能中搜索!!，就会查到这两个运算符的解释：
+
+The bang-bang operator !! forces a single object. One common case for !! is to substitute an environment-variable (created with <-) with a data-variable (inside a data frame).
+
+The big-bang operator !!! forces-splice a list of objects. The elements of the list are spliced in place, meaning that they each become one single argument.
+我查了半天都没查到这两个运算符到底要怎么翻译，音译跟意译都挺搞笑的...就姑且统称强制运算符吧。
+
+sym把一个R字符串对象转换为一个symbol。
+(bang-bang操作符)!!则把symbol再转回R字符串对象，等同于直接写这个对象。
+
+```{r}
+library(dplyr)
+library(tidyverse)
+library(rlang)
+```
+
+
+We need some way to explicitly unquote the input to tell cement() to remove the automatic quote marks. Here we need time and name to be treated differently to Good. Quasiquotation (准报价) gives us a standard tool to do so: !!, called “unquote”, and pronounced bang-bang. !! tells a quoting function to drop the implicit (内含的) quotes:
+
+```{r}
+name <- "Hadley"
+time <- "morning"
+
+paste("Good", time, name)
+```
+
+```{r}
+cement <- function(...) {
+  args <- ensyms(...)
+  paste(purrr::map(args, as_string), collapse = " ")
+}
+
+
+cement(Good, time, name)
+```
+
+cement() quotes its arguments, so we must unquote where needed.
+
+```{r}
+cement(Good, !!time, !!name)
+```
+
+!! is a one-to-one replacement. !!! (called “unquote-splice”, and pronounced bang-bang-bang) is a one-to-many replacement. It takes a list of expressions and inserts them at the location of the !!!:
+
+```{r}
+xs <- exprs(1, a, -b)
+expr(f(!!!xs, y))
+```
 
 
 
+```{r}
+df <- data.frame(A=1:5, B=(1:5)*2)
+```
+
+
+```{r}
+library(dplyr)
+df %>% select(A,B)
+```
+
+
+```{r}
+df %>% select("A", "B")
+```
+
+
+```{r}
+# 等同于
+columns <- c("A","B")
+columns_en <- syms(columns)
+df %>% select(!!!columns_en)
+df %>% select(columns)
+```
+
+
+```{r}
+dfs <- list(
+  a = data.frame(x = 1, y = 2),
+  b = data.frame(x = 3, y = 4)
+)
+
+dfs
+```
 
 
 
+```{r}
+bind_rows(!!!dfs)
+```
 
 
 
+#### another example
+
+```{r}
+test_df <- tibble(a = 1, b = 1, c = 1, d = 1)
+
+test_df %>%
+  select(1, 2, 3)
+```
+```{r}
+our_list <- list(1, 2, 3)
+
+# test_df %>% select(our_list) 这样不行
+
+test_df %>% select(c(1, 2, 3)) # 这样可以
+```
+```{r}
+# This code
+test_df %>%
+  select(!!!our_list)
+
+# Translates to this
+test_df %>%
+  select(1, 2, 3)
+```
+
+
+一个更好的例子
+
+https://tidyeval.tidyverse.org/sec-up-to-speed.html
