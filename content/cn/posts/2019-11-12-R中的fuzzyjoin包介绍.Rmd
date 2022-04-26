@@ -1,0 +1,118 @@
+---
+title: R中的fuzzyjoin包介绍
+author: Liang
+date: '2019-11-12'
+slug: R中的fuzzyjoin包介绍
+categories:
+  - R
+tags: []
+lastmod: '2019-11-12T16:22:09-05:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+
+
+假设字符串x最少需要插入a次、删除b次、替换c次才能与字符串y相同，则x、y之间的 距离 即a、b、c的加权总和。比如将”kitten”转化为”sitting”，需要把“k”替换为“s”，把“e”替换为“i”，并在尾部插入“g”，所以共需1次插入、0次删除、2次替换，按照默认权重两者之间 距离 英该为3。
+
+在R语言中，我们可以使用adist(x, y = NULL, costs = NULL, counts = FALSE, ...)的形式，计算字符串之间的距离。其中：
+
+- costs即插入（insertions）、删除（deletions）、替换（substitutions）次数的权重
+- counts表示是否输出插入、删除、替换次数
+- partial表示是否只进行局部匹配
+
+
+```{r}
+library(tidyverse)
+drop(attr(adist("kitten", "sitting", counts = TRUE), "counts"))
+```
+
+```{r}
+adist("kitten", "sitting", counts = TRUE) %>%
+  attr(., "counts") %>%
+  drop()
+```
+
+```{r}
+adist("lasy", "1 lazy 2", partial = TRUE)
+```
+
+我们可以通过agrep、agrepl函数，进行模糊查找，这两个函数支持的参数与grep家族函数的参数类似，此外还拥有两个特有参数：
+
+costs即插入、删除、替换次数的权重，参考adist的帮助文档
+max.distance即可以接受的最大距离，可以是插入、删除、替换的最大次数，也可以是三者之和（alll）的最大值，还可以是三者加权总和（cost）的最大值
+
+```{r}
+agrep("lasy", c(" 1 lazy 2", "1 lasy 2"), max = list(sub = 1), value = TRUE)
+
+agrep("laysy", c("1 lazy", "1", "1 LAZY"), max = 2, value = TRUE)
+
+```
+
+上文我们已经介绍了使用正则表达式的匹配规则，以及 agrep家族函数的模糊查找规则，类似的我们可以通过aregexec函数，进行模糊匹配。
+
+```{r}
+x <- c("1 lazy", "1", "1 LAZY")
+
+aregexec("laysy", x, max.distance = 2)
+```
+
+>The fuzzyjoin package is a variation on dplyr’s join operations that allows matching not just on values that match between columns, but on inexact matching. 
+
+fuzzyjoin是基于dplyr的非精确匹配
+
+```{r}
+# install.packages("fuzzyjoin")
+library(dplyr)
+library(fuzzyjoin)
+data(misspellings)
+```
+
+```{r}
+df1 <- tibble(col1 = c("apple", "banana", "carrot"),
+              col2 = as.numeric(0:2),
+              col3 = as.numeric(0:2))
+
+df2 <- tibble(col4 = c("app", "carr"), col5 = c(5, 9), matched = rep(TRUE, 2))
+
+df1
+
+df2
+```
+
+```{r}
+
+ci_str_detect <- function(x, y){str_detect(x, regex(y, ignore_case = TRUE))}
+
+fuzzy_left_join(df1, df2, match_fun = ci_str_detect, by = c("col1" = "col4"))
+```
+
+
+# 一些额外内容
+
+%T>%现实原理如下图所示，使用%T>%把左侧的程序的数据集A传递右侧程序的B函数，B函数的结果数据集不再向右侧传递，而是把B左侧的A数据集再次向右传递给C函数，最后完成数据计算。
+
+
+```{r}
+mtcars %>%
+  group_by(cyl) %T>% print() %>%
+  sample_frac(0.1) %T>% print() %>%
+  summarise(res = mean(mpg))
+```
+
