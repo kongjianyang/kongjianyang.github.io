@@ -130,4 +130,10 @@ VS Code 检测到操作系统的 UI 语言，并会提示您安装适当的语�
 off -禁用自动保存。
 afterDelay - 在配置的延迟（默认 1000 毫秒）后保存文件。
 onFocusChange - 当焦点移出脏文件的编辑器时保存文件。
-onWindowChange - 当焦点移出 VS Code 窗口时保存文件。</description></item></channel></rss>
+onWindowChange - 当焦点移出 VS Code 窗口时保存文件。</description></item><item><title>使用Rmd写博客的一些流程</title><link>https://kongjianyang.github.io/cn/2018/12/25/rmd/</link><pubDate>Tue, 25 Dec 2018 14:32:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2018/12/25/rmd/</guid><description>首先将Rmd文件转换为md文件
+library(rmarkdown) a &amp;lt;- list.files(&amp;#34;./&amp;#34;, pattern = &amp;#34;.Rmd&amp;#34;) map(a, render, md_document()) #会将当前文件下所有的Rmd文件转化为md文件 on the Mac you could use the following commands to open RStudio (respectively) in the &amp;lsquo;~/projects/foo&amp;rsquo; directory or the current working directory:
+$ open -a RStudio ~/projects/foo $ open -a RStudio . 这里的open命令很有用
+MacOS用户如果有用命令行的话，大多数人应该知道open .会打开Finder。事实上它能打开所有的目录，比如:
+$ open ~/Library/Preferences $ open /etc $ open ../.. 你还能同时打开多个目录：
+$ open ~/Documents ~/Desktop ~/Downloads $ open ~/D* 然后它还能打开各种文件，比如：
+$ open document.</description></item></channel></rss>
