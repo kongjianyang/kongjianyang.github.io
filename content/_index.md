@@ -24,7 +24,9 @@ Long and difficult as the journey may be, sustained actions will take us to the 
 
 This site is a praxis for my long-termism
 
-[color I like](../resources/_gen/images/sea.png)
+![color I like](../resources/_gen/images/sea.png)
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Purdue_Boilermakers_logo.svg/1200px-Purdue_Boilermakers_logo.svg.png" alt="Purdue Boilermakers - Wikipedia" style="zoom:33%;" />
 
 <!-- 一些空格 -->
 
