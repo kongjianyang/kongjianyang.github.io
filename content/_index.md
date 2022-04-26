@@ -26,6 +26,10 @@ This site is a praxis for my long-termism
 
 ![color I like](../resources/_gen/images/sea.png)
 
+![color I like](../static//sea.png)
+
+{{<figure src="../resources/_gen/images/sea.png" title="color I like" caption="shot in Chicago">}}
+
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Purdue_Boilermakers_logo.svg/1200px-Purdue_Boilermakers_logo.svg.png" alt="Purdue Boilermakers - Wikipedia" style="zoom:33%;" />
 
 <!-- 一些空格 -->
