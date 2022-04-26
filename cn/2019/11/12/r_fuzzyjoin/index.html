@@ -5,7 +5,8 @@
 <script src=https://cdn.jsdelivr.net/npm/vega@5.17.0></script>
 <script src=https://cdn.jsdelivr.net/npm/vega-lite@4.17.0></script>
 <script src=https://cdn.jsdelivr.net/npm/vega-embed@6.12.2></script>
-<script>hljs.initHighlightingOnLoad()</script></head><body><div class=wrapper><header class=header><nav class=nav><a href=/ class=nav-logo><img src=/media/%3cnil%3e width height alt></a><ul class=nav-links><li><a href=/cn/about/>关于</a></li><li><a href=/cn/posts/>日志</a></li><li><a href=/cn/newsletter/>周刊</a></li><li><a href=/>English</a></li></ul></nav></header><main class=content role=main><div style=text-align:center><h1></h1><p></p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2019-11-12-R%e4%b8%ad%e7%9a%84fuzzyjoin%e5%8c%85%e4%bb%8b%e7%bb%8d.Rmd style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title=编辑本页></i></a></span><div class="body-text list-text"><p>假设字符串x最少需要插入a次、删除b次、替换c次才能与字符串y相同，则x、y之间的
+<script>hljs.initHighlightingOnLoad()</script></head><body><div class=wrapper><header class=header><nav class=nav><a href=/ class=nav-logo><img src=/media/%3cnil%3e width height alt></a><ul class=nav-links><li><a href=/cn/about/>关于</a></li><li><a href=/cn/posts/>日志</a></li><li><a href=/cn/newsletter/>周刊</a></li><li><a href=/>English</a></li></ul></nav></header><main class=content role=main><div style=text-align:center><h1>R中的fuzzyjoin包介绍</h1><p>KJY
+/ 2019-11-12</p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2019-11-12-R%e4%b8%ad%e7%9a%84fuzzyjoin%e5%8c%85%e4%bb%8b%e7%bb%8d.Rmd style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title=编辑本页></i></a></span><aside class=toc>Table of Contents:<nav id=TableOfContents></nav></aside><div class="body-text list-text"><p>假设字符串x最少需要插入a次、删除b次、替换c次才能与字符串y相同，则x、y之间的
 距离
 即a、b、c的加权总和。比如将”kitten”转化为”sitting”，需要把“k”替换为“s”，把“e”替换为“i”，并在尾部插入“g”，所以共需1次插入、0次删除、2次替换，按照默认权重两者之间
 距离 英该为3。</p><p>在R语言中，我们可以使用adist(x, y = NULL, costs = NULL, counts = FALSE,
@@ -139,7 +140,7 @@ fuzzy_left_join(df1, df2, match_fun = ci_str_detect, by = c(&quot;col1&quot; = &
 ## 1     4  21.4
 ## 2     6  19.7
 ## 3     8  18.7
-</code></pre><p style=color:#777>最后一次修改于 0001-01-01</p></div><a href=#top><i class="fa fa-chevron-up" style=font-size:30px;color:#000></i></a></main><footer class=footer><script src=https://utteranc.es/client.js repo=kongjianyang/kongjianyang.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><script type=text/javascript src=/js/math-code.js></script>
+</code></pre><p style=color:#777>最后一次修改于 2019-11-12</p></div><a href=#top><i class="fa fa-chevron-up" style=font-size:30px;color:#000></i></a></main><footer class=footer><script src=https://utteranc.es/client.js repo=kongjianyang/kongjianyang.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><script type=text/javascript src=/js/math-code.js></script>
 <script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 <script type=text/javascript src=/js/center-img.js></script><ul class=footer-links><li><a href=/cn/posts/index.xml type=application/rss+xml title="RSS feed">订阅</a></li><li><a href=http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>版权
 <i class="fa fa-cc" aria-hidden=true title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a></li></ul><div class=copyright-text>©

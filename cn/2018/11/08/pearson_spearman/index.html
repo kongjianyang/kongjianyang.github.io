@@ -1,0 +1,54 @@
+<a name=top></a><!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>KJY</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/fonts.css><link href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css rel=stylesheet><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/vega@5.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-lite@4.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-embed@6.12.2></script>
+<script>hljs.initHighlightingOnLoad()</script></head><body><div class=wrapper><header class=header><nav class=nav><a href=/ class=nav-logo><img src=/media/%3cnil%3e width height alt></a><ul class=nav-links><li><a href=/cn/about/>关于</a></li><li><a href=/cn/posts/>日志</a></li><li><a href=/cn/newsletter/>周刊</a></li><li><a href=/>English</a></li></ul></nav></header><main class=content role=main><div style=text-align:center><h1>Pearson-spearman相关性计算的异同</h1><p>KJY
+/ 2018-11-08</p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-08-pearson-spearman%e7%9b%b8%e5%85%b3%e6%80%a7%e8%ae%a1%e7%ae%97%e7%9a%84%e5%bc%82%e5%90%8c.Rmd style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title=编辑本页></i></a></span><aside class=toc>Table of Contents:<nav id=TableOfContents><ol><li><a href=#1-皮尔森相关性系数>1. 皮尔森相关性系数</a></li><li><a href=#2-斯皮尔曼相关性系数>2. 斯皮尔曼相关性系数</a></li></ol></nav></aside><div class="body-text list-text"><p>三个相关性系数（pearson, spearman,
+kendall）反应的都是两个变量之间变化趋势的方向以及程度，其值范围为-1到+1，0表示两个变量不相关，正值表示正相关，负值表示负相关，值越大表示相关性越强。</p><h2 id=1-皮尔森相关性系数>1. 皮尔森相关性系数<a href=#1-皮尔森相关性系数 class=header-anchor arialabel=Anchor> #</a></h2><p>两个变量(X,
+Y)的皮尔森相关性系数(ρX,Y)等于它们之间的协方差cov(X,Y)除以它们各自标准差的乘积(σX,
+σY)。
+<img src=https://wikimedia.org/api/rest_v1/media/math/render/svg/bd1ccc2979b0fd1c1aec96e386f686ae874f9ec0 alt></p><p>公式的分母是变量的标准差，这就意味着计算皮尔森相关性系数时，变量的标准差不能为0（分母不能为0），也就是说你的两个变量中任何一个的值不能都是相同的。如果没有变化，用皮尔森相关系数是没办法算出这个变量与另一个变量之间是不是有相关性的。</p><p>假设我们现在的实验有两个变量：</p><p>X1=c(1, 2, 3, 4, 5, 6)</p><p>Y1=c(0.3, 0.9, 2.7, 2, 3.5, 5)</p><p>用R计算相关性系数</p><pre><code>X1&lt;-c(1, 2, 3, 4, 5, 6) 
+Y1&lt;-c(0.3, 0.9, 2.7, 2, 3.5, 5) 
+cor(X1, Y1, method = &quot;pearson&quot;) #皮尔森相关性系数
+
+## [1] 0.9481367
+
+z &lt;- lm(Y1 ~ X1)
+plot(x=X1, y= Y1)
+lines(X1, fitted(z))
+</code></pre><p><img src=2018-11-08-pearson-spearman%E7%9B%B8%E5%85%B3%E6%80%A7%E8%AE%A1%E7%AE%97%E7%9A%84%E5%BC%82%E5%90%8C_files/figure-markdown_strict/unnamed-chunk-2-1.png alt></p><p>其值在0.9以上，说明二者非常相关，比如验证了蛋白A表达量的变化，与蛋白B表达量的变化关系很大！拿到这种有统计学论证的结果你可能很开心。作图可知相关性系数确实很高。</p><p>然而，由于实验操作不慎或者处理数据不小心，得到了这样一个变量X2(1,1,1,1,1,1)，那么计算X2与Y1之间的皮尔森相关性系数会发生什么呢？</p><pre><code>X2&lt;-c(1,1,1,1,1,1) 
+cor(X2, Y1, method = &quot;pearson&quot;) 
+
+## Warning in cor(X2, Y1, method = &quot;pearson&quot;): the standard deviation is zero
+
+## [1] NA
+
+plot(x = X2, y = Y1)
+</code></pre><p><img src=2018-11-08-pearson-spearman%E7%9B%B8%E5%85%B3%E6%80%A7%E8%AE%A1%E7%AE%97%E7%9A%84%E5%BC%82%E5%90%8C_files/figure-markdown_strict/unnamed-chunk-4-1.png alt></p><p>R运行会得到一个缺失值（NA），并且代码给你提醒：标准差为零，也就是说，X2里面的取值根本没有任何波动，那它与Y1的相关性也就没法用这种方法来计算了。</p><p>此外，从上面的公式我们知道，皮尔森相关性系数是协方差与标准差的比值，所以它对数据是有比较高的要求的：</p><p>第一，
+实验数据通常假设是成对的来自于正态分布的总体。为啥通常会假设为正态分布呢？因为我们在求皮尔森相关性系数以后，通常还会用t检验之类的方法来进行皮尔森相关性系数检验，而
+t检验是基于数据呈正态分布的假设的。</p><p>第二，
+实验数据之间的差距不能太大，或者说皮尔森相关性系数受异常值的影响比较大。比如刚才心跳与跑步的例子，万一这个人的心脏不太好，跑到一定速度后承受不了，突发心脏病，那这时候我们会测到一个偏离正常值的心跳（过快或者过慢，甚至为0），如果我们把这个值也放进去进行相关性分析，它的存在会大大干扰计算的结果的。</p><h2 id=2-斯皮尔曼相关性系数>2. 斯皮尔曼相关性系数<a href=#2-斯皮尔曼相关性系数 class=header-anchor arialabel=Anchor> #</a></h2><p>斯皮尔曼相关性系数，通常也叫斯皮尔曼秩相关系数。“秩”，可以理解成就是一种顺序或者排序，那么它就是根据原始数据的排序位置进行求解，这种表征形式就没有了求皮尔森相关性系数时那些限制。</p><p><img src=https://wikimedia.org/api/rest_v1/media/math/render/svg/a8dda555d22080d721679401fa13181cad3863f6 alt></p><p>斯皮尔曼相关性系数，通常也叫斯皮尔曼秩相关系数。“秩”，可以理解成就是一种顺序或者排序，那么它就是根据原始数据的排序位置进行求解，这种表征形式就没有了求皮尔森相关性系数时那些限制。</p><p>计算过程就是：首先对两个变量（X,
+Y）的数据进行排序，然后记下排序以后的位置（X’, Y’），（X’,
+Y’）的值就称为秩次，秩次的差值就是上面公式中的di，n就是变量中数据的个数，最后带入公式就可求解结果。举个例子吧，假设我们实验的数据如下：</p><pre><code>data
+
+##   原始位置 原始X 排序后 秩次X. 原始Y 排序后.1 秩次Y. 秩次差的平方
+## 1        1    11    490      5     2       75      6            1
+## 2        2   490     43      1    75       44      1            0
+## 3        3    14     30      4     3       42      5            1
+## 4        4    43     14      2    44        7      2            0
+## 5        5    30     11      3     7        3      4            1
+## 6        6     3      3      6    42        2      3            9
+</code></pre><p>带入公式，求得斯皮尔曼相关性系数：ρs= 1-6*(1+1+1+9)/6*35=0.657</p><p>也就是说，我们不用管X和Y这两个变量具体的值到底差了多少，只需要算一下它们每个值所处的排列位置的差值，就可以求出相关性系数了。这下理解起来是不是容易多了！还是用上面的数据，下面写下代码实现：</p><pre><code>X&lt;-c(11,490,14,43,30,3) 
+Y&lt;-c(2,75,3,44,7,42) 
+cor(X,Y,method=&quot;spearman&quot;) 
+
+## [1] 0.6571429
+</code></pre><p>而且，即便在变量值没有变化的情况下，也不会出现像皮尔森系数那样分母为0而无法计算的情况。另外，即使出现异常值，由于异常值的秩次通常不会有明显的变化（比如过大或者过小，那要么排第一，要么排最后），所以对斯皮尔曼相关性系数的影响也非常小！</p><p>由于斯皮尔曼相关性系数没有那些数据条件要求，适用的范围就广多了。在我们生物实验数据分析中，尤其是在分析多组学交叉的数据中说明不同组学数据之间的相关性时，使用的频率很高。</p><p style=color:#777>最后一次修改于 2018-11-08</p></div><a href=#top><i class="fa fa-chevron-up" style=font-size:30px;color:#000></i></a></main><footer class=footer><script src=https://utteranc.es/client.js repo=kongjianyang/kongjianyang.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><script type=text/javascript src=/js/math-code.js></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type=text/javascript src=/js/center-img.js></script><ul class=footer-links><li><a href=/cn/posts/index.xml type=application/rss+xml title="RSS feed">订阅</a></li><li><a href=http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>版权
+<i class="fa fa-cc" aria-hidden=true title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a></li></ul><div class=copyright-text>©
+KJY
+2018-2021</div></footer>

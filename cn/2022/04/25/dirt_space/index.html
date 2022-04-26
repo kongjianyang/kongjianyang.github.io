@@ -1,0 +1,29 @@
+<a name=top></a><!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>KJY</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/fonts.css><link href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css rel=stylesheet><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/vega@5.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-lite@4.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-embed@6.12.2></script>
+<script>hljs.initHighlightingOnLoad()</script></head><body><div class=wrapper><header class=header><nav class=nav><a href=/ class=nav-logo><img src=/media/%3cnil%3e width height alt></a><ul class=nav-links><li><a href=/cn/about/>关于</a></li><li><a href=/cn/posts/>日志</a></li><li><a href=/cn/newsletter/>周刊</a></li><li><a href=/>English</a></li></ul></nav></header><main class=content role=main><div style=text-align:center><h1>Linux下打印带有空格的目录</h1><p>KJY
+/ 2022-04-25</p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2022-04-25-Linux%e4%b8%8b%e6%89%93%e5%8d%b0%e5%b8%a6%e6%9c%89%e7%a9%ba%e6%a0%bc%e7%9a%84%e7%9b%ae%e5%bd%95.md style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title=编辑本页></i></a></span><aside class=toc>Table of Contents:<nav id=TableOfContents><ol><li><a href=#printf命令>printf命令</a></li><li><a href=#tee命令>tee命令</a></li></ol></nav></aside><div class="body-text list-text"><p>有时候在macos下会有很多空格的目录文件需要处理，很麻烦，可以使用下面的命令自动处理带有空格的文件</p><pre tabindex=0><code>alias cwd=&#39;printf &#34;%q\n&#34; &#34;$(pwd)&#34; | tee &gt;(pbcopy)&#39;
+</code></pre><h2 id=printf命令>printf命令<a href=#printf命令 class=header-anchor arialabel=Anchor> #</a></h2><p>printf 命令模仿 C 程序库（library）里的 printf() 程序。</p><p>printf 由 POSIX 标准所定义，因此使用 printf 的脚本比使用 echo 移植性好。</p><p>printf 使用引用文本或空格分隔的参数，外面可以在 <strong>printf</strong> 中使用格式化字符串，还可以制定字符串的宽度、左右对齐方式等。默认的 printf 不会像 <strong>echo</strong> 自动添加换行符，我们可以手动添加 <strong>\n</strong>。</p><p>printf 命令的语法：</p><pre tabindex=0><code>printf  format-string  [arguments...]
+</code></pre><p><strong>参数说明：</strong></p><ul><li><strong>format-string:</strong> 为格式控制字符串</li><li><strong>arguments:</strong> 为参数列表。</li></ul><pre tabindex=0><code>#!/bin/bash
+# author:菜鸟教程
+# url:www.runoob.com
+ 
+printf &#34;%-10s %-8s %-4s\n&#34; 姓名 性别 体重kg  
+printf &#34;%-10s %-8s %-4.2f\n&#34; 郭靖 男 66.1234
+printf &#34;%-10s %-8s %-4.2f\n&#34; 杨过 男 48.6543
+printf &#34;%-10s %-8s %-4.2f\n&#34; 郭芙 女 47.9876
+</code></pre><p>执行脚本，输出结果如下所示：</p><pre tabindex=0><code>姓名     性别   体重kg
+郭靖     男      66.12
+杨过     男      48.65
+郭芙     女      47.99
+</code></pre><p><strong>%s %c %d %f</strong> 都是格式替代符，<strong>％s</strong> 输出一个字符串，<strong>％d</strong> 整型输出，<strong>％c</strong> 输出一个字符，<strong>％f</strong> 输出实数，以小数形式输出。</p><p><strong>%-10s</strong> 指一个宽度为 10 个字符（<strong>-</strong> 表示左对齐，没有则表示右对齐），任何字符都会被显示在 10 个字符宽的字符内，如果不足则自动以空格填充，超过也会将内容全部显示出来。</p><p><strong>%-4.2f</strong> 指格式化为小数，其中 <strong>.2</strong> 指保留2位小数。</p><h2 id=tee命令>tee命令<a href=#tee命令 class=header-anchor arialabel=Anchor> #</a></h2><p>功能：</p><blockquote><p>从标准输入中复制到每一个文件，并输出到标准输出。</p></blockquote><p>可以用来做手动跟踪命令的输出内容，同时又想将输出的内容写入文件，确保之后可以用来参考。</p><pre tabindex=0><code>ping google.com | tee output.txt
+</code></pre><p>这个输出内容不仅被写入 <code>output.txt</code> 文件，也被显示在标准输出中。</p><p style=color:#777>最后一次修改于 2022-04-25</p></div><a href=#top><i class="fa fa-chevron-up" style=font-size:30px;color:#000></i></a></main><footer class=footer><script src=https://utteranc.es/client.js repo=kongjianyang/kongjianyang.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><script type=text/javascript src=/js/math-code.js></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type=text/javascript src=/js/center-img.js></script><ul class=footer-links><li><a href=/cn/posts/index.xml type=application/rss+xml title="RSS feed">订阅</a></li><li><a href=http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>版权
+<i class="fa fa-cc" aria-hidden=true title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a></li></ul><div class=copyright-text>©
+KJY
+2018-2021</div></footer>
