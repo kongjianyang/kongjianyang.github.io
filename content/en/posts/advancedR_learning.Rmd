@@ -1,0 +1,1511 @@
+---
+output: 
+  html_document:
+    self_contained: false
+---
+
+
+```{r}
+library(tidyverse)
+```
+
+A functional is a function that takes a function as an input and returns a vector as output. 
+
+
+```{r}
+randomise <- function(f) f(runif(1e3))
+randomise(mean)
+```
+
+passed mean function to the randomise functipn, which equal
+
+```{r}
+mean(runif(1e3))
+```
+
+
+```{r}
+library(purrr)
+
+triple <- function(x) x * 3
+map(1:3, triple) # map the list to triple function
+```
+
+map() defines a mapping from one vector to another. (“Map” also has the nice property of being short, which is useful for such a fundamental building block.)
+
+```{r}
+simple_map <- function(x, f, ...) {
+  out <- vector("list", length(x))
+  for (i in seq_along(x)) {
+    out[[i]] <- f(x[[i]], ...)
+  }
+  out
+}
+```
+
+```{r}
+# vector produces a vector of the given length and mode.
+
+vector("list", 3) # creat three list
+```
+
+
+```{r}
+seq_along(1:3)
+```
+
+
+```{r}
+simple_map(1:3, triple)
+```
+
+each column in mtcars is a list, so can pass value into map function
+
+```{r}
+n_unique <- function(x) length(unique(x))
+map_int(mtcars, n_unique) 
+```
+
+
+```{r}
+pair <- function(x) c(x, x)
+map_dbl(1:2, pair)
+```
+map function each call to .f must return a single value. If it does not, you’ll get an error:
+
+to fix it:
+
+```{r}
+pair <- function(x) (x+x) 
+map_dbl(1:2, pair)
+```
+
+
+besides, we also albe to switch back to map(), because map() can accept any type of output. 
+
+```{r}
+pair <- function(x) c(x, x)
+map(1:2, pair)
+```
+
+
+Anonymous functions and shortcuts
+
+```{r}
+map_dbl(mtcars, function(x) length(unique(x)))
+
+# equal to the shortcuts
+map_dbl(mtcars, ~ length(unique(.x)))
+```
+
+
+
+```{r}
+as_mapper(~ length(unique(.x)))
+```
+
+```{r}
+x <- map(1:3, ~ runif(2))
+str(x)
+```
+
+
+
+```{r}
+as_mapper(~ runif(2))
+```
+
+
+```{r}
+x <- list(
+  list(-1, x = 1, y = c(2), z = "a"),
+  list(-2, x = 4, y = c(5, 6), z = "b"),
+  list(-3, x = 8, y = c(9, 10, 11))
+)
+
+x
+
+# Select by name
+map_dbl(x, "x")
+
+# Or by both
+map_dbl(x, list("y", 1))
+```
+
+
+```{r}
+simple_map <- function(x, f, ...) {
+  out <- vector("list", length(x))
+  for (i in seq_along(x)) {
+    out[[i]] <- f(x[[i]], ...)
+  }
+  out
+}
+```
+
+
+
+
+```{r}
+boostrap_summary <- function(x, f) {
+  f(sample(x, replace = TRUE))
+}
+
+simple_map(mtcars, boostrap_summary, f = mean)
+```
+
+
+
+
+simple_map() has arguments x and f so you’ll have problems whenever the function you are calling has arguments x or f:
+
+
+
+```{r}
+simple_map <- function(.x, .f, ...) {
+  out <- vector("list", length(.x))
+  for (i in seq_along(.x)) {
+    out[[i]] <- .f(.x[[i]], ...)
+  }
+  out
+}
+```
+
+
+
+
+```{r}
+boostrap_summary <- function(x, f) {
+  f(sample(x, replace = TRUE))
+}
+
+simple_map(mtcars, boostrap_summary, f = mean)
+```
+
+
+```{r}
+trims <- c(0, 0.1, 0.2, 0.5)
+x <- rcauchy(1000)
+```
+
+```{r}
+map_dbl(trims, ~ mean(x, trim = .x))
+
+map_dbl(trims, function(trim) mean(x, trim = trim))
+
+# trim: the fraction (0 to 0.5) of observations to be trimmed from each end of x before the mean is computed. Values of trim outside that range are taken as the nearest endpoint.
+```
+
+```{r}
+mean(x, trim = 0.1)
+
+mean(0.1, x = x)
+```
+
+```{r}
+by_cyl <- split(mtcars, mtcars$cyl)
+by_cyl
+```
+
+```{r}
+class(by_cyl)
+
+by_cyl$`4`
+```
+
+modify(), which always returns the same type of output as the input:
+
+```{r}
+df <- data.frame(
+  x = 1:3,
+  y = 6:4
+)
+
+map(df, ~ .x * 2)
+
+modify(df, ~ .x *2)
+```
+
+
+```{r}
+xs <- map(1:8, ~ runif(10))
+xs[[1]][[1]] <- NA
+ws <- map(1:8, ~ rpois(10, 5) + 1)
+```
+
+```{r}
+xs; ws
+```
+
+```{r}
+map2_dbl(xs, ws, weighted.mean, na.rm = TRUE)
+```
+
+
+```{r}
+x <- map(1:6, ~ sample(1000, 10))
+x
+
+imap_chr(x, ~ paste0("The highest value of ", .y, " is ", max(.x)))
+```
+
+
+```{r}
+params <- tibble::tribble(
+  ~ n, ~ min, ~ max,
+   1L,     0,     1,
+   2L,    10,   100,
+   3L,   100,  1000
+)
+
+params
+```
+
+
+
+```{r}
+pmap(params, runif)
+```
+
+
+```{r}
+runif(3, 100, 1000)
+```
+
+
+```{r}
+x <- c(4, 3, 10)
+reduce(x, `+`)
+
+accumulate(x, `+`)
+```
+
+
+
+```{r}
+x <- 10
+f1 <- function(x) {
+  function() {
+    x + 10
+  }
+}
+f1(1)()
+```
+
+
+```{r}
+f1(1)
+```
+
+
+
+```{r}
+x <- 10
+g01 <- function() {
+  x <- 20
+  x
+}
+
+g01()
+```
+
+
+```{r}
+i01 <- function(y, z) {
+  list(y = y, z = z)
+}
+
+i02 <- function(x, ...) {
+  i01(...)
+}
+
+(i02(x = 1, y = 2, z = 3))
+```
+
+
+```{r}
+j04 <- function() invisible(1)
+
+j04()
+```
+
+
+
+```{r}
+j04 <- function() 1
+
+j04()
+```
+
+
+
+```{r}
+(a <- 2)
+```
+
+
+```{r}
+a <- b <- c <- d <- 2
+
+a; b; c; d
+```
+
+
+```{r}
+j05 <- function() {
+
+  stop("I'm an error")
+
+  return(10)
+
+}
+
+j05()
+```
+
+
+```{r}
+j05 <- function() {
+
+  return(10)
+
+}
+
+j05()
+```
+
+Replacement functions
+Replacement functions act like they modify their arguments in place, and have the special name xxx<-.
+
+
+```{r}
+`second<-` <- function(x, value) {
+
+  x[2] <- value
+
+  x
+
+}
+
+```
+
+
+
+```{r}
+x <- 1:10
+
+second(x) <- 5L
+
+x
+```
+
+
+```{r}
+second(x, 5)
+```
+
+```{r}
+`modify<-` <- function(x, position, value) {
+
+  x[position] <- value
+
+  x
+
+}
+
+modify(x, 1) <- 10
+
+x
+
+modify(x, 2) <- 10
+
+x
+```
+
+
+```{r}
+x <- c(a = 1, b = 2, c = 3)
+
+x
+
+names(x)
+```
+
+
+```{r}
+library(rlang) # Functions for Base Types and Core R and 'Tidyverse' Features
+# A toolbox for working with base types, core R features like the condition system, and core 'Tidyverse' features like tidy evaluation.
+```
+
+The job of an environment is to associate, or bind, a set of names to a set of values.
+
+
+```{r}
+e1 <- env(
+  a = FALSE,
+  b = "a",
+  c = 2.3,
+  d = 1:3,
+)
+```
+
+
+```{r}
+e1
+```
+
+
+```{r}
+e1$d <- e1
+e1
+```
+
+```{r}
+env_print(e1)
+```
+
+```{r}
+env_names(e1)
+```
+
+
+
+To compare environments, you need to use identical() and not ==. This is because == is a vectorised operator, and environments are not vectors.
+
+```{r}
+identical(global_env(), current_env())
+```
+
+
+```{r}
+e2a <- env(d = 4, e = 5)
+e2b <- env(e2a, a = 1, b = 2, c = 3)
+```
+
+
+```{r}
+env_parent(e2b)
+
+env_parent(e2a)
+```
+
+```{r}
+env_parents(e2b, last = empty_env())
+```
+
+
+```{r}
+x <- 0
+f <- function() {
+  x <<- 1
+}
+f()
+x
+```
+
+
+```{r}
+x <- 0
+f <- function() {
+  x <<- 1
+}
+# f() if not run this, x will still 0
+x
+```
+
+can get and set elements of an environment with $ and [[ in the same way as a list:
+
+
+```{r}
+e3 <- env(x = 1, y = 2)
+e3$x
+```
+
+
+
+```{r}
+env_get(e3, "x")
+```
+
+
+env_poke()42 takes a name (as string) and a value:
+
+env_bind() allows you to bind multiple values:
+
+```{r}
+env_poke(e3, "a", 100)
+e3$a
+
+env_bind(e3, a = 10, b = 20)
+env_names(e3)
+
+env_unbind(e3, "a")
+
+env_has(e3, "a")
+```
+
+
+```{r}
+# 定义teacher对象和行为
+teacher <- function(x,...) UseMethod("teacher")
+teacher.lecture <- function(x,...) print("上课")
+teacher.assignment <- function(x,...) print("布置作业")
+teacher.correcting <- function(x,...) print("批改作业")
+teacher.default <- function(x,...) print("你不是teacher")
+
+# 定义同学对象和行为
+
+student <- function(x,...) UseMethod("student")
+student.attend <- function(x,...) print("听课")
+student.homework <- function(x,...) print("写作业")
+student.exam <- function(x,...) print("考试")
+student.default <- function(x,...) print("你不是student")
+
+#定义两个变量，a老师和b同学
+
+a <- 'teacher' # now, a is still character
+class(a)
+b <- 'student'
+
+# 给老师变量设置行为
+
+attr(a,"class") <- 'lecture'
+
+
+class(a)  # now a is a lecture
+
+a
+# 执行老师的行为
+teacher(a)
+
+
+attr(a,'class') <- 'assignment'
+
+class(a)
+
+teacher(a)
+```
+
+
+
+```{r}
+where <- function(name, env = caller_env()) {
+  if (identical(env, empty_env())) {
+    # Base case
+    stop("Can't find ", name, call. = FALSE)
+  } else if (env_has(env, name)) {
+    # Success case
+    env
+  } else {
+    # Recursive case
+    where(name, env_parent(env))
+  }
+}
+```
+
+
+
+```{r}
+where("yyy")
+```
+
+```{r}
+x <- 5
+where("x")
+
+where("mean")
+```
+
+
+package environments
+
+```{r}
+search()
+
+search_envs()
+```
+
+```{r}
+e <- env()
+e$g <- function() 1
+```
+
+```{r}
+# cannot directly get g functions
+g()
+e$g()
+```
+
+
+Every function in a package is associated with a pair of environments: the package environment, which you learned about earlier, and the namespace environment.
+
+
+```{r}
+sd # so sd in the environment and have a namespace
+```
+
+
+
+```{r}
+library(rlang)
+library(ggplot2)
+library(scales)
+
+power1 <- function(exp) {
+  function(x) {x ^ exp}
+}
+
+square <- power1(2)
+cube <- power1(3)
+```
+
+
+```{r}
+square
+```
+
+```{r}
+cube
+```
+
+how does R find the value associated with exp
+
+
+
+```{r}
+env_print(square); env_print(cube)
+```
+
+
+```{r}
+a <- fn_env(square)
+```
+
+```{r}
+a$exp
+```
+
+```{r}
+fn_env(cube)$exp
+```
+
+
+```{r}
+power1 <- function(exp) {
+  function(x) {x ^ exp}
+}
+
+x <- 2
+square <- power1(x) # square (x^2), now exp not give to 2
+
+x <- 3 # now x is 3
+
+square(2) # load here, so x is 3 now
+```
+
+because x is only evaluated lazily when square() is run, not when power1() is run.
+
+
+
+```{r}
+power1 <- function(exp) {
+  function(x) {x ^ exp}
+}
+
+x <- 2
+square <- power1(x) # square (x^2)
+
+square(2) # now x is given to exp, and become 2, results is 4
+
+x <- 3
+
+square(2) # still results is 4 
+
+```
+
+
+```{r}
+power2 <- function(exp) {
+  force(exp)
+  function(x) {
+    x ^ exp
+  }
+}
+
+x <- 2
+square <- power2(x)
+x <- 3
+square(2)
+```
+
+```{r}
+new_counter <- function() {
+  i <- 0
+  
+  function() {
+    i <<- i + 1
+    i
+  }
+}
+
+counter_one <- new_counter()
+counter_two <- new_counter()
+```
+
+```{r}
+counter_one()
+
+counter_one()
+```
+
+```{r}
+new_counter <- function() {
+  i <- 0
+  
+  function() {
+    i <- i + 1
+    i
+  }
+}
+
+counter_one <- new_counter()
+counter_two <- new_counter()
+```
+
+```{r}
+counter_one()
+
+counter_one()
+```
+
+
+
+```{r}
+y <- c(12345, 123456, 1234567)
+
+comma_format()(y)
+
+comma_format(y)
+```
+
+```{r}
+comma_format 
+```
+
+
+```{r}
+a <- comma_format() # a is a function now
+
+a(y)
+```
+
+
+```{r}
+df <- data.frame(x = 1, y = y)
+
+core <- ggplot(df, aes(x, y)) + 
+  geom_point() + 
+  scale_x_continuous(breaks = 1, labels = NULL) +
+  labs(x = NULL, y = NULL)
+  
+core
+
+core + scale_y_continuous(
+  labels = comma_format()
+)
+
+core + scale_y_continuous(
+  labels = number_format(scale = 1e-3, suffix = " K")
+)
+
+core + scale_y_continuous(
+  labels = scientific_format()
+)
+```
+
+
+```{r}
+# construct some sample data with very different numbers in each cell
+sd <- c(1, 5, 15)
+n <- 100
+
+df <- data.frame(x = rnorm(3 * n, sd = sd), sd = rep(sd, n))
+
+ggplot(df, aes(x)) + 
+  geom_histogram(binwidth = 2) + 
+  facet_wrap(~ sd, scales = "free_x") + 
+  labs(x = NULL)
+```
+
+
+```{r}
+binwidth_bins <- function(n) {
+  force(n)
+  
+  function(x) {
+    (max(x) - min(x)) / n
+  }
+}
+
+ggplot(df, aes(x)) + 
+  geom_histogram(binwidth = binwidth_bins(20)) + 
+  facet_wrap(~ sd, scales = "free_x") + 
+  labs(x = NULL)
+```
+
+
+```{r}
+a <- fn_env(binwidth_bins(20))
+
+a$n
+```
+
+
+```{r}
+names <- list(
+  square = 2, 
+  cube = 3, 
+  root = 1/2, 
+  cuberoot = 1/3, 
+  reciprocal = -1
+)
+funs <- purrr::map(names, power1)
+```
+
+```{r}
+funs$square(64)
+```
+
+```{r}
+with(funs, root(100))
+# with(data, expr, ...)
+# Evaluate an R expression in an environment constructed from data, possibly modifying (a copy of) the original data.
+
+with(mtcars, mpg[cyl == 8  &  disp > 350])
+```
+
+
+For a longer effect, you can attach() the functions to the search path, then detach() when you’re done:
+
+
+```{r}
+attach(funs) 
+# attach This means that the database is searched by R when evaluating a variable, so objects in the database can be accessed by simply giving their names.
+root(100)
+```
+
+A function operator is a function that takes one (or more) functions as input and returns a function as output.
+
+If you’re familiar with Python, decorators is just another name for function operators.
+
+装饰器(Decorators)是Python 的一个重要部分。 简单地说：他们是修改其他函数的功能的函数。 他们有助于让我们的代码更简短，也更Pythonic（Python范儿）。
+
+```{r}
+chatty <- function(f) {
+  force(f)
+  
+  function(x, ...) {
+    res <- f(x, ...)
+    cat("Processing ", x, "\n", sep = "")
+    res
+  }
+} ## return a function
+
+
+f <- function(x) x ^ 2 
+
+s <- c(3, 2, 1)
+
+purrr::map_dbl(s, chatty(f)) # map list to the functions
+```
+
+
+```{r}
+f
+```
+
+
+```{r}
+chatty(f)
+```
+
+
+```{r}
+library(purrr)
+library(memoise)
+```
+
+
+```{r}
+x <- list(
+  c(0.512, 0.165, 0.717),
+  c(0.064, 0.781, 0.427),
+  c(0.890, 0.785, 0.495),
+  "oops"
+)
+
+str(x)
+
+out <- rep(NA_real_, length(x)) # There are also constants NA_integer_, NA_real_, NA_complex_ and NA_character_ of the other atomic vector types which support missing values:
+
+out
+
+for (i in seq_along(x)) {
+  out[[i]] <- sum(x[[i]])
+}
+
+out
+```
+
+```{r}
+map_dbl(x, sum)
+```
+
+safely() is a function operator that transforms a function to turn errors into data. 
+
+
+```{r}
+sum
+```
+
+
+```{r}
+safe_sum <- safely(sum)
+safe_sum
+```
+
+
+```{r}
+x
+out <- map(x, safely(sum))
+out
+```
+
+```{r}
+out <- transpose(map(x, safely(sum))) # Transpose turns a list-of-lists "inside-out"; it turns a pair of lists into a list of pairs, or a list of pairs into pair of lists.
+out$result
+
+str(out)
+
+# str: Compactly display the internal structure of an R object, a diagnostic function and an alternative to summary 
+```
+
+R语言一个重点是面向对象编程（object-oriented programming）
+Python从设计之初就已经是一门面向对象的语言，正因为如此，在Python中创建一个类和对象是很容易的。
+所以可以同时在R和python中学面对对象编程。
+
+OO systems call the type of an object its class, and an implementation for a specific class is called a method. Roughly speaking, a class defines what an object is and methods describe what that object can do. 
+
+object.method(arg1, arg2)
+
+generic(object, arg2, arg3)
+
+You might wonder if S1 and S2 exist. They don’t: S3 and S4 were named according to the versions of S that they accompanied. The first two versions of S didn’t have any OOP framework.
+
+sloop::otype(). It makes it easy to figure out the OOP system used by a wild-caught object:
+
+```{r}
+library(sloop)
+
+mle_obj <- stats4::mle(function(x = 1) (x - 2) ^ 2)
+otype(mle_obj)
+```
+
+
+
+```{r}
+sloop::otype(1:10)
+
+sloop::otype(mtcars)
+```
+
+Technically, the difference between base and OO objects is that OO objects have a “class” attribute:
+
+```{r}
+attr(1:10, "class")
+#> NULL
+
+attr(mtcars, "class")
+#> [1] "data.frame"
+
+# attr: Get or set specific attributes of an object.
+```
+
+
+only OO objects have a class attribute, every object has a base type:
+
+```{r}
+typeof(1:10)
+#> [1] "integer"
+
+typeof(mtcars)
+#> [1] "list"
+```
+
+
+```{r}
+f <- factor(c("a", "b", "c"))
+
+typeof(f)
+```
+
+```{r}
+attributes(f)
+```
+
+Many base R functions are generic, including the important print():
+
+
+```{r}
+ftype(print)
+```
+
+
+generic finds that method by performing method dispatch (方法调度).
+
+
+```{r}
+s3_dispatch(print(f))
+```
+
+```{r}
+print.factor(f)
+```
+
+use sloop::s3_get_method(), which will work regardless of where the method lives:
+
+```{r}
+s3_get_method(t.data.frame) # only work for method
+```
+
+
+```{r}
+# Create and assign class in one step
+x <- structure(list(), class = "my_class")
+
+# structure returns the given object with further attributes set.
+
+# Create, then set class
+x <- list()
+class(x) <- "my_class"
+```
+
+```{r}
+class(x)
+```
+
+```{r}
+mean
+```
+
+```{r}
+my_new_generic <- function(x) {
+  UseMethod("my_new_generic")
+}
+```
+
+```{r}
+my_new_generic
+```
+
+```{r}
+x <- Sys.Date()
+
+print(x)
+
+s3_dispatch(print(x))
+```
+
+The output here is simple:
+
+=> indicates the method that is called, here print.Date()
+* indicates a method that is defined, but not called, here print.default().
+
+```{r}
+s3_methods_generic("mean")
+
+s3_methods_generic("print")
+```
+
+
+# find all methods defined for a generic or associated with a class
+
+```{r}
+s3_methods_class("ordered")
+```
+
+
+
+
+```{r}
+x <- list()
+class(x) <- "my_class"
+
+x
+```
+
+
+```{r}
+teacher <- function(x,...) UseMethod("teacher") # 这时teacher也变成了一个对象
+
+teacher
+```
+
+```{r}
+teacher.lecture <- function(x,...) print("讲课")
+teacher.assignment <- function(x,...) print("布置作业")
+teacher.correcting <- function(x,...) print("批改作业")
+teacher.default <- function(x,...) print("你不是teacher")
+```
+
+```{r}
+teacher
+```
+
+```{r}
+a <- "teacher" # 这时a是个字符串
+
+a
+```
+
+```{r}
+class(a)
+```
+
+
+
+```{r}
+attr(a,"class") <- 'lecture'
+```
+
+```{r}
+a
+```
+
+```{r}
+attributes(a)
+```
+
+
+```{r}
+## 第一步：定义一个泛型函数，这个函数的函数体只有一个固定的语句
+doit = function(...) {
+  xx = list(...)
+  UseMethod("doit", xx[[1]], xx[[2]])
+  }
+
+## 第二步：设置针对特定CLASS的动作函数
+doit.character = function(...) {
+    cat("With STRING class attribute\n")
+}
+doit.integer = function(...) {
+    cat("With INTEGER class attribute\n")
+}
+doit.God = function(...) {
+    cat("With God class attribute\n")
+}
+### 第三步：设置一个默认的动作函数
+doit.default = function(...) {
+    cat("UNKNOWN class attribute\n")
+}
+
+doit(1:10, "abc")
+
+
+##上面三个步骤就完成了doit泛型函数的设置。看看效果吧：
+a = "ABCDE"
+
+doit(a) # 这里a本来是string
+## With STRING class attribute
+
+attr(a, "class") = "integer"
+class(a) #[1] "integer"
+doit(a)
+## With INTEGER class attribute
+
+attr(a, "class") = "God"
+doit(a)
+## With God class attribute
+
+a = as.factor(a)
+doit(a)
+## UNKNOWN class attribute
+```
+
+
+```{r}
+# 用UseMethod()定义teacher泛型函数
+teacher <- function(x,...) UseMethod("teacher") # 这时teacher也变成了一个对象
+# 用pryr包中ftype()函数，检查teacher类型
+ftype(teacher)
+
+# 定义teacher内部函数, 都是teacher的属性
+teacher.lecture <- function(x,...) print("讲课")
+teacher.assignment <- function(x,...) print("布置作业")
+teacher.correcting <- function(x,...) print("批改作业")
+teacher.default <- function(x,...) print("你不是teacher")
+teacher.character <- function(x, ...) print("请先定义")
+```
+
+
+```{r}
+a <- "teacher" # 这时a是个字符串
+teacher(a)
+
+# 给老师变量设置行为
+attr(a,"class") <- 'lecture' # 给a一个类属性 lecture
+
+
+attr(a,"class") <- c('correcting', 'lecture') # 给a一个类属性 lecture
+
+# 执行老师的行为
+teacher(a)
+teacher(a)
+
+
+
+attributes(a)
+
+# $class
+# [1] "lecture"
+```
+
+
+
+```{r}
+# 用UseMethod()定义teacher泛型函数
+teacher <- function(...) {
+  xx = list(...)
+  UseMethod("teacher", xx[[1]], xx[[2]])} # 这时teacher也变成了一个对象
+# 用pryr包中ftype()函数，检查teacher类型
+ftype(teacher)
+
+# 定义teacher内部函数, 都是teacher的属性
+teacher.lecture <- function(x,...) print("讲课")
+teacher.assignment <- function(x,...) print("布置作业")
+teacher.correcting <- function(x,...) print("批改作业")
+teacher.default <- function(x,...) print("你不是teacher")
+teacher.character <- function(x, ...) print("请先定义")
+
+a <- "teacher" # 这时a是个字符串
+attr(a,"class") <- c('correcting', 'lecture') # 给a一个类属性 lecture
+teacher(a)
+
+```
+
+
+```{r}
+doit = function(...) UseMethod("doit")
+doit.character = function(...) {
+    cat("With STRING class attribute\n")
+    NextMethod()
+}
+
+doit.integer = function(...) {
+    cat("With INTEGER class attribute\n")
+    NextMethod()
+}
+
+doit.God = function(...) {
+    cat("With God class attribute\n")
+    NextMethod()
+}
+
+doit.default = function(...) {
+    cat("UNKNOWN class attribute\n")
+}
+
+## 多CLASS属性对象
+x = "abc"
+class(x) = c("UNKNOWN", "integer", "character", "God")
+doit(x)
+# With INTEGER class attribute
+# With STRING class attribute
+# With God class attribute
+# UNKNOWN class attribute
+```
+
+```{r}
+x = "abcd"
+
+attr(x, "class") <- c("UNKNOWN", "integer", "character", "God")
+
+doit(x)
+```
+
+
+
+```{r}
+j <- list(name = "Joe", salary=5000, union=T)
+
+class(j) <- "employee"
+
+print.employee <- function(wrkr){
+cat("Name:", wrkr$name, "\n")
+cat("Salary: ", wrkr$salary, "\n")
+cat("Union member: ", wrkr$union, "\n")
+}
+
+print(j)
+
+
+# Name: Joe 
+# Salary:  5000 
+# Union member:  TRUE 
+```
+
+
+
+```{r}
+# 创建类
+my_person <- function(ln, a, ht){
+  structure(list(lastName = ln, age = a, height = ht), class = "my_person")
+}
+
+## 创建第一个泛型函数
+display <- function(obj) UseMethod("display")
+# 创建方法
+display.my_person <- function(obj){
+  cat("Last name : ", obj$lastName, "\n")
+  cat("Age       : ", obj$age, "\n")
+  cat("Height    : ", obj$height, "\n")
+}
+
+
+## 创建第二个泛型函数，如果泛型函数的方法又多个参数，务必加上...
+nYear <- function(obj,...) UseMethod("nYear")
+# 创建方法
+nYear.my_person <- function(obj,n){
+  obj$age <- obj$age + n
+  cat("Age after",n,"years is:", obj$age, "\n")
+}
+
+# 由类创建对象
+Tom <- my_person("Godden", 19, 176)
+
+class(Tom)
+
+# 第一个泛型函数派送
+display(Tom)
+## Last name :  Godden 
+## Age       :  19 
+## Height    :  176
+
+# 第二个泛型函数派送
+nYear(Tom,7)
+## Age after 7 years is: 26
+```
+
+## S4 for programming
+
+```{r}
+# 创建Class - Person
+setClass("Person", slots = list(name = "character", age = "numeric"))
+
+# 创建Class - Employee，利用contains表明参数继承自Person。
+setClass("Employee", slots = list(boss = "Person"), contains = "Person")
+
+# 设置基于Class - Person的对象
+alice <- new("Person", name = "Alice", age = 40)
+
+# 设置基于Class - Employee的对象
+john <- new("Employee", name = "John", age = 20, boss = alice)
+
+
+str(alice)
+str(john) # 可以看到jhon多了一个slot，即@boss
+```
+
+
+```{r}
+# Formal class 'Employee' [package ".GlobalEnv"] with 3 slots
+#   ..@ boss:Formal class 'Person' [package ".GlobalEnv"] with 2 slots
+#   .. .. ..@ name: chr "Alice"
+#   .. .. ..@ age : num 40
+#   ..@ name: chr "John"
+#   ..@ age : num 20
+```
+
+
+```{r}
+setClass("Person", slots = list(name = "character", age = "numeric"), prototype = list(age = 20))
+
+setValidity("Person",  
+ function(object){
+ if (object@age < 18)
+ "he/she is too yong to get the job."
+ })
+
+new("Person", name = "Penny", age = 17)
+
+# Error in validObject(.Object) : invalid class “Person” object: he/she is too yong to get the job.
+```
+
+
+```{r}
+# 查看alice对象的name属性
+alice@name
+
+slot(alice, "age")
+
+alice@age
+```
+
+
+```{r}
+getClasses()
+```
+
+
+```{r}
+work<-function(x) cat(x, "is working")
+work('Conan')
+```
+
+
+```{r}
+# S4的方法
+# 定义Person对象
+setClass("Person",slots=list(name="character",age="numeric"))
+# 定义泛型函数work，即接口
+setGeneric("work",function(object) standardGeneric("work"))
+# 定义work的现实，并指定参数类型为Person对象
+setMethod("work", signature(object = "Person"), function(object) cat(object@name , "is working") )
+# 创建一个Person对象a
+a<-new("Person",name="Conan",age=16)
+# 把对象a传入work函数
+work(a)
+# Conan is working
+```
+
+```{r}
+ftype(work)
+```
+
+
+
+```{r}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
