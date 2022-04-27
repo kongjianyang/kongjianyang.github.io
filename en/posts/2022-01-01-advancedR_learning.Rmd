@@ -1,7 +1,31 @@
 ---
-output: 
-  html_document:
-    self_contained: false
+title: advancedR_learning
+author: KJY
+date: '2022-01-01'
+slug: advancedR_learning
+categories:
+  - R
+tags: []
+lastmod: '2022-01-01T10:29:22-05:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
 ---
 
 
@@ -68,8 +92,8 @@ map_int(mtcars, n_unique)
 
 
 ```{r}
-pair <- function(x) c(x, x)
-map_dbl(1:2, pair)
+# pair <- function(x) c(x, x)
+# map_dbl(1:2, pair)
 ```
 map function each call to .f must return a single value. If it does not, you’ll get an error:
 
@@ -147,11 +171,11 @@ simple_map <- function(x, f, ...) {
 
 
 ```{r}
-boostrap_summary <- function(x, f) {
-  f(sample(x, replace = TRUE))
-}
-
-simple_map(mtcars, boostrap_summary, f = mean)
+# boostrap_summary <- function(x, f) {
+#   f(sample(x, replace = TRUE))
+# }
+# 
+# simple_map(mtcars, boostrap_summary, f = mean)
 ```
 
 
@@ -352,15 +376,15 @@ a; b; c; d
 
 
 ```{r}
-j05 <- function() {
-
-  stop("I'm an error")
-
-  return(10)
-
-}
-
-j05()
+# j05 <- function() {
+# 
+#   stop("I'm an error")
+# 
+#   return(10)
+# 
+# }
+# 
+# j05()
 ```
 
 
@@ -401,7 +425,7 @@ x
 
 
 ```{r}
-second(x, 5)
+# second(x, 5)
 ```
 
 ```{r}
@@ -606,7 +630,7 @@ where <- function(name, env = caller_env()) {
 
 
 ```{r}
-where("yyy")
+# where("yyy")
 ```
 
 ```{r}
@@ -632,7 +656,7 @@ e$g <- function() 1
 
 ```{r}
 # cannot directly get g functions
-g()
+# g()
 e$g()
 ```
 
@@ -950,15 +974,15 @@ out <- rep(NA_real_, length(x)) # There are also constants NA_integer_, NA_real_
 
 out
 
-for (i in seq_along(x)) {
-  out[[i]] <- sum(x[[i]])
-}
+# for (i in seq_along(x)) {
+#   out[[i]] <- sum(x[[i]])
+# }
 
 out
 ```
 
 ```{r}
-map_dbl(x, sum)
+# map_dbl(x, sum)
 ```
 
 safely() is a function operator that transforms a function to turn errors into data. 
@@ -1188,48 +1212,48 @@ attributes(a)
 
 
 ```{r}
-## 第一步：定义一个泛型函数，这个函数的函数体只有一个固定的语句
-doit = function(...) {
-  xx = list(...)
-  UseMethod("doit", xx[[1]], xx[[2]])
-  }
-
-## 第二步：设置针对特定CLASS的动作函数
-doit.character = function(...) {
-    cat("With STRING class attribute\n")
-}
-doit.integer = function(...) {
-    cat("With INTEGER class attribute\n")
-}
-doit.God = function(...) {
-    cat("With God class attribute\n")
-}
-### 第三步：设置一个默认的动作函数
-doit.default = function(...) {
-    cat("UNKNOWN class attribute\n")
-}
-
-doit(1:10, "abc")
-
-
-##上面三个步骤就完成了doit泛型函数的设置。看看效果吧：
-a = "ABCDE"
-
-doit(a) # 这里a本来是string
-## With STRING class attribute
-
-attr(a, "class") = "integer"
-class(a) #[1] "integer"
-doit(a)
-## With INTEGER class attribute
-
-attr(a, "class") = "God"
-doit(a)
-## With God class attribute
-
-a = as.factor(a)
-doit(a)
-## UNKNOWN class attribute
+# ## 第一步：定义一个泛型函数，这个函数的函数体只有一个固定的语句
+# doit = function(...) {
+#   xx = list(...)
+#   UseMethod("doit", xx[[1]], xx[[2]])
+#   }
+# 
+# ## 第二步：设置针对特定CLASS的动作函数
+# doit.character = function(...) {
+#     cat("With STRING class attribute\n")
+# }
+# doit.integer = function(...) {
+#     cat("With INTEGER class attribute\n")
+# }
+# doit.God = function(...) {
+#     cat("With God class attribute\n")
+# }
+# ### 第三步：设置一个默认的动作函数
+# doit.default = function(...) {
+#     cat("UNKNOWN class attribute\n")
+# }
+# 
+# doit(1:10, "abc")
+# 
+# 
+# ##上面三个步骤就完成了doit泛型函数的设置。看看效果吧：
+# a = "ABCDE"
+# 
+# doit(a) # 这里a本来是string
+# ## With STRING class attribute
+# 
+# attr(a, "class") = "integer"
+# class(a) #[1] "integer"
+# doit(a)
+# ## With INTEGER class attribute
+# 
+# attr(a, "class") = "God"
+# doit(a)
+# ## With God class attribute
+# 
+# a = as.factor(a)
+# doit(a)
+# ## UNKNOWN class attribute
 ```
 
 
@@ -1273,23 +1297,22 @@ attributes(a)
 
 
 ```{r}
-# 用UseMethod()定义teacher泛型函数
-teacher <- function(...) {
-  xx = list(...)
-  UseMethod("teacher", xx[[1]], xx[[2]])} # 这时teacher也变成了一个对象
-# 用pryr包中ftype()函数，检查teacher类型
-ftype(teacher)
-
-# 定义teacher内部函数, 都是teacher的属性
-teacher.lecture <- function(x,...) print("讲课")
-teacher.assignment <- function(x,...) print("布置作业")
-teacher.correcting <- function(x,...) print("批改作业")
-teacher.default <- function(x,...) print("你不是teacher")
-teacher.character <- function(x, ...) print("请先定义")
-
-a <- "teacher" # 这时a是个字符串
-attr(a,"class") <- c('correcting', 'lecture') # 给a一个类属性 lecture
-teacher(a)
+# # 用UseMethod()定义teacher泛型函数
+# teacher <- function(...) {
+#   xx = list(...)
+#   UseMethod("teacher", xx[[1]], xx[[2]])} # 这时teacher也变成了一个对象
+# # 用pryr包中ftype()函数，检查teacher类型
+# 
+# # 定义teacher内部函数, 都是teacher的属性
+# teacher.lecture <- function(x,...) print("讲课")
+# teacher.assignment <- function(x,...) print("布置作业")
+# teacher.correcting <- function(x,...) print("批改作业")
+# teacher.default <- function(x,...) print("你不是teacher")
+# teacher.character <- function(x, ...) print("请先定义")
+# 
+# a <- "teacher" # 这时a是个字符串
+# attr(a,"class") <- c('correcting', 'lecture') # 给a一个类属性 lecture
+# teacher(a)
 
 ```
 
@@ -1436,7 +1459,7 @@ setValidity("Person",
  "he/she is too yong to get the job."
  })
 
-new("Person", name = "Penny", age = 17)
+# new("Person", name = "Penny", age = 17)
 
 # Error in validObject(.Object) : invalid class “Person” object: he/she is too yong to get the job.
 ```
@@ -1451,10 +1474,6 @@ slot(alice, "age")
 alice@age
 ```
 
-
-```{r}
-getClasses()
-```
 
 
 ```{r}
@@ -1478,15 +1497,6 @@ work(a)
 # Conan is working
 ```
 
-```{r}
-ftype(work)
-```
-
-
-
-```{r}
-
-```
 
 
 
