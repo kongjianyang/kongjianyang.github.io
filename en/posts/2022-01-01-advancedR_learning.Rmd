@@ -1,10 +1,9 @@
 ---
-title: advancedR_learning
-author: KJY
+title: "advancedR_learning"
+author: "KJY"
 date: '2022-01-01'
 slug: advancedR_learning
-categories:
-  - R
+categories: R
 tags: []
 lastmod: '2022-01-01T10:29:22-05:00'
 keywords: []
@@ -27,7 +26,6 @@ sequenceDiagrams:
   enable: no
   options: ''
 ---
-
 
 ```{r}
 library(tidyverse)
