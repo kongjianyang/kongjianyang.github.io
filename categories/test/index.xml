@@ -48,7 +48,14 @@ l &amp;lt;- list(A=c(&amp;#34;one&amp;#34;, &amp;#34;two&amp;#34;, &amp;#34;thre
 空元素 一些元素没有内容，被称为空元素。采取&amp;lt;img&amp;gt; 我们在HTML页面中已经拥有的元素：
 &amp;lt;img src=&amp;#34;/img/earth.jpg&amp;#34; alt=&amp;#34;地球&amp;#34;&amp;gt; 它包含两个属性，但是没有结束&amp;lt;/img&amp;gt;标记，也没有内部内容。其目的是将图像嵌入HTML页面中。
 HTML文档剖析 总结了各个HTML元素的基础知识。现在，我们将研究如何将单个元素组合以形成整个HTML页面。让我们重新看一下index.html示例中放入的代码：
-&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;utf-8&amp;#34;&amp;gt; &amp;lt;title&amp;gt;测试页面&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;img src=&amp;#34;/img/earth.</description></item><item><title>R中进行文件以及文件系统管理</title><link>https://kongjianyang.github.io/cn/2018/11/25/r_files/</link><pubDate>Sun, 25 Nov 2018 13:42:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2018/11/25/r_files/</guid><description>本文中提到的文件系统管理主要是指文件和目录（即文件夹）的创建、查看、重命名、复制、删除和文件权限处理。
+&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;utf-8&amp;#34;&amp;gt; &amp;lt;title&amp;gt;测试页面&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;img src=&amp;#34;/img/earth.</description></item><item><title>R语言管道操作Magritte</title><link>https://kongjianyang.github.io/cn/2019/04/27/magritte/</link><pubDate>Sat, 27 Apr 2019 13:42:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2019/04/27/magritte/</guid><description>主要参考文章：
+R语言中管道操作符 %&amp;gt;%, %T&amp;gt;%, %$% 和 %&amp;lt;&amp;gt;% - 知乎 (zhihu.com) The Four Pipes of magrittr | R-bloggers magrittr包有两个主要目标:
+第一是减少代码开发时间，提高代码的可读性和维护性
+第二是让你的代码更短
+lhs %&amp;gt;% rhs # pipe syntax for rhs(lhs)
+lhs %&amp;gt;% rhs(a = 1) # pipe syntax for rhs(lhs, a = 1)
+lhs %&amp;gt;% rhs(a = 1, b = .) # pipe syntax for rhs(a = 1, b = lhs)
+lhs %&amp;lt;&amp;gt;% rhs # pipe syntax for lhs &amp;lt;- rhs(lhs)</description></item><item><title>R中进行文件以及文件系统管理</title><link>https://kongjianyang.github.io/cn/2018/11/25/r_files/</link><pubDate>Sun, 25 Nov 2018 13:42:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2018/11/25/r_files/</guid><description>本文中提到的文件系统管理主要是指文件和目录（即文件夹）的创建、查看、重命名、复制、删除和文件权限处理。
 1. 文件操作 创建文件
 # 创建一个空文件 A.txt file.create(&amp;quot;A.txt&amp;quot;) # 查看当前目录下的子目录和文件 list.files() # 创建多个空文件 A1.txt，A2.txt，A3.txt file.create(&amp;quot;A1.txt&amp;quot;, &amp;quot;A2.txt&amp;quot;, &amp;quot;A3.txt&amp;quot;) # 查看当前目录下的子目录和文件 list.files() # 创建一个有内容的文件 B.txt cat(&amp;quot;文件测试\n&amp;quot;, file = &amp;quot;B.txt&amp;quot;) list.files() 查看文件
 # 显示当前目录中的目录和文件 ## 下面两句结果相同 list.files() # 建议使用该命令，方便记忆 dir() #python中这个意味着查看文件属性 ## 参数full.names = TRUE，确定文件显示全名 ## 参数recursive = TRUE，递归显示，即把目录下的目录和文件都以文件的形式显示 list.files(, full.names = TRUE, recursive = TRUE) # 检查文件是否存在 ## 存在的文件 file.exists(&amp;quot;A.txt&amp;quot;) ## 不存在的文件 file.exists(&amp;quot;readme.txt&amp;quot;) # 判断是否是文件 file_test(&amp;quot;-f&amp;quot;, &amp;quot;A.txt&amp;quot;) 读取文件
