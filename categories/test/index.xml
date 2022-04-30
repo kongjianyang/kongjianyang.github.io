@@ -4,7 +4,19 @@ printf 由 POSIX 标准所定义，因此使用 printf 的脚本比使用 echo �
 printf 使用引用文本或空格分隔的参数，外面可以在 printf 中使用格式化字符串，还可以制定字符串的宽度、左右对齐方式等。默认的 printf 不会像 echo 自动添加换行符，我们可以手动添加 \n。
 printf 命令的语法：
 printf format-string [arguments...] 参数说明：
-format-string: 为格式控制字符串 arguments: 为参数列表。 #!/bin/bash # author:菜鸟教程 # url:www.runoob.com printf &amp;#34;%-10s %-8s %-4s\n&amp;#34; 姓名 性别 体重kg printf &amp;#34;%-10s %-8s %-4.2f\n&amp;#34; 郭靖 男 66.1234 printf &amp;#34;%-10s %-8s %-4.2f\n&amp;#34; 杨过 男 48.6543 printf &amp;#34;%-10s %-8s %-4.</description></item><item><title>R语言基于S4的面向对象编程</title><link>https://kongjianyang.github.io/cn/2022/03/31/s4/</link><pubDate>Thu, 31 Mar 2022 13:42:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2022/03/31/s4/</guid><description>参考资料：
+format-string: 为格式控制字符串 arguments: 为参数列表。 #!/bin/bash # author:菜鸟教程 # url:www.runoob.com printf &amp;#34;%-10s %-8s %-4s\n&amp;#34; 姓名 性别 体重kg printf &amp;#34;%-10s %-8s %-4.2f\n&amp;#34; 郭靖 男 66.1234 printf &amp;#34;%-10s %-8s %-4.2f\n&amp;#34; 杨过 男 48.6543 printf &amp;#34;%-10s %-8s %-4.</description></item><item><title>YAML语言介绍</title><link>https://kongjianyang.github.io/cn/2022/04/25/yaml/</link><pubDate>Mon, 25 Apr 2022 13:42:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2022/04/25/yaml/</guid><description>YAML 是专门用来写配置文件的语言，非常简洁和强大，远比 JSON 格式方便。
+YAML 是一种数据序列化语言，通常用于编写配置文件。业界对 YAML 有不同的看法，有人会说 YAML 不过代表了另一种标记语言，另外一些人认为*&amp;ldquo;YAML ain’t markup language&amp;rdquo;（ &amp;ldquo;YAML 不是标记语言&amp;rdquo;）*，&amp;ldquo;YAML&amp;rdquo; 正是这句话的递归缩写，强调了 YAML 是用于数据而不是文档。
+YAML 是一种流行的编程语言，因为它是人类可读的语言，易于理解。它还可以与其他编程语言结合使用。
+YAML支持3种数据结构：
+键值表，键值对的集合，包括映射，哈希，字典。 序列，为一组排列的值，包括数组，列表。 常量，为单个的不可再分隔的值，包括字符串，布尔值，整数，浮点数，Null，时间，日期 由于YAML是JSON的自然超集，所以我们每个YAML语法段，都可以用JSON进行表示。
+YAML的基本语法规则如下。
+大小写敏感 使用缩进表示层级关系 缩进时不允许使用Tab键，只允许使用空格。 缩进的空格数目不重要，只要相同层级的元素左侧对齐即可 # 表示注释，从这个字符一直到行尾，都会被解析器忽略。
+YAML 支持的数据结构有三种。
+对象：键值对的集合，又称为映射（mapping）/ 哈希（hashes） / 字典（dictionary） 数组：一组按次序排列的值，又称为序列（sequence） / 列表（list） 纯量（scalars）：单个的、不可再分的值 以下分别介绍这三种数据结构。
+对象的一组键值对，使用冒号结构表示。
+animal: pets 转为 JavaScript 如下。
+{ animal: &amp;#39;pets&amp;#39; } Yaml 也允许另一种写法，将所有键值对写成一个行内对象。
+hash: { name: Steve, foo: bar } 转为 JavaScript 如下。</description></item><item><title>R语言基于S4的面向对象编程</title><link>https://kongjianyang.github.io/cn/2022/03/31/s4/</link><pubDate>Thu, 31 Mar 2022 13:42:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2022/03/31/s4/</guid><description>参考资料：
 R 学习笔记: S4 编程基础 - 知乎 (zhihu.com) 不同的语言进行面向对象编程中, 有许多东西是共同的. 就像浩巍说的, 编程就是一通百通. 如果了解 Python 的面向对象编程, 里面的很多思想也能使用在 R 语言面向对象编程中.
 类 (class) 是面向对象编程的基础. 类就像是一个包装的盒子, 把对象的所有的属性都包含在其中. 可以形象地说, 类有点像一个有多种口味可供选择的冰激凌机器. 变量 (variable) 是描述对象的具体特征的数据, 是类的属性, 可以是数字或者字符等各种类型, 在 R 语言的 S4 类中被称为存储槽 (slot). 不同的变量, 就是冰激凌机器中的不同口味的冰激凌. 方法 (method) 是作用于类对象的各种操作, 也是类的属性, 具体实现就是各种方程. 方法也对应于冰激凌机器上产出不同口味冰激凌的不同的按钮. 对于不同的类可以有相似的方法, 例如对不同的类都可以有 print 函数来输出类的内容. 需要注意的是, 在 R 语言的 S4 类中, 类的方法本身不属于类本身, 而是独立的方程, 这点和 Python 等语言面向对象编程有差别. 但是, 在 R 语言的 RC 类 (Reference Class) 中方法本身则属于类. 面向对象编程有三个重要特点: 封装, 继承和多态性.</description></item><item><title>使用GitHub page建立站点</title><link>https://kongjianyang.github.io/cn/2022/03/20/second-post-cn/</link><pubDate>Sun, 20 Mar 2022 13:42:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2022/03/20/second-post-cn/</guid><description>记录第一次使用GitHub page建立站点的步骤:
 主要参考这篇文章：郝鸿涛：Hongtao Hao [TOC]
