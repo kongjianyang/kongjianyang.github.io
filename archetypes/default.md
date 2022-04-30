@@ -3,7 +3,8 @@ title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
 author: KJY
 slug: ["some here"]
-draft: true
+draft: false
+toc: true
 categories:  
   -[ "Note" ]
 tags:        

@@ -1,98 +1,53 @@
-<a name="top"></a>
+<html><body><a name="top"></a>
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>KJY</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/fonts.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>KJY</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="/css/style.css" rel="stylesheet"/>
+<link href="/css/fonts.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
-
 <script>hljs.initHighlightingOnLoad();</script>
-
-
-
-
-
-
-
-  </head>
-  
-  <body>
-    <div class="wrapper">
-      <header class="header">
-        <nav class="nav" >
-      <a href="/" class="nav-logo">
-        <img src="/media/%3cnil%3e"
-         width=""
-         height=""
-         alt="">
-      </a>
-
-      <ul class="nav-links" >
-        
-        
-           <li><a href="/cn/about/">关于</a></li>
-       
-           <li><a href="/cn/posts/">日志</a></li>
-       
-           <li><a href="/cn/newsletter/">周刊</a></li>
-       
-           <li><a href="/">English</a></li>
-       
-       
-      </ul>
+<div class="wrapper">
+<header class="header">
+<nav class="nav">
+<a class="nav-logo" href="/">
+<img alt="" height="" src="/media/%3cnil%3e" width=""/>
+</a>
+<ul class="nav-links">
+<li><a href="/cn/about/">关于</a></li>
+<li><a href="/cn/posts/">日志</a></li>
+<li><a href="/cn/newsletter/">周刊</a></li>
+<li><a href="/">English</a></li>
+</ul>
 </nav>
-      </header>
-
-<main class = "content" role="main">
+</header>
+<main class="content" role="main">
 <div style="text-align: center">
-
 <h1>初次使用bookdown编写书籍</h1>
-
 <p>Liang 
  / 2018-11-28 </p>
-
 <hr/>
 </div>
-
 <span class="article-toolbar">
-  
-  
-  
-  
-  
-  
-  
-  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-28-%e5%88%9d%e6%ac%a1%e4%bd%bf%e7%94%a8bookdown%e7%bc%96%e5%86%99%e4%b9%a6%e7%b1%8d.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
-  </a>
-  
-  
-  
+<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-28-%e5%88%9d%e6%ac%a1%e4%bd%bf%e7%94%a8bookdown%e7%bc%96%e5%86%99%e4%b9%a6%e7%b1%8d.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
+</a>
 </span>
-
-
 <aside class="toc">
 Table of Contents:
 <nav id="TableOfContents"></nav>
 </aside>
-
-
 <div class="body-text list-text">
 <p>bookdown支持采用Rmarkdown (R代码可以运行)或普通markdown编写文档，然后编译成HTML, WORD, PDF, Epub等格式。</p>
-<h1 id="1-基本使用">1. 基本使用<a href="#1-基本使用" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
+<h1 id="1-基本使用">1. 基本使用<a arialabel="Anchor" class="header-anchor" href="#1-基本使用"> # </a></h1>
 <p>使用要求：</p>
 <ul>
 <li>安装Rstudio</li>
@@ -104,17 +59,17 @@ Table of Contents:
 </code></pre><ul>
 <li>安装bookdown</li>
 </ul>
-<pre tabindex="0"><code>install.packages(&#34;bookdown&#34;)
+<pre tabindex="0"><code>install.packages("bookdown")
 </code></pre><p>下载demo：</p>
 <pre tabindex="0"><code>git clone https://github.com/rstudio/bookdown-demo
 </code></pre><p>然后进行编译，运行下载的示例中的bash _build.sh，_book目录下就是成书。</p>
 <pre tabindex="0"><code>#!/bin/sh
-Rscript -e &#34;bookdown::render_book(&#39;index.Rmd&#39;, &#39;bookdown::gitbook&#39;)&#34;
+Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook')"
 # 生成pdf需要安装好latex，如果不需要可以注释掉
-Rscript -e &#34;bookdown::render_book(&#39;index.Rmd&#39;, &#39;bookdown::pdf_book&#39;)&#34;
+Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::pdf_book')"
 </code></pre><p>如果想在Rstudio中进行预览：</p>
-<pre tabindex="0"><code>bookdown:::serve_book(&#34;./01Demo/bookdown-demo/&#34;)
-</code></pre><h1 id="2-文件格式">2. 文件格式<a href="#2-文件格式" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
+<pre tabindex="0"><code>bookdown:::serve_book("./01Demo/bookdown-demo/")
+</code></pre><h1 id="2-文件格式">2. 文件格式<a arialabel="Anchor" class="header-anchor" href="#2-文件格式"> # </a></h1>
 <ul>
 <li>
 <p>一个典型的bookdown文档包含多个章节，每个章节在一个R Markdown文件里面 (文件的语法可以是pandoc支持的markdown语法，但后缀必须为Rmd)。</p>
@@ -123,7 +78,7 @@ Rscript -e &#34;bookdown::render_book(&#39;index.Rmd&#39;, &#39;bookdown::pdf_bo
 <p>每一个章节都必须以<code># Chapter title</code>开头。后面可以跟一段概括性语句，概述本章的内容，方便理解，同时也防止二级标题出现在这一页。默认系统会按照文件名的顺序合并Rmd文件。</p>
 </li>
 <li>
-<p>另外章节的顺序也可在_bookdown.yml文件中通过<code>rmd_files:[&quot;file1.Rmd&quot;, &quot;file2.Rmd&quot;, ..]</code>指定。</p>
+<p>另外章节的顺序也可在_bookdown.yml文件中通过<code>rmd_files:["file1.Rmd", "file2.Rmd", ..]</code>指定。</p>
 </li>
 <li>
 <p>如果有index.Rmd，index.Rmd总是出现在第一个位置。通常index.Rmd里面也需要有一章节，如果不需要对这一章节编号的话，可以写作<code># Preface {-}</code>, 关键是{-}。</p>
@@ -133,9 +88,9 @@ Rscript -e &#34;bookdown::render_book(&#39;index.Rmd&#39;, &#39;bookdown::pdf_bo
 </li>
 </ul>
 <pre tabindex="0"><code>--- 
-title: &#34;A Minimal Book Example&#34;
-author: &#34;Yihui Xie&#34;
-date: &#34;`r Sys.Date()`&#34;
+title: "A Minimal Book Example"
+author: "Yihui Xie"
+date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -143,7 +98,7 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: rstudio/bookdown-demo
-description: &#34;This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook.&#34;
+description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
 ---
 </code></pre><p>插入脚注:</p>
 <p><code>text^[footnote]</code> is used to get the footnote.</p>
@@ -176,73 +131,48 @@ $$</p>
 <p>$$
 E = mc^2
 $$</p>
-<h1 id="引用其他章节">引用其他章节<a href="#引用其他章节" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
+<h1 id="引用其他章节">引用其他章节<a arialabel="Anchor" class="header-anchor" href="#引用其他章节"> # </a></h1>
 <p><a href="ttps://bookdown.org/yihui/bookdown/cross-references.html">Cross-references</a>
-
 </p>
 <p>例如引用第四章，可以使用</p>
 <pre tabindex="0"><code>[Chapter 4 Plant Materials and Growth Conditions](#plant_growth)
-</code></pre><h1 id="输出为word">输出为Word<a href="#输出为word" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
+</code></pre><h1 id="输出为word">输出为Word<a arialabel="Anchor" class="header-anchor" href="#输出为word"> # </a></h1>
 <p>在index.Rmd或者_bookdown.yml中设置site: bookdown::bookdown_site后， RStudio就能识别这个项目是一个bookdown项目， 这时RStudio会有一个Build窗格，其中有“Build book”快捷图标， 从下拉菜单中选择一个输出格式（包括gitbook、pdf_book、epub_book）， 就可以编译整本书。</p>
 <p>在_output.yml加入一行bookdown::word_document2: default可以输出为Word, 注意，default这个词是不能少的。</p>
 <p><strong>Reference:</strong></p>
 <ul>
 <li>
-<p><a href="http://blog.genesino.com/2016/11/bookdown-usage/#%E7%BC%96%E8%AF%91%E6%88%90%E4%B9%A6" target="_blank" rel="noreferrer noopener">Bookdown平台</a>
-
+<p><a href="http://blog.genesino.com/2016/11/bookdown-usage/#%E7%BC%96%E8%AF%91%E6%88%90%E4%B9%A6" rel="noreferrer noopener" target="_blank">Bookdown平台</a>
 </p>
 </li>
 <li>
-<p><a href="http://www.pzhao.org/zh/post/bookdown-cheatsheet/" target="_blank" rel="noreferrer noopener">R bookdown 语法标记速查</a>
-
+<p><a href="http://www.pzhao.org/zh/post/bookdown-cheatsheet/" rel="noreferrer noopener" target="_blank">R bookdown 语法标记速查</a>
 </p>
 </li>
 </ul>
-
 <p style="color:#777;">最后一次修改于 2018-11-28</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
-
 </main>
-
 <footer class="footer">
-
-<script src="https://utteranc.es/client.js"
-        repo="kongjianyang/kongjianyang.github.io"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
+<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
 </script>
-
-
-  <script type="text/javascript" src="/js/math-code.js"></script>
-<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script type="text/javascript" src="/js/center-img.js"></script>
-
-
-
-     <ul class="footer-links">
-      
-       
-       
-       
-       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+<script src="/js/math-code.js" type="text/javascript"></script>
+<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/js/center-img.js" type="text/javascript"></script>
+<ul class="footer-links">
+<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
        订阅 </a>
-       </li>
-       
-       
-       <li>
-       
-       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+</li>
+<li>
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
         版权
-        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
-        </a>
-       </li>
-       
-     </ul>
-     <div class="copyright-text">
+        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
+</a>
+</li>
+</ul>
+<div class="copyright-text">
             
             ©
             
@@ -251,10 +181,5 @@ $$</p>
             2018-2021
             
      </div>
-
 </footer>
-
-
-
-
-
+</div></body></html>

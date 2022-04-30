@@ -1,95 +1,50 @@
-<a name="top"></a>
+<html><body><a name="top"></a>
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>KJY</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/fonts.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>KJY</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="/css/style.css" rel="stylesheet"/>
+<link href="/css/fonts.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
-
 <script>hljs.initHighlightingOnLoad();</script>
-
-
-
-
-
-
-
-  </head>
-  
-  <body>
-    <div class="wrapper">
-      <header class="header">
-        <nav class="nav" >
-      <a href="/" class="nav-logo">
-        <img src="/media/%3cnil%3e"
-         width=""
-         height=""
-         alt="">
-      </a>
-
-      <ul class="nav-links" >
-        
-        
-           <li><a href="/cn/about/">关于</a></li>
-       
-           <li><a href="/cn/posts/">日志</a></li>
-       
-           <li><a href="/cn/newsletter/">周刊</a></li>
-       
-           <li><a href="/">English</a></li>
-       
-       
-      </ul>
+<div class="wrapper">
+<header class="header">
+<nav class="nav">
+<a class="nav-logo" href="/">
+<img alt="" height="" src="/media/%3cnil%3e" width=""/>
+</a>
+<ul class="nav-links">
+<li><a href="/cn/about/">关于</a></li>
+<li><a href="/cn/posts/">日志</a></li>
+<li><a href="/cn/newsletter/">周刊</a></li>
+<li><a href="/">English</a></li>
+</ul>
 </nav>
-      </header>
-
-<main class = "content" role="main">
+</header>
+<main class="content" role="main">
 <div style="text-align: center">
-
 <h1>R语言tidyverse风格简介</h1>
-
 <p>KJY 
  / 2020-02-13 </p>
-
 <hr/>
 </div>
-
 <span class="article-toolbar">
-  
-  
-  
-  
-  
-  
-  
-  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2020-02-13-R%e8%af%ad%e8%a8%80tidyverse%e9%a3%8e%e6%a0%bc%e7%ae%80%e4%bb%8b.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
-  </a>
-  
-  
-  
+<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2020-02-13-R%e8%af%ad%e8%a8%80tidyverse%e9%a3%8e%e6%a0%bc%e7%ae%80%e4%bb%8b.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
+</a>
 </span>
-
-
 <aside class="toc">
 Table of Contents:
 <nav id="TableOfContents"></nav>
 </aside>
-
-
 <div class="body-text list-text">
 <p>tidyverse有两层基本含义：（1）基于Google 社区的R 代码风格（Google’s R style guide）衍生的一种使代码清晰可读的编程风格；（2）一系列基于前述风格而编写的数据处理R 包。tidyverse一词中的tidy意为整洁，verse意为诗篇、诗行，合起来意指代码或数据如诗行般整洁易读，即成为“整洁代码”（tidy code）或“整洁数据”（tidy data）。熟悉这一风格和相关R 包，可使数据处理和代码编写过程更为便捷高效，且易于与其他数据分析者交流沟通。</p>
 <p>建立较为统一的代码书写风格，可方便不同用户之间的沟通与协作。这里基于tidyverse模式择要介绍目前R 编程中的主流风格，并根据中文用户的习惯做部分调整和说明。某些内容可能初学者并不一定很快遇到，但仍宜先行阅读，以建立良好的书写规范。详细的tidyverse风格说明参见如下链接：</p>
@@ -98,7 +53,7 @@ Table of Contents:
 <p><strong>1.文件名</strong></p>
 <p>文件名应能体现文件的实质内容，只使用数字、英文字母、中划线-和下划线_。尽量避免文件名中的英文字母大小写混用，宜只使用小写，并建议使用_或-连接文件名中的不同英文，如nankai_psy_2017。</p>
 <p>若多个文件存在特定顺序，应以数字作为前缀。如果有超过10个文件，对于个位数的前缀要在前面添补一个0。例如：</p>
-<p><img src="http://5b0988e595225.cdn.sohucs.com/images/20171029/d7957a6bf3b24a4db670ecca88ac5625.png" alt=""></p>
+<p><img alt="" src="http://5b0988e595225.cdn.sohucs.com/images/20171029/d7957a6bf3b24a4db670ecca88ac5625.png"/></p>
 <p>其中，.后的xx表示适当的文件后缀名，可能是csv、xlsx、pdf、png等。</p>
 <p>超过100个文件则在最开始补充00，依此类推。</p>
 <p><strong>2.变量与函数名</strong></p>
@@ -135,31 +90,31 @@ Table of Contents:
 <p>汉语写作中基本无须注意空格，但在英文书写和编程中正好相反。在适当的地方插入空格，可使文本和代码整洁美观，务必引起重视。</p>
 <p>=、+、-、&lt;-这四个符号两侧需要有一个空格。与正常英文书写一样，逗号后面（而不是前面）应有空格。</p>
 <p>但是，:、::和:::两侧不需要空格。</p>
-<p><img src="http://5b0988e595225.cdn.sohucs.com/images/20171029/554deb53690b4855877c275524dc66f8.png" alt=""></p>
+<p><img alt="" src="http://5b0988e595225.cdn.sohucs.com/images/20171029/554deb53690b4855877c275524dc66f8.png"/></p>
 <p>小括号(的前面需要加空格，调用函数时除外。</p>
 <p>若为对齐=号或赋值符号&lt;-，可使用多个空格。</p>
-<p><img src="http://5b0988e595225.cdn.sohucs.com/images/20171029/bbc803164122444c84edb65525fef3c1.png" alt=""></p>
+<p><img alt="" src="http://5b0988e595225.cdn.sohucs.com/images/20171029/bbc803164122444c84edb65525fef3c1.png"/></p>
 <p><strong>2.缩进</strong></p>
 <p>通常不用制表符（Tab 键）进行缩进，用两个空格进行缩进。</p>
 <p>花括号{}用于定义R 代码中的层级。{}内的每行代码前应缩进两个空格。大括号的左半边{不能独占一行，其后应另起一行。右半边}应独占一行，除非后面有else或)。</p>
-<p><img src="http://5b0988e595225.cdn.sohucs.com/images/20171029/595ae496bcc44578a4e965e5547ab996.png" alt=""></p>
+<p><img alt="" src="http://5b0988e595225.cdn.sohucs.com/images/20171029/595ae496bcc44578a4e965e5547ab996.png"/></p>
 <p>若if语句非常简单，仅占一行，可不使用花括号。例如：</p>
-<p><img src="http://5b0988e595225.cdn.sohucs.com/images/20171029/6eecaa221ce3457cbc2c80e8237604eb.png" alt=""></p>
+<p><img alt="" src="http://5b0988e595225.cdn.sohucs.com/images/20171029/6eecaa221ce3457cbc2c80e8237604eb.png"/></p>
 <p><strong>3.行宽</strong></p>
 <p>每行代码宜不超过80个字符。若代码超出这一长度，应尽量将一些功能打包成独立的函数。</p>
 <p>若代码太长，不能写成一行代码，可以一行写函数名，一行写参数，一行写右括号)。这样代码可读性更强，也便于修改。例如：</p>
-<p><img src="http://5b0988e595225.cdn.sohucs.com/images/20171029/f0f19593aa1444e78c4b68a2e0754808.png" alt=""></p>
+<p><img alt="" src="http://5b0988e595225.cdn.sohucs.com/images/20171029/f0f19593aa1444e78c4b68a2e0754808.png"/></p>
 <p>若参数之间关系密切，可以将几个参数放在同一行中，例如用paste()或stop()调用字符串。如有可能，生成字符串时要将一行代码和它的输出放到同一行中。</p>
 <p>不要把分号;放在行尾，也不要用它分隔同一行的多条命令。</p>
 <p><strong>4.管道操作</strong></p>
 <p>当将三个或更多的函数嵌套调用，或者创建无须关心的中间对象时，要使用管道操作符：%&gt;%，其含义是将上一个函数的结果传递作为下一个函数的第一个参数。%&gt;%的前面应有一个空格，后面的代码应另起一行。若一个函数的所有参数不能同时在一行中，则在每行放置一个参数并且缩进。完成第一步后，每一行都应缩进两个空格。即使某一步的管道操作可以省略对象，也应在函数名后加上()。参见如下示例：</p>
-<p><img src="http://5b0988e595225.cdn.sohucs.com/images/20171029/d9f572bfaaad4409be969bad6dc6b12d.png" alt=""></p>
-<p><img src="http://5b0988e595225.cdn.sohucs.com/images/20171029/8f16d8a13ad847fa93edb480bf4ad3c0.png" alt=""></p>
+<p><img alt="" src="http://5b0988e595225.cdn.sohucs.com/images/20171029/d9f572bfaaad4409be969bad6dc6b12d.png"/></p>
+<p><img alt="" src="http://5b0988e595225.cdn.sohucs.com/images/20171029/8f16d8a13ad847fa93edb480bf4ad3c0.png"/></p>
 <p>如果需要操纵不止一个对象，或者中间对象具有实际意义且后面需要加以调用时，应避免使用管道操作。虽然在管道操作的最后可用-&gt;赋值，但应尽量避免这一做法，以增加代码的可读性。</p>
 <p><strong>5.注释</strong></p>
 <p>每行注释都以#号开始，#号后需要加一个空格。</p>
 <p>可使用由-和=构成的注释行将文件分割成容易理解的段落。</p>
-<p><img src="http://5b0988e595225.cdn.sohucs.com/images/20171029/ad26370515e04c0babb47ec2f3531cfe.png" alt=""></p>
+<p><img alt="" src="http://5b0988e595225.cdn.sohucs.com/images/20171029/ad26370515e04c0babb47ec2f3531cfe.png"/></p>
 <p><strong>五、tidyverse 包简介</strong></p>
 <p>作为R 包的tidyverse 集合了当下最为流行的数据处理包，是简化数据操纵、便利统计操作、美化结果呈现的高效工具。</p>
 <p><strong>1.基本理念</strong></p>
@@ -239,58 +194,36 @@ Table of Contents:
 </ul>
 <p>安装成功后，可通过常规方式加载tidyverse 包，结果如下：</p>
 <p>library(tidyverse)</p>
-<p><img src="http://5b0988e595225.cdn.sohucs.com/images/20171029/19cb67d06f314fc99067377f728993e9.jpeg" alt=""></p>
+<p><img alt="" src="http://5b0988e595225.cdn.sohucs.com/images/20171029/19cb67d06f314fc99067377f728993e9.jpeg"/></p>
 <p>此时加载的是最常用的数据分析包，如ggplot2、dplyr、tidyr 等。若需其他tidyverse 包，可再单独导入。</p>
 <p>若要查看此中的相关包是否为最新版本，可通过如下命令：</p>
 <p>此时若出现相关更新提示，可遵照执行。</p>
-<p><img src="http://5b0988e595225.cdn.sohucs.com/images/20171029/932b7feb238344889027c98e2247f4ce.png" alt=""></p>
+<p><img alt="" src="http://5b0988e595225.cdn.sohucs.com/images/20171029/932b7feb238344889027c98e2247f4ce.png"/></p>
 <p>在Selection后键入1即可更新相关包。</p>
 <p>开始数据分析时，不论是否用到，可先加载tidyverse 系列包，以便后续工作。此后将对此系列包中的重点R 包展开详细介绍。</p>
-
 <p style="color:#777;">最后一次修改于 2020-02-13</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
-
 </main>
-
 <footer class="footer">
-
-<script src="https://utteranc.es/client.js"
-        repo="kongjianyang/kongjianyang.github.io"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
+<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
 </script>
-
-
-  <script type="text/javascript" src="/js/math-code.js"></script>
-<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script type="text/javascript" src="/js/center-img.js"></script>
-
-
-
-     <ul class="footer-links">
-      
-       
-       
-       
-       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+<script src="/js/math-code.js" type="text/javascript"></script>
+<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/js/center-img.js" type="text/javascript"></script>
+<ul class="footer-links">
+<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
        订阅 </a>
-       </li>
-       
-       
-       <li>
-       
-       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+</li>
+<li>
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
         版权
-        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
-        </a>
-       </li>
-       
-     </ul>
-     <div class="copyright-text">
+        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
+</a>
+</li>
+</ul>
+<div class="copyright-text">
             
             ©
             
@@ -299,10 +232,5 @@ Table of Contents:
             2018-2021
             
      </div>
-
 </footer>
-
-
-
-
-
+</div></body></html>

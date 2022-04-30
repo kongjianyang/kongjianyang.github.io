@@ -1,101 +1,57 @@
-<a name="top"></a>
+<html><body><a name="top"></a>
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>KJY</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/fonts.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>KJY</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="/css/style.css" rel="stylesheet"/>
+<link href="/css/fonts.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
-
 <script>hljs.initHighlightingOnLoad();</script>
-
-
-
-
-
-
-
-  </head>
-  
-  <body>
-    <div class="wrapper">
-      <header class="header">
-        <nav class="nav" >
-      <a href="/" class="nav-logo">
-        <img src="/media/%3cnil%3e"
-         width=""
-         height=""
-         alt="">
-      </a>
-
-      <ul class="nav-links" >
-        
-        
-           <li><a href="/cn/about/">关于</a></li>
-       
-           <li><a href="/cn/posts/">日志</a></li>
-       
-           <li><a href="/cn/newsletter/">周刊</a></li>
-       
-           <li><a href="/">English</a></li>
-       
-       
-      </ul>
+<div class="wrapper">
+<header class="header">
+<nav class="nav">
+<a class="nav-logo" href="/">
+<img alt="" height="" src="/media/%3cnil%3e" width=""/>
+</a>
+<ul class="nav-links">
+<li><a href="/cn/about/">关于</a></li>
+<li><a href="/cn/posts/">日志</a></li>
+<li><a href="/cn/newsletter/">周刊</a></li>
+<li><a href="/">English</a></li>
+</ul>
 </nav>
-      </header>
-
-<main class = "content" role="main">
+</header>
+<main class="content" role="main">
 <div style="text-align: center">
-
 <h1>利用PyPDF2合并PDF文件</h1>
-
 <p>Liang 
  / 2018-11-24 </p>
-
 <hr/>
 </div>
-
 <span class="article-toolbar">
-  
-  
-  
-  
-  
-  
-  
-  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-%e5%88%a9%e7%94%a8PyPDF2%e5%90%88%e5%b9%b6PDF%e6%96%87%e4%bb%b6.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
-  </a>
-  
-  
-  
+<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-%e5%88%a9%e7%94%a8PyPDF2%e5%90%88%e5%b9%b6PDF%e6%96%87%e4%bb%b6.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
+</a>
 </span>
-
-
-
 <div class="body-text list-text">
-<h1 id="1-问题">1. 问题<a href="#1-问题" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
+<h1 id="1-问题">1. 问题<a arialabel="Anchor" class="header-anchor" href="#1-问题"> # </a></h1>
 <p>有的时候我们有一系列PDF文件我们希望合并到一个PDF中进行查看和打印，这个时候合并PDF文件就非常有用，PyPDF2库可以帮助我们做到这点。</p>
-<h1 id="2-用法">2. 用法<a href="#2-用法" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
+<h1 id="2-用法">2. 用法<a arialabel="Anchor" class="header-anchor" href="#2-用法"> # </a></h1>
 <p>PyPDF2 包括了 PdfFileReader PdfFileMerger PageObject PdfFileWriter 四个常用的主要 Class。</p>
 <p>以下命令可以解释这个库是怎么工作的</p>
 <pre tabindex="0"><code>from PyPDF2 import PdfFileReader, PdfFileWriter
-readFile = &#39;read.pdf&#39;
-writeFile = &#39;write.pdf&#39;
+readFile = 'read.pdf'
+writeFile = 'write.pdf'
 # 获取一个 PdfFileReader 工具
-pdfReader = PdfFileReader(open(readFile, &#39;rb&#39;))
+pdfReader = PdfFileReader(open(readFile, 'rb'))
 # 获取 PDF 的页数
 pageCount = pdfReader.getNumPages()
 print(pageCount)
@@ -106,70 +62,49 @@ pdfWriter = PdfFileWriter()
 # 将一个 PageObject 插手到 PdfFileWriter 中
 pdfWriter.addPage(page)
 # 输出到文件中
-pdfWriter.write(open(writeFile, &#39;wb&#39;))
+pdfWriter.write(open(writeFile, 'wb'))
 </code></pre><p>接下来的命令是一个实例</p>
 <pre tabindex="0"><code>from PyPDF2 import PdfFileMerger
 
-pdfs = [&#39;file1.pdf&#39;, &#39;file2.pdf&#39;, &#39;file3.pdf&#39;, &#39;file4.pdf&#39;]
+pdfs = ['file1.pdf', 'file2.pdf', 'file3.pdf', 'file4.pdf']
 
 merger = PdfFileMerger()
 
 for pdf in pdfs:
-    merger.append(open(pdf, &#39;rb&#39;))
+    merger.append(open(pdf, 'rb'))
 
-with open(&#39;result.pdf&#39;, &#39;wb&#39;) as fout:
+with open('result.pdf', 'wb') as fout:
     merger.write(fout)
 </code></pre><p>另外一个技巧</p>
 <p>在Python列表中提取匹配到的元素</p>
-<pre tabindex="0"><code>mylist = [&#34;aa123&#34;, &#34;bb2322&#34;, &#34;aa354&#34;, &#34;cc332&#34;, &#34;ab334&#34;, &#34;333aa&#34;]
-l = [i for i in mylist if &#39;aa&#39; in i]
+<pre tabindex="0"><code>mylist = ["aa123", "bb2322", "aa354", "cc332", "ab334", "333aa"]
+l = [i for i in mylist if 'aa' in i]
 l
-#[&#39;aa123&#39;, &#39;aa354&#39;, &#39;333aa&#39;]
+#['aa123', 'aa354', '333aa']
 </code></pre>
 <p style="color:#777;">最后一次修改于 2018-11-24</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
-
 </main>
-
 <footer class="footer">
-
-<script src="https://utteranc.es/client.js"
-        repo="kongjianyang/kongjianyang.github.io"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
+<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
 </script>
-
-
-  <script type="text/javascript" src="/js/math-code.js"></script>
-<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script type="text/javascript" src="/js/center-img.js"></script>
-
-
-
-     <ul class="footer-links">
-      
-       
-       
-       
-       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+<script src="/js/math-code.js" type="text/javascript"></script>
+<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/js/center-img.js" type="text/javascript"></script>
+<ul class="footer-links">
+<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
        订阅 </a>
-       </li>
-       
-       
-       <li>
-       
-       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+</li>
+<li>
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
         版权
-        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
-        </a>
-       </li>
-       
-     </ul>
-     <div class="copyright-text">
+        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
+</a>
+</li>
+</ul>
+<div class="copyright-text">
             
             ©
             
@@ -178,10 +113,5 @@ l
             2018-2021
             
      </div>
-
 </footer>
-
-
-
-
-
+</div></body></html>

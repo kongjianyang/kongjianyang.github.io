@@ -1,121 +1,74 @@
-<a name="top"></a>
+<html><body><a name="top"></a>
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>KJY</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/fonts.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>KJY</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="/css/style.css" rel="stylesheet"/>
+<link href="/css/fonts.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
-
 <script>hljs.initHighlightingOnLoad();</script>
-
-
-
-
-
-
-
-  </head>
-  
-  <body>
-    <div class="wrapper">
-      <header class="header">
-        <nav class="nav" >
-      <a href="/" class="nav-logo">
-        <img src="/media/%3cnil%3e"
-         width=""
-         height=""
-         alt="">
-      </a>
-
-      <ul class="nav-links" >
-        
-        
-           <li><a href="/cn/about/">关于</a></li>
-       
-           <li><a href="/cn/posts/">日志</a></li>
-       
-           <li><a href="/cn/newsletter/">周刊</a></li>
-       
-           <li><a href="/">English</a></li>
-       
-       
-      </ul>
+<div class="wrapper">
+<header class="header">
+<nav class="nav">
+<a class="nav-logo" href="/">
+<img alt="" height="" src="/media/%3cnil%3e" width=""/>
+</a>
+<ul class="nav-links">
+<li><a href="/cn/about/">关于</a></li>
+<li><a href="/cn/posts/">日志</a></li>
+<li><a href="/cn/newsletter/">周刊</a></li>
+<li><a href="/">English</a></li>
+</ul>
 </nav>
-      </header>
-
-<main class = "content" role="main">
+</header>
+<main class="content" role="main">
 <div style="text-align: center">
-
 <h1>MACS2使用</h1>
-
 <p>KJY 
  / 2022-03-25 </p>
-
 <hr/>
 </div>
-
 <span class="article-toolbar">
-  
-  
-  
-  
-  
-  
-  
-  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2022-03-25-MACS2.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
-  </a>
-  
-  
-  
+<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2022-03-25-MACS2.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
+</a>
 </span>
-
-
 <aside class="toc">
 Table of Contents:
 <nav id="TableOfContents">
-  <ol>
-    <li>
-      <ol>
-        <li></li>
-      </ol>
-    </li>
-  </ol>
+<ol>
+<li>
+<ol>
+<li></li>
+</ol>
+</li>
+</ol>
 </nav>
 </aside>
-
-
 <div class="body-text list-text">
 <p>参考资料：</p>
-<p><a href="http://www.360doc.com/content/18/0205/00/19913717_727772514.shtml" target="_blank" rel="noreferrer noopener">这可能是最棒的MACS2使用说明 (360doc.com)</a>
-
+<p><a href="http://www.360doc.com/content/18/0205/00/19913717_727772514.shtml" rel="noreferrer noopener" target="_blank">这可能是最棒的MACS2使用说明 (360doc.com)</a>
 </p>
-<p><a href="https://blog.csdn.net/weixin_43569478/article/details/108079812" target="_blank" rel="noreferrer noopener">使用MACS2进行差异peak分析_生信修炼手册的博客-CSDN博客</a>
-
+<p><a href="https://blog.csdn.net/weixin_43569478/article/details/108079812" rel="noreferrer noopener" target="_blank">使用MACS2进行差异peak分析_生信修炼手册的博客-CSDN博客</a>
 </p>
 <p>MACS2：Model-based analysis of ChiP-Seq. 最初的设计是用来鉴定转录因子的结合位点，但是它也可以用于其他类型的富集方式测序。</p>
 <p>MACS2作为使用最广泛的peak calling软件，在v2版本中添加了差异peak分析的功能，所有的子命令功能描述如下</p>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9LQXRSUEJCeWVHNVI5MGNRaWJxS2FibjVKM3ZwSDUyTWZnZUpkRTVwSGQza1BmdVNONEozMTVERVRKclpteFJxVGV0UXNQd3ZCVGdpY24zeFU3Tzdtd2hnLzY0MA?x-oss-process=image/format,png" alt=""></p>
+<p><img alt="" src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9LQXRSUEJCeWVHNVI5MGNRaWJxS2FibjVKM3ZwSDUyTWZnZUpkRTVwSGQza1BmdVNONEozMTVERVRKclpteFJxVGV0UXNQd3ZCVGdpY24zeFU3Tzdtd2hnLzY0MA?x-oss-process=image/format,png"/></p>
 <p>通过<code>bdgdiff</code>子命令来进行差异peak分析， 该命令不需要基于已有的peak calling结果，只需要输入每个样本对应的bedGraph格式的文件。需要注意的是，该命令只针对两个样本间的差异peak进行设计，适用于没有生物学重复的情况。</p>
 <p>对于使用macs2来进行差异peak的完整流程，官方给出了详细的说明文档，链接如下</p>
 <blockquote>
 <p>https://github.com/taoliu/MACS/wiki/Call-differential-binding-events</p>
 </blockquote>
 <p>可以分为以下3步</p>
-<h4 id="1-预测插入片段长度">1. 预测插入片段长度<a href="#1-预测插入片段长度" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<h4 id="1-预测插入片段长度">1. 预测插入片段长度<a arialabel="Anchor" class="header-anchor" href="#1-预测插入片段长度"> # </a></h4>
 <p>通过<code>predictd</code>子命令可以预测样本的fragment size，命令如下</p>
 <pre tabindex="0"><code>macs2 predictd -i input.bam
 </code></pre><pre tabindex="0"><code>#!/bin/bash
@@ -126,10 +79,10 @@ module load macs2/2.2.7.1-py39
 
 for i in `ls [A-H][1-9][A-H][1-9][A-H][1-9].bam`;
 do
-msg=&#34;macs2 predictd -i $i&#34;;
+msg="macs2 predictd -i $i";
 echo $msg;
 macs2 predictd -i $i;
-</code></pre><h4 id="2-peak--calling">2. peak  calling<a href="#2-peak--calling" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+</code></pre><h4 id="2-peak--calling">2. peak  calling<a arialabel="Anchor" class="header-anchor" href="#2-peak--calling"> # </a></h4>
 <p>在peak calling时，需要添加<code>-B</code>参数，这样才可以输出样本对应的bedgraph文件，同时需要保证peak  calling时采用一致的<code>--extsize</code>的值，就是第一步预测出来的数值，取多个样本的均值即可。官方也给出了推荐值，对于大多数的转录因子chip_seq数据，推荐值为200， 对于大部分组蛋白修饰的chip_seq数据，推荐值为147，命令如下</p>
 <pre tabindex="0"><code># condition1
 macs2 callpeak -B -t cond1_ChIP.bam -c cond1_Control.bam -n cond1 --nomodel --extsize 147
@@ -143,9 +96,9 @@ macs2 callpeak -B -t cond1_ChIP.bam -c cond1_Control.bam -n cond1 --outdir Macs2
 <li><code>-q</code>： q值(最小的FDR)的阈值。可以根据结果进行修正。q值是p值经Benjamini–Hochberg–Yekutieli修正后的值。<em>默认，0.01，对于 broad marks(组蛋白修饰的chipseq)，可以使用0.05；</em></li>
 <li><code>--broad--cutoff</code>: 用于过滤 <code>broad</code>得到的peak，默认是q值，如果设置 <code>-p</code>就用p值。</li>
 <li><code>--nomodel</code>: 这个参数说明不需要MACS去构建模型，也就是说下面的参数除了 <code>--shift, --extsize</code>外都会被无视。</li>
-<li><code>--extsize</code>： MACS使用这个参数将read以5&rsquo;-&gt; 3&rsquo;衍生至等长片段。比如说你知道你的转录因子的结合区域是200bp，那么参数就是 <code>--extsize 200</code>。当且仅当 <code>--nomodel</code>和 <code>--fix-bimodal</code>设置使用。</li>
+<li><code>--extsize</code>： MACS使用这个参数将read以5’-&gt; 3’衍生至等长片段。比如说你知道你的转录因子的结合区域是200bp，那么参数就是 <code>--extsize 200</code>。当且仅当 <code>--nomodel</code>和 <code>--fix-bimodal</code>设置使用。</li>
 <li><code>-g</code>表示可比对的基因组大小。比如说人类是2.7e9，也就是2.7G，拟南芥根据NCBI显示是119,667,750，也就是1.2e8. 这个参数设置的原因，根据我读发表MACS的那篇文献推测，是因为MACS需要进行全基因组扫描构建双峰模型估计shift size。这个只是我猜测而已，反正根据自己物种来就对了。由于基因组序列的重复性，基因组实际可以mapping的大小小于原始的基因组。这个参数要根据实际物种计算基因组的有效大小。</li>
-<li>-f/&ndash;format FORMAT<code>用来声明输入的文件格式，目前MACS能够识别的格式有 'ELAND', 'BED', 'ELANDMULTI', 'ELANDEXPORT', 'ELANDMULTIPET' (双端测序), 'SAM', 'BAM', 'BOWTIE', 'BAMPE', 'BEDPE'. 除'BAMPE', 'BEDPE'需要特别声明外，其他格式都可以用 </code>AUTO</li>
+<li>-f/–format FORMAT<code>用来声明输入的文件格式，目前MACS能够识别的格式有 'ELAND', 'BED', 'ELANDMULTI', 'ELANDEXPORT', 'ELANDMULTIPET' (双端测序), 'SAM', 'BAM', 'BOWTIE', 'BAMPE', 'BEDPE'. 除'BAMPE', 'BEDPE'需要特别声明外，其他格式都可以用 </code>AUTO</li>
 </ul>
 <p>在运行这一步的时候，会输出每个样本过滤之后的reads数目，示意如下</p>
 <pre tabindex="0"><code># tags after filtering in treatment: 19291269# tags after filtering in control: 12914669
@@ -153,7 +106,7 @@ macs2 callpeak -B -t cond1_ChIP.bam -c cond1_Control.bam -n cond1 --outdir Macs2
 <blockquote>
 <p>maybe need to add paired end mode, Paired-End mode is off</p>
 </blockquote>
-<h4 id="3-reults-of-peak-calling">3. Reults of peak calling<a href="#3-reults-of-peak-calling" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<h4 id="3-reults-of-peak-calling">3. Reults of peak calling<a arialabel="Anchor" class="header-anchor" href="#3-reults-of-peak-calling"> # </a></h4>
 <ol>
 <li>NAME_peaks.xls
 存放peak信息的文件</li>
@@ -215,7 +168,7 @@ bedGraph 文件，可以导入UCSC genome browser查看，或转格式为bigWig 
 <li>treat_pileup ：实验组bedGraph 文件</li>
 <li>control_lambda ：对照组bedGraph 文件</li>
 </ul>
-<h4 id="4-输出文件的比较">4. 输出文件的比较<a href="#4-输出文件的比较" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<h4 id="4-输出文件的比较">4. 输出文件的比较<a arialabel="Anchor" class="header-anchor" href="#4-输出文件的比较"> # </a></h4>
 <ul>
 <li>
 <p>xls文件
@@ -234,17 +187,16 @@ bedGraph 文件，可以导入UCSC genome browser查看，或转格式为bigWig 
 bdg文件适合导入UCSC或IGV进行谱图可视化，或者转换为bigwig格式再进行可视化</p>
 </li>
 </ul>
-<h4 id="5-差异peak分析">5. 差异peak分析<a href="#5-差异peak分析" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<h4 id="5-差异peak分析">5. 差异peak分析<a arialabel="Anchor" class="header-anchor" href="#5-差异peak分析"> # </a></h4>
 <p>参考这篇文章：</p>
-<p><a href="https://github.com/macs3-project/MACS/wiki/Call-differential-binding-events" target="_blank" rel="noreferrer noopener">Call differential binding events · macs3-project/MACS Wiki (github.com)</a>
-
+<p><a href="https://github.com/macs3-project/MACS/wiki/Call-differential-binding-events" rel="noreferrer noopener" target="_blank">Call differential binding events · macs3-project/MACS Wiki (github.com)</a>
 </p>
 <blockquote>
 <p>The purpose of this step is to do a three ways comparisons to find out where in the genome has differential enrichment between two conditions. A basic requirement is that this region should be at least enriched in either condition.</p>
 </blockquote>
 <p>命令如下</p>
 <pre tabindex="0"><code>macs2 bdgdiff --t1 cond1_treat_pileup.bdg --c1 cond1_control_lambda.bdg --t2 cond2_treat_pileup.bdg \--c2 cond2_control_lambda.bdg --d1 12914669 --d2 14444786 -g 60 -l 120 --o-prefix diff_c1_vs_c2
-</code></pre><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>查询命令使用：
+</code></pre><div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>查询命令使用：
 </span></span><span style="display:flex;"><span>macs2 bdgdiff -h
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>用法说明：
@@ -287,20 +239,19 @@ bdg文件适合导入UCSC或IGV进行谱图可视化，或者转换为bigwig格�
 <p>The last column in the file represent the log10 likelihood ratio to show how likely the observed signal in condition 1 in this region is from condition 1 comparing to condition 2. Higher the value, bigger the difference.</p>
 </blockquote>
 <p>这里需要注意bdgdiff可能不适合broad peaks:</p>
-<p><a href="https://www.biostars.org/p/274094/" target="_blank" rel="noreferrer noopener">Narrow &amp; Broad peaks from &lsquo;macs2 bdgdiff&rsquo; (biostars.org)</a>
-
+<p><a href="https://www.biostars.org/p/274094/" rel="noreferrer noopener" target="_blank">Narrow &amp; Broad peaks from ‘macs2 bdgdiff’ (biostars.org)</a>
 </p>
 <blockquote>
-<p><code>bdgdiff</code> first generate three tracks from the 4 input tracks, which contains the log-likelihoods of t1 &gt; t2, t1=t2, and t1 &lt; t2. The three output files are in fact peaks called by <code>bdgpeakcall</code>&ndash;the subfunction for calling narrow peaks&ndash;from these three tracks. So, <code>bdgdiff</code> is not suitable for calling differential broad peaks.</p>
+<p><code>bdgdiff</code> first generate three tracks from the 4 input tracks, which contains the log-likelihoods of t1 &gt; t2, t1=t2, and t1 &lt; t2. The three output files are in fact peaks called by <code>bdgpeakcall</code>–the subfunction for calling narrow peaks–from these three tracks. So, <code>bdgdiff</code> is not suitable for calling differential broad peaks.</p>
 </blockquote>
-<h4 id="4-使用igv加载macs的结果">4. 使用IGV加载MACS的结果<a href="#4-使用igv加载macs的结果" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<h4 id="4-使用igv加载macs的结果">4. 使用IGV加载MACS的结果<a arialabel="Anchor" class="header-anchor" href="#4-使用igv加载macs的结果"> # </a></h4>
 <ol>
 <li>首先解压并重命名 <code>bedGraph</code> 文件。以FoxA1数据集为例，首先定位到<code>HAIB_T47D_FoxA1_MACS_bedGraph/treat</code>,</li>
 <li>解压文件 <code>gzip -d HAIB_T47D_FoxA1_treat_afterfiting_all.bdg.gz</code></li>
 <li>更改后缀为<code>bedGraph</code>，这样可被IGV识别<code>mv HAIB_T47D_FoxA1_treat_afterfiting_all.bdg HAIB_T47D_FoxA1_treat_afterfiting_all.bedGraph</code></li>
 <li>用IGV加载<code>HAIB_T47D_FoxA1_treat_afterfiting_all.bedGraph</code>，根据IGV的手册。</li>
 </ol>
-<h4 id="一些解释">一些解释<a href="#一些解释" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<h4 id="一些解释">一些解释<a arialabel="Anchor" class="header-anchor" href="#一些解释"> # </a></h4>
 <p>MACS2比较适合call narrow peak, SICER适用于找出那些diffuse/broad peak，通过识别空间信号簇来寻找ChIP-enriched信号</p>
 <p>SICERv2.0: 输入文件不再局限于bed格式，bam文件也是可以的。</p>
 <p>什么时候需要去重</p>
@@ -322,51 +273,29 @@ bdg文件适合导入UCSC或IGV进行谱图可视化，或者转换为bigwig格�
 </ul>
 <p><strong>The take-home:</strong> Consider your enrichment efficiency and sequencing depth. But, because we cannot distinguish between the good and the bad, best practice is to remove duplicates prior to peak calling. Retain duplicates for differential binding analysis. Also, if you are expecting binding in repetitive regions keep duplicates and multiple mappers.</p>
 </blockquote>
-
 <p style="color:#777;">最后一次修改于 2022-03-25</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
-
 </main>
-
 <footer class="footer">
-
-<script src="https://utteranc.es/client.js"
-        repo="kongjianyang/kongjianyang.github.io"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
+<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
 </script>
-
-
-  <script type="text/javascript" src="/js/math-code.js"></script>
-<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script type="text/javascript" src="/js/center-img.js"></script>
-
-
-
-     <ul class="footer-links">
-      
-       
-       
-       
-       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+<script src="/js/math-code.js" type="text/javascript"></script>
+<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/js/center-img.js" type="text/javascript"></script>
+<ul class="footer-links">
+<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
        订阅 </a>
-       </li>
-       
-       
-       <li>
-       
-       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+</li>
+<li>
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
         版权
-        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
-        </a>
-       </li>
-       
-     </ul>
-     <div class="copyright-text">
+        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
+</a>
+</li>
+</ul>
+<div class="copyright-text">
             
             ©
             
@@ -375,10 +304,5 @@ bdg文件适合导入UCSC或IGV进行谱图可视化，或者转换为bigwig格�
             2018-2021
             
      </div>
-
 </footer>
-
-
-
-
-
+</div></body></html>

@@ -1,95 +1,51 @@
-<a name="top"></a>
+<html><body><a name="top"></a>
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>KJY</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/fonts.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>KJY</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="/css/style.css" rel="stylesheet"/>
+<link href="/css/fonts.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
-
 <script>hljs.initHighlightingOnLoad();</script>
-
-
-
-
-
-
-
-  </head>
-  
-  <body>
-    <div class="wrapper">
-      <header class="header">
-        <nav class="nav" >
-      <a href="/" class="nav-logo">
-        <img src="/media/%3cnil%3e"
-         width=""
-         height=""
-         alt="">
-      </a>
-
-      <ul class="nav-links" >
-        
-        
-           <li><a href="/cn/about/">关于</a></li>
-       
-           <li><a href="/cn/posts/">日志</a></li>
-       
-           <li><a href="/cn/newsletter/">周刊</a></li>
-       
-           <li><a href="/">English</a></li>
-       
-       
-      </ul>
+<div class="wrapper">
+<header class="header">
+<nav class="nav">
+<a class="nav-logo" href="/">
+<img alt="" height="" src="/media/%3cnil%3e" width=""/>
+</a>
+<ul class="nav-links">
+<li><a href="/cn/about/">关于</a></li>
+<li><a href="/cn/posts/">日志</a></li>
+<li><a href="/cn/newsletter/">周刊</a></li>
+<li><a href="/">English</a></li>
+</ul>
 </nav>
-      </header>
-
-<main class = "content" role="main">
+</header>
+<main class="content" role="main">
 <div style="text-align: center">
-
 <h1>macOS利用brew安装tree命令</h1>
-
 <p>Liang 
  / 2018-11-24 </p>
-
 <hr/>
 </div>
-
 <span class="article-toolbar">
-  
-  
-  
-  
-  
-  
-  
-  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-macOS%e5%88%a9%e7%94%a8brew%e5%ae%89%e8%a3%85tree%e5%91%bd%e4%bb%a4.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
-  </a>
-  
-  
-  
+<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-macOS%e5%88%a9%e7%94%a8brew%e5%ae%89%e8%a3%85tree%e5%91%bd%e4%bb%a4.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
+</a>
 </span>
-
-
-
 <div class="body-text list-text">
-<h3 id="01问题">01.问题<a href="#01问题" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<h3 id="01问题">01.问题<a arialabel="Anchor" class="header-anchor" href="#01问题"> # </a></h3>
 <p>tree命令可以显示文件夹下的文件结构，是非常好用的一个命令工具，但是不是Unix的built-in命令，需要自行安装，本来利用Homebrew安装既可，但是macOS会报错，如</p>
 <pre tabindex="0"><code>xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun
-</code></pre><h3 id="02原因">02.原因<a href="#02原因" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+</code></pre><h3 id="02原因">02.原因<a arialabel="Anchor" class="header-anchor" href="#02原因"> # </a></h3>
 <p>这个问题产生的原因是没有更新OS X El Capitan，在MAC下，git命令是在Xcode命令工具下的。</p>
 <p>###03.解决
 首先就是升级OS X El Capitan，使用命令：</p>
@@ -97,51 +53,29 @@
 </code></pre><p>然后安装tree命令：</p>
 <pre tabindex="0"><code>brew install tree
 </code></pre><p>已经安装上了tree命令了。</p>
-
 <p style="color:#777;">最后一次修改于 2018-11-24</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
-
 </main>
-
 <footer class="footer">
-
-<script src="https://utteranc.es/client.js"
-        repo="kongjianyang/kongjianyang.github.io"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
+<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
 </script>
-
-
-  <script type="text/javascript" src="/js/math-code.js"></script>
-<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script type="text/javascript" src="/js/center-img.js"></script>
-
-
-
-     <ul class="footer-links">
-      
-       
-       
-       
-       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+<script src="/js/math-code.js" type="text/javascript"></script>
+<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/js/center-img.js" type="text/javascript"></script>
+<ul class="footer-links">
+<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
        订阅 </a>
-       </li>
-       
-       
-       <li>
-       
-       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+</li>
+<li>
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
         版权
-        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
-        </a>
-       </li>
-       
-     </ul>
-     <div class="copyright-text">
+        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
+</a>
+</li>
+</ul>
+<div class="copyright-text">
             
             ©
             
@@ -150,10 +84,5 @@
             2018-2021
             
      </div>
-
 </footer>
-
-
-
-
-
+</div></body></html>

@@ -1,92 +1,48 @@
-<a name="top"></a>
+<html><body><a name="top"></a>
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>KJY</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/fonts.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>KJY</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="/css/style.css" rel="stylesheet"/>
+<link href="/css/fonts.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
-
 <script>hljs.initHighlightingOnLoad();</script>
-
-
-
-
-
-
-
-  </head>
-  
-  <body>
-    <div class="wrapper">
-      <header class="header">
-        <nav class="nav" >
-      <a href="/" class="nav-logo">
-        <img src="/media/%3cnil%3e"
-         width=""
-         height=""
-         alt="">
-      </a>
-
-      <ul class="nav-links" >
-        
-        
-           <li><a href="/cn/about/">关于</a></li>
-       
-           <li><a href="/cn/posts/">日志</a></li>
-       
-           <li><a href="/cn/newsletter/">周刊</a></li>
-       
-           <li><a href="/">English</a></li>
-       
-       
-      </ul>
+<div class="wrapper">
+<header class="header">
+<nav class="nav">
+<a class="nav-logo" href="/">
+<img alt="" height="" src="/media/%3cnil%3e" width=""/>
+</a>
+<ul class="nav-links">
+<li><a href="/cn/about/">关于</a></li>
+<li><a href="/cn/posts/">日志</a></li>
+<li><a href="/cn/newsletter/">周刊</a></li>
+<li><a href="/">English</a></li>
+</ul>
 </nav>
-      </header>
-
-<main class = "content" role="main">
+</header>
+<main class="content" role="main">
 <div style="text-align: center">
-
 <h1>shell编程-bash-shell的数值计算</h1>
-
 <p>Liang 
  / 2018-11-24 </p>
-
 <hr/>
 </div>
-
 <span class="article-toolbar">
-  
-  
-  
-  
-  
-  
-  
-  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-shell%e7%bc%96%e7%a8%8b-bash-shell%e7%9a%84%e6%95%b0%e5%80%bc%e8%ae%a1%e7%ae%97.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
-  </a>
-  
-  
-  
+<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-shell%e7%bc%96%e7%a8%8b-bash-shell%e7%9a%84%e6%95%b0%e5%80%bc%e8%ae%a1%e7%ae%97.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
+</a>
 </span>
-
-
-
 <div class="body-text list-text">
-<h2 id="1-数据计算基础">1. 数据计算基础<a href="#1-数据计算基础" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<h2 id="1-数据计算基础">1. 数据计算基础<a arialabel="Anchor" class="header-anchor" href="#1-数据计算基础"> # </a></h2>
 <p>使用man 或者info查看shell bash的判断命令test，Shell中的 test 命令用于检查某个条件是否成立，它可以进行数值、字符和文件三个方面的测试。</p>
 <pre tabindex="0"><code>man test 
 info test 
@@ -105,13 +61,13 @@ awk is /usr/bin/awk
 bc 1.06
 Copyright 1991-1994, 1997, 1998, 2000 Free Software Foundation, Inc.
 This is free software with ABSOLUTELY NO WARRANTY.
-For details type `warranty&#39;.
+For details type `warranty'.
 3^2
 9
 </code></pre><p>let 命令是 BASH 中用于计算的工具，用于执行一个或多个表达式，变量计算中不需要加上 $ 来表示变量。如果表达式中包含了空格或其他特殊字符，则必须引起来。</p>
 <pre tabindex="0"><code>$ let a=1+1; echo $a
 2
-</code></pre><h2 id="2-求模求幂">2. 求模求幂<a href="#2-求模求幂" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+</code></pre><h2 id="2-求模求幂">2. 求模求幂<a arialabel="Anchor" class="header-anchor" href="#2-求模求幂"> # </a></h2>
 <pre tabindex="0"><code>$ expr 5 % 2
 1
 
@@ -134,79 +90,58 @@ $ ((i=5**2))
 $ echo $i
 
 25
-$ echo &#34;5^2&#34; | bc
+$ echo "5^2" | bc
 25
-</code></pre><h2 id="3-浮点数计算">3. 浮点数计算<a href="#3-浮点数计算" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+</code></pre><h2 id="3-浮点数计算">3. 浮点数计算<a arialabel="Anchor" class="header-anchor" href="#3-浮点数计算"> # </a></h2>
 <p>let 和 expr 都无法进行浮点运算，但是 bc 和 awk 可以。</p>
-<pre tabindex="0"><code>$ echo &#34;scale=3; 1/13&#34;  | bc
+<pre tabindex="0"><code>$ echo "scale=3; 1/13"  | bc
 .076
 
-$ echo &#34;1 13&#34; | awk &#39;{printf(&#34;%0.3f\n&#34;,$1/$2)}&#39;
+$ echo "1 13" | awk '{printf("%0.3f\n",$1/$2)}'
 0.077
 </code></pre><p>bc 在进行浮点运算时需指定精度，否则默认为 0，即进行浮点运算时，默认结果只保留整数。而 awk 在控制小数位数时非常灵活，仅仅通过 printf 的格式控制就可以实现。</p>
-<h2 id="4-获取随机数">4. 获取随机数<a href="#4-获取随机数" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<h2 id="4-获取随机数">4. 获取随机数<a arialabel="Anchor" class="header-anchor" href="#4-获取随机数"> # </a></h2>
 <p>环境变量 RANDOM 产生从 0 到 32767 的随机数，而 awk 的 rand() 函数可以产生 0 到 1 之间的随机数。</p>
 <pre tabindex="0"><code>$ echo $RANDOM
 81
 
-$ echo &#34;&#34; | awk &#39;{srand(); printf(&#34;%f&#34;, rand());}&#39;
+$ echo "" | awk '{srand(); printf("%f", rand());}'
 0.237788
 </code></pre><p>说明： srand() 在无参数时，采用当前时间作为 rand() 随机数产生器的一个 seed 。</p>
 <p>随机产生一个从 0 到 255 之间的数字</p>
 <pre tabindex="0"><code>$ expr $RANDOM / 128
 208
 
-$ echo &#34;&#34; | awk &#39;{srand(); printf(&#34;%d\n&#34;, rand()*255);}&#39;
+$ echo "" | awk '{srand(); printf("%d\n", rand()*255);}'
 104
-</code></pre><h2 id="5-获取一系列数">5. 获取一系列数<a href="#5-获取一系列数" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+</code></pre><h2 id="5-获取一系列数">5. 获取一系列数<a arialabel="Anchor" class="header-anchor" href="#5-获取一系列数"> # </a></h2>
 <p>使用seq命令</p>
-<pre tabindex="0"><code>$ for i in {1..12}; do echo -n &#34;$i &#34;; done
+<pre tabindex="0"><code>$ for i in {1..12}; do echo -n "$i "; done
 1 2 3 4 5 6 7 8 9 10 11 12 %
 </code></pre>
 <p style="color:#777;">最后一次修改于 2018-11-24</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
-
 </main>
-
 <footer class="footer">
-
-<script src="https://utteranc.es/client.js"
-        repo="kongjianyang/kongjianyang.github.io"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
+<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
 </script>
-
-
-  <script type="text/javascript" src="/js/math-code.js"></script>
-<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script type="text/javascript" src="/js/center-img.js"></script>
-
-
-
-     <ul class="footer-links">
-      
-       
-       
-       
-       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+<script src="/js/math-code.js" type="text/javascript"></script>
+<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/js/center-img.js" type="text/javascript"></script>
+<ul class="footer-links">
+<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
        订阅 </a>
-       </li>
-       
-       
-       <li>
-       
-       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+</li>
+<li>
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
         版权
-        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
-        </a>
-       </li>
-       
-     </ul>
-     <div class="copyright-text">
+        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
+</a>
+</li>
+</ul>
+<div class="copyright-text">
             
             ©
             
@@ -215,10 +150,5 @@ $ echo &#34;&#34; | awk &#39;{srand(); printf(&#34;%d\n&#34;, rand()*255);}&#39;
             2018-2021
             
      </div>
-
 </footer>
-
-
-
-
-
+</div></body></html>

@@ -1,107 +1,63 @@
-<a name="top"></a>
+<html><body><a name="top"></a>
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>KJY</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/fonts.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>KJY</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="/css/style.css" rel="stylesheet"/>
+<link href="/css/fonts.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
-
 <script>hljs.initHighlightingOnLoad();</script>
-
-
-
-
-
-
-
-  </head>
-  
-  <body>
-    <div class="wrapper">
-      <header class="header">
-        <nav class="nav" >
-      <a href="/" class="nav-logo">
-        <img src="/media/%3cnil%3e"
-         width=""
-         height=""
-         alt="">
-      </a>
-
-      <ul class="nav-links" >
-        
-        
-           <li><a href="/cn/about/">关于</a></li>
-       
-           <li><a href="/cn/posts/">日志</a></li>
-       
-           <li><a href="/cn/newsletter/">周刊</a></li>
-       
-           <li><a href="/">English</a></li>
-       
-       
-      </ul>
+<div class="wrapper">
+<header class="header">
+<nav class="nav">
+<a class="nav-logo" href="/">
+<img alt="" height="" src="/media/%3cnil%3e" width=""/>
+</a>
+<ul class="nav-links">
+<li><a href="/cn/about/">关于</a></li>
+<li><a href="/cn/posts/">日志</a></li>
+<li><a href="/cn/newsletter/">周刊</a></li>
+<li><a href="/">English</a></li>
+</ul>
 </nav>
-      </header>
-
-<main class = "content" role="main">
+</header>
+<main class="content" role="main">
 <div style="text-align: center">
-
 <h1>Python中mechanize模块练习</h1>
-
 <p>Liang 
  / 2018-11-24 </p>
-
 <hr/>
 </div>
-
 <span class="article-toolbar">
-  
-  
-  
-  
-  
-  
-  
-  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-Python%e4%b8%admechanize%e6%a8%a1%e5%9d%97%e7%bb%83%e4%b9%a0.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
-  </a>
-  
-  
-  
+<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-Python%e4%b8%admechanize%e6%a8%a1%e5%9d%97%e7%bb%83%e4%b9%a0.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
+</a>
 </span>
-
-
-
 <div class="body-text list-text">
-<h1 id="part-1">Part 1<a href="#part-1" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
+<h1 id="part-1">Part 1<a arialabel="Anchor" class="header-anchor" href="#part-1"> # </a></h1>
 <p>An introduction about mechanize</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">mechanize</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>br <span style="color:#666">=</span> mechanize<span style="color:#666">.</span>Browser()
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>br<span style="color:#666">.</span>open(<span style="color:#ba2121">&#34;http://www.example.com/&#34;</span>)
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">mechanize</span>
+</span></span></code></pre></div><div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span>br <span style="color:#666">=</span> mechanize<span style="color:#666">.</span>Browser()
+</span></span></code></pre></div><div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span>br<span style="color:#666">.</span>open(<span style="color:#ba2121">"http://www.example.com/"</span>)
 </span></span></code></pre></div><pre><code>&lt;response_seek_wrapper at 0x109db3170 whose wrapped object = &lt;closeable_response at 0x109d4a5f0 whose fp = &lt;socket._fileobject object at 0x109d386d0&gt;&gt;&gt;
 </code></pre>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>response1 <span style="color:#666">=</span> br<span style="color:#666">.</span>follow_link()
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">assert</span> br<span style="color:#666">.</span>viewing_html()
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#008000">print</span> br<span style="color:#666">.</span>title()
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span>response1 <span style="color:#666">=</span> br<span style="color:#666">.</span>follow_link()
+</span></span></code></pre></div><div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">assert</span> br<span style="color:#666">.</span>viewing_html()
+</span></span></code></pre></div><div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#008000">print</span> br<span style="color:#666">.</span>title()
 </span></span></code></pre></div><pre><code>IANA — IANA-managed Reserved Domains
 </code></pre>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#008000">print</span> response1<span style="color:#666">.</span>geturl()
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#008000">print</span> response1<span style="color:#666">.</span>geturl()
 </span></span></code></pre></div><pre><code>https://www.iana.org/domains/reserved
 </code></pre>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#008000">print</span> response1<span style="color:#666">.</span>info() <span style="color:#408080;font-style:italic">#headers</span>
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#008000">print</span> response1<span style="color:#666">.</span>info() <span style="color:#408080;font-style:italic">#headers</span>
 </span></span></code></pre></div><pre><code>Date: Fri, 13 Jul 2018 14:51:52 GMT
 X-Frame-Options: SAMEORIGIN
 Referrer-Policy: origin-when-cross-origin
@@ -119,26 +75,26 @@ Content-Length: 10225
 Connection: close
 content-type: text/html; charset=utf-8
 </code></pre>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#008000">print</span> response1<span style="color:#666">.</span>read() <span style="color:#408080;font-style:italic">#body</span>
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#008000">print</span> response1<span style="color:#666">.</span>read() <span style="color:#408080;font-style:italic">#body</span>
 </span></span></code></pre></div><p>To get the response code from a website, you can the response.code</p>
-<h1 id="part-2">Part 2<a href="#part-2" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
+<h1 id="part-2">Part 2<a arialabel="Anchor" class="header-anchor" href="#part-2"> # </a></h1>
 <p>An example to show how to search data in mechanize</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">from</span> <span style="color:#00f;font-weight:bold">mechanize</span> <span style="color:#008000;font-weight:bold">import</span> Browser
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>browser <span style="color:#666">=</span> Browser()
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>browser<span style="color:#666">.</span>set_handle_robots(<span style="color:#008000;font-weight:bold">False</span>) <span style="color:#408080;font-style:italic">#ignore the robots.txt</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>response <span style="color:#666">=</span> browser<span style="color:#666">.</span>open(<span style="color:#ba2121">&#34;https://www.google.com&#34;</span>)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#008000">print</span> response<span style="color:#666">.</span>code
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">from</span> <span style="color:#00f;font-weight:bold">mechanize</span> <span style="color:#008000;font-weight:bold">import</span> Browser
+</span></span></code></pre></div><div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span>browser <span style="color:#666">=</span> Browser()
+</span></span></code></pre></div><div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span>browser<span style="color:#666">.</span>set_handle_robots(<span style="color:#008000;font-weight:bold">False</span>) <span style="color:#408080;font-style:italic">#ignore the robots.txt</span>
+</span></span></code></pre></div><div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span>response <span style="color:#666">=</span> browser<span style="color:#666">.</span>open(<span style="color:#ba2121">"https://www.google.com"</span>)
+</span></span></code></pre></div><div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#008000">print</span> response<span style="color:#666">.</span>code
 </span></span></code></pre></div><pre><code>200
 </code></pre>
 <p>get all forms from the website</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">mechanize</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>br <span style="color:#666">=</span> mechanize<span style="color:#666">.</span>Browser()
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>br<span style="color:#666">.</span>set_handle_robots(<span style="color:#008000;font-weight:bold">False</span>) <span style="color:#408080;font-style:italic">#ignore the robots.txt</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>br<span style="color:#666">.</span>addheaders <span style="color:#666">=</span> [(<span style="color:#ba2121">&#39;User-agent&#39;</span>, <span style="color:#ba2121">&#39;Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008071615 Fedora/3.0.1-1.fc9 Firefox/3.0.1&#39;</span>)] <span style="color:#408080;font-style:italic"># Google demands a user-agent that isn&#39;t a robot</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>br<span style="color:#666">.</span>open(<span style="color:#ba2121">&#34;https://www.google.com&#34;</span>)
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">mechanize</span>
+</span></span></code></pre></div><div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span>br <span style="color:#666">=</span> mechanize<span style="color:#666">.</span>Browser()
+</span></span></code></pre></div><div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span>br<span style="color:#666">.</span>set_handle_robots(<span style="color:#008000;font-weight:bold">False</span>) <span style="color:#408080;font-style:italic">#ignore the robots.txt</span>
+</span></span></code></pre></div><div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span>br<span style="color:#666">.</span>addheaders <span style="color:#666">=</span> [(<span style="color:#ba2121">'User-agent'</span>, <span style="color:#ba2121">'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008071615 Fedora/3.0.1-1.fc9 Firefox/3.0.1'</span>)] <span style="color:#408080;font-style:italic"># Google demands a user-agent that isn't a robot</span>
+</span></span></code></pre></div><div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span>br<span style="color:#666">.</span>open(<span style="color:#ba2121">"https://www.google.com"</span>)
 </span></span></code></pre></div><pre><code>&lt;response_seek_wrapper at 0x1081a4248 whose wrapped object = &lt;closeable_response at 0x10819def0 whose fp = &lt;socket._fileobject object at 0x108148a50&gt;&gt;&gt;
 </code></pre>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">for</span> f <span style="color:#a2f;font-weight:bold">in</span> br<span style="color:#666">.</span>forms():
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">for</span> f <span style="color:#a2f;font-weight:bold">in</span> br<span style="color:#666">.</span>forms():
 </span></span><span style="display:flex;"><span>    <span style="color:#008000">print</span> f
 </span></span></code></pre></div><pre><code>&lt;f GET https://www.google.com/search application/x-www-form-urlencoded
   &lt;HiddenControl(hl=en) (readonly)&gt;
@@ -150,74 +106,51 @@ content-type: text/html; charset=utf-8
   &lt;SubmitControl(btnI=I'm Feeling Lucky) (readonly)&gt;
   &lt;HiddenControl(gbv=1) (readonly)&gt;&gt;
 </code></pre>
-<p>Select the search box and search for &lsquo;foo&rsquo;</p>
-<p>By default &lsquo;f&rsquo; would represent the name of the form. &lsquo;q&rsquo; would be one of the inputs of the form whose name is set to &lsquo;q&rsquo;</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>br<span style="color:#666">.</span>select_form(<span style="color:#ba2121">&#39;f&#39;</span>)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>br<span style="color:#666">.</span>form[<span style="color:#ba2121">&#39;q&#39;</span>] <span style="color:#666">=</span> <span style="color:#ba2121">&#39;foo&#39;</span>
+<p>Select the search box and search for ‘foo’</p>
+<p>By default ‘f’ would represent the name of the form. ‘q’ would be one of the inputs of the form whose name is set to ‘q’</p>
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span>br<span style="color:#666">.</span>select_form(<span style="color:#ba2121">'f'</span>)
+</span></span></code></pre></div><div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span>br<span style="color:#666">.</span>form[<span style="color:#ba2121">'q'</span>] <span style="color:#666">=</span> <span style="color:#ba2121">'foo'</span>
 </span></span></code></pre></div><p>get the search results</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>br<span style="color:#666">.</span>submit()
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span>br<span style="color:#666">.</span>submit()
 </span></span></code></pre></div><pre><code>&lt;response_seek_wrapper at 0x109738ea8 whose wrapped object = &lt;closeable_response at 0x10819dcb0 whose fp = &lt;socket._fileobject object at 0x108148c50&gt;&gt;&gt;
 </code></pre>
 <p>Find the link to foofighters.com</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>resp <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">None</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">re</span>
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span>resp <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">None</span>
+</span></span></code></pre></div><div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">re</span>
 </span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">for</span> link <span style="color:#a2f;font-weight:bold">in</span> br<span style="color:#666">.</span>links():
-</span></span><span style="display:flex;"><span>    siteMatch <span style="color:#666">=</span> re<span style="color:#666">.</span>compile(<span style="color:#ba2121">&#39;https://foofighters.com/&#39;</span>)<span style="color:#666">.</span>search(link<span style="color:#666">.</span>url)
+</span></span><span style="display:flex;"><span>    siteMatch <span style="color:#666">=</span> re<span style="color:#666">.</span>compile(<span style="color:#ba2121">'https://foofighters.com/'</span>)<span style="color:#666">.</span>search(link<span style="color:#666">.</span>url)
 </span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">if</span> siteMatch:
 </span></span><span style="display:flex;"><span>        resp <span style="color:#666">=</span> br<span style="color:#666">.</span>follow_link(link)
 </span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">break</span>
 </span></span></code></pre></div><p>print the site</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>content <span style="color:#666">=</span> resp<span style="color:#666">.</span>get_data()
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span>content <span style="color:#666">=</span> resp<span style="color:#666">.</span>get_data()
 </span></span><span style="display:flex;"><span><span style="color:#008000">print</span> content
-</span></span></code></pre></div><h1 id="part-3-cheart-sheet">Part 3 Cheart Sheet<a href="#part-3-cheart-sheet" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
-<p><a href="http://www.pythonforbeginners.com/cheatsheet/python-mechanize-cheat-sheet" target="_blank" rel="noreferrer noopener">mechanize cheat sheet</a>
-
+</span></span></code></pre></div><h1 id="part-3-cheart-sheet">Part 3 Cheart Sheet<a arialabel="Anchor" class="header-anchor" href="#part-3-cheart-sheet"> # </a></h1>
+<p><a href="http://www.pythonforbeginners.com/cheatsheet/python-mechanize-cheat-sheet" rel="noreferrer noopener" target="_blank">mechanize cheat sheet</a>
 </p>
-
 <p style="color:#777;">最后一次修改于 2018-11-24</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
-
 </main>
-
 <footer class="footer">
-
-<script src="https://utteranc.es/client.js"
-        repo="kongjianyang/kongjianyang.github.io"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
+<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
 </script>
-
-
-  <script type="text/javascript" src="/js/math-code.js"></script>
-<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script type="text/javascript" src="/js/center-img.js"></script>
-
-
-
-     <ul class="footer-links">
-      
-       
-       
-       
-       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+<script src="/js/math-code.js" type="text/javascript"></script>
+<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/js/center-img.js" type="text/javascript"></script>
+<ul class="footer-links">
+<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
        订阅 </a>
-       </li>
-       
-       
-       <li>
-       
-       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+</li>
+<li>
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
         版权
-        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
-        </a>
-       </li>
-       
-     </ul>
-     <div class="copyright-text">
+        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
+</a>
+</li>
+</ul>
+<div class="copyright-text">
             
             ©
             
@@ -226,10 +159,5 @@ content-type: text/html; charset=utf-8
             2018-2021
             
      </div>
-
 </footer>
-
-
-
-
-
+</div></body></html>

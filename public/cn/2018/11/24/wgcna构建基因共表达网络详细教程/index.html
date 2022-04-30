@@ -1,101 +1,57 @@
-<a name="top"></a>
+<html><body><a name="top"></a>
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>KJY</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/fonts.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>KJY</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="/css/style.css" rel="stylesheet"/>
+<link href="/css/fonts.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
-
 <script>hljs.initHighlightingOnLoad();</script>
-
-
-
-
-
-
-
-  </head>
-  
-  <body>
-    <div class="wrapper">
-      <header class="header">
-        <nav class="nav" >
-      <a href="/" class="nav-logo">
-        <img src="/media/%3cnil%3e"
-         width=""
-         height=""
-         alt="">
-      </a>
-
-      <ul class="nav-links" >
-        
-        
-           <li><a href="/cn/about/">关于</a></li>
-       
-           <li><a href="/cn/posts/">日志</a></li>
-       
-           <li><a href="/cn/newsletter/">周刊</a></li>
-       
-           <li><a href="/">English</a></li>
-       
-       
-      </ul>
+<div class="wrapper">
+<header class="header">
+<nav class="nav">
+<a class="nav-logo" href="/">
+<img alt="" height="" src="/media/%3cnil%3e" width=""/>
+</a>
+<ul class="nav-links">
+<li><a href="/cn/about/">关于</a></li>
+<li><a href="/cn/posts/">日志</a></li>
+<li><a href="/cn/newsletter/">周刊</a></li>
+<li><a href="/">English</a></li>
+</ul>
 </nav>
-      </header>
-
-<main class = "content" role="main">
+</header>
+<main class="content" role="main">
 <div style="text-align: center">
-
 <h1>WGCNA构建基因共表达网络详细教程</h1>
-
 <p>Liang 
  / 2018-11-24 </p>
-
 <hr/>
 </div>
-
 <span class="article-toolbar">
-  
-  
-  
-  
-  
-  
-  
-  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-WGCNA%e6%9e%84%e5%bb%ba%e5%9f%ba%e5%9b%a0%e5%85%b1%e8%a1%a8%e8%be%be%e7%bd%91%e7%bb%9c%e8%af%a6%e7%bb%86%e6%95%99%e7%a8%8b.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
-  </a>
-  
-  
-  
+<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-WGCNA%e6%9e%84%e5%bb%ba%e5%9f%ba%e5%9b%a0%e5%85%b1%e8%a1%a8%e8%be%be%e7%bd%91%e7%bb%9c%e8%af%a6%e7%bb%86%e6%95%99%e7%a8%8b.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
+</a>
 </span>
-
-
-
 <div class="body-text list-text">
 <p>这篇文章更多的是对于混乱的中文资源的梳理，并补充了一些没有提到的重要参数，希望大家不会踩坑。</p>
 <p>#1. 简介</p>
-<h2 id="11-背景">1.1 背景<a href="#11-背景" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<h2 id="11-背景">1.1 背景<a arialabel="Anchor" class="header-anchor" href="#11-背景"> # </a></h2>
 <p>WGCNA（weighted gene co-expression network analysis，权重基因共表达网络分析）是一种分析多个样本基因表达模式的分析方法，可将表达模式相似的基因进行聚类，并分析模块与特定性状或表型之间的关联关系，因此在基因组研究中被广泛应用。</p>
 <p>相比于只关注差异表达的基因，WGCNA利用数千或近万个变化最大的基因或全部基因的信息识别感兴趣的<strong>基因集</strong>，并与表型进行显著性关联分析。既充分利用了信息，也把数千个基因与表型的关联转换为数个基因集与表型的关联，免去了多重假设检验校正的问题。</p>
 <p>WGCNA算法首先假定基因网络服从<strong>无尺度分布</strong>(scale free network)，并定义基因共表达相关矩阵、基因网络形成的邻接函数，然后计算不同节点的相异系数，并据此构建分层聚类树(hierarchical clustering tree)，该聚类树的不同分支代表不同的基因模块(module)，模块内基因共表达程度高，而分属不同模块的基因共表达程度低。</p>
 <p>##1.2 无尺度网络
 网络的数学名称是图，在图论中对于每一个节点有一个重要概念，即：度(degree)。一个点的度是指图中该点所关联的边数。如下图，如果不加以思考，人们很容易认为生活中常见的网络会是一种random network，即每一个节点的度相对平均。然而第二种图，即scale-free network才是一种更稳定的选择。Scale-free network具有这样的特点，即存在少数节点具有明显高于一般点的度，这些点被称为hub。由少数hub与其它节点关联，最终构成整个网络。这样的网络的节点度数与具有该度数的节点个数间服从power distribution。生物体选择scale-free network而不是random network尤其进化上的原因，对于scale-free network，少数关键基因执行主要功能，这种网络具有非常好的鲁棒性(Robust)，即只要保证hub的完整性，整个生命体的基本活动在一定刺激影响下将不会受到太大影响，而random network若受到外界刺激，其受到的伤害程度将直接与刺激强度成正比。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/3014937-3ebbf5b6687c0379.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="随机网络，大部分节点都连出2到3条边，0条与1条边的和4条边的都很少，而无尺度网络中，大部分节点连1条边，少数节点（红色）连有大量边。"></p>
-<h2 id="13-相关术语">1.3 相关术语<a href="#13-相关术语" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p><img alt="随机网络，大部分节点都连出2到3条边，0条与1条边的和4条边的都很少，而无尺度网络中，大部分节点连1条边，少数节点（红色）连有大量边。" src="https://upload-images.jianshu.io/upload_images/3014937-3ebbf5b6687c0379.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
+<h2 id="13-相关术语">1.3 相关术语<a arialabel="Anchor" class="header-anchor" href="#13-相关术语"> # </a></h2>
 <ul>
 <li>
 <p>共表达网络：点代表基因，边代表基因表达相关性。加权是指对<strong>相关性值进行冥次运算</strong> (冥次的值也就是<strong>软阈值</strong> (power, pickSoftThreshold这个函数所做的就是确定合适的power))。无向网络(unsigned network)的边属性计算方式为 <code>abs(cor(genex, geney)) ^ power</code>；有向网络(signed network)的边属性计算方式为 <code>(1+cor(genex, geney)/2) ^ power</code>; sign hybrid的边属性计算方式为<code>cor(genex, geney)^power if cor&gt;0 else 0</code>， <strong>sign hybrid意味着它既包含加权网络也包含非加权网络</strong>。这种处理方式强化了强相关，弱化了弱相关或负相关，使得相关性数值更符合<code>无标度网络</code>特征，更具有生物意义。除了软阈值还有硬阈值一说，计算方式是 a_ij = 1 if s_ij &gt; β otherwise a_ij = 0。这里的β就是硬阈值(hard threshold)。</p>
@@ -119,9 +75,9 @@
 <p>TOM (Topological overlap matrix)：把邻接矩阵转换为拓扑重叠矩阵，以降低噪音和假相关，获得的新距离矩阵，这个信息可拿来构建网络或绘制TOM图。</p>
 </li>
 </ul>
-<h1 id="2-一般步骤">2. 一般步骤<a href="#2-一般步骤" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
-<p><img src="https://upload-images.jianshu.io/upload_images/3014937-b8c34cba39d409d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="WGCNA一般步骤"></p>
-<h1 id="3-代码">3. 代码<a href="#3-代码" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
+<h1 id="2-一般步骤">2. 一般步骤<a arialabel="Anchor" class="header-anchor" href="#2-一般步骤"> # </a></h1>
+<p><img alt="WGCNA一般步骤" src="https://upload-images.jianshu.io/upload_images/3014937-b8c34cba39d409d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
+<h1 id="3-代码">3. 代码<a arialabel="Anchor" class="header-anchor" href="#3-代码"> # </a></h1>
 <p>利用WGCNA有一步法建网络的，也有step by step的方法，为了保证理解，建议至少过一遍step by step。</p>
 <p>安装WGCNA根据不同的操作系统可能略有不同，我在macOS下安装着实废了一番功夫。这一部分不提。</p>
 <pre tabindex="0"><code># 加载必须的包并做参数设置
@@ -133,7 +89,7 @@ library(Hmisc)
 library(WGCNA)
 options(stringsAsFactors = F)
 </code></pre><p>读取基因表达数据，注意要做一个转换，保证基因在列，样品在行，官方推荐使用Deseq2的<code>varianceStabilizingTransformation</code>或<code>log2(x+1)</code>对标准化后的数据做个转换。如果数据来自不同的批次，需要先移除批次效应。如果数据存在系统偏移，需要做下quantile normalization。一般要求样本数多于15个。样本数多于20时效果更好，样本越多，结果越稳定。</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">dat0 &lt;- read.csv(&#34;./01raw_data/GBM55and65and8000.csv&#34;)
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">dat0 &lt;- read.csv("./01raw_data/GBM55and65and8000.csv")
 datExprdataOne &lt;- t(dat0[,15:69])
 datExprdataTwo &lt;- t(dat0[, 70:134])
 datSummary &lt;- dat0[, c(1:14)]
@@ -147,32 +103,32 @@ rm(dat0)
 if (!gsg$allOK){
   # Optionally, print the gene and sample names that were removed:
   if (sum(!gsg$goodGenes)&gt;0) 
-    printFlush(paste(&#34;Removing genes:&#34;, 
-                     paste(names(datExprdataOne)[!gsg$goodGenes], collapse = &#34;,&#34;)));
+    printFlush(paste("Removing genes:", 
+                     paste(names(datExprdataOne)[!gsg$goodGenes], collapse = ",")));
   if (sum(!gsg$goodSamples)&gt;0) 
-    printFlush(paste(&#34;Removing samples:&#34;, 
-                     paste(rownames(datExprdataOne)[!gsg$goodSamples], collapse = &#34;,&#34;)));
+    printFlush(paste("Removing samples:", 
+                     paste(rownames(datExprdataOne)[!gsg$goodSamples], collapse = ",")));
   # Remove the offending genes and samples from the data:
   datExprdataOne = datExprdataOne[gsg$goodSamples, gsg$goodGenes]
 }
 #Flagging genes and samples with too many missing values...
 #  ..step 1
 </code></pre><p>检查是否有离群值，结果显示无</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">sampleTree = hclust(dist(datExprdataOne), method = &#34;average&#34;)
-plot(sampleTree, main = &#34;Sample clustering to detect outliers&#34;, sub=&#34;&#34;, xlab=&#34;&#34;)
-</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-7ae3b977b3e3966f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="离群值检测"></p>
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">sampleTree = hclust(dist(datExprdataOne), method = "average")
+plot(sampleTree, main = "Sample clustering to detect outliers", sub="", xlab="")
+</code></pre><p><img alt="离群值检测" src="https://upload-images.jianshu.io/upload_images/3014937-7ae3b977b3e3966f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
 <p>筛选软阈值， 无向网络在power小于15或有向网络power小于30内，没有一个power值可以使无标度网络图谱结构R^2达到0.8或平均连接度降到100以下，则可能是由于部分样品与其他样品差别太大造成的。这可能由批次效应、样品异质性或实验条件对表达影响太大等造成，需要移除。</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">powers1 &lt;- c(seq(1, 10, by=1), seq(12, 20, by=2))
 sft &lt;- pickSoftThreshold(datExprdataOne, powerVector = powers1)
 RpowerTable &lt;- pickSoftThreshold(datExprdataOne, powerVector = powers1)[[2]]
 </code></pre><pre tabindex="0"><code class="language-{r}" data-lang="{r}">cex1 = 0.7
 par(mfrow = c(1,2))
-plot(RpowerTable[,1], -sign(RpowerTable[,3])*RpowerTable[,2], xlab = &#34;soft threshold (power)&#34;, ylab = &#34;scale free topology model fit, signes R^2&#34;, type = &#34;n&#34;)
-text(RpowerTable[,1], -sign(RpowerTable[,3])*RpowerTable[,2], labels = powers1, cex = cex1, col = &#34;red&#34;)
-abline(h = 0.95, col = &#34;red&#34;)
-plot(RpowerTable[,1], RpowerTable[,5], xlab = &#34;soft threshold (power)&#34;, ylab = &#34;mean connectivity&#34;, type = &#34;n&#34;)
-text(RpowerTable[,1], RpowerTable[,5], labels = powers1, cex = cex1, col = &#34;red&#34;)
-</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-983815e8026ebdb0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="软阈值筛选"></p>
+plot(RpowerTable[,1], -sign(RpowerTable[,3])*RpowerTable[,2], xlab = "soft threshold (power)", ylab = "scale free topology model fit, signes R^2", type = "n")
+text(RpowerTable[,1], -sign(RpowerTable[,3])*RpowerTable[,2], labels = powers1, cex = cex1, col = "red")
+abline(h = 0.95, col = "red")
+plot(RpowerTable[,1], RpowerTable[,5], xlab = "soft threshold (power)", ylab = "mean connectivity", type = "n")
+text(RpowerTable[,1], RpowerTable[,5], labels = powers1, cex = cex1, col = "red")
+</code></pre><p><img alt="软阈值筛选" src="https://upload-images.jianshu.io/upload_images/3014937-983815e8026ebdb0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
 <p>横轴是Soft threshold (power)，纵轴是无标度网络的评估参数，数值越高，网络越符合无标度特征 (non-scale)。
 我们可以使用系统给的参数帮助我们得到soft threshold，可以是</p>
 <pre tabindex="0"><code>sft$powerEstimate
@@ -183,10 +139,10 @@ text(RpowerTable[,1], RpowerTable[,5], labels = powers1, cex = cex1, col = &#34;
 k.dataOne &lt;- softConnectivity(datExprdataOne, power = betal) -1
 k.dataTwo &lt;- softConnectivity(datExprdataTwo, power = betal) - 1
 par(mfrow=c(2,2))
-scaleFreePlot(k.dataOne, main = paste(&#34;data set I, power=&#34;, betal), truncated = F)
-scaleFreePlot(k.dataTwo, main = paste(&#34;data set II, power=&#34;, betal), truncated = F)
-</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-11b57ae3e23638cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Data I scale free plot">
-<img src="https://upload-images.jianshu.io/upload_images/3014937-fabcfec8b4df355b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Data II scale free plot"></p>
+scaleFreePlot(k.dataOne, main = paste("data set I, power=", betal), truncated = F)
+scaleFreePlot(k.dataTwo, main = paste("data set II, power=", betal), truncated = F)
+</code></pre><p><img alt="Data I scale free plot" src="https://upload-images.jianshu.io/upload_images/3014937-11b57ae3e23638cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/>
+<img alt="Data II scale free plot" src="https://upload-images.jianshu.io/upload_images/3014937-fabcfec8b4df355b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
 <p>筛选连通性最高的3600个基因做为后续分析，不过一般不在这一步进行筛选，因为生物体内的基因网络图更多的是无尺度的。</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">kCut &lt;- 3601
 kRank &lt;- rank(-k.dataOne)
@@ -195,25 +151,25 @@ vardataTwo &lt;- apply(datExprdataTwo, 2, var)
 restK &lt;- kRank &lt;= kCut &amp; vardataOne &gt;0 &amp; vardataTwo &gt; 0 
 ADJdataOne &lt;- adjacency(datExpr = datExprdataOne[,restK], power = betal)
 dissTOMdataOne &lt;- TOMdist(ADJdataOne)
-hierTOMdataOne &lt;- hclust(as.dist(dissTOMdataOne), method = &#34;average&#34;)
+hierTOMdataOne &lt;- hclust(as.dist(dissTOMdataOne), method = "average")
 par(mfrow = c(1,1))
-plot(hierTOMdataOne, labels = F, main = &#34;dendrogram, 3600 mast connected in data set I&#34;)
-</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-82bacf08123d508b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Data I的层级聚类图"></p>
+plot(hierTOMdataOne, labels = F, main = "dendrogram, 3600 mast connected in data set I")
+</code></pre><p><img alt="Data I的层级聚类图" src="https://upload-images.jianshu.io/upload_images/3014937-82bacf08123d508b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
 <p>层级聚类树展示各个模块, 灰色的为<strong>未分类</strong>到模块的基因，这里使用的<code>cutreeStaticColor</code>检测module，但是对于复杂的基因结构建议使用 <code>cutreeDynamic</code>。其中也有一些具体的参数可以选择得到合适的module。</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">colordataOne &lt;- cutreeStaticColor(hierTOMdataOne, cutHeight = 0.94, minSize = 125)
 par(mfrow=c(2,1), mar = c(2,4,1,1))
-plot(hierTOMdataOne, main = &#34;Glioblastoma data set 1, n = 55&#34;, labels = F, xlab = &#34;&#34;, sub = &#34;&#34;)
+plot(hierTOMdataOne, main = "Glioblastoma data set 1, n = 55", labels = F, xlab = "", sub = "")
 plotColorUnderTree(hierTOMdataOne, colors = data.frame(module = colordataOne))
-title(&#34;module membership data set I&#34;)
-</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-e0c5b0fcdd39d7ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Data I层级聚类图"></p>
+title("module membership data set I")
+</code></pre><p><img alt="Data I层级聚类图" src="https://upload-images.jianshu.io/upload_images/3014937-e0c5b0fcdd39d7ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
 <p>后续换了一种方法希望得到更多module以期得到更多的eigegene。</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">dataOne_net = blockwiseModules(datExprdataOne, power = 6, maxBlockSize = 200,
-                       TOMType = &#34;signed&#34;, minModuleSize = 30,
+                       TOMType = "signed", minModuleSize = 30,
                        reassignThreshold = 0, mergeCutHeight = 0.25,
                        numericLabels = TRUE, pamRespectsDendro = FALSE,
-                       saveTOMs=TRUE, corType = &#34;pearson&#34;, 
+                       saveTOMs=TRUE, corType = "pearson", 
                        loadTOMs=TRUE,
-                       saveTOMFileBase = &#34;DataI.tom&#34;,
+                       saveTOMFileBase = "DataI.tom",
                        verbose = 3)
 
 # Calculating module eigengenes block-wise from all genes
@@ -227,11 +183,11 @@ title(&#34;module membership data set I&#34;)
 </code></pre><p>绘制模块之间相关性图</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">dataOne_MEs &lt;- dataOne_net$MEs
 
-plotEigengeneNetworks(dataOne_MEs, &#34;Eigengene adjacency heatmap&#34;, 
+plotEigengeneNetworks(dataOne_MEs, "Eigengene adjacency heatmap", 
                       marDendro = c(3,3,2,4),
                       marHeatmap = c(3,4,2,2), plotDendrograms = T, 
                       xLabelsAngle = 90)
-</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-e65b58c54a99add1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="eigengene聚类及热图"></p>
+</code></pre><p><img alt="eigengene聚类及热图" src="https://upload-images.jianshu.io/upload_images/3014937-e65b58c54a99add1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
 <p>可视化基因网络 (TOM plot)</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">load(dataOne_net$TOMFiles[1], verbose=T)
 
@@ -249,65 +205,43 @@ diag(plotTOM) = NA
 # Call the plot function
 
 TOMplot(plotTOM, dataOne_net$dendrograms, 
-        main = &#34;Network heatmap plot, all genes&#34;)
-</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-e87b0b493dff54dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Data I的TOM plot"></p>
+        main = "Network heatmap plot, all genes")
+</code></pre><p><img alt="Data I的TOM plot" src="https://upload-images.jianshu.io/upload_images/3014937-e87b0b493dff54dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
 <p>导出网络图</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">probes = colnames(dat0[,15:69])
 dimnames(TOM) &lt;- list(probes, probes)
 # Export the network into edge and node list files Cytoscape can read
 cyt = exportNetworkToCytoscape(TOM,
-             edgeFile = &#34;edges.txt&#34;,
-             nodeFile = &#34;nodes.txt&#34;,
+             edgeFile = "edges.txt",
+             nodeFile = "nodes.txt",
              weighted = TRUE, threshold = 0,
              nodeNames = probes, nodeAttr = dataOne_net$colors)
 </code></pre><p>部分参考：</p>
 <p>http://blog.sciencenet.cn/blog-118204-1111379.html</p>
 <p>https://www.jianshu.com/p/94b11358b3f3</p>
-
 <p style="color:#777;">最后一次修改于 2018-11-24</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
-
 </main>
-
 <footer class="footer">
-
-<script src="https://utteranc.es/client.js"
-        repo="kongjianyang/kongjianyang.github.io"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
+<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
 </script>
-
-
-  <script type="text/javascript" src="/js/math-code.js"></script>
-<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script type="text/javascript" src="/js/center-img.js"></script>
-
-
-
-     <ul class="footer-links">
-      
-       
-       
-       
-       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+<script src="/js/math-code.js" type="text/javascript"></script>
+<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/js/center-img.js" type="text/javascript"></script>
+<ul class="footer-links">
+<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
        订阅 </a>
-       </li>
-       
-       
-       <li>
-       
-       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+</li>
+<li>
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
         版权
-        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
-        </a>
-       </li>
-       
-     </ul>
-     <div class="copyright-text">
+        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
+</a>
+</li>
+</ul>
+<div class="copyright-text">
             
             ©
             
@@ -316,10 +250,5 @@ cyt = exportNetworkToCytoscape(TOM,
             2018-2021
             
      </div>
-
 </footer>
-
-
-
-
-
+</div></body></html>

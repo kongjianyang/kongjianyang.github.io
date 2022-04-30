@@ -1,114 +1,68 @@
-<a name="top"></a>
+<html><body><a name="top"></a>
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>KJY</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/fonts.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>KJY</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="/css/style.css" rel="stylesheet"/>
+<link href="/css/fonts.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
-
 <script>hljs.initHighlightingOnLoad();</script>
-
-
-
-
-
-
-
-  </head>
-  
-  <body>
-    <div class="wrapper">
-      <header class="header">
-        <nav class="nav" >
-      <a href="/" class="nav-logo">
-        <img src="/media/%3cnil%3e"
-         width=""
-         height=""
-         alt="">
-      </a>
-
-      <ul class="nav-links" >
-        
-        
-           <li><a href="/cn/about/">关于</a></li>
-       
-           <li><a href="/cn/posts/">日志</a></li>
-       
-           <li><a href="/cn/newsletter/">周刊</a></li>
-       
-           <li><a href="/">English</a></li>
-       
-       
-      </ul>
+<div class="wrapper">
+<header class="header">
+<nav class="nav">
+<a class="nav-logo" href="/">
+<img alt="" height="" src="/media/%3cnil%3e" width=""/>
+</a>
+<ul class="nav-links">
+<li><a href="/cn/about/">关于</a></li>
+<li><a href="/cn/posts/">日志</a></li>
+<li><a href="/cn/newsletter/">周刊</a></li>
+<li><a href="/">English</a></li>
+</ul>
 </nav>
-      </header>
-
-<main class = "content" role="main">
+</header>
+<main class="content" role="main">
 <div style="text-align: center">
-
 <h1>ChIPseeker使用介绍</h1>
-
 <p>KJY 
  / 2022-03-26 </p>
-
 <hr/>
 </div>
-
 <span class="article-toolbar">
-  
-  
-  
-  
-  
-  
-  
-  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2022-03-26-ChIPseeker.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
-  </a>
-  
-  
-  
+<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2022-03-26-ChIPseeker.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
+</a>
 </span>
-
-
 <aside class="toc">
 Table of Contents:
 <nav id="TableOfContents">
-  <ol>
-    <li>
-      <ol>
-        <li><a href="#1-chip-seq简介">1 ChIP-seq简介</a></li>
-        <li><a href="#2-必须知晓的bed文件">2 必须知晓的BED文件</a></li>
-        <li><a href="#3-使用covplot可视化bed数据">3 使用<code>covplot</code>可视化BED数据</a></li>
-        <li><a href="#4-annotatepeak进行peaks的注释">4 annotatePeak进行peaks的注释</a></li>
-        <li><a href="#可视化">可视化</a></li>
-        <li><a href="#基因注释--富集分析">基因注释 + 富集分析</a></li>
-      </ol>
-    </li>
-  </ol>
+<ol>
+<li>
+<ol>
+<li><a href="#1-chip-seq简介">1 ChIP-seq简介</a></li>
+<li><a href="#2-必须知晓的bed文件">2 必须知晓的BED文件</a></li>
+<li><a href="#3-使用covplot可视化bed数据">3 使用<code>covplot</code>可视化BED数据</a></li>
+<li><a href="#4-annotatepeak进行peaks的注释">4 annotatePeak进行peaks的注释</a></li>
+<li><a href="#可视化">可视化</a></li>
+<li><a href="#基因注释--富集分析">基因注释 + 富集分析</a></li>
+</ol>
+</li>
+</ol>
 </nav>
 </aside>
-
-
 <div class="body-text list-text">
 <p>主要参考这篇文章：</p>
-<p><a href="https://www.jieandze1314.com/post/cnposts/190/" target="_blank" rel="noreferrer noopener">190-学习一遍ChIPseeker使用 | BIOINFOPLANET (jieandze1314.com)</a>
-
+<p><a href="https://www.jieandze1314.com/post/cnposts/190/" rel="noreferrer noopener" target="_blank">190-学习一遍ChIPseeker使用 | BIOINFOPLANET (jieandze1314.com)</a>
 </p>
-<h3 id="1-chip-seq简介">1 ChIP-seq简介<a href="#1-chip-seq简介" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<h3 id="1-chip-seq简介">1 ChIP-seq简介<a arialabel="Anchor" class="header-anchor" href="#1-chip-seq简介"> # </a></h3>
 <p>ChIP是指染色质免疫沉淀，它通特异结合抗体将DNA结合蛋白免疫沉淀，可以用于捕获蛋白质（如转录因子，组蛋白修饰）的DNA靶点。之前结合芯片就有ChIP-on-chip，后来二代测序加持诞生了ChIP-seq。优点是：不再需要设计探针（探针往往存在着一定的偏向性）</p>
 <p>2007年来自三个不同的实验室，几乎是同时间出来（最长差不了3个月），分别发CNS，一起定义了这个<code>ChIPseq</code>技术</p>
 <ul>
@@ -118,21 +72,21 @@ Table of Contents:
 </ul>
 <p><strong>主要有4步</strong>：Cross-linking、Sonication、IP、Sequencing</p>
 <p><strong>简而言之是</strong>：DNA和蛋白质交联(cross-linking)、超声(sonication)将染色体随机切割、利用抗原抗体的特异性识别(IP)、把<strong>目标蛋白</strong>相结合的DNA片段沉淀下来，反交联释放DNA片段，最后是测序(sequencing)</p>
-<h5 id="分析流程示例图1">分析流程示例图1：<a href="#分析流程示例图1" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
-<p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-23-131440.png" alt="Peak calling with MACS2"></p>
-<h5 id="分析流程示例图2">分析流程示例图2：<a href="#分析流程示例图2" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
-<p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-23-131552.png" alt="image-20200523211551406"></p>
+<h5 id="分析流程示例图1">分析流程示例图1：<a arialabel="Anchor" class="header-anchor" href="#分析流程示例图1"> # </a></h5>
+<p><img alt="Peak calling with MACS2" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-23-131440.png"/></p>
+<h5 id="分析流程示例图2">分析流程示例图2：<a arialabel="Anchor" class="header-anchor" href="#分析流程示例图2"> # </a></h5>
+<p><img alt="image-20200523211551406" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-23-131552.png"/></p>
 <p>原始数据=》质控=》比对=》拿到DNA片段在染色体上的位置信息=》peak calling （去除背景噪音）=》拿到peaks（protein binding site）=》下游分析（可视化、找相关基因、motif分析等等）</p>
-<h3 id="2-必须知晓的bed文件">2 必须知晓的BED文件<a href="#2-必须知晓的bed文件" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<h3 id="2-必须知晓的bed文件">2 必须知晓的BED文件<a arialabel="Anchor" class="header-anchor" href="#2-必须知晓的bed文件"> # </a></h3>
 <p>全称是：Browser Extensible Data，为基因组浏览器而生</p>
 <p>包括3个必须字段和9个可选字段：</p>
-<h5 id="3个必须">3个必须<a href="#3个必须" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
+<h5 id="3个必须">3个必须<a arialabel="Anchor" class="header-anchor" href="#3个必须"> # </a></h5>
 <ul>
 <li>1 chrom - 染色体名字</li>
 <li>2 chromStart - 染色体起始位点（起始于0，而不是1）许多软件忽略了这一点，存在一个碱基的位移（如peakAnalyzer, ChIPpeakAnno存在这个问题），Homer、ChIPseeker没有</li>
 <li>3 chromEnd - 染色体终止位点</li>
 </ul>
-<h5 id="9个可选">9个可选<a href="#9个可选" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
+<h5 id="9个可选">9个可选<a arialabel="Anchor" class="header-anchor" href="#9个可选"> # </a></h5>
 <ul>
 <li>4 name - 名字</li>
 <li>5 score - 分值(0-1000), 用于genome browser展示时上色。认为可以理解与reads数正相关</li>
@@ -145,9 +99,9 @@ Table of Contents:
 <li>12 blockStarts - 子元件的起始位点</li>
 </ul>
 <p>一般只用前5个足矣（MACS的输出结果也是前5个字段）</p>
-<p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-23-133226.png" alt="image-20200523213226162"></p>
+<p><img alt="image-20200523213226162" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-23-133226.png"/></p>
 <p>第5列score的含义是：the summit height of fragment pileup. 也即是片段堆积的峰高, 认为可以理解与reads数正相关</p>
-<h3 id="3-使用covplot可视化bed数据">3 使用<code>covplot</code>可视化BED数据<a href="#3-使用covplot可视化bed数据" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<h3 id="3-使用covplot可视化bed数据">3 使用<code>covplot</code>可视化BED数据<a arialabel="Anchor" class="header-anchor" href="#3-使用covplot可视化bed数据"> # </a></h3>
 <blockquote>
 <p>一般拿到数据后，会先可视化一下数据的全景</p>
 </blockquote>
@@ -158,31 +112,31 @@ library(ggplot2)
 files &lt;- getSampleFiles()
 # 有5个文件
 &gt; basename(unlist(files))
-[1] &#34;GSM1174480_ARmo_0M_peaks.bed.gz&#34;                   
-[2] &#34;GSM1174481_ARmo_1nM_peaks.bed.gz&#34;                  
-[3] &#34;GSM1174482_ARmo_100nM_peaks.bed.gz&#34;                
-[4] &#34;GSM1295076_CBX6_BF_ChipSeq_mergedReps_peaks.bed.gz&#34;
-[5] &#34;GSM1295077_CBX7_BF_ChipSeq_mergedReps_peaks.bed.gz&#34;
+[1] "GSM1174480_ARmo_0M_peaks.bed.gz"                   
+[2] "GSM1174481_ARmo_1nM_peaks.bed.gz"                  
+[3] "GSM1174482_ARmo_100nM_peaks.bed.gz"                
+[4] "GSM1295076_CBX6_BF_ChipSeq_mergedReps_peaks.bed.gz"
+[5] "GSM1295077_CBX7_BF_ChipSeq_mergedReps_peaks.bed.gz"
 
 covplot(files[[5]])
-</code></pre><p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-23-132829.png" alt="image-20200523212829318"></p>
-<h4 id="还支持多个文件同时画">还支持多个文件同时画<a href="#还支持多个文件同时画" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+</code></pre><p><img alt="image-20200523212829318" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-23-132829.png"/></p>
+<h4 id="还支持多个文件同时画">还支持多个文件同时画<a arialabel="Anchor" class="header-anchor" href="#还支持多个文件同时画"> # </a></h4>
 <p><strong>只要转为GRanges对象即可</strong></p>
 <pre tabindex="0"><code># 比如要画第4、5个文件（MACS生成的BED文件包含常规的5列）
 peak=GenomicRanges::GRangesList(CBX6=readPeakFile(files[[4]]),CBX7=readPeakFile(files[[5]]))
 </code></pre><p>画图</p>
-<pre tabindex="0"><code>covplot(peak, weightCol=&#34;V5&#34;) + facet_grid(chr ~ .id)
-</code></pre><p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-23-133335.png" alt="image-20200523213335373"></p>
+<pre tabindex="0"><code>covplot(peak, weightCol="V5") + facet_grid(chr ~ .id)
+</code></pre><p><img alt="image-20200523213335373" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-23-133335.png"/></p>
 <p><strong>取小区间</strong>，例如只取几条染色体，还能定义染色体的区间大学</p>
-<pre tabindex="0"><code>covplot(peak, weightCol=&#34;V5&#34;, chrs=c(&#34;chr17&#34;, &#34;chr18&#34;), 
+<pre tabindex="0"><code>covplot(peak, weightCol="V5", chrs=c("chr17", "chr18"), 
         xlim=c(4e7, 5e7)) + facet_grid(chr ~ .id)
-</code></pre><p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-23-133457.png" alt="image-20200523213456783"></p>
+</code></pre><p><img alt="image-20200523213456783" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-23-133457.png"/></p>
 <blockquote>
 <p>在看完数据全景之后，就会想知道这些peaks和什么类型的基因有关</p>
 </blockquote>
-<h3 id="4-annotatepeak进行peaks的注释">4 annotatePeak进行peaks的注释<a href="#4-annotatepeak进行peaks的注释" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<h3 id="4-annotatepeak进行peaks的注释">4 annotatePeak进行peaks的注释<a arialabel="Anchor" class="header-anchor" href="#4-annotatepeak进行peaks的注释"> # </a></h3>
 <p>需要使用BED文件（作为query）+注释文件（作为target）</p>
-<h4 id="重点是如何获取注释文件">重点是如何获取注释文件<a href="#重点是如何获取注释文件" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<h4 id="重点是如何获取注释文件">重点是如何获取注释文件<a arialabel="Anchor" class="header-anchor" href="#重点是如何获取注释文件"> # </a></h4>
 <p>注释信息一般要包含基因的起始终止，基因的外显子、内含子及它们的起始终止、非编码区域位置、功能元件的位置等</p>
 <p>ChIPseeker没有物种限制，但<strong>前提是物种本身有这些注释信息</strong>（不能说物种连参考基因组也没有，那就真的是巧妇难为无米之炊）</p>
 <p>需要一个TxDb对象，例如<code>TxDb.Hsapiens.UCSC.hg19.knownGene</code>，然后ChIPseeker就会从中提取信息</p>
@@ -192,70 +146,70 @@ txdb = TxDb.Hsapiens.UCSC.hg19.knownGene
 f = getSampleFiles()[[4]]
 x = annotatePeak(f, tssRegion=c(-1000, 1000), TxDb=txdb)
 </code></pre><p>看到这里有个参数<code>tssRegion</code> ，它指定了启动子区域（而启动子区域是没有明确定义的，需要自己指定，这里指定了上下游1kb）</p>
-<h4 id="看一下大体结果">看一下大体结果：<a href="#看一下大体结果" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<h4 id="看一下大体结果">看一下大体结果：<a arialabel="Anchor" class="header-anchor" href="#看一下大体结果"> # </a></h4>
 <pre tabindex="0"><code>&gt; x
 Annotated peaks generated by ChIPseeker
 1331/1331  peaks were annotated
 Genomic Annotation Summary:
              Feature  Frequency
 9           Promoter 48.1592787
-4             5&#39; UTR  0.7513148
-3             3&#39; UTR  4.2073629
+4             5' UTR  0.7513148
+3             3' UTR  4.2073629
 1           1st Exon  0.7513148
 7         Other Exon  3.9068370
 2         1st Intron  6.5364388
 8       Other Intron  4.8835462
 6 Downstream (&lt;=300)  1.1269722
 5  Distal Intergenic 29.6769346
-</code></pre><h4 id="看一下详细结果">看一下详细结果：<a href="#看一下详细结果" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+</code></pre><h4 id="看一下详细结果">看一下详细结果：<a arialabel="Anchor" class="header-anchor" href="#看一下详细结果"> # </a></h4>
 <pre tabindex="0"><code>as.GRanges(x) %&gt;% head(3)
-</code></pre><p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-23-135149.png" alt="image-20200523215148896"></p>
-<h4 id="可以转为数据框方便输出">可以转为数据框，方便输出：<a href="#可以转为数据框方便输出" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
-<p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-23-140318.png" alt="image-20200523220318068"></p>
-<h4 id="关于注释的类型">关于注释的类型：<a href="#关于注释的类型" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
-<h5 id="注释类型一genomic-annotationannotation这一列">注释类型一：genomic annotation（annotation这一列）<a href="#注释类型一genomic-annotationannotation这一列" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
+</code></pre><p><img alt="image-20200523215148896" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-23-135149.png"/></p>
+<h4 id="可以转为数据框方便输出">可以转为数据框，方便输出：<a arialabel="Anchor" class="header-anchor" href="#可以转为数据框方便输出"> # </a></h4>
+<p><img alt="image-20200523220318068" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-23-140318.png"/></p>
+<h4 id="关于注释的类型">关于注释的类型：<a arialabel="Anchor" class="header-anchor" href="#关于注释的类型"> # </a></h4>
+<h5 id="注释类型一genomic-annotationannotation这一列">注释类型一：genomic annotation（annotation这一列）<a arialabel="Anchor" class="header-anchor" href="#注释类型一genomic-annotationannotation这一列"> # </a></h5>
 <p>指peak在基因组的位置：落在什么地方，例如外显子、内含子或是UTR</p>
 <p>简单理解peak 注释就是peak落在染色体的哪一个位置上。常见的基因结构组成如下图所示。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/20354525-f191ac429978869f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/747/format/webp" alt="img"></p>
-<h5 id="注释类型二nearest-gene-annotationannotation后面的列">注释类型二：nearest gene annotation（annotation后面的列）<a href="#注释类型二nearest-gene-annotationannotation后面的列" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
+<p><img alt="img" src="https://upload-images.jianshu.io/upload_images/20354525-f191ac429978869f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/747/format/webp"/></p>
+<h5 id="注释类型二nearest-gene-annotationannotation后面的列">注释类型二：nearest gene annotation（annotation后面的列）<a arialabel="Anchor" class="header-anchor" href="#注释类型二nearest-gene-annotationannotation后面的列"> # </a></h5>
 <p>指peak最近的基因：不管peak落在内含子、基因间区还是其他位置，按照peak相对于转录起始位点的距离，都能找到一个离它最近的基因【一般做基因表达调控的，会关注promoter区域，离结合位点最近的基因更可能被调控】</p>
 <blockquote>
 <p>这个距离是根据转录起始位点来计算，一个基因具有多个转录本，因此一个基因可能有多个转录起始位点。注释的结果就会看到有一列是转录本ID</p>
 </blockquote>
-<p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-035907.png" alt="image-20200524115907317"></p>
-<h5 id="注释类型三flankdistance三列-flank_txids-flank_geneids和flank_gene_distances">注释类型三：flankDistance（三列: flank_txIds, flank_geneIds和flank_gene_distances）<a href="#注释类型三flankdistance三列-flank_txids-flank_geneids和flank_gene_distances" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
+<p><img alt="image-20200524115907317" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-035907.png"/></p>
+<h5 id="注释类型三flankdistance三列-flank_txids-flank_geneids和flank_gene_distances">注释类型三：flankDistance（三列: flank_txIds, flank_geneIds和flank_gene_distances）<a arialabel="Anchor" class="header-anchor" href="#注释类型三flankdistance三列-flank_txids-flank_geneids和flank_gene_distances"> # </a></h5>
 <p>指peak上下游某个范围内（比如-5kb《=》5kb范围内）都有什么基因</p>
 <pre tabindex="0"><code># 传个参数flankDistance
 x2 = annotatePeak(f, tssRegion=c(-1000, 1000), TxDb=txdb, addFlankGeneInfo=TRUE, flankDistance=5000)
-</code></pre><h4 id="让基因名变得友好">让基因名变得友好<a href="#让基因名变得友好" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+</code></pre><h4 id="让基因名变得友好">让基因名变得友好<a arialabel="Anchor" class="header-anchor" href="#让基因名变得友好"> # </a></h4>
 <p>上面得到的结果都是以geneId（Entrez ID）给出，如果想要Symbol名称，可以再传参数<code>annoDb</code></p>
 <pre tabindex="0"><code>library(org.Hs.eg.db)
 x3 = annotatePeak(f, tssRegion=c(-1000, 1000), TxDb=txdb, 
                   addFlankGeneInfo=TRUE, flankDistance=5000,
-                  annoDb = &#34;org.Hs.eg.db&#34;)
+                  annoDb = "org.Hs.eg.db")
 tmp3=as.data.frame(x3)
 </code></pre><p>会再增加3列：ENSEMBL、SYMBOL、GENENAME（如果这里使用的TxDb是Ensemble ID，那么结果就会是Entrez ID、SYMBOL、GENENAME三列）</p>
-<p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-040927.png" alt="image-20200524120927369"></p>
-<h4 id="按正负链分开注释">按正负链分开注释<a href="#按正负链分开注释" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<p><img alt="image-20200524120927369" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-040927.png"/></p>
+<h4 id="按正负链分开注释">按正负链分开注释<a arialabel="Anchor" class="header-anchor" href="#按正负链分开注释"> # </a></h4>
 <p>一般ChIPseq数据通常情况下是没有正负链信息的（有特殊的实验可以有）</p>
 <p>但如果要做，可以先给peaks分别赋予正负链的信息，然后指定参数<code>sameStrand=TRUE</code> 并分别做两次</p>
 <p>这个参数的意思是：（logical）whether find nearest/overlap gene in the same strand</p>
-<h4 id="只注释基因的上游或下游">只注释基因的上游或下游<a href="#只注释基因的上游或下游" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<h4 id="只注释基因的上游或下游">只注释基因的上游或下游<a arialabel="Anchor" class="header-anchor" href="#只注释基因的上游或下游"> # </a></h4>
 <p>提供了<code>ignoreDownstream</code>和 <code>ignoreUpstream</code>，默认是FALSE</p>
-<h4 id="关于txdb的知识">关于TxDb的知识<a href="#关于txdb的知识" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<h4 id="关于txdb的知识">关于TxDb的知识<a arialabel="Anchor" class="header-anchor" href="#关于txdb的知识"> # </a></h4>
 <p>上面一起操作的前提是物种本身有这些注释信息，而注释信息主要是用TxDb</p>
-<h5 id="同一物种的不同版本txdb">同一物种的不同版本TxDb<a href="#同一物种的不同版本txdb" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
+<h5 id="同一物种的不同版本txdb">同一物种的不同版本TxDb<a arialabel="Anchor" class="header-anchor" href="#同一物种的不同版本txdb"> # </a></h5>
 <p>例如<code>TxDb.Hsapiens.UCSC.hg19.knownGene</code>和<code>TxDb.Hsapiens.UCSC.hg38.knownGene</code> 的注释结果是不同的，不能混用。用哪个取决于上游分析比对使用的哪个版本的基因组</p>
 <p>不同的版本中基因坐标是不一样的，如果硬要替换，可以使用<code>liftOver</code>将基因组版本坐标进行转换</p>
-<h5 id="支持多少物种">支持多少物种？<a href="#支持多少物种" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
+<h5 id="支持多少物种">支持多少物种？<a arialabel="Anchor" class="header-anchor" href="#支持多少物种"> # </a></h5>
 <p>Bioconductor上有30个左右TxDb，也只能覆盖一小部分物种（https://bioconductor.org/packages/3.11/data/annotation/），但UCSC和Ensemble的基因组都可以被ChIPseeker支持，因此所有物种都支持</p>
-<h5 id="除了基因注释还能注释lincrna">除了基因注释还能注释lincRNA<a href="#除了基因注释还能注释lincrna" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
+<h5 id="除了基因注释还能注释lincrna">除了基因注释还能注释lincRNA<a arialabel="Anchor" class="header-anchor" href="#除了基因注释还能注释lincrna"> # </a></h5>
 <p>比如就可以利用：https://bioconductor.org/packages/3.11/data/annotation/html/TxDb.Hsapiens.UCSC.hg19.lincRNAsTranscripts.html</p>
-<pre tabindex="0"><code>require(&#34;TxDb.Hsapiens.UCSC.hg19.lincRNAsTranscripts&#34;)
+<pre tabindex="0"><code>require("TxDb.Hsapiens.UCSC.hg19.lincRNAsTranscripts")
 linc_txdb=TxDb.Hsapiens.UCSC.hg19.lincRNAsTranscripts
 x=annotatePeak(peak, TxDb=linc_txdb)
 as.GRanges(x)
-</code></pre><h5 id="如何自己制作txdb">如何自己制作TxDb？<a href="#如何自己制作txdb" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
+</code></pre><h5 id="如何自己制作txdb">如何自己制作TxDb？<a arialabel="Anchor" class="header-anchor" href="#如何自己制作txdb"> # </a></h5>
 <p>使用<code>GenomicFeatures</code>包来制作TxDb对象</p>
 <ul>
 <li>makeTxDbFromUCSC： 通过UCSC在线制作TxDb</li>
@@ -268,25 +222,25 @@ as.GRanges(x)
 </blockquote>
 <pre tabindex="0"><code>require(GenomicFeatures)
 # makeTxDbFromUCSC()函数依赖RMariaDB这个包
-# BiocManager::install(&#39;RMariaDB&#39;)
-hg19.refseq.db &lt;- makeTxDbFromUCSC(genome=&#34;hg19&#34;, table=&#34;refGene&#34;)
+# BiocManager::install('RMariaDB')
+hg19.refseq.db &lt;- makeTxDbFromUCSC(genome="hg19", table="refGene")
 # 可能会遇到一个报错：namespace ‘DBI’ 1.0.0 is already loaded, but &gt;= 1.1.0 is required =&gt;自己升级
-# remove.packages(&#34;DBI&#34;, lib=&#34;~/Library/R/3.6/library&#34;)
-# packageurl &lt;- &#34;https://cran.r-project.org/src/contrib/DBI_1.1.0.tar.gz&#34;
-# install.packages(packageurl, repos=NULL, type=&#34;source&#34;)
-</code></pre><p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-074517.png" alt="image-20200524154516974"></p>
+# remove.packages("DBI", lib="~/Library/R/3.6/library")
+# packageurl &lt;- "https://cran.r-project.org/src/contrib/DBI_1.1.0.tar.gz"
+# install.packages(packageurl, repos=NULL, type="source")
+</code></pre><p><img alt="image-20200524154516974" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-074517.png"/></p>
 <p>然后可以对比一下：</p>
-<p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-074619.png" alt="image-20200524154619114"></p>
+<p><img alt="image-20200524154619114" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-074619.png"/></p>
 <blockquote>
 <p><strong>再比如自己下载GTF然后生成TxDb</strong> 以大豆（glycine_max）为例</p>
 </blockquote>
 <pre tabindex="0"><code># 下载
-download.file(&#39;ftp://ftp.ensemblgenomes.org/pub/plants/release-47/gff3/glycine_max/Glycine_max.Glycine_max_v2.1.47.chr.gff3.gz&#39;,destfile = &#39;Glycine_max_v2.1.47.chr.gff3.gz&#39;)
+download.file('ftp://ftp.ensemblgenomes.org/pub/plants/release-47/gff3/glycine_max/Glycine_max.Glycine_max_v2.1.47.chr.gff3.gz',destfile = 'Glycine_max_v2.1.47.chr.gff3.gz')
 # 解压
-R.utils::gunzip(&#39;Glycine_max_v2.1.47.chr.gff3.gz&#39;)
+R.utils::gunzip('Glycine_max_v2.1.47.chr.gff3.gz')
 # 制作
-glycine &lt;- makeTxDbFromGFF(&#34;Glycine_max_v2.1.47.chr.gff3&#34;)
-</code></pre><h5 id="有了txdb怎么查看呢">有了TxDb怎么查看呢？<a href="#有了txdb怎么查看呢" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
+glycine &lt;- makeTxDbFromGFF("Glycine_max_v2.1.47.chr.gff3")
+</code></pre><h5 id="有了txdb怎么查看呢">有了TxDb怎么查看呢？<a arialabel="Anchor" class="header-anchor" href="#有了txdb怎么查看呢"> # </a></h5>
 <blockquote>
 <p>最详细的操作在官方文档：https://bioconductor.org/packages/release/bioc/vignettes/GenomicFeatures/inst/doc/GenomicFeatures.pdf</p>
 </blockquote>
@@ -300,73 +254,73 @@ glycine &lt;- makeTxDbFromGFF(&#34;Glycine_max_v2.1.47.chr.gff3&#34;)
 <p>如果想指定提取转录本或外显子信息，可以：<code>transcripts(txdb) 或者 exons(txdb)</code></p>
 </li>
 <li>
-<p>如果想看全部的信息，可以：<code>AnnotationDbi::select(glycine, columns=columns(glycine), keys=keys(glycine), keytype=c(&quot;GENEID&quot;))</code></p>
+<p>如果想看全部的信息，可以：<code>AnnotationDbi::select(glycine, columns=columns(glycine), keys=keys(glycine), keytype=c("GENEID"))</code></p>
 </li>
 </ul>
 <p>需要注意，如果使用这个<code>select</code>的时候，同时加载了<code>tidyverse</code>，那么同名的<code>select</code>就会发生冲突导致报错，这时可以用显式指定的形式来规范（如下图）</p>
-<p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-081020.png" alt="image-20200524161020148"></p>
-<h3 id="可视化">可视化<a href="#可视化" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
-<h4 id="peak在整个染色体的分布">peak在整个染色体的分布<a href="#peak在整个染色体的分布" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<p><img alt="image-20200524161020148" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-081020.png"/></p>
+<h3 id="可视化">可视化<a arialabel="Anchor" class="header-anchor" href="#可视化"> # </a></h3>
+<h4 id="peak在整个染色体的分布">peak在整个染色体的分布<a arialabel="Anchor" class="header-anchor" href="#peak在整个染色体的分布"> # </a></h4>
 <p>见：第3部分=》 使用<code>covplot</code>可视化BED数据</p>
-<h4 id="peak在某个窗口的结合谱图">peak在某个窗口的结合谱图<a href="#peak在某个窗口的结合谱图" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<h4 id="peak在某个窗口的结合谱图">peak在某个窗口的结合谱图<a arialabel="Anchor" class="header-anchor" href="#peak在某个窗口的结合谱图"> # </a></h4>
 <blockquote>
 <p>一般有两种方式：一是直接使用BED文件，二是一步步手动进行</p>
 </blockquote>
-<h5 id="第一种直接使用bed文件">第一种：直接使用BED文件<a href="#第一种直接使用bed文件" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
-<pre tabindex="0"><code>peakHeatmap(f, weightCol=&#34;V5&#34;, TxDb=txdb, 
+<h5 id="第一种直接使用bed文件">第一种：直接使用BED文件<a arialabel="Anchor" class="header-anchor" href="#第一种直接使用bed文件"> # </a></h5>
+<pre tabindex="0"><code>peakHeatmap(f, weightCol="V5", TxDb=txdb, 
             upstream=3000, downstream=3000, 
             color=rainbow(length(f)))
-</code></pre><p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-090403.png" alt="image-20200524170402741"></p>
+</code></pre><p><img alt="image-20200524170402741" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-090403.png"/></p>
 <p>其实看运行日志也能看出来做了什么，首先根据转录起始位点指定上下游（也就是热图的窗口区间范围），然后把peaks比对到这个窗口，并生成矩阵以进行可视化</p>
 <p>稍微查看一下这个<code>peakHeatmap</code>函数，就会发现以上说的几步：</p>
-<p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-091802.png" alt="image-20200524171801673"></p>
+<p><img alt="image-20200524171801673" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-091802.png"/></p>
 <p>当然，如果是多个文件也是可以的</p>
 <pre tabindex="0"><code>files=getSampleFiles()
 peakHeatmap(files, TxDb=txdb, 
             upstream=3000, downstream=3000, 
             color=rainbow(length(files)))
-</code></pre><p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-091010.png" alt="image-20200524171010008"></p>
-<h5 id="第二种一步步手动进行">第二种：一步步手动进行<a href="#第二种一步步手动进行" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
+</code></pre><p><img alt="image-20200524171010008" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-091010.png"/></p>
+<h5 id="第二种一步步手动进行">第二种：一步步手动进行<a arialabel="Anchor" class="header-anchor" href="#第二种一步步手动进行"> # </a></h5>
 <p>如果说第一种提供了一个打包好的计算过程，那么第二种就是把第一种拆分运行</p>
 <pre tabindex="0"><code>promoter &lt;- getPromoters(TxDb=txdb, 
                   upstream=3000, downstream=3000)
 tagMatrix &lt;- getTagMatrix(f, 
                           windows=promoter)
 tagHeatmap(tagMatrix, xlim=c(-3000, 3000), 
-           color=&#34;red&#34;)
-</code></pre><h4 id="看看结合的强度">看看结合的强度<a href="#看看结合的强度" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
-<h5 id="第一种直接使用bed文件-1">第一种：直接使用BED文件<a href="#第一种直接使用bed文件-1" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
+           color="red")
+</code></pre><h4 id="看看结合的强度">看看结合的强度<a arialabel="Anchor" class="header-anchor" href="#看看结合的强度"> # </a></h4>
+<h5 id="第一种直接使用bed文件-1">第一种：直接使用BED文件<a arialabel="Anchor" class="header-anchor" href="#第一种直接使用bed文件-1"> # </a></h5>
 <pre tabindex="0"><code>plotAvgProf2(files[[4]], TxDb=txdb, 
              upstream=3000, downstream=3000,
-             xlab=&#34;Genomic Region (5&#39;-&gt;3&#39;)&#34;, 
-             ylab = &#34;Read Count Frequency&#34;,
+             xlab="Genomic Region (5'-&gt;3')", 
+             ylab = "Read Count Frequency",
              conf = 0.95, resample = 1000)# 添加置信区间
-</code></pre><p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-092010.png" alt="image-20200524172009752"></p>
-<h5 id="第二种手动进行">第二种：手动进行<a href="#第二种手动进行" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
+</code></pre><p><img alt="image-20200524172009752" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-092010.png"/></p>
+<h5 id="第二种手动进行">第二种：手动进行<a arialabel="Anchor" class="header-anchor" href="#第二种手动进行"> # </a></h5>
 <p>使用上面的tagMatrix计算结果</p>
 <pre tabindex="0"><code>plotAvgProf(tagMatrix, xlim=c(-3000, 3000),
-            xlab=&#34;Genomic Region (5&#39;-&gt;3&#39;)&#34;, 
-            ylab = &#34;Read Count Frequency&#34;)
-</code></pre><h5 id="支持多个数据比较">支持多个数据比较<a href="#支持多个数据比较" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
+            xlab="Genomic Region (5'-&gt;3')", 
+            ylab = "Read Count Frequency")
+</code></pre><h5 id="支持多个数据比较">支持多个数据比较<a arialabel="Anchor" class="header-anchor" href="#支持多个数据比较"> # </a></h5>
 <pre tabindex="0"><code>tagMatrixList &lt;- lapply(files, getTagMatrix, 
                         windows=promoter)
 # 添加置信区间并分面
 plotAvgProf(tagMatrixList, xlim=c(-3000, 3000), 
-            conf=0.95,resample=500, facet=&#34;row&#34;)
-</code></pre><p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-092415.png" alt="image-20200524172414305"></p>
+            conf=0.95,resample=500, facet="row")
+</code></pre><p><img alt="image-20200524172414305" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-092415.png"/></p>
 <p>这个结果和上面<code>peakHeatmap</code>的结果一致，前3个样本不是调控转录的</p>
 <p>除了关注转录起始位点（研究转录调控），还能看蛋白与外显子/内含子起始位置的结合谱，使用<code>getBioRegion</code>函数，可以指定<code>'gene', 'transcript', 'exon', 'intron'</code></p>
-<h4 id="注释结果之注释类型一genomic-annotation">注释结果之注释类型一：genomic annotation<a href="#注释结果之注释类型一genomic-annotation" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<h4 id="注释结果之注释类型一genomic-annotation">注释结果之注释类型一：genomic annotation<a arialabel="Anchor" class="header-anchor" href="#注释结果之注释类型一genomic-annotation"> # </a></h4>
 <p>指peak在基因组的位置：落在什么地方，例如外显子、内含子或是5’ /3‘UTR</p>
-<h5 id="饼图">饼图<a href="#饼图" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
+<h5 id="饼图">饼图<a arialabel="Anchor" class="header-anchor" href="#饼图"> # </a></h5>
 <pre tabindex="0"><code>peakAnno &lt;- annotatePeak(files[[4]], 
                          tssRegion=c(-3000, 3000),
-                         TxDb=txdb, annoDb=&#34;org.Hs.eg.db&#34;)
+                         TxDb=txdb, annoDb="org.Hs.eg.db")
 plotAnnoPie(peakAnno)
-</code></pre><p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-095027.png" alt="image-20200524175026325"></p>
-<h5 id="柱状图">柱状图<a href="#柱状图" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
-<p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-095221.png" alt="image-20200524175220328"></p>
-<h5 id="注意第一个问题关于上图中的各种features分类">注意第一个问题：关于上图中的各种Features分类<a href="#注意第一个问题关于上图中的各种features分类" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
+</code></pre><p><img alt="image-20200524175026325" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-095027.png"/></p>
+<h5 id="柱状图">柱状图<a arialabel="Anchor" class="header-anchor" href="#柱状图"> # </a></h5>
+<p><img alt="image-20200524175220328" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-095221.png"/></p>
+<h5 id="注意第一个问题关于上图中的各种features分类">注意第一个问题：关于上图中的各种Features分类<a arialabel="Anchor" class="header-anchor" href="#注意第一个问题关于上图中的各种features分类"> # </a></h5>
 <p>看到这里的分类有下游（Downstream）但没有上游，这是因为Promoter定义为了转录起始位点（TSS）的上下游区域，包含了上游；另外这个下游是是基因间区的一部分，更确切是指紧接着基因的下游；这里的上游和下游其实都是基因间区，单独拿出来是因为和基因直接连接，是很近的区域=》近端基因间区</p>
 <p>当然，基因间区还包含更远的间区（Distal intergenic）=》远端基因间区</p>
 <p>默认下游的范围是3kb，但是可以自己调整</p>
@@ -381,8 +335,8 @@ options(ChIPseeker.ignore_downstream = T)
 options(ChIPseeker.ignore_promoter_subcategory = T)
 x=annotatePeak(f2)
 plotAnnoPie(x)
-</code></pre><p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-140747.png" alt="image-20200524220746569"></p>
-<h5 id="注意第二个问题peak的位置可能不是唯一的">注意第二个问题：peak的位置可能不是唯一的<a href="#注意第二个问题peak的位置可能不是唯一的" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
+</code></pre><p><img alt="image-20200524220746569" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-140747.png"/></p>
+<h5 id="注意第二个问题peak的位置可能不是唯一的">注意第二个问题：peak的位置可能不是唯一的<a arialabel="Anchor" class="header-anchor" href="#注意第二个问题peak的位置可能不是唯一的"> # </a></h5>
 <p>这是因为，一个peak所在的位置，可能是一个基因的外显子，同时又是另一个基因的内含子。为了解决这个问题，有以下几种方案：</p>
 <ul>
 <li>第一种：使用参数<code>genomicAnnotationPriority</code>指定优先顺序</li>
@@ -392,37 +346,37 @@ plotAnnoPie(x)
 <li>第二种：饼图+韦恩图</li>
 </ul>
 <p>优点是：直观；缺点是：无法显示全部的信息</p>
-<p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-095906.png" alt="image-20200524175906192"></p>
+<p><img alt="image-20200524175906192" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-095906.png"/></p>
 <ul>
 <li>第三种：UpSetR + vennpie</li>
 </ul>
 <pre tabindex="0"><code>upsetplot(peakAnno, vennpie=TRUE)
-</code></pre><p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-101849.png" alt="image-20200524181849355"></p>
-<h5 id="多个文件的区域注释">多个文件的区域注释<a href="#多个文件的区域注释" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
+</code></pre><p><img alt="image-20200524181849355" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-101849.png"/></p>
+<h5 id="多个文件的区域注释">多个文件的区域注释<a arialabel="Anchor" class="header-anchor" href="#多个文件的区域注释"> # </a></h5>
 <pre tabindex="0"><code>peakAnnoList &lt;- lapply(files, annotatePeak, 
                        TxDb=txdb,tssRegion=c(-3000, 3000))
 plotAnnoBar(peakAnnoList)
-</code></pre><p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-103040.png" alt="image-20200524183040228"></p>
-<h4 id="注释结果之注释类型二nearest-gene-annotation">注释结果之注释类型二：nearest gene annotation<a href="#注释结果之注释类型二nearest-gene-annotation" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+</code></pre><p><img alt="image-20200524183040228" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-103040.png"/></p>
+<h4 id="注释结果之注释类型二nearest-gene-annotation">注释结果之注释类型二：nearest gene annotation<a arialabel="Anchor" class="header-anchor" href="#注释结果之注释类型二nearest-gene-annotation"> # </a></h4>
 <p>指peak最近的基因：不管peak落在内含子、基因间区还是其他位置，按照peak相对于转录起始位点的距离，都能找到一个<strong>离它最近的基因</strong></p>
 <pre tabindex="0"><code>plotDistToTSS(peakAnno,
-    title=&#34;Distribution of transcription factor-binding loci\nrelative to TSS&#34;)
-</code></pre><h5 id="同样也支持多个文件">同样也支持多个文件<a href="#同样也支持多个文件" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
+    title="Distribution of transcription factor-binding loci\nrelative to TSS")
+</code></pre><h5 id="同样也支持多个文件">同样也支持多个文件<a arialabel="Anchor" class="header-anchor" href="#同样也支持多个文件"> # </a></h5>
 <pre tabindex="0"><code>plotDistToTSS(peakAnnoList)
-</code></pre><p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-103406.png" alt="image-20200524183406429"></p>
-<h5 id="距离最近的基因在不同样本的交集">距离最近的基因在不同样本的交集<a href="#距离最近的基因在不同样本的交集" class="header-anchor" ariaLabel="Anchor"> # </a></h5>
+</code></pre><p><img alt="image-20200524183406429" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-103406.png"/></p>
+<h5 id="距离最近的基因在不同样本的交集">距离最近的基因在不同样本的交集<a arialabel="Anchor" class="header-anchor" href="#距离最近的基因在不同样本的交集"> # </a></h5>
 <pre tabindex="0"><code># 先得到基因列表
 genes &lt;- lapply(peakAnnoList, function(i) 
     as.data.frame(i)$geneId)
 &gt; names(genes)
-[1] &#34;ARmo_0M&#34;    &#34;ARmo_1nM&#34;   &#34;ARmo_100nM&#34; &#34;CBX6_BF&#34;    &#34;CBX7_BF&#34;  
+[1] "ARmo_0M"    "ARmo_1nM"   "ARmo_100nM" "CBX6_BF"    "CBX7_BF"  
                 
 # 然后作图(需要借助Vennerable包)
-devtools::install_github(&#34;js229/Vennerable&#34;)
+devtools::install_github("js229/Vennerable")
 library(Vennerable)
-vennplot(genes[2:4], by=&#39;Vennerable&#39;)
-</code></pre><p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-104012.png" alt="image-20200524184011903"></p>
-<h3 id="基因注释--富集分析">基因注释 + 富集分析<a href="#基因注释--富集分析" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+vennplot(genes[2:4], by='Vennerable')
+</code></pre><p><img alt="image-20200524184011903" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-104012.png"/></p>
+<h3 id="基因注释--富集分析">基因注释 + 富集分析<a arialabel="Anchor" class="header-anchor" href="#基因注释--富集分析"> # </a></h3>
 <p>利用ChIPseeker的<code>seq2gene</code> 将peak的位置与所有的基因关联起来【包括 host gene (exon/intron), promoter region and flanking gene from intergenomic region】，然后用clusterProfiler拿这些基因跑ORA，做富集</p>
 <pre tabindex="0"><code>require(clusterProfiler)
 bedfile=getSampleFiles()
@@ -432,54 +386,32 @@ seq=lapply(bedfile, readPeakFile)
 genes=lapply(seq, function(i) 
     seq2gene(i, c(-1000, 3000), 3000, TxDb=txdb))
 cc = compareCluster(geneClusters = genes, 
-                    fun=&#34;enrichKEGG&#34;, organism=&#34;hsa&#34;)
+                    fun="enrichKEGG", organism="hsa")
 dotplot(cc, showCategory=10)
-</code></pre><p><img src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-123655.png" alt="image-20200524203655456"></p>
-
+</code></pre><p><img alt="image-20200524203655456" src="https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-05-24-123655.png"/></p>
 <p style="color:#777;">最后一次修改于 2022-03-26</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
-
 </main>
-
 <footer class="footer">
-
-<script src="https://utteranc.es/client.js"
-        repo="kongjianyang/kongjianyang.github.io"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
+<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
 </script>
-
-
-  <script type="text/javascript" src="/js/math-code.js"></script>
-<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script type="text/javascript" src="/js/center-img.js"></script>
-
-
-
-     <ul class="footer-links">
-      
-       
-       
-       
-       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+<script src="/js/math-code.js" type="text/javascript"></script>
+<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/js/center-img.js" type="text/javascript"></script>
+<ul class="footer-links">
+<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
        订阅 </a>
-       </li>
-       
-       
-       <li>
-       
-       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+</li>
+<li>
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
         版权
-        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
-        </a>
-       </li>
-       
-     </ul>
-     <div class="copyright-text">
+        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
+</a>
+</li>
+</ul>
+<div class="copyright-text">
             
             ©
             
@@ -488,10 +420,5 @@ dotplot(cc, showCategory=10)
             2018-2021
             
      </div>
-
 </footer>
-
-
-
-
-
+</div></body></html>

@@ -1,97 +1,53 @@
-<a name="top"></a>
+<html><body><a name="top"></a>
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>KJY</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/fonts.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>KJY</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="/css/style.css" rel="stylesheet"/>
+<link href="/css/fonts.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
-
 <script>hljs.initHighlightingOnLoad();</script>
-
-
-
-
-
-
-
-  </head>
-  
-  <body>
-    <div class="wrapper">
-      <header class="header">
-        <nav class="nav" >
-      <a href="/" class="nav-logo">
-        <img src="/media/%3cnil%3e"
-         width=""
-         height=""
-         alt="">
-      </a>
-
-      <ul class="nav-links" >
-        
-        
-           <li><a href="/cn/about/">关于</a></li>
-       
-           <li><a href="/cn/posts/">日志</a></li>
-       
-           <li><a href="/cn/newsletter/">周刊</a></li>
-       
-           <li><a href="/">English</a></li>
-       
-       
-      </ul>
+<div class="wrapper">
+<header class="header">
+<nav class="nav">
+<a class="nav-logo" href="/">
+<img alt="" height="" src="/media/%3cnil%3e" width=""/>
+</a>
+<ul class="nav-links">
+<li><a href="/cn/about/">关于</a></li>
+<li><a href="/cn/posts/">日志</a></li>
+<li><a href="/cn/newsletter/">周刊</a></li>
+<li><a href="/">English</a></li>
+</ul>
 </nav>
-      </header>
-
-<main class = "content" role="main">
+</header>
+<main class="content" role="main">
 <div style="text-align: center">
-
 <h1>R中利用aggregate函数进行多因子统计</h1>
-
 <p>Liang 
  / 2018-11-24 </p>
-
 <hr/>
 </div>
-
 <span class="article-toolbar">
-  
-  
-  
-  
-  
-  
-  
-  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-R%e4%b8%ad%e5%88%a9%e7%94%a8aggregate%e5%87%bd%e6%95%b0%e8%bf%9b%e8%a1%8c%e5%a4%9a%e5%9b%a0%e5%ad%90%e7%bb%9f%e8%ae%a1.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
-  </a>
-  
-  
-  
+<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-R%e4%b8%ad%e5%88%a9%e7%94%a8aggregate%e5%87%bd%e6%95%b0%e8%bf%9b%e8%a1%8c%e5%a4%9a%e5%9b%a0%e5%ad%90%e7%bb%9f%e8%ae%a1.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
+</a>
 </span>
-
-
-
 <div class="body-text list-text">
-<h2 id="1介绍">1.介绍<a href="#1介绍" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<h2 id="1介绍">1.介绍<a arialabel="Anchor" class="header-anchor" href="#1介绍"> # </a></h2>
 <p>R中aggregate函数的功能强大，它首先将数据进行分组（按行），然后对每一组数据进行函数统计，最后把结果组合成一个比较nice的表格返回。简单说有点类似sql语言中的group by，可以按照要求把数据打组聚合，然后对聚合以后的数据进行加和、求平均等各种操作。</p>
-<h2 id="2详解">2.详解<a href="#2详解" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<h2 id="2详解">2.详解<a arialabel="Anchor" class="header-anchor" href="#2详解"> # </a></h2>
 <p>通过 mtcars 数据集的操作对这个函数进行简单了解。mtcars 是不同类型汽车道路测试的数据框类型数据：</p>
 <pre tabindex="0"><code>str(mtcars)
-&#39;data.frame&#39;:	32 obs. of  11 variables:
+'data.frame':	32 obs. of  11 variables:
  $ mpg : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
  $ cyl : num  6 6 4 6 8 6 8 4 4 6 ...
  $ disp: num  160 160 108 258 360 ...
@@ -106,57 +62,35 @@
 </code></pre><p>用attach函数把mtcars的列变量名称加入到变量搜索范围内，然后使用aggregate函数按cyl（汽缸数）进行分类计算平均值：</p>
 <pre tabindex="0"><code>attach(mtcars)
 aggregate(mtcars, by=list(cyl), FUN=mean)
-</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-ee093a2e9804496d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="结果图">
+</code></pre><p><img alt="结果图" src="https://upload-images.jianshu.io/upload_images/3014937-ee093a2e9804496d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/>
 by参数也可以包含多个类型的因子，得到的就是每个不同因子组合的统计结果：</p>
 <pre tabindex="0"><code>aggregate(mtcars, by=list(cyl, gear), FUN=mean)
-</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-da18d9e11b7ba16a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="结果图"></p>
-<h2 id="3总结">3.总结<a href="#3总结" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+</code></pre><p><img alt="结果图" src="https://upload-images.jianshu.io/upload_images/3014937-da18d9e11b7ba16a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
+<h2 id="3总结">3.总结<a arialabel="Anchor" class="header-anchor" href="#3总结"> # </a></h2>
 <p>在处理重复重复数据的时候，aggregate函数非常好用，在我最近的数据处理的过程中经常运用。</p>
-
 <p style="color:#777;">最后一次修改于 2018-11-24</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
-
 </main>
-
 <footer class="footer">
-
-<script src="https://utteranc.es/client.js"
-        repo="kongjianyang/kongjianyang.github.io"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
+<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
 </script>
-
-
-  <script type="text/javascript" src="/js/math-code.js"></script>
-<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script type="text/javascript" src="/js/center-img.js"></script>
-
-
-
-     <ul class="footer-links">
-      
-       
-       
-       
-       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+<script src="/js/math-code.js" type="text/javascript"></script>
+<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/js/center-img.js" type="text/javascript"></script>
+<ul class="footer-links">
+<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
        订阅 </a>
-       </li>
-       
-       
-       <li>
-       
-       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+</li>
+<li>
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
         版权
-        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
-        </a>
-       </li>
-       
-     </ul>
-     <div class="copyright-text">
+        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
+</a>
+</li>
+</ul>
+<div class="copyright-text">
             
             ©
             
@@ -165,10 +99,5 @@ by参数也可以包含多个类型的因子，得到的就是每个不同因子
             2018-2021
             
      </div>
-
 </footer>
-
-
-
-
-
+</div></body></html>

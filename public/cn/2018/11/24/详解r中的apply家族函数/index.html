@@ -1,90 +1,46 @@
-<a name="top"></a>
+<html><body><a name="top"></a>
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>KJY</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/fonts.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>KJY</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="/css/style.css" rel="stylesheet"/>
+<link href="/css/fonts.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
-
 <script>hljs.initHighlightingOnLoad();</script>
-
-
-
-
-
-
-
-  </head>
-  
-  <body>
-    <div class="wrapper">
-      <header class="header">
-        <nav class="nav" >
-      <a href="/" class="nav-logo">
-        <img src="/media/%3cnil%3e"
-         width=""
-         height=""
-         alt="">
-      </a>
-
-      <ul class="nav-links" >
-        
-        
-           <li><a href="/cn/about/">关于</a></li>
-       
-           <li><a href="/cn/posts/">日志</a></li>
-       
-           <li><a href="/cn/newsletter/">周刊</a></li>
-       
-           <li><a href="/">English</a></li>
-       
-       
-      </ul>
+<div class="wrapper">
+<header class="header">
+<nav class="nav">
+<a class="nav-logo" href="/">
+<img alt="" height="" src="/media/%3cnil%3e" width=""/>
+</a>
+<ul class="nav-links">
+<li><a href="/cn/about/">关于</a></li>
+<li><a href="/cn/posts/">日志</a></li>
+<li><a href="/cn/newsletter/">周刊</a></li>
+<li><a href="/">English</a></li>
+</ul>
 </nav>
-      </header>
-
-<main class = "content" role="main">
+</header>
+<main class="content" role="main">
 <div style="text-align: center">
-
 <h1>详解R中的apply家族函数</h1>
-
 <p>Liang 
  / 2018-11-24 </p>
-
 <hr/>
 </div>
-
 <span class="article-toolbar">
-  
-  
-  
-  
-  
-  
-  
-  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-%e8%af%a6%e8%a7%a3R%e4%b8%ad%e7%9a%84apply%e5%ae%b6%e6%97%8f%e5%87%bd%e6%95%b0.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
-  </a>
-  
-  
-  
+<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-%e8%af%a6%e8%a7%a3R%e4%b8%ad%e7%9a%84apply%e5%ae%b6%e6%97%8f%e5%87%bd%e6%95%b0.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
+</a>
 </span>
-
-
-
 <div class="body-text list-text">
 <p>R语言中提供了一系列apply()的函数，为数据分析中Split-Apply-Combine的策略提供了简洁方便的实现，这些函数的基本工作流程都是首先将数据按照某种规则划分（split）为较小的几部分，然后对各个部分应用（apply）某些操作，再将结果整合（combine）起来。关于Split-Apply-Combine策略的详细内容，可以参考Hadley Wickham的The Split-Apply-Combine Strategy for Data Analysis一文。</p>
 <p>apply()家族主要有以下7类函数：</p>
@@ -95,7 +51,7 @@ base::lapply            Apply a Function over a List or Vector
 base::mapply            Apply a Function to Multiple List or Vector Arguments
 base::rapply            Recursively Apply a Function to a List
 base::tapply            Apply a Function Over a Ragged Array
-</code></pre><h2 id="1-apply函数">1. apply()函数<a href="#1-apply函数" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+</code></pre><h2 id="1-apply函数">1. apply()函数<a arialabel="Anchor" class="header-anchor" href="#1-apply函数"> # </a></h2>
 <pre tabindex="0"><code># create a matrix of 10 rows x 2 columns
 m &lt;- matrix(c(1:10, 11:20), nrow = 10, ncol = 2)
 # mean of the rows
@@ -117,7 +73,7 @@ apply(m, 1:2, function(x) x/2)
  [8,]  4.0  9.0
  [9,]  4.5  9.5
 [10,]  5.0 10.0
-</code></pre><h2 id="2-by函数">2. by()函数<a href="#2-by函数" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+</code></pre><h2 id="2-by函数">2. by()函数<a arialabel="Anchor" class="header-anchor" href="#2-by函数"> # </a></h2>
 <p>by函数是对于数据框按照因子分割然后执行某函数(Apply a Function to a Data Frame Split by Factors)</p>
 <pre tabindex="0"><code>attach(iris)
 head(iris)
@@ -142,7 +98,7 @@ Sepal.Length  Sepal.Width Petal.Length  Petal.Width
 Species: virginica
 Sepal.Length  Sepal.Width Petal.Length  Petal.Width 
        6.588        2.974        5.552        2.026
-</code></pre><h2 id="3-eapply函数">3. eapply()函数<a href="#3-eapply函数" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+</code></pre><h2 id="3-eapply函数">3. eapply()函数<a arialabel="Anchor" class="header-anchor" href="#3-eapply函数"> # </a></h2>
 <p>eapply函数很少用，它针对的对象是不同环境中的变量计算，返回的结果是一个list.</p>
 <pre tabindex="0"><code># a new environment
 e &lt;- new.env()
@@ -157,7 +113,7 @@ $b
 $a
 [1] 5.5
 </code></pre><p>正常情况我们不会创造自己的环境，但是很多的R包会使用新的环境。</p>
-<h2 id="4-lapply函数">4. lapply()函数<a href="#4-lapply函数" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<h2 id="4-lapply函数">4. lapply()函数<a arialabel="Anchor" class="header-anchor" href="#4-lapply函数"> # </a></h2>
 <p>lapply()中的“l”代表list，它接受list作为输入，并将指定的操作应用于列表中的所有元素。在list上逐个元素调用FUN。可以用于dataframe上，因为dataframe是一种特殊形式的list</p>
 <pre tabindex="0"><code># create a list with 2 elements
 l &lt;- list(a = 1:10, b = 11:20)
@@ -176,7 +132,7 @@ $a
  
 $b
 [1] 155
-</code></pre><h2 id="5-sapply函数">5. sapply()函数<a href="#5-sapply函数" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+</code></pre><h2 id="5-sapply函数">5. sapply()函数<a arialabel="Anchor" class="header-anchor" href="#5-sapply函数"> # </a></h2>
 <p>sapply()中的代表simplify， 其与lapply()的不同之处在于sapply()会尝试对结果进行简化，使用sapply()替代lapply()重复前面例子的操作：</p>
 <pre tabindex="0"><code># create a list with 2 elements
 l &lt;- list(a = 1:10, b = 11:20)
@@ -187,20 +143,20 @@ sapply(l, mean)
 l.mean &lt;- sapply(l, mean)
 # what type of object was returned?
 class(l.mean)
-#[1] &#34;numeric&#34;
-# it&#39;s a numeric vector, so we can get element &#34;a&#34; like this
-l.mean[[&#39;a&#39;]]
+#[1] "numeric"
+# it's a numeric vector, so we can get element "a" like this
+l.mean[['a']]
 #[1] 5.5
 </code></pre><p>sapply()自动将结果转换为了character的vector。具体来说，如果apply的结果是一个所有元素长度都为1的list，sapply()会将结果转换为vector；如果apply的结果是一个所有元素长度都相等且大于1的list，sapply()会将结果转换为matrix；如果sapply()无法判断简化规则，则不对结果进行简化，返回list，此时得到的结果和lapply()相同。</p>
-<h2 id="6-vapply函数">6. vapply()函数<a href="#6-vapply函数" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<h2 id="6-vapply函数">6. vapply()函数<a arialabel="Anchor" class="header-anchor" href="#6-vapply函数"> # </a></h2>
 <p>vapply()与sapply()相似，他可以预先指定的返回值类型。使得得到的结果更加安全。
 vapply基本格式是vapply(X, FUN, FUN.VALUE)，其中FUN.VALUE可以写入自己想要的输出格式。</p>
 <pre tabindex="0"><code>l &lt;- list(a = 1:10, b = 11:20)
 # fivenum of values using vapply
-l.fivenum &lt;- vapply(l, fivenum, c(Min.=0, &#34;1st Qu.&#34;=0, Median=0, &#34;3rd Qu.&#34;=0, Max.=0))
+l.fivenum &lt;- vapply(l, fivenum, c(Min.=0, "1st Qu."=0, Median=0, "3rd Qu."=0, Max.=0))
 class(l.fivenum)
-[1] &#34;matrix&#34;
-# let&#39;s see it
+[1] "matrix"
+# let's see it
 l.fivenum
            a    b
 Min.     1.0 11.0
@@ -208,7 +164,7 @@ Min.     1.0 11.0
 Median   5.5 15.5
 3rd Qu.  8.0 18.0
 Max.    10.0 20.0
-</code></pre><h2 id="7-replicate函数">7. replicate()函数<a href="#7-replicate函数" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+</code></pre><h2 id="7-replicate函数">7. replicate()函数<a arialabel="Anchor" class="header-anchor" href="#7-replicate函数"> # </a></h2>
 <p>replicate()函数，它可以将某个函数重复运行N次，常常用来生成较复杂的随机数。</p>
 <pre tabindex="0"><code>replicate(10, rnorm(10))
              [,1]        [,2]        [,3]       [,4]        [,5]         [,6]
@@ -233,8 +189,8 @@ Max.    10.0 20.0
  [8,] -0.51112579 -0.53658159  1.5194130 -0.94250069
  [9,]  0.52017814 -1.22252527  0.4519702  0.08779704
 [10,]  1.35908918  1.09024342  0.5912627 -0.20709053
-</code></pre><h2 id="8-mapply函数">8. mapply()函数<a href="#8-mapply函数" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
-<p>mapply是多变量版的sapply，参数(&hellip;)部分可以接收多个数据，mapply将FUN应用于这些数据的第一个元素组成的数组，然后是第二个元素组成的数组，以此类推。要求多个数据的长度相同，或者是整数倍关系。返回值是vector或matrix，取决于FUN返回值是一个还是多个。</p>
+</code></pre><h2 id="8-mapply函数">8. mapply()函数<a arialabel="Anchor" class="header-anchor" href="#8-mapply函数"> # </a></h2>
+<p>mapply是多变量版的sapply，参数(…)部分可以接收多个数据，mapply将FUN应用于这些数据的第一个元素组成的数组，然后是第二个元素组成的数组，以此类推。要求多个数据的长度相同，或者是整数倍关系。返回值是vector或matrix，取决于FUN返回值是一个还是多个。</p>
 <pre tabindex="0"><code>mapply(sum, list(a=1,b=2,c=3), list(a=10,b=20,d=30))
  a  b  c 
 11 22 33 
@@ -244,10 +200,10 @@ mapply(function(x,y) c(x+y, x^y), c(1:5), c(1:5))
      [,1] [,2] [,3] [,4] [,5]
 [1,]    2    4    6    8   10
 [2,]    1    4   27  256 3125
-</code></pre><h2 id="9rapply函数">9.rapply()函数<a href="#9rapply函数" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+</code></pre><h2 id="9rapply函数">9.rapply()函数<a arialabel="Anchor" class="header-anchor" href="#9rapply函数"> # </a></h2>
 <p>Description: “rapply is a recursive version of lapply.”
-apply是递归版的lappy。基本原理是对list作遍历，如果其中有的元素仍然是list，则继续遍历；对于每个非list类型的元素，如果其类型是classes参数指定的类型之一，则调用FUN。classes=&ldquo;ANY&quot;表示匹配所有类型。</p>
-<pre tabindex="0"><code># let&#39;s start with our usual simple list example
+apply是递归版的lappy。基本原理是对list作遍历，如果其中有的元素仍然是list，则继续遍历；对于每个非list类型的元素，如果其类型是classes参数指定的类型之一，则调用FUN。classes=“ANY"表示匹配所有类型。</p>
+<pre tabindex="0"><code># let's start with our usual simple list example
 l &lt;- list(a = 1:10, b = 11:20)
 # log2 of each value in the list
 rapply(l, log2)
@@ -258,7 +214,7 @@ rapply(l, log2)
       b7       b8       b9      b10 
 4.087463 4.169925 4.247928 4.321928
 # log2 of each value in each list
-rapply(l, log2, how = &#34;list&#34;)
+rapply(l, log2, how = "list")
 $a
  [1] 0.000000 1.000000 1.584963 2.000000 2.321928 2.584963 2.807355 3.000000
  [9] 3.169925 3.321928
@@ -272,17 +228,17 @@ rapply(l, mean)
    a    b 
  5.5 15.5
  
-rapply(l, mean, how = &#34;list&#34;)
+rapply(l, mean, how = "list")
 $a
 [1] 5.5
  
 $b
 [1] 15.5
-</code></pre><h2 id="10-tapply函数">10. tapply()函数<a href="#10-tapply函数" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+</code></pre><h2 id="10-tapply函数">10. tapply()函数<a arialabel="Anchor" class="header-anchor" href="#10-tapply函数"> # </a></h2>
 <pre tabindex="0"><code>tapply(array, indices, margin, FUN=NULL, ...)
 </code></pre><p>按indices中的值分组，把相同值对应下标的array中的元素形成一个集合，应用到FUN。类似于group by indices的操作。如果FUN返回的是一个值，tapply返回vector；若FUN返回多个值，tapply返回list。vector或list的长度和indices中不同值的个数相等。</p>
 <pre tabindex="0"><code>&gt; v &lt;- c(1:5)
-&gt; ind &lt;- c(&#39;a&#39;,&#39;a&#39;,&#39;a&#39;,&#39;b&#39;,&#39;b&#39;)
+&gt; ind &lt;- c('a','a','a','b','b')
 &gt; tapply(v, ind)#指示分组的结果，按照ind进行了分组。
 [1] 1 1 1 2 2
 &gt; tapply(v, ind, sum)#传递了sum函数，按照分组进行了计算。
@@ -319,47 +275,26 @@ $`2`
 <p style="color:#777;">最后一次修改于 2018-11-24</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
-
 </main>
-
 <footer class="footer">
-
-<script src="https://utteranc.es/client.js"
-        repo="kongjianyang/kongjianyang.github.io"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
+<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
 </script>
-
-
-  <script type="text/javascript" src="/js/math-code.js"></script>
-<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script type="text/javascript" src="/js/center-img.js"></script>
-
-
-
-     <ul class="footer-links">
-      
-       
-       
-       
-       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+<script src="/js/math-code.js" type="text/javascript"></script>
+<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/js/center-img.js" type="text/javascript"></script>
+<ul class="footer-links">
+<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
        订阅 </a>
-       </li>
-       
-       
-       <li>
-       
-       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+</li>
+<li>
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
         版权
-        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
-        </a>
-       </li>
-       
-     </ul>
-     <div class="copyright-text">
+        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
+</a>
+</li>
+</ul>
+<div class="copyright-text">
             
             ©
             
@@ -368,10 +303,5 @@ $`2`
             2018-2021
             
      </div>
-
 </footer>
-
-
-
-
-
+</div></body></html>

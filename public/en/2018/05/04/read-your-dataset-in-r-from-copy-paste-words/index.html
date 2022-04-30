@@ -1,102 +1,55 @@
-<a name="top"></a>
+<html><body><a name="top"></a>
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>KJY</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/fonts.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>KJY</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="/css/style.css" rel="stylesheet"/>
+<link href="/css/fonts.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
-
 <script>hljs.initHighlightingOnLoad();</script>
-
-
-
-
-
-
-
-  </head>
-  
-  <body>
-    <div class="wrapper">
-      <header class="header">
-        <nav class="nav" >
-      <a href="/" class="nav-logo">
-        <img src="/media/%3cnil%3e"
-         width=""
-         height=""
-         alt="">
-      </a>
-
-      <ul class="nav-links" >
-        
-        
-           <li><a href="/">Home</a></li>
-       
-           <li><a href="/en/about/">About</a></li>
-       
-           <li><a href="/en/posts/">Posts</a></li>
-       
-           <li><a href="/cn/posts/">中文</a></li>
-       
-       
-      </ul>
+<div class="wrapper">
+<header class="header">
+<nav class="nav">
+<a class="nav-logo" href="/">
+<img alt="" height="" src="/media/%3cnil%3e" width=""/>
+</a>
+<ul class="nav-links">
+<li><a href="/">Home</a></li>
+<li><a href="/en/about/">About</a></li>
+<li><a href="/en/posts/">Posts</a></li>
+<li><a href="/cn/posts/">中文</a></li>
+</ul>
 </nav>
-      </header>
-
-<main class = "content" role="main">
+</header>
+<main class="content" role="main">
 <div style="text-align: center">
-
 <h1>Read Your Dataset in R From Copy Paste Text</h1>
-
 <p>Liang 
  / 2018-05-04 </p>
-
 <hr/>
 </div>
-
 <span class="article-toolbar">
-  
-  
-  
-  
-  
-  
-  
-  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/en/posts/2018-05-04-read-your-dataset-in-r-from-copy-paste-words.Rmd'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="Suggest an edit of this page"></i>
-  </a>
-  
-  
-  
+<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/en/posts/2018-05-04-read-your-dataset-in-r-from-copy-paste-words.Rmd" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="Suggest an edit of this page"></i>
+</a>
 </span>
-
-
-
 <div class="body-text list-text">
-
-
-
-<div id="problem" class="section level2">
+<div class="section level2" id="problem">
 <h2>Problem</h2>
 <p>Sometimes, we may want import a small dataset to our R code. And this may be annoying if we still need store data into a csv or txt file and then read dataset in from a file. A convenient way is read data in just from copy paste text. This post will solve this problem.</p>
 </div>
-<div id="solution" class="section level2">
+<div class="section level2" id="solution">
 <h2>Solution</h2>
 <p>Fisrt we need to store the data in a character variable</p>
-<pre class="r"><code>data.text &lt;- &quot;X   X400    X80     X8 CONTROL
+<pre class="r"><code>data.text &lt;- "X   X400    X80     X8 CONTROL
 1      CA  87743 157938 184261  114066
 2      CA  78969 166712 166712   61420
 3      CA  52646     NA 122841   87743
@@ -114,7 +67,7 @@
 15     SA  96518  61420 122841   87743
 16     SA  87743  52646     NA      NA
 17     SA 105292 122841 184261   61420
-18     SA     NA  78969 210584   78969&quot;</code></pre>
+18     SA     NA  78969 210584   78969"</code></pre>
 <p>Next, we can use <code>textConnection</code> to create a virtual file and then use <code>read.table</code> to read the string into a data frame</p>
 <pre class="r"><code>read.table(textConnection(data.text), header=TRUE)</code></pre>
 <pre><code>##         X   X400    X80     X8 CONTROL
@@ -138,16 +91,16 @@
 ## 18     SA     NA  78969 210584   78969</code></pre>
 <p>Problem solved!</p>
 </div>
-<div id="update" class="section level2">
+<div class="section level2" id="update">
 <h2>Update</h2>
 <p>A more convenient way is use <code>read.table</code> directly.</p>
-<pre class="r"><code>dw &lt;- read.table(header=T, text=&#39;
+<pre class="r"><code>dw &lt;- read.table(header=T, text='
  sbj f1.avg f1.sd f2.avg f2.sd  blabla
    A   10    6     50     10      bA
    B   12    5     70     11      bB
    C   20    7     20     8       bC
    D   22    8     22     9       bD
- &#39;)
+ ')
 dw</code></pre>
 <pre><code>##   sbj f1.avg f1.sd f2.avg f2.sd blabla
 ## 1   A     10     6     50    10     bA
@@ -156,51 +109,29 @@ dw</code></pre>
 ## 4   D     22     8     22     9     bD</code></pre>
 <p>Reference: <a href="https://magesblog.com/post/2012-03-21-copy-and-paste-small-data-sets-into-r/">Copy and paste small data sets into R</a></p>
 </div>
-
 <p style="color:#777;">Last modified on 2018-05-04</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
-
 </main>
-
 <footer class="footer">
-
-<script src="https://utteranc.es/client.js"
-        repo="kongjianyang/kongjianyang.github.io"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
+<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
 </script>
-
-
-  <script type="text/javascript" src="/js/math-code.js"></script>
-<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script type="text/javascript" src="/js/center-img.js"></script>
-
-
-
-     <ul class="footer-links">
-      
-       
-       
-       
-       <li><a href="/en/posts/index.xml" type="application/rss+xml" title="RSS feed">
+<script src="/js/math-code.js" type="text/javascript"></script>
+<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/js/center-img.js" type="text/javascript"></script>
+<ul class="footer-links">
+<li><a href="/en/posts/index.xml" title="RSS feed" type="application/rss+xml">
        Subscribe </a>
-       </li>
-       
-       
-       <li>
-       
-        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
+</li>
+<li>
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
        
         License
-        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
-        </a>
-       </li>
-       
-     </ul>
-     <div class="copyright-text">
+        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
+</a>
+</li>
+</ul>
+<div class="copyright-text">
             
             ©
             
@@ -209,10 +140,5 @@ dw</code></pre>
             2018-2021
             
      </div>
-
 </footer>
-
-
-
-
-
+</div></body></html>
