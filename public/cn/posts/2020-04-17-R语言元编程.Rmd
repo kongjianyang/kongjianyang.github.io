@@ -1,0 +1,598 @@
+---
+title: "R语言元编程"
+date: '2020-04-17'
+author: KJY
+slug: metaprogramming
+draft: false
+categories:
+  - R
+tags: []
+lastmod: '2020-04-17T10:30:09-07:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+
+---
+
+参考：
+https://wly.supernum.tech/2019/06/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E8%AF%AD%E8%A8%80%E7%9A%84%E7%BC%96%E7%A8%8B/
+https://wutaoblog.com.cn/2021/01/14/r-meta/#%E5%9F%BA%E4%BA%8E%E8%AF%AD%E8%A8%80%E7%9A%84%E8%AE%A1%E7%AE%97-%E5%85%83%E7%BC%96%E7%A8%8B
+https://shixiangwang.github.io/home/cn/post/2019-11-20-meta-programming/
+
+
+Metaprogramming (元编程1) 是指程序在运行前/时， 将代码自身作为数据进行处理，从而在更高的层面扩展了编程语法的表达力。 
+
+> 元编程概念：编写运行时动态修改程序本身的代码（编写产生代码的代码）【使用编程语言来操作或修改自己的代码,代码就是数据】
+
+R中进行元编程的操作可以使用`base R`中的函数，也可以使用`rlang`函数【`Tidy evaluation`的实现】，当然，`data.table`也有自己的元编程。
+
+通过操作命令（表达式）与执行环境，操作自己的代码。 在R语言中，“表达式”的概念有狭义和广义两种意义。狭义的表达式指表达式（expression）类对象，由`expression`函数产生；而广义的的表达式既包含expression类，也包含R`language`类。`expression`和`language`是R语言中两种特殊数据类：
+
+```{r}
+library(rlang)
+getClass("expression")
+## Class "expression" [package "methods"]
+## 
+## No Slots, prototype of class "expression"
+## 
+## Extends: "vector"
+getClass("language")
+## Virtual Class "language" [package "methods"]
+## 
+## No Slots, prototype of class "name"
+## 
+## Known Subclasses: 
+## Class "name", directly
+## Class "call", directly
+## Class "{", directly
+## Class "if", directly
+## Class "<-", directly
+## Class "for", directly
+## Class "while", directly
+## Class "repeat", directly
+## Class "(", directly
+## Class ".name", by class "name", distance 2, with explicit coerce
+```
+
+可以看到`expression`类由**向量**派生得到，`language`类是虚拟类，它包括我们熟悉的程序**控制关键词/符号**和**name**、**call** 子类。
+
+## base R
+
+### call函数
+
+call函数构建一个命令（**function call**），其第一个参数必须是一个字符串，指明需要被构建的命令，其余参数都会被传递给新生成的命令。
+
+```{r}
+cl <- call("round",1.11)
+cl
+## round(1.11)
+class(cl);typeof(cl)
+## [1] "call"
+## [1] "language"
+identical(cl,quote(round(1.11)))
+## [1] TRUE
+is.call(cl) && is.language(cl)
+## [1] TRUE
+eval(cl)
+## [1] 1
+(cl_list <- as.list(cl))
+## [[1]]
+## round
+## 
+## [[2]]
+## [1] 1.11
+as.call(cl_list)
+## round(1.11)
+mode(cl_list) <- "call";cl_list
+## round(1.11)
+```
+
+`do.call(what, args, quote = FALSE, envir = parent.frame())`命令则是直接在`envir`中执行`call`命令。
+
+### 捕获代码
+
+`quote(expr)`函数捕获未执行的代码。`enquote(cl)`捕获代码的运行结果,cl为`call`对象。
+
+```{r}
+quote(1:9 + 2)
+## 1:9 + 2
+enquote(1:9 + 2)
+## base::quote(c(3, 4, 5, 6, 7, 8, 9, 10, 11))
+```
+
+如果希望捕获代码中，某些变量名被替换为对应的值，可以使用`substitute(expr, env)`,**`substitute`**函数除了需要捕获的代码，还可以传递一个替换环境**env**（可以是`列表`、`数据框`、`执行环境`等）参数，此时代码中的变量名如果在**env**中有对应的值，则会被替换为相应的值，除非**env**是全局执行环境。
+
+如果只希望特定的变量名可以被替换，而非所有在执行环境中存在的变量都会被替换，则可以使用`bquote`函数，该函数定义了一种特殊的语法格式——所有被包含在**`.()`**中的变量名才会被替换。
+
+```{r}
+substitute(a + b, list(b = 1))
+## a + 1
+substitute(a + b, baseenv())
+## .Primitive("+")(a, b)
+b <- 1;substitute(a + b, globalenv())
+## a + b
+bquote(x <- .(x) + 1, list(x = 1:9))
+## x <- 1:9 + 1
+```
+
+由操作符`~`构成的命令，被捕获或执行后结果是一致的，唯一的区别在于**～**被捕获后产生的结果没有属性（**attributes**）部分，但无论何种情况我们可以像操作命令树一样取出**~**前后的内容，所以**`~`**经常被用作捕获代码的便捷操作符号。
+
+```{r}
+str(eval(y~x))
+## Class 'formula'  language y ~ x
+##   ..- attr(*, ".Environment")=<environment: R_GlobalEnv>
+str(quote(y~x))
+##  language y ~ x
+f <- y~x+z
+class(f);typeof(f)
+## [1] "formula"
+## [1] "language"
+terms(f)
+## y ~ x + z
+## attr(,"variables")
+## list(y, x, z)
+## attr(,"factors")
+##   x z
+## y 0 0
+## x 1 0
+## z 0 1
+## attr(,"term.labels")
+## [1] "x" "z"
+## attr(,"order")
+## [1] 1 1
+## attr(,"intercept")
+## [1] 1
+## attr(,"response")
+## [1] 1
+## attr(,".Environment")
+## <environment: R_GlobalEnv>
+```
+
+> `terms`可以用于提取公式的信息，更具体的，可以`?formula`
+
+命令集（**expression**）本身就是未被执行的命令的集合，所以被捕获之后生成的是一个生成该命令集的命令，需要被执行两次才能取出执行结果。
+
+```{r}
+#一个表达式向量
+(ex <- expression(x = 1, 1 + sqrt(2)))
+## expression(x = 1, 1 + sqrt(2))
+length(ex);ex[2];typeof(ex[1])
+## [1] 2
+## expression(1 + sqrt(2))
+## [1] "expression"
+as.list(ex)
+## $x
+## [1] 1
+## 
+## [[2]]
+## 1 + sqrt(2)
+lapply(ex,eval)
+## $x
+## [1] 1
+## 
+## [[2]]
+## [1] 2.414214
+```
+
+### eval执行代码
+
+`eval(expr, envir, enclos)`执行捕获的代码，其中**envir**是代码中变量名的首要查找位置，**envir**中查找不到的变量名会在**enclos**中查找。
+
+在指定的环境中计算R表达式。
+
+```{r}
+# #在指定的环境中计算R表达式
+# eval(1+1,envir = globalenv())
+# ## [1] 2
+# #local函数默认情况下会在一个临时执行环境中执行代码，可以有效的舍弃运算过程中产生的中间变量，返回最后一行表达式，类似函数。
+# local({
+#   a <- 1:9;
+#   b <- a
+# },envir = new.env())
+# a;b
+# ## Error in eval(expr, envir, enclos): object 'a' not found
+# ## [1] 1
+```
+
+可以看到`a`变量并不在调用环境中。
+
+### 表达式解析parse与deparse
+
+```{r}
+(ex <- parse(text = "local({a <- 1;1})"))
+## expression(local({
+##     a <- 1
+##     1
+## }))
+deparse(quote(x <- 1))
+## [1] "x <- 1"
+deparse(ex[1])
+## [1] "expression(local({" "    a <- 1"         "    1"             
+## [4] "}))"
+deparse(args(lm))
+## [1] "function (formula, data, subset, weights, na.action, method = \"qr\", " 
+## [2] "    model = TRUE, x = FALSE, y = FALSE, qr = TRUE, singular.ok = TRUE, "
+## [3] "    contrasts = NULL, offset, ...) "                                    
+## [4] "NULL"
+```
+
+总体而已，`base R`这些函数关系大概如下：
+
+```
+knitr::include_graphics("./images/rmetaprogramming.svg")
+```
+
+![](https://liripo.github.io/noteWeb/images/rmetaprogramming.svg)
+
+## Tidy evaluation
+
+书籍：[Advanced R](https://adv-r.hadley.nz/metaprogramming.html)**metaprogramming**章节。
+
+```
+library(rlang)
+```
+
+### 捕获表达式
+
+类似`quote`,**rlang**使用`expr(expr)`捕获代码：
+
+```{r}
+library(tidyverse)
+expr(mean(x, na.rm = TRUE))
+## mean(x, na.rm = TRUE)
+expr(10 + 100 + 1000)
+## 10 + 100 + 1000
+```
+
+`expr`能捕获键入的代码，但是没法捕获传递给函数参数的代码，所以`rlang`提供了`enexpr`函数：[`enexpr()`](https://dplyr.tidyverse.org/reference/tidyeval-compat.html)接受一个惰性求值（被冻结的，**promise??**）的参数并将其转换为一个表达式:
+
+```{r}
+capture_it <- function(x) {
+  expr(x)
+}
+capture_it(a + b + c)
+## x
+```
+
+```{r}
+capture_it <- function(x) {
+  enexpr(x)
+}
+capture_it(a + b + c)
+## a + b + c
+```
+
+类似地，`substitute()`可以完成`enexpr`的工作：
+
+```{r}
+capture_it <- function(x) {
+  substitute(x)
+}
+capture_it(a + b + c)
+## a + b + c
+```
+
+### 生成表达式
+
+几乎每种编程语言都将代码表示为一棵树，通常称为**抽象语法树**，简称 AST。在R中，可以通过`lobstr::ast(x)`查看代码树。
+
+```{r}
+lobstr::ast(f1(f2(a = 1+2*3, b), f3(1, f4(2))))
+## █─f1 
+## ├─█─f2 
+## │ ├─a = █─`+` 
+## │ │     ├─1 
+## │ │     └─█─`*` 
+## │ │       ├─2 
+## │ │       └─3 
+## │ └─b 
+## └─█─f3 
+##   ├─1 
+##   └─█─f4 
+##     └─2
+```
+
+在base R中提供`call`函数生成代码，而`rlang`则使用`call2`和unquoting。
+
+```{r}
+rlang::call2("+", 1, call2("*", 2, 3))
+## 1 + 2 * 3
+```
+
+`rlang`使用**unquote**操作符`!!`(发音为bang bang)可以将存储的代码树插入被捕获表达式中：
+
+```{r}
+xx <- expr(x + x)
+yy <- expr(y + y)
+
+expr(!!xx / !!yy)
+## (x + x)/(y + y)
+cv <- function(var) {
+  var <- enexpr(var)
+  expr(sd(!!var) / mean(!!var))
+}
+
+cv(x + y)
+## sd(x + y)/mean(x + y)
+```
+
+多个表达式使用`!!!`
+
+```{r}
+xs <- exprs(1, a, -b)
+expr(f(!!!xs, y))
+## f(1, a, -b, y)
+```
+
+### 评估（**Evaluation**）代码
+
+`eval_tidy(expr,data = NULL,env = caller_env)`是`eval`的一种变体，其使用`as_data_mask`函数增加了一层数据掩码，`eval_tidy`的data参数中的对象优先于调用环境中的对象。
+
+**Advanced R**展示了一个例子，用于解释使用数据掩码时必须始终使用`enquo()`而不是`enexpr()`。
+
+```{r}
+with2 <- function(df, expr) {
+  a <- 1000
+  eval_tidy(enexpr(expr), df)
+}
+df <- data.frame(x = 1:3)
+a <- 10
+with2(df, x + a)
+## [1] 1001 1002 1003
+```
+
+可以看到捕获到的表达式中`a`变量的值为1000，而不是全局变量中的10，而rlang 使用一种新的数据结构解决这个问题: 将表达式与环境捆绑在一起的quosure。
+
+```{r}
+with2 <- function(df, expr) {
+  a <- 1000
+  eval_tidy(enquo(expr), df)
+}
+
+with2(df, x + a)
+## [1] 11 12 13
+```
+
+可以看到`a变量`绑定到了定义了`x+a`的表达式环境中去了。
+
+### 解析表达式
+
+`parse_expr(x)`可以解析字符串为表达式，类似与`parse`,而`expr_text` 则类似`deparse`
+
+```{r}
+chr <- "y <- x + 10"
+(z <- parse_expr(chr))
+## y <- x + 10
+expr_text(z)
+## [1] "y <- x + 10"
+```
+
+`parse_exprs(x)`用于多个表达式,返回一个表达式**list**,类似于`as.list(parse(...))`
+
+```{r}
+path <- tempfile("my-file.R")
+# tempfile returns a vector of character strings which can be used as names for temporary files.
+cat("1; 2; mtcars", file = path)
+parse_exprs(file(path))
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 2
+## 
+## [[3]]
+## mtcars
+```
+
+
+```{r}
+e2 = "vs + am ; am +vs";
+mtcars %>% mutate(!!!parse_exprs(e2))
+```
+
+
+
+# 一些补充内容
+
+作为一门实时交互的脚本语言，在R语言中输入的代码总是会被立即执行，所以我们往往只能得到代码运行结果。但有的时候我们不希望代码被立即执行，而是想要先捕获代码，然后在特定的条件下再执行代码。
+
+quote函数
+
+```{r}
+for_evaluation <- quote(2+2)
+for_evaluation1 <- quote(a <- 2+2)
+```
+
+如果要执行for_evaluation这个表达式，那么可以使用eval函数。
+
+```{r}
+eval(for_evaluation)
+eval(for_evaluation1)
+a
+```
+
+如果原始R代码是字符串格式的，可以用parse函数进行转化，再用eval函数进行评估。
+
+
+```{r}
+tpt_string <- "1:5"
+
+tpt_expression <- parse(text = tpt_string)
+
+eval(tpt_expression)
+```
+
+parse的逆运算，叫做deparse，可以把表达式转化为字符串。
+
+
+```{r}
+for_evaluation 
+deparse(for_evaluation)
+```
+
+
+## 总共可以分为三步
+
+捕获表达式：将表达式本身存储为变量的形式，防止表达式的直接执行(执行了还修改什么)；使用函数quote()
+
+修改表达式：当一个表达式被捕获为调用对象后，可以将其当作列表来修改
+
+执行表达式：捕获表达式后，下一步就是对其求值，可使用eval()函数  
+
+## R 变量名称和字符串的转换
+
+使用assign 和 get函数
+
+get()：返回与字符串同名的变量的值
+assign():为字符串变量的字符串赋值
+
+The get function **searches and calls a data object**.
+The assign R function assigns values to a variable name.
+
+这和上面的不一样，这个只是在变量名和字符串之间转换，上面的是字符串和整个命令之间的转换
+
+[get R Function (5 Example Codes) | Call Vector or Column of Data Frame (statisticsglobe.com)](https://statisticsglobe.com/get-r-function-example)
+
+[assign Function in R (2 Examples) | How to Store Values in Variable Name (statisticsglobe.com)](https://statisticsglobe.com/assign-function-in-r)
+
+
+强制运算符(Forcing operators)(!!及!!!)
+
+大家熟知的!符号的作用可能都是逻辑运算，用来表示否定的逻辑。但实际上它们还有另一个作用，就是Forcing operators。Forcing operators一共有两种，!!是bang-bang operator，!!!是big-bang operator。如果我们在Rstudio的帮助功能中搜索!!，就会查到这两个运算符的解释：
+
+The bang-bang operator !! forces a single object. One common case for !! is to substitute an environment-variable (created with <-) with a data-variable (inside a data frame).
+
+The big-bang operator !!! forces-splice a list of objects. The elements of the list are spliced in place, meaning that they each become one single argument.
+我查了半天都没查到这两个运算符到底要怎么翻译，音译跟意译都挺搞笑的...就姑且统称强制运算符吧。
+
+sym把一个R字符串对象转换为一个symbol。
+(bang-bang操作符)!!则把symbol再转回R字符串对象，等同于直接写这个对象。
+
+```{r}
+library(dplyr)
+library(tidyverse)
+library(rlang)
+```
+
+
+We need some way to explicitly unquote the input to tell cement() to remove the automatic quote marks. Here we need time and name to be treated differently to Good. Quasiquotation (准报价) gives us a standard tool to do so: !!, called “unquote”, and pronounced bang-bang. !! tells a quoting function to drop the implicit (内含的) quotes:
+
+```{r}
+name <- "Hadley"
+time <- "morning"
+
+paste("Good", time, name)
+```
+
+```{r}
+cement <- function(...) {
+  args <- ensyms(...)
+  paste(purrr::map(args, as_string), collapse = " ")
+}
+
+
+cement(Good, time, name)
+```
+
+cement() quotes its arguments, so we must unquote where needed.
+
+```{r}
+cement(Good, !!time, !!name)
+```
+
+!! is a one-to-one replacement. !!! (called “unquote-splice”, and pronounced bang-bang-bang) is a one-to-many replacement. It takes a list of expressions and inserts them at the location of the !!!:
+
+```{r}
+xs <- exprs(1, a, -b)
+expr(f(!!!xs, y))
+```
+
+
+
+```{r}
+df <- data.frame(A=1:5, B=(1:5)*2)
+```
+
+
+```{r}
+library(dplyr)
+df %>% select(A,B)
+```
+
+
+```{r}
+df %>% select("A", "B")
+```
+
+
+```{r}
+# 等同于
+columns <- c("A","B")
+columns_en <- syms(columns)
+df %>% select(!!!columns_en)
+df %>% select(columns)
+```
+
+
+```{r}
+dfs <- list(
+  a = data.frame(x = 1, y = 2),
+  b = data.frame(x = 3, y = 4)
+)
+
+dfs
+```
+
+
+
+```{r}
+bind_rows(!!!dfs)
+```
+
+
+
+#### another example
+
+```{r}
+test_df <- tibble(a = 1, b = 1, c = 1, d = 1)
+
+test_df %>%
+  select(1, 2, 3)
+```
+```{r}
+our_list <- list(1, 2, 3)
+
+# test_df %>% select(our_list) 这样不行
+
+test_df %>% select(c(1, 2, 3)) # 这样可以
+```
+```{r}
+# This code
+test_df %>%
+  select(!!!our_list)
+
+# Translates to this
+test_df %>%
+  select(1, 2, 3)
+```
+
+
+一个更好的例子
+
+https://tidyeval.tidyverse.org/sec-up-to-speed.html

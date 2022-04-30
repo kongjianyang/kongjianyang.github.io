@@ -196,8 +196,6 @@ draft: true
 ```
 
 
-
-
 > 注意当`draft: true`的时候，视为草稿，`hugo server -D`会显示，正式发布效果用`hugo server -w`查看。
 
 新加 [关于](https://hugo-ht.hongtaoh.com/cn/about/) 这样的单独页面
@@ -272,10 +270,6 @@ tags:
 ---
 ```
 
-
-
-
-
 ## Hexo和Hugo的区别
 
 [Jekyll](https://jekyllrb.com/) 是最早开始流行的静态网站构建工具，使用Ruby语言开发，开源已有9个年头了，是Github Pages默认的静态网站构建工具。当前互联网上有大量基于jekyll构建的静态网站，包括现在流行的开源容器编排调度引擎[kubernetes的官网](https://kubernetes/io)。
@@ -293,3 +287,43 @@ tags:
 | [hugo](https://gohugo.io/)      | go       | 极快     | 个人博客、产品展示                                           | Go大神[spf13](https://github.com/spf13)开发，开源已4年，升级活跃，构建速度极快，后端开发者用户居多 |
 
 以上工具都可以将markdown内容转换为静态页面。
+
+
+
+
+
+## 原型模板
+
+***Note:** 这一步不是必须的，因为生成的每一篇文章都可以单独配置下面提到的 front matter。这里只是简单介绍，可以根据自己的需求修改，以减少重复工作、提升效率。*
+
+### 默认模板
+
+还记得前面说过的 `archetypes` 原型模板目录吧，这个目录下默认会创建一个 `default.md`， 在 [新建文章](https://niceram.xyz/2021/03/04/20210304_1125/#新建文章) 的时候会将其作为原型自动为新的 Markdown 添加 [front matter](https://gohugo.io/content-management/front-matter/)。
+
+在未更改 `default.md` 的情况下，新建的 Markdown 中仅会自动添加以下内容
+
+```
+---
+title: "{{ replace .Name "-" " " | title }}"
+date: {{ .Date }}
+draft: false
+---
+```
+
+
+
+- title: 文章标题。默认是从文件名替换而来
+- date: 文章的创建日期。
+- draft: 草稿标记。当设置为 `true` 时，Hugo 默认不会生成该文章的预览和 HTML。
+
+以本文举个例子，运行 `hugo new posts/Hugo-静态博客搭建.md` 后生成的 Markdown 内容将是
+
+```
+---
+title: "Hugo 静态博客搭建"
+date: 2021-03-04T11:25:03+08:00
+draft: false
+---
+```
+
+上面两行 `---` 及其中间键值对形式的配置就是 `front matter` 了。

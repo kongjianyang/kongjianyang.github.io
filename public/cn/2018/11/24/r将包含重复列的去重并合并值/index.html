@@ -1,0 +1,174 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>R将包含重复列的去重并合并值</h1>
+
+<p>Liang 
+ / 2018-11-24 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-R%e5%b0%86%e5%8c%85%e5%90%ab%e9%87%8d%e5%a4%8d%e5%88%97%e7%9a%84%e5%8e%bb%e9%87%8d%e5%b9%b6%e5%90%88%e5%b9%b6%e5%80%bc.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+
+<div class="body-text list-text">
+<h1 id="1-问题">1. 问题<a href="#1-问题" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
+<p>假设我们有数据框df如下：</p>
+<pre tabindex="0"><code>Chr start   stop    ref alt Hom/het ID  
+chr1    5179574 5183384 ref Del Het 719  
+chr1    5179574 5184738 ref Del Het 915  
+chr1    5179574 5184738 ref Del Het 951  
+chr1    5336806 5358384 ref Del Het 376  
+chr1    5347979 5358384 ref Del Het 228  
+</code></pre><p>所示ID915和951前面的部分都重复了，现在我们想把它变成如下</p>
+<pre tabindex="0"><code>Chr start   stop    ref alt Hom/het ID  
+chr1    5179574 5183384 ref Del Het 719  
+chr1    5179574 5184738 ref Del Het 915, 951 
+chr1    5336806 5358384 ref Del Het 376  
+chr1    5347979 5358384 ref Del Het 228  
+</code></pre><p>我们可以根据以下命令进行实现</p>
+<pre tabindex="0"><code>df1 &lt;- aggregate(df[7], df[-7], unique)
+# 或者
+df2 &lt;- aggregate(df[7], df[-7], FUN = function(X) paste(unique(X), collapse=&#34;, &#34;))
+</code></pre><h1 id="2-解释">2. 解释<a href="#2-解释" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
+<p>aggregate函数应该是数据处理中常用到的函数，它首先将数据进行分组（按行），然后对每一组数据进行函数统计。简单说有点类似sql语言中的group by，可以按照要求把数据打组聚合，然后对聚合以后的数据进行加和、求平均等各种操作。</p>
+<blockquote>
+<p>applying a function specified by the FUN parameter to each column of sub-data.frames defined by the by input parameter.</p>
+</blockquote>
+<pre tabindex="0"><code>aggregate(x ,by,FUN )    
+# x：待折叠的数据 by:统计标量   FUN 折叠计算
+</code></pre><p>所以上面的命令意味着将除去ID的数据按照行作为统计标量（by）进行ID选择，将选到的ID作为要进行操作的对象输入到FUN中。</p>
+
+<p style="color:#777;">最后一次修改于 2018-11-24</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       订阅 </a>
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+

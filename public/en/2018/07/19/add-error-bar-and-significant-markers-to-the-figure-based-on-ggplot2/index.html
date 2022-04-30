@@ -1,0 +1,200 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/">Home</a></li>
+       
+           <li><a href="/en/about/">About</a></li>
+       
+           <li><a href="/en/posts/">Posts</a></li>
+       
+           <li><a href="/cn/posts/">中文</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>Figure with error bar and significant markers based on ggplot2</h1>
+
+<p>Liang 
+ / 2018-07-19 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/en/posts/2018-07-19-add-error-bar-and-significant-markers-to-the-figure-based-on-ggplot2.Rmd'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="Suggest an edit of this page"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+
+<div class="body-text list-text">
+
+
+
+<p>Create the data set</p>
+<pre class="r"><code>library(ggplot2)
+df &lt;- data.frame(treatment = factor(c(1, 1, 1, 2, 2, 2, 3, 3, 3)), response = c(2, 5, 4, 6, 9, 7, 3, 5, 8),group = factor(c(1, 2, 3, 1, 2, 3, 1, 2, 3)),se = c(0.4, 0.2, 0.4, 0.5, 0.3, 0.2, 0.4, 0.6, 0.7))
+
+head(df)</code></pre>
+<pre><code>##   treatment response group  se
+## 1         1        2     1 0.4
+## 2         1        5     2 0.2
+## 3         1        4     3 0.4
+## 4         2        6     1 0.5
+## 5         2        9     2 0.3
+## 6         2        7     3 0.2</code></pre>
+<p>use geom_errorbar() to draw the histogram</p>
+<pre class="r"><code># position should consistent with geom_bar(), because the default setting is 0.9, so we should set the value as 0.9 for geom_errorbar.
+ggplot(data=df, aes(x = treatment, y = response, fill = group)) +
+  geom_bar(stat = &quot;identity&quot;, position = &quot;dodge&quot;) +
+  geom_errorbar(aes(ymax = response +se, ymin = response-se), position = position_dodge(0.9), width = 0.15) +
+  scale_fill_brewer(palette = &quot;Set1&quot;)</code></pre>
+<p><img src="/en/2018-07-19-add-error-bar-and-significant-markers-to-the-figure-based-on-ggplot2_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>add significant mark, compared with group 1</p>
+<pre class="r"><code>label &lt;- c(&quot;&quot;, &quot;*&quot;, &quot;**&quot;, &quot;&quot;, &quot;**&quot;, &quot;*&quot;, &quot;&quot;, &quot;&quot;, &quot;*&quot;) 
+
+ggplot(data = df, aes(x = treatment, y = response, fill = group)) + 
+geom_bar(stat = &quot;identity&quot;, position = &quot;dodge&quot;) + 
+geom_errorbar(aes(ymax = response + se, ymin = response -  se), 
+position = position_dodge(0.9), width = 0.15) + 
+geom_text(aes(y = response +  1.5 * se, label = label, group = group), 
+position = position_dodge(0.9), size = 5, fontface = &quot;bold&quot;) + 
+scale_fill_brewer(palette = &quot;Set1&quot;)</code></pre>
+<p><img src="/en/2018-07-19-add-error-bar-and-significant-markers-to-the-figure-based-on-ggplot2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>arrange a set of figure</p>
+<pre class="r"><code>library(ggpubr)
+# 将四幅图放置于一个页面中
+p &lt;- ggplot(data = df, aes(x = treatment, y = response, fill = group)) + 
+geom_bar(stat = &quot;identity&quot;, position = &quot;dodge&quot;) + 
+geom_errorbar(aes(ymax = response + se, ymin = response -  se), 
+position = position_dodge(0.9), width = 0.15) + 
+scale_fill_brewer(palette = &quot;Set1&quot;)
+p1 &lt;- p + ggtitle(&quot;add title&quot;)
+p2 &lt;- p + ggtitle(&quot;add title&quot;) + xlab(&quot;treatment&quot;) + ylab(&quot;response&quot;)
+p3 &lt;- ggplot(data = df, aes(x = treatment, y = response, fill = group)) + 
+geom_bar(stat = &quot;identity&quot;, position = &quot;dodge&quot;) + 
+geom_errorbar(aes(ymax = response + se, ymin = response -  se), 
+position = position_dodge(0.9), width = 0.15) + 
+geom_text(aes(y = response +  1.5 * se, label = label, group = group), 
+position = position_dodge(0.9), size = 5, fontface = &quot;bold&quot;) + 
+scale_fill_brewer(palette = &quot;Set1&quot;)
+ggarrange(p, p1, p2, p3)</code></pre>
+<p><img src="/en/2018-07-19-add-error-bar-and-significant-markers-to-the-figure-based-on-ggplot2_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+
+<p style="color:#777;">Last modified on 2018-07-19</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/en/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       Subscribe </a>
+       </li>
+       
+       
+       <li>
+       
+        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
+       
+        License
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+

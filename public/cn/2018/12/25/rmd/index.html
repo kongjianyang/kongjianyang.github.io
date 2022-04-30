@@ -1,0 +1,186 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>使用Rmd写博客的一些流程</h1>
+
+<p>KJY 
+ / 2018-12-25 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-12-25-%e4%bd%bf%e7%94%a8Rmd%e5%86%99%e5%8d%9a%e5%ae%a2%e7%9a%84%e4%b8%80%e4%ba%9b%e6%b5%81%e7%a8%8b.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+<aside class="toc">
+Table of Contents:
+<nav id="TableOfContents"></nav>
+</aside>
+
+
+<div class="body-text list-text">
+<p>首先将Rmd文件转换为md文件</p>
+<pre tabindex="0"><code>library(rmarkdown)
+
+a &lt;- list.files(&#34;./&#34;, pattern = &#34;.Rmd&#34;)
+
+map(a, render, md_document()) #会将当前文件下所有的Rmd文件转化为md文件
+</code></pre><blockquote>
+<p>on the Mac you could use the following commands to open RStudio (respectively) in the &lsquo;~/projects/foo&rsquo; directory or the current working directory:</p>
+</blockquote>
+<pre tabindex="0"><code>$ open -a RStudio ~/projects/foo
+$ open -a RStudio .
+</code></pre><p>这里的open命令很有用</p>
+<p>MacOS用户如果有用命令行的话，大多数人应该知道open .会打开Finder。事实上它能打开所有的目录，比如:</p>
+<pre tabindex="0"><code>$ open ~/Library/Preferences
+$ open /etc
+$ open ../..
+</code></pre><p>你还能同时打开多个目录：</p>
+<pre tabindex="0"><code>$ open ~/Documents ~/Desktop ~/Downloads
+$ open ~/D*
+</code></pre><p>然后它还能打开各种文件，比如：</p>
+<pre tabindex="0"><code>$ open document.pdf
+</code></pre><p>会使用默认的程序（通常是Preview）打开当前目录下的document.pdf，同样你也能一次性打开多个文件：</p>
+<pre tabindex="0"><code>$ open ~/Desktop/Screen\ Shot\ *.png
+</code></pre><p>你还能指定使用什么程序来打开文件，使用-a参数：</p>
+<pre tabindex="0"><code>$ open -a Preview ~/Desktop/Screen\ Shot\ *.png
+$ open -a TextEdit web.html
+</code></pre><p>上面的指令会使用Preview来打开多个截屏的图片，使用TextEdit打开网页。</p>
+<p>打开网络位置也是可以的，比如打开某个网页，访问远程的计算机等：</p>
+<pre tabindex="0"><code>$ open https://scriptingosx.com   # default browser
+$ open vnc://TestMac.local       # Screen Sharing
+</code></pre><p>我自己平时用得最多的就是打开文件，比如我跑程序，中间有生成文件，我就想打开看一眼，就不用去Finder里翻，直接命令行打开它。而且不单单是shell，比如我在R里做了某些分析，生成了某个文件，我也是直接就可以打开它，用system(“open the_file”)搞定。</p>
+<p>再者我在命令行，我想打开某个文件，但不想窗口跳出来，因为我还想待在命令行里，还想要窗口聚焦在Terminal，可以用-g参数打开文件。</p>
+<p>再比如你copy了个文件，你可以用pbpaste | open -f -a TextEditor打开，这些打开了TextEditor的同时，你copy的东西已经自动paste到里面了。-f参数就是从STDIN中读入，这有个好处是比如你用awk处理了一些文本文件，你可以通过管道直接就把结果贴在了文本编辑器里（没有文件生成）。</p>
+
+<p style="color:#777;">最后一次修改于 2018-12-25</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       订阅 </a>
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+

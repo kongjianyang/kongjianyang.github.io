@@ -1,0 +1,671 @@
+---
+title: Notes From Advanced R Part Two
+author: Liang
+date: '2018-12-06'
+slug: notes-from-advanced-r-part-two
+categories:
+  - R
+tags: []
+lastmod: '2018-12-06T10:29:22-05:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+
+# 1. OO (Object-oriented) field guide
+
+R has four object oriented systems:
+
+  - base type: are mostly manipulated using C code 
+  - S3 type: S3 is a very casual system. It has no formal definition of classes.
+  - S4 type: S4 has formal class definitions and multiple dispatch 
+  - RC (Reference Classes) type
+
+A class defines the behaviour of objects by describing their attributes and their relationship to other classes.
+
+`pryr` provides tools to pry back the surface of R and dig into the details. 
+
+## Base types
+new base types are added very rarely. determine the object’s base type with typeof(). 
+
+```{r}
+# The type of a function is "closure"
+f <- function() {}
+typeof(f)
+is.function(f)
+# The type of a primitive function is "builtin"
+typeof(sum)
+is.primitive(sum)
+```
+
+Functions for different base types are almost always written in C. S3 objects can be built on top of any base type, S4 objects use a special base type, and RC objects are a combination of S4 and environments. 
+
+To see if an object is a pure base type, check that is.object(x) returns FALSE.
+
+if the object x has the R internal OBJECT, the `is.object()` return True
+```{r}
+is.object(f)
+is.object(1) # FALSE
+is.object(as.factor(1:3)) # TRUE
+```
+
+## S3 type 
+
+S3 is the only OO system used in the base and stats packages.
+
+`pryr::otype():` can be used to test if an object is an S3 object in base R.
+
+```{r}
+library(pryr)
+
+df <- data.frame(x = 1:10, y = letters[1:10])
+otype(df)    # A data frame is an S3 class
+otype(df$x)  # A numeric vector isn't
+otype(df$y)  # A factor is
+```
+
+In S3, methods belong to functions, called generic functions. S3 methods do not belong to objects or classes. 
+
+`ftype()` can describes the object system and to determinate if a function is an S3 method or generic:
+
+```{r}
+ftype(mean)
+ftype(t.data.frame) # data frame method for t()
+ftype(t.test)       # generic function for t tests
+```
+
+### Defining classes and creating objects
+
+```{r}
+# Create and assign class in one step
+foo <- structure(list(), class = "foo")
+# ftype(foo)
+# Create, then set class
+foo <- list()
+class(foo) <- "foo"
+foo
+```
+
+determine the class of any object using `class(x)`, and see if an object inherits from a specific class using `inherits(x, "classname")`.
+
+```{r}
+class(foo)
+inherits(foo, "foo")
+```
+
+<img src="https://snag.gy/fQLdeK.jpg" width= "200" height = "200" align=center/>
+
+we can change the class of existing objects:
+
+
+
+### Creating new methods and generics
+
+To add a new generic, just need to create a function that calls UseMethod(). 
+
+```{r}
+f <- function(x) UseMethod("f")
+f.a <- function(x) "Class a"
+f.b <- function(x) "Class b"
+a <- structure(list(), class = "a")
+class(a)
+f(a)
+f.a(a)
+f.b(a)
+b <- structure(list(), class = "b")
+class(b)
+f(b)
+f.a(b)
+f.b(b)
+```
+
+
+```{r}
+f <- function(x) UseMethod("f")
+f.a <- function(x) "Class a"
+f.default <- function(x) "Unknown class"
+
+# Method for a class
+f(structure(list(), class = "a"))
+
+# No method for b class, so uses method for a class
+f(structure(list(), class = c("b", "a")))
+
+# No method for c class, so falls back to default
+f(structure(list(), class = "c"))
+
+# Force R to call the wrong method, f.a should only use for a class
+f.a(structure(list(), class = "c"))
+```
+
+## S4 type
+
+- Classes have formal definitions which describe their fields and inheritance structures (parent classes).
+
+- Method dispatch can be based on multiple arguments to a generic function
+
+- There is a special operator, @, for extracting slots from an S4 object.
+
+### Recognising objects, generic functions, and methods
+
+No S4 classes in the base packages 
+
+```{r}
+library(stats4)
+
+# From example(mle)
+y <- c(26, 17, 13, 12, 20, 5, 9, 8, 5, 4, 8)
+nLL <- function(lambda) - sum(dpois(y, lambda, log = TRUE))
+fit <- mle(nLL, start = list(lambda = 5), nobs = length(y))
+
+# An S4 object
+isS4(fit)
+otype(fit)
+ftype(nobs)
+# nobs is a function to extract the number of observations from a Fit.
+```
+
+### Defining classes and creating objects
+
+An S4 class has three key properties:
+
+- A name: an alpha-numeric class identifier. 
+- A named list of slots (fields), which defines slot names and permitted classes.
+- A string giving the class it inherits from, or, in S4 terminology, that it contains.
+
+```{r}
+setClass("Person",
+  slots = list(name = "character", age = "numeric"))
+setClass("Employee",
+  slots = list(boss = "Person"),
+  contains = "Person")
+
+alice <- new("Person", name = "Alice", age = 40)
+john <- new("Employee", name = "John", age = 20, boss = alice)
+```
+
+```{r}
+alice
+alice@name
+```
+
+```{r}
+john@boss; slot(john, "boss")
+```
+
+`(@ is equivalent to $, and slot() to [[.) but the $ and slot() doesn't work for S4`
+
+```{r}
+# john$boss
+```
+ 
+### Creating new methods and generics
+
+we could take union(), which usually just works on vectors, and make it work with data frames:
+
+```{r}
+alist <- c("a", "b", "a")
+blist <- c("a", "c", "d")
+union(alist, blist)
+```
+
+```{r}
+x <- data.frame("SN" = 1:2, "Age" = c(21,15), "Name" = c("John","Dora"))
+y <- data.frame("SN" = 1:2, "Age" = c(21,15), "Name" = c("John","Alice"))
+union(x, y)
+```
+
+
+```{r}
+setGeneric("union")
+
+setMethod("union",
+  c(x = "data.frame", y = "data.frame"),
+  function(x, y) {
+    unique(rbind(x, y))
+  }
+)
+```
+
+```{r}
+union(x, y)
+```
+
+# 2. Environments
+
+## Environment basics
+
+an environment serve as a bag of names: Each name points to an object stored in memory:
+
+```{r}
+e <- new.env()
+e$a <- FALSE
+e$b <- "a"
+e$c <- 2.3
+e$d <- 1:3
+ls(e) # show all object in the environment
+```
+
+multiple names can point to the same object, Every environment has a parent, another environment. 
+
+an environment is similar to a list, with four important exceptions:
+
+- Every name in an environment is unique.
+
+- The names in an environment are not ordered (i.e., it doesn’t make sense to ask what the first element of an environment is).
+
+- An environment has a parent.
+
+- Environments have reference semantics.
+
+four special environments: 
+
+-  globalenv(), or global environment, is the interactive workspace. This is the environment in which you normally work. 
+
+- baseenv(), or base environment, is the environment of the base package. Its parent is the empty environment.
+
+- emptyenv(), or empty environment, is the ultimate ancestor of all environments
+
+- environment() is the current environment.
+
+search() lists all parents of the global environment.
+
+```{r}
+search()
+```
+
+Autoloads is used to save memory by only loading package objects
+
+use new.env() to create an environment, use parent.env() to see its parent
+
+```{r}
+e <- new.env()
+# the default parent provided by new.env() is environment
+parent.env(e)
+e$a <- 1
+e$b <- 2
+ls(e)
+```
+
+```{r}
+e$a
+```
+
+useful way to view an environment is ls.str()
+
+```{r}
+ls.str(e)
+```
+
+extract the value from a name
+
+```{r}
+e$a; e[["a"]]; get("a", envir = e)
+```
+
+use rm() to remove the binding.
+
+```{r}
+rm("a", envir = e)
+ls.str(e)
+```
+
+use exists() to determine if a variable in an environment
+
+```{r}
+x <- 10
+exists("x", envir = e)
+identical(globalenv(), environment())
+```
+
+## Recursing over environments
+
+where() finds the environment where that name is defined, using R’s regular scoping rules:
+
+```{r}
+library(pryr)
+x <- 5
+where("x")
+
+where("mean")
+```
+
+definition of where()
+
+```{r}
+where
+```
+
+
+
+<table><tr><td bgcolor=orange><font color=gray size=7>Not Interesting</font></td></tr></table>
+
+## Explicit environments
+
+the original list is not changed because modifying a list actually creates and modifies a copy.
+
+```{r}
+modify <- function(x) {
+  x$a <- 2
+  invisible()
+}
+```
+
+```{r}
+x_l <- list()
+x_l$a <- 1
+modify(x_l)
+x_l$a
+```
+
+apply it to an environment, the original environment is modified:
+
+```{r}
+x_e <- new.env()
+x_e$a <- 1
+modify(x_e)
+x_e$a
+```
+
+# 3. Functional programming
+
+R is a functional programming (FP) language.
+
+three building blocks of functional programming
+
+- anonymous functions
+- closures (functions written by functions)
+- lists of functions.
+
+```{r}
+# Generate a sample dataset
+set.seed(1014)
+df <- data.frame(replicate(6, sample(c(1:10, -99), 6, rep = TRUE)))
+names(df) <- letters[1:6]
+df
+```
+
+
+```{r}
+fix_missing <- function(x) {
+  x[x == -99] <- NA
+  x
+}
+df[] <- lapply(df, fix_missing)
+df
+```
+
+code have more advantages
+
+## Anonymous functions
+
+```{r}
+# the anonymous function is same
+(function(x) x + 3)(10)
+f <- function(x) x + 3
+f(10)
+```
+
+
+## Closures
+
+closure have two 
+
+```{r}
+
+# two variable inside
+power <- function(exponent) {
+  function(x) {
+    x ^ exponent
+  }
+}
+
+square <- power(2) # exponent is 2 
+square(3) # x is 3
+```
+
+print a closure, can see anything useful:
+
+```{r}
+square
+```
+
+the function itself doesn’t change, the difference is the enclosing environment
+
+```{r}
+environment(square) %>% as.list()
+```
+
+another way to see the structure
+
+```{r}
+library(pryr)
+unenclose(square)
+```
+
+
+`<<-` the double arrow operator will keep looking up the chain of parent environments until it finds a matching name
+
+```{r}
+new_counter <- function() {
+  i <- 0
+  function() {
+    i <<- i + 1
+    i
+  }
+}
+
+counter_one <- new_counter()
+unenclose(counter_one)
+counter_one()
+unenclose(counter_one)
+counter_one()
+```
+
+## Lists of functions
+
+functions can be stored in lists.
+
+```{r}
+compute_mean <- list(
+  base = function(x) mean(x),
+  sum = function(x) sum(x) / length(x),
+  manual = function(x) {
+    total <- 0
+    n <- length(x)
+    for (i in seq_along(x)) {
+      total <- total + x[i] / n
+    }
+    total
+  }
+)
+```
+
+to call each function use lapply() and need an anonymous function or a new named function,
+
+```{r}
+x <- runif(1e5) # return a uniform distribution data
+lapply(compute_mean, function(f) f(x))
+```
+
+```{r}
+lapply(compute_mean, function(f) system.time(f(x)))
+```
+
+
+```{r}
+x <- 1:10
+funs <- list(
+  sum = sum,
+  mean = mean,
+  median = median
+)
+lapply(funs, function(f) f(x))
+```
+
+
+```{r}
+# put a function in the aggrement of a function
+midpoint <- function(f, a, b) {
+  (b - a) * f((a + b) / 2)
+}
+
+trapezoid <- function(f, a, b) {
+  (b - a) / 2 * (f(a) + f(b))
+}
+
+midpoint(sin, 0, pi)
+
+trapezoid(sin, 0, pi)
+```
+
+# 4. Functionals
+
+A higher-order function is a function that takes a function as an input or returns a function as output. The complement to a closure is a functional
+
+```{r}
+randomise <- function(f) f(runif(1e3)) # f is a function as input
+randomise(mean)
+```
+
+lapply() takes a function, applies it to each element in a list, and returns the results in the form of a list. 
+
+```{r}
+lapply2 <- function(x, f, ...) {
+  out <- vector("list", length(x))
+  for (i in seq_along(x)) {
+    out[[i]] <- f(x[[i]], ...)
+  }
+  out
+}
+
+# Create some random data
+l <- replicate(20, runif(sample(1:10, 1)), simplify = FALSE)
+
+# With lapply
+unlist(lapply(l, length))
+```
+
+
+```{r}
+# What class is each column?
+unlist(lapply(mtcars, class))
+```
+
+```{r}
+# rcauchy return a cauchy distribution
+trims <- c(0, 0.1, 0.2, 0.5)
+x <- rcauchy(1000)
+unlist(lapply(trims, function(trim) mean(x, trim = trim)))
+```
+
+## sapply and vapply
+
+vapply() takes an additional argument specifying the output type.
+
+```{r}
+sapply(mtcars, is.numeric)
+args(vapply)
+```
+
+```{r}
+vapply(mtcars, is.numeric, FUN.VALUE = logical(1))
+```
+
+```{r}
+df <- data.frame(x = 1:10, y = letters[1:10])
+sapply(df, class)
+```
+
+```{r}
+vapply(df, class, character(1))
+```
+
+```{r}
+df2 <- data.frame(x = 1:10, y = Sys.time() + 1:10)
+sapply(df2, class)
+```
+
+## Multiple inputs: Map (and mapply)
+
+```{r}
+# Generate some sample data
+xs <- replicate(5, runif(10), simplify = FALSE)
+ws <- replicate(5, rpois(10, 5) + 1, simplify = FALSE)
+```
+
+compute the unweighted means:
+
+```{r}
+sapply(xs, mean)
+```
+
+calculate weighted.mean()
+
+```{r}
+unlist(lapply(seq_along(xs), function(i) {
+  weighted.mean(xs[[i]], ws[[i]])
+}))
+# or 
+unlist(lapply(1:5, function(i) {
+  weighted.mean(xs[[i]], ws[[i]])
+}))
+```
+
+Map, a variant of lapply()
+
+```{r}
+Map(weighted.mean, xs, ws)  %>% unlist() # Map(f, ...)
+```
+
+```{r}
+a <- matrix(1:20, nrow = 5)
+apply(a, 1, mean)
+```
+
+## Function operators
+
+```{r}
+chatty <- function(f) {
+  function(x, ...) {
+    res <- f(x, ...)
+    cat("Processing ", x, "\n", sep = "")
+    res
+  }
+}
+f <- function(x) x ^ 2
+s <- c(3, 2, 1)
+chatty(f)(1)
+```
+
+```{r}
+vapply(s, chatty(f), numeric(1))
+```
+
+
+
+
+
+
+
+
+
+
+
+

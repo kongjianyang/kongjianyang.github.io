@@ -1,0 +1,173 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>matplotlib-finance查找库位置并从GitHub安装库</h1>
+
+<p>Liang 
+ / 2018-11-24 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-matplotlib-finance%e6%9f%a5%e6%89%be%e5%ba%93%e4%bd%8d%e7%bd%ae%e5%b9%b6%e4%bb%8eGitHub%e5%ae%89%e8%a3%85%e5%ba%93.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+
+<div class="body-text list-text">
+<h1 id="1-问题">1. 问题<a href="#1-问题" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
+<p>尝试用<a href="http://www.classnotes.cn/tag/python/" title="python" target="_blank" rel="noreferrer noopener">python</a>
+
+做个股票绘图软件，要用到finance库，于是开始导入：</p>
+<pre tabindex="0"><code>import matplotlib.finance as mpf
+</code></pre><p>结果执行的时候直接报错：</p>
+<pre tabindex="0"><code>ImportError: No module named finance
+</code></pre><p>开始还没有安装模块，就专门装了个 finance 模块，使用 import finance 导入，错误倒是没有了，但是 finance 中没有想要的函数，根本无法导出股票数据。去查看 matplotlib 的文档说明，在matplotlib2.2.2的API中有这么一段话：</p>
+<blockquote>
+<p>The <code>matplotlib.finance</code>, <code>mpl_toolkits.exceltools</code> and <code>mpl_toolkits.gtktools</code> modules have been removed. <code>matplotlib.finance</code> remains available at <a href="https://github.com/matplotlib/mpl_finance" target="_blank" rel="noreferrer noopener">https://github.com/matplotlib/mpl_finance</a>
+
+.</p>
+</blockquote>
+<p>finance这个模块竟然被删除了！！！并且就是从2.2.2版本开始</p>
+<h1 id="2-解决">2. 解决<a href="#2-解决" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
+<p>查找matplotlib安装位置</p>
+<pre tabindex="0"><code>import matplotlib
+print matplotlib.__file__
+</code></pre><p>进入到该位置下从GitHub下载库</p>
+<pre tabindex="0"><code>git clone git@github.com:matplotlib/mpl_finance.git
+#安装
+python setup.py install
+</code></pre><p>安装好之后需要重启Jupyter notebook。
+加载库</p>
+<pre tabindex="0"><code>import mpl_finance as mpf
+</code></pre>
+<p style="color:#777;">最后一次修改于 2018-11-24</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       订阅 </a>
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+

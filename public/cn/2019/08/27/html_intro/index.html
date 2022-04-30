@@ -1,0 +1,388 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>html基本入门</h1>
+
+<p>KJY 
+ / 2019-08-27 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2019-08-27-html%e5%9f%ba%e6%9c%ac%e5%85%a5%e9%97%a8.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+<aside class="toc">
+Table of Contents:
+<nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#html元素的剖析">HTML元素的剖析</a></li>
+        <li><a href="#嵌套元素">嵌套元素</a></li>
+        <li><a href="#空元素">空元素</a></li>
+        <li><a href="#html文档剖析">HTML文档剖析</a></li>
+        <li><a href="#图片元素">图片元素</a></li>
+        <li><a href="#标记文本">标记文本</a></li>
+        <li><a href="#链接">链接</a></li>
+        <li><a href="#html和css以及javascript的关系">html和css以及javascript的关系</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+</aside>
+
+
+<div class="body-text list-text">
+<p>HTML 不是一门编程语言，而是一种用于定义内容结构的_标记语言_。HTML 由一系列的**元素（elements）**组成，这些元素可以用来包围不同部分的内容，使其以某种方式呈现或者工作。 一对标签（ tags）可以为一段文字或者一张图片添加超链接，将文字设置为斜体，改变字号，等等。 例如，键入下面一行内容：</p>
+<p>键入下面一行内容：</p>
+<pre tabindex="0"><code>我的猫咪脾气非常暴躁
+</code></pre><p>可以将这行文字封装成一个段落（<strong>p</strong>aragraph）元素来使其在单独一行呈现：</p>
+<pre tabindex="0"><code>&lt;p&gt;我的猫咪脾气非常暴躁&lt;/p&gt;
+</code></pre><hr>
+<h3 id="html元素的剖析">HTML元素的剖析<a href="#html元素的剖析" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>让我们进一步探讨该段落元素。</p>
+<p><img src="https://www.runoon.com/wp-content/uploads/2021/01/element-p-1.png" alt=""></p>
+<p>元素的主要部分如下：</p>
+<ol>
+<li><strong>开头标记：<strong>它由元素的名称（在本例中为p）组成，并包装在开始和关闭</strong>尖括号中</strong>。这说明了元素开始或开始生效的位置-在这种情况下，段落开始了。</li>
+<li>**结束标记：**与开始标记相同，不同之处在于它在元素名称之前包含一个_正斜杠_。这说明了元素的结尾，在这种情况下，段落的结尾。未能添加结束标记是标准的初学者错误之一，并且可能导致奇怪的结果。</li>
+<li>**内容：**这是元素的内容，在这种情况下，只是文本。</li>
+<li>**元素：**开始标签，结束标签和内容共同组成元素。</li>
+</ol>
+<p>元素也可以具有如下所示的属性：</p>
+<p><img src="https://www.runoon.com/wp-content/uploads/2021/01/attribute-1-1024x152.png" alt=""></p>
+<p>属性包含有关您不想出现在实际内容中的元素的额外信息。在这里，<code>class</code>是属性_名称_ ，<code>editor-note</code>是属性_值_。通过该<code>class</code>属性，您可以为元素提供一个非唯一的标识符，该标识符可用于<code>class</code>样式信息和其他信息。</p>
+<p>属性应始终具有以下内容：</p>
+<ol>
+<li>它与元素名称（如果元素已经具有一个或多个属性，则为上一个属性）之间的空格。</li>
+<li>属性名称后跟等号。</li>
+<li>用引号引起来的属性值。</li>
+</ol>
+<p><strong>注意</strong>：不包含ASCII空格（或任何字符<code>&quot;</code> <code>'</code> <code>`</code> <code>=</code> <code>&lt;</code> <code>&gt;</code>）的简单属性值可以不加引号，但是建议您对所有属性值加引号，因为这会使代码更一致和更易理解。</p>
+<hr>
+<h3 id="嵌套元素">嵌套元素<a href="#嵌套元素" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>您也可以将元素放入其他元素中-这称为<strong>嵌套</strong>。如果要说明“我们的猫脾气<strong>非常</strong>暴躁”，可以将“非常”一词包裹在一个<a href="https://www.runoon.com/html/tags/html-strong-tag.html" target="_blank" rel="noreferrer noopener"><code>&lt;strong&gt;</code></a>
+
+元素中，这意味着特别强调该词：</p>
+<pre tabindex="0"><code>&lt;p&gt;我的猫咪脾气&lt;strong&gt;非常&lt;/strong&gt;暴躁:)&lt;/p&gt;
+</code></pre><p>但是，要确保元素正确嵌套。在上面的示例中，我们<a href="https://www.runoon.com/html/tags/html-p-tag.html" target="_blank" rel="noreferrer noopener"><code>&lt;p&gt;</code></a>
+
+首先打开了元素，然后打开了<code>&lt;strong&gt;</code>元素；因此，我们必须先关闭<code>&lt;strong&gt;</code>元素，然后再关闭<code>&lt;p&gt;</code>元素。以下是不正确的：</p>
+<pre tabindex="0"><code># right
+&lt;p&gt;我的猫咪脾气&lt;strong&gt;非常暴躁&lt;/strong&gt;&lt;/p&gt;
+# wong
+&lt;p&gt;我的猫咪脾气&lt;strong&gt;非常&lt;/p&gt;暴躁&lt;/strong&gt;
+</code></pre><p>这些元素必须正确地打开和关闭，以使它们清楚地位于彼此内部或外部。如果它们如上所示重叠，则您的Web浏览器将尝试对您要说的内容做出最佳猜测，这可能会导致意外结果。</p>
+<hr>
+<h3 id="空元素">空元素<a href="#空元素" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>一些元素没有内容，被称为<strong>空元素</strong>。采取<a href="https://www.runoon.com/html/tags/html-img-tag.html" target="_blank" rel="noreferrer noopener"><code>&lt;img&gt;</code></a>
+
+我们在HTML页面中已经拥有的元素：</p>
+<pre tabindex="0"><code>&lt;img src=&#34;/img/earth.jpg&#34; alt=&#34;地球&#34;&gt;
+</code></pre><p>它包含两个属性，但是没有结束<code>&lt;/img&gt;</code>标记，也没有内部内容。其目的是将图像嵌入HTML页面中。</p>
+<hr>
+<h3 id="html文档剖析">HTML文档剖析<a href="#html文档剖析" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>总结了各个HTML元素的基础知识。现在，我们将研究如何将单个元素组合以形成整个HTML页面。让我们重新看一下<code>index.html</code>示例中放入的代码：</p>
+<pre tabindex="0"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&#34;utf-8&#34;&gt;
+    &lt;title&gt;测试页面&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;img src=&#34;/img/earth.jpg&#34; alt=&#34;地球&#34;&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>在这里，我们有以下内容：</p>
+<ul>
+<li><code>&lt;!DOCTYPE html&gt;</code>— doctype。这是必需的序言。在HTML出现之初（大约1991/92年），doctype旨在充当指向一组规则的链接，HTML页面必须遵循这些规则才能被认为是好的HTML，这可能意味着自动错误检查和其他有用的东西。</li>
+<li><code>&lt;html&gt;&lt;/html&gt;</code>—<a href="https://www.runoon.com/html/tags/html-html-tag.html" target="_blank" rel="noreferrer noopener"><code>&lt;html&gt;</code></a>
+
+元素。该元素将所有内容包装在整个页面上，有时也称为根元素。</li>
+<li><code>&lt;head&gt;&lt;/head&gt;</code>—<a href="https://www.runoon.com/html/tags/html-head-tag.html" target="_blank" rel="noreferrer noopener"><code>&lt;head&gt;</code></a>
+
+元素。此元素充当您要包含在HTML页面上的所有内容的容器，_而不是_您要显示给页面查看器的内容。其中包括您想要出现在搜索结果中的关键字和页面描述，用于设置内容样式的CSS，字符集声明等内容。</li>
+<li><code>&lt;meta charset=&quot;utf-8&quot;&gt;</code>—该元素将文档应使用的字符集设置为UTF-8，其中包括绝大多数书面语言中的大多数字符。从本质上讲，它现在可以处理您可能要放在其上的任何文本内容。没有理由不进行设置，这样可以避免以后出现一些问题。</li>
+<li><code>&lt;title&gt;&lt;/title&gt;</code>— <a href="https://www.runoon.com/html/tags/html-title-tag.html" target="_blank" rel="noreferrer noopener"><code>&lt;title&gt;</code></a>
+
+ 元素。这将设置页面的标题，即页面加载到的浏览器选项卡中显示的标题。当您添加书签/收藏夹时，它也用于描述页面。</li>
+<li><code>&lt;body&gt;&lt;/body&gt;</code>—<a href="https://www.runoon.com/html/tags/html-body-tag.html" target="_blank" rel="noreferrer noopener"><code>&lt;body&gt;</code></a>
+
+元素。其中包含您要向网络用户访问您的页面时显示给他们的_所有_内容，无论是文本，图像，视频，游戏，可播放的音轨还是其他内容。</li>
+</ul>
+<p>一个更简单的例子</p>
+<pre tabindex="0"><code>&lt;html&gt;                             ----根控制标记
+    &lt;head&gt;                             ---头控制标记
+        &lt;title&gt;这是标题&lt;/title&gt;       ----标题标记
+    &lt;/head&gt;                            ----头控制标记
+    &lt;body&gt;
+                             ----- 我是Body！！！
+    &lt;/body&gt;
+&lt;/html&gt;                            ----根控制标记
+</code></pre><hr>
+<h3 id="图片元素">图片元素<a href="#图片元素" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>让我们<code>[&lt;img&gt;](https://www.runoon.com/html/tags/html-img-tag.html)</code>再次将注意力转移到元素上：</p>
+<pre tabindex="0"><code>&lt;img src=&#34;/img/earth.jpg&#34; alt=&#34;地球&#34;/&gt;  
+</code></pre><p>如我们之前所说，它将图像按其出现位置嵌入到我们的页面中。它通过<code>src</code>（source）属性执行此操作，该属性包含我们图像文件的路径。</p>
+<p>我们还包括了<code>alt</code>（替代）属性。在此属性中，可能由于以下原因，为无法看到图像的用户指定描述性文本：</p>
+<ol>
+<li>有视力障碍的用户。有严重视力障碍的用户经常使用称为屏幕阅读器的工具向他们朗读替代文本。</li>
+<li>出现问题导致图像无法显示。例如，尝试故意更改<code>src</code>属性内的路径以使其不正确。如果您保存并重新加载页面，则应该在图像上看到以下内容：</li>
+</ol>
+<pre tabindex="0"><code>地球
+</code></pre><p>您编写的替代文本应为读者提供足够的信息，以使他们对图像所传达的内容有所了解。</p>
+<hr>
+<h3 id="标记文本">标记文本<a href="#标记文本" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>本段包含了一些最常用的文本标记 HTML 元素。</p>
+<hr>
+<h4 id="标题heading">标题（Heading）<a href="#标题heading" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<p>标题元素可用于指定内容的标题和子标题。就像一本书的书名、每章的大标题、小标题，等。HTML 文档也是一样。HTML 包括六个级别的标题， <a href="https://www.runoon.com/html/tags/html-h1-h6-tag.html" target="_blank" rel="noreferrer noopener"><code>&lt;h1&gt;</code>–<code>&lt;h6&gt;</code></a>
+
+ ，一般最多用到 3-4 级标题。</p>
+<pre tabindex="0"><code>&lt;h1&gt;主标题&lt;/h1&gt;
+&lt;h2&gt;顶层标题&lt;/h2&gt;
+&lt;h3&gt;子标题&lt;/h3&gt;
+&lt;h4&gt;次子标题&lt;/h4&gt;
+</code></pre><p>可以尝试在 <code>&lt;img&gt;</code> 元素上面添加一个合适的标题。</p>
+<p>注：可以发现 MDN 网站上 第一级标题的主题是隐藏的。不要使用标题元素来加大、加粗字体，因为标题对于 无障碍访问 和 搜索引擎优化 等问题非常有意义。要保持页面结构清晰，标题整洁，不要发生标题级别跳跃。</p>
+<hr>
+<h4 id="段落paragraph">段落（Paragraph）<a href="#段落paragraph" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<p>如上文所讲，<a href="https://www.runoon.com/html/tags/html-p-tag.html" target="_blank" rel="noreferrer noopener"><code>&lt;p&gt;</code></a>
+
+ 元素是用来指定段落的。通常用于指定常规的文本内容：</p>
+<pre tabindex="0"><code>&lt;p&gt;这是一个段落&lt;/p&gt;
+</code></pre><p>试着添加一些文本到一个或几个段落中，并把它们放在你的 <code>&lt;img&gt;</code> 元素下方。</p>
+<hr>
+<h4 id="列表list">列表（List）<a href="#列表list" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<p>Web 上的许多内容都是列表，HTML 有一些特别的列表元素。标记列表通常包括至少两个元素。最常用的列表类型为：</p>
+<ol>
+<li>**无序列表（Unordered List）**中项目的顺序并不重要，就像购物列表。用一个 <a href="https://www.runoon.com/html/tags/html-ul-tag.html" target="_blank" rel="noreferrer noopener"><code>&lt;ul&gt;</code></a>
+
+ 元素包围。</li>
+<li>**有序列表（Ordered List）**中项目的顺序很重要，就像烹调指南。用一个 <a href="https://www.runoon.com/html/tags/html-ol-tag.html" target="_blank" rel="noreferrer noopener"><code>&lt;ol&gt;</code></a>
+
+ 元素包围。</li>
+</ol>
+<p>列表的每个项目用一个列表项目（List Item）元素 <a href="https://www.runoon.com/html/tags/html-li-tag.html" target="_blank" rel="noreferrer noopener"><code>&lt;li&gt;</code></a>
+
+ 包围。</p>
+<p>比如，要将下面的段落片段改成一个列表：</p>
+<pre tabindex="0"><code>&lt;p&gt;这里聚集着来自五湖四海的技术人员、思考者和建造者，我们致力于……&lt;/p&gt;
+</code></pre><p>可以这样更改标记：</p>
+<pre tabindex="0"><code>&lt;p&gt;这里聚集着来自五湖四海的&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;技术人员&lt;/li&gt;
+  &lt;li&gt;思考者&lt;/li&gt;
+  &lt;li&gt;建造者&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;我们致力于……&lt;/p&gt;
+</code></pre><p>试着在示例页面中添加一个有序列表和无序列表。</p>
+<p>一些常用标签</p>
+<pre tabindex="0"><code>&lt;h1~h6&gt;:从大到小. 表示标题.
+ 
+&lt;p&gt;: 段落标签. 包裹的内容被换行.并且也上下内容之间有一行空白.
+ 
+&lt;b&gt; &lt;strong&gt;: 加粗标签.
+ 
+&lt;strike&gt;: 为文字加上一条中线.
+ 
+&lt;em&gt;: 文字变成斜体.
+ 
+&lt;sup&gt;和&lt;sub&gt;: 上角标 和 下角表.
+ 
+&lt;br/&gt;:换行. 单标签
+ 
+&lt;hr&gt;:水平线
+ 
+&lt;div&gt; :块，主要用于布局
+ 
+&lt;span&gt;：内联标签
+</code></pre><hr>
+<h3 id="链接">链接<a href="#链接" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>链接非常重要 — 它们赋予 Web 网络属性。要植入一个链接，我们需要使用一个简单的元素 — <a href="https://www.runoon.com/html/tags/html-hyperlink-a-tag.html" target="_blank" rel="noreferrer noopener"><code>&lt;a&gt;</code></a>
+
+ — a 是 “anchor” （锚）的缩写。要将一些文本添加到链接中，只需如下几步：</p>
+<ol>
+<li>选择一些文本。比如 “HTML教程”。</li>
+<li>将文本包含在 <code>&lt;a&gt;</code> 元素内，就像这样：<code>&lt;a&gt;HTML教程&lt;/a&gt;</code></li>
+<li>为此 <code>&lt;a&gt;</code> 元素添加一个 <code>href</code> 属性，就像这样：<code>&lt;a href=&quot;&quot;&gt;HTML教程&lt;/a&gt;</code></li>
+<li>把属性的值设置为所需网址：<code>&lt;a href=&quot;https://www.runoon.com/html/&quot;&gt;HTML教程&lt;/a&gt;</code></li>
+</ol>
+<p>如果网址开始部分省略了 <code>https://</code> 或者 <code>http://</code>，可能会出现错误的结果。在完成一个链接后，可以试着点击它来确保指向正确。</p>
+<p><code>href</code> 这个名字可能开始看起来有点令人费解，代表超文本引用（ <strong>h</strong>ypertext <strong>ref</strong>erence）。</p>
+<hr>
+<h3 id="html和css以及javascript的关系">html和css以及javascript的关系<a href="#html和css以及javascript的关系" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>HTML是超文本标记语言的简称，它是一种不严谨的、简单的标识性语言。它用各种标签将页面中的元素组织起来，告诉浏览器该如何显示其中的内容。</p>
+<p>为什么说HTML是不严谨的呢？因为HTML标签即使不闭合，也并不会影响页面内容的组织。</p>
+<p>CSS是用来修饰内容样式的（重在内容样式美化展示上）</p>
+<p>CSS是层叠样式表的简称，它用来表现HTML文件样式的，简单说就是负责HTML页面中元素的展现及排版。</p>
+<p>JavaScript是用来做交互的</p>
+<p>JavaScript是一种脚本语言，即可以运行在客户端也能运行在服务器端。JavaScript的解释器就是JS引擎，JS引擎是浏览器的一部分。而JavaScript主要是用来扩展文档交互能力的，使静态的HTML具有一定的交互行为（比如表单提交、动画特效、弹窗等）。</p>
+<p>如果把HTML比做身体，那CSS就好比是衣服，而JavaScript则意味着人能做的一些高级动作。</p>
+<p>1、什么是HTML（超文本标记语言 <strong>H</strong>yper <strong>T</strong>ext <strong>M</strong>arkup <strong>L</strong>anguage），HTML 是用来描述网页的一种语言。
+2、CSS(层叠样式表 <em>C</em>ascading <em>S</em>tyle <em>S</em>heets),样式定义如何显示 HTML 元素，语法为：selector {property：value} (选择符 {属性：值})
+3、JavaScript是一种脚本语言，其源代码在发往客户端运行之前不需经过编译，而是将文本格式的字符代码发送给<strong>浏览器</strong>由浏览器解释运行</p>
+<p>对于一个网页，HTML定义网页的结构，CSS描述网页的样子，JavaScript设置一个很经典的例子是说HTML就像 一个人的骨骼、器官，而CSS就是人的皮肤，有了这两样也就构成了一个植物人了，加上javascript这个植物人就可以对外界刺激做出反应，可以思 考、运动、可以给自己整容化妆（改变CSS）等等，成为一个活生生的人。</p>
+<p>在 Web 开发中，后端有很多编程语言可以选择，但前端只有 JavaScript，JavaScript是所有浏览器唯一都支持的编程语言。JavaScript如此强势，尽量再不喜欢，不管是前端还是后端都要求有一定的javascript编程能力，但是有没有什么方法来简化Javascript的开发呢？答案是有的，各种javascript程序库应运而生，如jQuery、Prototype、MooTools。</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">details</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">font</span>: <span style="color:#666">16</span><span style="color:#b00040">px</span> <span style="color:#ba2121">&#34;Open Sans&#34;</span>, <span style="color:#ba2121">&#34;Arial&#34;</span>, <span style="color:#008000;font-weight:bold">sans-serif</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">width</span>: <span style="color:#666">620</span><span style="color:#b00040">px</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">details</span> <span style="color:#666">&gt;</span> <span style="color:#008000;font-weight:bold">summary</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">padding</span>: <span style="color:#666">2</span><span style="color:#b00040">px</span> <span style="color:#666">6</span><span style="color:#b00040">px</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">width</span>: <span style="color:#666">15</span><span style="color:#b00040">em</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">background-color</span>: <span style="color:#666">#ddd</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">border</span>: <span style="color:#008000;font-weight:bold">none</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">box-shadow</span>: <span style="color:#666">3</span><span style="color:#b00040">px</span> <span style="color:#666">3</span><span style="color:#b00040">px</span> <span style="color:#666">4</span><span style="color:#b00040">px</span> <span style="color:#008000;font-weight:bold">black</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">details</span> <span style="color:#666">&gt;</span> <span style="color:#008000;font-weight:bold">p</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">border-radius</span>: <span style="color:#666">0</span> <span style="color:#666">0</span> <span style="color:#666">10</span><span style="color:#b00040">px</span> <span style="color:#666">10</span><span style="color:#b00040">px</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">background-color</span>: <span style="color:#666">#ddd</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">padding</span>: <span style="color:#666">2</span><span style="color:#b00040">px</span> <span style="color:#666">6</span><span style="color:#b00040">px</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">margin</span>: <span style="color:#666">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">box-shadow</span>: <span style="color:#666">3</span><span style="color:#b00040">px</span> <span style="color:#666">3</span><span style="color:#b00040">px</span> <span style="color:#666">4</span><span style="color:#b00040">px</span> <span style="color:#008000;font-weight:bold">black</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><pre tabindex="0"><code>&lt;details&gt;
+&lt;summary&gt;Copyright 1999-2011.&lt;/summary&gt;
+&lt;p&gt; - by Refsnes Data. All Rights Reserved.&lt;/p&gt;
+&lt;p&gt;All content and graphics on this web site are the property of the company Refsnes Data.&lt;/p&gt;
+&lt;/details&gt;
+</code></pre><details> <summary>Copyright 1999-2011.</summary> <p> - by Refsnes Data. All Rights Reserved.</p> <p>All content and graphics on this web site are the property of the company Refsnes Data.</p> </details>
+<p>目前，只有 Chrome 和 Safari 6 支持 <details> 标签。</p>
+
+<p style="color:#777;">最后一次修改于 2019-08-27</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       订阅 </a>
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+

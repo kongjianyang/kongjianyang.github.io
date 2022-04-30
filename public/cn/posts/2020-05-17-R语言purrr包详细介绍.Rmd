@@ -1,0 +1,258 @@
+---
+title: "R语言purrr包详细介绍"
+date: '2020-05-17'
+author: KJY
+slug: purrr
+draft: false
+categories:
+  - R
+tags: []
+lastmod: '2020-05-17T10:30:09-07:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+
+---
+
+参考：
+
+https://jiaxiangli.netlify.app/2018/02/27/purrr/
+https://cloud.tencent.com/developer/article/1771939
+
+urrr包除了占据tidyverse风格核心函数式编程的map_* 功能，还提供非常强大的list操作功能
+
+R写循环有三个境界：
+
+手动for循环
+apply循环
+purrr泛函式编程
+
+泛函式定义: 函数的函数成为泛函式，map(x,f)中，map是函数，f也是函数，f是map的参数，那么map就是泛函数。
+在数学上，函数的函数称为泛函，在编程中表示函数作用在函数上，或者说函数包含其它函数作为参数，这就是泛函式。
+循环迭代，本质上就是将一个函数依次应用（映射）到序列的每一个元素上。
+表示出来就是泛函式：map_*(x, f)
+
+```{r}
+library(tidyverse)
+```
+
+
+载入R包tidyverse后，自动加载了8个R包，即ggplot2，tibble，tidyr，readr，purrr，dplyr，stringr，以及forcats(将在下文介绍其中最重要的几个包)。结果还显示，R包dplyr中的filter()函数与lag()函数分别“掩盖”(mask)了同名的R基础函数。如果你想调用R基础函数filter()或lag()，则须使用它们的全称stats::filter()或stats::lag()，从R的基础包stats调用这两个函数。
+
+我们可以通过下面两种方式看一个包内所有的function
+
+```{r}
+ls("package:purrr")
+```
+
+```{r}
+lsf.str("package:purrr") # List Objects and their Structure
+```
+
+包含的内容太多，所以选择一些重要的function进行介绍
+
+map表示映射，可以在一个或多个列表/向量的每个位置上应用相同函数进行计算。map函数的映射对象只有一个。
+
+map(.x, .f, …)
+.x: 列表或向量；
+.f: 映射函数；
+...: 映射函数的其他参数
+
+```{r}
+# 单个向量map,指定函数参数
+1:4 %>%
+  map(rnorm,mean=1,sd=2)
+```
+
+map2函数是map函数的变形，映射对象有两个，需要注意两个列表/向量的长度必须相同。
+
+map2(.x,.y, .f, …)
+.x: 列表或向量；
+.y: 列表或向量,与.x等长；
+.f: 映射函数；
+...: 映射函数的其他参数
+
+```{r}
+# 两个向量map，使用公式函数
+map2(1:3,2:4,~sum(.x,.y))
+```
+
+pmap函数是map函数的变形，映射对象为多个，需要注意多个列表/向量的长度必须相同。
+
+pmap(.l, .f, …)
+.l: 列表向量/列表；
+.f: 映射函数；
+...: 映射函数的其他参数
+
+```{r}
+# 多个向量map，使用公式函数
+pmap(list(1:3,2:4,3:5),~sum(..1,..2,..3))
+```
+
+
+调用不同的函数
+还有一种更复杂的情况：不但传给函数的参数不同，甚至函数本身也是不同的。
+
+```{r}
+f = c("runif", "rnorm", "rpois")
+param = list(
+    list(min = -1, max = 1),
+    list(sd = 5),
+    list(lambda = 10)
+)
+```
+
+
+为了处理这种情况，我们使用invoke_map()函数：
+
+```{r}
+invoke_map(f, param, n = 5)
+```
+
+第1个参数是一个函数列表或包含函数名称的字符串向量。第2个参数是列表的一个列表，给出了要传给各个函数的不同参数。随后的参数要传给每个函数。
+
+
+
+
+reduce
+reduce函数表示规约，计算向量中相邻的两个元素，结果再与第三个元素计算，…，最后计算出一个值。
+
+```{r}
+reduce(1:5,paste)
+```
+
+reduce函数可以有很多的妙用，比如将一系列data.frame，进行left_join
+
+reduce2函数可以同时对两个向量进行规约计算，注意第二个向量长度需要比第一个向量小1。
+
+```{r}
+# 多个向量reduce
+reduce2(1:4,c(1,1,1),function(x,y,z) x+y-z)
+
+```
+
+计算逻辑为第一次：1+2-1=2，第二次2+3-1=4，第三次4+4-1=7。
+
+
+函数 accumulate() 与 reduce() 作用方式相同，不同之处是：reduce() 只保留最终的结果，而 accumulate() 会保留所有中间结果。例如，
+
+```{r}
+accumulate(1:100, sum) 
+```
+
+
+pluck()：同 [[ 提取列表中的元素
+keep(): 保留满足条件的元素
+dicard(): 删除满足条件的元素
+compact(): 删除列表中的空元素
+append()：在列表末尾增加元素
+flatten(): 摊平列表（只摊平一层）
+
+
+
+```{r}
+library(tidyverse)
+set.seed(42722)
+## Names of the example data frames we'll create
+## are df_1 ... df5
+df_names <- paste0("df_", 1:5) %>% 
+  set_names()
+
+
+df_names
+## We'll make the new dfs by sampling from mtcars
+base_df <- as_tibble(mtcars, rownames = "model") %>% 
+  select(model, cyl, hp)
+
+base_df
+## Create 5 new data frame objects in our environment.
+## Each is a sample of ten rows of three columns from mtcars
+
+df_names %>% 
+  walk(~ assign(x = .x,         # each element of df_names in turn
+                value = sample_n(base_df, 10), 
+                envir = .GlobalEnv))
+## Now we have, e.g.
+df_1
+
+df_2
+```
+```{r}
+df_names
+```
+
+
+
+```{r}
+df_list <- map(df_names, get)
+df_list
+```
+
+
+
+```{r}
+split_list <- df_list %>% 
+  map(~ mutate(., 
+               over_under = if_else(.$cyl > 5, "over", "under"))) %>% 
+    map(~ split(., as.factor(.$over_under))) 
+
+
+split_list
+```
+
+```{r}
+df_list %>% 
+  map(~ mutate(., 
+               over_under = if_else(.$cyl > 5, "over", "under")))
+```
+
+
+The . inside the mutate() and split() functions are pronouns standing for “the thing we’re referring to/computing on right now”. In this case, that’s “the current data frame as we iterate through df_list”. Now we have a nested list. Each of df_1 to df_5 is split into an over or under table. The whole thing looks like this:
+
+
+```{r}
+split_list %>% 
+  map("over") %>%                               # subset to "over" dfs only
+  set_names(nm = ~ paste0(.x, "_over")) %>%     # name each element, add the _over suffix
+  walk2(.x = names(.), #                        # write out each df with its name
+        .y = .,
+        .f = ~ assign(x = .x,
+                value = as_tibble(.y),
+                envir = .GlobalEnv))
+
+split_list
+```
+
+
+```{r}
+lapply(split_list, `[[`, "over")
+```
+
+```{r}
+df_list
+```
+
+
+```{r}
+df_all <- bind_rows(df_list, .id = "id")
+df_all
+```
+
+
+

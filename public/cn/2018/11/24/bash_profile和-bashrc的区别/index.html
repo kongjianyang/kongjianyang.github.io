@@ -1,0 +1,161 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>-bash_profile和-bashrc的区别</h1>
+
+<p>Liang 
+ / 2018-11-24 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24--bash_profile%e5%92%8c-bashrc%e7%9a%84%e5%8c%ba%e5%88%ab.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+
+<div class="body-text list-text">
+<p><code>/etc/profile</code> 此文件为系统的每个用户设置环境信息,当用户第一次登录时,该文件被执行.并从<code>/etc/profile.d</code>目录的配置文件中搜集shell的设置。
+<code>/etc/bashrc</code> 为每一个运行bash shell的用户执行此文件.当bash shell被打开时,该文件被读取。
+<code>~/.bash_profile</code> 每个用户都可使用该文件输入专用于自己使用的shell信息,当用户登录时,该文件<strong>仅仅执行一次</strong>! 默认情况下,他设置一些环境变量,执行用户的<code>.bashrc</code>文件。
+<code>~/.bashrc</code> 该文件包含专用于你的bash shell的bash信息,当登录时以及每次打开新的shell时,该该文件被读取。
+<code>~/.bash_logout</code> 少见，但是意味着当每次退出系统(退出bash shell)时,执行该文件。</p>
+<p>另外<code>/etc/profile</code> 中设定的变量(全局)的可以作用于任何用户, 而<code>~/.bashrc</code> 等中设定的变量(局部)只能继承 <code>/etc/profile</code> 中的变量,他们是&quot;父子&quot;关系。</p>
+<p><code>profile</code>用于登录式shell, 而<code>bashrc</code>用于每个交互式shell
+<code>~/.bash_profile</code> 是交互式、login 方式进入 bash 运行的
+<code>~/.bashrc</code> 是交互式 non-login 方式进入 bash 运行的
+通常二者设置大致相同，所以通常前者会调用后者。
+所以一般优先把变量设置在<code>.bashrc</code>里面。比如在crontab里面执行一个命令，<code>.bashrc</code> 设置的环境变量会生效，而 <code>.bash_profile</code> 不会。</p>
+<p>设置生效：可以重启生效，也可以使用命令：<code>source </code></p>
+<pre tabindex="0"><code>source /etc/profile
+</code></pre>
+<p style="color:#777;">最后一次修改于 2018-11-24</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       订阅 </a>
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+

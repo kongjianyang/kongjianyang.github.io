@@ -1,0 +1,384 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>MACS2使用</h1>
+
+<p>KJY 
+ / 2022-03-25 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2022-03-25-MACS2.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+<aside class="toc">
+Table of Contents:
+<nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+</aside>
+
+
+<div class="body-text list-text">
+<p>参考资料：</p>
+<p><a href="http://www.360doc.com/content/18/0205/00/19913717_727772514.shtml" target="_blank" rel="noreferrer noopener">这可能是最棒的MACS2使用说明 (360doc.com)</a>
+
+</p>
+<p><a href="https://blog.csdn.net/weixin_43569478/article/details/108079812" target="_blank" rel="noreferrer noopener">使用MACS2进行差异peak分析_生信修炼手册的博客-CSDN博客</a>
+
+</p>
+<p>MACS2：Model-based analysis of ChiP-Seq. 最初的设计是用来鉴定转录因子的结合位点，但是它也可以用于其他类型的富集方式测序。</p>
+<p>MACS2作为使用最广泛的peak calling软件，在v2版本中添加了差异peak分析的功能，所有的子命令功能描述如下</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9LQXRSUEJCeWVHNVI5MGNRaWJxS2FibjVKM3ZwSDUyTWZnZUpkRTVwSGQza1BmdVNONEozMTVERVRKclpteFJxVGV0UXNQd3ZCVGdpY24zeFU3Tzdtd2hnLzY0MA?x-oss-process=image/format,png" alt=""></p>
+<p>通过<code>bdgdiff</code>子命令来进行差异peak分析， 该命令不需要基于已有的peak calling结果，只需要输入每个样本对应的bedGraph格式的文件。需要注意的是，该命令只针对两个样本间的差异peak进行设计，适用于没有生物学重复的情况。</p>
+<p>对于使用macs2来进行差异peak的完整流程，官方给出了详细的说明文档，链接如下</p>
+<blockquote>
+<p>https://github.com/taoliu/MACS/wiki/Call-differential-binding-events</p>
+</blockquote>
+<p>可以分为以下3步</p>
+<h4 id="1-预测插入片段长度">1. 预测插入片段长度<a href="#1-预测插入片段长度" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<p>通过<code>predictd</code>子命令可以预测样本的fragment size，命令如下</p>
+<pre tabindex="0"><code>macs2 predictd -i input.bam
+</code></pre><pre tabindex="0"><code>#!/bin/bash
+
+module load bioinfo
+module load biocontainers/default
+module load macs2/2.2.7.1-py39
+
+for i in `ls [A-H][1-9][A-H][1-9][A-H][1-9].bam`;
+do
+msg=&#34;macs2 predictd -i $i&#34;;
+echo $msg;
+macs2 predictd -i $i;
+</code></pre><h4 id="2-peak--calling">2. peak  calling<a href="#2-peak--calling" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<p>在peak calling时，需要添加<code>-B</code>参数，这样才可以输出样本对应的bedgraph文件，同时需要保证peak  calling时采用一致的<code>--extsize</code>的值，就是第一步预测出来的数值，取多个样本的均值即可。官方也给出了推荐值，对于大多数的转录因子chip_seq数据，推荐值为200， 对于大部分组蛋白修饰的chip_seq数据，推荐值为147，命令如下</p>
+<pre tabindex="0"><code># condition1
+macs2 callpeak -B -t cond1_ChIP.bam -c cond1_Control.bam -n cond1 --nomodel --extsize 147
+# condition2
+# broad peak calling:
+macs2 callpeak -B -t cond1_ChIP.bam -c cond1_Control.bam -n cond1 --outdir Macs2_out -g 8.55e8  --nomodel --extsize 147 --broad --broad-cutoff 0.05 -q 0.05 2&gt; macs2/Pou5f1-rep2-macs2.log
+</code></pre><ul>
+<li><code>-n/--name</code>表示实验的名字; 输出文件名的前缀</li>
+<li><code>--outdir</code>:输出结果的存储路径</li>
+<li><code>-B/--bdg</code>: 以bedGraph格式存放<em>fragment pileup</em>, <em>control lambda</em>, <em>-log10pvalue</em> 和<em>log10qvale</em>.</li>
+<li><code>-q</code>： q值(最小的FDR)的阈值。可以根据结果进行修正。q值是p值经Benjamini–Hochberg–Yekutieli修正后的值。<em>默认，0.01，对于 broad marks(组蛋白修饰的chipseq)，可以使用0.05；</em></li>
+<li><code>--broad--cutoff</code>: 用于过滤 <code>broad</code>得到的peak，默认是q值，如果设置 <code>-p</code>就用p值。</li>
+<li><code>--nomodel</code>: 这个参数说明不需要MACS去构建模型，也就是说下面的参数除了 <code>--shift, --extsize</code>外都会被无视。</li>
+<li><code>--extsize</code>： MACS使用这个参数将read以5&rsquo;-&gt; 3&rsquo;衍生至等长片段。比如说你知道你的转录因子的结合区域是200bp，那么参数就是 <code>--extsize 200</code>。当且仅当 <code>--nomodel</code>和 <code>--fix-bimodal</code>设置使用。</li>
+<li><code>-g</code>表示可比对的基因组大小。比如说人类是2.7e9，也就是2.7G，拟南芥根据NCBI显示是119,667,750，也就是1.2e8. 这个参数设置的原因，根据我读发表MACS的那篇文献推测，是因为MACS需要进行全基因组扫描构建双峰模型估计shift size。这个只是我猜测而已，反正根据自己物种来就对了。由于基因组序列的重复性，基因组实际可以mapping的大小小于原始的基因组。这个参数要根据实际物种计算基因组的有效大小。</li>
+<li>-f/&ndash;format FORMAT<code>用来声明输入的文件格式，目前MACS能够识别的格式有 'ELAND', 'BED', 'ELANDMULTI', 'ELANDEXPORT', 'ELANDMULTIPET' (双端测序), 'SAM', 'BAM', 'BOWTIE', 'BAMPE', 'BEDPE'. 除'BAMPE', 'BEDPE'需要特别声明外，其他格式都可以用 </code>AUTO</li>
+</ul>
+<p>在运行这一步的时候，会输出每个样本过滤之后的reads数目，示意如下</p>
+<pre tabindex="0"><code># tags after filtering in treatment: 19291269# tags after filtering in control: 12914669
+</code></pre><p>这个数值在差异分析中会用到，所以要记录下来。</p>
+<blockquote>
+<p>maybe need to add paired end mode, Paired-End mode is off</p>
+</blockquote>
+<h4 id="3-reults-of-peak-calling">3. Reults of peak calling<a href="#3-reults-of-peak-calling" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<ol>
+<li>NAME_peaks.xls
+存放peak信息的文件</li>
+</ol>
+<ul>
+<li>染色体名</li>
+<li>peak 起始位置</li>
+<li>peak 终止位置</li>
+<li>peak 区域长度</li>
+<li>peak summit位置</li>
+<li>peak summit位置堆积信号</li>
+<li>-log10(pvalue)</li>
+<li>fold enrichment for this peak summit against random Poisson distribution with local lambda</li>
+<li>-log10(qvalue) at peak summit</li>
+<li>peak name</li>
+</ul>
+<ol start="2">
+<li>NAME_peaks.narrowPeak
+BED6+4格式，包含peak位置信息，peak summit, pvalue and qvalue，可以使用UCSC genome browser查看。其中几列信息如下：</li>
+</ol>
+<ul>
+<li>1th: 染色体名</li>
+<li>2th: peak 起始位置</li>
+<li>3th: peak 终止位置</li>
+<li>4th: peak name</li>
+<li>5th: integer score for display, int(-10*log10(pvalue))</li>
+<li>7th: fold-change</li>
+<li>8th: -log10(pvalue)</li>
+<li>9th: -log10qvalue</li>
+<li>10th: 峰位与peak起点的距离</li>
+</ul>
+<ol start="3">
+<li>NAME_summits.bed
+BED格式，包含peak summits(peak最高点)位置；如果想寻找结合位点的motifs ，建议使用此文件。</li>
+</ol>
+<ul>
+<li>5th: -log10pvalue</li>
+</ul>
+<ol start="4">
+<li>
+<p>NAME_peaks.broadPeak
+ED6+3格式，与narrowPeak类似，除了没有第10列peak summit的注释信息。</p>
+</li>
+<li>
+<p>NAME_peaks.gappedPeak
+BED12+3格式，存放broad region 和 narrow peaks，可以使用UCSC genome browser查看。</p>
+</li>
+<li>
+<p>NAME_model.r
+R程序，运行后生成基于输入数据产生的模型图片</p>
+</li>
+</ol>
+<pre tabindex="0"><code>$ Rscript NAME_model.r
+</code></pre><ol start="7">
+<li>bdg files
+bedGraph 文件，可以导入UCSC genome browser查看，或转格式为bigWig 文件；</li>
+</ol>
+<ul>
+<li>treat_pileup ：实验组bedGraph 文件</li>
+<li>control_lambda ：对照组bedGraph 文件</li>
+</ul>
+<h4 id="4-输出文件的比较">4. 输出文件的比较<a href="#4-输出文件的比较" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<ul>
+<li>
+<p>xls文件
+文件包含信息还是比较多的，和narrowPeak唯一不同的是peak的起始位置需要减1才是bed格式的文件，另外还包含fold_enrichment 和narrowPeak的fold change 对应，-log10pvalue,-log10qvalue, peak长度，peak 峰值位置等。</p>
+</li>
+<li>
+<p>narrowPeak文件
+和xls文件信息类似</p>
+</li>
+<li>
+<p>summits.bed文件
+包含峰的位置信息和-log10pvalue</p>
+</li>
+<li>
+<p>bdg文件
+bdg文件适合导入UCSC或IGV进行谱图可视化，或者转换为bigwig格式再进行可视化</p>
+</li>
+</ul>
+<h4 id="5-差异peak分析">5. 差异peak分析<a href="#5-差异peak分析" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<p>参考这篇文章：</p>
+<p><a href="https://github.com/macs3-project/MACS/wiki/Call-differential-binding-events" target="_blank" rel="noreferrer noopener">Call differential binding events · macs3-project/MACS Wiki (github.com)</a>
+
+</p>
+<blockquote>
+<p>The purpose of this step is to do a three ways comparisons to find out where in the genome has differential enrichment between two conditions. A basic requirement is that this region should be at least enriched in either condition.</p>
+</blockquote>
+<p>命令如下</p>
+<pre tabindex="0"><code>macs2 bdgdiff --t1 cond1_treat_pileup.bdg --c1 cond1_control_lambda.bdg --t2 cond2_treat_pileup.bdg \--c2 cond2_control_lambda.bdg --d1 12914669 --d2 14444786 -g 60 -l 120 --o-prefix diff_c1_vs_c2
+</code></pre><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>查询命令使用：
+</span></span><span style="display:flex;"><span>macs2 bdgdiff -h
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>用法说明：
+</span></span><span style="display:flex;"><span>usage: macs2 bdgdiff <span style="color:#666">[</span>-h<span style="color:#666">]</span> --t1 T1BDG --t2 T2BDG --c1 C1BDG --c2 C2BDG
+</span></span><span style="display:flex;"><span>                     <span style="color:#666">[</span>-C CUTOFF<span style="color:#666">]</span> <span style="color:#666">[</span>-l MINLEN<span style="color:#666">]</span> <span style="color:#666">[</span>-g MAXGAP<span style="color:#666">]</span> <span style="color:#666">[</span>--d1 DEPTH1<span style="color:#666">]</span>
+</span></span><span style="display:flex;"><span>                     <span style="color:#666">[</span>--d2 DEPTH2<span style="color:#666">]</span> <span style="color:#666">[</span>--outdir OUTDIR<span style="color:#666">]</span>
+</span></span><span style="display:flex;"><span>                     <span style="color:#666">(</span>--o-prefix OPREFIX | -o OFILE OFILE OFILE<span style="color:#666">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 可选参数：</span>
+</span></span><span style="display:flex;"><span>optional arguments:
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 参数 --t1是读取MACS pileup bedGraph for condition 1. </span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 参数 --t2是读取MACS pileup bedGraph for condition 2. </span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 参数 --c1是读取MACS control lambda bedGraph for condition 1.</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 参数 --c2是读取MACS control lambda bedGraph for condition 2.</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 参数 --d1  Sequencing depth (# of non-redundant reads in million) for condition 1. </span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 参数 --d2  Sequencing depth (# of non-redundant reads in million) for condition 2. </span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 参数 --o-prefix diff_c1_vs_c2保存输出文件名。</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#  -l MINLEN, --min-len MINLEN</span>
+</span></span><span style="display:flex;"><span>                        Minimum length of differential region. Try bigger
+</span></span><span style="display:flex;"><span>                        value to remove small regions. DEFAULT: <span style="color:#666">200</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#  -g MAXGAP, --max-gap MAXGAP</span>
+</span></span><span style="display:flex;"><span>                        Maximum gap to merge nearby differential regions.
+</span></span><span style="display:flex;"><span>                        Consider a wider gap <span style="color:#008000;font-weight:bold">for</span> broad marks. Maximum gap
+</span></span><span style="display:flex;"><span>                        should be smaller than minimum length <span style="color:#666">(</span>-g<span style="color:#666">)</span>. DEFAULT:
+</span></span><span style="display:flex;"><span>                        <span style="color:#666">100</span>
+</span></span></code></pre></div><p>其中<code>-d1</code>和<code>-d2</code>的值就是第二步运行时输出的reads数目，<code>-o</code>参数指定输出文件的前缀。运行成功后，会产生3个文件</p>
+<ol>
+<li>
+<p>diff_c1_vs_c2_c3.0_cond1.bed</p>
+</li>
+<li>
+<p>diff_c1_vs_c2_c3.0_cond2.bed</p>
+</li>
+<li>
+<p>diff_c1_vs_c2_c3.0_common.bed</p>
+</li>
+</ol>
+<p>其中, con1.bed保存了在condition1中上调的peak, con2.bed保存了在condition2中上调的peak, common.bed文件中保存的是没有达到阈值的，非显著差异peak。</p>
+<p>上述3个文件格式是完全相同的，最后一列的内容为log10 likehood ratio值，用来衡量两个条件之间的差异，默认阈值为3，大于阈值的peak为组间差异显著的peak, 这个阈值可以通过<code>-c</code>参数进行调整。</p>
+<blockquote>
+<p>The last column in the file represent the log10 likelihood ratio to show how likely the observed signal in condition 1 in this region is from condition 1 comparing to condition 2. Higher the value, bigger the difference.</p>
+</blockquote>
+<p>这里需要注意bdgdiff可能不适合broad peaks:</p>
+<p><a href="https://www.biostars.org/p/274094/" target="_blank" rel="noreferrer noopener">Narrow &amp; Broad peaks from &lsquo;macs2 bdgdiff&rsquo; (biostars.org)</a>
+
+</p>
+<blockquote>
+<p><code>bdgdiff</code> first generate three tracks from the 4 input tracks, which contains the log-likelihoods of t1 &gt; t2, t1=t2, and t1 &lt; t2. The three output files are in fact peaks called by <code>bdgpeakcall</code>&ndash;the subfunction for calling narrow peaks&ndash;from these three tracks. So, <code>bdgdiff</code> is not suitable for calling differential broad peaks.</p>
+</blockquote>
+<h4 id="4-使用igv加载macs的结果">4. 使用IGV加载MACS的结果<a href="#4-使用igv加载macs的结果" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<ol>
+<li>首先解压并重命名 <code>bedGraph</code> 文件。以FoxA1数据集为例，首先定位到<code>HAIB_T47D_FoxA1_MACS_bedGraph/treat</code>,</li>
+<li>解压文件 <code>gzip -d HAIB_T47D_FoxA1_treat_afterfiting_all.bdg.gz</code></li>
+<li>更改后缀为<code>bedGraph</code>，这样可被IGV识别<code>mv HAIB_T47D_FoxA1_treat_afterfiting_all.bdg HAIB_T47D_FoxA1_treat_afterfiting_all.bedGraph</code></li>
+<li>用IGV加载<code>HAIB_T47D_FoxA1_treat_afterfiting_all.bedGraph</code>，根据IGV的手册。</li>
+</ol>
+<h4 id="一些解释">一些解释<a href="#一些解释" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<p>MACS2比较适合call narrow peak, SICER适用于找出那些diffuse/broad peak，通过识别空间信号簇来寻找ChIP-enriched信号</p>
+<p>SICERv2.0: 输入文件不再局限于bed格式，bam文件也是可以的。</p>
+<p>什么时候需要去重</p>
+<p>理论上来讲，不同的序列在进行PCR扩增时，扩增的倍数应该是相同的。但是由于聚合酶的偏好性，PCR扩增次数过多的情况下，会导致一些序列持续扩增，而另一些序列扩增到一定程度后便不再进行，也就是我们常说的PCR偏好性。</p>
+<p>这种情况对于定量分析（如ChIP-seq），会造成严重的影响。此外，PCR扩增循环数过多，会出现一些扩增偏差，进而影响一些突变识别（比如call SNP)的置信度。</p>
+<p>因此，在一些NGS分析流程中需要考虑去除PCR重复。</p>
+<p>若起始量很低，PCR扩增次数很多，那么则需要去除PCR重复。因此：</p>
+<ul>
+<li>RNA-seq由于其建库起始量一般都很高所以不需要去除重复，而且RNA-seq数据中经常会出现某些基因的表达量十分高，这就导致这些基因打断的reads的比对情况有很大概率是一致的。</li>
+<li>而ChIP-seq中，由于起始量不高，且没有那种富集程度很高的位点，因此通常需要考虑去除PCR重复。</li>
+<li>至于call SNP，起始量一般都高（因为要保证测序深度），此外由于PCR扩增会导致一些序列复制错误，这将严重影响SNP位点识别的置信度。因此一般需要去重复。</li>
+</ul>
+<p>This redundancy is consistently applied for both the ChIP and input samples.</p>
+<blockquote>
+<p><strong>Why worry about duplicates?</strong> Reads with the same start position are considered duplicates. These duplicates can arise from experimental artifacts, but can also contribute to genuine ChIP-signal.</p>
+<ul>
+<li><strong>The bad kind of duplicates:</strong> If initial starting material is low this can lead to overamplification of this material before sequencing. Any biases in PCR will compound this problem and can lead to artificially enriched regions. Also blacklisted (repeat) regions with ultra high signal will also be high in duplicates. Masking these regions prior to analysis can help remove this problem.</li>
+<li><strong>The good kind of duplicates:</strong> Duplicates will also exist within highly efficient (or even inefficient ChIP) when deeply sequenced. Removal of these duplicates can lead to a saturation and so underestimation of the ChIP signal.</li>
+</ul>
+<p><strong>The take-home:</strong> Consider your enrichment efficiency and sequencing depth. But, because we cannot distinguish between the good and the bad, best practice is to remove duplicates prior to peak calling. Retain duplicates for differential binding analysis. Also, if you are expecting binding in repetitive regions keep duplicates and multiple mappers.</p>
+</blockquote>
+
+<p style="color:#777;">最后一次修改于 2022-03-25</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       订阅 </a>
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+

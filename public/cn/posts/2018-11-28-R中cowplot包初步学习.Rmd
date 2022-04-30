@@ -1,0 +1,241 @@
+---
+title: R中cowplot包初步学习
+author: Liang
+date: '2018-11-28'
+slug: R中cowplot包初步学习
+categories:
+  - R
+tags: []
+lastmod: '2018-11-28T21:48:17-05:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: no
+mathjaxEnableSingleDollar: no
+mathjaxEnableAutoNumber: no
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+
+cowplot是ggplot2包的一个简单插件，它的目的是为ggplot2提供一个出版级别的主题。
+
+查看cowplot内的主要命令
+
+```{r}
+library(cowplot)
+ls("package:cowplot")
+```
+
+查看函数包含了哪些参数
+
+```{r}
+args(draw_plot)
+```
+
+
+# 1. 基本设计
+首先我们看下ggplot的原生图形
+
+```{r}
+library(ggplot2)
+ggplot(mpg, aes(x = cty, y = hwy, colour = factor(cyl))) + 
+  geom_point(size = 2.5)
+```
+
+看起来非常的丑，现在我们试试利用cowplot的结果
+
+```{r}
+library(cowplot)
+ggplot(mpg, aes(x = cty, y = hwy, colour = factor(cyl))) + 
+   geom_point(size = 2.5)
+```
+
+看起来好看很多，选择存储也比较简单
+
+```{r}
+library(cowplot)
+plot.mpg <- ggplot(mpg, aes(x = cty, y = hwy, colour = factor(cyl))) + geom_point(size=2.5)
+plot.mpg
+# use save_plot() instead of ggsave() when using cowplot
+# save_plot("mpg.png", plot.mpg, base_aspect_ratio = 1.3 # make room for figure legend)
+```
+
+`save_plot` 是ggsave的一个替代方案，能够更好的支持多图
+
+为cowplot添加网格线
+
+```{r}
+plot.mpg + background_grid(major = "xy", minor = "none")
+```
+
+如果你既想用ggplot2的默认主题又想使用cowplot包，简单的添加 theme_gray()到你的图形上或者使用theme_set(theme_gray())为所有的子图设置该主题。
+
+```{r}
+# plot.mpg + theme_set(theme_gray()) # switch to default ggplot2 theme for good
+```
+
+
+```{r}
+plot.mpg + theme_gray() # create plot with default ggplot2 theme
+```
+
+
+# 2. 多图排版
+
+ggplot2很难给图形添加标签和其他注释。ggplot2严格地将绘图panel(轴以内的部分)和其他部分分离开了，虽然修改一个相对容易，但是同时修改几个图就比较麻烦了。cowplot在ggplot2的顶部施行了一个通用的绘图图层。在这个图层中，你可以添加在一个图形顶部添加任意的图形元素。现在让我们看它如何让我们画出漂亮地组合图形。
+
+```{r}
+plot.mpg <- ggplot(mpg, aes(x = cty, y = hwy, colour = factor(cyl))) + 
+  geom_point(size=2.5)
+plot.mpg
+```
+
+```{r}
+plot.diamonds <- ggplot(diamonds, aes(clarity, fill = cut)) + geom_bar() +
+  theme(axis.text.x = element_text(angle=70, vjust=0.5))
+plot.diamonds
+```
+
+cowplot提供了plot_grid()函数用于组合图形：
+
+```{r}
+plot_grid(plot.mpg, plot.diamonds, labels = c("A", "B"))
+```
+
+当然ggarrange也可以做
+
+```{r}
+library(ggpubr)
+ggarrange(plot.mpg, plot.diamonds, labels = c("A", "B"))
+```
+
+如果需要对齐轴，可以使用align选项，这一点比ggarrange强大：
+
+```{r}
+plot_grid(plot.mpg, plot.diamonds, labels = c("A", "B"), align = "h")
+```
+
+plot_grid()会尽力为图形设置一个合理地布局，然而，你也可以精确地指定布局画多少行多少列。
+
+```{r}
+plot_grid(plot.mpg, NULL, NULL, plot.diamonds, labels = c("A", "B", "C", "D"), ncol = 2)
+```
+
+```{r}
+plot_grid(plot.mpg, plot.diamonds, labels = c("A", "B"), nrow = 2, align = "v")
+```
+
+plot_grid()函数与save_plot()函数组合使用效果是非常好的。如下，看起来会按比例缩小legend的大小，这点比ggpubr强大
+```{r}
+plot2by2 <- plot_grid(plot.mpg, NULL, NULL, plot.diamonds,
+                      labels=c("A", "B", "C", "D"), ncol = 2)
+plot2by2
+# save_plot("plot2by2.png", plot2by2,
+#           ncol = 2, # we're saving a grid plot of 2 columns
+#           nrow = 2, # and 2 rows
+#           # each individual subplot should have an aspect ratio of 1.3
+#           base_aspect_ratio = 1.3
+#           )
+```
+
+save_plot()会确保整体的图形标度一致，以至于看起来它们是一个整体。（只要它们有统一的base_aspect_ratio).
+
+# 3. 图形注释
+
+```{r}
+ggdraw(plot.mpg) + 
+  draw_plot_label("A", size = 14) + 
+  draw_label("DRAFT!", angle = 45, size = 80, alpha = .2)
+```
+
+函数ggdraw()会建立绘制图层，用于操作该图层的函数名都以draw_开头。生成的对象是一个标准的ggplot2对象。
+
+事实上，因为ggdraw()生成的是一个标准的ggplot2对象，因此我们可以在上面绘制几何对象。例如：
+
+```{r}
+t <- (0:1000)/1000
+
+spiral <- data.frame(x = .45+.55*t*cos(t*15), y = .55-.55*t*sin(t*15), t)
+
+ggdraw(plot.mpg) + 
+  geom_path(data = spiral, aes(x = x, y = y, colour = t), size = 6, alpha = .4) # geom_path, 几何路径，由一组点按顺序连接
+```
+
+有时候你可能想要顶层的图形，例如你首先通过无参数的ggdraw()生成一个空白画板，然后使用draw_plot()画图。
+
+```{r}
+boxes <- data.frame(
+  x = sample((0:33)/40, 40, replace = TRUE),
+  y = sample((0:33)/40, 40, replace = TRUE)
+)
+# plot on top of annotations
+# 主图在顶层，其他图片不会进行覆盖
+ggdraw() + 
+  geom_rect(data = boxes, aes(xmin = x, xmax = x + .15, ymin = y, ymax = y + .15), colour = "gray60", fill = "gray80") +
+  draw_plot(plot.mpg) +
+  draw_label("Plot is on top of the grey boxes", x = 1, y = 1,
+            vjust = 1, hjust = 1, size = 10, fontface = 'bold')
+
+# plot below annotations
+ggdraw(plot.mpg) + 
+  geom_rect(data = boxes, aes(xmin = x, xmax = x + .15, ymin = y, ymax = y + .15), colour = "gray60", fill = "gray80") + 
+  draw_label("Plot is underneath the grey boxes", x = 1, y = 1,
+            vjust = 1, hjust = 1, size = 10, fontface = 'bold')
+```
+
+draw_plot()函数也可以让我们将图形以任意的大小放在画板的任意位置。这在组合子图是是非常有用的，比如将一个小图插入大的图形中。
+
+```{r}
+# plot.mpg and plot.diamonds were defined earlier
+library(viridis)
+ggdraw() +
+  draw_plot(plot.diamonds + theme(legend.justification = "bottom"), 0, 0, 1, 1) +
+  draw_plot(plot.mpg + scale_color_viridis(discrete = TRUE) + 
+              theme(legend.justification = "top"), 0.5, 0.52, 0.5, 0.4) +
+  draw_plot_label(c("A", "B"), c(0, 0.5), c(1, 0.92), size = 15)
+```
+
+使用draw_image()将图形和图片整合起来。这个函数需要安装 magick包，该包可以将不同格式的图形与ggplot2整合。例如，我们可以用一张图片作为背景：
+
+```{r message=FALSE, warning=FALSE}
+library(magick)
+p <- ggplot(iris, aes(x=Sepal.Length, fill=Species)) + geom_density(alpha = 0.7)
+ggdraw() +
+  draw_image("http://jeroen.github.io/images/tiger.svg") +
+  draw_plot(p)
+```
+
+将图片和ggplot对象排列绘制：
+
+```{r}
+p <- ggplot(iris, aes(x = Sepal.Length, fill = Species)) + geom_density(alpha = 0.7)
+p2 <- ggdraw() + draw_image("http://jeroen.github.io/images/tiger.svg", scale = 0.9)
+plot_grid(p, p2, labels = "AUTO")
+```
+
+**Reference**
+
+- [cowplot介绍](https://www.jianshu.com/p/fea410378360?utm_source=desktop&utm_medium=timeline)
+
+
+
+
+
+
+
+
+
+
+
+

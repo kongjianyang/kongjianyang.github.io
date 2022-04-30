@@ -1,0 +1,307 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>R中cowplot包初步学习</h1>
+
+<p>Liang 
+ / 2018-11-28 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-28-R%e4%b8%adcowplot%e5%8c%85%e5%88%9d%e6%ad%a5%e5%ad%a6%e4%b9%a0.Rmd'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+
+<div class="body-text list-text">
+
+
+
+<p>cowplot是ggplot2包的一个简单插件，它的目的是为ggplot2提供一个出版级别的主题。</p>
+<p>查看cowplot内的主要命令</p>
+<pre class="r"><code>library(cowplot)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;cowplot&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     ggsave</code></pre>
+<pre class="r"><code>ls(&quot;package:cowplot&quot;)</code></pre>
+<pre><code>##  [1] &quot;add_sub&quot;             &quot;align_margin&quot;        &quot;align_plots&quot;        
+##  [4] &quot;axis_canvas&quot;         &quot;background_grid&quot;     &quot;draw_figure_label&quot;  
+##  [7] &quot;draw_grob&quot;           &quot;draw_image&quot;          &quot;draw_label&quot;         
+## [10] &quot;draw_line&quot;           &quot;draw_plot&quot;           &quot;draw_plot_label&quot;    
+## [13] &quot;draw_text&quot;           &quot;GeomDrawGrob&quot;        &quot;get_legend&quot;         
+## [16] &quot;get_panel&quot;           &quot;ggdraw&quot;              &quot;ggsave&quot;             
+## [19] &quot;gtable_remove_grobs&quot; &quot;gtable_squash_cols&quot;  &quot;gtable_squash_rows&quot; 
+## [22] &quot;insert_xaxis_grob&quot;   &quot;insert_yaxis_grob&quot;   &quot;panel_border&quot;       
+## [25] &quot;plot_grid&quot;           &quot;plot_to_gtable&quot;      &quot;save_plot&quot;          
+## [28] &quot;theme_cowplot&quot;       &quot;theme_map&quot;           &quot;theme_nothing&quot;</code></pre>
+<p>查看函数包含了哪些参数</p>
+<pre class="r"><code>args(draw_plot)</code></pre>
+<pre><code>## function (plot, x = 0, y = 0, width = 1, height = 1, scale = 1) 
+## NULL</code></pre>
+<div class="section level1">
+<h1>1. 基本设计</h1>
+<p>首先我们看下ggplot的原生图形</p>
+<pre class="r"><code>library(ggplot2)
+ggplot(mpg, aes(x = cty, y = hwy, colour = factor(cyl))) + 
+  geom_point(size = 2.5)</code></pre>
+<p><img src="/cn/2018-11-28-R%E4%B8%ADcowplot%E5%8C%85%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>看起来非常的丑，现在我们试试利用cowplot的结果</p>
+<pre class="r"><code>library(cowplot)
+ggplot(mpg, aes(x = cty, y = hwy, colour = factor(cyl))) + 
+   geom_point(size = 2.5)</code></pre>
+<p><img src="/cn/2018-11-28-R%E4%B8%ADcowplot%E5%8C%85%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>看起来好看很多，选择存储也比较简单</p>
+<pre class="r"><code>library(cowplot)
+plot.mpg &lt;- ggplot(mpg, aes(x = cty, y = hwy, colour = factor(cyl))) + geom_point(size=2.5)
+plot.mpg</code></pre>
+<p><img src="/cn/2018-11-28-R%E4%B8%ADcowplot%E5%8C%85%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code># use save_plot() instead of ggsave() when using cowplot
+# save_plot(&quot;mpg.png&quot;, plot.mpg, base_aspect_ratio = 1.3 # make room for figure legend)</code></pre>
+<p><code>save_plot</code> 是ggsave的一个替代方案，能够更好的支持多图</p>
+<p>为cowplot添加网格线</p>
+<pre class="r"><code>plot.mpg + background_grid(major = &quot;xy&quot;, minor = &quot;none&quot;)</code></pre>
+<p><img src="/cn/2018-11-28-R%E4%B8%ADcowplot%E5%8C%85%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>如果你既想用ggplot2的默认主题又想使用cowplot包，简单的添加 theme_gray()到你的图形上或者使用theme_set(theme_gray())为所有的子图设置该主题。</p>
+<pre class="r"><code># plot.mpg + theme_set(theme_gray()) # switch to default ggplot2 theme for good</code></pre>
+<pre class="r"><code>plot.mpg + theme_gray() # create plot with default ggplot2 theme</code></pre>
+<p><img src="/cn/2018-11-28-R%E4%B8%ADcowplot%E5%8C%85%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div class="section level1">
+<h1>2. 多图排版</h1>
+<p>ggplot2很难给图形添加标签和其他注释。ggplot2严格地将绘图panel(轴以内的部分)和其他部分分离开了，虽然修改一个相对容易，但是同时修改几个图就比较麻烦了。cowplot在ggplot2的顶部施行了一个通用的绘图图层。在这个图层中，你可以添加在一个图形顶部添加任意的图形元素。现在让我们看它如何让我们画出漂亮地组合图形。</p>
+<pre class="r"><code>plot.mpg &lt;- ggplot(mpg, aes(x = cty, y = hwy, colour = factor(cyl))) + 
+  geom_point(size=2.5)
+plot.mpg</code></pre>
+<p><img src="/cn/2018-11-28-R%E4%B8%ADcowplot%E5%8C%85%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre class="r"><code>plot.diamonds &lt;- ggplot(diamonds, aes(clarity, fill = cut)) + geom_bar() +
+  theme(axis.text.x = element_text(angle=70, vjust=0.5))
+plot.diamonds</code></pre>
+<p><img src="/cn/2018-11-28-R%E4%B8%ADcowplot%E5%8C%85%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>cowplot提供了plot_grid()函数用于组合图形：</p>
+<pre class="r"><code>plot_grid(plot.mpg, plot.diamonds, labels = c(&quot;A&quot;, &quot;B&quot;))</code></pre>
+<p><img src="/cn/2018-11-28-R%E4%B8%ADcowplot%E5%8C%85%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>当然ggarrange也可以做</p>
+<pre class="r"><code>library(ggpubr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;ggpubr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:cowplot&#39;:
+## 
+##     get_legend</code></pre>
+<pre class="r"><code>ggarrange(plot.mpg, plot.diamonds, labels = c(&quot;A&quot;, &quot;B&quot;))</code></pre>
+<p><img src="/cn/2018-11-28-R%E4%B8%ADcowplot%E5%8C%85%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>如果需要对齐轴，可以使用align选项，这一点比ggarrange强大：</p>
+<pre class="r"><code>plot_grid(plot.mpg, plot.diamonds, labels = c(&quot;A&quot;, &quot;B&quot;), align = &quot;h&quot;)</code></pre>
+<p><img src="/cn/2018-11-28-R%E4%B8%ADcowplot%E5%8C%85%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>plot_grid()会尽力为图形设置一个合理地布局，然而，你也可以精确地指定布局画多少行多少列。</p>
+<pre class="r"><code>plot_grid(plot.mpg, NULL, NULL, plot.diamonds, labels = c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;), ncol = 2)</code></pre>
+<p><img src="/cn/2018-11-28-R%E4%B8%ADcowplot%E5%8C%85%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<pre class="r"><code>plot_grid(plot.mpg, plot.diamonds, labels = c(&quot;A&quot;, &quot;B&quot;), nrow = 2, align = &quot;v&quot;)</code></pre>
+<p><img src="/cn/2018-11-28-R%E4%B8%ADcowplot%E5%8C%85%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>plot_grid()函数与save_plot()函数组合使用效果是非常好的。如下，看起来会按比例缩小legend的大小，这点比ggpubr强大</p>
+<pre class="r"><code>plot2by2 &lt;- plot_grid(plot.mpg, NULL, NULL, plot.diamonds,
+                      labels=c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;), ncol = 2)
+plot2by2</code></pre>
+<p><img src="/cn/2018-11-28-R%E4%B8%ADcowplot%E5%8C%85%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<pre class="r"><code># save_plot(&quot;plot2by2.png&quot;, plot2by2,
+#           ncol = 2, # we&#39;re saving a grid plot of 2 columns
+#           nrow = 2, # and 2 rows
+#           # each individual subplot should have an aspect ratio of 1.3
+#           base_aspect_ratio = 1.3
+#           )</code></pre>
+<p>save_plot()会确保整体的图形标度一致，以至于看起来它们是一个整体。（只要它们有统一的base_aspect_ratio).</p>
+</div>
+<div class="section level1">
+<h1>3. 图形注释</h1>
+<pre class="r"><code>ggdraw(plot.mpg) + 
+  draw_plot_label(&quot;A&quot;, size = 14) + 
+  draw_label(&quot;DRAFT!&quot;, angle = 45, size = 80, alpha = .2)</code></pre>
+<p><img src="/cn/2018-11-28-R%E4%B8%ADcowplot%E5%8C%85%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>函数ggdraw()会建立绘制图层，用于操作该图层的函数名都以draw_开头。生成的对象是一个标准的ggplot2对象。</p>
+<p>事实上，因为ggdraw()生成的是一个标准的ggplot2对象，因此我们可以在上面绘制几何对象。例如：</p>
+<pre class="r"><code>t &lt;- (0:1000)/1000
+
+spiral &lt;- data.frame(x = .45+.55*t*cos(t*15), y = .55-.55*t*sin(t*15), t)
+
+ggdraw(plot.mpg) + 
+  geom_path(data = spiral, aes(x = x, y = y, colour = t), size = 6, alpha = .4) # geom_path, 几何路径，由一组点按顺序连接</code></pre>
+<p><img src="/cn/2018-11-28-R%E4%B8%ADcowplot%E5%8C%85%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>有时候你可能想要顶层的图形，例如你首先通过无参数的ggdraw()生成一个空白画板，然后使用draw_plot()画图。</p>
+<pre class="r"><code>boxes &lt;- data.frame(
+  x = sample((0:33)/40, 40, replace = TRUE),
+  y = sample((0:33)/40, 40, replace = TRUE)
+)
+# plot on top of annotations
+# 主图在顶层，其他图片不会进行覆盖
+ggdraw() + 
+  geom_rect(data = boxes, aes(xmin = x, xmax = x + .15, ymin = y, ymax = y + .15), colour = &quot;gray60&quot;, fill = &quot;gray80&quot;) +
+  draw_plot(plot.mpg) +
+  draw_label(&quot;Plot is on top of the grey boxes&quot;, x = 1, y = 1,
+            vjust = 1, hjust = 1, size = 10, fontface = &#39;bold&#39;)</code></pre>
+<p><img src="/cn/2018-11-28-R%E4%B8%ADcowplot%E5%8C%85%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<pre class="r"><code># plot below annotations
+ggdraw(plot.mpg) + 
+  geom_rect(data = boxes, aes(xmin = x, xmax = x + .15, ymin = y, ymax = y + .15), colour = &quot;gray60&quot;, fill = &quot;gray80&quot;) + 
+  draw_label(&quot;Plot is underneath the grey boxes&quot;, x = 1, y = 1,
+            vjust = 1, hjust = 1, size = 10, fontface = &#39;bold&#39;)</code></pre>
+<p><img src="/cn/2018-11-28-R%E4%B8%ADcowplot%E5%8C%85%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0_files/figure-html/unnamed-chunk-19-2.png" width="672" /></p>
+<p>draw_plot()函数也可以让我们将图形以任意的大小放在画板的任意位置。这在组合子图是是非常有用的，比如将一个小图插入大的图形中。</p>
+<pre class="r"><code># plot.mpg and plot.diamonds were defined earlier
+library(viridis)</code></pre>
+<pre><code>## Loading required package: viridisLite</code></pre>
+<pre class="r"><code>ggdraw() +
+  draw_plot(plot.diamonds + theme(legend.justification = &quot;bottom&quot;), 0, 0, 1, 1) +
+  draw_plot(plot.mpg + scale_color_viridis(discrete = TRUE) + 
+              theme(legend.justification = &quot;top&quot;), 0.5, 0.52, 0.5, 0.4) +
+  draw_plot_label(c(&quot;A&quot;, &quot;B&quot;), c(0, 0.5), c(1, 0.92), size = 15)</code></pre>
+<p><img src="/cn/2018-11-28-R%E4%B8%ADcowplot%E5%8C%85%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>使用draw_image()将图形和图片整合起来。这个函数需要安装 magick包，该包可以将不同格式的图形与ggplot2整合。例如，我们可以用一张图片作为背景：</p>
+<pre class="r"><code>library(magick)
+p &lt;- ggplot(iris, aes(x=Sepal.Length, fill=Species)) + geom_density(alpha = 0.7)
+ggdraw() +
+  draw_image(&quot;http://jeroen.github.io/images/tiger.svg&quot;) +
+  draw_plot(p)</code></pre>
+<p><img src="/cn/2018-11-28-R%E4%B8%ADcowplot%E5%8C%85%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>将图片和ggplot对象排列绘制：</p>
+<pre class="r"><code>p &lt;- ggplot(iris, aes(x = Sepal.Length, fill = Species)) + geom_density(alpha = 0.7)
+p2 &lt;- ggdraw() + draw_image(&quot;http://jeroen.github.io/images/tiger.svg&quot;, scale = 0.9)
+plot_grid(p, p2, labels = &quot;AUTO&quot;)</code></pre>
+<p><img src="/cn/2018-11-28-R%E4%B8%ADcowplot%E5%8C%85%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><strong>Reference</strong></p>
+<ul>
+<li><a href="https://www.jianshu.com/p/fea410378360?utm_source=desktop&amp;utm_medium=timeline">cowplot介绍</a></li>
+</ul>
+</div>
+
+<p style="color:#777;">最后一次修改于 2018-11-28</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       订阅 </a>
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+

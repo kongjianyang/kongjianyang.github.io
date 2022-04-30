@@ -1,0 +1,309 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>R中的fuzzyjoin包介绍</h1>
+
+<p>KJY 
+ / 2019-11-12 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2019-11-12-R%e4%b8%ad%e7%9a%84fuzzyjoin%e5%8c%85%e4%bb%8b%e7%bb%8d.Rmd'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+<aside class="toc">
+Table of Contents:
+<nav id="TableOfContents"></nav>
+</aside>
+
+
+<div class="body-text list-text">
+<p>假设字符串x最少需要插入a次、删除b次、替换c次才能与字符串y相同，则x、y之间的
+距离
+即a、b、c的加权总和。比如将”kitten”转化为”sitting”，需要把“k”替换为“s”，把“e”替换为“i”，并在尾部插入“g”，所以共需1次插入、0次删除、2次替换，按照默认权重两者之间
+距离 英该为3。</p>
+<p>在R语言中，我们可以使用adist(x, y = NULL, costs = NULL, counts = FALSE,
+…)的形式，计算字符串之间的距离。其中：</p>
+<ul>
+<li>costs即插入（insertions）、删除（deletions）、替换（substitutions）次数的权重</li>
+<li>counts表示是否输出插入、删除、替换次数</li>
+<li>partial表示是否只进行局部匹配</li>
+</ul>
+<!-- -->
+<pre><code>library(tidyverse)
+
+## ── Attaching packages ─────────────────────────────────────────────────── tidyverse 1.3.1 ──
+
+## ✓ ggplot2 3.3.3     ✓ purrr   0.3.4
+## ✓ tibble  3.1.1     ✓ dplyr   1.0.5
+## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
+## ✓ readr   1.4.0     ✓ forcats 0.5.1
+
+## ── Conflicts ────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+
+drop(attr(adist(&quot;kitten&quot;, &quot;sitting&quot;, counts = TRUE), &quot;counts&quot;))
+
+## ins del sub 
+##   1   0   2
+
+adist(&quot;kitten&quot;, &quot;sitting&quot;, counts = TRUE) %&gt;%
+  attr(., &quot;counts&quot;) %&gt;%
+  drop()
+
+## ins del sub 
+##   1   0   2
+
+adist(&quot;lasy&quot;, &quot;1 lazy 2&quot;, partial = TRUE)
+
+##      [,1]
+## [1,]    1
+</code></pre>
+<p>我们可以通过agrep、agrepl函数，进行模糊查找，这两个函数支持的参数与grep家族函数的参数类似，此外还拥有两个特有参数：</p>
+<p>costs即插入、删除、替换次数的权重，参考adist的帮助文档
+max.distance即可以接受的最大距离，可以是插入、删除、替换的最大次数，也可以是三者之和（alll）的最大值，还可以是三者加权总和（cost）的最大值</p>
+<pre><code>agrep(&quot;lasy&quot;, c(&quot; 1 lazy 2&quot;, &quot;1 lasy 2&quot;), max = list(sub = 1), value = TRUE)
+
+## [1] &quot; 1 lazy 2&quot; &quot;1 lasy 2&quot;
+
+agrep(&quot;laysy&quot;, c(&quot;1 lazy&quot;, &quot;1&quot;, &quot;1 LAZY&quot;), max = 2, value = TRUE)
+
+## [1] &quot;1 lazy&quot;
+</code></pre>
+<p>上文我们已经介绍了使用正则表达式的匹配规则，以及
+agrep家族函数的模糊查找规则，类似的我们可以通过aregexec函数，进行模糊匹配。</p>
+<pre><code>x &lt;- c(&quot;1 lazy&quot;, &quot;1&quot;, &quot;1 LAZY&quot;)
+
+aregexec(&quot;laysy&quot;, x, max.distance = 2)
+
+## [[1]]
+## [1] 3
+## attr(,&quot;match.length&quot;)
+## [1] 4
+## 
+## [[2]]
+## [1] -1
+## attr(,&quot;match.length&quot;)
+## [1] -1
+## 
+## [[3]]
+## [1] -1
+## attr(,&quot;match.length&quot;)
+## [1] -1
+</code></pre>
+<blockquote>
+<p>The fuzzyjoin package is a variation on dplyr’s join operations that
+allows matching not just on values that match between columns, but on
+inexact matching.</p>
+</blockquote>
+<p>fuzzyjoin是基于dplyr的非精确匹配</p>
+<pre><code># install.packages(&quot;fuzzyjoin&quot;)
+library(dplyr)
+library(fuzzyjoin)
+data(misspellings)
+
+df1 &lt;- tibble(col1 = c(&quot;apple&quot;, &quot;banana&quot;, &quot;carrot&quot;),
+              col2 = as.numeric(0:2),
+              col3 = as.numeric(0:2))
+
+df2 &lt;- tibble(col4 = c(&quot;app&quot;, &quot;carr&quot;), col5 = c(5, 9), matched = rep(TRUE, 2))
+
+df1
+
+## # A tibble: 3 x 3
+##   col1    col2  col3
+##   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1 apple      0     0
+## 2 banana     1     1
+## 3 carrot     2     2
+
+df2
+
+## # A tibble: 2 x 3
+##   col4   col5 matched
+##   &lt;chr&gt; &lt;dbl&gt; &lt;lgl&gt;  
+## 1 app       5 TRUE   
+## 2 carr      9 TRUE
+
+ci_str_detect &lt;- function(x, y){str_detect(x, regex(y, ignore_case = TRUE))}
+
+fuzzy_left_join(df1, df2, match_fun = ci_str_detect, by = c(&quot;col1&quot; = &quot;col4&quot;))
+
+## # A tibble: 3 x 6
+##   col1    col2  col3 col4   col5 matched
+##   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;lgl&gt;  
+## 1 apple      0     0 app       5 TRUE   
+## 2 banana     1     1 &lt;NA&gt;     NA NA     
+## 3 carrot     2     2 carr      9 TRUE
+</code></pre>
+<h1 id="一些额外内容">一些额外内容<a href="#一些额外内容" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
+<p>%T&gt;%现实原理如下图所示，使用%T&gt;%把左侧的程序的数据集A传递右侧程序的B函数，B函数的结果数据集不再向右侧传递，而是把B左侧的A数据集再次向右传递给C函数，最后完成数据计算。</p>
+<pre><code>mtcars %&gt;%
+  group_by(cyl) %T&gt;% print() %&gt;%
+  sample_frac(0.1) %T&gt;% print() %&gt;%
+  summarise(res = mean(mpg))
+
+## # A tibble: 32 x 11
+## # Groups:   cyl [3]
+##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
+##  2  21       6  160    110  3.9   2.88  17.0     0     1     4     4
+##  3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
+##  4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
+##  5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+##  6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
+##  7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+##  8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
+##  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
+## 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
+## # … with 22 more rows
+## # A tibble: 3 x 11
+## # Groups:   cyl [3]
+##     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  21.4     4   121   109  4.11  2.78  18.6     1     1     4     2
+## 2  19.7     6   145   175  3.62  2.77  15.5     0     1     5     6
+## 3  18.7     8   360   175  3.15  3.44  17.0     0     0     3     2
+
+## # A tibble: 3 x 2
+##     cyl   res
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1     4  21.4
+## 2     6  19.7
+## 3     8  18.7
+</code></pre>
+
+<p style="color:#777;">最后一次修改于 2019-11-12</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       订阅 </a>
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+

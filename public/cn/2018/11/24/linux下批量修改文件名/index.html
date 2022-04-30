@@ -1,0 +1,177 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>Linux下批量修改文件名</h1>
+
+<p>Liang 
+ / 2018-11-24 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-Linux%e4%b8%8b%e6%89%b9%e9%87%8f%e4%bf%ae%e6%94%b9%e6%96%87%e4%bb%b6%e5%90%8d.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+
+<div class="body-text list-text">
+<h1 id="方法一rename函数">方法一：Rename函数<a href="#方法一rename函数" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
+<p>Linux下修改文件名有mv和rename。其中mv命令只能对单个文件重命名，这是mv命令和rename命令的在重命名方面的根本区别。</p>
+<p>linux的rename命令有两个版本，一个是c语言版本的，一个是perl语言版本的，判断方法：
+输入man rename 看到第一行是： 
+RENAME(1) Linux Programmer’s Manual RENAME(1)
+这个就是C语言版本的
+而如果出现：
+RENAME(1) Perl Programmers Reference Guide RENAME(1) 则是Perl版本的了</p>
+<p>C语言版本格式：rename 原字符串 新字符串 文件名
+Perl语言版本格式：rename &rsquo;s/原字符串/新字符串/&rsquo; 文件名</p>
+<p>rename支持正则表达式</p>
+<p>例子：</p>
+<p>字母的替换<code>rename &quot;s/AA/aa/&quot; *  //</code>把文件名中的AA替换成aa
+修改文件的后缀<code>rename &quot;s//.html//.php/&quot; *     //</code>把.html 后缀的改成 .php后缀
+批量添加文件后缀<code>rename &quot;s/$//.txt/&quot; * //</code>把所有的文件名都以txt结尾
+批量删除文件名<code>rename &quot;s//.txt//&quot; * //</code>把所有以.txt结尾的文件名的.txt删掉</p>
+<h1 id="方法二mv函数">方法二：mv函数<a href="#方法二mv函数" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
+<ol>
+<li>在文件夹shell下创建文件10个文件</li>
+</ol>
+<pre tabindex="0"><code>touch tmp_{1..10}.txt
+</code></pre><ol start="2">
+<li>找到含有“_“”的文件夹。</li>
+</ol>
+<pre tabindex="0"><code>find ./ -name &#34;*_*&#34;   
+</code></pre><ol start="3">
+<li>读取id, 用mv改名，$为自己理解为赋值后的id，格式为while； do； done</li>
+</ol>
+<pre tabindex="0"><code>find ./ -name &#34;*_*&#34; | while read id; do mv $id ${id/_/-}; done
+</code></pre>
+<p style="color:#777;">最后一次修改于 2018-11-24</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       订阅 </a>
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+

@@ -1,0 +1,244 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>R语言文本处理</h1>
+
+<p>Liang 
+ / 2018-12-27 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-12-27-R%e8%af%ad%e8%a8%80%e6%96%87%e6%9c%ac%e5%a4%84%e7%90%86.Rmd'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+
+<div class="body-text list-text">
+
+
+
+<div class="section level1">
+<h1>常见函数</h1>
+<p>trimws(x)删去字符型向量x的每个元素的开头和结尾的所有空格。加选项which=’left’可以仅删去开头的空格， 选项which=’right’可以仅删去结尾的空格。</p>
+<pre class="r"><code>trimws(c(&quot;  李明&quot;, &quot;李明  &quot;, &quot;  李明  &quot;, &quot;李  明&quot;))</code></pre>
+<pre><code>## [1] &quot;李明&quot;   &quot;李明&quot;   &quot;李明&quot;   &quot;李  明&quot;</code></pre>
+<p>sprintf是C语言中sprintf的向量化版本，可以把一个元素或一个向量的各个元素按照C语言输出格式转换为字符型向量。</p>
+<pre class="r"><code>sprintf(&#39;tour%02d.jpg&#39;, 1:10)</code></pre>
+<pre><code>##  [1] &quot;tour01.jpg&quot; &quot;tour02.jpg&quot; &quot;tour03.jpg&quot; &quot;tour04.jpg&quot; &quot;tour05.jpg&quot;
+##  [6] &quot;tour06.jpg&quot; &quot;tour07.jpg&quot; &quot;tour08.jpg&quot; &quot;tour09.jpg&quot; &quot;tour10.jpg&quot;</code></pre>
+<p>substring函数求字符串字串， 用开始字符位置和结束字符位置设定字串位置。</p>
+<pre class="r"><code>substring(c(&quot;123456789&quot;, &quot;abcdefg&quot;), 3, 5)</code></pre>
+<pre><code>## [1] &quot;345&quot; &quot;cde&quot;</code></pre>
+<p>用gsub(pattern, replacement, x, fixed=TRUE) 把字符型向量x中每个元素中出现的子串 pattern都替换为replacement。</p>
+<pre class="r"><code>gsub(&#39;the&#39;, &#39;**&#39;,
+     c(&#39;New theme&#39;, &#39;Old times&#39;, &#39;In the present theme&#39;),
+     fixed=TRUE)</code></pre>
+<pre><code>## [1] &quot;New **me&quot;           &quot;Old times&quot;          &quot;In ** present **me&quot;</code></pre>
+<p>strsplit(x,split,fixed=TRUE)可以把字符型向量x的每一个元素按分隔符split拆分为一个字符型向量， strsplit的结果为一个列表， 每个列表元素对应于x的每个元素。</p>
+<pre class="r"><code>strsplit(&#39;31,32,33,34&#39;, split=&#39;,&#39;, fixed=TRUE)[[1]]</code></pre>
+<pre><code>## [1] &quot;31&quot; &quot;32&quot; &quot;33&quot; &quot;34&quot;</code></pre>
+</div>
+<div class="section level1">
+<h1>正则表达式</h1>
+<p>在正则表达式的模式(pattern)中，</p>
+<blockquote>
+<p>.*+?{}[]^$()</p>
+</blockquote>
+<p>等字符是特殊字符， 除了’'之外的其它12个都称为“元字符”（meta characters）。</p>
+<p>regexpr函数的一般用法为：</p>
+<blockquote>
+<p>regexpr(pattern, text, ignore.case = FALSE, perl = FALSE, fixed = FALSE, useBytes = FALSE)</p>
+</blockquote>
+<pre class="r"><code>x &lt;- c(&#39;New theme&#39;, &#39;Old times&#39;, &#39;In the present theme&#39;)
+
+grep(&#39;the&#39;, x, perl=TRUE)</code></pre>
+<pre><code>## [1] 1 3</code></pre>
+<pre class="r"><code>grep(&#39;the&#39;, x, perl=TRUE, value=TRUE)</code></pre>
+<pre><code>## [1] &quot;New theme&quot;            &quot;In the present theme&quot;</code></pre>
+<p>正则表达式的模式一般是区分大小写的。 为了不区分大小写匹配， 可以在grep等函数调用时加选项ignore.case=TRUE</p>
+<pre class="r"><code>grep(&#39;dr&#39;, c(&quot;Dr. Wang&quot;, &#39;DR. WANG&#39;, &#39;dR. W.R.&#39;), ignore.case=TRUE, value = TRUE)</code></pre>
+<pre><code>## [1] &quot;Dr. Wang&quot; &quot;DR. WANG&quot; &quot;dR. W.R.&quot;</code></pre>
+<p>在模式中用“.”匹配任意一个字符，用“[.]”表示句点则将句点不做特殊解释，也可以使用“.”表示</p>
+<pre class="r"><code>grep(&#39;a.txt&#39;, c(&#39;a.txt&#39;, &#39;a0txt&#39;), perl=TRUE)</code></pre>
+<pre><code>## [1] 1 2</code></pre>
+<pre class="r"><code>grep(&#39;a[.]txt&#39;, c(&#39;a.txt&#39;, &#39;a0txt&#39;), perl=TRUE)</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code>grep(&#39;a\\.txt&#39;, c(&#39;a.txt&#39;, &#39;a0txt&#39;), perl=TRUE)</code></pre>
+<pre><code>## [1] 1</code></pre>
+<p>匹配空白，表示空白的元字符有:</p>
+<pre><code>\f 换页符
+\n 换行符
+\r 回车符
+\t 制表符
+\v 垂直制表符</code></pre>
+<p>不同操作系统的文本文件的行分隔符不同， 为了匹配Windows格式的文本文件中的空行， 用“”； 为了匹配Unix格式的文本文件中的空行则用“”。写成R的字符型常量时， 这些表示本身也是R的相应字符的表示，所以在R字符型常量中这些字符不需要用两个。</p>
+<p>匹配任意一个空白字符用“”， 这等价于“[ ]”。 大写的“”则匹配任意一个非空白的字符。</p>
+<p>用，相当于[0-9]。 用。</p>
+<pre class="r"><code>grep(&quot;n\\d[.]xls&quot;, c(&quot;n1.xls&quot;, &quot;na.xls&quot;), perl=TRUE, value = T)</code></pre>
+<pre><code>## [1] &quot;n1.xls&quot;</code></pre>
+<p>模式匹配相当于在字符串内部搜索某种模式， 如果要从字符串开头匹配， 在模式中取第一个字符为^或。 如果模式中最后一个字符是$或， 则需要匹配到字符串末尾。</p>
+<p>匹配字母、数字、下划线字符用， 等价于[a-zA-Z0-9_]。 。</p>
+<pre class="r"><code>m &lt;- regexpr(&quot;s\\w[.]&quot;, c(&quot;file-s1.xls&quot;, &quot;s#.xls&quot;), perl=TRUE)
+regmatches(c(&quot;file-s1.xls&quot;, &quot;s#.xls&quot;), m)</code></pre>
+<pre><code>## [1] &quot;s1.&quot;</code></pre>
+<pre class="r"><code>m &lt;- regexpr(&quot;s\\W[.]&quot;, c(&quot;file-s1.xls&quot;, &quot;s#.xls&quot;), perl=TRUE)
+regmatches(c(&quot;file-s1.xls&quot;, &quot;s#.xls&quot;), m)</code></pre>
+<pre><code>## [1] &quot;s#.&quot;</code></pre>
+<p>模式中在一个字符或字符集合后加后缀+表示一个或多个前一字符。</p>
+<pre class="r"><code>s &lt;- c(&quot;sa1&quot;, &quot;dsa123&quot;)
+mres &lt;- regexpr(&quot;sa[[:digit:]]+&quot;, s, perl=TRUE)
+regmatches(s, mres)</code></pre>
+<pre><code>## [1] &quot;sa1&quot;   &quot;sa123&quot;</code></pre>
+<p>在模式中方括号内可以用[:digit:] 表示任意一个字母。 比如，[[:digit:]]匹配任意一个字母（外层的方括号表示字符集合，内层的方括号是POSIX字符类的固有界定符）</p>
+<p>在一个字符或字符集合后加后缀*表示零个或多个前一字符，后缀?表示零个或一个前一字符。</p>
+<p>问号可以表示零个或一个， 而加号、星号重复不能控制重复次数。在后缀大括号中写一个整数表示精确的重复次数。</p>
+<pre class="r"><code>grep(&#39;[[:digit:]]{3}&#39;, c(&#39;1&#39;, &#39;12&#39;, &#39;123&#39;, &#39;1234&#39;), value = TRUE)</code></pre>
+<pre><code>## [1] &quot;123&quot;  &quot;1234&quot;</code></pre>
+<div class="section level2">
+<h2>贪婪匹配和懒惰匹配</h2>
+<p>无上限的重复匹配如’*, +, {3,}’ 等缺省是贪婪型的， 重复直到文本中能匹配的最长范围。</p>
+<p>如果要求尽可能短的匹配， 使用’*?, +?, {3,}?’等“懒惰型”重复模式。 在无上限重复标志后面加问号表示懒惰性重复。</p>
+<pre class="r"><code>s &lt;- &#39;&lt;B&gt;1st&lt;/B&gt; other &lt;B&gt;2nd&lt;/B&gt;&#39;
+p1 &lt;- &#39;&lt;[Bb]&gt;.*&lt;/[Bb]&gt;&#39;
+m1 &lt;- regexpr(p1, s, perl=TRUE)
+regmatches(s, m1)[[1]]</code></pre>
+<pre><code>## [1] &quot;&lt;B&gt;1st&lt;/B&gt; other &lt;B&gt;2nd&lt;/B&gt;&quot;</code></pre>
+<pre class="r"><code>s &lt;- &#39;&lt;B&gt;1st&lt;/B&gt; other &lt;B&gt;2nd&lt;/B&gt;&#39;
+p2 &lt;- &#39;&lt;[Bb]&gt;.*?&lt;/[Bb]&gt;&#39;
+m2 &lt;- regexpr(p2, s, perl=TRUE)
+regmatches(s, m2)[[1]]</code></pre>
+<pre><code>## [1] &quot;&lt;B&gt;1st&lt;/B&gt;&quot;</code></pre>
+</div>
+</div>
+
+<p style="color:#777;">最后一次修改于 2018-12-27</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       订阅 </a>
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+

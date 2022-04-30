@@ -1,0 +1,183 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>Jupyter-Notebook进阶使用教程</h1>
+
+<p>Liang 
+ / 2018-11-24 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-Jupyter-Notebook%e8%bf%9b%e9%98%b6%e4%bd%bf%e7%94%a8%e6%95%99%e7%a8%8b.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+
+<div class="body-text list-text">
+<h3 id="1前略">1.前略<a href="#1前略" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>读博之路上不打算每天都全心全意的投入到老板给的课题中了，晚上八点到十一点学习点新东西。</p>
+<h3 id="2-起因">2. 起因<a href="#2-起因" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>最近打算好好学习下统计学和机器学习方面的知识，我的习惯是学习新内容前需要有好的记录工具，否则就坚持不下去，容易气馁。之前学习R语言的时候爱上了Rstudio和Rmd这种交互式文档语言(interactive language)，但是因为R更多的是用来做统计分析的，功能还是比较薄弱，不能适应复杂的任务，因此需要开辟新的语言进行学习，之前也学习过python，了解其语法，但是没有坚持的原因有两点，其一本科的时候没有项目进行练手，其二是因为没有找到合适自己的IDE。现在重新学习语言，找到了Jupyter Notebook，类似与Rstudio一样可以做到所写即所得。所以开始熟悉怎么使用Jupyter Notebook，将一些技巧记录在此。</p>
+<h3 id="3技巧">3.技巧<a href="#3技巧" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<h4 id="31-配置及打开">3.1 配置及打开<a href="#31-配置及打开" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<p>安装方法之类的不多讲，安装之后希望在任何地方打开Jupyter的话在Terminal下cd到目标文件夹，键入Jupyter Notebook自然能在你的浏览器下打开Jupyter，则工作目录即为你的目标目录。</p>
+<p>希望查看Jupyter的配置文件的话键入<code>jupyter notebook --generate-config</code>则能看到配置文件。</p>
+<h4 id="32-加载本地py文件">3.2 加载本地.py文件<a href="#32-加载本地py文件" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<p>还可以将本地的.py文件load到jupyter的一个cell中
+例如有一个test.py文件，需要将其载入到jupyter的一个cell中
+test.py内容如下：</p>
+<pre tabindex="0"><code>import caffe
+SolverName = &#34;/root/workspace&#34;
+sovler = caffe.AdamSolver(SolverName)
+</code></pre><p>在需要导入该段代码的cell中只需要输入如下</p>
+<pre tabindex="0"><code>%load test.py #test.py是当前路径下的一个python文件
+</code></pre><h4 id="33-作为unix-command使用">3.3 作为unix command使用<a href="#33-作为unix-command使用" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<p>jupyter的cell还可以作为unix command使用，具体方法为：在unix command前面加入一个感叹号“！”</p>
+<pre tabindex="0"><code>例子： 
+查看python版本：!python --version 
+运行python文件：!python myfile.py
+</code></pre><h4 id="34-添加目录功能">3.4 添加目录功能<a href="#34-添加目录功能" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<p>还可以为Jupyter Notebook添加目录功能，原始的Jupyter是不支持markdown添加目录功能的，实际上，可以利用<a href="https://github.com/ipython-contrib/jupyter_contrib_nbextensions" target="_blank" rel="noreferrer noopener">Jupyter notebook extensions</a>
+
+去使得这种功能实现，具体方法： </p>
+<pre><code>    `conda install -c conda-forge jupyter_contrib_nbextensions`
+</code></pre>
+<p>打开Jupyter Notebook，在它的（新增的）Nbextensions标签下勾选“Table of Contents(2)” ，关于extensions还有很多其他的功能可以自行查看。</p>
+<h4 id="35-魔法命令-magic-function">3.5 魔法命令 (magic function)<a href="#35-魔法命令-magic-function" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
+<p>所有以%开头的方法，都是Jupyter里面的所谓魔术方法(Magic function)，也就是ipython内置的一些方法。需要注意的是，魔术方法有%和%%之分，比如<code>%timeit</code>和<code>%%timeit</code>。在ipython中有专门的叫法，前者叫line magic后者叫cell magic。顾名思义，前者是专门针对一行的命令，后者针对多行的命令。</p>
+<p>通过<code>%lsmagis</code>可以查看所有的magic命令，使用?或者??可以查看该命令的信息，后者可以查看源码。如： <code>%alias?</code>，会出现该方法的描述。</p>
+<p>3.6 Jupyter中使用R
+安装IRkernel</p>
+<pre tabindex="0"><code>conda install -c r ipython-notebook r-irkernel
+</code></pre>
+<p style="color:#777;">最后一次修改于 2018-11-24</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       订阅 </a>
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+

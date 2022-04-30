@@ -1,0 +1,73 @@
+---
+title: Functional programming-Map, Reduce, Filter and Lambda
+author: Liang
+date: '2018-06-17'
+slug: functional-programming-map-reduce-filter-and-lambda
+categories:
+  - R
+tags:
+  - R
+---
+
+This post will talk about four useful function in R programming. Map, Reduce, Filter and Lambda.
+
+# LAMBDA
+
+Lambda can be seen as a short (normally one line) function definition. There is no particular syntax for lambda in R, except that you don’t need to assign the function to a variable (function name), and also you will need to enclose the function using brackets or curly brace. For example:
+
+```
+(function add(x, y) x+y)
+{function add(x, y) x+y}
+```
+
+We can pass the lambda function as a parameter to other functions e.g. Map, Reduce or Filter.
+
+# Map
+
+Map function allows the mapping from one vector to another using a map function, which can be specified by lambda. For example, let’s define a vector from 1 to 100.
+
+```{r}
+x = 1:100
+```
+
+If we want to convert each element of the vector to its doubles, so we can pass a lambda to the Map function, like this:
+
+```{r}
+y=Map({function (a) a*2}, x)
+```
+
+However, the variable y will store a list of vectors instead of a single vector. We can use the unlist function to unroll the list of vectors into a single vector.
+
+```{r}
+unlist(y)
+```
+
+# Reduce 
+
+Reduce will perform the function on a list of vectors one by one, and finally return a single value.
+
+```{r}
+x=seq(1,10,0.5)
+Reduce({function (x, y) x+y}, x)
+```
+
+The lambda function can be instead with `sum` here.
+```{r}
+Reduce(sum, x)
+```
+
+# Filter
+
+The function Filter will remove all elements when they do not satisfy the condition (function returns false)
+
+```{r}
+x = 1:10
+Filter({function (x) x%%2==0}, x)
+```
+
+
+
+
+
+
+

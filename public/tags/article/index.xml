@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>article on KJY</title>
+    <link>https://kongjianyang.github.io/tags/article/</link>
+    <description>Recent content in article on KJY</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 25 Apr 2022 13:42:27 -0500</lastBuildDate><atom:link href="https://kongjianyang.github.io/tags/article/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux下打印带有空格的目录</title>
+      <link>https://kongjianyang.github.io/cn/2022/04/25/dirt_space/</link>
+      <pubDate>Mon, 25 Apr 2022 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/04/25/dirt_space/</guid>
+      <description>有时候在macos下会有很多空格的目录文件需要处理，很麻烦，可以使用下面的命令自动处理带有空格的文件
+alias cwd=&amp;#39;printf &amp;#34;%q\n&amp;#34; &amp;#34;$(pwd)&amp;#34; | tee &amp;gt;(pbcopy)&amp;#39; printf命令 printf 命令模仿 C 程序库（library）里的 printf() 程序。
+printf 由 POSIX 标准所定义，因此使用 printf 的脚本比使用 echo 移植性好。
+printf 使用引用文本或空格分隔的参数，外面可以在 printf 中使用格式化字符串，还可以制定字符串的宽度、左右对齐方式等。默认的 printf 不会像 echo 自动添加换行符，我们可以手动添加 \n。
+printf 命令的语法：
+printf format-string [arguments...] 参数说明：
+ format-string: 为格式控制字符串 arguments: 为参数列表。  #!/bin/bash # author:菜鸟教程 # url:www.runoob.com printf &amp;#34;%-10s %-8s %-4s\n&amp;#34; 姓名 性别 体重kg printf &amp;#34;%-10s %-8s %-4.2f\n&amp;#34; 郭靖 男 66.1234 printf &amp;#34;%-10s %-8s %-4.2f\n&amp;#34; 杨过 男 48.6543 printf &amp;#34;%-10s %-8s %-4.</description>
+    </item>
+    
+    <item>
+      <title>YAML语言介绍</title>
+      <link>https://kongjianyang.github.io/cn/2022/04/25/yaml/</link>
+      <pubDate>Mon, 25 Apr 2022 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/04/25/yaml/</guid>
+      <description>YAML 是专门用来写配置文件的语言，非常简洁和强大，远比 JSON 格式方便。
+YAML 是一种数据序列化语言，通常用于编写配置文件。业界对 YAML 有不同的看法，有人会说 YAML 不过代表了另一种标记语言，另外一些人认为*&amp;ldquo;YAML ain’t markup language&amp;rdquo;（ &amp;ldquo;YAML 不是标记语言&amp;rdquo;）*，&amp;ldquo;YAML&amp;rdquo; 正是这句话的递归缩写，强调了 YAML 是用于数据而不是文档。
+YAML 是一种流行的编程语言，因为它是人类可读的语言，易于理解。它还可以与其他编程语言结合使用。
+YAML支持3种数据结构：
+ 键值表，键值对的集合，包括映射，哈希，字典。 序列，为一组排列的值，包括数组，列表。 常量，为单个的不可再分隔的值，包括字符串，布尔值，整数，浮点数，Null，时间，日期  由于YAML是JSON的自然超集，所以我们每个YAML语法段，都可以用JSON进行表示。
+YAML的基本语法规则如下。
+  大小写敏感 使用缩进表示层级关系 缩进时不允许使用Tab键，只允许使用空格。 缩进的空格数目不重要，只要相同层级的元素左侧对齐即可   # 表示注释，从这个字符一直到行尾，都会被解析器忽略。
+YAML 支持的数据结构有三种。
+  对象：键值对的集合，又称为映射（mapping）/ 哈希（hashes） / 字典（dictionary） 数组：一组按次序排列的值，又称为序列（sequence） / 列表（list） 纯量（scalars）：单个的、不可再分的值   以下分别介绍这三种数据结构。
+对象的一组键值对，使用冒号结构表示。
+ animal: pets  转为 JavaScript 如下。
+ { animal: &amp;#39;pets&amp;#39; }  Yaml 也允许另一种写法，将所有键值对写成一个行内对象。
+ hash: { name: Steve, foo: bar }  转为 JavaScript 如下。</description>
+    </item>
+    
+    <item>
+      <title>R语言基于S4的面向对象编程</title>
+      <link>https://kongjianyang.github.io/cn/2022/03/31/s4/</link>
+      <pubDate>Thu, 31 Mar 2022 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/03/31/s4/</guid>
+      <description>参考资料：
+R 学习笔记: S4 编程基础 - 知乎 (zhihu.com) 不同的语言进行面向对象编程中, 有许多东西是共同的. 就像浩巍说的, 编程就是一通百通. 如果了解 Python 的面向对象编程, 里面的很多思想也能使用在 R 语言面向对象编程中.
+ 类 (class) 是面向对象编程的基础. 类就像是一个包装的盒子, 把对象的所有的属性都包含在其中. 可以形象地说, 类有点像一个有多种口味可供选择的冰激凌机器. 变量 (variable) 是描述对象的具体特征的数据, 是类的属性, 可以是数字或者字符等各种类型, 在 R 语言的 S4 类中被称为存储槽 (slot). 不同的变量, 就是冰激凌机器中的不同口味的冰激凌. 方法 (method) 是作用于类对象的各种操作, 也是类的属性, 具体实现就是各种方程. 方法也对应于冰激凌机器上产出不同口味冰激凌的不同的按钮. 对于不同的类可以有相似的方法, 例如对不同的类都可以有 print 函数来输出类的内容. 需要注意的是, 在 R 语言的 S4 类中, 类的方法本身不属于类本身, 而是独立的方程, 这点和 Python 等语言面向对象编程有差别. 但是, 在 R 语言的 RC 类 (Reference Class) 中方法本身则属于类.  面向对象编程有三个重要特点: 封装, 继承和多态性.</description>
+    </item>
+    
+    <item>
+      <title>R语言数据导入rio包</title>
+      <link>https://kongjianyang.github.io/cn/2022/03/30/rio/</link>
+      <pubDate>Wed, 30 Mar 2022 14:32:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/03/30/rio/</guid>
+      <description>rio: A Swiss-Army Knife for Data I/O
+CRAN - Package rio (r-project.org) 笔记说明 在读《Modern R with the tidyverse》 一书时发现了这个非常好用的R包，做此笔记记录。本笔记记录rio包的数据导入功能。导出功能说明见：用rio包进行数据导出 数据导入 Hadley Wickham在《R for Data Science》中总结的探索性数据分析的分析流程
+数据导入是数据分析的第一步。实际工作中数据的来源和原始数据文件的格式多种多样。对应不同的原始文件来源或格式就有很多不同的读取数据的R包。学习、使用起来非常麻烦。在rio包之前，为了满足数据导入需要，大概需要学习的R包和其对应的数据文件类型如下：
+ readr包 - text files（如csv, tsv, fwf文件） haven包 - SPSS, Stata, and SAS files readxl包 - excel files DBI包 - databases jsonlite包 - json xml2包 - XML httr包 - Web APIs rvest包 - HTML (Web Scraping)  rio包及其数据导入功能 rio包封装了很多数据导入和导出的包，并将不同包的数据导入导出操作统一到两个函数上：import()和export()，通过文件的后缀名来判断文件类型。这使得在R中进行数据的导入导出操作变得非常简单。有关rio包的更多信息可以参见：https://cran.r-project.org/web/packages/rio/vignettes/rio.html 下面对rio包的一些数据导入功能进行展示（基本参照《Modern R with the tidyverse》中对应的内容，所使用的数据可以在https://github.com/b-rodrigues/modern_R/tree/master/datasets 下载）：</description>
+    </item>
+    
+    <item>
+      <title>R语言基于S3的面向对象编程</title>
+      <link>https://kongjianyang.github.io/cn/2022/03/29/r_s3/</link>
+      <pubDate>Tue, 29 Mar 2022 14:32:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/03/29/r_s3/</guid>
+      <description>参考这篇文章：
+R语言面向对象编程 (dataxujing.github.io) S3对象的介绍 在R语言中，基于S3对象的面向对象编程，是一种基于泛型函数的实现方式。泛型函数是一种特殊的函数，根据传入对象的类型决定调用那个具体的方法。基于S3对象实现面向对象编程，不同其他语言的面型对象编程，是一种动态函数调用的模拟实现。S3对象被广泛应用于R的早期的开发包中。
+R的S3系统有三个组成部分:属性(attribute)(尤其是class属性)、泛型函数(genericfunction)和方法(method)
+创建S3对象 注意：本文会用到pryr,为了方便我们检查对象的类型，引入pryr包作为辅助工具。
+library(pryr) #通过变量创建S3对象 x &amp;lt;- 1 attr(x,&amp;#39;class&amp;#39;) &amp;lt;- &amp;#39;foo&amp;#39; x ## [1] 1 ## attr(,&amp;#34;class&amp;#34;) ## [1] &amp;#34;foo&amp;#34; ## [1] &amp;#34;foo&amp;#34; ## [1] &amp;#34;foo&amp;#34; #用pryr包的otype函数,检查x的类型 otype(x) ## [1] &amp;#34;S3&amp;#34; 通过structure()函数创建S3对象
+y &amp;lt;- structure(2,class=&amp;#34;foo&amp;#34;) y ## [1] 2 ## attr(,&amp;#34;class&amp;#34;) ## [1] &amp;#34;foo&amp;#34; ## [1] &amp;#34;foo&amp;#34; ## [1] &amp;#34;foo&amp;#34; ## [1] &amp;#34;S3&amp;#34; 创建一个多类型的S3对象，S3独享没有明确结构关系，一个S3对象可以有多个类型，S3对象的class属性可以是一个向量，包括多种类型
+x &amp;lt;- 1 attr(x,&amp;#34;class&amp;#34;) &amp;lt;- c(&amp;#34;foo&amp;#34;,&amp;#34;bar&amp;#34;) # 给了x对象两个class属性 class(x) ## [1] &amp;#34;foo&amp;#34; &amp;#34;bar&amp;#34; ## [1] &amp;#34;S3&amp;#34; 如果分配至少一个class属性，就是S3对象，如果没有class属性，就是base对象。</description>
+    </item>
+    
+    <item>
+      <title>ChIPseeker使用介绍</title>
+      <link>https://kongjianyang.github.io/cn/2022/03/26/chipseeker/</link>
+      <pubDate>Sat, 26 Mar 2022 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/03/26/chipseeker/</guid>
+      <description>主要参考这篇文章：
+190-学习一遍ChIPseeker使用 | BIOINFOPLANET (jieandze1314.com) 1 ChIP-seq简介 ChIP是指染色质免疫沉淀，它通特异结合抗体将DNA结合蛋白免疫沉淀，可以用于捕获蛋白质（如转录因子，组蛋白修饰）的DNA靶点。之前结合芯片就有ChIP-on-chip，后来二代测序加持诞生了ChIP-seq。优点是：不再需要设计探针（探针往往存在着一定的偏向性）
+2007年来自三个不同的实验室，几乎是同时间出来（最长差不了3个月），分别发CNS，一起定义了这个ChIPseq技术
+ Johnson DS, Mortazavi A et al. (2007) Genome-wide mapping of in vivo protein–DNA interactions. Science 316: 1497–1502 Robertson G et al.(2007) Genome-wide profiles of STAT1 DNA association using chromatin immunoprecipitation and massively parallel sequencing. Nature Methods 4: 651–657 Schmid et al. (2007) ChIP-Seq Data reveal nucleosome architecture of human promoters. Cell 131: 831–832  主要有4步：Cross-linking、Sonication、IP、Sequencing
+简而言之是：DNA和蛋白质交联(cross-linking)、超声(sonication)将染色体随机切割、利用抗原抗体的特异性识别(IP)、把目标蛋白相结合的DNA片段沉淀下来，反交联释放DNA片段，最后是测序(sequencing)
+分析流程示例图1： 分析流程示例图2： 原始数据=》质控=》比对=》拿到DNA片段在染色体上的位置信息=》peak calling （去除背景噪音）=》拿到peaks（protein binding site）=》下游分析（可视化、找相关基因、motif分析等等）</description>
+    </item>
+    
+    <item>
+      <title>tmux多窗口管理</title>
+      <link>https://kongjianyang.github.io/cn/2022/03/25/tmux/</link>
+      <pubDate>Fri, 25 Mar 2022 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/03/25/tmux/</guid>
+      <description>[TOC]
+主要参考这篇文章：还在为 iTerm 多窗口操作烦恼？tmux 这款神器轻松帮你解决_Java极客技术-程序员信息网 - 程序员信息网 (i4k.xyz) Tmux 使用教程 - 阮一峰的网络日志 (ruanyifeng.com) 安装tmux
+brew install tmux 会话管理 新建 session
+使用 tmux 之前我们首先需要新建一个 Session，命令如下：
+# 新建 session，使用 -s 自定义 session 名字 tmux new -s &amp;lt;session-name&amp;gt; 保存会话
+进入会话之后，进行相关操作，比如使用 SSH 连上远端服务器。这时如果想退出去的时候，可以保存当前会话信息。下次可以直接重新进入这个会话，不用重新再次使用 SSH 连接了。
+# 保存当前会话 tmux detach 接入会话
+tmux attach 可以接入上次保存的会话。
+# 可以使用 -t 指定会话名字。 tmux attach -t &amp;lt;session-name&amp;gt; 查看会话
+如果之前同时保存了多个会话，我们可以使用 tmux ls 查看当前所有会话。
+# 查看会话 tmux ls 杀死会话
+使用 tmux kill-session 我们可以杀死某个会话。</description>
+    </item>
+    
+    <item>
+      <title>个人周刊第一期</title>
+      <link>https://kongjianyang.github.io/cn/2022/03/25/xxxx/</link>
+      <pubDate>Fri, 25 Mar 2022 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/03/25/xxxx/</guid>
+      <description>R语言面向对象编程 (dataxujing.github.io)  S4对象系统具有明显的结构化特征，更适合面向对象的程序设计。Bioconductor社区以S4对象作为基础框架，只接受S4定义的R包。
+ Modern R with the tidyverse (b-rodrigues.github.io)  This book is the result of years of using and teaching R at university and then at my jobs. During my university time, I wrote some notes to help me teach R and which I shared with my students. These are still the basis of Chapter 2. Then, once I had left university, and continued using R at my first “real” job, I wrote another book that dealt mostly with package development and functional programming.</description>
+    </item>
+    
+    <item>
+      <title>MACS2使用</title>
+      <link>https://kongjianyang.github.io/cn/2022/03/25/bioinfo/</link>
+      <pubDate>Fri, 25 Mar 2022 14:32:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/03/25/bioinfo/</guid>
+      <description>参考资料：
+这可能是最棒的MACS2使用说明 (360doc.com) 使用MACS2进行差异peak分析_生信修炼手册的博客-CSDN博客 MACS2：Model-based analysis of ChiP-Seq. 最初的设计是用来鉴定转录因子的结合位点，但是它也可以用于其他类型的富集方式测序。
+MACS2作为使用最广泛的peak calling软件，在v2版本中添加了差异peak分析的功能，所有的子命令功能描述如下
+通过bdgdiff子命令来进行差异peak分析， 该命令不需要基于已有的peak calling结果，只需要输入每个样本对应的bedGraph格式的文件。需要注意的是，该命令只针对两个样本间的差异peak进行设计，适用于没有生物学重复的情况。
+对于使用macs2来进行差异peak的完整流程，官方给出了详细的说明文档，链接如下
+ https://github.com/taoliu/MACS/wiki/Call-differential-binding-events
+ 可以分为以下3步
+1. 预测插入片段长度 通过predictd子命令可以预测样本的fragment size，命令如下
+macs2 predictd -i input.bam #!/bin/bash module load bioinfo module load biocontainers/default module load macs2/2.2.7.1-py39 for i in `ls [A-H][1-9][A-H][1-9][A-H][1-9].bam`; do msg=&amp;#34;macs2 predictd -i $i&amp;#34;; echo $msg; macs2 predictd -i $i; 2. peak calling 在peak calling时，需要添加-B参数，这样才可以输出样本对应的bedgraph文件，同时需要保证peak calling时采用一致的--extsize的值，就是第一步预测出来的数值，取多个样本的均值即可。官方也给出了推荐值，对于大多数的转录因子chip_seq数据，推荐值为200， 对于大部分组蛋白修饰的chip_seq数据，推荐值为147，命令如下
+# condition1 macs2 callpeak -B -t cond1_ChIP.bam -c cond1_Control.bam -n cond1 --nomodel --extsize 147 # condition2 # broad peak calling: macs2 callpeak -B -t cond1_ChIP.</description>
+    </item>
+    
+    <item>
+      <title>创建自己的newsletter信息</title>
+      <link>https://kongjianyang.github.io/cn/2022/03/23/newsletter/</link>
+      <pubDate>Wed, 23 Mar 2022 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/03/23/newsletter/</guid>
+      <description>记录使用GitHub创建自己的newsletter信息：
+结构参考这篇仓库：ShixiangWang/weekly: 生信爱好者周刊（每周日发布） (github.com) [TOC]
+1. 克隆并更新到自己的仓库 克隆别人的仓库到本地 git clone git@github.com:ShixiangWang/weekly.git 并在自己的github创建自己的仓库
+删除原来git版本控制 进入project的根目录 中，右击鼠标打开Git Bash 输入 find . -name &amp;quot;.git&amp;quot; | xargs rm -Rf
+初始化自己的仓库 $ touch README.md $ git init $ git add * $ git commit -m &amp;#34;此处可添加提交代码相关的注释&amp;#34; $ git remote add origin https://github.com/yourUserName/repositoryName.git $ git push -u origin master 123456 origin 是代码仓库地址的别称 git详细教程 .gitignore文件编写
+该文件内容是不想提交到仓库的文件或文件夹。 忽略某个文件夹下面所有内容要带星号* pyqt5/build/* pyqt5/dist/* time_format/build/* time_format/dist/* time_format/img/*</description>
+    </item>
+    
+    <item>
+      <title>使用GitHub page建立站点</title>
+      <link>https://kongjianyang.github.io/cn/2022/03/20/second-post-cn/</link>
+      <pubDate>Sun, 20 Mar 2022 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/03/20/second-post-cn/</guid>
+      <description>记录第一次使用GitHub page建立站点的步骤:
+主要参考这篇文章：郝鸿涛：Hongtao Hao [TOC]
+1. 安装Hugo 在 Terminal 中输入
+brew install hugo 完成后，在 Terminal 中输入 hugo version, 如果显示 Hugo Static Site Generator... 证明安装成功。
+2. 新建一个 Hugo 网站 Hugo 博客就是一个文件夹。首先你要确定把这个文件夹放在哪里。到达自己需要的地址之后使用以下命令
+hugo new site liang.github.io **# quickstart 可以换成任何你想用的名称** cd quickstart/themes git clone https://github.com/hongtaoh/hugo-ht mkdir hugo-ht-new cp -r hugo-ht/* hugo-ht-new rm -rf hugo-ht mv hugo-ht-new hugo-ht cd .. cp -r themes/hugo-ht/exampleSite/* . 这是使用一个Hugo-ht为主题的网站，之后可以折腾其他主题。但是这样会你目前 Hugo 网站中的 Content 文件夹和 config.toml 替换为 Hugo-ht 自带的内容。如果你当前 Hugo 网站中的 Content 文件夹及config.</description>
+    </item>
+    
+    <item>
+      <title>R语言glue包介绍</title>
+      <link>https://kongjianyang.github.io/cn/2021/04/22/glue/</link>
+      <pubDate>Thu, 22 Apr 2021 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2021/04/22/glue/</guid>
+      <description>glue 提供了轻巧、快速和无依赖的可解释字符串，glue 通过将 R 表达式嵌入到花括号中，然后对其求值并将其插入字符串中。
+glue包可用于自定义变量，然后通过传参的方式，对字符串部分内容进行自适应修改。
+例如：可将日期赋值为：date = as.Date(&amp;ldquo;2019-12-05&amp;rdquo;)，然后通过字符串拼接的形式，实现文件名称自动更新，glue(&amp;ldquo;The day is {date}.&amp;quot;。
+安装 install.packages(&amp;#34;glue&amp;#34;) # or install.packages(&amp;#34;glue&amp;#34;) # install.packages(&amp;#34;devtools&amp;#34;) devtools::install_github(&amp;#34;tidyverse/glue&amp;#34;) 使用 1. 导入 2. 简单使用 将变量直接传递到字符串中
+&amp;gt; name &amp;lt;- &amp;#34;Fred&amp;#34; &amp;gt; glue(&amp;#39;My name is {name}.&amp;#39;) My name is Fred. 通过将变量名放置在一对花括号之间，glue 会将变量名替换为相应的值
+字符串可以写成多行的形式，最后会自动将这些行连接起来
+&amp;gt; name &amp;lt;- &amp;#34;Fred&amp;#34; &amp;gt; age &amp;lt;- 50 &amp;gt; anniversary &amp;lt;- as.Date(&amp;#34;1991-10-12&amp;#34;) &amp;gt; glue(&amp;#39;My name is {name},&amp;#39;, + &amp;#39; my age next year is {age + 1},&amp;#39;, + &amp;#39; my anniversary is {format(anniversary, &amp;#34;%A, %B %d, %Y&amp;#34;)}.</description>
+    </item>
+    
+    <item>
+      <title>R语言str_replace多匹配</title>
+      <link>https://kongjianyang.github.io/cn/2021/03/26/str_replace/</link>
+      <pubDate>Fri, 26 Mar 2021 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2021/03/26/str_replace/</guid>
+      <description>主要参考这个回答：r - stringr str_replace on multiple patterns and replacements? - Stack Overflow library(stringr) library(purrr) reduce2(c(&amp;#39;b&amp;#39;, &amp;#39;d&amp;#39;), c(&amp;#39;B&amp;#39;, &amp;#39;D&amp;#39;), .init = &amp;#39;abcdef&amp;#39;, str_replace) #[1] &amp;#34;aBcDef&amp;#34; 这种方法在大批量替换rowname的时候很有用，所以解析一下。
+在purrr包中
+map表示映射，可以在一个或多个列表/向量的每个位置上应用相同函数进行计算。map函数的映射对象只有一个。
+ map(.x, .f, …) .x: 列表或向量； .f: 映射函数； ...: 映射函数的其他参数
+ map2函数是map函数的变形，映射对象有两个，需要注意两个列表/向量的长度必须相同。
+ map2(.x,.y, .f, …) .x: 列表或向量； .y: 列表或向量,与.x等长； .f: 映射函数； ...: 映射函数的其他参数
+ pmap函数是map函数的变形，映射对象为多个，需要注意多个列表/向量的长度必须相同。
+ pmap(.l, .f, …) .l: 列表向量/列表； .f: 映射函数； ...: 映射函数的其他参数
+ reduce函数表示规约，计算向量中相邻的两个元素，结果再与第三个元素计算，…，最后计算出一个值。  reduce(.x, .f, …) .x: 列表向量/列表； .</description>
+    </item>
+    
+    <item>
+      <title>Markdown 试水</title>
+      <link>https://kongjianyang.github.io/cn/2021/01/07/first-post-cn/</link>
+      <pubDate>Thu, 07 Jan 2021 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2021/01/07/first-post-cn/</guid>
+      <description>如果好奇以下的内容是如何实现的，请参考本页源代码 。 
+第一级标题 第二级标题 第三级标题 第四级标题 第五级标题 第六级标题 列表  Water Water Water  Water Water Water   Water  Water Water Water  Water Water      表格    Water Water Water     Water Water Water   Water Water1 Water   Water Water Water    引语  知之为知之，不知为不知，是知也2。 — 孔子
+ 数学公式 最简单的如，$1 + 1 = 3$</description>
+    </item>
+    
+    <item>
+      <title>Markdown 试水</title>
+      <link>https://kongjianyang.github.io/cn/2021/01/07/first-post-cn/</link>
+      <pubDate>Thu, 07 Jan 2021 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2021/01/07/first-post-cn/</guid>
+      <description>如果好奇以下的内容是如何实现的，请参考本页源代码 。 
+第一级标题 第二级标题 第三级标题 第四级标题 第五级标题 第六级标题 列表  Water Water Water  Water Water Water   Water  Water Water Water  Water Water      表格    Water Water Water     Water Water Water   Water Water1 Water   Water Water Water    引语  知之为知之，不知为不知，是知也2。 — 孔子
+ 数学公式 最简单的如，$1 + 1 = 3$</description>
+    </item>
+    
+    <item>
+      <title>Markdown Testing</title>
+      <link>https://kongjianyang.github.io/en/2021/01/07/second-post/</link>
+      <pubDate>Thu, 07 Jan 2021 13:37:57 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/en/2021/01/07/second-post/</guid>
+      <description>See the source code of this page if you are interested.
+ H1 H2 H3 H4 H5 H6 List  Water Water Water  Water Water Water   Water  Water Water Water  Water Water      Table    Water Water Water     Water Water Water   Water Water1 Water   Water Water Water    Quotes  What I cannot create, I do not understand2.</description>
+    </item>
+    
+    <item>
+      <title>R语言tidyverse风格简介</title>
+      <link>https://kongjianyang.github.io/cn/2020/02/13/tidy-verse_style/</link>
+      <pubDate>Thu, 13 Feb 2020 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2020/02/13/tidy-verse_style/</guid>
+      <description>tidyverse有两层基本含义：（1）基于Google 社区的R 代码风格（Google’s R style guide）衍生的一种使代码清晰可读的编程风格；（2）一系列基于前述风格而编写的数据处理R 包。tidyverse一词中的tidy意为整洁，verse意为诗篇、诗行，合起来意指代码或数据如诗行般整洁易读，即成为“整洁代码”（tidy code）或“整洁数据”（tidy data）。熟悉这一风格和相关R 包，可使数据处理和代码编写过程更为便捷高效，且易于与其他数据分析者交流沟通。
+建立较为统一的代码书写风格，可方便不同用户之间的沟通与协作。这里基于tidyverse模式择要介绍目前R 编程中的主流风格，并根据中文用户的习惯做部分调整和说明。某些内容可能初学者并不一定很快遇到，但仍宜先行阅读，以建立良好的书写规范。详细的tidyverse风格说明参见如下链接：
+http://style.tidyverse.org
+三、命名规范
+1.文件名
+文件名应能体现文件的实质内容，只使用数字、英文字母、中划线-和下划线_。尽量避免文件名中的英文字母大小写混用，宜只使用小写，并建议使用_或-连接文件名中的不同英文，如nankai_psy_2017。
+若多个文件存在特定顺序，应以数字作为前缀。如果有超过10个文件，对于个位数的前缀要在前面添补一个0。例如：
+其中，.后的xx表示适当的文件后缀名，可能是csv、xlsx、pdf、png等。
+超过100个文件则在最开始补充00，依此类推。
+2.变量与函数名
+变量和函数名应只使用小写字母、数字和下划线_。下划线（_）用于分隔较长命名中的不同单词，避免用.分隔。例如，变量名写成bmi_women，而不是bmi.women；函数名写成trim_gini，而不是trim.gini。变量名应是名词，而函数名应是动词，且应尽量简洁。
+这里和base R可能有些区别
+    在标识符中不要使用下划线 ( _ ) 或连字符 ( - ). 标识符应根据如下惯例命名. 变量名应使用点 (.) 分隔所有的小写字母或单词; 函数名首字母大写, 不用点分隔 (所含单词首字母大写); 常数命名规则同函数, 但需使用一个 k 开头.
+   variable.name 正例: avg.clicks 反例: avg_Clicks , avgClicks FunctionName 正例: CalculateAvgClicks 反例: calculate_avg_clicks , calculateAvgClicks 函数命名应为动词或动词性短语. 例外: 当创建一个含类 (class) 属性的对象时, 函数名 (也是constructor) 和类名 (class) 应当匹配 (例如, lm).</description>
+    </item>
+    
+    <item>
+      <title>R语言多重数据交集</title>
+      <link>https://kongjianyang.github.io/cn/2020/01/12/multiple_intersects/</link>
+      <pubDate>Sun, 12 Jan 2020 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2020/01/12/multiple_intersects/</guid>
+      <description>一个简单的例子讲解怎么做多重数据的交集
+首先创造一个嵌套的list
+l &amp;lt;- list(A=c(&amp;#34;one&amp;#34;, &amp;#34;two&amp;#34;, &amp;#34;three&amp;#34;, &amp;#34;four&amp;#34;), B=c(&amp;#34;one&amp;#34;, &amp;#34;two&amp;#34;), C=c(&amp;#34;two&amp;#34;, &amp;#34;four&amp;#34;, &amp;#34;five&amp;#34;, &amp;#34;six&amp;#34;), D=c(&amp;#34;six&amp;#34;, &amp;#34;seven&amp;#34;)) crossprod(table(stack(l))) l $A [1] &amp;#34;one&amp;#34; &amp;#34;two&amp;#34; &amp;#34;three&amp;#34; &amp;#34;four&amp;#34; $B [1] &amp;#34;one&amp;#34; &amp;#34;two&amp;#34; $C [1] &amp;#34;two&amp;#34; &amp;#34;four&amp;#34; &amp;#34;five&amp;#34; &amp;#34;six&amp;#34; $D [1] &amp;#34;six&amp;#34; &amp;#34;seven&amp;#34; crossprod(table(stack(l))) #的到结果 ind ind A B C D A 4 2 2 0 B 2 2 1 0 C 2 1 4 1 D 0 0 1 2 开始解释这些命令
+首先是stack命令，将潜逃列表变平
+&amp;gt; stack(l) values ind 1 one A 2 two A 3 three A 4 four A 5 one B 6 two B 7 two C 8 four C 9 five C 10 six C 11 six D 12 seven D Stacking vectors concatenates multiple vectors into a single vector along with a factor indicating where each observation originated.</description>
+    </item>
+    
+    <item>
+      <title>dash使用介绍</title>
+      <link>https://kongjianyang.github.io/cn/2019/11/23/dash/</link>
+      <pubDate>Sat, 23 Nov 2019 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2019/11/23/dash/</guid>
+      <description>1. 功能简介 官方用一句话就概括了它的用途：Dash是一个API文档浏览器（ API Documentation Browser），以及代码片段管理工具（Code Snippet Manager）。你没看错，它就只有这两个功能，但确实是程序员（至少对于我来说）最为关心的特性，自己之前也用过了不少类似的工具，可以毫不夸张地说，Dash是它们之中做的最好的一个！
+目前dash已经收费了
+2. 下载 关于下载我还是推介官网下载吧(https://kapeli.com/dash )
+3. 强悍的API文档浏览、搜索功能 想必这个功能是大家最常用的了吧，每天要反复查看、搜索那么多的API细节，没有一个好工具，单靠自己的双手如何应付得来？窗口不停的切来切去，很烦啊！Dash采用集成单一窗口的方式，很好的解决了这个问题。看下面的截图：
+点击查看原始大小图片
+上图便是Dash的API浏览器主界面：左侧边栏是各种编程语言以及框架（取决于你下载安装了多少文档集合）的导航大纲，点击某个节点，右边的内容区域就是文档的详细信息啦，非常直观。也可以在左上方的搜索框内通过输入关键字，查找相关的API文档，非常类似全文检索的实现方式，Dash的响应速度非常快！关键是可以同时查询不同的语言、框架内容，实在是太方便了。看到这里你也许要问了，这跟我们平常切换到特定的文档窗口（比如一个PDF或者一个CHM文件），再ctrl + f查找有什么区别，不是多此一举吗？其实你错了，Dash可以通过快捷键来显示、隐藏文档窗口，它提供了配置界面以便用户自行设置（我比较习惯alt+space，因为其他软件很少用到这个组合键）：
+Dash自带了丰富的API文档，涉及各种主流的编程语言和框架，全列出来很吓人的：
+而且它的文档库采用了docset格式，高级用户基于网站提供的教程，很容易就能自行添加其他的扩充文档，其实Dash在最初发布的时候，只支持很少的几个文档浏览，好像只有Java、HTML、CSS这些，是后来通过用户不断贡献，以及作者及时的反馈（Rails API就是我通过Email与作者联系，请求添加的，作者非常nice），逐步壮大，才具备了如此广泛的语言、框架支持。要添加API文档，打开软件配置界面，切换到Docset选项卡即可看到所有内置的文档列表，按需要自行下载即可（如果是自己制作的docset，双击即可导入Dash）：
+4. 牛逼、好用的代码片段管理功能 这也是我最喜欢的一个功能
+不得不说这个简直就是程序员的神器,大大的提高的程序的开发效率。
+前面说完了Dash的文档查询功能，下面再来看一看它带给我们的另一个惊喜：代码片段管理。说到这里，之前的版本其实有个很不好的地方，就是如果不仔细琢磨一下，或者去看官方的帮助文档的话，用户是很难一眼就知道怎么用这个功能，新手引导做得确实不怎么样，不过最新版已经改善了这个问题，在主界面的导航边栏明确地给出了分类提示，创建或者修改代码片段都方便了许多。来看下面这个例子：
+利用Dash的代码片段管理功能，我们可以把日常使用频繁（也就是你经常需要复制粘贴）的代码保存起来，然后为其设置一个独一无二的缩写，这样一来原本需要一遍又一遍的敲击键盘重复录入的繁琐工作，就可以交给Dash来帮你搞定啦。比如上面截图中的例子，就是ExtJS中发起Ajax请求的代码片段，哪怕是copy &amp;amp; paste，时间长了也会很烦的，我给它设置了一个缩写（ajax），以后在需要编写这段代码的时候，就只需要敲击这几个字母，它就会魔法般的出现在光标所在位置啦！很神奇吧？嘿嘿，其实这种扩展缩写的功能，还有很多软件都能做到，比如TextExpander（这个我也买了，半价14刀的时候，但是现在已经打入冷宫了，比较后悔），不过就用户体验和各种细节，诸如界面UI，特别是扩展占位符的处理上，目前还没有哪一个能比得过Dash的（Dash is the best!）。来看看使用代码片段的截图吧：
+点击查看原始大小图片
+Dash的缩写扩展功能很强大，比方说上面那个例子，在保存代码片段的时候，你可以使用双下划线标明占位符，在执行扩展的时候就可以通过tab键来在各个占位符之间切换，根据需要输入实际的值，最后回车即可把片段粘贴到光标所在之处。除了占位符，它还支持下面这些变量符号：
+@clipboard 自动插入当前剪贴板中的内容
+@cursor 代码片段粘贴完毕之后，自动将光标定位到此处
+@date 自动插入当前日期
+@time 自动插入当前时间</description>
+    </item>
+    
+    <item>
+      <title>R中的fuzzyjoin包介绍</title>
+      <link>https://kongjianyang.github.io/cn/2019/11/12/r_fuzzyjoin/</link>
+      <pubDate>Tue, 12 Nov 2019 14:32:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2019/11/12/r_fuzzyjoin/</guid>
+      <description>假设字符串x最少需要插入a次、删除b次、替换c次才能与字符串y相同，则x、y之间的 距离 即a、b、c的加权总和。比如将”kitten”转化为”sitting”，需要把“k”替换为“s”，把“e”替换为“i”，并在尾部插入“g”，所以共需1次插入、0次删除、2次替换，按照默认权重两者之间 距离 英该为3。
+在R语言中，我们可以使用adist(x, y = NULL, costs = NULL, counts = FALSE, …)的形式，计算字符串之间的距离。其中：
+ costs即插入（insertions）、删除（deletions）、替换（substitutions）次数的权重 counts表示是否输出插入、删除、替换次数 partial表示是否只进行局部匹配  library(tidyverse) ## ── Attaching packages ─────────────────────────────────────────────────── tidyverse 1.3.1 ── ## ✓ ggplot2 3.3.3 ✓ purrr 0.3.4 ## ✓ tibble 3.1.1 ✓ dplyr 1.0.5 ## ✓ tidyr 1.1.3 ✓ stringr 1.4.0 ## ✓ readr 1.4.0 ✓ forcats 0.5.1 ## ── Conflicts ────────────────────────────────────────────────────── tidyverse_conflicts() ── ## x dplyr::filter() masks stats::filter() ## x dplyr::lag() masks stats::lag() drop(attr(adist(&amp;quot;kitten&amp;quot;, &amp;quot;sitting&amp;quot;, counts = TRUE), &amp;quot;counts&amp;quot;)) ## ins del sub ## 1 0 2 adist(&amp;quot;kitten&amp;quot;, &amp;quot;sitting&amp;quot;, counts = TRUE) %&amp;gt;% attr(.</description>
+    </item>
+    
+    <item>
+      <title>html基本入门</title>
+      <link>https://kongjianyang.github.io/cn/2019/08/27/html_intro/</link>
+      <pubDate>Tue, 27 Aug 2019 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2019/08/27/html_intro/</guid>
+      <description>HTML 不是一门编程语言，而是一种用于定义内容结构的_标记语言_。HTML 由一系列的**元素（elements）**组成，这些元素可以用来包围不同部分的内容，使其以某种方式呈现或者工作。 一对标签（ tags）可以为一段文字或者一张图片添加超链接，将文字设置为斜体，改变字号，等等。 例如，键入下面一行内容：
+键入下面一行内容：
+我的猫咪脾气非常暴躁 可以将这行文字封装成一个段落（paragraph）元素来使其在单独一行呈现：
+&amp;lt;p&amp;gt;我的猫咪脾气非常暴躁&amp;lt;/p&amp;gt;  HTML元素的剖析 让我们进一步探讨该段落元素。
+元素的主要部分如下：
+ 开头标记：它由元素的名称（在本例中为p）组成，并包装在开始和关闭尖括号中。这说明了元素开始或开始生效的位置-在这种情况下，段落开始了。 **结束标记：**与开始标记相同，不同之处在于它在元素名称之前包含一个_正斜杠_。这说明了元素的结尾，在这种情况下，段落的结尾。未能添加结束标记是标准的初学者错误之一，并且可能导致奇怪的结果。 **内容：**这是元素的内容，在这种情况下，只是文本。 **元素：**开始标签，结束标签和内容共同组成元素。  元素也可以具有如下所示的属性：
+属性包含有关您不想出现在实际内容中的元素的额外信息。在这里，class是属性_名称_ ，editor-note是属性_值_。通过该class属性，您可以为元素提供一个非唯一的标识符，该标识符可用于class样式信息和其他信息。
+属性应始终具有以下内容：
+ 它与元素名称（如果元素已经具有一个或多个属性，则为上一个属性）之间的空格。 属性名称后跟等号。 用引号引起来的属性值。  注意：不包含ASCII空格（或任何字符&amp;quot; &#39; ` = &amp;lt; &amp;gt;）的简单属性值可以不加引号，但是建议您对所有属性值加引号，因为这会使代码更一致和更易理解。
+ 嵌套元素 您也可以将元素放入其他元素中-这称为嵌套。如果要说明“我们的猫脾气非常暴躁”，可以将“非常”一词包裹在一个&amp;lt;strong&amp;gt; 元素中，这意味着特别强调该词：
+&amp;lt;p&amp;gt;我的猫咪脾气&amp;lt;strong&amp;gt;非常&amp;lt;/strong&amp;gt;暴躁:)&amp;lt;/p&amp;gt; 但是，要确保元素正确嵌套。在上面的示例中，我们&amp;lt;p&amp;gt; 首先打开了元素，然后打开了&amp;lt;strong&amp;gt;元素；因此，我们必须先关闭&amp;lt;strong&amp;gt;元素，然后再关闭&amp;lt;p&amp;gt;元素。以下是不正确的：
+# right &amp;lt;p&amp;gt;我的猫咪脾气&amp;lt;strong&amp;gt;非常暴躁&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt; # wong &amp;lt;p&amp;gt;我的猫咪脾气&amp;lt;strong&amp;gt;非常&amp;lt;/p&amp;gt;暴躁&amp;lt;/strong&amp;gt; 这些元素必须正确地打开和关闭，以使它们清楚地位于彼此内部或外部。如果它们如上所示重叠，则您的Web浏览器将尝试对您要说的内容做出最佳猜测，这可能会导致意外结果。
+ 空元素 一些元素没有内容，被称为空元素。采取&amp;lt;img&amp;gt; 我们在HTML页面中已经拥有的元素：
+&amp;lt;img src=&amp;#34;/img/earth.jpg&amp;#34; alt=&amp;#34;地球&amp;#34;&amp;gt; 它包含两个属性，但是没有结束&amp;lt;/img&amp;gt;标记，也没有内部内容。其目的是将图像嵌入HTML页面中。
+ HTML文档剖析 总结了各个HTML元素的基础知识。现在，我们将研究如何将单个元素组合以形成整个HTML页面。让我们重新看一下index.html示例中放入的代码：
+&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;utf-8&amp;#34;&amp;gt; &amp;lt;title&amp;gt;测试页面&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;img src=&amp;#34;/img/earth.</description>
+    </item>
+    
+    <item>
+      <title>R中处理错误</title>
+      <link>https://kongjianyang.github.io/cn/2019/06/07/r_errors/</link>
+      <pubDate>Fri, 07 Jun 2019 14:32:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2019/06/07/r_errors/</guid>
+      <description>方案一：使用try语句  使用方法
+在R语言中，try语句的用法如下所示:  try(expr, silent = FALSE, outFile = getOption(&amp;#34;try.outFile&amp;#34;, default = stderr())) 可以看到，try语句共有三个参数，常用的是前两个参数。第一个参数expr为我们所要使用的表达式，第二个参数silent表示当错误出现时是否需要报告错误信息，其输入值应为逻辑变量，默认为FALSE，即选择不保持“沉默”，当错误出现时会立即报告错误信息。
+如果参数expr所代表的表达式可以正确运行，则try语句的输出即为该表达式的运行结果，如果表达式无法正确运行，则try语句会输出一个“try-error”类的不可见对象，因此可以通过if语句对try语句的输出结果进行判断从而进行下一步的处理。
+如果大段代码中有错误，想忽略错误，可以采用try()，但大段代码需放在**{ }**中：
+你可以捕获**try()的输出，如果程序运行成功，返回计算结果；如果程序运行不成功，则可以通过class()**函数返回，错误类型 &amp;rsquo;try-error&amp;rsquo;。
+使用示例  A = list(a=1,b=&amp;#39;abc&amp;#39;,c=-2,d=3) # 运行log(&amp;#39;abc&amp;#39;)会报错，运行log(-2)会出现警告 B = list() for (nm in names(A)) {  x &amp;lt;- A[[nm]]  temp &amp;lt;- try(log(x),silent=FALSE)  if(&amp;#39;try-error&amp;#39; %in% class(temp)) # 判断当前循环的try语句中的表达式是否运行正确  {  temp &amp;lt;- NA # 此处可以对运行错误的情况进行处理应对  }  B[[nm]] &amp;lt;- temp } 方案二：使用tryCatch语句  使用方法
+相较于try语句，tryCatch语句更为全面，能够处理和应对更为复杂的问题。其不仅能够处理表达式出现错误error的情形，还能够处理出现警告warning的情况。主要用法如下所示：  tryCatch(  { expr },  warning = function(w) { warning-handler-code },  error = function(e) { error-handler-code },  finally = { cleanup-code }  ) 可以看到，tryCatch语句的内部可以被划分为四个不同的部分。</description>
+    </item>
+    
+    <item>
+      <title>R语言管道操作Magritte</title>
+      <link>https://kongjianyang.github.io/cn/2019/04/27/magritte/</link>
+      <pubDate>Sat, 27 Apr 2019 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2019/04/27/magritte/</guid>
+      <description>主要参考文章：
+R语言中管道操作符 %&amp;gt;%, %T&amp;gt;%, %$% 和 %&amp;lt;&amp;gt;% - 知乎 (zhihu.com) The Four Pipes of magrittr | R-bloggers magrittr包有两个主要目标:
+  第一是减少代码开发时间，提高代码的可读性和维护性
+  第二是让你的代码更短
+  lhs %&amp;gt;% rhs # pipe syntax for rhs(lhs)
+  lhs %&amp;gt;% rhs(a = 1) # pipe syntax for rhs(lhs, a = 1)
+  lhs %&amp;gt;% rhs(a = 1, b = .) # pipe syntax for rhs(a = 1, b = lhs)
+  lhs %&amp;lt;&amp;gt;% rhs # pipe syntax for lhs &amp;lt;- rhs(lhs)</description>
+    </item>
+    
+    <item>
+      <title>vscode使用技巧</title>
+      <link>https://kongjianyang.github.io/cn/2019/03/14/vscode/</link>
+      <pubDate>Thu, 14 Mar 2019 14:32:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2019/03/14/vscode/</guid>
+      <description>VS code 的层级树太浅怎么解决，子目录的缩进不够深
+通过修改workbench&amp;gt;Tree: indent的结构
+一些详细介绍：
+一、User Guide（用户指南）🔗  参考官方文档：Basic Editing in Visual Studio Code  更改显示语言🔗 通过安装插件 Chinese (Simplified) Language Pack for Visual Studio Code 来启用中文（需要重启）
+默认情况下，Visual Studio Code 附带英语作为显示语言，而其他语言则依赖于 Marketplace 提供的语言包扩展。
+VS Code 检测到操作系统的 UI 语言，并会提示您安装适当的语言包（如果在 Marketplace 上可用）。
+保存/自动保存🔗 默认情况下，VS 代码需要一个明确的行动，将更改保存到磁盘，按Ctrl + S。
+您也可以使用文件 &amp;gt; 自动保存从顶级菜单切换自动保存。
+要进一步控制自动保存，请打开配置文件settings.json，然后找到相关的设置（如果没有则直接添加）：
+它可以具有以下值：
+  off -禁用自动保存。
+  afterDelay - 在配置的延迟（默认 1000 毫秒）后保存文件。
+  onFocusChange - 当焦点移出脏文件的编辑器时保存文件。
+  onWindowChange - 当焦点移出 VS Code 窗口时保存文件。</description>
+    </item>
+    
+    <item>
+      <title>使用Rmd写博客的一些流程</title>
+      <link>https://kongjianyang.github.io/cn/2018/12/25/rmd/</link>
+      <pubDate>Tue, 25 Dec 2018 14:32:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/12/25/rmd/</guid>
+      <description>首先将Rmd文件转换为md文件
+library(rmarkdown) a &amp;lt;- list.files(&amp;#34;./&amp;#34;, pattern = &amp;#34;.Rmd&amp;#34;) map(a, render, md_document()) #会将当前文件下所有的Rmd文件转化为md文件  on the Mac you could use the following commands to open RStudio (respectively) in the &amp;lsquo;~/projects/foo&amp;rsquo; directory or the current working directory:
+ $ open -a RStudio ~/projects/foo $ open -a RStudio . 这里的open命令很有用
+MacOS用户如果有用命令行的话，大多数人应该知道open .会打开Finder。事实上它能打开所有的目录，比如:
+$ open ~/Library/Preferences $ open /etc $ open ../.. 你还能同时打开多个目录：
+$ open ~/Documents ~/Desktop ~/Downloads $ open ~/D* 然后它还能打开各种文件，比如：
+$ open document.</description>
+    </item>
+    
+    <item>
+      <title>R中进行文件以及文件系统管理</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/25/r_files/</link>
+      <pubDate>Sun, 25 Nov 2018 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/25/r_files/</guid>
+      <description>本文中提到的文件系统管理主要是指文件和目录（即文件夹）的创建、查看、重命名、复制、删除和文件权限处理。
+1. 文件操作 创建文件
+# 创建一个空文件 A.txt file.create(&amp;quot;A.txt&amp;quot;) # 查看当前目录下的子目录和文件 list.files() # 创建多个空文件 A1.txt，A2.txt，A3.txt file.create(&amp;quot;A1.txt&amp;quot;, &amp;quot;A2.txt&amp;quot;, &amp;quot;A3.txt&amp;quot;) # 查看当前目录下的子目录和文件 list.files() # 创建一个有内容的文件 B.txt cat(&amp;quot;文件测试\n&amp;quot;, file = &amp;quot;B.txt&amp;quot;) list.files()  查看文件
+# 显示当前目录中的目录和文件 ## 下面两句结果相同 list.files() # 建议使用该命令，方便记忆 dir() #python中这个意味着查看文件属性 ## 参数full.names = TRUE，确定文件显示全名 ## 参数recursive = TRUE，递归显示，即把目录下的目录和文件都以文件的形式显示 list.files(, full.names = TRUE, recursive = TRUE) # 检查文件是否存在 ## 存在的文件 file.exists(&amp;quot;A.txt&amp;quot;) ## 不存在的文件 file.exists(&amp;quot;readme.txt&amp;quot;) # 判断是否是文件 file_test(&amp;quot;-f&amp;quot;, &amp;quot;A.txt&amp;quot;)  读取文件
+# 文件A.txt读取 readLines(&amp;quot;A.</description>
+    </item>
+    
+    <item>
+      <title>R向文本文件插入内容</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/25/r_inscert_content/</link>
+      <pubDate>Sun, 25 Nov 2018 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/25/r_inscert_content/</guid>
+      <description>1. 创造文件并写入 fileConn&amp;lt;-file(&amp;quot;./output.txt&amp;quot;) #创造一个文件 writeLines(c(&amp;quot;Hello&amp;quot;,&amp;quot;World&amp;quot;), fileConn) #写入内容到文件内 close(fileConn)  2. 替代方法 可以使用sink和cat命令写入文件
+sink函数将输出结果重定向到文件。
+使用方式：sink(file = NULL, append = FALSE, type = c(“output”, “message”),split = FALSE)
+append参数：布尔值。TRUE时，输出内容追加到文件尾部。FALSE，覆盖文件原始内容。
+cat函数即能输出到屏幕，也能输出到文件.
+使用方式：cat(… , file = ““, sep =” “, fill = FALSE, labels = NULL,append = FALSE)
+有file时，输出到file。无file时，输出到屏幕。
+append参数：布尔值。TRUE时，输出内容追加到文件尾部。FALSE，覆盖文件原始内容。
+sink(&amp;quot;./outfile2.txt&amp;quot;) cat(&amp;quot;hello\nworld&amp;quot;) ## hello ## world sink()  3. 替代方法2 R中还有一个write函数，可以直接写入内容到文件内
+line=&amp;quot;hello\nworld&amp;quot; write(line,file=&amp;quot;./outfile3.txt&amp;quot;)  4. 插入文件到文本指定位置 创造文件
+line=&amp;quot;hello\nworld&amp;quot; write(line,file=&amp;quot;./outfile3.txt&amp;quot;)  读取文件
+txt_cont &amp;lt;- readLines(&amp;quot;./outfile3.txt&amp;quot;, warn=FALSE) length(txt_cont) ## [1] 2  在文件的第二行插入内容重新写入</description>
+    </item>
+    
+    <item>
+      <title>Pearson-spearman相关性计算的异同</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/08/pearson_spearman/</link>
+      <pubDate>Thu, 08 Nov 2018 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/08/pearson_spearman/</guid>
+      <description>&lt;p&gt;三个相关性系数（pearson, spearman,
+kendall）反应的都是两个变量之间变化趋势的方向以及程度，其值范围为-1到+1，0表示两个变量不相关，正值表示正相关，负值表示负相关，值越大表示相关性越强。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

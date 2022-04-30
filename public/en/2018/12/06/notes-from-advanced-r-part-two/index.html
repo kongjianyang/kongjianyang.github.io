@@ -1,0 +1,772 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/">Home</a></li>
+       
+           <li><a href="/en/about/">About</a></li>
+       
+           <li><a href="/en/posts/">Posts</a></li>
+       
+           <li><a href="/cn/posts/">中文</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>Notes From Advanced R Part Two</h1>
+
+<p>Liang 
+ / 2018-12-06 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/en/posts/2018-12-06-notes-from-advanced-r-part-two.Rmd'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="Suggest an edit of this page"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+
+<div class="body-text list-text">
+
+
+
+<div id="oo-object-oriented-field-guide" class="section level1">
+<h1>1. OO (Object-oriented) field guide</h1>
+<p>R has four object oriented systems:</p>
+<ul>
+<li>base type: are mostly manipulated using C code</li>
+<li>S3 type: S3 is a very casual system. It has no formal definition of classes.</li>
+<li>S4 type: S4 has formal class definitions and multiple dispatch</li>
+<li>RC (Reference Classes) type</li>
+</ul>
+<p>A class defines the behaviour of objects by describing their attributes and their relationship to other classes.</p>
+<p><code>pryr</code> provides tools to pry back the surface of R and dig into the details.</p>
+<div id="base-types" class="section level2">
+<h2>Base types</h2>
+<p>new base types are added very rarely. determine the object’s base type with typeof().</p>
+<pre class="r"><code># The type of a function is &quot;closure&quot;
+f &lt;- function() {}
+typeof(f)</code></pre>
+<pre><code>## [1] &quot;closure&quot;</code></pre>
+<pre class="r"><code>is.function(f)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code># The type of a primitive function is &quot;builtin&quot;
+typeof(sum)</code></pre>
+<pre><code>## [1] &quot;builtin&quot;</code></pre>
+<pre class="r"><code>is.primitive(sum)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<p>Functions for different base types are almost always written in C. S3 objects can be built on top of any base type, S4 objects use a special base type, and RC objects are a combination of S4 and environments.</p>
+<p>To see if an object is a pure base type, check that is.object(x) returns FALSE.</p>
+<p>if the object x has the R internal OBJECT, the <code>is.object()</code> return True</p>
+<pre class="r"><code>is.object(f)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="r"><code>is.object(1) # FALSE</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="r"><code>is.object(as.factor(1:3)) # TRUE</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="s3-type" class="section level2">
+<h2>S3 type</h2>
+<p>S3 is the only OO system used in the base and stats packages.</p>
+<p><code>pryr::otype():</code> can be used to test if an object is an S3 object in base R.</p>
+<pre class="r"><code>library(pryr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;pryr&#39;</code></pre>
+<pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
+## 
+##     f</code></pre>
+<pre><code>## The following objects are masked from &#39;package:purrr&#39;:
+## 
+##     compose, partial</code></pre>
+<pre class="r"><code>df &lt;- data.frame(x = 1:10, y = letters[1:10])
+otype(df)    # A data frame is an S3 class</code></pre>
+<pre><code>## [1] &quot;S3&quot;</code></pre>
+<pre class="r"><code>otype(df$x)  # A numeric vector isn&#39;t</code></pre>
+<pre><code>## [1] &quot;base&quot;</code></pre>
+<pre class="r"><code>otype(df$y)  # A factor is</code></pre>
+<pre><code>## [1] &quot;S3&quot;</code></pre>
+<p>In S3, methods belong to functions, called generic functions. S3 methods do not belong to objects or classes.</p>
+<p><code>ftype()</code> can describes the object system and to determinate if a function is an S3 method or generic:</p>
+<pre class="r"><code>ftype(mean)</code></pre>
+<pre><code>## [1] &quot;s3&quot;      &quot;generic&quot;</code></pre>
+<pre class="r"><code>ftype(t.data.frame) # data frame method for t()</code></pre>
+<pre><code>## [1] &quot;s3&quot;     &quot;method&quot;</code></pre>
+<pre class="r"><code>ftype(t.test)       # generic function for t tests</code></pre>
+<pre><code>## [1] &quot;s3&quot;      &quot;generic&quot;</code></pre>
+<div id="defining-classes-and-creating-objects" class="section level3">
+<h3>Defining classes and creating objects</h3>
+<pre class="r"><code># Create and assign class in one step
+foo &lt;- structure(list(), class = &quot;foo&quot;)
+# ftype(foo)
+# Create, then set class
+foo &lt;- list()
+class(foo) &lt;- &quot;foo&quot;
+foo</code></pre>
+<pre><code>## list()
+## attr(,&quot;class&quot;)
+## [1] &quot;foo&quot;</code></pre>
+<p>determine the class of any object using <code>class(x)</code>, and see if an object inherits from a specific class using <code>inherits(x, &quot;classname&quot;)</code>.</p>
+<pre class="r"><code>class(foo)</code></pre>
+<pre><code>## [1] &quot;foo&quot;</code></pre>
+<pre class="r"><code>inherits(foo, &quot;foo&quot;)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<p><img src="https://snag.gy/fQLdeK.jpg" width= "200" height = "200" align=center/></p>
+<p>we can change the class of existing objects:</p>
+</div>
+<div id="creating-new-methods-and-generics" class="section level3">
+<h3>Creating new methods and generics</h3>
+<p>To add a new generic, just need to create a function that calls UseMethod().</p>
+<pre class="r"><code>f &lt;- function(x) UseMethod(&quot;f&quot;)
+f.a &lt;- function(x) &quot;Class a&quot;
+f.b &lt;- function(x) &quot;Class b&quot;
+a &lt;- structure(list(), class = &quot;a&quot;)
+class(a)</code></pre>
+<pre><code>## [1] &quot;a&quot;</code></pre>
+<pre class="r"><code>f(a)</code></pre>
+<pre><code>## [1] &quot;Class a&quot;</code></pre>
+<pre class="r"><code>f.a(a)</code></pre>
+<pre><code>## [1] &quot;Class a&quot;</code></pre>
+<pre class="r"><code>f.b(a)</code></pre>
+<pre><code>## [1] &quot;Class b&quot;</code></pre>
+<pre class="r"><code>b &lt;- structure(list(), class = &quot;b&quot;)
+class(b)</code></pre>
+<pre><code>## [1] &quot;b&quot;</code></pre>
+<pre class="r"><code>f(b)</code></pre>
+<pre><code>## [1] &quot;Class b&quot;</code></pre>
+<pre class="r"><code>f.a(b)</code></pre>
+<pre><code>## [1] &quot;Class a&quot;</code></pre>
+<pre class="r"><code>f.b(b)</code></pre>
+<pre><code>## [1] &quot;Class b&quot;</code></pre>
+<pre class="r"><code>f &lt;- function(x) UseMethod(&quot;f&quot;)
+f.a &lt;- function(x) &quot;Class a&quot;
+f.default &lt;- function(x) &quot;Unknown class&quot;
+
+# Method for a class
+f(structure(list(), class = &quot;a&quot;))</code></pre>
+<pre><code>## [1] &quot;Class a&quot;</code></pre>
+<pre class="r"><code># No method for b class, so uses method for a class
+f(structure(list(), class = c(&quot;b&quot;, &quot;a&quot;)))</code></pre>
+<pre><code>## [1] &quot;Class b&quot;</code></pre>
+<pre class="r"><code># No method for c class, so falls back to default
+f(structure(list(), class = &quot;c&quot;))</code></pre>
+<pre><code>## [1] &quot;Unknown class&quot;</code></pre>
+<pre class="r"><code># Force R to call the wrong method, f.a should only use for a class
+f.a(structure(list(), class = &quot;c&quot;))</code></pre>
+<pre><code>## [1] &quot;Class a&quot;</code></pre>
+</div>
+</div>
+<div id="s4-type" class="section level2">
+<h2>S4 type</h2>
+<ul>
+<li><p>Classes have formal definitions which describe their fields and inheritance structures (parent classes).</p></li>
+<li><p>Method dispatch can be based on multiple arguments to a generic function</p></li>
+<li><p>There is a special operator, @, for extracting slots from an S4 object.</p></li>
+</ul>
+<div id="recognising-objects-generic-functions-and-methods" class="section level3">
+<h3>Recognising objects, generic functions, and methods</h3>
+<p>No S4 classes in the base packages</p>
+<pre class="r"><code>library(stats4)
+
+# From example(mle)
+y &lt;- c(26, 17, 13, 12, 20, 5, 9, 8, 5, 4, 8)
+nLL &lt;- function(lambda) - sum(dpois(y, lambda, log = TRUE))
+fit &lt;- mle(nLL, start = list(lambda = 5), nobs = length(y))
+
+# An S4 object
+isS4(fit)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>otype(fit)</code></pre>
+<pre><code>## [1] &quot;S4&quot;</code></pre>
+<pre class="r"><code>ftype(nobs)</code></pre>
+<pre><code>## [1] &quot;s4&quot;      &quot;generic&quot;</code></pre>
+<pre class="r"><code># nobs is a function to extract the number of observations from a Fit.</code></pre>
+</div>
+<div id="defining-classes-and-creating-objects-1" class="section level3">
+<h3>Defining classes and creating objects</h3>
+<p>An S4 class has three key properties:</p>
+<ul>
+<li>A name: an alpha-numeric class identifier.</li>
+<li>A named list of slots (fields), which defines slot names and permitted classes.</li>
+<li>A string giving the class it inherits from, or, in S4 terminology, that it contains.</li>
+</ul>
+<pre class="r"><code>setClass(&quot;Person&quot;,
+  slots = list(name = &quot;character&quot;, age = &quot;numeric&quot;))
+setClass(&quot;Employee&quot;,
+  slots = list(boss = &quot;Person&quot;),
+  contains = &quot;Person&quot;)
+
+alice &lt;- new(&quot;Person&quot;, name = &quot;Alice&quot;, age = 40)
+john &lt;- new(&quot;Employee&quot;, name = &quot;John&quot;, age = 20, boss = alice)</code></pre>
+<pre class="r"><code>alice</code></pre>
+<pre><code>## An object of class &quot;Person&quot;
+## Slot &quot;name&quot;:
+## [1] &quot;Alice&quot;
+## 
+## Slot &quot;age&quot;:
+## [1] 40</code></pre>
+<pre class="r"><code>alice@name</code></pre>
+<pre><code>## [1] &quot;Alice&quot;</code></pre>
+<pre class="r"><code>john@boss; slot(john, &quot;boss&quot;)</code></pre>
+<pre><code>## An object of class &quot;Person&quot;
+## Slot &quot;name&quot;:
+## [1] &quot;Alice&quot;
+## 
+## Slot &quot;age&quot;:
+## [1] 40</code></pre>
+<pre><code>## An object of class &quot;Person&quot;
+## Slot &quot;name&quot;:
+## [1] &quot;Alice&quot;
+## 
+## Slot &quot;age&quot;:
+## [1] 40</code></pre>
+<p><code>(@ is equivalent to $, and slot() to [[.) but the $ and slot() doesn't work for S4</code></p>
+<pre class="r"><code># john$boss</code></pre>
+</div>
+<div id="creating-new-methods-and-generics-1" class="section level3">
+<h3>Creating new methods and generics</h3>
+<p>we could take union(), which usually just works on vectors, and make it work with data frames:</p>
+<pre class="r"><code>alist &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;a&quot;)
+blist &lt;- c(&quot;a&quot;, &quot;c&quot;, &quot;d&quot;)
+union(alist, blist)</code></pre>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;</code></pre>
+<pre class="r"><code>x &lt;- data.frame(&quot;SN&quot; = 1:2, &quot;Age&quot; = c(21,15), &quot;Name&quot; = c(&quot;John&quot;,&quot;Dora&quot;))
+y &lt;- data.frame(&quot;SN&quot; = 1:2, &quot;Age&quot; = c(21,15), &quot;Name&quot; = c(&quot;John&quot;,&quot;Alice&quot;))
+union(x, y)</code></pre>
+<pre><code>## Warning: Column `Name` joining factors with different levels, coercing to
+## character vector</code></pre>
+<pre><code>##   SN Age  Name
+## 1  2  15 Alice
+## 2  2  15  Dora
+## 3  1  21  John</code></pre>
+<pre class="r"><code>setGeneric(&quot;union&quot;)</code></pre>
+<pre><code>## [1] &quot;union&quot;</code></pre>
+<pre class="r"><code>setMethod(&quot;union&quot;,
+  c(x = &quot;data.frame&quot;, y = &quot;data.frame&quot;),
+  function(x, y) {
+    unique(rbind(x, y))
+  }
+)</code></pre>
+<pre class="r"><code>union(x, y)</code></pre>
+<pre><code>##   SN Age  Name
+## 1  1  21  John
+## 2  2  15  Dora
+## 4  2  15 Alice</code></pre>
+</div>
+</div>
+</div>
+<div id="environments" class="section level1">
+<h1>2. Environments</h1>
+<div id="environment-basics" class="section level2">
+<h2>Environment basics</h2>
+<p>an environment serve as a bag of names: Each name points to an object stored in memory:</p>
+<pre class="r"><code>e &lt;- new.env()
+e$a &lt;- FALSE
+e$b &lt;- &quot;a&quot;
+e$c &lt;- 2.3
+e$d &lt;- 1:3
+ls(e) # show all object in the environment</code></pre>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;</code></pre>
+<p>multiple names can point to the same object, Every environment has a parent, another environment.</p>
+<p>an environment is similar to a list, with four important exceptions:</p>
+<ul>
+<li><p>Every name in an environment is unique.</p></li>
+<li><p>The names in an environment are not ordered (i.e., it doesn’t make sense to ask what the first element of an environment is).</p></li>
+<li><p>An environment has a parent.</p></li>
+<li><p>Environments have reference semantics.</p></li>
+</ul>
+<p>four special environments:</p>
+<ul>
+<li><p>globalenv(), or global environment, is the interactive workspace. This is the environment in which you normally work.</p></li>
+<li><p>baseenv(), or base environment, is the environment of the base package. Its parent is the empty environment.</p></li>
+<li><p>emptyenv(), or empty environment, is the ultimate ancestor of all environments</p></li>
+<li><p>environment() is the current environment.</p></li>
+</ul>
+<p>search() lists all parents of the global environment.</p>
+<pre class="r"><code>search()</code></pre>
+<pre><code>##  [1] &quot;.GlobalEnv&quot;        &quot;package:stats4&quot;    &quot;package:pryr&quot;     
+##  [4] &quot;package:stats&quot;     &quot;package:graphics&quot;  &quot;package:grDevices&quot;
+##  [7] &quot;package:utils&quot;     &quot;package:datasets&quot;  &quot;package:magrittr&quot; 
+## [10] &quot;package:forcats&quot;   &quot;package:stringr&quot;   &quot;package:dplyr&quot;    
+## [13] &quot;package:purrr&quot;     &quot;package:readr&quot;     &quot;package:tidyr&quot;    
+## [16] &quot;package:tibble&quot;    &quot;package:ggplot2&quot;   &quot;package:tidyverse&quot;
+## [19] &quot;package:methods&quot;   &quot;Autoloads&quot;         &quot;package:base&quot;</code></pre>
+<p>Autoloads is used to save memory by only loading package objects</p>
+<p>use new.env() to create an environment, use parent.env() to see its parent</p>
+<pre class="r"><code>e &lt;- new.env()
+# the default parent provided by new.env() is environment
+parent.env(e)</code></pre>
+<pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
+<pre class="r"><code>e$a &lt;- 1
+e$b &lt;- 2
+ls(e)</code></pre>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot;</code></pre>
+<pre class="r"><code>e$a</code></pre>
+<pre><code>## [1] 1</code></pre>
+<p>useful way to view an environment is ls.str()</p>
+<pre class="r"><code>ls.str(e)</code></pre>
+<pre><code>## a :  num 1
+## b :  num 2</code></pre>
+<p>extract the value from a name</p>
+<pre class="r"><code>e$a; e[[&quot;a&quot;]]; get(&quot;a&quot;, envir = e)</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre><code>## [1] 1</code></pre>
+<p>use rm() to remove the binding.</p>
+<pre class="r"><code>rm(&quot;a&quot;, envir = e)
+ls.str(e)</code></pre>
+<pre><code>## b :  num 2</code></pre>
+<p>use exists() to determine if a variable in an environment</p>
+<pre class="r"><code>x &lt;- 10
+exists(&quot;x&quot;, envir = e)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>identical(globalenv(), environment())</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="recursing-over-environments" class="section level2">
+<h2>Recursing over environments</h2>
+<p>where() finds the environment where that name is defined, using R’s regular scoping rules:</p>
+<pre class="r"><code>library(pryr)
+x &lt;- 5
+where(&quot;x&quot;)</code></pre>
+<pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
+<pre class="r"><code>where(&quot;mean&quot;)</code></pre>
+<pre><code>## &lt;environment: base&gt;</code></pre>
+<p>definition of where()</p>
+<pre class="r"><code>where</code></pre>
+<pre><code>## function (name, env = parent.frame()) 
+## {
+##     stopifnot(is.character(name), length(name) == 1)
+##     env &lt;- to_env(env)
+##     if (identical(env, emptyenv())) {
+##         stop(&quot;Can&#39;t find &quot;, name, call. = FALSE)
+##     }
+##     if (exists(name, env, inherits = FALSE)) {
+##         env
+##     }
+##     else {
+##         where(name, parent.env(env))
+##     }
+## }
+## &lt;bytecode: 0x7ff93ebb6e40&gt;
+## &lt;environment: namespace:pryr&gt;</code></pre>
+<table>
+<tr>
+<td bgcolor="orange">
+<font color=gray size=7>Not Interesting</font>
+</td>
+</tr>
+</table>
+</div>
+<div id="explicit-environments" class="section level2">
+<h2>Explicit environments</h2>
+<p>the original list is not changed because modifying a list actually creates and modifies a copy.</p>
+<pre class="r"><code>modify &lt;- function(x) {
+  x$a &lt;- 2
+  invisible()
+}</code></pre>
+<pre class="r"><code>x_l &lt;- list()
+x_l$a &lt;- 1
+modify(x_l)
+x_l$a</code></pre>
+<pre><code>## [1] 1</code></pre>
+<p>apply it to an environment, the original environment is modified:</p>
+<pre class="r"><code>x_e &lt;- new.env()
+x_e$a &lt;- 1
+modify(x_e)
+x_e$a</code></pre>
+<pre><code>## [1] 2</code></pre>
+</div>
+</div>
+<div id="functional-programming" class="section level1">
+<h1>3. Functional programming</h1>
+<p>R is a functional programming (FP) language.</p>
+<p>three building blocks of functional programming</p>
+<ul>
+<li>anonymous functions</li>
+<li>closures (functions written by functions)</li>
+<li>lists of functions.</li>
+</ul>
+<pre class="r"><code># Generate a sample dataset
+set.seed(1014)
+df &lt;- data.frame(replicate(6, sample(c(1:10, -99), 6, rep = TRUE)))
+names(df) &lt;- letters[1:6]
+df</code></pre>
+<pre><code>##    a  b c   d   e f
+## 1  1  6 1   5 -99 1
+## 2 10  4 4 -99   9 3
+## 3  7  9 5   4   1 4
+## 4  2  9 3   8   6 8
+## 5  1 10 5   9   8 6
+## 6  6  2 1   3   8 5</code></pre>
+<pre class="r"><code>fix_missing &lt;- function(x) {
+  x[x == -99] &lt;- NA
+  x
+}
+df[] &lt;- lapply(df, fix_missing)
+df</code></pre>
+<pre><code>##    a  b c  d  e f
+## 1  1  6 1  5 NA 1
+## 2 10  4 4 NA  9 3
+## 3  7  9 5  4  1 4
+## 4  2  9 3  8  6 8
+## 5  1 10 5  9  8 6
+## 6  6  2 1  3  8 5</code></pre>
+<p>code have more advantages</p>
+<div id="anonymous-functions" class="section level2">
+<h2>Anonymous functions</h2>
+<pre class="r"><code># the anonymous function is same
+(function(x) x + 3)(10)</code></pre>
+<pre><code>## [1] 13</code></pre>
+<pre class="r"><code>f &lt;- function(x) x + 3
+f(10)</code></pre>
+<pre><code>## [1] 13</code></pre>
+</div>
+<div id="closures" class="section level2">
+<h2>Closures</h2>
+<p>closure have two</p>
+<pre class="r"><code># two variable inside
+power &lt;- function(exponent) {
+  function(x) {
+    x ^ exponent
+  }
+}
+
+square &lt;- power(2) # exponent is 2 
+square(3) # x is 3</code></pre>
+<pre><code>## [1] 9</code></pre>
+<p>print a closure, can see anything useful:</p>
+<pre class="r"><code>square</code></pre>
+<pre><code>## function(x) {
+##     x ^ exponent
+##   }
+## &lt;environment: 0x7ff93f8d1b70&gt;</code></pre>
+<p>the function itself doesn’t change, the difference is the enclosing environment</p>
+<pre class="r"><code>environment(square) %&gt;% as.list()</code></pre>
+<pre><code>## $exponent
+## [1] 2</code></pre>
+<p>another way to see the structure</p>
+<pre class="r"><code>library(pryr)
+unenclose(square)</code></pre>
+<pre><code>## function (x) 
+## {
+##     x^2
+## }</code></pre>
+<p><code>&lt;&lt;-</code> the double arrow operator will keep looking up the chain of parent environments until it finds a matching name</p>
+<pre class="r"><code>new_counter &lt;- function() {
+  i &lt;- 0
+  function() {
+    i &lt;&lt;- i + 1
+    i
+  }
+}
+
+counter_one &lt;- new_counter()
+unenclose(counter_one)</code></pre>
+<pre><code>## function () 
+## {
+##     0 &lt;&lt;- 0 + 1
+##     0
+## }</code></pre>
+<pre class="r"><code>counter_one()</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code>unenclose(counter_one)</code></pre>
+<pre><code>## function () 
+## {
+##     1 &lt;&lt;- 1 + 1
+##     1
+## }</code></pre>
+<pre class="r"><code>counter_one()</code></pre>
+<pre><code>## [1] 2</code></pre>
+</div>
+<div id="lists-of-functions" class="section level2">
+<h2>Lists of functions</h2>
+<p>functions can be stored in lists.</p>
+<pre class="r"><code>compute_mean &lt;- list(
+  base = function(x) mean(x),
+  sum = function(x) sum(x) / length(x),
+  manual = function(x) {
+    total &lt;- 0
+    n &lt;- length(x)
+    for (i in seq_along(x)) {
+      total &lt;- total + x[i] / n
+    }
+    total
+  }
+)</code></pre>
+<p>to call each function use lapply() and need an anonymous function or a new named function,</p>
+<pre class="r"><code>x &lt;- runif(1e5) # return a uniform distribution data
+lapply(compute_mean, function(f) f(x))</code></pre>
+<pre><code>## $base
+## [1] 0.4994771
+## 
+## $sum
+## [1] 0.4994771
+## 
+## $manual
+## [1] 0.4994771</code></pre>
+<pre class="r"><code>lapply(compute_mean, function(f) system.time(f(x)))</code></pre>
+<pre><code>## $base
+##    user  system elapsed 
+##   0.001   0.000   0.001 
+## 
+## $sum
+##    user  system elapsed 
+##   0.002   0.000   0.002 
+## 
+## $manual
+##    user  system elapsed 
+##   0.006   0.000   0.006</code></pre>
+<pre class="r"><code>x &lt;- 1:10
+funs &lt;- list(
+  sum = sum,
+  mean = mean,
+  median = median
+)
+lapply(funs, function(f) f(x))</code></pre>
+<pre><code>## $sum
+## [1] 55
+## 
+## $mean
+## [1] 5.5
+## 
+## $median
+## [1] 5.5</code></pre>
+<pre class="r"><code># put a function in the aggrement of a function
+midpoint &lt;- function(f, a, b) {
+  (b - a) * f((a + b) / 2)
+}
+
+trapezoid &lt;- function(f, a, b) {
+  (b - a) / 2 * (f(a) + f(b))
+}
+
+midpoint(sin, 0, pi)</code></pre>
+<pre><code>## [1] 3.141593</code></pre>
+<pre class="r"><code>trapezoid(sin, 0, pi)</code></pre>
+<pre><code>## [1] 1.923671e-16</code></pre>
+</div>
+</div>
+<div id="functionals" class="section level1">
+<h1>4. Functionals</h1>
+<p>A higher-order function is a function that takes a function as an input or returns a function as output. The complement to a closure is a functional</p>
+<pre class="r"><code>randomise &lt;- function(f) f(runif(1e3)) # f is a function as input
+randomise(mean)</code></pre>
+<pre><code>## [1] 0.5078925</code></pre>
+<p>lapply() takes a function, applies it to each element in a list, and returns the results in the form of a list.</p>
+<pre class="r"><code>lapply2 &lt;- function(x, f, ...) {
+  out &lt;- vector(&quot;list&quot;, length(x))
+  for (i in seq_along(x)) {
+    out[[i]] &lt;- f(x[[i]], ...)
+  }
+  out
+}
+
+# Create some random data
+l &lt;- replicate(20, runif(sample(1:10, 1)), simplify = FALSE)
+
+# With lapply
+unlist(lapply(l, length))</code></pre>
+<pre><code>##  [1]  8  3  7  4  2  2  8  4  7  6  1  6  7  8  2 10  8  6  8  3</code></pre>
+<pre class="r"><code># What class is each column?
+unlist(lapply(mtcars, class))</code></pre>
+<pre><code>##       mpg       cyl      disp        hp      drat        wt      qsec 
+## &quot;numeric&quot; &quot;numeric&quot; &quot;numeric&quot; &quot;numeric&quot; &quot;numeric&quot; &quot;numeric&quot; &quot;numeric&quot; 
+##        vs        am      gear      carb 
+## &quot;numeric&quot; &quot;numeric&quot; &quot;numeric&quot; &quot;numeric&quot;</code></pre>
+<pre class="r"><code># rcauchy return a cauchy distribution
+trims &lt;- c(0, 0.1, 0.2, 0.5)
+x &lt;- rcauchy(1000)
+unlist(lapply(trims, function(trim) mean(x, trim = trim)))</code></pre>
+<pre><code>## [1] 0.31527829 0.07795881 0.04608098 0.04652580</code></pre>
+<div id="sapply-and-vapply" class="section level2">
+<h2>sapply and vapply</h2>
+<p>vapply() takes an additional argument specifying the output type.</p>
+<pre class="r"><code>sapply(mtcars, is.numeric)</code></pre>
+<pre><code>##  mpg  cyl disp   hp drat   wt qsec   vs   am gear carb 
+## TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</code></pre>
+<pre class="r"><code>args(vapply)</code></pre>
+<pre><code>## function (X, FUN, FUN.VALUE, ..., USE.NAMES = TRUE) 
+## NULL</code></pre>
+<pre class="r"><code>vapply(mtcars, is.numeric, FUN.VALUE = logical(1))</code></pre>
+<pre><code>##  mpg  cyl disp   hp drat   wt qsec   vs   am gear carb 
+## TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</code></pre>
+<pre class="r"><code>df &lt;- data.frame(x = 1:10, y = letters[1:10])
+sapply(df, class)</code></pre>
+<pre><code>##         x         y 
+## &quot;integer&quot;  &quot;factor&quot;</code></pre>
+<pre class="r"><code>vapply(df, class, character(1))</code></pre>
+<pre><code>##         x         y 
+## &quot;integer&quot;  &quot;factor&quot;</code></pre>
+<pre class="r"><code>df2 &lt;- data.frame(x = 1:10, y = Sys.time() + 1:10)
+sapply(df2, class)</code></pre>
+<pre><code>## $x
+## [1] &quot;integer&quot;
+## 
+## $y
+## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
+</div>
+<div id="multiple-inputs-map-and-mapply" class="section level2">
+<h2>Multiple inputs: Map (and mapply)</h2>
+<pre class="r"><code># Generate some sample data
+xs &lt;- replicate(5, runif(10), simplify = FALSE)
+ws &lt;- replicate(5, rpois(10, 5) + 1, simplify = FALSE)</code></pre>
+<p>compute the unweighted means:</p>
+<pre class="r"><code>sapply(xs, mean)</code></pre>
+<pre><code>## [1] 0.6038653 0.5604356 0.5082535 0.3454798 0.4212558</code></pre>
+<p>calculate weighted.mean()</p>
+<pre class="r"><code>unlist(lapply(seq_along(xs), function(i) {
+  weighted.mean(xs[[i]], ws[[i]])
+}))</code></pre>
+<pre><code>## [1] 0.5771461 0.5824162 0.4680431 0.3401923 0.4564215</code></pre>
+<pre class="r"><code># or 
+unlist(lapply(1:5, function(i) {
+  weighted.mean(xs[[i]], ws[[i]])
+}))</code></pre>
+<pre><code>## [1] 0.5771461 0.5824162 0.4680431 0.3401923 0.4564215</code></pre>
+<p>Map, a variant of lapply()</p>
+<pre class="r"><code>Map(weighted.mean, xs, ws)  %&gt;% unlist() # Map(f, ...)</code></pre>
+<pre><code>## [1] 0.5771461 0.5824162 0.4680431 0.3401923 0.4564215</code></pre>
+<pre class="r"><code>a &lt;- matrix(1:20, nrow = 5)
+apply(a, 1, mean)</code></pre>
+<pre><code>## [1]  8.5  9.5 10.5 11.5 12.5</code></pre>
+</div>
+<div id="function-operators" class="section level2">
+<h2>Function operators</h2>
+<pre class="r"><code>chatty &lt;- function(f) {
+  function(x, ...) {
+    res &lt;- f(x, ...)
+    cat(&quot;Processing &quot;, x, &quot;\n&quot;, sep = &quot;&quot;)
+    res
+  }
+}
+f &lt;- function(x) x ^ 2
+s &lt;- c(3, 2, 1)
+chatty(f)(1)</code></pre>
+<pre><code>## Processing 1</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code>vapply(s, chatty(f), numeric(1))</code></pre>
+<pre><code>## Processing 3
+## Processing 2
+## Processing 1</code></pre>
+<pre><code>## [1] 9 4 1</code></pre>
+</div>
+</div>
+
+<p style="color:#777;">Last modified on 2018-12-06</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/en/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       Subscribe </a>
+       </li>
+       
+       
+       <li>
+       
+        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
+       
+        License
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+

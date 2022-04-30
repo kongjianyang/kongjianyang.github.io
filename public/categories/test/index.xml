@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>test on KJY</title>
+    <link>https://kongjianyang.github.io/categories/test/</link>
+    <description>Recent content in test on KJY</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 25 Apr 2022 13:42:27 -0500</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/test/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux下打印带有空格的目录</title>
+      <link>https://kongjianyang.github.io/cn/2022/04/25/dirt_space/</link>
+      <pubDate>Mon, 25 Apr 2022 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/04/25/dirt_space/</guid>
+      <description>有时候在macos下会有很多空格的目录文件需要处理，很麻烦，可以使用下面的命令自动处理带有空格的文件
+alias cwd=&amp;#39;printf &amp;#34;%q\n&amp;#34; &amp;#34;$(pwd)&amp;#34; | tee &amp;gt;(pbcopy)&amp;#39; printf命令 printf 命令模仿 C 程序库（library）里的 printf() 程序。
+printf 由 POSIX 标准所定义，因此使用 printf 的脚本比使用 echo 移植性好。
+printf 使用引用文本或空格分隔的参数，外面可以在 printf 中使用格式化字符串，还可以制定字符串的宽度、左右对齐方式等。默认的 printf 不会像 echo 自动添加换行符，我们可以手动添加 \n。
+printf 命令的语法：
+printf format-string [arguments...] 参数说明：
+ format-string: 为格式控制字符串 arguments: 为参数列表。  #!/bin/bash # author:菜鸟教程 # url:www.runoob.com printf &amp;#34;%-10s %-8s %-4s\n&amp;#34; 姓名 性别 体重kg printf &amp;#34;%-10s %-8s %-4.2f\n&amp;#34; 郭靖 男 66.1234 printf &amp;#34;%-10s %-8s %-4.2f\n&amp;#34; 杨过 男 48.6543 printf &amp;#34;%-10s %-8s %-4.</description>
+    </item>
+    
+    <item>
+      <title>YAML语言介绍</title>
+      <link>https://kongjianyang.github.io/cn/2022/04/25/yaml/</link>
+      <pubDate>Mon, 25 Apr 2022 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/04/25/yaml/</guid>
+      <description>YAML 是专门用来写配置文件的语言，非常简洁和强大，远比 JSON 格式方便。
+YAML 是一种数据序列化语言，通常用于编写配置文件。业界对 YAML 有不同的看法，有人会说 YAML 不过代表了另一种标记语言，另外一些人认为*&amp;ldquo;YAML ain’t markup language&amp;rdquo;（ &amp;ldquo;YAML 不是标记语言&amp;rdquo;）*，&amp;ldquo;YAML&amp;rdquo; 正是这句话的递归缩写，强调了 YAML 是用于数据而不是文档。
+YAML 是一种流行的编程语言，因为它是人类可读的语言，易于理解。它还可以与其他编程语言结合使用。
+YAML支持3种数据结构：
+ 键值表，键值对的集合，包括映射，哈希，字典。 序列，为一组排列的值，包括数组，列表。 常量，为单个的不可再分隔的值，包括字符串，布尔值，整数，浮点数，Null，时间，日期  由于YAML是JSON的自然超集，所以我们每个YAML语法段，都可以用JSON进行表示。
+YAML的基本语法规则如下。
+  大小写敏感 使用缩进表示层级关系 缩进时不允许使用Tab键，只允许使用空格。 缩进的空格数目不重要，只要相同层级的元素左侧对齐即可   # 表示注释，从这个字符一直到行尾，都会被解析器忽略。
+YAML 支持的数据结构有三种。
+  对象：键值对的集合，又称为映射（mapping）/ 哈希（hashes） / 字典（dictionary） 数组：一组按次序排列的值，又称为序列（sequence） / 列表（list） 纯量（scalars）：单个的、不可再分的值   以下分别介绍这三种数据结构。
+对象的一组键值对，使用冒号结构表示。
+ animal: pets  转为 JavaScript 如下。
+ { animal: &amp;#39;pets&amp;#39; }  Yaml 也允许另一种写法，将所有键值对写成一个行内对象。
+ hash: { name: Steve, foo: bar }  转为 JavaScript 如下。</description>
+    </item>
+    
+    <item>
+      <title>R语言基于S4的面向对象编程</title>
+      <link>https://kongjianyang.github.io/cn/2022/03/31/s4/</link>
+      <pubDate>Thu, 31 Mar 2022 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/03/31/s4/</guid>
+      <description>参考资料：
+R 学习笔记: S4 编程基础 - 知乎 (zhihu.com) 不同的语言进行面向对象编程中, 有许多东西是共同的. 就像浩巍说的, 编程就是一通百通. 如果了解 Python 的面向对象编程, 里面的很多思想也能使用在 R 语言面向对象编程中.
+ 类 (class) 是面向对象编程的基础. 类就像是一个包装的盒子, 把对象的所有的属性都包含在其中. 可以形象地说, 类有点像一个有多种口味可供选择的冰激凌机器. 变量 (variable) 是描述对象的具体特征的数据, 是类的属性, 可以是数字或者字符等各种类型, 在 R 语言的 S4 类中被称为存储槽 (slot). 不同的变量, 就是冰激凌机器中的不同口味的冰激凌. 方法 (method) 是作用于类对象的各种操作, 也是类的属性, 具体实现就是各种方程. 方法也对应于冰激凌机器上产出不同口味冰激凌的不同的按钮. 对于不同的类可以有相似的方法, 例如对不同的类都可以有 print 函数来输出类的内容. 需要注意的是, 在 R 语言的 S4 类中, 类的方法本身不属于类本身, 而是独立的方程, 这点和 Python 等语言面向对象编程有差别. 但是, 在 R 语言的 RC 类 (Reference Class) 中方法本身则属于类.  面向对象编程有三个重要特点: 封装, 继承和多态性.</description>
+    </item>
+    
+    <item>
+      <title>使用GitHub page建立站点</title>
+      <link>https://kongjianyang.github.io/cn/2022/03/20/second-post-cn/</link>
+      <pubDate>Sun, 20 Mar 2022 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/03/20/second-post-cn/</guid>
+      <description>记录第一次使用GitHub page建立站点的步骤:
+主要参考这篇文章：郝鸿涛：Hongtao Hao [TOC]
+1. 安装Hugo 在 Terminal 中输入
+brew install hugo 完成后，在 Terminal 中输入 hugo version, 如果显示 Hugo Static Site Generator... 证明安装成功。
+2. 新建一个 Hugo 网站 Hugo 博客就是一个文件夹。首先你要确定把这个文件夹放在哪里。到达自己需要的地址之后使用以下命令
+hugo new site liang.github.io **# quickstart 可以换成任何你想用的名称** cd quickstart/themes git clone https://github.com/hongtaoh/hugo-ht mkdir hugo-ht-new cp -r hugo-ht/* hugo-ht-new rm -rf hugo-ht mv hugo-ht-new hugo-ht cd .. cp -r themes/hugo-ht/exampleSite/* . 这是使用一个Hugo-ht为主题的网站，之后可以折腾其他主题。但是这样会你目前 Hugo 网站中的 Content 文件夹和 config.toml 替换为 Hugo-ht 自带的内容。如果你当前 Hugo 网站中的 Content 文件夹及config.</description>
+    </item>
+    
+    <item>
+      <title>Markdown 试水</title>
+      <link>https://kongjianyang.github.io/cn/2021/01/07/first-post-cn/</link>
+      <pubDate>Thu, 07 Jan 2021 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2021/01/07/first-post-cn/</guid>
+      <description>如果好奇以下的内容是如何实现的，请参考本页源代码 。 
+第一级标题 第二级标题 第三级标题 第四级标题 第五级标题 第六级标题 列表  Water Water Water  Water Water Water   Water  Water Water Water  Water Water      表格    Water Water Water     Water Water Water   Water Water1 Water   Water Water Water    引语  知之为知之，不知为不知，是知也2。 — 孔子
+ 数学公式 最简单的如，$1 + 1 = 3$</description>
+    </item>
+    
+    <item>
+      <title>Markdown 试水</title>
+      <link>https://kongjianyang.github.io/cn/2021/01/07/first-post-cn/</link>
+      <pubDate>Thu, 07 Jan 2021 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2021/01/07/first-post-cn/</guid>
+      <description>如果好奇以下的内容是如何实现的，请参考本页源代码 。 
+第一级标题 第二级标题 第三级标题 第四级标题 第五级标题 第六级标题 列表  Water Water Water  Water Water Water   Water  Water Water Water  Water Water      表格    Water Water Water     Water Water Water   Water Water1 Water   Water Water Water    引语  知之为知之，不知为不知，是知也2。 — 孔子
+ 数学公式 最简单的如，$1 + 1 = 3$</description>
+    </item>
+    
+    <item>
+      <title>Markdown Testing</title>
+      <link>https://kongjianyang.github.io/en/2021/01/07/second-post/</link>
+      <pubDate>Thu, 07 Jan 2021 13:37:57 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/en/2021/01/07/second-post/</guid>
+      <description>See the source code of this page if you are interested.
+ H1 H2 H3 H4 H5 H6 List  Water Water Water  Water Water Water   Water  Water Water Water  Water Water      Table    Water Water Water     Water Water Water   Water Water1 Water   Water Water Water    Quotes  What I cannot create, I do not understand2.</description>
+    </item>
+    
+    <item>
+      <title>R语言tidyverse风格简介</title>
+      <link>https://kongjianyang.github.io/cn/2020/02/13/tidy-verse_style/</link>
+      <pubDate>Thu, 13 Feb 2020 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2020/02/13/tidy-verse_style/</guid>
+      <description>tidyverse有两层基本含义：（1）基于Google 社区的R 代码风格（Google’s R style guide）衍生的一种使代码清晰可读的编程风格；（2）一系列基于前述风格而编写的数据处理R 包。tidyverse一词中的tidy意为整洁，verse意为诗篇、诗行，合起来意指代码或数据如诗行般整洁易读，即成为“整洁代码”（tidy code）或“整洁数据”（tidy data）。熟悉这一风格和相关R 包，可使数据处理和代码编写过程更为便捷高效，且易于与其他数据分析者交流沟通。
+建立较为统一的代码书写风格，可方便不同用户之间的沟通与协作。这里基于tidyverse模式择要介绍目前R 编程中的主流风格，并根据中文用户的习惯做部分调整和说明。某些内容可能初学者并不一定很快遇到，但仍宜先行阅读，以建立良好的书写规范。详细的tidyverse风格说明参见如下链接：
+http://style.tidyverse.org
+三、命名规范
+1.文件名
+文件名应能体现文件的实质内容，只使用数字、英文字母、中划线-和下划线_。尽量避免文件名中的英文字母大小写混用，宜只使用小写，并建议使用_或-连接文件名中的不同英文，如nankai_psy_2017。
+若多个文件存在特定顺序，应以数字作为前缀。如果有超过10个文件，对于个位数的前缀要在前面添补一个0。例如：
+其中，.后的xx表示适当的文件后缀名，可能是csv、xlsx、pdf、png等。
+超过100个文件则在最开始补充00，依此类推。
+2.变量与函数名
+变量和函数名应只使用小写字母、数字和下划线_。下划线（_）用于分隔较长命名中的不同单词，避免用.分隔。例如，变量名写成bmi_women，而不是bmi.women；函数名写成trim_gini，而不是trim.gini。变量名应是名词，而函数名应是动词，且应尽量简洁。
+这里和base R可能有些区别
+    在标识符中不要使用下划线 ( _ ) 或连字符 ( - ). 标识符应根据如下惯例命名. 变量名应使用点 (.) 分隔所有的小写字母或单词; 函数名首字母大写, 不用点分隔 (所含单词首字母大写); 常数命名规则同函数, 但需使用一个 k 开头.
+   variable.name 正例: avg.clicks 反例: avg_Clicks , avgClicks FunctionName 正例: CalculateAvgClicks 反例: calculate_avg_clicks , calculateAvgClicks 函数命名应为动词或动词性短语. 例外: 当创建一个含类 (class) 属性的对象时, 函数名 (也是constructor) 和类名 (class) 应当匹配 (例如, lm).</description>
+    </item>
+    
+    <item>
+      <title>R语言多重数据交集</title>
+      <link>https://kongjianyang.github.io/cn/2020/01/12/multiple_intersects/</link>
+      <pubDate>Sun, 12 Jan 2020 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2020/01/12/multiple_intersects/</guid>
+      <description>一个简单的例子讲解怎么做多重数据的交集
+首先创造一个嵌套的list
+l &amp;lt;- list(A=c(&amp;#34;one&amp;#34;, &amp;#34;two&amp;#34;, &amp;#34;three&amp;#34;, &amp;#34;four&amp;#34;), B=c(&amp;#34;one&amp;#34;, &amp;#34;two&amp;#34;), C=c(&amp;#34;two&amp;#34;, &amp;#34;four&amp;#34;, &amp;#34;five&amp;#34;, &amp;#34;six&amp;#34;), D=c(&amp;#34;six&amp;#34;, &amp;#34;seven&amp;#34;)) crossprod(table(stack(l))) l $A [1] &amp;#34;one&amp;#34; &amp;#34;two&amp;#34; &amp;#34;three&amp;#34; &amp;#34;four&amp;#34; $B [1] &amp;#34;one&amp;#34; &amp;#34;two&amp;#34; $C [1] &amp;#34;two&amp;#34; &amp;#34;four&amp;#34; &amp;#34;five&amp;#34; &amp;#34;six&amp;#34; $D [1] &amp;#34;six&amp;#34; &amp;#34;seven&amp;#34; crossprod(table(stack(l))) #的到结果 ind ind A B C D A 4 2 2 0 B 2 2 1 0 C 2 1 4 1 D 0 0 1 2 开始解释这些命令
+首先是stack命令，将潜逃列表变平
+&amp;gt; stack(l) values ind 1 one A 2 two A 3 three A 4 four A 5 one B 6 two B 7 two C 8 four C 9 five C 10 six C 11 six D 12 seven D Stacking vectors concatenates multiple vectors into a single vector along with a factor indicating where each observation originated.</description>
+    </item>
+    
+    <item>
+      <title>html基本入门</title>
+      <link>https://kongjianyang.github.io/cn/2019/08/27/html_intro/</link>
+      <pubDate>Tue, 27 Aug 2019 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2019/08/27/html_intro/</guid>
+      <description>HTML 不是一门编程语言，而是一种用于定义内容结构的_标记语言_。HTML 由一系列的**元素（elements）**组成，这些元素可以用来包围不同部分的内容，使其以某种方式呈现或者工作。 一对标签（ tags）可以为一段文字或者一张图片添加超链接，将文字设置为斜体，改变字号，等等。 例如，键入下面一行内容：
+键入下面一行内容：
+我的猫咪脾气非常暴躁 可以将这行文字封装成一个段落（paragraph）元素来使其在单独一行呈现：
+&amp;lt;p&amp;gt;我的猫咪脾气非常暴躁&amp;lt;/p&amp;gt;  HTML元素的剖析 让我们进一步探讨该段落元素。
+元素的主要部分如下：
+ 开头标记：它由元素的名称（在本例中为p）组成，并包装在开始和关闭尖括号中。这说明了元素开始或开始生效的位置-在这种情况下，段落开始了。 **结束标记：**与开始标记相同，不同之处在于它在元素名称之前包含一个_正斜杠_。这说明了元素的结尾，在这种情况下，段落的结尾。未能添加结束标记是标准的初学者错误之一，并且可能导致奇怪的结果。 **内容：**这是元素的内容，在这种情况下，只是文本。 **元素：**开始标签，结束标签和内容共同组成元素。  元素也可以具有如下所示的属性：
+属性包含有关您不想出现在实际内容中的元素的额外信息。在这里，class是属性_名称_ ，editor-note是属性_值_。通过该class属性，您可以为元素提供一个非唯一的标识符，该标识符可用于class样式信息和其他信息。
+属性应始终具有以下内容：
+ 它与元素名称（如果元素已经具有一个或多个属性，则为上一个属性）之间的空格。 属性名称后跟等号。 用引号引起来的属性值。  注意：不包含ASCII空格（或任何字符&amp;quot; &#39; ` = &amp;lt; &amp;gt;）的简单属性值可以不加引号，但是建议您对所有属性值加引号，因为这会使代码更一致和更易理解。
+ 嵌套元素 您也可以将元素放入其他元素中-这称为嵌套。如果要说明“我们的猫脾气非常暴躁”，可以将“非常”一词包裹在一个&amp;lt;strong&amp;gt; 元素中，这意味着特别强调该词：
+&amp;lt;p&amp;gt;我的猫咪脾气&amp;lt;strong&amp;gt;非常&amp;lt;/strong&amp;gt;暴躁:)&amp;lt;/p&amp;gt; 但是，要确保元素正确嵌套。在上面的示例中，我们&amp;lt;p&amp;gt; 首先打开了元素，然后打开了&amp;lt;strong&amp;gt;元素；因此，我们必须先关闭&amp;lt;strong&amp;gt;元素，然后再关闭&amp;lt;p&amp;gt;元素。以下是不正确的：
+# right &amp;lt;p&amp;gt;我的猫咪脾气&amp;lt;strong&amp;gt;非常暴躁&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt; # wong &amp;lt;p&amp;gt;我的猫咪脾气&amp;lt;strong&amp;gt;非常&amp;lt;/p&amp;gt;暴躁&amp;lt;/strong&amp;gt; 这些元素必须正确地打开和关闭，以使它们清楚地位于彼此内部或外部。如果它们如上所示重叠，则您的Web浏览器将尝试对您要说的内容做出最佳猜测，这可能会导致意外结果。
+ 空元素 一些元素没有内容，被称为空元素。采取&amp;lt;img&amp;gt; 我们在HTML页面中已经拥有的元素：
+&amp;lt;img src=&amp;#34;/img/earth.jpg&amp;#34; alt=&amp;#34;地球&amp;#34;&amp;gt; 它包含两个属性，但是没有结束&amp;lt;/img&amp;gt;标记，也没有内部内容。其目的是将图像嵌入HTML页面中。
+ HTML文档剖析 总结了各个HTML元素的基础知识。现在，我们将研究如何将单个元素组合以形成整个HTML页面。让我们重新看一下index.html示例中放入的代码：
+&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;utf-8&amp;#34;&amp;gt; &amp;lt;title&amp;gt;测试页面&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;img src=&amp;#34;/img/earth.</description>
+    </item>
+    
+    <item>
+      <title>R语言管道操作Magritte</title>
+      <link>https://kongjianyang.github.io/cn/2019/04/27/magritte/</link>
+      <pubDate>Sat, 27 Apr 2019 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2019/04/27/magritte/</guid>
+      <description>主要参考文章：
+R语言中管道操作符 %&amp;gt;%, %T&amp;gt;%, %$% 和 %&amp;lt;&amp;gt;% - 知乎 (zhihu.com) The Four Pipes of magrittr | R-bloggers magrittr包有两个主要目标:
+  第一是减少代码开发时间，提高代码的可读性和维护性
+  第二是让你的代码更短
+  lhs %&amp;gt;% rhs # pipe syntax for rhs(lhs)
+  lhs %&amp;gt;% rhs(a = 1) # pipe syntax for rhs(lhs, a = 1)
+  lhs %&amp;gt;% rhs(a = 1, b = .) # pipe syntax for rhs(a = 1, b = lhs)
+  lhs %&amp;lt;&amp;gt;% rhs # pipe syntax for lhs &amp;lt;- rhs(lhs)</description>
+    </item>
+    
+    <item>
+      <title>R中进行文件以及文件系统管理</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/25/r_files/</link>
+      <pubDate>Sun, 25 Nov 2018 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/25/r_files/</guid>
+      <description>本文中提到的文件系统管理主要是指文件和目录（即文件夹）的创建、查看、重命名、复制、删除和文件权限处理。
+1. 文件操作 创建文件
+# 创建一个空文件 A.txt file.create(&amp;quot;A.txt&amp;quot;) # 查看当前目录下的子目录和文件 list.files() # 创建多个空文件 A1.txt，A2.txt，A3.txt file.create(&amp;quot;A1.txt&amp;quot;, &amp;quot;A2.txt&amp;quot;, &amp;quot;A3.txt&amp;quot;) # 查看当前目录下的子目录和文件 list.files() # 创建一个有内容的文件 B.txt cat(&amp;quot;文件测试\n&amp;quot;, file = &amp;quot;B.txt&amp;quot;) list.files()  查看文件
+# 显示当前目录中的目录和文件 ## 下面两句结果相同 list.files() # 建议使用该命令，方便记忆 dir() #python中这个意味着查看文件属性 ## 参数full.names = TRUE，确定文件显示全名 ## 参数recursive = TRUE，递归显示，即把目录下的目录和文件都以文件的形式显示 list.files(, full.names = TRUE, recursive = TRUE) # 检查文件是否存在 ## 存在的文件 file.exists(&amp;quot;A.txt&amp;quot;) ## 不存在的文件 file.exists(&amp;quot;readme.txt&amp;quot;) # 判断是否是文件 file_test(&amp;quot;-f&amp;quot;, &amp;quot;A.txt&amp;quot;)  读取文件
+# 文件A.txt读取 readLines(&amp;quot;A.</description>
+    </item>
+    
+    <item>
+      <title>R向文本文件插入内容</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/25/r_inscert_content/</link>
+      <pubDate>Sun, 25 Nov 2018 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/25/r_inscert_content/</guid>
+      <description>1. 创造文件并写入 fileConn&amp;lt;-file(&amp;quot;./output.txt&amp;quot;) #创造一个文件 writeLines(c(&amp;quot;Hello&amp;quot;,&amp;quot;World&amp;quot;), fileConn) #写入内容到文件内 close(fileConn)  2. 替代方法 可以使用sink和cat命令写入文件
+sink函数将输出结果重定向到文件。
+使用方式：sink(file = NULL, append = FALSE, type = c(“output”, “message”),split = FALSE)
+append参数：布尔值。TRUE时，输出内容追加到文件尾部。FALSE，覆盖文件原始内容。
+cat函数即能输出到屏幕，也能输出到文件.
+使用方式：cat(… , file = ““, sep =” “, fill = FALSE, labels = NULL,append = FALSE)
+有file时，输出到file。无file时，输出到屏幕。
+append参数：布尔值。TRUE时，输出内容追加到文件尾部。FALSE，覆盖文件原始内容。
+sink(&amp;quot;./outfile2.txt&amp;quot;) cat(&amp;quot;hello\nworld&amp;quot;) ## hello ## world sink()  3. 替代方法2 R中还有一个write函数，可以直接写入内容到文件内
+line=&amp;quot;hello\nworld&amp;quot; write(line,file=&amp;quot;./outfile3.txt&amp;quot;)  4. 插入文件到文本指定位置 创造文件
+line=&amp;quot;hello\nworld&amp;quot; write(line,file=&amp;quot;./outfile3.txt&amp;quot;)  读取文件
+txt_cont &amp;lt;- readLines(&amp;quot;./outfile3.txt&amp;quot;, warn=FALSE) length(txt_cont) ## [1] 2  在文件的第二行插入内容重新写入</description>
+    </item>
+    
+    <item>
+      <title>Pearson-spearman相关性计算的异同</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/08/pearson_spearman/</link>
+      <pubDate>Thu, 08 Nov 2018 13:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/08/pearson_spearman/</guid>
+      <description>&lt;p&gt;三个相关性系数（pearson, spearman,
+kendall）反应的都是两个变量之间变化趋势的方向以及程度，其值范围为-1到+1，0表示两个变量不相关，正值表示正相关，负值表示负相关，值越大表示相关性越强。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

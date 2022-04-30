@@ -1,0 +1,97 @@
+---
+title: 'Set Significant Letters in the Bar Plot in ggplot2'
+author: Liang
+date: '2018-05-04'
+slug: set-letters-in-the-graph
+categories:
+  - R
+  - Statics
+tags:
+  - R
+---
+
+## Problem
+
+As a biologist, one daily work is comparing the treatment and untreatment group and find if there are any significant difference. One common way is drawing a barplot with error bar and put the significant letters  a little higher than the bar plot. Like a figure showing below:
+annotations for significant differences based on p value.
+
+![](http://esapubs.org/archive/ecol/E093/167/AppDimages/FigD1.jpg)
+
+Results are usually drawn in a barplot. For all variables with the same letter, the difference between the means is not statistically significant. If two variables have different letters, they are significantly different.
+
+But draw this graph in ggplot are not easy. This post will solve this problem.
+
+## Solution
+
+### prepare data
+
+```{r}
+x<-c(25.6,22.2,28.0,29.8,24.4,30.0,29.0,27.5,25.0,27.7,23.0,32.2,28.8,28.0,31.5,25.9,20.6,21.2,22.0,21.2) 
+b<-data.frame(x,a=gl(5,4,20)) ## a is factor
+
+head(b)
+```
+
+### anova test and Tukey multiple comparisons
+
+```{r}
+m1<-aov(x~a,data=b)
+TukeyHSD(m1)
+```
+
+`TukeyHSD` means Tukey's ‘Honest Significant Difference’ method which create a set of confidence intervals on the differences between the means of the levels of a factor with the specified family-wise probability of coverage. From the result, only 5 and 2, 5 and 4 have significantly different.
+
+### HSD.test mutiple comparisons
+
+```{r}
+library(agricolae)
+results <- HSD.test(m1, "a", group=TRUE)
+results$groups
+
+oder.group <- results$groups[order(rownames(results$groups)),]
+```
+Using `HSD.test` function, we can assign our group to significant letters, the default significant level is 0.05.
+
+
+### Creat barplot with error bar and significant letters.
+
+```{r}
+library(Rmisc)
+stats <- summarySE(b, measurevar="x", groupvars=c("a"),na.rm=TRUE)
+stats
+```
+
+
+```{r}
+library(ggplot2)
+ggplot(stats, aes(x=a, y=x)) + 
+  geom_bar(position=position_dodge(.5), stat="identity",
+             colour="black", width = 0.5) +      # Change bar size with width = 0.5
+    geom_errorbar(aes(ymin=x-se, ymax=x+se),
+                  size=.5,    # Thinner lines
+                  width=.2,
+                  position=position_dodge(.5)) + 
+  theme_classic() + geom_text(aes(x=a, y=x+se+2,label=oder.group$groups), position=position_dodge(width=0.9), size=4)#text(x = stats$a, y = stats$x+stats$se+5, labels = c("ab", "a", "ab", "a", "b"))
+```
+
+For the graph above, we know only 5 have significant difference with 2 and 4.
+
+## Reference:
+[Copy and paste small data sets into R](https://magesblog.com/post/2012-03-21-copy-and-paste-small-data-sets-into-r/)
+
+[How to obtain the results of a Tukey HSD post-hoc test in a table showing grouped pairs?](https://stats.stackexchange.com/questions/31547/how-to-obtain-the-results-of-a-tukey-hsd-post-hoc-test-in-a-table-showing-groupe)
+
+[ggplot2 texts : Add text annotations to a graph in R software](http://www.sthda.com/english/wiki/ggplot2-texts-add-text-annotations-to-a-graph-in-r-software)
+
+[How to denote letters to mark significant differences in a bar chart plot](https://www.researchgate.net/post/How_to_denote_letters_to_mark_significant_differences_in_a_bar_chart_plot)
+
+
+
+
+
+
+
+
+
+
+

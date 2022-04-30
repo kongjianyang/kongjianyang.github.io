@@ -1,0 +1,240 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>Python绘图和可视化</h1>
+
+<p>Liang 
+ / 2018-11-24 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-Python%e7%bb%98%e5%9b%be%e5%92%8c%e5%8f%af%e8%a7%86%e5%8c%96.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+
+<div class="body-text list-text">
+<p>Python有许多库进行静态或动态的数据可视化，但我这里重要关注于matplotlib和基于它的库。matplotlib的目的是为Python构建一个MATLAB式的绘图接口。在Jupyter notebook中执行下面的语句：</p>
+<pre tabindex="0"><code>%matplotlib notebook
+import matplotlib.pyplot as plt
+import numpy as np
+data = np.arange(10)
+data
+plt.plot(data)
+</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-6367a64fb33f102d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>matplotlib的图像都位于Figure对象中。你可以用plt.figure创建一个新的Figure： 如果用的是IPython，这时会弹出一个空窗口，但在Jupyter中，必须再输入更多命令才能看到。plt.figure有一些选项，特别是figsize，它用于确保当图片保存到磁盘时具有一定的大小和纵横比。</p>
+<p>不能通过空Figure绘图。必须用add_subplot创建一个或多个subplot才行：</p>
+<pre tabindex="0"><code># 代码的意思是：图像应该是2×2的（即最多4张图），
+# 且当前选中的是4个subplot中的第一个（编号从1开始）。
+# 如果再把后面两个subplot也创建出来，最终得到的图像如图所示：
+fig = plt.figure()
+ax1 = fig.add_subplot(2, 2, 1)
+ax2 = fig.add_subplot(2, 2, 2)
+ax3 = fig.add_subplot(2, 2, 3)
+</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-e3b5c8bbcc9b2b94.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>使用Jupyter notebook有一点不同，即每个小窗重新执行后，图形会被重置。因此，对于复杂的图形，，你必须将所有的绘图命令存在一个小窗里。 加的绘图命令会在最后一个subplot上.</p>
+<pre tabindex="0"><code>fig = plt.figure()
+ax1 = fig.add_subplot(2, 2, 1)
+ax2 = fig.add_subplot(2, 2, 2)
+ax3 = fig.add_subplot(2, 2, 3)
+plt.plot(np.random.randn(50).cumsum(), &#39;k--&#39;) #plt.plot(np.random.randn(50).cumsum(), &#39;k--&#39;) # 
+ax1.hist(np.random.randn(100), bins=20, color=&#39;k&#39;, alpha=0.3)
+ax2.scatter(np.arange(30), np.arange(30) + 3 * np.random.randn(30))
+</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-5e66e1368276f2f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="">
+默认情况下，matplotlib会在subplot外围留下一定的边距，并在subplot之间留下一定的间距。间距跟图像的高度和宽度有关，因此，如果你调整了图像大小（不管是编程还是手工），间距也会自动调整。利用Figure的subplots_adjust方法可以轻而易举地修改间距。wspace和hspace用于控制宽度和高度的百分比，可以用作subplot之间的间距。下面是一个简单的例子，其中我将间距收缩到了0</p>
+<pre tabindex="0"><code>fig, axes = plt.subplots(2, 2, sharex=True, sharey=True)
+for i in range(2):
+    for j in range(2):
+        axes[i, j].hist(np.random.randn(500), bins=50, color=&#39;k&#39;, alpha=0.5)
+plt.subplots_adjust(wspace=0, hspace=0)
+</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-b840e059ebccc4b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<pre tabindex="0"><code>plt.figure() 
+from numpy.random import randn
+plt.plot()
+plt.plot(randn(30).cumsum(), &#39;ko--&#39;)
+</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-a455657224ee6548.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="设置标题轴标签刻度以及刻度标签">设置标题、轴标签、刻度以及刻度标签<a href="#设置标题轴标签刻度以及刻度标签" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<pre tabindex="0"><code># 随机漫步图
+fig = plt.figure()
+ax = fig.add_subplot(1, 1, 1)
+ax.plot(np.random.randn(1000).cumsum())
+ticks = ax.set_xticks([0, 250, 500, 750, 1000]) # 将刻度放到哪些位置
+labels = ax.set_xticklabels([&#39;one&#39;, &#39;two&#39;, &#39;three&#39;, &#39;four&#39;, &#39;five&#39;], rotation=30, fontsize=&#39;small&#39;) # 刻度标签，旋转三十度
+ax.set_title(&#39;My first matplotlib plot&#39;) # 设置标题
+ax.set_xlabel(&#39;Stages&#39;) # 设置X轴label
+# cumsum: cumulative sum
+# Cumsum ：计算轴向元素累加和，返回由中间结果组成的数组
+# 重点就是返回值是“由中间结果组成的数组”
+</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-4f68005584b592ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="添加图例">添加图例<a href="#添加图例" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<pre tabindex="0"><code>from numpy.random import randn
+fig = plt.figure(); ax = fig.add_subplot(1, 1, 1)
+ax.plot(randn(1000).cumsum(), &#39;k&#39;, label = &#39;one&#39;)
+ax.plot(randn(1000).cumsum(), &#39;k--&#39;, label = &#39;two&#39;)
+ax.plot(randn(1000).cumsum(), &#39;k.&#39;, label = &#39;three&#39;)
+ax.legend(loc=&#39;best&#39;)
+</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-cd86cb834753556f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="图上加注解">图上加注解<a href="#图上加注解" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>ax.annotate方法可以在指定的x和y坐标轴绘制标签。使用set_xlim和set_ylim人工设定起始和结束边界</p>
+<pre tabindex="0"><code>import pandas as pd
+from datetime import datetime
+
+fig = plt.figure()
+ax = fig.add_subplot(1, 1, 1)
+data = pd.read_csv(&#39;examples/spx.csv&#39;, index_col=0, parse_dates=True)
+spx = data[&#39;SPX&#39;]
+
+spx.plot(ax=ax, style=&#39;k-&#39;)
+
+#需要标注的点作为元组
+crisis_data = [
+    (datetime(2007, 10, 11), &#39;Peak of bull market&#39;),
+    (datetime(2008, 3, 12), &#39;Bear Stearns Fails&#39;),
+    (datetime(2008, 9, 15), &#39;Lehman Bankruptcy&#39;)
+]
+
+for date, label in crisis_data:
+    ax.annotate(label, xy=(date, spx.asof(date) + 75),
+                xytext=(date, spx.asof(date) + 225),
+                arrowprops=dict(facecolor=&#39;black&#39;, headwidth=4, width=2,
+                                headlength=4),
+                horizontalalignment=&#39;left&#39;, verticalalignment=&#39;top&#39;)
+
+# Zoom in on 2007-2010
+ax.set_xlim([&#39;1/1/2007&#39;, &#39;1/1/2011&#39;])
+ax.set_ylim([600, 1800])
+# 加上title
+ax.set_title(&#39;Important dates in the 2008-2009 financial crisis&#39;)
+</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-28298790548a97a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+
+<p style="color:#777;">最后一次修改于 2018-11-24</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       订阅 </a>
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+

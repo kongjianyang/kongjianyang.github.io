@@ -1,0 +1,1037 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>vscode使用技巧</h1>
+
+<p>KJY 
+ / 2019-03-14 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2019-03-14-vscode%e4%bd%bf%e7%94%a8.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+<aside class="toc">
+Table of Contents:
+<nav id="TableOfContents">
+  <ol>
+    <li><a href="#一user-guide用户指南">一、User Guide（用户指南）🔗</a></li>
+    <li><a href="#更改显示语言">更改显示语言🔗</a></li>
+    <li><a href="#保存自动保存">保存/自动保存🔗</a></li>
+    <li><a href="#预览模式">预览模式🔗</a></li>
+    <li><a href="#代码补全">代码补全🔗</a>
+      <ol>
+        <li><a href="#手动代码补全">手动代码补全🔗</a></li>
+        <li><a href="#自动代码补全">自动代码补全🔗</a></li>
+      </ol>
+    </li>
+    <li><a href="#格式化">格式化🔗</a></li>
+    <li><a href="#缩进">缩进🔗</a></li>
+    <li><a href="#查找和替换">查找和替换🔗</a></li>
+    <li><a href="#常见问题">常见问题🔗</a></li>
+    <li><a href="#二技巧和窍门">二、技巧和窍门🔗</a></li>
+    <li><a href="#命令面板">命令面板🔗</a></li>
+    <li><a href="#快速开启">快速开启🔗</a></li>
+    <li><a href="#状态栏">状态栏🔗</a></li>
+    <li><a href="#调整设置-">调整设置 ⭐🔗</a></li>
+    <li><a href="#文件和文件夹-">文件和文件夹 ⭐🔗</a>
+      <ol>
+        <li><a href="#禅模式">禅模式🔗</a></li>
+        <li><a href="#并排编辑">并排编辑🔗</a></li>
+        <li><a href="#在编辑之间切换">在编辑之间切换🔗</a></li>
+        <li><a href="#创建或打开文件">创建或打开文件🔗</a></li>
+        <li><a href="#导航历史">导航历史🔗</a></li>
+        <li><a href="#文件关联">文件关联🔗</a></li>
+      </ol>
+    </li>
+    <li><a href="#编辑技巧-">编辑技巧 ⭐🔗</a>
+      <ol>
+        <li><a href="#多光标选择">多光标选择🔗</a></li>
+        <li><a href="#多光标修饰符">多光标修饰符🔗</a></li>
+        <li><a href="#缩小扩大-选择">缩小/扩大 选择🔗</a></li>
+        <li><a href="#列框选">列（框）选🔗</a></li>
+        <li><a href="#移动多个光标">移动多个光标🔗</a></li>
+        <li><a href="#撤消光标位置">撤消光标位置🔗</a></li>
+        <li><a href="#选择当前行">选择当前行🔗</a></li>
+        <li><a href="#快速滚动">快速滚动🔗</a></li>
+        <li><a href="#上下复制行">上下复制行🔗</a></li>
+        <li><a href="#上下移动行">上下移动行🔗</a></li>
+        <li><a href="#转到文件中的-symbol">转到文件中的 Symbol🔗</a></li>
+        <li><a href="#转到工作区中的-symbol">转到工作区中的 Symbol🔗</a></li>
+        <li><a href="#导航到特定行">导航到特定行🔗</a></li>
+        <li><a href="#修剪尾随空格">修剪尾随空格🔗</a></li>
+        <li><a href="#括号匹配">括号匹配🔗</a></li>
+        <li><a href="#代码格式化">代码格式化🔗</a></li>
+        <li><a href="#代码折叠">代码折叠🔗</a></li>
+        <li><a href="#导航到文件的开头和结尾">导航到文件的开头和结尾🔗</a></li>
+        <li><a href="#打开-markdown-预览">打开 Markdown 预览🔗</a></li>
+      </ol>
+    </li>
+    <li><a href="#智能感知">智能感知🔗</a>
+      <ol>
+        <li><a href="#查看定义peek-视图">查看定义（peek 视图）🔗</a></li>
+        <li><a href="#转到定义">转到定义🔗</a></li>
+        <li><a href="#查看引用">查看引用🔗</a></li>
+        <li><a href="#查找所有引用">查找所有引用🔗</a></li>
+        <li><a href="#重命名符号">重命名符号🔗</a></li>
+        <li><a href="#emmet-语法">Emmet 语法🔗</a></li>
+      </ol>
+    </li>
+    <li><a href="#snippets代码片段">Snippets（代码片段）🔗</a>
+      <ol>
+        <li><a href="#创建自定义-snippets">创建自定义 Snippets🔗</a></li>
+      </ol>
+    </li>
+    <li><a href="#git-集成">Git 集成🔗</a>
+      <ol>
+        <li><a href="#diffs-差异比较">Diffs 差异比较🔗</a></li>
+        <li><a href="#branches-分支">Branches 分支🔗</a></li>
+        <li><a href="#staging-暂存">Staging 暂存🔗</a></li>
+        <li><a href="#撤销上一次提交">撤销上一次提交🔗</a></li>
+        <li><a href="#查看-git-输出">查看 Git 输出🔗</a></li>
+        <li><a href="#gutter-指示符">Gutter 指示符🔗</a></li>
+        <li><a href="#解决合并冲突">解决合并冲突🔗</a></li>
+        <li><a href="#更多配置">更多配置🔗</a></li>
+      </ol>
+    </li>
+    <li><a href="#调试">调试🔗</a>
+      <ol>
+        <li><a href="#配置调试器">配置调试器🔗</a></li>
+        <li><a href="#断点和逐步">断点和逐步🔗</a></li>
+        <li><a href="#data-inspection数据检查">Data inspection（数据检查）🔗</a></li>
+        <li><a href="#内联值">内联值🔗</a></li>
+      </ol>
+    </li>
+    <li><a href="#任务执行器-task-runner">任务执行器 Task runner🔗</a>
+      <ol>
+        <li><a href="#自动检测任务">自动检测任务🔗</a></li>
+        <li><a href="#从终端菜单运行任务">从终端菜单运行任务🔗</a></li>
+        <li><a href="#定义任务的键盘快捷键">定义任务的键盘快捷键🔗</a></li>
+        <li><a href="#将-npm-脚本作为资源管理器中的任务运行">将 npm 脚本作为资源管理器中的任务运行🔗</a></li>
+      </ol>
+    </li>
+    <li><a href="#vs-code-的设置">VS Code 的设置🔗</a></li>
+    <li><a href="#task-任务">Task 任务🔗</a></li>
+    <li><a href="#下一步">下一步🔗</a></li>
+    <li><a href="#学习文档">学习文档🔗</a></li>
+  </ol>
+</nav>
+</aside>
+
+
+<div class="body-text list-text">
+<p>VS code 的层级树太浅怎么解决，子目录的缩进不够深</p>
+<p><img src="https://pic1.zhimg.com/v2-a571a9a0f63a0c7827410c3008270fe4_b.jpg" alt=""></p>
+<p>通过修改workbench&gt;Tree: indent的结构</p>
+<p><img src="https://pic1.zhimg.com/50/v2-7e0342b0cb0c456aadee0e446509937f_720w.jpg?source=1940ef5c" alt=""></p>
+<p>一些详细介绍：</p>
+<h2 id="一user-guide用户指南">一、User Guide（用户指南）🔗<a href="#一user-guide用户指南" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<blockquote>
+<p>参考官方文档：<a href="https://code.visualstudio.com/docs/editor/codebasics" target="_blank" rel="noreferrer noopener">Basic Editing in Visual Studio Code</a>
+
+</p>
+</blockquote>
+<h2 id="更改显示语言">更改显示语言🔗<a href="#更改显示语言" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>通过安装插件 <code>Chinese (Simplified) Language Pack for Visual Studio Code</code> 来启用中文（需要重启）</p>
+<p>默认情况下，Visual Studio Code 附带英语作为显示语言，而其他语言则依赖于 Marketplace 提供的语言包扩展。</p>
+<p>VS Code 检测到操作系统的 UI 语言，并会提示您安装适当的语言包（如果在 Marketplace 上可用）。</p>
+<h2 id="保存自动保存">保存/自动保存🔗<a href="#保存自动保存" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>默认情况下，VS 代码需要一个明确的行动，将更改保存到磁盘，按<code>Ctrl + S</code>。</p>
+<p>您也可以使用<strong>文件</strong> &gt; <strong>自动保存</strong>从顶级菜单切换<strong>自动保存</strong>。</p>
+<p>要进一步控制自动保存，请打开配置文件<code>settings.json</code>，然后找到相关的设置（如果没有则直接添加）：</p>
+<p>它可以具有以下值：</p>
+<ul>
+<li>
+<p><code>off</code> -禁用自动保存。</p>
+</li>
+<li>
+<p><code>afterDelay</code> - 在配置的延迟（默认 1000 毫秒）后保存文件。</p>
+</li>
+<li>
+<p><code>onFocusChange</code> - 当焦点移出脏文件的编辑器时保存文件。</p>
+</li>
+<li>
+<p><code>onWindowChange</code> - 当焦点移出 VS Code 窗口时保存文件。</p>
+</li>
+<li>
+<p><code>files.autoSaveDelay</code>：当<code>files.autoSave</code>配置为时，配置延迟（以毫秒为单位）<code>afterDelay</code>。默认值为 1000 毫秒。</p>
+</li>
+</ul>
+<blockquote>
+<p>打开用户设置 <code>settings.json</code> 文件的方法，你可以通过在命令面板（打开命令面板的快捷键为 F1 ）输入命令：<code>Open Settings (JSON)</code> 来打开此文件。</p>
+</blockquote>
+<h2 id="预览模式">预览模式🔗<a href="#预览模式" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>在 VS Code 中打开工作区内的文件的方式：</p>
+<ul>
+<li>单击文件，进入预览模式，此时标签页中的名字显示为 <em>斜体</em></li>
+<li>双击文件，直接进入编辑模式，此时标签页中的名字正常显示</li>
+</ul>
+<p>在资源管理器中单击或选择一个文件时，该文件将以 <strong>预览模式</strong> 显示并重用现有选项卡。 如果您正在快速浏览文件，并且不希望每个访问的文件都有其自己的标签页，则这非常有用。 当您开始编辑文件或使用双击从资源管理器中打开文件时，会有一个新的标签页专用于该文件。</p>
+<p>预览模式在标签页标题中以 <em><strong>斜体</strong></em> 表示</p>
+<p><img src="https://code.visualstudio.com/assets/docs/getstarted/userinterface/preview-tab.png" alt=""></p>
+<p>如果在预览标签页中编辑文件，或者双击该预览标签页，则该标签页自动变为编辑模式。</p>
+<p>如果您不想使用预览模式而希望总是创建一个新的标签页，则可以使用以下设置来控制：</p>
+<ul>
+<li><code>workbench.editor.enablePreview</code> ：全局启用或禁用（<code>false</code>）预览编辑器</li>
+<li><code>workbench.editor.enablePreviewFromQuickOpen</code> ：启用或禁用预览编辑器，当从“快速打开（Ctrl + P）” 中打开文件时。</li>
+</ul>
+<h2 id="代码补全">代码补全🔗<a href="#代码补全" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<h3 id="手动代码补全">手动代码补全🔗<a href="#手动代码补全" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>手动代码补全：默认 快捷键为 <code>Ctrl + 空格键</code> ，但是在 Windows 中它被系统输 入法非法占用（当按下此快捷键时出现中英切换提示，它被用于中/英模式切换）；解决方法：</p>
+<ul>
+<li>方法一：修改 vscode 中的快捷键，比如 <code>Alt+/</code>；或者在 <code>keybindings.json</code> 中为触发建议 <strong>再添加一个快捷键</strong> 。</li>
+<li>方法二：设置自动补全（无需按快捷键）</li>
+<li>方法三：等待微软的补丁包（几十年了都没见到）</li>
+<li>方法四：抛弃Windows系统。</li>
+</ul>
+<h3 id="自动代码补全">自动代码补全🔗<a href="#自动代码补全" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>全局配置：用于所有语言，在 <code>settings.json</code> 文件中添加</p>
+<table><tbody><tr><td></td><td><pre><code data-lang="json">  <span>//</span> <span>在编辑时是否自动提示补全</span>
+  <span>"editor.quickSuggestions"</span><span>:</span> <span>{</span>
+    <span>"other"</span><span>:</span> <span>true</span><span>,</span>
+    <span>"comments"</span><span>:</span> <span>true</span><span>,</span>
+    <span>"strings"</span><span>:</span> <span>true</span>
+  <span>}</span><span>,</span>
+</code></pre><span title="Copy to clipboard"></span></td></tr></tbody></table>
+<p><strong>用于特定语言：</strong></p>
+<p>比如为 markdown 文件开启 <strong>自动补全</strong>，在 <code>settings.json</code> 文件中添加如下配置：</p>
+<table><tbody><tr><td><div data-lang="Code"><pre><code><span> 1
+</span><span> 2
+</span><span> 3
+</span><span> 4
+</span><span> 5
+</span><span> 6
+</span><span> 7
+</span><span> 8
+</span><span> 9
+</span><span>10
+</span><span>11
+</span><span>12
+</span><span>13
+</span><span>14
+</span><span>15
+</span></code></pre></div></td><td><pre><code data-lang="json">  <span>"[markdown]"</span><span>:</span> <span>{</span>
+    <span>//</span> <span>快速补全</span>
+    <span>"editor.quickSuggestions"</span><span>:</span> <span>{</span>
+      <span>"other"</span><span>:</span> <span>true</span><span>,</span>
+      <span>"comments"</span><span>:</span> <span>true</span><span>,</span>
+      <span>"strings"</span><span>:</span> <span>true</span>
+    <span>},</span>
+    <span>//</span> <span>显示空格</span>
+    <span>"editor.renderWhitespace"</span><span>:</span> <span>"all"</span><span>,</span>
+    <span>//</span> <span>snippet</span> <span>提示优先（看个人喜欢）</span>
+    <span>"editor.snippetSuggestions"</span><span>:</span> <span>"top"</span><span>,</span>
+    <span>"editor.tabCompletion"</span><span>:</span> <span>"on"</span><span>,</span>
+    <span>//</span> <span>使用enter</span> <span>接受提示</span>
+    <span>//</span> <span>"editor.acceptSuggestionOnEnter"</span><span>:</span> <span>"on"</span><span>,</span>
+  <span>}</span><span>,</span>
+</code></pre><span title="Copy to clipboard"></span></td></tr></tbody></table>
+<p>开启之后，可以自动提示 markdown 的 snippet；比如：</p>
+<ul>
+<li>输入 <code>code</code> 就会弹出行内代码和代码块两种补全提示</li>
+<li>输入 <code>ul</code> 或 <code>li</code> 就会弹出列表补全提示</li>
+<li>类似的还有 <code>bold</code> 、<code>image</code>、<code>italic</code>、<code>link</code> 、<code>quote</code> 等。</li>
+</ul>
+<h2 id="格式化">格式化🔗<a href="#格式化" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>VS Code 对源代码格式有很好的支持：</p>
+<ul>
+<li><strong>格式化文档</strong>（Shift + Alt + F）- 格式化整个活动文件。</li>
+<li><strong>格式选择</strong>（Ctrl + K Ctrl + F）- 格式化所选文本。</li>
+</ul>
+<p>如果您自行安装了格式化扩展程序，并可以提供相同语言的格式设置，可以选择禁用默认语言格式程序：</p>
+<table><tbody><tr><td></td><td><pre><code data-lang="json"><span>"html.format.enable"</span><span>:</span> <span>false</span>
+</code></pre><span title="Copy to clipboard"></span></td></tr></tbody></table>
+<p>除了手动调用代码格式外，您还可以根据用户手势（例如键入，保存或粘贴）来触发格式化。默认情况它们是关闭状态，但是您可以通过以下设置启用这些行为：</p>
+<ul>
+<li><code>editor.formatOnType</code> - 输入后进行 行格式。</li>
+<li><code>editor.formatOnSave</code> - 保存时格式化文件。</li>
+<li><code>editor.formatOnPaste</code> - 格式化粘贴的内容。</li>
+</ul>
+<blockquote>
+<p>注意：并非所有格式化程序都支持粘贴时格式化，前提是它们必须支持格式化所选内容或文本范围。</p>
+</blockquote>
+<h2 id="缩进">缩进🔗<a href="#缩进" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>默认情况下，VS Code 将每个 Tab 键替换为 4 个空格。如果您想更改默认设置，则可以修改<code>editor.insertSpaces</code>和<code>editor.tabSize</code></p>
+<table><tbody><tr><td></td><td><pre><code data-lang="json"><span>//是否替换</span>
+<span>"editor.insertSpaces"</span><span>:</span> <span>true</span><span>,</span>
+<span>"editor.tabSize"</span><span>:</span> <span>4</span><span>,</span>
+</code></pre><span title="Copy to clipboard"></span></td></tr></tbody></table>
+<p><strong>自动侦测：</strong></p>
+<p>VS Code 会分析打开的文件并确定文档中使用的缩进。自动检测到的缩进将覆盖您的默认缩进设置。检测到的设置显示在状态栏的右侧：</p>
+<p><img src="https://i.loli.net/2020/02/28/Qg8GPkuxvlOET3t.png" alt="indentation-detection.png"></p>
+<p>可以单击&quot;状态栏&quot;缩进 显示（上图中的<code>Tab Size:4</code>），来更改缩进方式。</p>
+<h2 id="查找和替换">查找和替换🔗<a href="#查找和替换" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>VS Code 允许您快速查找文本并替换为当前打开的文件。按<code>Ctrl + F</code>在编辑器中打开 “查找小部件” （Find Widget），搜索结果将在编辑器，概述标尺和小地图中突出显示。</p>
+<p>如果当前打开的文件中有多个匹配结果，则可以在查找输入框处于焦点状态时按<code>Enter</code>和<code>Shift + Enter</code>导航到下一个或上一个结果。</p>
+<p>“查找小部件” （Find Widget）还可以调整大小：</p>
+<p><img src="https://i.loli.net/2020/02/28/ZzaRxPSsDLmkUE6.gif" alt="resize-find-widget.gif"></p>
+<p><strong>在选中的文本中查找 ：</strong></p>
+<p>默认情况下，查找操作在编辑器中的整个文件上运行。它也可以在选定的文本上运行。您可以通过单击&quot;查找&quot;小部件上的 三明治图标 来启用此功能。</p>
+<p><img src="https://i.loli.net/2020/02/28/PKhvVwMjzJbZxu3.gif" alt="find-in-selection.gif"></p>
+<p><strong>搜索多行文本：</strong></p>
+<p>您可以通过将文本粘贴到&quot;查找&quot;输入框和&quot;替换&quot;输入框中来搜索多行文本。按下<code>Ctrl+Enter</code>将在输入框中插入新行。</p>
+<p><img src="https://i.loli.net/2020/02/28/GcbkpHzEnyjwmiJ.gif" alt="multiple-line-support.gif"></p>
+<p><strong>搜索文件：</strong></p>
+<p>按<code>Ctrl + Shift + F</code>并输入搜索词</p>
+<h2 id="常见问题">常见问题🔗<a href="#常见问题" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p><strong>是否可以进行全局搜索和替换？</strong></p>
+<p>可以；展开搜索视图文本框以包含替换文本字段。您可以搜索和替换工作空间中的所有文件。</p>
+<p><strong>如何打开自动换行？</strong></p>
+<p>您可以通过 <code>editor.wordWrap</code> 设置控制自动换行</p>
+<p>您可以使用<code>Alt + Z</code>切换 VS Code 会话的自动换行。</p>
+<h2 id="二技巧和窍门">二、技巧和窍门🔗<a href="#二技巧和窍门" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<blockquote>
+<p>官方文档：<a href="https://code.visualstudio.com/docs/getstarted/tips-and-tricks" target="_blank" rel="noreferrer noopener">Visual Studio 代码提示和技巧</a>
+
+</p>
+</blockquote>
+<h2 id="命令面板">命令面板🔗<a href="#命令面板" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>根据您的当前上下文访问所有可用命令。</p>
+<p>按键盘快捷键：<code>Ctrl + Shift + P</code> 或 <code>F1</code> 弹出的对话框叫&quot;命令面板&quot;</p>
+<p><img src="https://i.loli.net/2020/02/28/SGMA6qR9sC5oUei.gif" alt="OpenCommandPalatte.gif"></p>
+<ul>
+<li><code>ctrl + shift + p</code> 和 <code>F1</code>：打开命令面板时会带有 <code>&gt;</code></li>
+<li><code>ctrl + p</code>: 打开命令面板时没有 <code>&gt;</code> ，此时它的作用是 快速打开 某个文件</li>
+</ul>
+<p>由于快捷键冲突而导致无法触发相应插件，解决方法之一是直接在命令面板中操作。</p>
+<h2 id="快速开启">快速开启🔗<a href="#快速开启" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>快速打开文件。</p>
+<p>如果一个文件夹中包含的文件较多，使用命令面板寻找并打开文件是不错的选择。</p>
+<p>键盘快捷键：<code>Ctrl + P</code></p>
+<p><img src="https://i.loli.net/2020/02/28/VnIj18LOEXoMDTC.gif" alt="QuickOpen.gif"></p>
+<p>在最近打开的文件之间导航： <strong>重复 快速打开 ，以在最近打开的文件之间快速循环</strong> 。</p>
+<p>从快速打开中打开多个文件： <strong>按鼠标中键，在后台打开文件</strong> 。</p>
+<p>提示：在打开该对话框后输入不同的内容可以进行不同的操作：</p>
+<pre tabindex="0"><code>直接输入文件名，快速打开文件
+
+&gt;   显示并执行命令
+?   取帮助
+:   跳转到行数，也可以Ctrl+G直接进入(Mac 是 CMD+G)
+@   到symbol（搜索变量或者函数），也可以Ctrl+Shift+O直接进入
+@   分类跳转symbol，查找属性或函数，也可以Ctrl+Shift+O后输入:进入
+#   根据名字查找symbol，也可以Ctrl+T
+</code></pre><h2 id="状态栏">状态栏🔗<a href="#状态栏" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>一、错误和警告：</p>
+<p>快捷键：<code>Ctrl + Shift + M</code></p>
+<p>作用：快速跳转到项目中的错误和警告。</p>
+<p>也可以通过点击状态栏中的按钮来打开：<img src="https://i.loli.net/2020/02/28/N7b4OpFiMwhGDem.png" alt="状态栏警告"></p>
+<p>通过 <code>F8</code> 或<code>Shift + F8</code>循环检查错误</p>
+<p><img src="https://i.loli.net/2020/02/28/7Ign9b2Qx341VXD.gif" alt="Errors_Warnings"></p>
+<p>你可以按类型（“错误”，“警告”）或文本匹配来过滤问题。</p>
+<h2 id="调整设置-">调整设置 ⭐🔗<a href="#调整设置-" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>户设置 <code>settings.json</code> 文件，你可以通过（命令面板）输入命令：<code>Open Settings (JSON)</code> 来打开此文件。</p>
+<p>格式</p>
+<table><tbody><tr><td></td><td><pre><code data-lang="json"><span>"editor.formatOnPaste"</span><span>:</span> <span>true</span>
+</code></pre><span title="Copy to clipboard"></span></td></tr></tbody></table>
+<p>更改各种 UI 元素的字体大小</p>
+<table><tbody><tr><td></td><td><pre><code data-lang="json"><span>//</span> <span>Main</span> <span>editor</span>
+<span>"editor.fontSize"</span><span>:</span> <span>18</span><span>,</span>
+<span>//</span> <span>Terminal</span> <span>panel</span>
+<span>"terminal.integrated.fontSize"</span><span>:</span> <span>14</span><span>,</span>
+<span>//</span> <span>Output</span> <span>panel</span>
+<span>"[Log]"</span><span>:</span> <span>{</span>
+    <span>"editor.fontSize"</span><span>:</span> <span>15</span>
+<span>}</span>
+</code></pre><span title="Copy to clipboard"></span></td></tr></tbody></table>
+<p>更改缩放等级</p>
+<p>使用连体字</p>
+<table><tbody><tr><td></td><td><pre><code data-lang="json"><span>"editor.fontFamily"</span><span>:</span> <span>"Fira Code"</span><span>,</span>
+<span>"editor.fontLigatures"</span><span>:</span> <span>true</span>
+</code></pre><span title="Copy to clipboard"></span></td></tr></tbody></table>
+<blockquote>
+<p>**提示：**您将需要安装支持字体连字的字体。<a href="https://github.com/tonsky/FiraCode" target="_blank" rel="noreferrer noopener">FiraCode</a>
+
+是 VS Code 团队中流行的字体。微软新开发的编程字体 Cascadia Code 也支持。</p>
+<p>连体字效果：</p>
+<p><img src="https://i.loli.net/2020/02/28/x5W1r6ZPFEgBnaq.png" alt="font-ligatures-annotated.png"></p>
+</blockquote>
+<p>自动保存（另见上文）</p>
+<table><tbody><tr><td></td><td><pre><code data-lang="json"><span>"files.autoSave"</span><span>:</span> <span>"afterDelay"</span>
+</code></pre><span title="Copy to clipboard"></span></td></tr></tbody></table>
+<p>您也可以使用 <strong>文件</strong> &gt; <strong>自动保存</strong>从顶级菜单切换<strong>自动保存</strong>。</p>
+<p>保存时格式化</p>
+<table><tbody><tr><td></td><td><pre><code data-lang="json"><span>"editor.formatOnSave"</span><span>:</span> <span>true</span>
+</code></pre><span title="Copy to clipboard"></span></td></tr></tbody></table>
+<p>更改制表符的大小</p>
+<p>是否使用空格替换制表符</p>
+<table><tbody><tr><td></td><td><pre><code data-lang="json"><span>"editor.insertSpaces"</span><span>:</span> <span>true</span>
+</code></pre><span title="Copy to clipboard"></span></td></tr></tbody></table>
+<p>渲染空白</p>
+<table><tbody><tr><td></td><td><pre><code data-lang="json"><span>"editor.renderWhitespace"</span><span>:</span> <span>"all"</span>
+</code></pre><span title="Copy to clipboard"></span></td></tr></tbody></table>
+<p>忽略文件/文件夹</p>
+<p>从编辑器窗口中排除这些文件/文件夹。</p>
+<table><tbody><tr><td></td><td><pre><code data-lang="json"><span>"files.exclude"</span><span>:</span> <span>{</span>
+    <span>"somefolder/"</span><span>:</span> <span>true</span><span>,</span>
+    <span>"somefile"</span><span>:</span> <span>true</span>
+<span>}</span>
+</code></pre><span title="Copy to clipboard"></span></td></tr></tbody></table>
+<p>从搜索结果中排除这些文件/文件夹。</p>
+<table><tbody><tr><td></td><td><pre><code data-lang="json"><span>"search.exclude"</span><span>:</span> <span>{</span>
+    <span>"someFolder/"</span><span>:</span> <span>true</span><span>,</span>
+    <span>"somefile"</span><span>:</span> <span>true</span>
+<span>}</span>
+</code></pre><span title="Copy to clipboard"></span></td></tr></tbody></table>
+<p><strong>专用于特定编程语言的设置：</strong></p>
+<p>对于只需要特定语言的设置，您可以按语言标识符确定设置的范围。您可以在&quot; <a href="https://code.visualstudio.com/docs/languages/identifiers" target="_blank" rel="noreferrer noopener">语言标识符&quot;</a>
+
+参考中找到常用语言 ID 的列表。</p>
+<blockquote>
+<p>你可以通过在命令面板中输入命令：<code>Configure Language Specific Settings</code> 来进行设置。</p>
+</blockquote>
+<h2 id="文件和文件夹-">文件和文件夹 ⭐🔗<a href="#文件和文件夹-" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>使用快捷键 <code>Ctrl + `</code> 打开终端</p>
+<p>通过 菜单 👉 文件 👉 自动保存 来切换自动保存。</p>
+<p>切换边栏：<code>Ctrl + B</code></p>
+<h3 id="禅模式">禅模式🔗<a href="#禅模式" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>禅模式： 进入无干扰的禅模式 <code>Ctrl + KZ</code> ；按两次 <code>Esc</code> 退出。</p>
+<p><img src="https://i.loli.net/2020/02/28/h8p6dAPS1lo2ZLE.gif" alt="zen_mode.gif"></p>
+<h3 id="并排编辑">并排编辑🔗<a href="#并排编辑" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>快捷键：<code>Ctrl + \</code></p>
+<p>您还可以拖放编辑器以创建新的编辑器组，并在组之间移动编辑器。</p>
+<p><img src="https://i.loli.net/2020/02/28/UOnghvD2xC6EurB.gif" alt="split_editor.gif"></p>
+<h3 id="在编辑之间切换">在编辑之间切换🔗<a href="#在编辑之间切换" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>键盘快捷键：<code>Ctrl + 1，Ctrl + 2，Ctrl + 3</code></p>
+<p><img src="https://i.loli.net/2020/02/28/nRrctvLgWECbVYZ.gif" alt="navigate_editors.gif"></p>
+<h3 id="创建或打开文件">创建或打开文件🔗<a href="#创建或打开文件" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>键盘快捷键：<code>Ctrl +单击</code></p>
+<p>您可以通过将光标移动到文件链接并使用 Ctrl + click 来快速打开文件或图像或创建新文件。</p>
+<p><img src="https://i.loli.net/2020/02/28/hYAIWUDgoExX9w7.gif" alt="create_open_file.gif"></p>
+<h3 id="导航历史">导航历史🔗<a href="#导航历史" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>浏览整个历史记录：<code>Ctrl + Tab</code></p>
+<p>向后导航：<code>Alt +向左</code></p>
+<p>向前导航：<code>Alt +向右</code></p>
+<p><img src="https://i.loli.net/2020/02/28/ocihrs8P9zqBZ1V.gif" alt="navigate_history.gif"></p>
+<h3 id="文件关联">文件关联🔗<a href="#文件关联" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>为未正确检测到的文件创建语言关联。例如，许多带有自定义文件扩展名的配置文件实际上是 JSON</p>
+<table><tbody><tr><td></td><td><pre><code data-lang="json"><span>"files.associations"</span><span>:</span> <span>{</span>
+    <span>".database"</span><span>:</span> <span>"json"</span>
+<span>}</span>
+</code></pre><span title="Copy to clipboard"></span></td></tr></tbody></table>
+<h2 id="编辑技巧-">编辑技巧 ⭐🔗<a href="#编辑技巧-" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<h3 id="多光标选择">多光标选择🔗<a href="#多光标选择" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>使用 <code>Ctrl+Alt+Down</code>或<code>Ctrl+Alt+Up</code> 在当前光标的下方或上方再插入一个光标。</p>
+<p><img src="https://i.loli.net/2020/02/28/YMCAxivuaNK1pmO.gif" alt="multicursor.gif"></p>
+<p><code>Ctrl+D</code> ： 选中下一个与当前光标下相同的单词 （Add selection to next Find match）</p>
+<p><img src="https://i.loli.net/2020/02/28/YXNsyCHm2gKS19A.gif" alt="multicursor-word.gif"></p>
+<p>另外还可使用 <code>Ctrl + Shift + L</code> ：Select all occurrences of current selection；选中文件中所有相同的字符串</p>
+<blockquote>
+<p>当然这些操作都可以通过 菜单 👉 选择 来进行操作</p>
+</blockquote>
+<h3 id="多光标修饰符">多光标修饰符🔗<a href="#多光标修饰符" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>多光标修饰符是用来设置我们如果配合鼠标单击来添加多个光标。比如，当我们可以通过 <code>Ctrl + 单击</code> 添加多个光标时，<code>Ctrl</code> 键就是 <code>多光标修饰符</code></p>
+<p>多光标修饰符可以二选一，通过配置 <code>editor.multiCursorModifier</code> 来进行设置， 可以设置为：</p>
+<ul>
+<li><code>ctrlCmd</code>- 它在 Windows 上映射为 Ctrl，在 macOS 上映射为 Cmd。</li>
+<li><code>alt</code>- 即 Alt。</li>
+</ul>
+<p>可以通过&quot; **选择&quot;**菜单 👉 &quot; <strong>切换为 Ctrl/Alt +单击 进行多光标功能</strong> &quot; 来快速切换此设置。</p>
+<p>多光标修饰符的其他影响：</p>
+<p>&quot; <strong>转到定义</strong> &quot; 和&quot; <strong>打开链接</strong>&quot; 的手势也将遵守此设置并自动进行调整，以使其不会冲突。例如，</p>
+<ul>
+<li>当设置为<code>ctrlCmd</code>时，可以使用<code>Ctrl/Cmd + 单击</code>添加多个光标，而需要使用<code>Alt + 单击</code>进行打开链接或转到定义</li>
+<li>当设置为 <code>Alt</code> 时， 可以使用 <code>Alt + 单击</code> 添加多个光标，而需要使用<code>Ctrl/Cmd + 单击</code>进行打开链接或转到定义</li>
+</ul>
+<h3 id="缩小扩大-选择">缩小/扩大 选择🔗<a href="#缩小扩大-选择" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>扩大选中区域： <code>Shift + Alt + Right</code></p>
+<p>缩小当前选择：使用 <code>Shift + Alt + Left</code></p>
+<p><img src="https://i.loli.net/2020/02/28/ConjAOYI5fxuwPF.gif" alt="expandselection.gif"></p>
+<h3 id="列框选">列（框）选🔗<a href="#列框选" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>通过 <code>Shift+Alt+鼠标拖动</code>，</p>
+<p>将光标放在一个角上，然后在按住<code>Shift + Alt</code>的同时拖动到对角：</p>
+<p>在 code &gt;= 1.43 的版本中，也可以通过 菜单 👉 选择 👉 列选模式；来直接进入列选模式，进入列选模式后会在状态栏显示<code>Column Selection（列选）</code>，单击此图标可以退出列选模式。</p>
+<p>注意：当使用 <code>Ctrl</code> 作为多光标修改器时，这将更改为 <code>Shift + Ctrl</code></p>
+<p><img src="https://i.loli.net/2020/02/28/qx8c9fdkZoDrAFl.gif" alt="column-select.gif"></p>
+<h3 id="移动多个光标">移动多个光标🔗<a href="#移动多个光标" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>多光标移动，实现方法：多光标插入 配合<code>Ctrl + 方向键</code></p>
+<p>多光标插入：可以是上文介绍的任意一种方式。</p>
+<h3 id="撤消光标位置">撤消光标位置🔗<a href="#撤消光标位置" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>键盘快捷键：<code>Ctrl + U</code></p>
+<p>在进行多光标插入时如果某个光标位置错误还可以使用 <code>Ctrl + U</code> 进行撤销上次插入。</p>
+<h3 id="选择当前行">选择当前行🔗<a href="#选择当前行" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>键盘快捷键：<code>Ctrl + L</code></p>
+<blockquote>
+<p>或者尝试 <code>Ctrl + i</code></p>
+</blockquote>
+<h3 id="快速滚动">快速滚动🔗<a href="#快速滚动" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p><strong>快速滚动：</strong> 按 Alt 键可在编辑器和资源管理器中（5 倍）快速滚动。</p>
+<h3 id="上下复制行">上下复制行🔗<a href="#上下复制行" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>键盘快捷键：<code>Shift + Alt +向上键</code>或 <code>Shift + Alt +向下键</code></p>
+<p><img src="https://i.loli.net/2020/02/28/wWr6lEVFduSOqfk.gif" alt="copy_line_down.gif"></p>
+<h3 id="上下移动行">上下移动行🔗<a href="#上下移动行" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>键盘快捷键：<code>Alt + Up</code>或<code>Alt + Down</code></p>
+<p><img src="https://i.loli.net/2020/02/28/ntb8IQm4T1WCMED.gif" alt="move_line.gif"></p>
+<h3 id="转到文件中的-symbol">转到文件中的 Symbol🔗<a href="#转到文件中的-symbol" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>符号查找</p>
+<p>键盘快捷键：<code>Ctrl + Shift + O</code></p>
+<p><img src="https://i.loli.net/2020/02/28/StlPMAcFi4GNX1y.gif" alt="find_by_symbol.gif"></p>
+<p>您可以通过添加冒号来按种类对符号进行分组<code>@:</code>。</p>
+<p><img src="https://i.loli.net/2020/02/28/2Iwr9KOZpQJavg8.png" alt="group_symbols_by_kind.png"></p>
+<h3 id="转到工作区中的-symbol">转到工作区中的 Symbol🔗<a href="#转到工作区中的-symbol" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>键盘快捷键：<code>Ctrl + T</code></p>
+<p><img src="https://i.loli.net/2020/02/28/Wl6d1NHqzZ3TajP.png" alt="go_to_symbol_in_workspace.png"></p>
+<h3 id="导航到特定行">导航到特定行🔗<a href="#导航到特定行" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>键盘快捷键：Ctrl + G</p>
+<h3 id="修剪尾随空格">修剪尾随空格🔗<a href="#修剪尾随空格" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>键盘快捷键：Ctrl + K Ctrl + X</p>
+<p><img src="https://i.loli.net/2020/02/28/a6gb5E19JWZuhFN.gif" alt="trim_whitespace.gif"></p>
+<h3 id="括号匹配">括号匹配🔗<a href="#括号匹配" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<ul>
+<li>Mac: <code>cmd+shift+\</code></li>
+<li>Windows / Linux: <code>ctrl+shift+\</code></li>
+</ul>
+<h3 id="代码格式化">代码格式化🔗<a href="#代码格式化" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>当前选择的源代码：Ctrl + K Ctrl + F</p>
+<p>整个文档格式：Shift + Alt + F</p>
+<p><img src="https://code.visualstudio.com/assets/docs/getstarted/tips-and-tricks/code_formatting.gif" alt=""></p>
+<h3 id="代码折叠">代码折叠🔗<a href="#代码折叠" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>键盘快捷键：<code>Ctrl + Shift + [</code>和<code>Ctrl + Shift +]</code></p>
+<p><img src="https://code.visualstudio.com/assets/docs/getstarted/tips-and-tricks/code_folding.gif" alt="代码折叠"></p>
+<h3 id="导航到文件的开头和结尾">导航到文件的开头和结尾🔗<a href="#导航到文件的开头和结尾" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>键盘快捷键：<code>Ctrl + Home</code>和<code>Ctrl + End</code></p>
+<h3 id="打开-markdown-预览">打开 Markdown 预览🔗<a href="#打开-markdown-预览" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>在 Markdown 文件中使用</p>
+<p>键盘快捷键：<code>Ctrl + Shift + V</code></p>
+<p>并排 Markdown 编辑和预览：<code>Ctrl + KV</code></p>
+<h2 id="智能感知">智能感知🔗<a href="#智能感知" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>我们将始终提供单词补全功能。我们也提供了真正的 IntelliSense 体验。如果语言服务知道可能的补全，则在您键入时会弹出 IntelliSense 建议。</p>
+<p><code>Ctrl + Space</code>触发&quot;建议&quot;小部件。</p>
+<p><img src="https://i.loli.net/2020/02/28/dnUGWqYa4K5bfJN.gif" alt="intellisense.gif"></p>
+<p>默认情况下，<code>Tab</code> 或 <code>Enter</code> 表示接受当前选项</p>
+<p>您可以查看可用的方法，参数提示，简短文档等。</p>
+<h3 id="查看定义peek-视图">查看定义（peek 视图）🔗<a href="#查看定义peek-视图" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>选择一个符号，然后按<code>Alt + F12</code>。或者，使用上下文菜单，选择 快速查看 👉 查看定义。</p>
+<p><img src="https://i.loli.net/2020/02/28/hxESniZj8ACo9VL.gif" alt="peek.gif"></p>
+<h3 id="转到定义">转到定义🔗<a href="#转到定义" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>选择一个符号，然后按 F12 或 <code>Ctrl + 单击</code>，或者使用上下文菜单。</p>
+<p><img src="https://code.visualstudio.com/assets/docs/getstarted/tips-and-tricks/goto_definition.gif" alt="转到定义"></p>
+<p>您可以使用<code>Go &gt; Back</code>命令或<code>Alt + Left</code>返回到先前的位置。</p>
+<h3 id="查看引用">查看引用🔗<a href="#查看引用" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>选择一个符号，然后按<code>Shift + F12</code>。或者，使用上下文菜单 👉 快速查看 👉 查看引用。</p>
+<p><img src="https://res.cloudinary.com/faner/image/upload/v1584603422/hugo/tools/vscode/find_all_references_axyoud.gif" alt="find_all_references.gif"></p>
+<pre tabindex="0"><code>![原图失效：find_all_references.gif](https://i.loli.net/2020/02/28/Rio5G8FBuJkVqPh.gif)
+![备用find_a_r.gif](https://i.loli.net/2020/03/19/3XsHlykCFwJZYo9.gif)
+</code></pre><h3 id="查找所有引用">查找所有引用🔗<a href="#查找所有引用" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>查找所有文件中的引用，Find All References view</p>
+<p>选择一个符号，然后按<code>Shift + Alt + F12</code>打开 “引用&quot;视图，在侧边栏中显示文件的所有符号。</p>
+<h3 id="重命名符号">重命名符号🔗<a href="#重命名符号" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>重构重命名：选择一个符号，然后按 F2 。或者，使用上下文菜单（右键菜单）👉 重命名。</p>
+<p><img src="https://i.loli.net/2020/02/28/Sy1jN3sWhx6moav.gif" alt="rename_symbol.gif"></p>
+<h3 id="emmet-语法">Emmet 语法🔗<a href="#emmet-语法" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p><a href="https://code.visualstudio.com/docs/editor/emmet" target="_blank" rel="noreferrer noopener">支持 Emmet 语法</a>
+
+。</p>
+<p><img src="https://code.visualstudio.com/assets/docs/getstarted/tips-and-tricks/emmet_syntax.gif" alt="Emmet语法"></p>
+<h2 id="snippets代码片段">Snippets（代码片段）🔗<a href="#snippets代码片段" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<blockquote>
+<p><a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets" target="_blank" rel="noreferrer noopener">Snippets in Visual Studio Code</a>
+
+</p>
+</blockquote>
+<p><strong>触发提示</strong> 时（<code>Ctrl + Space</code>） ：会显示 Snippet（代码片段） 。</p>
+<p>可以从 Marketplace 安装扩展从而来提供 snippets。</p>
+<ul>
+<li>vscode-sinppet ：适用于多种语言。才知道还有这么个<strong>作弊网站</strong> <a href="https://cht.sh/" target="_blank" rel="noreferrer noopener">cheat.sh</a>
+
+</li>
+<li>snippet-creator ：简化 snippet 的创建。 Select the code you want to create snippet from and use command <code>Create Snippet</code> from the command palette</li>
+</ul>
+<h3 id="创建自定义-snippets">创建自定义 Snippets🔗<a href="#创建自定义-snippets" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>文件 👉 首选项 👉 用户代码片段 👉 选择该 snippet 用于哪种类型的文件或选择 Global Snippets 文件</p>
+<table><tbody><tr><td><div data-lang="Code"><pre><code><span> 1
+</span><span> 2
+</span><span> 3
+</span><span> 4
+</span><span> 5
+</span><span> 6
+</span><span> 7
+</span><span> 8
+</span><span> 9
+</span><span>10
+</span><span>11
+</span><span>12
+</span></code></pre></div></td><td><pre><code data-lang="json"><span>"create component"</span><span>:</span> <span>{</span>
+    <span>"prefix"</span><span>:</span> <span>"component"</span><span>,</span>
+    <span>"body"</span><span>:</span> <span>[</span>
+        <span>"class $1 extends React.Component {"</span><span>,</span>
+        <span>""</span><span>,</span>
+        <span>"\trender() {"</span><span>,</span>
+        <span>"\t\treturn ($2);"</span><span>,</span>
+        <span>"\t}"</span><span>,</span>
+        <span>""</span><span>,</span>
+        <span>"}"</span>
+    <span>]</span>
+<span>}</span><span>,</span>
+</code></pre><span title="Copy to clipboard"></span></td></tr></tbody></table>
+<p>在<a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets" target="_blank" rel="noreferrer noopener">创建自己的代码段中</a>
+
+查看更多详细信息。</p>
+<h2 id="git-集成">Git 集成🔗<a href="#git-集成" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>键盘快捷键：<code>Ctrl + Shift + G</code></p>
+<p>Git 集成随 VS Code 一起提供。您可以从扩展市场中安装其他的 SCM 提供程序。</p>
+<p>克隆远程仓库：</p>
+<p><code>ctrl + shift + p</code> 打开命令面板，输入<code>&gt;Git:clone</code>回车并且输入仓库地址即可。</p>
+<p>查看到当前文件修改状态：</p>
+<ol>
+<li>文件名旁边有个<code>+ M</code>，代表修改了文件但是没有暂存。可以点击<code>+</code> 就可执行<code>git add</code> 进行暂存，<strong>点击<code>M</code>可以进行差异比较</strong>。</li>
+<li>文件名旁边有<code>- M</code> 已暂存，但是没有提交</li>
+<li>文件名旁边 <code>U</code> 表示该文件为新建的文件，还没进行跟踪。</li>
+</ol>
+<p>可以从左下角 git 状态栏 查看当前分支是否有未更新的代码等。</p>
+<h3 id="diffs-差异比较">Diffs 差异比较🔗<a href="#diffs-差异比较" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>在 &quot; <strong>源代码管理”</strong> 视图中，选择要比较的文件，右键 👉 打开更改（或者点击文件名后的 <code>M</code> ）。</p>
+<p><img src="https://i.loli.net/2020/02/28/L3qCzkJgD47miOe.png" alt="source-control-icon.png"></p>
+<p><strong>并排显示：</strong></p>
+<p>默认为并排比较差异。</p>
+<p><img src="https://i.loli.net/2020/02/28/dYlqs4Z2kiCTLe8.png" alt="git_side_by_side.png"></p>
+<p><strong>内联视图：</strong></p>
+<p>通过单击右上角的 &quot; <strong>更多操作</strong>（…）&quot; 按钮并选择 &quot; **切换到内联视图&quot; ** 来 <strong>切换内联视图</strong> 。</p>
+<p><img src="https://i.loli.net/2020/02/28/qK8EDO1FaVChGAU.png" alt="git_inline.png"></p>
+<p>如果您喜欢嵌入式视图，可以设置<code>&quot;diffEditor.renderSideBySide&quot;: false</code>。</p>
+<p><strong>审查窗格</strong></p>
+<p>使用 F7 和 <code>Shift + F7</code> 浏览差异。这将以统一的补丁格式显示它们。可以使用箭头键浏览行，然后按 Enter 键将在差异编辑器和所选行中跳回。</p>
+<p><img src="https://i.loli.net/2020/02/28/OjGgFhvTatfwsIP.png" alt="diff_review_pane.png"></p>
+<p><strong>编辑待定更改</strong></p>
+<p>您可以直接在 diff 视图的未决更改中进行编辑</p>
+<h3 id="branches-分支">Branches 分支🔗<a href="#branches-分支" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>通过状态栏轻松在 Git 分支之间切换。</p>
+<p><img src="https://i.loli.net/2020/02/28/iLMEy9Ngz1WGvDh.gif" alt="switch_branches.gif"></p>
+<h3 id="staging-暂存">Staging 暂存🔗<a href="#staging-暂存" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>暂存所有：</p>
+<p><img src="https://i.loli.net/2020/02/28/itkGxyu7v4U1FDw.gif" alt="git_stage_all.gif"></p>
+<p>暂存文件中的部分内容：</p>
+<p>通过选择文件（使用箭头），然后从&quot; 命令面板&quot; 中 选择 &quot; 暂存选定范围&quot;，暂存文件的一部分。</p>
+<h3 id="撤销上一次提交">撤销上一次提交🔗<a href="#撤销上一次提交" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p><img src="https://i.loli.net/2020/02/28/YNVcO6oMzqZimI8.gif" alt="undo_last_commit.gif"></p>
+<h3 id="查看-git-输出">查看 Git 输出🔗<a href="#查看-git-输出" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>VS Code 使得查看实际运行的 Git 命令变得容易。当学习 Git 或调试困难的源代码控制问题时，这很有用。</p>
+<p>使用<strong>切换输出</strong>命令（<code>Ctrl + Shift + U</code>），然后在下拉菜单中选择<strong>Git</strong>。</p>
+<h3 id="gutter-指示符">Gutter 指示符🔗<a href="#gutter-指示符" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>边槽指示器</p>
+<p><img src="https://code.visualstudio.com/assets/docs/getstarted/tips-and-tricks/editingevolved_gutter.png" alt="Gutter 指示器"></p>
+<p>如果打开的文件夹是 Git 存储库并开始进行更改，则 VS Code 将在装订线和概览标尺中添加有用的注释。</p>
+<ul>
+<li>红色三角形表示已删除行的位置</li>
+<li>绿色条表示新添加的行</li>
+<li>蓝色条表示已修改的行</li>
+</ul>
+<h3 id="解决合并冲突">解决合并冲突🔗<a href="#解决合并冲突" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>在合并期间，转到 &quot; <strong>源代码控制&quot;</strong> 视图（<code>Ctrl + Shift + G</code>），然后在 diff 视图中进行更改。</p>
+<h3 id="更多配置">更多配置🔗<a href="#更多配置" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>将 VS Code 设置为默认合并工具</p>
+<pre tabindex="0"><code>git config --global merge.tool code
+</code></pre><p>使用 VS code 作为 diff 工具</p>
+<table><tbody><tr><td></td><td><pre><code data-lang="shell"><span># 先 将 vs code 作为git的默认编辑器</span>
+git config --global core.editor <span>"code --wait"</span>
+<span># 用vscode 打开 .gitconfig文件</span>
+git config --global -e
+<p><span># 在 .gitconfig文件 中添加</span>
+<span>[</span>diff<span>]</span>
+<span>tool</span> <span>=</span> default-difftool
+<span>[</span>difftool <span>&ldquo;default-difftool&rdquo;</span><span>]</span>
+<span>cmd</span> <span>=</span> code &ndash;wait &ndash;diff <span>$LOCAL</span> <span>$REMOTE</span>
+</code></pre><span title="Copy to clipboard"></span></td></tr></tbody></table></p>
+<h2 id="调试">调试🔗<a href="#调试" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<h3 id="配置调试器">配置调试器🔗<a href="#配置调试器" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>打开 <strong>命令面板</strong>（<code>Ctrl + Shift + P</code>）并输入命令 <code>Debug: Open launch.json</code> ，它将提示您选择与项目（Node.js，Python，C ++等）匹配的环境，这将生成一个<code>launch.json</code>文件。Node.js 支持是内置的，其他环境要求安装适当的语言扩展。</p>
+<p><img src="https://i.loli.net/2020/02/28/YxdFgDtiuyR4pHs.gif" alt="configure_debug.gif"></p>
+<p>和其它调试 IDE 一样，你可以查看变量、堆栈追踪，甚至对变量内容进行更改</p>
+<h3 id="断点和逐步">断点和逐步🔗<a href="#断点和逐步" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p><strong>断点和逐句通过</strong></p>
+<p>在行号旁边放置断点。使用&quot;调试&quot;小部件向前导航。</p>
+<p><img src="https://i.loli.net/2020/02/28/jFpxRDVnBfrLKUZ.gif" alt="node_debug.gif"></p>
+<h3 id="data-inspection数据检查">Data inspection（数据检查）🔗<a href="#data-inspection数据检查" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p><img src="https://i.loli.net/2020/02/28/QWDpUxrdJI7h5BY.gif" alt="debug_data_inspection.gif"></p>
+<h3 id="内联值">内联值🔗<a href="#内联值" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>您可以设置<code>&quot;debug.inlineValues&quot;: true</code>为在调试器中内联查看变量值。此功能可能很昂贵，并且可能减慢步进速度，因此默认情况下禁用此功能。</p>
+<h2 id="任务执行器-task-runner">任务执行器 Task runner🔗<a href="#任务执行器-task-runner" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<blockquote>
+<p>另可参考下文的 Task 任务</p>
+</blockquote>
+<h3 id="自动检测任务">自动检测任务🔗<a href="#自动检测任务" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>从顶层菜单中选择<strong>终端</strong>，运行命令 <code>Configure Tasks</code>，然后选择您要运行的任务类型。这将生成一个<code>tasks.json</code>内容如下的文件。有关更多详细信息，请参见<a href="https://code.visualstudio.com/docs/editor/tasks" target="_blank" rel="noreferrer noopener">任务</a>
+
+文档。</p>
+<p>自动生成有时会出现问题。请查阅文档以确保一切正常。</p>
+<h3 id="从终端菜单运行任务">从终端菜单运行任务🔗<a href="#从终端菜单运行任务" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>从顶层菜单中选择<strong>Terminal(终端)</strong>，运行命令<code>Run Task</code>，然后选择要运行的任务。通过运行命令<code>Terminate Task</code> 终止正在运行的<strong>任务</strong></p>
+<p><img src="https://i.loli.net/2020/02/28/Nx9e1lFYnAURu3Z.gif" alt="task_runner.gif"></p>
+<h3 id="定义任务的键盘快捷键">定义任务的键盘快捷键🔗<a href="#定义任务的键盘快捷键" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>您可以为任何任务定义键盘快捷键。在<strong>命令面板</strong>（Ctrl + Shift + P）中，选择<code>Preferences: Open Keyboard Shortcuts File</code>，将所需的快捷方式绑定到<code>workbench.action.tasks.runTask</code>命令，然后将<strong>任务</strong>定义为<code>args</code>。</p>
+<p>例如，要将<code>Ctrl + H</code>绑定到<code>Run tests</code>任务，请添加以下内容：</p>
+<pre tabindex="0"><code>{
+  &#34;key&#34;: &#34;ctrl+h&#34;,
+  &#34;command&#34;: &#34;workbench.action.tasks.runTask&#34;,
+  &#34;args&#34;: &#34;Run tests&#34;
+}
+</code></pre><h3 id="将-npm-脚本作为资源管理器中的任务运行">将 npm 脚本作为资源管理器中的任务运行🔗<a href="#将-npm-脚本作为资源管理器中的任务运行" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>使用该设置<code>npm.enableScriptExplorer</code>，您可以启用一个浏览器，该浏览器显示在工作空间中定义的脚本。</p>
+<p><img src="https://i.loli.net/2020/02/28/gweSyrN7zFl8UPO.png" alt="script_explorer.png"></p>
+<p>在资源管理器中，您可以在编辑器中打开脚本，将其作为任务运行，然后使用节点调试器启动脚本（当脚本定义了诸如的调试选项时<code>--inspect-brk</code>）。单击时的默认操作是打开脚本。要单击运行脚本，请设置<code>npm.scriptExplorerAction</code>为&quot;运行&quot;。使用该设置<code>npm.exclude</code>可以排除<code>package.json</code>特定文件夹中包含的文件中的脚本。</p>
+<p>通过设置<code>npm.enableRunFromFolder</code>，您可以启用从文件资源管理器的上下文菜单中为文件夹运行 npm 脚本的功能。选择文件夹后，该设置将启用命令<code>Run NPM Script in Folder...</code>。该命令显示此文件夹中包含的 npm 脚本的快速选择列表，您可以选择要作为任务执行的脚本。</p>
+<h2 id="vs-code-的设置">VS Code 的设置🔗<a href="#vs-code-的设置" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>VS Code 提供了两种不同的设置范围：</p>
+<ul>
+<li><strong>用户设置</strong> -全局应用于您打开的任何 VS Code 实例的设置。</li>
+<li><strong>工作区设置</strong> -存储在工作<strong>区中的设置</strong>，仅在打开工作区时适用。</li>
+</ul>
+<p>工作区设置将覆盖用户设置。工作区设置特定于项目，并且可以在项目的开发人员之间共享。</p>
+<p>工作区设置以及<a href="https://code.visualstudio.com/docs/editor/debugging" target="_blank" rel="noreferrer noopener">调试</a>
+
+和<a href="https://code.visualstudio.com/docs/editor/tasks" target="_blank" rel="noreferrer noopener">任务</a>
+
+配置存储在<code>.vscode</code>文件夹的根目录中。通过称为&quot; <a href="https://code.visualstudio.com/docs/editor/multi-root-workspaces" target="_blank" rel="noreferrer noopener">多根工作区&quot;</a>
+
+的功能，VS Code 工作区中还可以具有多个根文件夹。</p>
+<blockquote>
+<p>工作区文件夹在 <strong>.vscode</strong> 中 的<code>tasks.json</code>用于任务运行，<code>launch.json</code>用于调试器。</p>
+</blockquote>
+<p>默认情况下，VS Code 显示&quot;设置&quot;编辑器，但是您仍然可以<code>settings.json</code>通过使用<code>Open Settings (JSON)</code>命令 或 通过使用设置更改默认设置编辑器来编辑基础文件<code>workbench.settings.editor</code>。</p>
+<blockquote>
+<p>打开用户设置 <code>settings.json</code> 文件，你可以通过（命令面板）输入命令：<code>Open Settings (JSON)</code> 来打开此文件。</p>
+</blockquote>
+<p><strong>配置特定于语言的设置</strong>：</p>
+<p>要按（编程）语言自定义编辑器，请从<strong>命令面板</strong>（Ctrl + Shift + P）中运行全局命令 <code>Configure Language Specific Settings</code> ，这将打开语言选择器。选择所需的语言，打开带有语言条目的&quot;设置&quot;编辑器，您可以在其中添加适用的设置。</p>
+<p>（还可以是特定文件类型的配置）如果您打开了一个文件，并且想要为此文件类型自定义编辑器，请在&quot; VS 代码&quot;窗口右下方的状态栏中单击&quot;语言模式&quot;。这将打开&quot;语言模式&quot;选择器，并带有一个选项&quot; <strong>配置基于语言的语言的设置&quot;</strong>。选择此项将打开带有语言条目的&quot;设置&quot;编辑器，您可以在其中添加适用的设置。</p>
+<p>以下示例自定义语言模式<code>typescript</code>和的编辑器设置<code>markdown</code> ：</p>
+<table><tbody><tr><td><div data-lang="Code"><pre><code><span> 1
+</span><span> 2
+</span><span> 3
+</span><span> 4
+</span><span> 5
+</span><span> 6
+</span><span> 7
+</span><span> 8
+</span><span> 9
+</span><span>10
+</span><span>11
+</span><span>12
+</span></code></pre></div></td><td><pre><code data-lang="json"><span>{</span>
+  <span>"[typescript]"</span><span>:</span> <span>{</span>
+    <span>"editor.formatOnSave"</span><span>:</span> <span>true</span><span>,</span>
+    <span>"editor.formatOnPaste"</span><span>:</span> <span>true</span>
+  <span>},</span>
+  <span>"[markdown]"</span><span>:</span> <span>{</span>
+    <span>"editor.formatOnSave"</span><span>:</span> <span>true</span><span>,</span>
+    <span>"editor.wordWrap"</span><span>:</span> <span>"on"</span><span>,</span>
+    <span>"editor.renderWhitespace"</span><span>:</span> <span>"all"</span><span>,</span>
+    <span>"editor.acceptSuggestionOnEnter"</span><span>:</span> <span>"off"</span>
+  <span>}</span>
+<span>}</span>
+</code></pre><span title="Copy to clipboard"></span></td></tr></tbody></table>
+<h2 id="task-任务">Task 任务🔗<a href="#task-任务" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<blockquote>
+<p><a href="https://code.visualstudio.com/Docs/editor/tasks#_processing-task-output-with-problem-matchers" target="_blank" rel="noreferrer noopener">Visual Studio Code 中的任务</a>
+
+</p>
+</blockquote>
+<blockquote>
+<p>看起来就像是为了更方便的让我们执行需要在终端运行的命令，你看它位于 菜单 👉 终端下</p>
+</blockquote>
+<p>许多插件可以自动执行诸如整理，构建，打包，测试或部署软件系统之类的任务 ，但安装这些插件后，在对应的工程中，它们会提供一些默认的任务。（对于 maven 的任务现在正在开发中）。我们可以通过快捷键<code>Ctrl + Shift + B</code>或终端菜单来列出这些任务。</p>
+<p>任务有全局的也有仅用于当前工作空间的（它在项目的.vscode 目录下）</p>
+<p>当然你可以自定义任务（为该工程手动创建一个任务）：</p>
+<p>菜单 👉 终端 👉 配置任务 👉 选择创建 task.json 文件 👉 它会提供几个模板，如果模板中没有则选择 Others。</p>
+<table><tbody><tr><td><div data-lang="Code"><pre><code><span> 1
+</span><span> 2
+</span><span> 3
+</span><span> 4
+</span><span> 5
+</span><span> 6
+</span><span> 7
+</span><span> 8
+</span><span> 9
+</span><span>10
+</span><span>11
+</span><span>12
+</span><span>13
+</span><span>14
+</span><span>15
+</span><span>16
+</span><span>17
+</span><span>18
+</span><span>19
+</span><span>20
+</span><span>21
+</span><span>22
+</span><span>23
+</span><span>24
+</span><span>25
+</span><span>26
+</span><span>27
+</span><span>28
+</span><span>29
+</span><span>30
+</span><span>31
+</span><span>32
+</span></code></pre></div></td><td><pre><code data-lang="json"><span>{</span>
+  <span>//</span> <span>See</span> <span>https://go.microsoft.com/fwlink/?LinkId=733558</span>
+  <span>//</span> <span>for</span> <span>the</span> <span>documentation</span> <span>about</span> <span>the</span> <span>tasks.json</span> <span>format</span>
+  <span>"version"</span><span>:</span> <span>"2.0.0"</span><span>,</span>
+  <span>"tasks"</span><span>:</span> <span>[</span>
+    <span>{</span>
+      <span>"label"</span><span>:</span> <span>"Run tests"</span><span>,</span>  <span>//任务名称</span>
+      <span>"type"</span><span>:</span> <span>"shell"</span><span>,</span>    <span>//任务类型：shell（命令）或process</span>
+      <span>"command"</span><span>:</span> <span>"./scripts/test.sh"</span><span>,</span>  <span>//实际要执行的命令</span>
+      <span>"windows"</span><span>:</span> <span>{</span>  <span>//如果在win中则优先使用下面的内容</span>
+        <span>"command"</span><span>:</span> <span>".\\scripts\\test.cmd"</span>
+      <span>},</span>
+      <span>"group"</span><span>:</span> <span>"test"</span><span>,</span> <span>//任务所属的</span> <span>组</span>
+      <span>"presentation"</span><span>:</span> <span>{</span> <span>//定义如何在用户界面中处理输出</span>
+         <span>//下面表示每次执行任务都让其创建一个新的终端</span>
+        <span>"reveal"</span><span>:</span> <span>"always"</span><span>,</span>
+        <span>"panel"</span><span>:</span> <span>"new"</span>
+      <span>}</span>
+        <span>"options"</span><span>:</span>
+        <span>"runOptions"</span><span>:</span>
+    <span>},</span>
+    <span>{</span>
+        <span>"label"</span><span>:</span> <span>"Client Build"</span><span>,</span>
+        <span>"type"</span><span>:</span><span>"shell"</span><span>,</span>
+        <span>"command"</span><span>:</span> <span>"gulp"</span><span>,</span>
+        <span>"args"</span><span>:</span> <span>[</span><span>"build"</span><span>],</span> <span>//参数</span>
+        <span>"options"</span><span>:</span> <span>{</span> <span>//覆盖</span> <span>cwd(当前工作目录)、env(环境变量)、shell(默认shell)的值</span>
+        <span>"cwd"</span><span>:</span> <span>"${workspaceRoot}/client"</span>
+      <span>}</span>
+    <span>}</span>
+  <span>]</span>
+<span>}</span>
+</code></pre><span title="Copy to clipboard"></span></td></tr></tbody></table>
+<p>另外还有：(使用 ctrl+space 触发提示)</p>
+<ul>
+<li>options：覆盖 cwd(当前工作目录)、env(环境变量)、shell(默认 shell)的值</li>
+<li>runOptions： 定义何时以及如何运行任务</li>
+<li>args：命令的参数 示例 <code>&quot;args&quot;:[&quot;folder&quot;]</code></li>
+</ul>
+<p>对于包含空格或其他特殊字符的命令和参数，Shell 命令需要特殊对待</p>
+<ul>
+<li>
+<p>如果提供单个命令，那么任务系统会将命令原样传递给底层 shell。如果命令需要加引号或转义才能正常运行，则该命令需要包含正确的引号或转义字符。例如，要列出包含空格的名称中的文件夹的目录，命令在 bash 执行应该是这样的：<code>ls 'folder with spaces'</code>。</p>
+<table><tbody><tr><td></td><td><pre><code data-lang="json"><span>{</span>
+  <span>"label"</span><span>:</span> <span>"dir"</span><span>,</span>
+  <span>"type"</span><span>:</span> <span>"shell"</span><span>,</span>
+  <span>"command"</span><span>:</span> <span>"dir 'folder with spaces'"</span>
+<span>}</span>
+</code></pre><span title="Copy to clipboard"></span></td></tr></tbody></table>
+</li>
+<li>
+<p>如果提供了命令和参数，则如果命令或参数包含空格，则任务系统将使用单引号。对于<code>cmd.exe</code>，使用双引号。如下所示的 shell 命令将在 PowerShell 中以方式执行<code>dir 'folder with spaces'</code>。</p>
+</li>
+</ul>
+<table><tbody><tr><td></td><td><pre><code data-lang="json"><span>{</span>
+  <span>"label"</span><span>:</span> <span>"dir"</span><span>,</span>
+  <span>"type"</span><span>:</span> <span>"shell"</span><span>,</span>
+  <span>"command"</span><span>:</span> <span>"dir"</span><span>,</span>
+  <span>"args"</span><span>:</span> <span>[</span><span>"folder with spaces"</span><span>]</span>
+<span>}</span>
+</code></pre><span title="Copy to clipboard"></span></td></tr></tbody></table>
+<ul>
+<li>如果要控制如何对参数加引号，则参数可以是指定值和引用样式的文字。下面的示例使用转义而不是使用空格引号。</li>
+</ul>
+<table><tbody><tr><td></td><td><pre><code data-lang="json"><span>{</span>
+  <span>"label"</span><span>:</span> <span>"dir"</span><span>,</span>
+  <span>"type"</span><span>:</span> <span>"shell"</span><span>,</span>
+  <span>"command"</span><span>:</span> <span>"dir"</span><span>,</span>
+  <span>"args"</span><span>:</span> <span>[</span>
+    <span>{</span>
+      <span>"value"</span><span>:</span> <span>"folder with spaces"</span><span>,</span>
+      <span>"quoting"</span><span>:</span> <span>"escape"</span>
+    <span>}</span>
+  <span>]</span>
+<span>}</span>
+</code></pre><span title="Copy to clipboard"></span></td></tr></tbody></table>
+<blockquote>
+<p>可更改默认终端为 cmd 、bash 等</p>
+</blockquote>
+<p><strong>控制输出行为：</strong></p>
+<p>同设置 <code>presentation</code> 的属性来控制终端行为，有如下属性：</p>
+<ul>
+<li><strong>reveal</strong> ：控制是否将集成终端面板置于前面。有效值为：</li>
+<li>always - 面板总是放在最前面。这是默认值。</li>
+<li><em>never</em> - 用户必须使用&quot; <strong>视图&quot;</strong> &gt;&quot; **终端&quot;**命令（Ctrl +`）将终端面板显式显示在最前面 。</li>
+<li><em>silent</em> - 仅在不扫描输出中是否有错误和警告的情况下，才将终端面板置于前面。</li>
+<li><strong>focus</strong>：控制终端是否获取输入焦点。默认值为<code>false</code>。</li>
+<li><strong>echo</strong>：控制是否在终端中回显执行的命令。默认值为<code>true</code>。</li>
+<li><strong>showReuseMessage</strong>：控制是否显示&quot;终端将被任务重用，请按任意键将其关闭&quot;消息。</li>
+<li>panel：控制是否在任务运行之间共享终端实例。可能的值为：
+<ul>
+<li><em>shared</em>：_共享_终端，并将其他任务运行的输出添加到同一终端。</li>
+<li><em>dedicated</em>：终端专用于特定任务。如果再次执行该任务，则将重新使用终端。但是，不同任务的输出将显示在不同终端中。</li>
+<li><em>new</em>：该任务的每次执行都使用新的干净终端。</li>
+</ul>
+</li>
+<li><strong>clear</strong>：控制在运行此任务之前是否清除终端。默认值为<code>false</code>。</li>
+<li><strong>group</strong>：控制是否使用拆分窗格在特定的终端组中执行任务。同一组中的任务（由字符串值指定）将使用拆分终端显示，而不是新的终端面板。</li>
+</ul>
+<h2 id="下一步">下一步🔗<a href="#下一步" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>继续阅读以了解以下内容：</p>
+<ul>
+<li><a href="https://code.visualstudio.com/docs/editor/editingevolved" target="_blank" rel="noreferrer noopener">代码导航</a>
+
+ -窥视和转到定义等。</li>
+<li><a href="https://code.visualstudio.com/docs/editor/integrated-terminal" target="_blank" rel="noreferrer noopener">集成终端</a>
+
+ -了解用于在 VS Code 中快速执行命令行任务的集成终端。</li>
+<li><a href="https://code.visualstudio.com/docs/editor/intellisense" target="_blank" rel="noreferrer noopener">IntelliSense</a>
+
+ -VS Code 带来了智能代码补全功能。</li>
+<li><a href="https://code.visualstudio.com/docs/editor/debugging" target="_blank" rel="noreferrer noopener">调试</a>
+
+ -这是 VS Code 真正发挥作用的地方</li>
+</ul>
+<h2 id="学习文档">学习文档🔗<a href="#学习文档" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p><a href="https://code.visualstudio.com/docs" target="_blank" rel="noreferrer noopener">Documentation for Visual Studio Code</a>
+
+</p>
+<p><a href="https://www.gitbook.com/book/jeasonstudio/vscode-cn-doc/details" target="_blank" rel="noreferrer noopener">VScode 中文文档</a>
+
+</p>
+<p><a href="https://github.com/Microsoft/vscode-tips-and-tricks" target="_blank" rel="noreferrer noopener">VS Code Tips and Tricks</a>
+
+</p>
+<p><a href="https://github.com/kaiye/kaiye.github.com/issues/14" target="_blank" rel="noreferrer noopener">Visual Studio Code 配置指南</a>
+
+</p>
+<p><a href="https://github.com/kaiye/kaiye.github.com/issues/14" target="_blank" rel="noreferrer noopener">Key Bindings for Visual Studio Code</a>
+
+</p>
+<p>也可以查看 VS Code 的自带帮助，来学习它。比如： <code>帮助 --&gt; 欢迎使用</code></p>
+<p><a href="https://code.visualstudio.com/docs/getstarted/settings" title="Visual Studio Code User and Workspace Settings" target="_blank" rel="noreferrer noopener">Visual Studio Code User and Workspace Settings</a>
+
+</p>
+<p><a href="https://github.com/Microsoft/vscode-tips-and-tricks" title="Microsoft/vscode-tips-and-tricks: Collection of helpful tips and tricks for VS Code." target="_blank" rel="noreferrer noopener">Microsoft/vscode-tips-and-tricks: Collection of helpful tips and tricks for VS Code.</a>
+
+</p>
+
+<p style="color:#777;">最后一次修改于 2019-03-14</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       订阅 </a>
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+

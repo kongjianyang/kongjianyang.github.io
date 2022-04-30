@@ -1,0 +1,203 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>R语言代码规范</h1>
+
+<p>Liang 
+ / 2018-11-24 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-R%e8%af%ad%e8%a8%80%e4%bb%a3%e7%a0%81%e8%a7%84%e8%8c%83.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+
+<div class="body-text list-text">
+<p>编程的代码规范目的是使我们的R代码更容易阅读、分享和验证，下述是一些约定俗成的代码规范：</p>
+<h2 id="10-文件名">1.0 文件名<a href="#10-文件名" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>对于R file名字的命名，一般采用一些有意义的名字来命名，不要有特殊字符和空格，但是要注意大小写（特别是windowws系统是不管大小写的），所以最好就小写就行了；R代码就放在.R文件中，而R数据文件则放在.RData文件中。我一般不用下划线分割文件名，而是使用大小写交替的方式</p>
+<blockquote>
+<p>GOOD: predict_ad_revenue.R; PredictAdRevenue.R
+BAD: foo.R</p>
+</blockquote>
+<h2 id="20-标识符identifiers">2.0 标识符(Identifiers)<a href="#20-标识符identifiers" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>不要使用下划线(_)或连字符(-)标识符。标识符应按照以下命名约定。<strong>变量名</strong>的首选形式都是小写字母和单词分开用点(variable.name),但也接受variableName;<strong>函数名</strong>使用首字母大写而不用点(FunctionName);</p>
+<blockquote>
+<p>variable.name is preferred, variableName is accepted<br>
+GOOD: avg.clicks<br>
+OK: avgClicks<br>
+BAD: avg_Clicks</p>
+</blockquote>
+<blockquote>
+<p>FunctionName<br>
+GOOD: CalculateAvgClicks<br>
+BAD: calculate_avg_clicks , calculateAvgClicks<br>
+Make function names verbs.<br>
+Exception: When creating a classed object, the function name</p>
+</blockquote>
+<h2 id="30-间距spacing">3.0 间距(Spacing)<a href="#30-间距spacing" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>当使用所有二进制运算符(如=,+,-,&lt;,等)在两端空格。例外:当符号 = 是函数调用时的传递参数周围不用空格隔开。
+不要在符号“，”前空格隔开，但需要在“，”后添加空格
+good style</p>
+<pre tabindex="0"><code>tab.prior &lt;- table(df[df$days.from.opt &lt; 0, &#34;campaign.id&#34;]) 
+total &lt;- sum(x[, 1]) 
+total &lt;- sum(x[1, ])123
+</code></pre><p>bad style</p>
+<pre tabindex="0"><code>tab.prior &lt;- table(df[df$days.from.opt&lt;0, &#34;campaign.id&#34;])  # Needs spaces around &#39;&lt;&#39; 
+tab.prior &lt;- table(df[df$days.from.opt &lt; 0,&#34;campaign.id&#34;])  # Needs a space after the comma
+tab.prior&lt;- table(df[df$days.from.opt &lt; 0, &#34;campaign.id&#34;])  # Needs a space before &lt;
+tab.prior&lt;-table(df[df$days.from.opt &lt; 0, &#34;campaign.id&#34;])  # Needs spaces around &lt;
+total &lt;- sum(x[,1])  # Needs a space after the comma 
+total &lt;- sum(x[ ,1])  # Needs a space after the comma, not before123456
+</code></pre><h2 id="40-花括号curly-braces">4.0 花括号(Curly braces)<a href="#40-花括号curly-braces" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>前括号永远不应该独占一行; 后括号应当总是独占一行. 在代码块只含单个语句时可省略花括号</p>
+<pre tabindex="0"><code>if (is.null(ylim)) {
+  ylim &lt;- c(0, 0.06)
+}
+</code></pre><h2 id="50-赋值">5.0 赋值<a href="#50-赋值" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>使用&lt;-进行赋值, 不用=赋值.</p>
+<h2 id="60-注释">6.0 注释<a href="#60-注释" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>整行注释应以#后接一个空格开始，行内短注释应在代码后接两个空格, #, 再接一个空格。</p>
+<pre tabindex="0"><code># Create histogram of frequency of campaigns by pct budget spent.
+hist(df$pct.spent,
+     breaks = &#34;scott&#34;,  # method for choosing number of buckets
+     main   = &#34;Histogram: fraction budget spent by campaignid&#34;,
+     xlab   = &#34;Fraction of budget spent&#34;,
+     ylab   = &#34;Frequency (count of campaignids)&#34;)
+</code></pre><h2 id="70-函数的定义和调用">7.0 函数的定义和调用<a href="#70-函数的定义和调用" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>函数定义应首先列出无默认值的参数, 然后再列出有默认值的参数。函数定义和函数调用中, 允许每行写多个参数; 折行只允许在赋值语句外进行。</p>
+<h2 id="80-分号">8.0 分号<a href="#80-分号" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>不要以分号结束一行, 也不要利用分号在同一行放多于一个命令. (分号是毫无必要的, 并且为了与其他Google编码风格指南保持一致, 此处同样略去. )(<strong>分号作为语句结束标识，虽然不规范，但是在缩短文档长度的时候我会选择使用&hellip;</strong>)</p>
+
+<p style="color:#777;">最后一次修改于 2018-11-24</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       订阅 </a>
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+

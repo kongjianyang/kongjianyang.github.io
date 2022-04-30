@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Life on KJY</title>
+    <link>https://kongjianyang.github.io/categories/life/</link>
+    <description>Recent content in Life on KJY</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 05 Dec 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/life/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mac原生词典的一些便捷操作</title>
+      <link>https://kongjianyang.github.io/cn/2018/12/05/mac%E5%8E%9F%E7%94%9F%E8%AF%8D%E5%85%B8%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BE%BF%E6%8D%B7%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Wed, 05 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/12/05/mac%E5%8E%9F%E7%94%9F%E8%AF%8D%E5%85%B8%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BE%BF%E6%8D%B7%E6%93%8D%E4%BD%9C/</guid>
+      <description>鼠标取词
+在任何文字区域上按下 control+cmd+D 就可呼出取词窗口，词典会根据鼠标的位置自动取词，不需要启动词典程序
+单词发音 在accessibility下面的speech下面选择开启speak selected text when the key is pressed，可以打开快捷键如 Option+Esc。在词典查询结果的窗口下按下快捷键会将窗口文本朗读一遍，当然，我们在乎只是英文单词的发音而已，再按一次停止。
+https://kaihao.io/2018/mdict-to-macos-dictionary/</description>
+    </item>
+    
+  </channel>
+</rss>

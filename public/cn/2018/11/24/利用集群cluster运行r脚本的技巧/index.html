@@ -1,0 +1,207 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>利用集群(cluster)运行R脚本的技巧</h1>
+
+<p>Liang 
+ / 2018-11-24 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-%e5%88%a9%e7%94%a8%e9%9b%86%e7%be%a4%28cluster%29%e8%bf%90%e8%a1%8cR%e8%84%9a%e6%9c%ac%e7%9a%84%e6%8a%80%e5%b7%a7.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+
+<div class="body-text list-text">
+<h3 id="1-编写脚本">1. 编写脚本<a href="#1-编写脚本" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>首先编写一个R脚本保存在当前目录下，例如HeatMap.R</p>
+<pre tabindex="0"><code>library(gplots)
+qlf_path &lt;- &#34;../07DEgene/QLF_DEG/&#34;
+file_name &lt;- dir(qlf_path)
+figure_path &lt;- &#34;../07DEgene/figure/qlf_heatmap/&#34;
+for (k in 21:21){
+  mymain &lt;- strsplit(file_name[k], &#34;_&#34;)[[1]][c(1,2,4,5)]
+  mymain &lt;- paste(mymain, collapse = &#34;_&#34;)
+  figure_name &lt;- paste0(figure_path, mymain, &#34;.pdf&#34;)
+  pdf(figure_name)
+  qlf_file &lt;- paste0(qlf_path, file_name[k])
+  data &lt;- read.table(qlf_file)
+  data &lt;- as.matrix(data)
+  mycol &lt;- colorpanel(n=40,low=&#34;blue&#34;,high=&#34;yellow&#34;) 
+  heatmap.2(data, col = mycol, scale = &#34;row&#34;, key=TRUE, trace=&#34;none&#34;,cexCol=1,cexRow=0.5, srtRow=45, adjRow=c(0, 1), srtCol=45, adjCol=c(1,1), Rowv= T, Colv = F, lmat=rbind( c(0, 3), c(2,1), c(4,0) ), lhei=c(1.5, 4, 2), lwid = c(3,4), labRow = &#34;&#34;, main = mymain)
+  dev.off()
+}
+</code></pre><p>然后编写一个串行作业脚本，例如pbs_heatmap.sh</p>
+<pre tabindex="0"><code>#!/bin/sh
+#PBS -l nodes=1:ppn=20
+#PBS -l walltime=00:30:00
+#PBS -q your query name
+#PBS -m ae
+#PBS -M youremal address
+#PBS -N heatmap_job
+
+cd $PBS_O_WORKDIR
+module load bioinfo
+module load R
+Rscript HeatMap.R
+</code></pre><h3 id="2提交作业脚本">2.提交作业脚本<a href="#2提交作业脚本" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>使用 qsub 命令提交作业</p>
+<pre tabindex="0"><code>qsub pbs_heatmap.sh
+</code></pre><h3 id="3查看作业状态">3.查看作业状态<a href="#3查看作业状态" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>qstat 命令查看作业的状态，如果是 R 表示在运行，Q 表示在排队
+使用 checkjob ID，查看为什么在排队
+qstat -f JobID 查看作业的详细情况，包括提交时间，哪些节点在运行这个作
+业等。
+qdel ID 删除 R 和 Q 的作业
+qhold ID 把 Q 的作业挂起
+qrls ID 把挂起的作业释放</p>
+<h3 id="4-额外知识">4. 额外知识<a href="#4-额外知识" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>有的时候需要在cluster上安装R包和装载R包。
+安装R包：</p>
+<pre tabindex="0"><code>install.packages(&#34;gplots”,lib=“/data/user/Rlib”)
+</code></pre><p>lib 的参数值为需要将R 包安装的路径。
+查看自己已经安装的R包的路径可以使用命令：</p>
+<pre tabindex="0"><code>&gt; .libPaths()
+[1] &#34;C:/Users/jmzeng/Documents/R/win-library/3.1&#34;
+[2] &#34;C:/Program Files/R/R-3.1.0/library&#34;
+</code></pre><p>查看自己已经安装的R包有哪些，使用命令:</p>
+<pre tabindex="0"><code>&gt; colnames(installed.packages())
+ [1] &#34;Package&#34;               &#34;LibPath&#34;               &#34;Version&#34;              
+ [4] &#34;Priority&#34;              &#34;Depends&#34;               &#34;Imports&#34;              
+ [7] &#34;LinkingTo&#34;             &#34;Suggests&#34;              &#34;Enhances&#34;             
+[10] &#34;License&#34;               &#34;License_is_FOSS&#34;       &#34;License_restricts_use&#34;
+[13] &#34;OS_type&#34;               &#34;MD5sum&#34;                &#34;NeedsCompilation&#34;     
+[16] &#34;Built&#34;
+</code></pre>
+<p style="color:#777;">最后一次修改于 2018-11-24</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       订阅 </a>
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+

@@ -1,0 +1,191 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/">Home</a></li>
+       
+           <li><a href="/en/about/">About</a></li>
+       
+           <li><a href="/en/posts/">Posts</a></li>
+       
+           <li><a href="/cn/posts/">中文</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>Functional programming-Map, Reduce, Filter and Lambda</h1>
+
+<p>Liang 
+ / 2018-06-17 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/en/posts/2018-06-17-functional-programming-map-reduce-filter-and-lambda.Rmd'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="Suggest an edit of this page"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+
+<div class="body-text list-text">
+
+
+
+<p>This post will talk about four useful function in R programming. Map, Reduce, Filter and Lambda.</p>
+<div id="lambda" class="section level1">
+<h1>LAMBDA</h1>
+<p>Lambda can be seen as a short (normally one line) function definition. There is no particular syntax for lambda in R, except that you don’t need to assign the function to a variable (function name), and also you will need to enclose the function using brackets or curly brace. For example:</p>
+<pre><code>(function add(x, y) x+y)
+{function add(x, y) x+y}</code></pre>
+<p>We can pass the lambda function as a parameter to other functions e.g. Map, Reduce or Filter.</p>
+</div>
+<div id="map" class="section level1">
+<h1>Map</h1>
+<p>Map function allows the mapping from one vector to another using a map function, which can be specified by lambda. For example, let’s define a vector from 1 to 100.</p>
+<pre class="r"><code>x = 1:100</code></pre>
+<p>If we want to convert each element of the vector to its doubles, so we can pass a lambda to the Map function, like this:</p>
+<pre class="r"><code>y=Map({function (a) a*2}, x)</code></pre>
+<p>However, the variable y will store a list of vectors instead of a single vector. We can use the unlist function to unroll the list of vectors into a single vector.</p>
+<pre class="r"><code>unlist(y)</code></pre>
+<pre><code>##   [1]   2   4   6   8  10  12  14  16  18  20  22  24  26  28  30  32  34
+##  [18]  36  38  40  42  44  46  48  50  52  54  56  58  60  62  64  66  68
+##  [35]  70  72  74  76  78  80  82  84  86  88  90  92  94  96  98 100 102
+##  [52] 104 106 108 110 112 114 116 118 120 122 124 126 128 130 132 134 136
+##  [69] 138 140 142 144 146 148 150 152 154 156 158 160 162 164 166 168 170
+##  [86] 172 174 176 178 180 182 184 186 188 190 192 194 196 198 200</code></pre>
+</div>
+<div id="reduce" class="section level1">
+<h1>Reduce</h1>
+<p>Reduce will perform the function on a list of vectors one by one, and finally return a single value.</p>
+<pre class="r"><code>x=seq(1,10,0.5)
+Reduce({function (x, y) x+y}, x)</code></pre>
+<pre><code>## [1] 104.5</code></pre>
+<p>The lambda function can be instead with <code>sum</code> here.</p>
+<pre class="r"><code>Reduce(sum, x)</code></pre>
+<pre><code>## [1] 104.5</code></pre>
+</div>
+<div id="filter" class="section level1">
+<h1>Filter</h1>
+<p>The function Filter will remove all elements when they do not satisfy the condition (function returns false)</p>
+<pre class="r"><code>x = 1:10
+Filter({function (x) x%%2==0}, x)</code></pre>
+<pre><code>## [1]  2  4  6  8 10</code></pre>
+</div>
+
+<p style="color:#777;">Last modified on 2018-06-17</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/en/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       Subscribe </a>
+       </li>
+       
+       
+       <li>
+       
+        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
+       
+        License
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+

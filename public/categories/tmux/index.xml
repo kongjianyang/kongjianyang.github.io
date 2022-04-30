@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tmux on KJY</title>
+    <link>https://kongjianyang.github.io/categories/tmux/</link>
+    <description>Recent content in tmux on KJY</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 25 Mar 2022 14:42:27 -0500</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/tmux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>tmux多窗口管理</title>
+      <link>https://kongjianyang.github.io/cn/2022/03/25/tmux/</link>
+      <pubDate>Fri, 25 Mar 2022 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/03/25/tmux/</guid>
+      <description>[TOC]
+主要参考这篇文章：还在为 iTerm 多窗口操作烦恼？tmux 这款神器轻松帮你解决_Java极客技术-程序员信息网 - 程序员信息网 (i4k.xyz) Tmux 使用教程 - 阮一峰的网络日志 (ruanyifeng.com) 安装tmux
+brew install tmux 会话管理 新建 session
+使用 tmux 之前我们首先需要新建一个 Session，命令如下：
+# 新建 session，使用 -s 自定义 session 名字 tmux new -s &amp;lt;session-name&amp;gt; 保存会话
+进入会话之后，进行相关操作，比如使用 SSH 连上远端服务器。这时如果想退出去的时候，可以保存当前会话信息。下次可以直接重新进入这个会话，不用重新再次使用 SSH 连接了。
+# 保存当前会话 tmux detach 接入会话
+tmux attach 可以接入上次保存的会话。
+# 可以使用 -t 指定会话名字。 tmux attach -t &amp;lt;session-name&amp;gt; 查看会话
+如果之前同时保存了多个会话，我们可以使用 tmux ls 查看当前所有会话。
+# 查看会话 tmux ls 杀死会话
+使用 tmux kill-session 我们可以杀死某个会话。</description>
+    </item>
+    
+  </channel>
+</rss>

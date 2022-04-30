@@ -1,0 +1,425 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>使用GitHub page建立站点</h1>
+
+<p>KJY 
+ / 2022-03-20 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2022-03-20-build-website.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+<aside class="toc">
+Table of Contents:
+<nav id="TableOfContents">
+  <ol>
+    <li><a href="#1-安装hugo">1. 安装Hugo</a></li>
+    <li><a href="#2-新建一个-hugo-网站">2. 新建一个 Hugo 网站</a></li>
+    <li><a href="#3-新建-github-仓库">3. 新建 GitHub 仓库</a></li>
+    <li><a href="#4-上传到github">4. 上传到GitHub</a></li>
+    <li><a href="#5一些修改">5.一些修改</a></li>
+    <li><a href="#6-一些原理">6. 一些原理</a></li>
+    <li><a href="#hexo和hugo的区别">Hexo和Hugo的区别</a></li>
+    <li><a href="#原型模板">原型模板</a>
+      <ol>
+        <li><a href="#默认模板">默认模板</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+</aside>
+
+
+<div class="body-text list-text">
+<p>记录第一次使用GitHub page建立站点的步骤:</p>
+<p>主要参考这篇文章：<a href="https://hongtaoh.com/cn/2021/03/02/personal-website-tutorial/" target="_blank" rel="noreferrer noopener">郝鸿涛：Hongtao Hao</a>
+
+</p>
+<p>[TOC]</p>
+<h2 id="1-安装hugo">1. 安装Hugo<a href="#1-安装hugo" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>在 Terminal 中输入</p>
+<pre tabindex="0"><code>brew install hugo 
+</code></pre><p>完成后，在 Terminal 中输入 <code>hugo version</code>, 如果显示 <code>Hugo Static Site Generator...</code> 证明安装成功。</p>
+<h2 id="2-新建一个-hugo-网站">2. 新建一个 Hugo 网站<a href="#2-新建一个-hugo-网站" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>Hugo 博客就是一个文件夹。首先你要确定把这个文件夹放在哪里。到达自己需要的地址之后使用以下命令</p>
+<pre tabindex="0"><code>hugo new site liang.github.io **# quickstart 可以换成任何你想用的名称**
+cd quickstart/themes
+git clone https://github.com/hongtaoh/hugo-ht
+mkdir hugo-ht-new
+cp -r hugo-ht/* hugo-ht-new
+rm -rf hugo-ht
+mv hugo-ht-new hugo-ht
+cd ..
+cp -r themes/hugo-ht/exampleSite/* .
+</code></pre><p>这是使用一个Hugo-ht为主题的网站，之后可以折腾其他主题。但是这样会你目前 Hugo 网站中的 <code>Content</code> 文件夹和 <code>config.toml</code> 替换为 <code>Hugo-ht</code> 自带的内容。如果你当前 Hugo 网站中的 Content 文件夹及<code>config.toml</code>尚未备份，请千万小心。</p>
+<p>然后运行</p>
+<pre tabindex="0"><code>hugo server -D # 这里的 D 是 draft 的意思
+</code></pre><p>打开终端显示的 http://localhost:1313/ ，不出意外的话你能看到和 https://hugo-ht.hongtaoh.com/ 一模一样的个人网站。</p>
+<p>如果没有什么问题，在终端输入 Ctrl+C 停止预览。</p>
+<h2 id="3-新建-github-仓库">3. 新建 GitHub 仓库<a href="#3-新建-github-仓库" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>登陆 GitHub, 点击头像左侧的加号，再点击’new repository&rsquo;。</p>
+<p>在 Repository name 这里输入 <code>你的 GitHub 用户名.github.io</code>。Description 这里你写啥都可以。其他都不要动，点击 Create repository。</p>
+<p>在根目录下输入以下命令：</p>
+<pre tabindex="0"><code>mkdir .github
+mkdir .github/workflows
+touch .github/workflows/gh-pages.yml
+</code></pre><p>输入</p>
+<pre tabindex="0"><code>cd ~/.ssh
+ssh-keygen -t rsa -b 4096 -C &#34;$(git config user.email)&#34; -f gh-pages -N &#34;&#34;
+open -a Finder ~/.ssh 
+</code></pre><p>复制 <code>~/.ssh/gh-pages.pub</code> 内的内容到GitHub网站。把屏幕拉宽，点击 Settings -&gt; 点击 Deploy keys -&gt; 点击 Add deploy key。把鼠标放在 key 下面的文本框，苹果电脑按 Command+V。在 Allow write access 那里打勾，在 Title 随便写点东西，比如“个人网站部署”，然后点击 Add key。</p>
+<p>复制 <code>~/.ssh/gh-pages</code> 内的内容到GitHub网站。把屏幕拉宽，点击 Settings -&gt; 点击 Secrets -&gt; 点击 New repository secret。把鼠标放在 Value 下面的文本框，苹果电脑按 Command+V。在 Name 那里填 ACTIONS_DEPLOY_KEY，然后点击 Add secret。</p>
+<p>设置 Personal Token</p>
+<p>打开<a href="https://github.com/settings/tokens" target="_blank" rel="noreferrer noopener">这个链接</a>
+
+ 。进去后，点击 Generate new token 按钮, 在随后出现的页面中，选择你觉得合适的有效期限（默认为 30 天），在 Select scopes 这里选中 workflow，在 Note 那里随便写点东西，然后将页面往下拖，点击 Generate token。</p>
+<p>生成之后，点击那一串字母后边的复制板，将 token 复制下来。</p>
+<p>回到 GitHub 你新建的仓库。把屏幕拉宽，点击 Settings -&gt; 点击 Secrets -&gt; 点击 New repository secret。把鼠标放在 Value 下面的文本框，苹果电脑按 Command+V。在 Name 那里填 PERSONAL_TOKEN，然后点击 Add secret。</p>
+<p>回到最开始的那个终端输入</p>
+<pre tabindex="0"><code>open .github/workflows/gh-pages.yml -a TextEdit
+</code></pre><p>然后复制以下内容，粘贴到刚才弹出的 gh-pages.yml:</p>
+<pre tabindex="0"><code>name: github pages
+
+on:
+  push:
+    branches:
+      - master  # Set a branch name to trigger deployment
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: &#39;0.79.1&#39;
+
+      - name: Build
+        run: hugo --minify
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.PERSONAL_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./public
+</code></pre><h2 id="4-上传到github">4. 上传到GitHub<a href="#4-上传到github" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<pre tabindex="0"><code>git init
+git add .
+git commit -m &#34;first commit.&#34;
+git remote add origin https://github.com/USERNAME/USERNAME.github.io.git
+git push -u origin master
+</code></pre><p>回到 GitHub 你新建的仓库。把屏幕拉宽，点击 Settings，一直往下拖，到你看到 Pages 为止。在 Source 那里，Branch 选择 gh-pages, 右侧的框框选择 root，然后点 Save。等一两分钟，当出现</p>
+<pre tabindex="0"><code>Your site is published at https://USERNAME.github.io/
+</code></pre><h2 id="5一些修改">5.一些修改<a href="#5一些修改" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>Hugo 文件夹根目录下的 config.toml 有几个地方需要你自己改：</p>
+<ul>
+<li>baseURL: 替换成 https://USERNAME.github.io/</li>
+<li>GithubEdit: 把所有的 USERNAME 换成你的 GitHub 用户名，把所有的 REPONAME 换成 github用户名.github.io</li>
+<li>Params.lang 部分 <code>Your Nam</code> 和「你的名字」换成你的大名。</li>
+</ul>
+<p>在 Hugo 文件夹根目录下用文本编辑器新建一个文件，命名为 <code>deploy.sh</code>，把以下内容复制粘贴到里面：</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git add .
+</span></span><span style="display:flex;"><span><span style="color:#19177c">msg</span><span style="color:#666">=</span><span style="color:#ba2121">&#34;updating site on </span><span style="color:#008000;font-weight:bold">$(</span>date<span style="color:#008000;font-weight:bold">)</span><span style="color:#ba2121">&#34;</span> 
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#ba2121">&#34;</span><span style="color:#19177c">$msg</span><span style="color:#ba2121">&#34;</span>
+</span></span><span style="display:flex;"><span>git push origin master
+</span></span></code></pre></div><p>新加博客</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo new cn/posts/2021-04-06-a-new-post.md
+</span></span><span style="display:flex;"><span>hugo new about.md
+</span></span><span style="display:flex;"><span>hugo new  --kind post post/my-article-name.md
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cat content/about.md
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>title: <span style="color:#ba2121">&#34;About&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>date: 2018-07-21T15:27:10+08:00
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>draft: <span style="color:#008000">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 关于我</span>
+</span></span></code></pre></div><blockquote>
+<p>注意当<code>draft: true</code>的时候，视为草稿，<code>hugo server -D</code>会显示，正式发布效果用<code>hugo server -w</code>查看。</p>
+</blockquote>
+<p>新加 <a href="https://hugo-ht.hongtaoh.com/cn/about/" target="_blank" rel="noreferrer noopener">关于</a>
+
+ 这样的单独页面</p>
+<pre tabindex="0"><code>mkdir content/cn/hobby # hobby 可以换成别的名字
+cp content/cn/about/_index.md content/cn/hobby # hobby 可以换成别的名字
+open content/cn/hobby/_index.md -a TextEdit 
+</code></pre><p>更改这个 <code>_index.md</code> 的 Title 和内容即可。</p>
+<p>新加了 hobby 文件夹之后，要想让它出现在网站上，你需要把它加在 config.toml，比如</p>
+<pre tabindex="0"><code>[[menu.main]]
+    name = &#34;兴趣&#34;
+    url = &#34;/hobby/&#34;
+    weight = 4
+</code></pre><p>新加文件</p>
+<p>你可以直接把文件，比如 <code>myPDF.pdf</code> 放到 <code>static</code> 文件夹，这样的话，这个文件的地址就是 <code>https://USERNAME.github.io/myPDF.pdf</code>。当你的文件比较多时，建议你在 <code>static</code> 文件夹下新建一个子文件夹，比如 <code>files</code>，然后把文件统一放到 <code>files</code> 里，这样的话，地址就是 <code>https://USERNAME.github.io/files/myPDF.pdf</code></p>
+<h2 id="6-一些原理">6. 一些原理<a href="#6-一些原理" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p><a href="https://github.com/gohugoio/hugo" target="_blank" rel="noreferrer noopener"><strong>Hugo</strong></a>
+
+是由Go语言实现的静态网站生成。 具有简单、易用、高效、易扩展、快速部署等优点。可将markdown格式的文本结合自定义的主题生成静态的html。</p>
+<p><a href="https://help.github.com/articles/what-is-github-pages/" target="_blank" rel="noreferrer noopener"><strong>GithubPages</strong></a>
+
+是一个静态站点托管服务，旨在直接从GitHub存储库托管您的个人，组织或项目页面。</p>
+<p>Hugo+GithubPages的方案相比于传统的博客系统有以下优点：</p>
+<ul>
+<li>低成本: 无需单独购买VSP服务器或者域名空间，并且不限流量。</li>
+<li>高度定制化：可以方便的定义网站功能模块，增加个性化功能。</li>
+<li>方便管理: 由于不需要使用数据库，所有数据均以md形式保存，可直接使用git 行管理，对于博客系统尤其适用。</li>
+<li>更专业: 对于开源项目的文档，可以使用git与项目版本同步。</li>
+</ul>
+<p>整个网站的结构应该是</p>
+<pre tabindex="0"><code>$ tree blog
+blog
+├── archetypes # 包括内容类型，在创建新内容/构建新文章时自动生成内容的配置。
+│   └── default.md
+├── config.toml # config.toml 是整个网站的配置文件
+├── content # 包括网站内容，全部使用 markdown 格式。
+├── data
+├── layouts # 网站如何展示的一些前端的东西，包括了网站的模版，决定内容如何呈现，目录下模板优先级高于 /themes/&lt;THEME&gt;/layouts/，可以用来小规模的定制主题。
+├── static # 包括了 css, js, fonts, media 等，决定网站的外观。
+└── themes # 主题目录，可从网站下载hugo主题
+</code></pre><p>文章的头文件</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>title: <span style="color:#ba2121">&#34;使用GitHub page建立站点&#34;</span>
+</span></span><span style="display:flex;"><span>date: 2022-03-20T13:42:27-05:00
+</span></span><span style="display:flex;"><span>author: KJY
+</span></span><span style="display:flex;"><span>slug: second-post-cn <span style="color:#408080;font-style:italic"># slug是指wordpress在启用了伪静态后，你的文章(post)与页面(page)、标签(tag)、分类(Category)在访问的时候显示在浏览器地址栏上域名后面的地址。</span>
+</span></span><span style="display:flex;"><span>draft: <span style="color:#008000">false</span>
+</span></span><span style="display:flex;"><span>toc: <span style="color:#008000">true</span>
+</span></span><span style="display:flex;"><span>categories:
+</span></span><span style="display:flex;"><span>  - <span style="color:#008000">test</span>
+</span></span><span style="display:flex;"><span>tags:
+</span></span><span style="display:flex;"><span>  - article
+</span></span><span style="display:flex;"><span>---
+</span></span></code></pre></div><h2 id="hexo和hugo的区别">Hexo和Hugo的区别<a href="#hexo和hugo的区别" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p><a href="https://jekyllrb.com/" target="_blank" rel="noreferrer noopener">Jekyll</a>
+
+ 是最早开始流行的静态网站构建工具，使用Ruby语言开发，开源已有9个年头了，是Github Pages默认的静态网站构建工具。当前互联网上有大量基于jekyll构建的静态网站，包括现在流行的开源容器编排调度引擎<a href="https://kubernetes/io" target="_blank" rel="noreferrer noopener">kubernetes的官网</a>
+
+。</p>
+<p><a href="https://hexo.io/" target="_blank" rel="noreferrer noopener">Hexo</a>
+
+是一款使用<a href="https://nodejs.org/" target="_blank" rel="noreferrer noopener">node.js</a>
+
+开发的静态网站构建工具，便于构建华丽绚烂的页面。</p>
+<p><a href="https://gohugo.io/" target="_blank" rel="noreferrer noopener">Hugo</a>
+
+是由<a href="http://spf13.com/" target="_blank" rel="noreferrer noopener">Steve Francis</a>
+
+基于Go语言开发的静态网站构建工具。</p>
+<p>下面是三款静态网站构建工具的简要对比：</p>
+<table>
+<thead>
+<tr>
+<th>工具名称</th>
+<th>开发语言</th>
+<th>构建效率</th>
+<th>典型用例</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://jekyllrb.com/" target="_blank" rel="noreferrer noopener">jekyll</a>
+
+</td>
+<td>ruby</td>
+<td>比较慢</td>
+<td>GitHub Pages默认的静态网站构建工具、<a href="https://kubernetes/io" target="_blank" rel="noreferrer noopener">kubernetes官网</a>
+
+</td>
+<td>历史悠久，开源已9年，模板和插件众多，但是构建速度慢</td>
+</tr>
+<tr>
+<td><a href="https://hexo.io/" target="_blank" rel="noreferrer noopener">hexo</a>
+
+</td>
+<td>node.js</td>
+<td>一般</td>
+<td>个人博客、产品展示</td>
+<td>页面酷炫，前端开发者用户居多</td>
+</tr>
+<tr>
+<td><a href="https://gohugo.io/" target="_blank" rel="noreferrer noopener">hugo</a>
+
+</td>
+<td>go</td>
+<td>极快</td>
+<td>个人博客、产品展示</td>
+<td>Go大神<a href="https://github.com/spf13" target="_blank" rel="noreferrer noopener">spf13</a>
+
+开发，开源已4年，升级活跃，构建速度极快，后端开发者用户居多</td>
+</tr>
+</tbody>
+</table>
+<p>以上工具都可以将markdown内容转换为静态页面。</p>
+<h2 id="原型模板">原型模板<a href="#原型模板" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p><em><strong>Note:</strong> 这一步不是必须的，因为生成的每一篇文章都可以单独配置下面提到的 front matter。这里只是简单介绍，可以根据自己的需求修改，以减少重复工作、提升效率。</em></p>
+<h3 id="默认模板">默认模板<a href="#默认模板" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>还记得前面说过的 <code>archetypes</code> 原型模板目录吧，这个目录下默认会创建一个 <code>default.md</code>， 在 <a href="https://niceram.xyz/2021/03/04/20210304_1125/#%e6%96%b0%e5%bb%ba%e6%96%87%e7%ab%a0" target="_blank" rel="noreferrer noopener">新建文章</a>
+
+ 的时候会将其作为原型自动为新的 Markdown 添加 <a href="https://gohugo.io/content-management/front-matter/" target="_blank" rel="noreferrer noopener">front matter</a>
+
+。</p>
+<p>在未更改 <code>default.md</code> 的情况下，新建的 Markdown 中仅会自动添加以下内容</p>
+<pre tabindex="0"><code>---
+title: &#34;{{ replace .Name &#34;-&#34; &#34; &#34; | title }}&#34;
+date: {{ .Date }}
+draft: false
+---
+</code></pre><ul>
+<li>title: 文章标题。默认是从文件名替换而来</li>
+<li>date: 文章的创建日期。</li>
+<li>draft: 草稿标记。当设置为 <code>true</code> 时，Hugo 默认不会生成该文章的预览和 HTML。</li>
+</ul>
+<p>以本文举个例子，运行 <code>hugo new posts/Hugo-静态博客搭建.md</code> 后生成的 Markdown 内容将是</p>
+<pre tabindex="0"><code>---
+title: &#34;Hugo 静态博客搭建&#34;
+date: 2021-03-04T11:25:03+08:00
+draft: false
+---
+</code></pre><p>上面两行 <code>---</code> 及其中间键值对形式的配置就是 <code>front matter</code> 了。</p>
+
+<p style="color:#777;">最后一次修改于 2022-03-20</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       订阅 </a>
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+

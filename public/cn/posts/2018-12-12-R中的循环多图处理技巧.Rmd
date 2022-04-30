@@ -1,0 +1,75 @@
+---
+title: R中的循环多图处理技巧
+author: Liang
+date: '2018-12-12'
+slug: R中的循环多图处理技巧
+categories:
+  - R
+tags: []
+lastmod: '2018-12-12T16:22:09-05:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+
+# 1.制造一些图
+
+制造一些图片，为后续的操作做准备
+
+```{r}
+library(ggplot2)
+
+# This example uses the ChickWeight dataset, which comes with ggplot2
+# First plot
+p1 <- ggplot(ChickWeight, aes(x=Time, y=weight, colour=Diet, group=Chick)) +
+    geom_line() +
+    ggtitle("Growth curve for individual chicks")
+
+# Second plot
+p2 <- ggplot(ChickWeight, aes(x=Time, y=weight, colour=Diet)) +
+    geom_point(alpha=.3) +
+    geom_smooth(alpha=.2, size=1) +
+    ggtitle("Fitted growth curve per diet")
+
+# Third plot
+p3 <- ggplot(subset(ChickWeight, Time==21), aes(x=weight, colour=Diet)) +
+    geom_density() +
+    ggtitle("Final weight, by diet")
+
+# Fourth plot
+p4 <- ggplot(subset(ChickWeight, Time==21), aes(x=weight, fill=Diet)) +
+    geom_histogram(colour="black", binwidth=50) +
+    facet_grid(Diet ~ .) +
+    ggtitle("Final weight, by diet") +
+    theme(legend.position="none")        # No legend (redundant in this graph)    
+```
+
+
+# 图片列表
+
+使用ggarrange函数进行合并，可指定列和行
+
+```{r, message=FALSE, warning=FALSE}
+library(ggpubr)
+plist <- list(p1, p2, p3, p4)
+do.call("ggarrange", c(plist, ncol=2, nrow=2))
+```
+
+使用一些其他的也可以例如cowplot的函数和grid.arrange函数，但是我更加喜欢ggarrange.
+

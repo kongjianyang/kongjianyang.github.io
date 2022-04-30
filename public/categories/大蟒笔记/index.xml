@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>大蟒笔记 on KJY</title>
+    <link>https://kongjianyang.github.io/categories/%E5%A4%A7%E8%9F%92%E7%AC%94%E8%AE%B0/</link>
+    <description>Recent content in 大蟒笔记 on KJY</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 25 Nov 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/%E5%A4%A7%E8%9F%92%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python下负责数据分析的库</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/25/python%E4%B8%8B%E8%B4%9F%E8%B4%A3%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%9A%84%E5%BA%93/</link>
+      <pubDate>Sun, 25 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/25/python%E4%B8%8B%E8%B4%9F%E8%B4%A3%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%9A%84%E5%BA%93/</guid>
+      <description>Numpy: 基础的数学计算模块，以矩阵为主,纯数学。
+pandas 是基于 NumPy 的一个 Python 数据分析包，主要目的是为了数据分析。它提供了大量高级的数据结构和对数据处理的方法。 pandas 有两个主要的数据结构：Series 和 DataFrame。
+Series = 一维数组 + 数据标签（索引） Series相当于数组numpy.array DataFrame是一个表格型的数据结构，是以一个或多个二维块存放的数据表格（层次化索引），DataFrame既有行索引还有列索引，它有一组有序的列，每列既可以是不同类型（数值、字符串、布尔型）的数据，或者可以看做有Series组成的字典。
+Series: 一组数组（列表或元组），series除了一组数据外还包括一组索引（即只有行索引），索引可自行定义也可利用Series(),自动生成索引； dataframe: 是表格型数据，既有行索引又有列索引，每列数据可以为不同类型数据（数值、字符串、布尔型值），可利用DataFrame（其他数据，dataframe属性)指定dataframe的属性创建dataframe。
+Pandas: 提供了一套名为DataFrame的数据结构，适合统计分析中的表结构,在上层做数据分析。
+SciPy: 基于Numpy，提供方法(函数库)直接计算结果，封装了一些高阶抽象和物理模型。比方说做个傅立叶变换，这是纯数学的，用Numpy；做个滤波器，这属于信号处理模型了，在Scipy里找。
+简洁的说:
+NumPy：N维数组容器
+SciPy：科学计算函数库
+Pandas：表格容器
+非数学研究,建议直接入手pandas,包含基础的Numpy方法。
+matplotlib是基于Python语言的开源项目，旨在为Python提供一个数据绘图包。matplotlib是受MATLAB的启发构建的。MATLAB是数据绘图领域广泛使用的语言和工具。MATLAB语言是面向过程的。
+Seaborn是基于matplotlib的Python可视化库。 它提供了一个高级界面来绘制有吸引力的统计图形。Seaborn其实是在matplotlib的基础上进行了更高级的API封装，从而使得作图更加容易，不需要经过大量的调整就能使你的图变得精致。但应强调的是，应该把Seaborn视为matplotlib的补充，而不是替代物。
+sklearn是一个Python第三方提供的非常强力的机器学习库，它包含了从数据预处理到训练模型的各个方面。</description>
+    </item>
+    
+    <item>
+      <title>conda下多版本Python切换和配置</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/conda%E4%B8%8B%E5%A4%9A%E7%89%88%E6%9C%ACpython%E5%88%87%E6%8D%A2%E5%92%8C%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/conda%E4%B8%8B%E5%A4%9A%E7%89%88%E6%9C%ACpython%E5%88%87%E6%8D%A2%E5%92%8C%E9%85%8D%E7%BD%AE/</guid>
+      <description>##1.问题 学习Python是目前十分火热的一个领域，但是Python3和Python2之间的切换和选择经常使人烦恼，多版本的Python之间经常会有冲突。解决这一问题的一个好的途径是安装anaconda进行环境和版本控制。
+##2.教程 检测安装的conda版本，在终端输入命令：
+conda --version Conda会返回你安装Anaconda软件的版本。
+升级当前版本conda，输入命令：
+conda update conda 更新conda到最新版本之后，利用conda进行环境管理
+创建一个新环境：
+conda create -n python3 激活新环境：
+source activate python3 列出所有的环境：
+conda info --envs 会列出所有的环境，当前环境前面有*符号
+切换环境：
+source activate base 返回原环境：
+source deactivate 给新环境安装Python3：
+conda create -n python3 python=3 检查环境内的Python版本：
+python --version 检查环境内的包：
+conda list 查找一个包是否能够安装：
+conda search beautifulsoup4 告知安装环境的名字并安装这个包：
+conda install --name base beautifulsoup4 移除安装的包，必须告知移除包的环境：
+conda remove -n base beautifulsoup4 移除一个环境：
+conda remove -n python3 --all ##3.总结 以上是使用conda的一些基本命令，使用conda可以帮助我们很好的管理Python及其依赖的包的环境。</description>
+    </item>
+    
+    <item>
+      <title>Jupyter-Notebook进阶使用教程</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/jupyter-notebook%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/jupyter-notebook%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</guid>
+      <description>1.前略 读博之路上不打算每天都全心全意的投入到老板给的课题中了，晚上八点到十一点学习点新东西。
+2. 起因 最近打算好好学习下统计学和机器学习方面的知识，我的习惯是学习新内容前需要有好的记录工具，否则就坚持不下去，容易气馁。之前学习R语言的时候爱上了Rstudio和Rmd这种交互式文档语言(interactive language)，但是因为R更多的是用来做统计分析的，功能还是比较薄弱，不能适应复杂的任务，因此需要开辟新的语言进行学习，之前也学习过python，了解其语法，但是没有坚持的原因有两点，其一本科的时候没有项目进行练手，其二是因为没有找到合适自己的IDE。现在重新学习语言，找到了Jupyter Notebook，类似与Rstudio一样可以做到所写即所得。所以开始熟悉怎么使用Jupyter Notebook，将一些技巧记录在此。
+3.技巧 3.1 配置及打开 安装方法之类的不多讲，安装之后希望在任何地方打开Jupyter的话在Terminal下cd到目标文件夹，键入Jupyter Notebook自然能在你的浏览器下打开Jupyter，则工作目录即为你的目标目录。
+希望查看Jupyter的配置文件的话键入jupyter notebook --generate-config则能看到配置文件。
+3.2 加载本地.py文件 还可以将本地的.py文件load到jupyter的一个cell中 例如有一个test.py文件，需要将其载入到jupyter的一个cell中 test.py内容如下：
+import caffe SolverName = &amp;#34;/root/workspace&amp;#34; sovler = caffe.AdamSolver(SolverName) 在需要导入该段代码的cell中只需要输入如下
+%load test.py #test.py是当前路径下的一个python文件 3.3 作为unix command使用 jupyter的cell还可以作为unix command使用，具体方法为：在unix command前面加入一个感叹号“！”
+例子： 查看python版本：!python --version 运行python文件：!python myfile.py 3.4 添加目录功能 还可以为Jupyter Notebook添加目录功能，原始的Jupyter是不支持markdown添加目录功能的，实际上，可以利用Jupyter notebook extensions 去使得这种功能实现，具体方法：  `conda install -c conda-forge jupyter_contrib_nbextensions`  打开Jupyter Notebook，在它的（新增的）Nbextensions标签下勾选“Table of Contents(2)” ，关于extensions还有很多其他的功能可以自行查看。
+3.5 魔法命令 (magic function) 所有以%开头的方法，都是Jupyter里面的所谓魔术方法(Magic function)，也就是ipython内置的一些方法。需要注意的是，魔术方法有%和%%之分，比如%timeit和%%timeit。在ipython中有专门的叫法，前者叫line magic后者叫cell magic。顾名思义，前者是专门针对一行的命令，后者针对多行的命令。</description>
+    </item>
+    
+    <item>
+      <title>Jupyter不显示warming-message</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/jupyter%E4%B8%8D%E6%98%BE%E7%A4%BAwarming-message/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/jupyter%E4%B8%8D%E6%98%BE%E7%A4%BAwarming-message/</guid>
+      <description>运行Jupyter notebook的时候偶尔会提醒有错误信息，让人很烦恼，解决这个问题只需要在cell行内添加一下命令。
+#隐藏警告 import warnings warnings.filterwarnings(&amp;#39;ignore&amp;#39;) </description>
+    </item>
+    
+    <item>
+      <title>matplotlib-finance查找库位置并从GitHub安装库</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/matplotlib-finance%E6%9F%A5%E6%89%BE%E5%BA%93%E4%BD%8D%E7%BD%AE%E5%B9%B6%E4%BB%8Egithub%E5%AE%89%E8%A3%85%E5%BA%93/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/matplotlib-finance%E6%9F%A5%E6%89%BE%E5%BA%93%E4%BD%8D%E7%BD%AE%E5%B9%B6%E4%BB%8Egithub%E5%AE%89%E8%A3%85%E5%BA%93/</guid>
+      <description>1. 问题 尝试用python 做个股票绘图软件，要用到finance库，于是开始导入：
+import matplotlib.finance as mpf 结果执行的时候直接报错：
+ImportError: No module named finance 开始还没有安装模块，就专门装了个 finance 模块，使用 import finance 导入，错误倒是没有了，但是 finance 中没有想要的函数，根本无法导出股票数据。去查看 matplotlib 的文档说明，在matplotlib2.2.2的API中有这么一段话：
+ The matplotlib.finance, mpl_toolkits.exceltools and mpl_toolkits.gtktools modules have been removed. matplotlib.finance remains available at https://github.com/matplotlib/mpl_finance .
+ finance这个模块竟然被删除了！！！并且就是从2.2.2版本开始
+2. 解决 查找matplotlib安装位置
+import matplotlib print matplotlib.__file__ 进入到该位置下从GitHub下载库
+git clone git@github.com:matplotlib/mpl_finance.git #安装 python setup.py install 安装好之后需要重启Jupyter notebook。 加载库
+import mpl_finance as mpf </description>
+    </item>
+    
+    <item>
+      <title>Pandas分组函数：groupby、pivot_table及crosstab</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/pandas%E5%88%86%E7%BB%84%E5%87%BD%E6%95%B0groupbypivot_table%E5%8F%8Acrosstab/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/pandas%E5%88%86%E7%BB%84%E5%87%BD%E6%95%B0groupbypivot_table%E5%8F%8Acrosstab/</guid>
+      <description>1. 起因 利用python的pandas库进行数据分组分析十分便捷，其中应用最多的方法包括：groupby、pivot_table及crosstab，以下分别进行介绍。
+2. 详解 首先构造数据
+import numpy as np import pandas as pd df = pd.DataFrame({&amp;#39;key1&amp;#39;:[&amp;#39;a&amp;#39;,&amp;#39;a&amp;#39;,&amp;#39;b&amp;#39;,&amp;#39;b&amp;#39;,&amp;#39;a&amp;#39;],&amp;#39;key2&amp;#39;:[&amp;#39;one&amp;#39;,&amp;#39;two&amp;#39;,&amp;#39;one&amp;#39;,&amp;#39;two&amp;#39;,&amp;#39;one&amp;#39;],&amp;#39;data1&amp;#39;:np.random.randn(5),&amp;#39;data2&amp;#39;:np.random.randn(5)}) 2.1 group函数 分组groupby Pandas中最为常用和有效的分组函数。
+1）按列分组
+注意以下使用groupby()函数生成的group1是一个中间分组变量，为GroupBy类型。
+group1 = df.groupby(&amp;#39;key1&amp;#39;) group2 = df.groupby([&amp;#39;key1&amp;#39;,&amp;#39;key2&amp;#39;]) 使用推导式[x for x in group1]可显示分组内容。
+[x for x in group1] [(&amp;#39;a&amp;#39;, data1 data2 key1 key2 0 1.830651 0.407903 a one 1 -0.973132 -0.056084 a two 4 -1.069184 0.043338 a one), (&amp;#39;b&amp;#39;, data1 data2 key1 key2 2 -0.477718 -1.488174 b one 3 -0.</description>
+    </item>
+    
+    <item>
+      <title>Python中mechanize模块练习</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/python%E4%B8%ADmechanize%E6%A8%A1%E5%9D%97%E7%BB%83%E4%B9%A0/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/python%E4%B8%ADmechanize%E6%A8%A1%E5%9D%97%E7%BB%83%E4%B9%A0/</guid>
+      <description>Part 1 An introduction about mechanize
+import mechanize br = mechanize.Browser() br.open(&amp;#34;http://www.example.com/&amp;#34;) &amp;lt;response_seek_wrapper at 0x109db3170 whose wrapped object = &amp;lt;closeable_response at 0x109d4a5f0 whose fp = &amp;lt;socket._fileobject object at 0x109d386d0&amp;gt;&amp;gt;&amp;gt;  response1 = br.follow_link() assert br.viewing_html() print br.title() IANA — IANA-managed Reserved Domains  print response1.geturl() https://www.iana.org/domains/reserved  print response1.info() #headers Date: Fri, 13 Jul 2018 14:51:52 GMT X-Frame-Options: SAMEORIGIN Referrer-Policy: origin-when-cross-origin Content-Security-Policy: upgrade-insecure-requests Vary: Accept-Encoding Last-Modified: Tue, 21 Jul 2015 00:49:48 GMT Cache-control: public, s-maxage=900, max-age=7202 Expires: Fri, 13 Jul 2018 16:51:52 GMT Content-Type: text/html; charset=UTF-8 Server: Apache Strict-Transport-Security: max-age=48211200; preload X-Cache-Hits: 18 Accept-Ranges: bytes Content-Length: 10225 Connection: close content-type: text/html; charset=utf-8  print response1.</description>
+    </item>
+    
+    <item>
+      <title>python的global函数以及LEGB原则</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/python%E7%9A%84global%E5%87%BD%E6%95%B0%E4%BB%A5%E5%8F%8Alegb%E5%8E%9F%E5%88%99/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/python%E7%9A%84global%E5%87%BD%E6%95%B0%E4%BB%A5%E5%8F%8Alegb%E5%8E%9F%E5%88%99/</guid>
+      <description>1. 起因 两小段代码的故事：
+def myFunc(): B = 10 def inFunc(A): global B B = A ** 5 return B B = 25 myFunc() print B def myFunc(): B = 10 def inFunc(A): global B B = A ** 5 inFunc(B) return B B = 25 myFunc() print B 你能不运行代码直接告诉这两个小代码的结果么？
+2. 解释 python中的局部变量和全局变量。
+全局变量：所有函数之外定义的变量 局部变量：函数内部定义的变量 或者代码块里的变量
+1.函数内部的变量名如果第一次出现，且出现在=前面，即被视为定义了一个局部变量，不管全局域中有没有该变量名，函数中使用的将是局部变量。
+(即声明了一个新的局部变量。如果这个变量名字和全部变量名字相同，那么局部变量名字会覆盖全局变量名字）
+#[demo1] num = 100 def func(): newValue = 123 #一个全新的局部变量newValue print(newValue) func() #输出局部变量newValue 即新的局部变量 #[demo2] num = 100 def func(): num= 123 #声明一个全新的局部变量num，虽然名字和外界的全部变量相同 但是是新的一个变量且是局部有效的。屏蔽了外面的同名的全部变量 print(num) func() #输出局部变量num=123 即新的局部变量。 2.</description>
+    </item>
+    
+    <item>
+      <title>Python绘图和可视化</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/python%E7%BB%98%E5%9B%BE%E5%92%8C%E5%8F%AF%E8%A7%86%E5%8C%96/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/python%E7%BB%98%E5%9B%BE%E5%92%8C%E5%8F%AF%E8%A7%86%E5%8C%96/</guid>
+      <description>Python有许多库进行静态或动态的数据可视化，但我这里重要关注于matplotlib和基于它的库。matplotlib的目的是为Python构建一个MATLAB式的绘图接口。在Jupyter notebook中执行下面的语句：
+%matplotlib notebook import matplotlib.pyplot as plt import numpy as np data = np.arange(10) data plt.plot(data) matplotlib的图像都位于Figure对象中。你可以用plt.figure创建一个新的Figure： 如果用的是IPython，这时会弹出一个空窗口，但在Jupyter中，必须再输入更多命令才能看到。plt.figure有一些选项，特别是figsize，它用于确保当图片保存到磁盘时具有一定的大小和纵横比。
+不能通过空Figure绘图。必须用add_subplot创建一个或多个subplot才行：
+# 代码的意思是：图像应该是2×2的（即最多4张图）， # 且当前选中的是4个subplot中的第一个（编号从1开始）。 # 如果再把后面两个subplot也创建出来，最终得到的图像如图所示： fig = plt.figure() ax1 = fig.add_subplot(2, 2, 1) ax2 = fig.add_subplot(2, 2, 2) ax3 = fig.add_subplot(2, 2, 3) 使用Jupyter notebook有一点不同，即每个小窗重新执行后，图形会被重置。因此，对于复杂的图形，，你必须将所有的绘图命令存在一个小窗里。 加的绘图命令会在最后一个subplot上.
+fig = plt.figure() ax1 = fig.add_subplot(2, 2, 1) ax2 = fig.add_subplot(2, 2, 2) ax3 = fig.add_subplot(2, 2, 3) plt.plot(np.random.randn(50).cumsum(), &amp;#39;k--&amp;#39;) #plt.plot(np.random.randn(50).cumsum(), &amp;#39;k--&amp;#39;) # ax1.</description>
+    </item>
+    
+    <item>
+      <title>windows下的Linux子系统安装conda和jupyterlab</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/windows%E4%B8%8Blinux%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85conda%E5%92%8Cjupyterlab/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/windows%E4%B8%8Blinux%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85conda%E5%92%8Cjupyterlab/</guid>
+      <description>1.安装conda 升级系统
+sudo apt-get update -y &amp;amp;&amp;amp; sudo apt-get upgrade -y 下载anaconda
+wget https://repo.anaconda.com/archive/Anaconda3-5.0.1-Linux-x86_64.sh 安装anaconda
+bash Anaconda3-5.0.1-Linux-x86_64.sh 按照安装教程进行下去
+激活安装
+source ~/.bashrc 查看安装
+conda list 2.安装jupyterlab conda install -c conda-forge jupyterlab 3.使用Jupyterlab jupyter lab </description>
+    </item>
+    
+    <item>
+      <title>为Jupyter-Notebook添加目录</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/%E4%B8%BAjupyter-notebook%E6%B7%BB%E5%8A%A0%E7%9B%AE%E5%BD%95/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/%E4%B8%BAjupyter-notebook%E6%B7%BB%E5%8A%A0%E7%9B%AE%E5%BD%95/</guid>
+      <description>1. 问题 从R的RMarkdown转到Python的Jupyter Notebook的时候会发现一个问题. 使用RStudio生成RMarkdown的时候, 可以添加目录(Table of Contents, TOC). 在RStudio添加一个目录, 目录里面的内容根据RMarkdown每一个标题自动生成. 这样只需要点击目录里面相应的内容, 就可以很快的跳到RMarkdown对应的地方，非常有效率。但是很可惜的是, 默认Jupyter Notebook是没有生成目录这个功能的。但是我们可以通过Jupyter Notebook extensions开启这个功能。
+2. 解决 第一步, 安装 Jupyter Notebook
+这个是必须的. 如果还没安装的话, 建议安装 anaconda 第二步, 安装Jupyter Notebook extensions
+conda install -c conda-forge jupyter_contrib_nbextensions 第三步, 开启toc2插件
+运行Jupyter Notebook, 在打开的Notebook界面里, 你会发现多了一个Nbextensions,点击这个tab, 会有如下界面
+勾选Table of Contents (有的版本是toc2). 然后创建或者打开一个Jupter Notebook
+第四步, 生成目录
+在Notebook上面选项中,多了一个生成目录图标, 如下图中最右边的图标.点击这个图标就会生成一个目录. 在Notebook里添加标题(也就是用###生成的Markdown内容)会自动添加到目录里面. 在目录上面, 有个小的n图标, 这表示自动对每个标题编号, 点击这个图标可以打开或者关闭这个功能。
+3. 总结 Rmarkdown和Jupyter notebook用来做轻量级的编程都是非常好的，他们彼此之间的相似点也非常多，这两个工具某种程度上也降低了R和Python语言学习门槛，可以花更多的时间在这两个工具上。</description>
+    </item>
+    
+    <item>
+      <title>利用PyPDF2合并PDF文件</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/%E5%88%A9%E7%94%A8pypdf2%E5%90%88%E5%B9%B6pdf%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/%E5%88%A9%E7%94%A8pypdf2%E5%90%88%E5%B9%B6pdf%E6%96%87%E4%BB%B6/</guid>
+      <description>1. 问题 有的时候我们有一系列PDF文件我们希望合并到一个PDF中进行查看和打印，这个时候合并PDF文件就非常有用，PyPDF2库可以帮助我们做到这点。
+2. 用法 PyPDF2 包括了 PdfFileReader PdfFileMerger PageObject PdfFileWriter 四个常用的主要 Class。
+以下命令可以解释这个库是怎么工作的
+from PyPDF2 import PdfFileReader, PdfFileWriter readFile = &amp;#39;read.pdf&amp;#39; writeFile = &amp;#39;write.pdf&amp;#39; # 获取一个 PdfFileReader 工具 pdfReader = PdfFileReader(open(readFile, &amp;#39;rb&amp;#39;)) # 获取 PDF 的页数 pageCount = pdfReader.getNumPages() print(pageCount) # 返回一个 PageObject page = pdfReader.getPage(i) # 获取一个 PdfFileWriter 工具 pdfWriter = PdfFileWriter() # 将一个 PageObject 插手到 PdfFileWriter 中 pdfWriter.addPage(page) # 输出到文件中 pdfWriter.write(open(writeFile, &amp;#39;wb&amp;#39;)) 接下来的命令是一个实例
+from PyPDF2 import PdfFileMerger pdfs = [&amp;#39;file1.</description>
+    </item>
+    
+    <item>
+      <title>利用Python将基因表达数据存为字典</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/%E5%88%A9%E7%94%A8python%E5%B0%86%E5%9F%BA%E5%9B%A0%E8%A1%A8%E8%BE%BE%E6%95%B0%E6%8D%AE%E5%AD%98%E4%B8%BA%E5%AD%97%E5%85%B8/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/%E5%88%A9%E7%94%A8python%E5%B0%86%E5%9F%BA%E5%9B%A0%E8%A1%A8%E8%BE%BE%E6%95%B0%E6%8D%AE%E5%AD%98%E4%B8%BA%E5%AD%97%E5%85%B8/</guid>
+      <description>1. 问题 我们的基因表达数据如下表所示
+ cond1 cond2 cond3 gene1 1.57 2.52 12.05 gene2 0.01 8.90 31.20 gene3 57.05 12.14 50.76 我们希望能够利用Python将这个基因表达文件存为一个dictionary，这样我们能很容易的通过基因名和样品名得到基因的表达量，我们还可以筛选表达量大于某个值的所有基因和样品， 如下：
+myDict[(&amp;#39;gene1&amp;#39;,&amp;#39;cond1&amp;#39;)] = 1.57 myDict[(&amp;#39;gene1&amp;#39;,&amp;#39;cond2&amp;#39;)] = 2.52 myDict[(&amp;#39;gene1&amp;#39;,&amp;#39;cond3&amp;#39;)] = 12.05 myDict[(&amp;#39;gene2&amp;#39;,&amp;#39;cond1&amp;#39;)] = 0.01 ... 2. Python解决 利用Python的逻辑是首先将基因名和样品名存为一个元祖，然后将此元祖作为字典里面的key，将基因表达量作为字典里面的value。
+data = open(input_file, &amp;#39;rU&amp;#39;) l = data.readline().rstrip(&amp;#34;\r\n&amp;#34;) conds = l.split(&amp;#34;\t&amp;#34;) conds.pop(0) d = dict() for l in data: l = l.rstrip(&amp;#34;\r\n&amp;#34;) vals = l.split(&amp;#34;\t&amp;#34;) gene = vals[0] vals.pop(0) valIdx = 0 for val in vals: cond = conds[valIdx] d[(gene, cond)] = float(val) valIdx += 1 ## 额外部分，想得到基因表达量大于12的基因和样品 value12={k:v for k,v in d.</description>
+    </item>
+    
+    <item>
+      <title>服务器端使用Jupyter-Hub及相关配置</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E4%BD%BF%E7%94%A8jupyter-hub%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E4%BD%BF%E7%94%A8jupyter-hub%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/</guid>
+      <description>加载anaconda模块
+module load anaconda/5.0.0-py36 创建自己的环境
+conda create -n py36 python=3.6 ipython ipykernel 查看当前环境
+conda info --envs 激活环境
+source activate py36 安装nb_conda以在Jupyter notebook中调用不同的环境
+conda install nb_conda 启动Jupyter notebook
+jupyter notebook 终端运行jupyter notebook后打开了jupyter的网页，关闭jupyter的网页后同时按下ctrl和C键退出终端jupyter notebook。 k 完成之后返回原始环境
+source deactivate py36 </description>
+    </item>
+    
+  </channel>
+</rss>

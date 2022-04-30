@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>生信修炼 on KJY</title>
+    <link>https://kongjianyang.github.io/categories/%E7%94%9F%E4%BF%A1%E4%BF%AE%E7%82%BC/</link>
+    <description>Recent content in 生信修炼 on KJY</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 17 Dec 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/%E7%94%9F%E4%BF%A1%E4%BF%AE%E7%82%BC/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>利用BinGO实现在cytoscape中的富集分析和网络可视化</title>
+      <link>https://kongjianyang.github.io/cn/2018/12/17/%E5%88%A9%E7%94%A8bingo%E5%AE%9E%E7%8E%B0%E5%9C%A8cytoscape%E4%B8%AD%E7%9A%84%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90%E5%92%8C%E7%BD%91%E7%BB%9C%E5%8F%AF%E8%A7%86%E5%8C%96/</link>
+      <pubDate>Mon, 17 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/12/17/%E5%88%A9%E7%94%A8bingo%E5%AE%9E%E7%8E%B0%E5%9C%A8cytoscape%E4%B8%AD%E7%9A%84%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90%E5%92%8C%E7%BD%91%E7%BB%9C%E5%8F%AF%E8%A7%86%E5%8C%96/</guid>
+      <description> 1. 安装 在主菜单找到Apps manager，再找到BinGO就可以实现安装
+ 2. 使用 使用之前先下载物种最新的GO注释文件，以拟南芥为例：
+http://geneontology.org/page/downloads
+找到拟南芥，这个注释文件包含的两列对这里的分析是有用的，分别是Gene ID和GO 功能注释。但文件还包含了其他信息，如symbol，基因的物理坐标信息，UniProt ID等：
+将刚刚下载的gene_association.tair导入到BiNGO中.
+下载GO功能注释分类文件，下载地址：http://geneontology.org/page/downloads
+相同界面，点选Ontology 在界面内，找到“go-basic.obo”并下载
+“go-basic.obo”可以使用文本文件打开。里面记录了GO term 间的关系，依据这些关系，GO term最终将被化成网络图的形式。找到 select ontology file的窗口，选择custom，然后导入。
+针对拟南芥，也可以使用cytoscape自带的注释和注释分类文件，不需要重新下载
+ 3. 结果 GO富集结果：一个文件属于弹窗，另一个存储在输出文件夹中（内容相同）。第五列和第六列列出了这类功能基因在目标基因集合和全基因组基因中的比例。
+ 另外GO分析网络图结果，颜色越深越富集，下面的表格为详细的富集信息：
+ 上述步骤分析完后会直接在cytoscape 页面生成绘图结果
+ </description>
+    </item>
+    
+    <item>
+      <title>bedGraph，bed以及bam文件格式转换</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/bedgraphbed%E4%BB%A5%E5%8F%8Abam%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/bedgraphbed%E4%BB%A5%E5%8F%8Abam%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/</guid>
+      <description>感兴趣的基因信息包含在bedGraph文件中，下面命令是对其文件格式进行转换，一般进行到bam文件可视化的效果比较好。
+1. bedGraph转bed文件 BedGraph ，的数据和bed文件很类似，ChIPseq数据做完peak calling后的bed文件最短只有三列，染色体序号，染色体起始位置和结束位置。如下所示，前面的声明和Wig类似，后面的四列分别表示染色体序号，起始位置，结束位置和value值。相当于为bed文件的延伸格式。
+track type=bedGraph name=&amp;#34;BedGraph Format&amp;#34; description=&amp;#34;BedGraph format&amp;#34; visibility=full color=200,100,0 altColor=0,100,200 priority=20 chr19 49302000 49302300 -1.0 chr19 49302300 49302600 -0.75 chr19 49302600 49302900 -0.50 chr19 49302900 49303200 -0.25 chr19 49303200 49303500 0.0 chr19 49303500 49303800 0.25 chr19 49303800 49304100 0.50 chr19 49304100 49304400 0.75 chr19 49304400 49304700 1.00 所以我们想要得到bed文件只需要提取bedGraph的前三列即可，同时注意不要第一行，利用grep -v命令
+# Convert bedGraph to bed file grep -v track GSM1252087_edm2-4_RNAseq.bedGraph | cut -f 1-3 &amp;gt; GSM1252087_edm2-4_RNAseq.bed 2.</description>
+    </item>
+    
+    <item>
+      <title>blogdown建立网站</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/blogdown%E5%BB%BA%E7%AB%8B%E7%BD%91%E7%AB%99/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/blogdown%E5%BB%BA%E7%AB%8B%E7%BD%91%E7%AB%99/</guid>
+      <description>https://d.cosx.org/d/419791-blogdown-netlify-non-zero-exist-code-255
+https://cosx.org/2018/01/build-blog-with-blogdown-hugo-netlify-github/
+https://testliang.netlify.com/</description>
+    </item>
+    
+    <item>
+      <title>dplyr包的join函数</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/dplyr%E5%8C%85%E7%9A%84join%E5%87%BD%E6%95%B0/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/dplyr%E5%8C%85%E7%9A%84join%E5%87%BD%E6%95%B0/</guid>
+      <description>dplyr中有非常多非常有用的功能，例如filter()，arrange()，select()，mutate()，group_by()。但是这篇教程是谈join函数。
+join函数在dplyr包中是个系列函数。 join函数：
+join(x, y, by = NULL, copy = FALSE, ...)  x,y 为合并的数据框，不要求x,y中排序列唯一 by 为排序依据，默认值Null时按名字相同的量匹配,此时,要求必须有相同列名的列 join为系列函数，包括inner_join、left_join、semi_join和anti_join函数  full_join() full_join连接后的记录数等于”共有的记录数+a独有的记录数+b独有的记录数“，结果可以理解为a、b的并集。
+inner_join inner_join连接后的记录数等于”共有的记录数“， 也就是5，结果可以理解为a、b的交集，R语言中的merge函数也可以实现。
+left_join left_join连接后的记录数等于”a的记录数“，当然，a是需要放在第一个参数。
+right_join right_join连接后的记录数等于”b的记录数“。</description>
+    </item>
+    
+    <item>
+      <title>ggplot排列自己生成的图片顺序</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/ggplot%E6%8E%92%E5%88%97%E8%87%AA%E5%B7%B1%E7%94%9F%E6%88%90%E7%9A%84%E5%9B%BE%E7%89%87%E9%A1%BA%E5%BA%8F/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/ggplot%E6%8E%92%E5%88%97%E8%87%AA%E5%B7%B1%E7%94%9F%E6%88%90%E7%9A%84%E5%9B%BE%E7%89%87%E9%A1%BA%E5%BA%8F/</guid>
+      <description>Laying out multiple plots on a page </description>
+    </item>
+    
+    <item>
+      <title>GitHub上删除或者unfork-Repository</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/github%E4%B8%8A%E5%88%A0%E9%99%A4%E6%88%96%E8%80%85unfork-repository/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/github%E4%B8%8A%E5%88%A0%E9%99%A4%E6%88%96%E8%80%85unfork-repository/</guid>
+      <description>01. 原因 在刚开始学习使用GitHub的时候创建了很多的Repository，也fork了很多别人的库，随着自己的学习很多的库自己不再需要了，这时候需要删除不感兴趣的库，以下是解决步骤。
+02. 解决 1、进入想要删除的资源库(Repository)，选择资源库的“Settings”
+2、进入settings页后，下拉到最下面，会看到Danger Zone区域
+3、点击“Delete this repository”，输入repository的名称就可以删除了。
+如果以上操作作用于fork后的项目，相对于做了一个unfork(取消fork)操作。</description>
+    </item>
+    
+    <item>
+      <title>heatmap-2聚类之后得到行名</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/heatmap-2%E8%81%9A%E7%B1%BB%E4%B9%8B%E5%90%8E%E5%BE%97%E5%88%B0%E8%A1%8C%E5%90%8D/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/heatmap-2%E8%81%9A%E7%B1%BB%E4%B9%8B%E5%90%8E%E5%BE%97%E5%88%B0%E8%A1%8C%E5%90%8D/</guid>
+      <description>1.问题 heatmap.2是一种绘画热图的gplots包中的一个功能，十分强大，得到一个精美的热图，命令行不超过20行。
+有一个不方便的地方是得到这份热图之后希望知道聚类之后的行名以及具体的数值，以备后续的分析。
+2.解决 查阅之后可以通过以下方法进行解决. 首先制造一个绘图的矩阵
+y &amp;lt;- matrix(rnorm(50), 10, 5, dimnames=list(paste(&amp;#34;g&amp;#34;, 1:10, sep=&amp;#34;&amp;#34;), paste(&amp;#34;t&amp;#34;, 1:5, sep=&amp;#34;&amp;#34;))) 按行进行聚类
+hr &amp;lt;- hclust(as.dist(1-cor(t(y), method=&amp;#34;pearson&amp;#34;)), method=&amp;#34;complete&amp;#34;) 按列进行聚类
+hc &amp;lt;- hclust(as.dist(1-cor(y, method=&amp;#34;spearman&amp;#34;)), method=&amp;#34;complete&amp;#34;) 绘制热图
+library(gplots) heatmap.2(y, Rowv=as.dendrogram(hr), Colv=as.dendrogram(hc), scale=&amp;#34;row&amp;#34;, density.info=&amp;#34;none&amp;#34;, trace=&amp;#34;none&amp;#34;) 得到聚类之后的矩阵结果：
+y[rev(hr$labels[hr$order]), hc$labels[hc$order]] </description>
+    </item>
+    
+    <item>
+      <title>KEGG数据库</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/kegg%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/kegg%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
+      <description>1. 简介 KEGG(Kyoto Encyclopedia of Genes and Genomes)是系统分析基因功能、基因组信息数据库，它有助于研究者把基因及表达信息作为一个整体网络进行研究。KEGG主要包含以下数据库： 其中在 KEGG PATHWAY 数据库中，将生物代谢通路划分为 6 类，分别为：细胞过程（Cellular Processes）、环境信息处理（Environmental Information Processing）、遗传信息处理（Genetic Information Processing）、人类疾病（Human Diseases）、新陈代谢（Metabolism）、生物体系统（Organismal Systems），其中每类又被系统分类为二、三、四层。第二层目前包括有 43 种子 pathway；第三层即为其代谢通路图；第四层为每个代谢通路图的具体注释信息。
+2. 探索 首先打开KEGG数据库，你会进入下面这个界面，我们直奔主题，点击KEGG PATHWAY。 点击三级分类的通路，就可以找到我们想要的pathway map了。比如点击三级分类pathway map 的“cell cycle”，然后就进入了下面这样的界面。
+一般默认是人的pathway，如果你像查看其他物种上的pathway，你需要点击下拉三角形，选择你所关心的物种。如下面图中所示
+KEGG pathway中有着大量的通路图，以PI3K-Akt signaling pathway（ko04151）为例，里面包含了大量的蛋白等化合物，以及它们之间相互作用的关系。
+3. 看图说话 在KEGG中有两种代谢图
+  参考代谢通路图reference pathway，是根据已有的知识绘制的概括的、详尽的具有一般参考意义的代谢图，这种图上就不会有绿色的小框，而都是无色的，所有的框都可以点击查看更详细的信息；
+  特定物种的代谢图species-specific pathway，会用绿色来标出这个物种特有的基因或酶，只有这些绿色的框点击以后才会给出更详细的信息。
+  这两种图很好区分，reference pathway 在KEGG中的名字是以map开头的，比如map00010，就是糖酵解途径的参考图；而特定物种的代谢通路图开头三个字符不是map而是种属英文单词的缩写（应该就是一个属的首字母+2个种的首字母）比如酵母的糖酵解通路图，就是sce00010，大肠杆菌的糖酵解通路图就应该是eco00010。 代谢通路中各种符号标识 ：
+ K+num：基因ID号，表示在所有同源物种中具有相似结构或功能的一类同源蛋白 ko+num： 代谢通路名称，表示一个特定的生物路径 M+ num： 模块名称 C+ num： 化合物名称 E-,-,-,-： 酶名称 R + num : 反应名 RC+ num ： 反映类型 RP+num： 反应物对  图例作用关系：</description>
+    </item>
+    
+    <item>
+      <title>Linux下查看文件命令选择</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/linux%E4%B8%8B%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%91%BD%E4%BB%A4%E9%80%89%E6%8B%A9/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/linux%E4%B8%8B%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%91%BD%E4%BB%A4%E9%80%89%E6%8B%A9/</guid>
+      <description>Linux内有三大命令可以用来查看文件内容，分别是cat、more、和less，他们之间既有共同点又有区别，例如：cat可以一次性显示整个文件的内容，还可以将多个文件连接起来显示，常与重定向符号配合使用，适用于文件内容少的情况，而more和less一般用于显示文件内容超过一屏的内容，并且提供翻页的功能。more比cat强大，提供分页显示的功能，less比more更强大，提供翻页，跳转，查找等命令。而且more和less都支持：用空格显示下一页，按键b显示上一页。下面详细介绍这3个命令。
+1. cat cat命令比较简单，比较常用
+cat主要有三大功能：
+ 1.一次显示整个文件:cat filename 2.从键盘创建一个文件:cat &amp;gt; filename 只能创建新文件,不能编辑已有文件. 3.将几个文件合并为一个文件:cat file1 file2 &amp;gt; file  对非空输出行编号，使用cat -b命令：
+[root@localhost test]# cat -b log2012.log log2013.log log.log 1 2012-01 2 2012-02 3 ====== 4 2013-01 5 2013-02 6 2013-03 输出所有行号，使用cat -n命令：
+[root@localhost test]# cat -n log.log 1 2012-01 2 2012-02 3 4 5 ====== 2. more more命令，功能类似 cat ，cat命令是整个文件的内容从上到下显示在屏幕上。 more会以一页一页的显示方便使用者逐页阅读，而最基本的指令就是按空白键（space）就往下一页显示，按 b 键就会往回（back）一页显示，而且还有搜寻字串的功能 。more命令从前向后读取文件，因此在启动时就加载整个文件。
+常用命令
+Enter 向下n行，需要定义。默认为1行 Ctrl+F 向下滚动一屏 空格键 向下滚动一屏 Ctrl+B 返回上一屏 = 输出当前行的行号 :f 输出文件名和当前行的行号 v 调用vi编辑器 !</description>
+    </item>
+    
+    <item>
+      <title>MacOS下最简单的升级R和R包的方式</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/macos%E4%B8%8B%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%87%E7%BA%A7r%E5%92%8Cr%E5%8C%85%E7%9A%84%E6%96%B9%E5%BC%8F/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/macos%E4%B8%8B%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%87%E7%BA%A7r%E5%92%8Cr%E5%8C%85%E7%9A%84%E6%96%B9%E5%BC%8F/</guid>
+      <description>升级R #安装devtools包（如果已经安装 跳过此步，进入到下一步） install.packages(&amp;#39;devtools&amp;#39;) library(&amp;#39;devtools&amp;#39;) #安装updateR install_github(&amp;#39;andreacirilloac/updateR&amp;#39;) library(updateR) #更新 updateR(admin_password = &amp;#39;os_admin_user_password&amp;#39;) Reference:
+UpdateR package: update R version with a function (on MAC OSX) 升级R包 使用rvcheck::update_all()可以自动更新CRAN, Bioconductor和Github上的R包。其实可以放到系统任务里，每月自动更新一次，然后就可以完全不用管升级的事情。</description>
+    </item>
+    
+    <item>
+      <title>macOS利用brew安装tree命令</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/macos%E5%88%A9%E7%94%A8brew%E5%AE%89%E8%A3%85tree%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/macos%E5%88%A9%E7%94%A8brew%E5%AE%89%E8%A3%85tree%E5%91%BD%E4%BB%A4/</guid>
+      <description>01.问题 tree命令可以显示文件夹下的文件结构，是非常好用的一个命令工具，但是不是Unix的built-in命令，需要自行安装，本来利用Homebrew安装既可，但是macOS会报错，如
+xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun 02.原因 这个问题产生的原因是没有更新OS X El Capitan，在MAC下，git命令是在Xcode命令工具下的。
+###03.解决 首先就是升级OS X El Capitan，使用命令：
+xcode-select --install 然后安装tree命令：
+brew install tree 已经安装上了tree命令了。</description>
+    </item>
+    
+    <item>
+      <title>NCBI上基因组文件格式及解释.h</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/ncbi%E4%B8%8A%E5%9F%BA%E5%9B%A0%E7%BB%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%8F%8A%E8%A7%A3%E9%87%8A.h/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/ncbi%E4%B8%8A%E5%9F%BA%E5%9B%A0%E7%BB%84%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%8F%8A%E8%A7%A3%E9%87%8A.h/</guid>
+      <description>NCBI上基因组文件格式及解释 body { margin: 0; font-family: &#34;Helvetica Neue&#34;, Helvetica, Arial, &#34;Hiragino Sans GB&#34;, sans-serif; font-size: 14px; line-height: 20px; color: #777; background-color: white; } .container { width: 700px; margin-right: auto; margin-left: auto; } .post { font-family: Georgia, &#34;Times New Roman&#34;, Times, &#34;SimSun&#34;, serif; position: relative; padding: 70px; bottom: 0; overflow-y: auto; font-size: 16px; font-weight: normal; line-height: 25px; color: #515151; } .post h1{ font-size: 50px; font-weight: 500; line-height: 60px; margin-bottom: 40px; color: inherit; } .</description>
+    </item>
+    
+    <item>
+      <title>purrr中Reduce和map拓展函数式编程</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/purrr%E4%B8%ADreduce%E5%92%8Cmap%E6%8B%93%E5%B1%95%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/purrr%E4%B8%ADreduce%E5%92%8Cmap%E6%8B%93%E5%B1%95%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</guid>
+      <description>purrr 是一个拓展R函数式编程能力的包。在这篇文章中，介绍在purrr中几个非常实用的函数。
+purrr已经集成在tidyverse中，所以如果已经安装了tidyverse的话则不需要重复安装了。
+1. map 家族 1.1 map函数 library(purrr) numbers &amp;lt;- list(11, 12, 13, 14) map(numbers, sqrt) 得到的结果如下，返回一个列表
+[[1]] [1] 3.316625 [[2]] [1] 3.464102 [[3]] [1] 3.605551 [[4]] [1] 3.741657 1.2 map_dbl函数 map_dbl(numbers, sqrt) 返回一个实数原子列表(atomic list)
+[1] 3.316625 3.464102 3.605551 3.741657 1.3 map_if函数 map_if函数会对于list进行一个逻辑判断，如果是真则执行命令，否则不执行，保留原值。
+#创造一个辅助函数，如果为偶数则返回TRUE is_even &amp;lt;- function(x){ !as.logical(x %% 2) } map_if(numbers, is_even, sqrt) [[1]] [1] 11 [[2]] [1] 3.464102 [[3]] [1] 13 [[4]] [1] 3.741657 1.4 map_at函数 map_at函数是给定位置向量，然后执行命令。</description>
+    </item>
+    
+    <item>
+      <title>R中利用aggregate函数进行多因子统计</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%AD%E5%88%A9%E7%94%A8aggregate%E5%87%BD%E6%95%B0%E8%BF%9B%E8%A1%8C%E5%A4%9A%E5%9B%A0%E5%AD%90%E7%BB%9F%E8%AE%A1/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%AD%E5%88%A9%E7%94%A8aggregate%E5%87%BD%E6%95%B0%E8%BF%9B%E8%A1%8C%E5%A4%9A%E5%9B%A0%E5%AD%90%E7%BB%9F%E8%AE%A1/</guid>
+      <description>1.介绍 R中aggregate函数的功能强大，它首先将数据进行分组（按行），然后对每一组数据进行函数统计，最后把结果组合成一个比较nice的表格返回。简单说有点类似sql语言中的group by，可以按照要求把数据打组聚合，然后对聚合以后的数据进行加和、求平均等各种操作。
+2.详解 通过 mtcars 数据集的操作对这个函数进行简单了解。mtcars 是不同类型汽车道路测试的数据框类型数据：
+str(mtcars) &amp;#39;data.frame&amp;#39;:	32 obs. of 11 variables: $ mpg : num 21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ... $ cyl : num 6 6 4 6 8 6 8 4 4 6 ... $ disp: num 160 160 108 258 360 ... $ hp : num 110 110 93 110 175 105 245 62 95 123 ... $ drat: num 3.</description>
+    </item>
+    
+    <item>
+      <title>R中利用unite函数进行列合并</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%AD%E5%88%A9%E7%94%A8unite%E5%87%BD%E6%95%B0%E8%BF%9B%E8%A1%8C%E5%88%97%E5%90%88%E5%B9%B6/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%AD%E5%88%A9%E7%94%A8unite%E5%87%BD%E6%95%B0%E8%BF%9B%E8%A1%8C%E5%88%97%E5%90%88%E5%B9%B6/</guid>
+      <description>1. 介绍 unite函数是tidyr包中的一个非常实用的函数，和separate函数相对应，可以对于数据框进行按照格式的列合并。
+2.用法 下面实用例子介绍unite函数的用法：
+library(tidyr) name1 &amp;lt;- c(&amp;#34;Bob&amp;#34;,&amp;#34;Mary&amp;#34;,&amp;#34;Jane&amp;#34;,&amp;#34;Kim&amp;#34;) birth &amp;lt;- c(&amp;#34;1990-1&amp;#34;,&amp;#34;1980-2&amp;#34;,&amp;#34;1995-5&amp;#34;,&amp;#34;1996-4&amp;#34;) df &amp;lt;- data.frame(name1, birth) 构造一个名为df的数据框，df结构如下： 下面我们想将birth列和name1列以-进行合并，可以使用unite函数了， unite语法如下：
+unite(data, col, ..., sep = &amp;#34;_&amp;#34;, remove = TRUE) 利用该语法，我们将name1和birth列按照-进行合并，合并结果存到新的列name-birth中，并保留原始的列。
+unite(df,&amp;#34;name-birth&amp;#34;,c(&amp;#34;name1&amp;#34;,&amp;#34;birth&amp;#34;), sep=&amp;#34;-&amp;#34;, remove = F) 合并的结果如下： 3.总结 tidyr包中有很多类似的功能强大的函数，这只是用来进行列合并的其中一列，当然会有很多其他的方法，会在之后详解</description>
+    </item>
+    
+    <item>
+      <title>R中将循环产生的数据框合并</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%AD%E5%B0%86%E5%BE%AA%E7%8E%AF%E4%BA%A7%E7%94%9F%E7%9A%84%E6%95%B0%E6%8D%AE%E6%A1%86%E5%90%88%E5%B9%B6/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%AD%E5%B0%86%E5%BE%AA%E7%8E%AF%E4%BA%A7%E7%94%9F%E7%9A%84%E6%95%B0%E6%8D%AE%E6%A1%86%E5%90%88%E5%B9%B6/</guid>
+      <description>##1.问题 今天利用R写循环的时候出现了一个问题，循环内会产生多个数据框，希望将这多个数据库合并并生产一个最终的数据框，最后利用了list和do.call()功能进行了实现。
+##2.解决 例如假设我们有如下三个数据框
+df1 &amp;lt;- data.frame(cell=c(1,2,3),val=c(345,123,466)) df2 &amp;lt;- data.frame(cell=c(67,3,2),val=c(234,234,56)) df3 &amp;lt;- data.frame(cell=c(3,67,23),val=c(23,8,34)) 现在我们希望将这三个数据框进行合并： 首先创建一个空list，利用get()将所有数据框写入，形成一个2维的list，然后利用do.call()进行合并。
+l &amp;lt;- list() for(i in 1:3){ df.now &amp;lt;- get(paste0(&amp;#34;df&amp;#34;,i)) l[[i]] &amp;lt;- df.now } do.call(rbind,l) 经过评论提醒，还有一种方法可能会显得更加易于理解些，即先形成一个空的data.frame，然后直接利用rbind将变量数据框合并到最终的数据框中。
+l &amp;lt;- data.frame() for(i in 1:3){ df.now &amp;lt;- get(paste0(&amp;#34;df&amp;#34;,i)) l &amp;lt;- rbind(l, df.now) } 两种方法最后得到的结果都是：
+ cell val 1 1 345 2 2 123 3 3 466 4 67 234 5 3 234 6 2 56 7 3 23 8 67 8 9 23 34 ##3.</description>
+    </item>
+    
+    <item>
+      <title>R中的BiocParallel和parallel包</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%AD%E7%9A%84biocparallel%E5%92%8Cparallel%E5%8C%85/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%AD%E7%9A%84biocparallel%E5%92%8Cparallel%E5%8C%85/</guid>
+      <description>https://bioconductor.org/packages/release/bioc/vignettes/BiocParallel/inst/doc/Introduction_To_BiocParallel.pdf</description>
+    </item>
+    
+    <item>
+      <title>R中的S3和S4简介</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%AD%E7%9A%84s3%E5%92%8Cs4%E7%AE%80%E4%BB%8B/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%AD%E7%9A%84s3%E5%92%8Cs4%E7%AE%80%E4%BB%8B/</guid>
+      <description>R语言有四大类型系统：基础类型、S3类型、S4类型和RC类型。
+R虽然被认为是一种函数式语言，但是同样支持面向对象编程，意味着R将对象作为程序的基本单元，将程序和数据封装其中，以提高软件的重用性，灵活性和扩展性。
+S3 S3是想了一种基于泛型函数的面对对象方式。泛型函数可以根据传入对象的类型决定调用哪种具体的方法。因为这样对于初学者而言更加容易理解 例如
+result &amp;lt;- mean(v1) 要比
+result = v1.mean() 更加容易理解。
+S3对象是一个list并且有一个名为class的属性，举例说明创建一个foo类的对象并且用class查看他的类
+x &amp;lt;- 1 attr(x, &amp;#34;class&amp;#34;) &amp;lt;- &amp;#34;foo&amp;#34; x [1] 1 attr(,&amp;#34;class&amp;#34;) [1] &amp;#34;foo&amp;#34; class(x) [1] &amp;#34;foo&amp;#34; S3没有正式的类型间关系的定义，一个对象可以有多个类型，表现为其class属性是一个向量
+class(x) &amp;lt;- c(&amp;#34;foo&amp;#34;, &amp;#34;bar&amp;#34;) class(x) [1] &amp;#34;foo&amp;#34; &amp;#34;bar&amp;#34; 方法分派是指由泛型函数 (generic function) 来决定对某个对象使用的方法. 所有泛型函数都有类似的形式: 一个广义的函数名, 并调用 UseMethod() 来决定为对象分派哪个方法. 这也使得泛型函数的形式都很简单, 比如 mean()
+mean function (x, ...) UseMethod(&amp;#34;mean&amp;#34;) &amp;lt;bytecode: 0x103792920&amp;gt; &amp;lt;environment: namespace:base&amp;gt; UseMethod() 会根据对象的 class 属性来决定分派什么方法,所以方法必须以 generic.class 的方式命名才能被 UseMethod() 找到, 比如:
+mean.numeric &amp;lt;- function(x, .</description>
+    </item>
+    
+    <item>
+      <title>R中的sweep函数</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%AD%E7%9A%84sweep%E5%87%BD%E6%95%B0/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%AD%E7%9A%84sweep%E5%87%BD%E6%95%B0/</guid>
+      <description>函数的用途 base包中sweep()函数是处理统计量的工具。所以一般结合apply()函数来使用，一般我们需要将apply()统计出来的统计量要代回原数据集去对应操作的时候就需要用到sweep()。
+ 扫除、清除也是sweep单词的本义。
+ 函数的参数 sweep(x, MARGIN, STATS, FUN = &amp;#34;-&amp;#34;, check.margin = TRUE, ...)  x:即要处理的原数据集 MARGIN：对行或列，或者数列的其他维度进行操作 STATS：需要对原数据集操作用到的统计量 FUN：操作需要用到的四则运算，默认为减法&amp;quot;-&amp;quot;，当然可以修改成&amp;quot;+&amp;quot;,&amp;quot;*&amp;quot;,&amp;quot;/&amp;ldquo;即加、乘、除 check.margin:是否需要检查维度是否适宜的问题，默认为TRUE。 ……  实例分析 1、比如我们需要将原数据集所有数据都减去各列的平均数，所以我们需要用apply()计算出每列的平均数，然后用sweep()完成。
+require(stats) # for mean head(attitude, 10) ## rating complaints privileges learning raises critical advance ## 1 43 51 30 39 61 92 45 ## 2 63 64 51 54 63 73 47 ## 3 71 70 68 69 76 86 48 ## 4 61 63 45 47 54 84 35 ## 5 81 78 56 66 71 83 47 ## 6 43 55 49 44 54 49 34 ## 7 58 67 42 56 66 68 35 ## 8 71 75 50 55 70 66 41 ## 9 72 82 72 67 71 83 31 ## 10 67 61 45 47 62 80 41 mean.</description>
+    </item>
+    
+    <item>
+      <title>R中的数据去重与缺失值处理</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8E%BB%E9%87%8D%E4%B8%8E%E7%BC%BA%E5%A4%B1%E5%80%BC%E5%A4%84%E7%90%86/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8E%BB%E9%87%8D%E4%B8%8E%E7%BC%BA%E5%A4%B1%E5%80%BC%E5%A4%84%E7%90%86/</guid>
+      <description>在R语言中，涉及到数据去重与缺失值处理的函数一共有下面这么几个：
+  unique
+  distinct
+  intersect
+  union
+  duplicated #布尔判断
+  is.na()/!is.na() #缺/非缺失值
+  na.rm=TRUE/FALSE #移除缺失值
+  na.omit(lc) #忽略缺失值
+  complete.cases() #完整值
+  unique函数通常用于去重：
+unique(mydata$B) #对含有重复值得向量进行去重 dplyr::distinct(mydata,B) #对含有重复值字段的数据框去重 dplyr中提供了两个函数可以执行交集与补集操作:
+duplicated(mydata$B) #返回重复对象的布尔值 mydata[!duplicated(mydata$B),] #剔除重复值，仅保留唯一值 </description>
+    </item>
+    
+    <item>
+      <title>R中的正则表达式</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R为数据框求平均数和标准差并绘图</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%BA%E6%95%B0%E6%8D%AE%E6%A1%86%E6%B1%82%E5%B9%B3%E5%9D%87%E6%95%B0%E5%92%8C%E6%A0%87%E5%87%86%E5%B7%AE%E5%B9%B6%E7%BB%98%E5%9B%BE/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%BA%E6%95%B0%E6%8D%AE%E6%A1%86%E6%B1%82%E5%B9%B3%E5%9D%87%E6%95%B0%E5%92%8C%E6%A0%87%E5%87%86%E5%B7%AE%E5%B9%B6%E7%BB%98%E5%9B%BE/</guid>
+      <description>01. 准备数据 使用ggplot自带的ToothGrowth数据。导入数据及数据结构如下
+library(ggplot2) df &amp;lt;- ToothGrowth df$dose &amp;lt;- as.factor(df$dose) head(df) ## len supp dose ## 1 4.2 VC 0.5 ## 2 11.5 VC 0.5 ## 3 7.3 VC 0.5 ## 4 5.8 VC 0.5 ## 5 6.4 VC 0.5 ## 6 10.0 VC 0.5 接下来我们利用这个数据绘制带有标准差的直方图。
+02. 计算函数 首先我们需要做一个函数计算分组计算我们感兴趣变量的平均数及标准差。
+# function to calculate the mean and standard deviation for each group # data: a data frame # varname: the name of a column containing the variable to be summarized # groupnames: vector of column names to be used as grouping variable data_summary &amp;lt;- function(data, varname, groupnames){ require(plyr) summary_func &amp;lt;- function(x, col){ c(mean = mean(x[[col]], na.</description>
+    </item>
+    
+    <item>
+      <title>R包的查看、卸除、安装与卸载</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/r%E5%8C%85%E7%9A%84%E6%9F%A5%E7%9C%8B%E5%8D%B8%E9%99%A4%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8D%B8%E8%BD%BD/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E5%8C%85%E7%9A%84%E6%9F%A5%E7%9C%8B%E5%8D%B8%E9%99%A4%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8D%B8%E8%BD%BD/</guid>
+      <description>01. 卸载自己古老的包 查看自己的包
+mypackages &amp;lt;- installed.packages()[,c(&amp;#39;Package&amp;#39;,&amp;#39;Version&amp;#39;,&amp;#39;LibPath&amp;#39;)] %&amp;gt;% as.data.frame() write.csv(mypackages, &amp;#34;~/Desktop/mypackages.csv&amp;#34;) 从存的文档中找到自己想要卸载的R包
+remove.packages(c(&amp;#34;BSgenome.Athaliana.TAIR.TAIR9&amp;#34;, &amp;#34;BSgenome.Hsapiens.UCSC.hg19&amp;#34;, &amp;#34;GenomeInfoDb&amp;#34;, &amp;#34;GenomeInfoDbData&amp;#34;, &amp;#34;GenomicAlignments&amp;#34;, &amp;#34;GenomicFeatures&amp;#34;, &amp;#34;GenomicRanges&amp;#34;, &amp;#34;GO.db&amp;#34;, &amp;#34;GSEABase&amp;#34;, &amp;#34;KEGGgraph&amp;#34;, &amp;#34;KEGGREST&amp;#34;, &amp;#34;learnr&amp;#34;, &amp;#34;RgoogleMaps&amp;#34;, &amp;#34;RSQLite&amp;#34;, &amp;#34;yeastRNASeq&amp;#34;, &amp;#34;yyplot&amp;#34;), lib = .libPaths()[1]) remove.packages(c(&amp;#34;IRdisplay&amp;#34;, &amp;#34;IRkernel&amp;#34;), lib = .libPaths()[2]) mypackages &amp;lt;- installed.packages()[,c(&amp;#39;Package&amp;#39;,&amp;#39;Version&amp;#39;,&amp;#39;LibPath&amp;#39;)] %&amp;gt;% as.data.frame() write.csv(mypackages, &amp;#34;~/Desktop/mypackages_new.csv&amp;#34;) 查看之后上述的包已经被卸载了。
+02. 补充部分 查看已加载的包
+(.packages()) 卸除已加载的包
+detach(&amp;#34;package:RMySQL&amp;#34;) 注意是卸除，不是卸载，也就是说不是把包从R运行环境中彻底删除，只是不希望该包被加载使用。
+在包使用函数冲突，检验函数依赖时比较有用。
+安装包
+install.packages(&amp;#34;TSA&amp;#34;) 列出包所在库的路径
+.libPaths() 包的载入
+library() 或 require() 安装完包后，需要加载才能使用其中的函数，此时括号中不使用引号。两者的不同之处在于library()载入之后不返回任何信息，而require()载入后则会返回TRUE，因此require()适合用于程序的书写。
+包的更新
+update.packages() 彻底删除已安装的包：
+remove. packages(c(&amp;#34;pkg1&amp;#34;,&amp;#34;pkg2&amp;#34;) , lib = file.path(&amp;#34;path&amp;#34;, &amp;#34;to&amp;#34;, &amp;#34;library&amp;#34;)) 查看已安装的包</description>
+    </item>
+    
+    <item>
+      <title>R将包含重复列的去重并合并值</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/r%E5%B0%86%E5%8C%85%E5%90%AB%E9%87%8D%E5%A4%8D%E5%88%97%E7%9A%84%E5%8E%BB%E9%87%8D%E5%B9%B6%E5%90%88%E5%B9%B6%E5%80%BC/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E5%B0%86%E5%8C%85%E5%90%AB%E9%87%8D%E5%A4%8D%E5%88%97%E7%9A%84%E5%8E%BB%E9%87%8D%E5%B9%B6%E5%90%88%E5%B9%B6%E5%80%BC/</guid>
+      <description>1. 问题 假设我们有数据框df如下：
+Chr start stop ref alt Hom/het ID chr1 5179574 5183384 ref Del Het 719 chr1 5179574 5184738 ref Del Het 915 chr1 5179574 5184738 ref Del Het 951 chr1 5336806 5358384 ref Del Het 376 chr1 5347979 5358384 ref Del Het 228 所示ID915和951前面的部分都重复了，现在我们想把它变成如下
+Chr start stop ref alt Hom/het ID chr1 5179574 5183384 ref Del Het 719 chr1 5179574 5184738 ref Del Het 915, 951 chr1 5336806 5358384 ref Del Het 376 chr1 5347979 5358384 ref Del Het 228 我们可以根据以下命令进行实现</description>
+    </item>
+    
+    <item>
+      <title>R将数据框内相同变量的数据相加</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/r%E5%B0%86%E6%95%B0%E6%8D%AE%E6%A1%86%E5%86%85%E7%9B%B8%E5%90%8C%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%8A%A0/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E5%B0%86%E6%95%B0%E6%8D%AE%E6%A1%86%E5%86%85%E7%9B%B8%E5%90%8C%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%8A%A0/</guid>
+      <description>1. 问题 有的时候从原始数据读入到R中的数据会有很多的重复数据，并没有进行数据合并，对于后续的处理中会造成麻烦，因为R处理这种数据的时候会只取用第一次出现的结果。处理这个问题有很多方法，记录如下。
+2. 解决 首先建立一个数据框，用来测试我们的方法：
+bevs &amp;lt;- data.frame(cbind(name = c(&amp;#34;Bill&amp;#34;, &amp;#34;Llib&amp;#34;), drink = c(&amp;#34;coffee&amp;#34;, &amp;#34;tea&amp;#34;, &amp;#34;cocoa&amp;#34;, &amp;#34;water&amp;#34;), cost = seq(1:8))) bevs$cost &amp;lt;- as.integer(bevs$cost) bevs 下面利用plyr 包里面的count 函数进行相加
+library(plyr) count(bevs, &amp;#34;name&amp;#34;) 同时统计两列，结果如下：
+count(bevs, c(&amp;#34;name&amp;#34;, &amp;#34;drink&amp;#34;)) 如果想知道Bill和Llib在不同drink上花费的钱是多少呢？可以使用 aggregate函数。
+aggregate(cost ~ name + drink, data = bevs, sum) 统计Bill和Llib的总花费
+aggregate(cost ~ name, data = bevs, sum) 3. 总结 总结而言，利用count和aggregate可以很方便的帮助我们整理数据，将重复出现的变量归到一起进行计算。</description>
+    </item>
+    
+    <item>
+      <title>R数据框选中某列之后不降为成列表</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/r%E6%95%B0%E6%8D%AE%E6%A1%86%E9%80%89%E4%B8%AD%E6%9F%90%E5%88%97%E4%B9%8B%E5%90%8E%E4%B8%8D%E9%99%8D%E4%B8%BA%E6%88%90%E5%88%97%E8%A1%A8/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E6%95%B0%E6%8D%AE%E6%A1%86%E9%80%89%E4%B8%AD%E6%9F%90%E5%88%97%E4%B9%8B%E5%90%8E%E4%B8%8D%E9%99%8D%E4%B8%BA%E6%88%90%E5%88%97%E8%A1%A8/</guid>
+      <description>1. 问题 数据处理中一个令人头疼的事情是选中数据框中的某列时经常会被降维成列表而不是保持原来数据框的结构，如下：
+student &amp;lt;- data.frame(ID=c(11,12,13),Name=c(&amp;#34;Devin&amp;#34;,&amp;#34;Edward&amp;#34;,&amp;#34;Wenli&amp;#34;),Gender=c(&amp;#34;M&amp;#34;,&amp;#34;M&amp;#34;,&amp;#34;F&amp;#34;)) student 当我们想得到name这一行的时候会采用以下方法
+name1 &amp;lt;- student$Name name2 &amp;lt;- student[,2] str(name1) str(name2) #Factor w/ 3 levels &amp;#34;Devin&amp;#34;,&amp;#34;Edward&amp;#34;,..: 1 2 3 #Factor w/ 3 levels &amp;#34;Devin&amp;#34;,&amp;#34;Edward&amp;#34;,..: 1 2 3 可以看到数据都是factor类型的，没有保持为数据框，而这是不方面的
+#2. 解决 我们可以利用以下两种方式避免这种情况的发生
+name3 &amp;lt;- student[,2,drop = FALSE] name4 &amp;lt;- student[&amp;#34;Name&amp;#34;] str(name3) str(name4) #&amp;#39;data.frame&amp;#39;:	3 obs. of 1 variable: #$ Name: Factor w/ 3 levels &amp;#34;Devin&amp;#34;,&amp;#34;Edward&amp;#34;,..: 1 2 3 #&amp;#39;data.frame&amp;#39;:	3 obs. of 1 variable: #$ Name: Factor w/ 3 levels &amp;#34;Devin&amp;#34;,&amp;#34;Edward&amp;#34;,.</description>
+    </item>
+    
+    <item>
+      <title>R语言中的向量和标量</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%90%91%E9%87%8F%E5%92%8C%E6%A0%87%E9%87%8F/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%90%91%E9%87%8F%E5%92%8C%E6%A0%87%E9%87%8F/</guid>
+      <description>R语言中最基本的数据类型是向量，与C语言家族不同，R语言中，单个数据(标量)没有单独的数据类型，它只是向量的一种特例，标量以单元素向量的形式出现。标量是只含一个元素的向量，例如f &amp;lt;- 3、g &amp;lt;- &amp;ldquo;US&amp;quot;和h &amp;lt;- TRUE。它们用于保存常量。向量化指的是对于向量中的每一个元素应用函数。
+在R中，数字被当成一元向量，因为数据类型中没有标量。R中的向量索引从1开始。
+向量的主要性质包括：1）向量是同质的，即向量中所有元素具有相同的模式；2）向量可以按照位置索引；3）向量可以按照多重位置索引，返回一个子向量；4）向量的元素可以被命名。
+R语言表面上没有标量的类型，因为标量可以看做是含有一个元素的向量，逻辑运算符对标量和向量有着不同的形式。</description>
+    </item>
+    
+    <item>
+      <title>R语言代码规范</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/r%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/</guid>
+      <description>编程的代码规范目的是使我们的R代码更容易阅读、分享和验证，下述是一些约定俗成的代码规范：
+1.0 文件名 对于R file名字的命名，一般采用一些有意义的名字来命名，不要有特殊字符和空格，但是要注意大小写（特别是windowws系统是不管大小写的），所以最好就小写就行了；R代码就放在.R文件中，而R数据文件则放在.RData文件中。我一般不用下划线分割文件名，而是使用大小写交替的方式
+ GOOD: predict_ad_revenue.R; PredictAdRevenue.R BAD: foo.R
+ 2.0 标识符(Identifiers) 不要使用下划线(_)或连字符(-)标识符。标识符应按照以下命名约定。变量名的首选形式都是小写字母和单词分开用点(variable.name),但也接受variableName;函数名使用首字母大写而不用点(FunctionName);
+ variable.name is preferred, variableName is accepted
+GOOD: avg.clicks
+OK: avgClicks
+BAD: avg_Clicks
+  FunctionName
+GOOD: CalculateAvgClicks
+BAD: calculate_avg_clicks , calculateAvgClicks
+Make function names verbs.
+Exception: When creating a classed object, the function name
+ 3.0 间距(Spacing) 当使用所有二进制运算符(如=,+,-,&amp;lt;,等)在两端空格。例外:当符号 = 是函数调用时的传递参数周围不用空格隔开。 不要在符号“，”前空格隔开，但需要在“，”后添加空格 good style
+tab.prior &amp;lt;- table(df[df$days.from.opt &amp;lt; 0, &amp;#34;campaign.id&amp;#34;]) total &amp;lt;- sum(x[, 1]) total &amp;lt;- sum(x[1, ])123 bad style</description>
+    </item>
+    
+    <item>
+      <title>R语言学习笔记之相关性矩阵分析及其可视化</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9F%A9%E9%98%B5%E5%88%86%E6%9E%90%E5%8F%8A%E5%85%B6%E5%8F%AF%E8%A7%86%E5%8C%96/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9F%A9%E9%98%B5%E5%88%86%E6%9E%90%E5%8F%8A%E5%85%B6%E5%8F%AF%E8%A7%86%E5%8C%96/</guid>
+      <description>https://zhuanlan.zhihu.com/p/33617479?from_voters_page=true</description>
+    </item>
+    
+    <item>
+      <title>R语言爬虫入门-rvest教程</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/r%E8%AF%AD%E8%A8%80%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8-rvest%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E8%AF%AD%E8%A8%80%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8-rvest%E6%95%99%E7%A8%8B/</guid>
+      <description>安装包
+# install.packages(&amp;#34;rvest&amp;#34;) 查看rvest包的详细信息
+library(help = rvest) ###包的用法：
+  read_html() 读取html文档的函数，其输入可以是线上的url，也可以是本地的html文件，甚至是包含html的字符串也可以。
+  html_nodes() 选择提取文档中制定元素的部分。可以使用css selectors，例如html_nodes(doc, &amp;ldquo;table td&amp;rdquo;)；也可以使用xpath selectors，例如html_nodes(doc, xpath = &amp;ldquo;//table//td&amp;rdquo;)。
+  html_tag() 提取标签名称；html_text() 提取标签内的文本；html_attr() 提取指定属性的内容；html_attrs() 提取所有的属性名称及其内容；
+  html_table() 解析网页数据表的数据到R的数据框中。
+  html_form(),set_values()和submit_form() 分别表示提取、修改和提交表单。
+  在中文网页中我们经常会遇到乱码的问题，这里提供了两个函数来解决：guess_encoding()用来探测文档的编码，方便我们在读入html文档时设置正确的编码格式，repair_encoding()用来修复html文档读入后的乱码问题。
+还有一些函数，用来模拟网上的浏览行为，如html_session(),jump_to(),follow_link(),back(),forward(),submit_form()等等。
+library(rvest) web&amp;lt;-read_html(&amp;#34;https://book.douban.com/top250?icn=index-book250-all&amp;#34;,encoding=&amp;#34;UTF-8&amp;#34;) position &amp;lt;- web %&amp;gt;% html_nodes(&amp;#34;p.pl&amp;#34;) %&amp;gt;% html_text() web position 第一行是加载Rvest包。
+第二行是用read_html函数读取网页信息（类似Rcurl里的getURL），在这个函数里只需写清楚网址和编码（一般就是UTF-8）即可。
+第三行是获取节点信息。用%&amp;gt;%符号进行层级划分。web就是之前存储网页信息的变量，所以我们从这里开始，然后html_nodes()函数获取网页里的相应节点。在下面代码里我简单的重现了原网页里的一个层级结构。可以看到，实际上我们要爬取的信息在25个class属性为pl的标签里的文本。
+[清] 曹雪芹 著 / 人民文学出版社 / 1996-12 / 59.70元 而对于这样的结构，在htmlnodes()函数里的写法就是简单的 &#34;p.pl&#34;，其中“.”表示class属性的值，如果是id属性则用“#”，如果大家学过CSS选择器就很好理解了，是完全一致的。 最后我们用html_text()函数表示获取文本信息，否则返回的是整个标签。总体上用以下一行代码就可以实现：
+Example 2 到天气网(http://lishi.</description>
+    </item>
+    
+    <item>
+      <title>tidyverse包简介</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/tidyverse%E5%8C%85%E7%AE%80%E4%BB%8B/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/tidyverse%E5%8C%85%E7%AE%80%E4%BB%8B/</guid>
+      <description>tidyverse包是对一些具有相同思想，且可以一同工作的R包的收集。 载入tidyverse包的时候提醒哪些包是一同载入的，哪些包是有冲突的。
+&amp;gt; library(tidyverse) ── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ── ✔ ggplot2 2.2.1 ✔ purrr 0.2.5 ✔ tibble 1.4.2 ✔ dplyr 0.7.6 ✔ tidyr 0.8.1 ✔ stringr 1.3.1 ✔ readr 1.1.1 ✔ forcats 0.3.0 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ── ✖ dplyr::filter() masks stats::filter() ✖ dplyr::lag() masks stats::lag() 这些包按照功能可以分为数据导入、数据整理、数据转换、可视化、建模、编程。
+1. 数据导入  readr：read_csv(); read_tsv(); read_delim(); read_fwf(); read_table(); - read_log(); readxl：read_xls(); read_xlsx(); haven：打开SAS 、SPSS、Stata等外部数据  这里要提一下，read.table()是R自带的，而read_table()是readr包有的。
+2. 数据整理  tibble: 对data.frame的改进，一种数据格式 tidyr:清洗数据 gather(); spread();  Tibble是数据框的一种形式，但是比数据框更整洁，结构更加紧凑，可以理解为tidy table之意。可以通过转置函数as_tibble()来将data.</description>
+    </item>
+    
+    <item>
+      <title>WGCNA构建基因共表达网络详细教程</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/wgcna%E6%9E%84%E5%BB%BA%E5%9F%BA%E5%9B%A0%E5%85%B1%E8%A1%A8%E8%BE%BE%E7%BD%91%E7%BB%9C%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/wgcna%E6%9E%84%E5%BB%BA%E5%9F%BA%E5%9B%A0%E5%85%B1%E8%A1%A8%E8%BE%BE%E7%BD%91%E7%BB%9C%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/</guid>
+      <description>这篇文章更多的是对于混乱的中文资源的梳理，并补充了一些没有提到的重要参数，希望大家不会踩坑。
+#1. 简介
+1.1 背景 WGCNA（weighted gene co-expression network analysis，权重基因共表达网络分析）是一种分析多个样本基因表达模式的分析方法，可将表达模式相似的基因进行聚类，并分析模块与特定性状或表型之间的关联关系，因此在基因组研究中被广泛应用。
+相比于只关注差异表达的基因，WGCNA利用数千或近万个变化最大的基因或全部基因的信息识别感兴趣的基因集，并与表型进行显著性关联分析。既充分利用了信息，也把数千个基因与表型的关联转换为数个基因集与表型的关联，免去了多重假设检验校正的问题。
+WGCNA算法首先假定基因网络服从无尺度分布(scale free network)，并定义基因共表达相关矩阵、基因网络形成的邻接函数，然后计算不同节点的相异系数，并据此构建分层聚类树(hierarchical clustering tree)，该聚类树的不同分支代表不同的基因模块(module)，模块内基因共表达程度高，而分属不同模块的基因共表达程度低。
+##1.2 无尺度网络 网络的数学名称是图，在图论中对于每一个节点有一个重要概念，即：度(degree)。一个点的度是指图中该点所关联的边数。如下图，如果不加以思考，人们很容易认为生活中常见的网络会是一种random network，即每一个节点的度相对平均。然而第二种图，即scale-free network才是一种更稳定的选择。Scale-free network具有这样的特点，即存在少数节点具有明显高于一般点的度，这些点被称为hub。由少数hub与其它节点关联，最终构成整个网络。这样的网络的节点度数与具有该度数的节点个数间服从power distribution。生物体选择scale-free network而不是random network尤其进化上的原因，对于scale-free network，少数关键基因执行主要功能，这种网络具有非常好的鲁棒性(Robust)，即只要保证hub的完整性，整个生命体的基本活动在一定刺激影响下将不会受到太大影响，而random network若受到外界刺激，其受到的伤害程度将直接与刺激强度成正比。
+1.3 相关术语   共表达网络：点代表基因，边代表基因表达相关性。加权是指对相关性值进行冥次运算 (冥次的值也就是软阈值 (power, pickSoftThreshold这个函数所做的就是确定合适的power))。无向网络(unsigned network)的边属性计算方式为 abs(cor(genex, geney)) ^ power；有向网络(signed network)的边属性计算方式为 (1+cor(genex, geney)/2) ^ power; sign hybrid的边属性计算方式为cor(genex, geney)^power if cor&amp;gt;0 else 0， sign hybrid意味着它既包含加权网络也包含非加权网络。这种处理方式强化了强相关，弱化了弱相关或负相关，使得相关性数值更符合无标度网络特征，更具有生物意义。除了软阈值还有硬阈值一说，计算方式是 a_ij = 1 if s_ij &amp;gt; β otherwise a_ij = 0。这里的β就是硬阈值(hard threshold)。
+  Module(模块)：高度內连的基因集。在无向网络中，模块内是高度相关的基因。在有向网络中，模块内是高度正相关的基因。
+  Connectivity (连接度)：类似于网络中 “度” (degree)的概念。每个基因的连接度是与其相连的基因的边属性之和。</description>
+    </item>
+    
+    <item>
+      <title>三维基因组学研究之Hi-C</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/%E4%B8%89%E7%BB%B4%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%AD%A6%E7%A0%94%E7%A9%B6%E4%B9%8Bhi-c/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/%E4%B8%89%E7%BB%B4%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%AD%A6%E7%A0%94%E7%A9%B6%E4%B9%8Bhi-c/</guid>
+      <description>1. 技术原理 基因组研究的维度可以分为很多种，例如下图所示
+其中Hi-C是研究三维结构的一种方法。Hi-C技术源于染色体构象捕获（Chromosome Conformation Capture, 3C）技术，利用高通量测序技术，结合生物信息分析方法，研究全基因组范围内整个染色质DNA在空间位置上的关系，获得高分辨率的染色质三维结构信息。
+其中染色质构象捕获（3C）技术是用福尔马林瞬时固定细胞核染色质，用过量的限制性内切酶酶切消化染色质 - 蛋白质交联物，在 DNA 浓度极低而连接酶浓度极高的条件下用连接酶连接消化物，蛋白酶消化交联物以释放出结合的蛋白质，用推测可能有互作的目的片段引物进行普通PCR和定量PCR来确定是否存在相互作用。3C 技术假定物理上互作的 DNA 片段连接频率最高，以基因座特异性 PCR 来检测基因组中 DNA 片段之间的物理接触，最终以 PCR 产物的丰度来确定是否存在相互作用。
+Hi-C技术在3C的基础上，在酶切后将缺口进行补平（dCTP 进行生物素标），然后用连接酶进行连接，将样本进行超声破碎，随后用生物素亲和层析将片段沉淀（也就是抓下来带有生物素标记的片段），加上接头进行深度测序。
+2. 技术流程 下图显示其技术流程 第一步还是用甲醛使细胞内空间上靠近的DNA片段形成共价键；然后用限制性内切酶将染色质片段化；第三步用生物酰化的核酸分子链接酶切形成的粘性末端，链接过程需要在稀释的溶液中进行，有助于形成分子内链接；第四步纯化并片段化DNA，用链霉亲和素的磁珠富集含生物酰化的junction片段；最后，对收集到的junction片段进行建库并使用pair-end方法测序。
+3. 分析步骤 Hi-C的优势在于其结合了二代测序，这势必也使得其数据分析相对复杂了。目前比较成熟的数据分析流程大致包含6个步骤：
+（1） 前期raw reads过滤（跟一般二代测序数据处理基本一致） （2） 序列比对。建议采用pair-end测序模式 （3） 定位酶切位点。比对寻找到reads pairs在基因组物理位置之后，通过插入片段大小的限制搜索reads pairs两端每条read所对应的最近的酶切片段。酶切片段的位置代表了DNA交互产生的大致位置 （4） 筛选出有效的比对片段。配对的reads位于酶切位点两端且mapped的方向相反 （5） 整合DNA 片段交互强度。 （6） DNA片段交互矩阵标准化。
+分析流程可如下图所示： </description>
+    </item>
+    
+    <item>
+      <title>使用-R，DiagrammeR-和-Blogdown-快速画箭头图表</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/%E4%BD%BF%E7%94%A8-rdiagrammer-%E5%92%8C-blogdown-%E5%BF%AB%E9%80%9F%E7%94%BB%E7%AE%AD%E5%A4%B4%E5%9B%BE%E8%A1%A8/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/%E4%BD%BF%E7%94%A8-rdiagrammer-%E5%92%8C-blogdown-%E5%BF%AB%E9%80%9F%E7%94%BB%E7%AE%AD%E5%A4%B4%E5%9B%BE%E8%A1%A8/</guid>
+      <description>https://www.jianshu.com/p/5e28292fc5d1</description>
+    </item>
+    
+    <item>
+      <title>利用ggplot绘制带百分比饼图</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/%E5%88%A9%E7%94%A8ggplot%E7%BB%98%E5%88%B6%E5%B8%A6%E7%99%BE%E5%88%86%E6%AF%94%E9%A5%BC%E5%9B%BE/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/%E5%88%A9%E7%94%A8ggplot%E7%BB%98%E5%88%B6%E5%B8%A6%E7%99%BE%E5%88%86%E6%AF%94%E9%A5%BC%E5%9B%BE/</guid>
+      <description>1. 介绍 有的时候我们需要利用饼图进行统计结果的占比展示，在R中可以利用ggplot进行绘制，但是ggplot中实际上并没有直接的函数可以绘制饼图，饼图实际上是geom_bar的一个变形。下面我们就来看看如何利用ggplot绘制带百分比的饼图。
+2. 步骤 library(dplyr) library(ggplot2) library(ggmap) # 为了引用主题theme_nothing，用来消除原始ggplot绘图自带的一切标签 df &amp;lt;- data.frame(value = c(52, 239, 9), Group = c(&amp;#34;Positive&amp;#34;, &amp;#34;Negative&amp;#34;, &amp;#34;Neutral&amp;#34;)) %&amp;gt;% # factor levels need to be the opposite order of the cumulative sum of the values mutate(Group = factor(Group, levels = c(&amp;#34;Neutral&amp;#34;, &amp;#34;Negative&amp;#34;, &amp;#34;Positive&amp;#34;)), cumulative = cumsum(value), midpoint = cumulative - value / 2, label = paste0(Group, &amp;#34; &amp;#34;, round(value / sum(value) * 100, 1), &amp;#34;%&amp;#34;)) ggplot(df, aes(x = 1, weight = value, fill = Group)) + geom_bar(width = 1, position = &amp;#34;stack&amp;#34;) + coord_polar(theta = &amp;#34;y&amp;#34;) ## 以y轴建立极坐标 + geom_text(aes(x = 1.</description>
+    </item>
+    
+    <item>
+      <title>利用集群(cluster)运行R脚本的技巧</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/%E5%88%A9%E7%94%A8%E9%9B%86%E7%BE%A4cluster%E8%BF%90%E8%A1%8Cr%E8%84%9A%E6%9C%AC%E7%9A%84%E6%8A%80%E5%B7%A7/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/%E5%88%A9%E7%94%A8%E9%9B%86%E7%BE%A4cluster%E8%BF%90%E8%A1%8Cr%E8%84%9A%E6%9C%AC%E7%9A%84%E6%8A%80%E5%B7%A7/</guid>
+      <description>1. 编写脚本 首先编写一个R脚本保存在当前目录下，例如HeatMap.R
+library(gplots) qlf_path &amp;lt;- &amp;#34;../07DEgene/QLF_DEG/&amp;#34; file_name &amp;lt;- dir(qlf_path) figure_path &amp;lt;- &amp;#34;../07DEgene/figure/qlf_heatmap/&amp;#34; for (k in 21:21){ mymain &amp;lt;- strsplit(file_name[k], &amp;#34;_&amp;#34;)[[1]][c(1,2,4,5)] mymain &amp;lt;- paste(mymain, collapse = &amp;#34;_&amp;#34;) figure_name &amp;lt;- paste0(figure_path, mymain, &amp;#34;.pdf&amp;#34;) pdf(figure_name) qlf_file &amp;lt;- paste0(qlf_path, file_name[k]) data &amp;lt;- read.table(qlf_file) data &amp;lt;- as.matrix(data) mycol &amp;lt;- colorpanel(n=40,low=&amp;#34;blue&amp;#34;,high=&amp;#34;yellow&amp;#34;) heatmap.2(data, col = mycol, scale = &amp;#34;row&amp;#34;, key=TRUE, trace=&amp;#34;none&amp;#34;,cexCol=1,cexRow=0.5, srtRow=45, adjRow=c(0, 1), srtCol=45, adjCol=c(1,1), Rowv= T, Colv = F, lmat=rbind( c(0, 3), c(2,1), c(4,0) ), lhei=c(1.</description>
+    </item>
+    
+    <item>
+      <title>基因的分子结构</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/%E5%9F%BA%E5%9B%A0%E7%9A%84%E5%88%86%E5%AD%90%E7%BB%93%E6%9E%84/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/%E5%9F%BA%E5%9B%A0%E7%9A%84%E5%88%86%E5%AD%90%E7%BB%93%E6%9E%84/</guid>
+      <description>人类结构基因4个区域：①编码区，包括外显子与内含子；②前导区，位于编码区上游，相当于RNA5’末端非编码区（非翻译区）；③尾部区，位于RNA3’编码区下游，相当于末端非编码区（非翻译区）；④调控区，包括启动子和增强子等。基因编码区的两侧也称为侧翼顺序。
+基因经过转录形成Pre mRNA，这里面包含着内含子和外显子（5端是以外显子打头，但是这段外显子不仅包含CDS，还包含5&amp;rsquo; UTR；3端是以外显子结束，但是这段外显子不仅包含CDS，还包含3&amp;rsquo; UTR），经过剪接形成成熟mRNA,内含子已减掉，如果抛开后来加上去的cap和poly A的话，这时全是外显子，但是不全是CDS，因为只有中间的那部分以起始密码子开始、以终止密码子结束的片段才是CDS，只有这部分才会被翻译成蛋白质。
+一个mRNA EXON可能仅部分编码蛋白质，恰恰是上游或下游非编码区存在时。每个Exon的蛋白质编码部分由CDS元件表示。CDS元件还编码终止密码子。
+对于存在非翻译区的区域，将出现UTR。UTR代表Exon的非蛋白质编码部分。UTR（Untranslated Regions)即非翻译区，是信使RNA（mRNA）分子两端的非编码片段。5&amp;rsquo;-UTR从mRNA起点的甲基化鸟嘌呤核苷酸帽延伸至AUG起始密码子，3&amp;rsquo;-UTR从编码区末端的终止密码子延伸至多聚A尾巴（Poly-A）的末端。
+其中一个基因有可能有多个转录本，原因是由于不同的剪接方式造成的。我们都知道，基因转录之后，首先是形成前体mRNA，通过剪切内含子连接外显子，5’端加帽及3’端加尾之后形成成熟的mRNA。
+但是在剪切的过程中可能会剪切掉外显子，也有可能保留部分内含子，这样就形成了多种mRNA即多个转录本。
+其中注意平时经常说到的promoter不属于intron和Exon的任何一个，属于Non Coding Sequence也是Regulatory Sequence。</description>
+    </item>
+    
+    <item>
+      <title>富集分析（超几何分布）（Fisher&#39;s-Exact-Test）</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90%E8%B6%85%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83fishers-exact-test/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/%E5%AF%8C%E9%9B%86%E5%88%86%E6%9E%90%E8%B6%85%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83fishers-exact-test/</guid>
+      <description>1. 简介 超几何分布（hypergeometric）是统计学上一种离散概率分布。它描述了由有限个物件中抽出n个物件，成功抽出指定种类的物件的个数（不归还）。
+超几何分布和Fisher&amp;rsquo;s Exact Test是完全一模一样的原理，只是两种不同的称谓。
+例如在有N个样本，其中m个是不及格的。超几何分布描述了在该N个样本中抽出n个，其中k个是不及格的机率：
+上式可如此理解：n^N 表示所有在N个样本中抽出n个，而抽出的结果不一样的数目。 k^m 表示在m个样本中，抽出k个的方法数目。剩下来的样本都是及格的，而及格的样本有N-m个，剩下的抽法便有(n-K^N-m)种。
+若n=1，超几何分布还原为伯努利分布。
+若N接近∞，超几何分布可视为二项分布。注意二项分布是有归还 (with replacement) 的抽取。
+然后计算得到的p-value通过Bonferroni校正之后，以0.05为阈值（小于0.05），满足此条件的GO term定义为显著富集。
+（1）超几何分布的模型是不放回抽样
+（2）超几何分布中的参数是M,N,n上述超几何分布记作X~H(n，M，N）。
+2. 例子 以文章Gene Expre ssion in Ovarian Cancer Reflects Both Morphology and Biological Behavior, Distinguishing Clear Cell from Other Poor-Prognosis Ovarian Carcinomas所鉴定的差异基因为例。
+测试一下这些基因和化学刺激响应的相关性。
+样本的大小是n，属于“化学刺激响应”这个分类的基因有k个。
+eg &amp;lt;- c(&amp;#34;7980&amp;#34;, &amp;#34;3081&amp;#34;, &amp;#34;3162&amp;#34;, &amp;#34;3059&amp;#34;, &amp;#34;1545&amp;#34;, &amp;#34;1917&amp;#34;, &amp;#34;6696&amp;#34;, &amp;#34;5797&amp;#34;, &amp;#34;6648&amp;#34; , &amp;#34;10397&amp;#34; , &amp;#34;6781&amp;#34;, &amp;#34;5817&amp;#34;, &amp;#34;1282&amp;#34;, &amp;#34;1284&amp;#34;, &amp;#34;6948&amp;#34;, &amp;#34;7077&amp;#34;) n &amp;lt;- length(eg) k &amp;lt;- sum(eg %in% allgeneInCategory) n k #16 #12 那么做为背景，总体基因为N，属于“化学刺激响应”这个分类的基因有M个。</description>
+    </item>
+    
+    <item>
+      <title>序列比较中ClustalW和BLAST的区别</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/%E5%BA%8F%E5%88%97%E6%AF%94%E8%BE%83%E4%B8%ADclustalw%E5%92%8Cblast%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/%E5%BA%8F%E5%88%97%E6%AF%94%E8%BE%83%E4%B8%ADclustalw%E5%92%8Cblast%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
+      <description>序列比对是生物信息学研究中一种常见且经典的手段。经过多年的发展，序列比对也诞生了很多种方法，这篇文章选择讨论的是两种比较常见的序列比对方法，选择哪种比对方法也是科研中容易踩坑的一个点。
+#BLAST
+BLAST(Basic Local Alignment Search Tool )算法是1990年由Altschul等人提出的两序列局部比对算法，采用了一种短片段匹配算法和一种有效的统计模型来找出目的序列和数据库之间的最佳局部比对效果。
+它的基本思想是：通过产生数量更少的但质量更好的增强点来提高匹配的精确度。首先采用哈希法对查询序列以碱基的位置为索引建立哈希表，然后将查询序列和数据库中所有序列联配，找出精确匹配的“种子”，以“种子”为中心，使用动态规划法向两边扩展成更长的联配，最后在一定精度范围内选取符合条件的联配按序输出。得分最高的联配序列就是最有比对序列。
+其算法过程可简单描述为：
+ 从两个序列中找出一些长度相等且可以形成无空位完全匹配的子序列，即序列片段对； 找出两个序列之间所有匹配程度超过一定值的序列片段对； 将得到的序列片段对根据给定的相似性阂值延伸，得到一定长度的相似性片段，称为高分值片段对。    将Query序列中每k个字的组合做成一个表，以k=3为例(DNA序列中，我们则常以k=11为例)，我们&amp;quot;依序&amp;quot;将Query序列中每3个字的组合视为一个字组，并将这些字组列在一张字组表上，直到Query序列中最后一个字也被收入进表上为止   根据打分矩阵(scoring matrix)为所有的字母对打分。下面是一个比较常见打分矩阵，相同匹配加2，AG，CT减5，其他不匹配减7，空位减5。给出一个阈值T，留下高于T的单词匹配对，作为后面extend的seed。   为每对单词执行上面步骤，找出所有打分高于T单词对。找到所有的seed。
+  4.在实际运行中，算法最大的消耗在步骤extend上面，减少extend的方法就是减少seed的数目。对于选出的seed，可以将距离相近的合并为一个seed，这样就可以减少大量extend的计算量。
+5.下一步是extend的步骤，对于每一对选择出来的种子，将其向两边延伸，使其在尽可能长的距离得到尽可能多的分数。具体方法是逐渐向两边扩展，规定常数 D，在扩展到分数为Highest Score-D时停止，如果最终得分大于得分阈值S，则将其设为高分区域HSP(high-scoring segment pair, HSP)。  将相邻的或距离较近的HSP合并。
+  对于每部分HSP使用Smith-Watermans算法进行局部性比对，为每部分打分，作为最终结果。
+  这里我们知道BLAST是基于局部比对的方法，另一个常用来做序列比对的方法是全局比对，ClustalW是其中的一个代表。
+#ClustalW CLUSTALW(它的PC版本是CLUSTALX)是目前使用最广泛的多序列比对程序。它采用的是一种渐进的比对方法(progressive methods)，先将多个序列两两比对构建距离矩阵，反映序列之间两两关系；然后根据距离矩阵计算产生系统进化指导树，对关系密切的序列进行加权；然后从最紧密的两条序列开始，逐步引入临近的序列并不断重新构建比对，直到所有序列都被加入为止。
+ClustalW采用的是全局比对的算法，所以当我们用BLAST和ClustalW进行比对的时候结果很大概率上是不一样的，下图是一个例子 这样引出一个问题，我们什么时候选择用BLAST，什么时候选择用ClustalW呢？ 下面的表可以用来进行参考
+   全局比对 局部比对     比较的是全部长度(end to end alignment) 找到局部最高相似性   包含query和target全部信息 匹配部分query信息到target上   如果两条序列长度相当，相似性高，建议全局 只考虑序列的局部结构   全部匹配常见于寻找同源基因 (人和老鼠) 常见于寻找DNA的保守区域   采用Needleman-Wunsch算法 采用Smith-Whaterman算法    上世纪70年代，Needleman-Wunsch提出了End-to-end的全局比对算法，但是随着越来越多的蛋白质被测序，人们越来约发现某些蛋白差异虽然很大，但是在局部的功能域上却很相似，这些功能域相当保守且发挥相近的重要功能，但是仅靠全局比对算法却很那发现他们。所以就有了Smith-Whaterman算法。Smith-Whaterman算法的主要创新点是给Needleman-Wunsch的算法设置了一个最低罚分不超过0的选项。公式看起来很简单。但是这个0花了整整10年时间，其实这个0只是赋予了一部分（局部）重新开始的机会。</description>
+    </item>
+    
+    <item>
+      <title>循环存多张图片</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/%E5%BE%AA%E7%8E%AF%E5%AD%98%E5%A4%9A%E5%BC%A0%E5%9B%BE%E7%89%87/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/%E5%BE%AA%E7%8E%AF%E5%AD%98%E5%A4%9A%E5%BC%A0%E5%9B%BE%E7%89%87/</guid>
+      <description>library(ggpubr) trait_names &amp;lt;- colnames(Het_Ind)[5:18] plot &amp;lt;- list() for (i in 1:length(trait_names)){ trait_data &amp;lt;- Het_Ind[, c(&amp;#34;Genotype&amp;#34;, &amp;#34;NRate&amp;#34;, trait_names[i])] colnames(trait_data) &amp;lt;- c(&amp;#34;Genotype&amp;#34;, &amp;#34;Nitrogen&amp;#34;, &amp;#34;Value&amp;#34;) trait_data$Genotype &amp;lt;- factor(trait_data$Genotype, levels = sort(c(&amp;#34;B73xILP1&amp;#34;, &amp;#34;B73xPH207&amp;#34;, &amp;#34;B73xIHP1&amp;#34;, &amp;#34;B73xPHG84&amp;#34;, &amp;#34;B73xLH82&amp;#34;, &amp;#34;B73xMo17&amp;#34;))) trait_data$Nitrogen &amp;lt;- factor(trait_data$Nitrogen, levels = c(&amp;#34;LN&amp;#34;, &amp;#34;HN&amp;#34;)) plot[[i]] &amp;lt;- ggplot(trait_data, aes(x=Genotype, y=Value, fill = Nitrogen)) + geom_bar(stat = &amp;#34;identity&amp;#34;, position= &amp;#34;dodge&amp;#34;, width=0.8) + theme_bw() + geom_text(aes(label=round(trait_data$Value, digits = 2)), position = position_dodge(width = 0.8), size =2.5) + labs(title= trait_names[i], x = &amp;#34;Genotype&amp;#34;, y = &amp;#34;log2(Hybrid / MP)&amp;#34;) + theme(axis.</description>
+    </item>
+    
+    <item>
+      <title>批量删除PBS程序</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4pbs%E7%A8%8B%E5%BA%8F/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4pbs%E7%A8%8B%E5%BA%8F/</guid>
+      <description>假设我们有 7823111到7823118的一系列PBS的程序，现在因为某原因要删除它们。我们可以通过以下命令对其批量删除。
+第一个是
+qdel {17979..18028} 第二个，如果所有的PBS程序都是某用户自己提交的，可以使用下面命令
+qdel -u [user] 这两个能很好地进行PBS程序的批量删除。</description>
+    </item>
+    
+    <item>
+      <title>服务器端使用IGV</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E4%BD%BF%E7%94%A8igv/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E4%BD%BF%E7%94%A8igv/</guid>
+      <description>1. 打开IGV 终端打开IGV
+module load igv module show igv 提示以下信息
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- /depot/bioinfo/apps/modules/igv/2.3.60: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- whatis(&amp;#34;Visualization tool for interactive exploration of genomic datasets &amp;#34;) load(&amp;#34;java&amp;#34;) prepend_path(&amp;#34;PATH&amp;#34;,&amp;#34;/group/bioinfo/apps/apps/IGV_2.3.60&amp;#34;) help([[ Notes: IGV (Integrative Genomics Viewer) version 2.3.60 Visualization tool for interactive exploration of genomic datasets http://www.broadinstitute.org/software/igv/home User Guide: http://www.broadinstitute.org/software/igv/UserGuide FAQ: http://www.broadinstitute.org/software/igv/FAQ Forum: https://groups.google.com/forum/#!forum/igv-help Info: /group/bioinfo/apps/apps/IGV_2.3.60/readme.txt Start with &amp;#34;igv.sh&amp;#34; Need X11 display: More config info at: https://www.rcac.purdue.edu/compute/carter/guide/#accounts_login_x11 ]]) 提示打开IGV通过igv.sh， 输入
+igv.sh &amp;amp; 2. 搭配使用igvtools module load igvtools module show igvtools 提示以下信息</description>
+    </item>
+    
+    <item>
+      <title>查R里面函数的源码</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/%E6%9F%A5r%E9%87%8C%E9%9D%A2%E5%87%BD%E6%95%B0%E7%9A%84%E6%BA%90%E7%A0%81/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/%E6%9F%A5r%E9%87%8C%E9%9D%A2%E5%87%BD%E6%95%B0%E7%9A%84%E6%BA%90%E7%A0%81/</guid>
+      <description>https://blog.csdn.net/bangemantou/article/details/17097101</description>
+    </item>
+    
+    <item>
+      <title>热图实践</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/%E7%83%AD%E5%9B%BE%E5%AE%9E%E8%B7%B5/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/%E7%83%AD%E5%9B%BE%E5%AE%9E%E8%B7%B5/</guid>
+      <description>https://bioconductor.statistik.tu-dortmund.de/packages/3.1/bioc/vignettes/ComplexHeatmap/inst/doc/ComplexHeatmap.html
+https://www.bioconductor.org/packages/devel/bioc/vignettes/ComplexHeatmap/inst/doc/s9.examples.html
+https://www.bioconductor.org/packages/devel/bioc/vignettes/ComplexHeatmap/inst/doc/s3.a_list_of_heatmaps.html</description>
+    </item>
+    
+    <item>
+      <title>详解MySQL及RMySQL</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/%E8%AF%A6%E8%A7%A3mysql%E5%8F%8Armysql/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/%E8%AF%A6%E8%A7%A3mysql%E5%8F%8Armysql/</guid>
+      <description>01. Mac上安装MySQL 访问MySQL的官网http://www.mysql.com/downloads/ 然后在页面中会看到“MySQL Community Server”下方有一个“download”点击。进入MySQL的下载界面（http://www.mysql.com/downloads/mysql/），如果你是用的Mac OS来访问的话那么就会默认为你选好了Mac OS X 平台，而下面罗列的都是在Mac OS上能用的MySQL的版本，如果是用的其他平台，在“Select Platform”选项的下拉列表中选一下就好了。按照安装步骤一路向下走，记得保存最后弹出框中的密码（它是你mysql root账号的密码）。 打开设置并且点击MySQL并开启MySQL服务。
+此时我们在终端输入此时我们在命令行输入mysql -uroot -p命令会提示没有commod not found，我们还需要将mysql加入系统环境变量。
+(1).进入/usr/local/mysql/bin,查看此目录下是否有mysql。
+(2).执行vim ~/.bash_profile
+PATH=$PATH:/usr/local/mysql/bin 添加完成后，按esc，然后输入wq保存。最后在命令行输入source ~/.bash_profile。 现在你就可以通过mysql -uroot -p登录mysql了，会让你输入密码，就是之前弹窗中记录的密码
+至此MySQL成功安装到mac电脑下，可以进行下面的开发了。
+02. 安装RMySQL 安装RMySQL非常简单，安装之后可以使用help命令查询包的介绍信息
+install.packages(&amp;#34;RMySQL&amp;#34;) library(RMySQL) help(&amp;#34;RMySQL&amp;#34;) 03. RMySQL基本操作 创造一个新的数据库并使用，SQL查询可以通过dbSendQuery或dbGetQuery传给数据库管理系统。dbGetQuery传送查询语句，把结果以数据框形式返回。dbSendQuery传送查询，返回的结果是继承&amp;quot;DBIResult&amp;quot;的一个子类的对象。函数fetch用于获得查询结果的部分或全部行，并以列表返回。函数dbHasCompleted确定是否所有行已经获得了，而dbGetRowCount返回结果中行的数目。如果只是简单的读整个表，也可以用dbReadTable函数。
+library(RMySQL) mydb = dbConnect(MySQL(), #数据库平台类型 user=&amp;#39;root&amp;#39;, #登录账号（MySQL初始安装时设置的账号） password=&amp;#39;password&amp;#39;, #登录密码（MySQL初始安装时设置的密码） host=&amp;#39;localhost&amp;#39;) # creating a database using RMySQL in R dbSendQuery(mydb, &amp;#34;CREATE DATABASE bookstore;&amp;#34;) dbSendQuery(mydb, &amp;#34;USE bookstore;&amp;#34;) # reconnecting to database we just created using following command in R : mydb = dbConnect(MySQL(), user=&amp;#39;root&amp;#39;, password=&amp;#39;password&amp;#39;, host=&amp;#39;localhost&amp;#39;, dbname=&amp;#34;bookstore&amp;#34;) # 重连数据库 dbSendQuery(mydb, &amp;#34;drop table if exists books, authors&amp;#34;) 在数据库中创造表：</description>
+    </item>
+    
+    <item>
+      <title>详解R中的apply家族函数</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/%E8%AF%A6%E8%A7%A3r%E4%B8%AD%E7%9A%84apply%E5%AE%B6%E6%97%8F%E5%87%BD%E6%95%B0/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/%E8%AF%A6%E8%A7%A3r%E4%B8%AD%E7%9A%84apply%E5%AE%B6%E6%97%8F%E5%87%BD%E6%95%B0/</guid>
+      <description>R语言中提供了一系列apply()的函数，为数据分析中Split-Apply-Combine的策略提供了简洁方便的实现，这些函数的基本工作流程都是首先将数据按照某种规则划分（split）为较小的几部分，然后对各个部分应用（apply）某些操作，再将结果整合（combine）起来。关于Split-Apply-Combine策略的详细内容，可以参考Hadley Wickham的The Split-Apply-Combine Strategy for Data Analysis一文。
+apply()家族主要有以下7类函数：
+base::apply Apply Functions Over Array Margins base::by Apply a Function to a Data Frame Split by Factors base::eapply Apply a Function Over Values in an Environment base::lapply Apply a Function over a List or Vector base::mapply Apply a Function to Multiple List or Vector Arguments base::rapply Recursively Apply a Function to a List base::tapply Apply a Function Over a Ragged Array 1. apply()函数 # create a matrix of 10 rows x 2 columns m &amp;lt;- matrix(c(1:10, 11:20), nrow = 10, ncol = 2) # mean of the rows apply(m, 1, mean) [1] 6 7 8 9 10 11 12 13 14 15 # mean of the columns apply(m, 2, mean) [1] 5.</description>
+    </item>
+    
+    <item>
+      <title>酵母双杂交系统解析</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/%E9%85%B5%E6%AF%8D%E5%8F%8C%E6%9D%82%E4%BA%A4%E7%B3%BB%E7%BB%9F%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/%E9%85%B5%E6%AF%8D%E5%8F%8C%E6%9D%82%E4%BA%A4%E7%B3%BB%E7%BB%9F%E8%A7%A3%E6%9E%90/</guid>
+      <description>1. 简介 研究蛋白质之间的相互作用是当前蛋白质组学研究中的一个热点，常见的研究方法有以下多种： 其中酵母双杂交技术作为发现和研究在活细胞体内的蛋白质与蛋白质之间的相互作用的技术平台，在近几年来得到了广泛运用。
+酵母双杂交系统是在真核模式生物酵母中进行的，研究活细胞内蛋白质相互作用，对蛋白质之间微弱的、瞬间的作用也能够通过报告基因的表达产物敏感地检测得到，它是一种具有很高灵敏度的研究蛋白质之间关系的技术。
+酵母作为报告菌株还有以下好处
+  酵母的转化比较容易，已有的转化方法，如LiAc转化法，能将转化效率稳定在10^4 － 10^5/ug
+  酵母能同时容纳两种以上的质粒，从酵母中提取质粒也比较方便
+  酵母含有可直接进行选择的标记基因和特征性的报告基因，如LacZ之类简单明了的报告基因，通过颜色反应即可验证
+  酵母双杂交技术既可以用来研究哺乳动物基因组编码的蛋白质之间的互作，也可以用来研究高等植物基因组编码的蛋白质之间的互作。
+  因此，酵母双杂交技术在许多的研究领域中有着广泛的应用。
+2. 原理 酵母双杂交系统的建立是基于对真核生物调控转录起始过程的认识。细胞起始基因转录需要有反式转录激活因子的参与。反式转录激活因子，例如酵母转录因子GAL4在结构上是组件式的（modular），往往由两个或两个以上结构上可以分开，功能上相互独立的结构域（domain）构成，其中有DNA结合功能域和转录激活结构域。这两个结合域将它们分开时仍分别具有功能，但不能激活转录，只有当被分开的两者通过适当的途径在空间上较为接近时，才能重新呈现完整的GAL4转录因子活性，并可激活上游激活序列的下游启动子，使启动子下游基因得到转录。
+3. 步骤 </description>
+    </item>
+    
+    <item>
+      <title>链特异性测序及在IGV中的可视结果</title>
+      <link>https://kongjianyang.github.io/cn/2018/11/24/%E9%93%BE%E7%89%B9%E5%BC%82%E6%80%A7%E6%B5%8B%E5%BA%8F%E5%8F%8A%E5%9C%A8igv%E4%B8%AD%E7%9A%84%E5%8F%AF%E8%A7%86%E7%BB%93%E6%9E%9C/</link>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/11/24/%E9%93%BE%E7%89%B9%E5%BC%82%E6%80%A7%E6%B5%8B%E5%BA%8F%E5%8F%8A%E5%9C%A8igv%E4%B8%AD%E7%9A%84%E5%8F%AF%E8%A7%86%E7%BB%93%E6%9E%9C/</guid>
+      <description>1. 介绍 与链特异性测序相对的是传统的非链特异性文库。
+通过链特异性测序，我们可以清楚的知道得到的 reads 跟转录本是同向的还是反向的。其中常见的链特异性测序的方法是dUTP方法。dUTP方法是先利用随机引物合成RNA的一条cDNA链，在合成第二条链的时候用dUTP代替dTTP，加adaptor后用UDGase处理，将有U的第二条cDNA降解掉。这样最后的insert DNA fragment都是来自于第一条cDNA，也就是dUTP叫fr-firststrand的原因。
+2. 正反链 DNA 的正链和负链，就是那两条反向互补的链。参考基因组给出的那个链就是所谓的正链（forword），另一条链是反链（reverse）。但是这正反一定不能和正义链（sense strand）反义链（antisense strand）混淆，两条互补的DNA链其中一条携带编码蛋白质信息的链称为正义链，另一条与之互补的称为反义链。
+3. IGV可视化 IGV可视化read时候有多项可以选
+ Read strand First-of-pair strand 图示按照igv 颜色选项中的read strand 方向进行区分，可以看到所有红色read都是在正链方向（注意正链不是正义链），而所有蓝色的read都是负链方向。   如果这个时候把颜色选项改为按照first of pair of strand来区分，会出现下图的变化。
+如果对非链特异性文库使用的first of pair of strand可视化会出现下面的情况
+可以看到同一个gene相关的read颜色还是混杂的，因为它并不是链特异性文库，所以不能分开first strand和second strand。</description>
+    </item>
+    
+  </channel>
+</rss>

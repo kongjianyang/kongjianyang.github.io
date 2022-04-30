@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bioinfo on KJY</title>
+    <link>https://kongjianyang.github.io/tags/bioinfo/</link>
+    <description>Recent content in Bioinfo on KJY</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 07 Jun 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://kongjianyang.github.io/tags/bioinfo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Add p value and significant marker for ggplot based on ggpubr</title>
+      <link>https://kongjianyang.github.io/en/2018/06/07/add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr/</link>
+      <pubDate>Thu, 07 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/en/2018/06/07/add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr/</guid>
+      <description>The ‘ggpubr’ package provides some easy-to-use functions for creating and customizing ‘ggplot2’- based publication ready plots. -A. Kassambara.
+ Reference
+1. Preparation install the package
+install.packages(&amp;quot;ggpubr&amp;quot;) or you can install the latest version form github
+if(!require(devtools)) install.packages(&amp;quot;devtools&amp;quot;) # if havn`t install devtools before, install it first devtools::install_github(&amp;quot;kassambara/ggpubr&amp;quot;) load package
+library(ggpubr) load data
+data(&amp;quot;ToothGrowth&amp;quot;) head(ToothGrowth) ## len supp dose ## 1 4.2 VC 0.5 ## 2 11.5 VC 0.5 ## 3 7.</description>
+    </item>
+    
+  </channel>
+</rss>

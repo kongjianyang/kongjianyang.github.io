@@ -1,0 +1,527 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>R语言基于S3的面向对象编程</h1>
+
+<p>KJY 
+ / 2022-03-29 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2022-03-29-R%e8%af%ad%e8%a8%80%e5%9f%ba%e4%ba%8eS3%e7%9a%84%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1%e7%bc%96%e7%a8%8b.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+<aside class="toc">
+Table of Contents:
+<nav id="TableOfContents">
+  <ol>
+    <li><a href="#s3对象的介绍">S3对象的介绍</a></li>
+    <li><a href="#创建s3对象">创建S3对象</a></li>
+    <li><a href="#泛型函数和方法调用">泛型函数和方法调用</a></li>
+    <li><a href="#查看s3对象的函数">查看S3对象的函数</a></li>
+    <li><a href="#s3对象的继承关系">S3对象的继承关系</a></li>
+    <li><a href="#s3对象的缺点">S3对象的缺点</a></li>
+    <li><a href="#与python区别">与python区别</a></li>
+    <li><a href="#实用的例子">实用的例子</a></li>
+  </ol>
+</nav>
+</aside>
+
+
+<div class="body-text list-text">
+<p>参考这篇文章：</p>
+<p><a href="https://dataxujing.github.io/R_oop/S3.html#s3" target="_blank" rel="noreferrer noopener">R语言面向对象编程 (dataxujing.github.io)</a>
+
+</p>
+<h2 id="s3对象的介绍">S3对象的介绍<a href="#s3对象的介绍" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>在R语言中，基于S3对象的面向对象编程，是一种基于泛型函数的实现方式。<strong>泛型函数</strong>是一种特殊的函数，根据传入对象的类型决定调用那个具体的方法。基于S3对象实现面向对象编程，不同其他语言的面型对象编程，是一种动态函数调用的模拟实现。S3对象被广泛应用于R的早期的开发包中。</p>
+<p><strong>R的S3系统有三个组成部分:属性(attribute)(尤其是class属性)、泛型函数(genericfunction)和方法(method)</strong></p>
+<h2 id="创建s3对象">创建S3对象<a href="#创建s3对象" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>注意：本文会用到pryr,为了方便我们检查对象的类型，引入pryr包作为辅助工具。</p>
+<pre tabindex="0"><code>library(pryr)
+
+#通过变量创建S3对象
+x &lt;- 1
+attr(x,&#39;class&#39;) &lt;- &#39;foo&#39;
+x
+</code></pre><pre tabindex="0"><code>## [1] 1
+## attr(,&#34;class&#34;)
+## [1] &#34;foo&#34;
+</code></pre><pre tabindex="0"><code>## [1] &#34;foo&#34;
+</code></pre><pre tabindex="0"><code>## [1] &#34;foo&#34;
+</code></pre><pre tabindex="0"><code>#用pryr包的otype函数,检查x的类型
+otype(x)
+</code></pre><pre tabindex="0"><code>## [1] &#34;S3&#34;
+</code></pre><p>通过structure()函数创建S3对象</p>
+<pre tabindex="0"><code>y &lt;- structure(2,class=&#34;foo&#34;)
+
+y
+</code></pre><pre tabindex="0"><code>## [1] 2
+## attr(,&#34;class&#34;)
+## [1] &#34;foo&#34;
+</code></pre><pre tabindex="0"><code>## [1] &#34;foo&#34;
+</code></pre><pre tabindex="0"><code>## [1] &#34;foo&#34;
+</code></pre><pre tabindex="0"><code>## [1] &#34;S3&#34;
+</code></pre><p>创建一个多类型的S3对象，S3独享没有明确结构关系，一个S3对象可以有多个类型，S3对象的class属性可以是一个向量，包括多种类型</p>
+<pre tabindex="0"><code>x &lt;- 1
+attr(x,&#34;class&#34;) &lt;- c(&#34;foo&#34;,&#34;bar&#34;) # 给了x对象两个class属性
+class(x)
+</code></pre><pre tabindex="0"><code>## [1] &#34;foo&#34; &#34;bar&#34;
+</code></pre><pre tabindex="0"><code>## [1] &#34;S3&#34;
+</code></pre><p>如果分配至少一个class属性，就是S3对象，如果没有class属性，就是base对象。</p>
+<h2 id="泛型函数和方法调用">泛型函数和方法调用<a href="#泛型函数和方法调用" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>对于S3对象的使用，通常用UseMethod()函数来定义一个泛型函数的名称，通过传入参数的class属性，来确定方法调用。</p>
+<p><strong>R的S3系统有三个组成部分:属性(attribute)(尤其是class属性)、泛型函数(genericfunction)和方法(method)</strong></p>
+<p>由泛型函数、方法和基于类的分派方式所构成的系统就是R的S3系统。之所以叫作S3是由于它起源于S语言的第三个版本,语言S-PLUS是R语言的前身。许多常见的R函数都是S3泛型函数,它们可以支持多种不同的类方法函数。比如说,summary和head就会调用UseMethod函数以识别对象的类属性。</p>
+<p>每一个S3方法的名称都包含两个部分。前一部分指明该方法对应的函数,后一部分则指明类属性（attitubute）。这两个部分的名称用英文句点.分隔。</p>
+<p>可以用attributes函数查看一个对象的属性。</p>
+<p>定义一个teacher的泛型函数</p>
+<ul>
+<li>
+<p>用UseMethod()定义teacher泛型函数</p>
+</li>
+<li>
+<p>用teacher.xxx的语法格式定义teacher对象的行为（类属性）</p>
+</li>
+<li>
+<p>其中teacher.default是默认行为</p>
+</li>
+</ul>
+<pre tabindex="0"><code># 用UseMethod()定义teacher泛型函数
+teacher &lt;- function(x,...) UseMethod(&#34;teacher&#34;) # 这时teacher也变成了一个对象
+# 用pryr包中ftype()函数，检查teacher类型
+ftype(teacher)
+[1] &#34;s3&#34; &#34;generic&#34;
+
+# 定义teacher内部函数, 都是teacher的属性
+teacher.lecture &lt;- function(x,...) print(&#34;讲课&#34;)
+teacher.assignment &lt;- function(x,...) print(&#34;布置作业&#34;)
+teacher.correcting &lt;- function(x,...) print(&#34;批改作业&#34;)
+teacher.default &lt;- function(x,...) print(&#34;你不是teacher&#34;)
+teacher.character &lt;- function(x, ...) print(&#34;请先定义&#34;)
+</code></pre><p>警告：因为点号.是S3实现泛型函数的方法，为了防止歧义，应避免在普通变量名中使用.号。普通变量命名推荐使用 para_name, paraName，类名使用 ParaName。</p>
+<p>方法调用通过传入参数的class属性，来确定不同方法调用</p>
+<ul>
+<li>
+<p>定义一个变量a，并设置a的class属性为lecture</p>
+</li>
+<li>
+<p>把变量a传入到teacher泛型函数中</p>
+</li>
+<li>
+<p>函数teacher.lecture()函数的行为被调用</p>
+</li>
+</ul>
+<pre tabindex="0"><code>a &lt;- &#34;teacher&#34; # 这时a是个字符串
+teacher(a)
+# 给老师变量设置行为
+attr(a,&#34;class&#34;) &lt;- &#39;lecture&#39; # 给a一个类属性 lecture
+# 执行老师的行为
+teacher(a)
+[1] “讲课”
+
+
+attributes(a)
+
+# $class
+# [1] &#34;lecture&#34;
+</code></pre><p>当然我们可以直接调用teacher中定义的行为，如果这样做就失去了面向对象封装的意义</p>
+<pre tabindex="0"><code>teacher.lecture()
+[1] &#34;讲课&#34;
+teacher.lecture(a)
+[1] &#34;讲课&#34;
+teacher()
+[1] &#34;你不是teacher&#34;
+</code></pre><p>另外一个例子</p>
+<pre tabindex="0"><code>## 第一步：定义一个泛型函数，这个函数的函数体只有一个固定的语句
+doit = function(...) UseMethod(&#34;doit&#34;)
+
+## 第二步：设置针对特定CLASS的动作函数
+doit.character = function(...) {
+    cat(&#34;With STRING class attribute\n&#34;)
+}
+doit.integer = function(...) {
+    cat(&#34;With INTEGER class attribute\n&#34;)
+}
+doit.God = function(...) {
+    cat(&#34;With God class attribute\n&#34;)
+}
+### 第三步：设置一个默认的动作函数
+doit.default = function(...) {
+    cat(&#34;UNKNOWN class attribute\n&#34;)
+}
+
+
+##上面三个步骤就完成了doit泛型函数的设置。看看效果吧：
+a = &#34;ABCDE&#34;
+
+doit(a) # 这里a本来是string
+## With STRING class attribute
+
+attr(a, &#34;class&#34;) = &#34;integer&#34;
+class(a) #[1] &#34;integer&#34;
+doit(a)
+## With INTEGER class attribute
+
+attr(a, &#34;class&#34;) = &#34;God&#34;
+doit(a)
+## With God class attribute
+
+a = as.factor(a)
+doit(a)
+## UNKNOWN class attribute
+</code></pre><p>这里面还有一个问题：针对特定类型的动作函数并没有用于识别数据类型的代码，函数调用的形式都是一样的，doit函数怎么知道该执行那个操作？关键就在于UseMethod这个函数。这个函数只能在函数体内使用，它可以有两个参数：</p>
+<p><strong>UseMethod(generic, object)</strong></p>
+<p>generic 是泛型函数的名称（字符串）， object 是用于确定动作函数的对象，如果缺省将使用泛型函数的第一个参数，UseMethod取其CLASS属性。如果要用其他参数进行类型判断，只需修改泛型函数。下面修改后的泛型函数使用第二个参数进行动作函数选择：</p>
+<pre tabindex="0"><code>doit(&#34;abc&#34;, 1:10)
+## With STRING class attribute
+
+doit(1:10, &#34;abc&#34;)
+## With INTEGER class attribute
+
+doit = function(...) {
+    xx = list(...)
+    UseMethod(&#34;doit&#34;, xx[[2]])
+}
+# 注意下面结果与修改泛型函数前的差别
+doit(1:10, &#34;abc&#34;)
+## With STRING class attribute
+</code></pre><h2 id="查看s3对象的函数">查看S3对象的函数<a href="#查看s3对象的函数" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>当我们使用S3队形进行面向对象封装后，可以使用methods()函数来查看S3对象中的定义的内部行为函数。</p>
+<pre tabindex="0"><code># 查看teacher对象
+&gt; teacher
+function(x,...) Usemethod(&#34;teacher&#34;)
+
+# 查看teacher对象的内部函数
+&gt; methods(teacher)
+[1] teacher.assignment teacher.correcting teacher.default teacher.lecture
+
+#通过methods()的generic.function参数，来匹配泛型函数名字
+&gt; methods(generic.function = predict)
+[1] predict.ar* ......
+</code></pre><p>通过methods()的class参数，来匹配类的名字</p>
+<pre tabindex="0"><code>&gt; methods(class=lm)
+[1]add1.lm* ......
+</code></pre><p>用getAnywhere()函数,查看所有函数</p>
+<pre tabindex="0"><code>#查看teacher.lecture函数
+
+&gt;getAnywhere(teacher.lecture)
+
+# A single object matching ‘teacher.lecture’ was found
+# It was found in the following places
+#   .GlobalEnv
+#   registered S3 method for teacher
+# with value
+# 
+# function(x,...) print(&#34;讲课&#34;)
+</code></pre><p>使用getS3method()函数，也同样可以查看不可见的函数</p>
+<h2 id="s3对象的继承关系">S3对象的继承关系<a href="#s3对象的继承关系" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>S3独享有一种非常简单的继承方式，用NextMethod()函数来实现。</p>
+<p>定义一个node泛型函数</p>
+<pre tabindex="0"><code>node &lt;- function(x) UseMethod(&#34;node&#34;,x)
+node.default &lt;- function(x) &#34;Default node&#34;
+
+father函数
+node.father &lt;- function(x) c(&#34;father&#34;)
+
+son函数，通过NextMethod()函数只想father函数
+node.son &lt;- function(x) c(&#39;son&#39;,NextMethod())
+
+#定义n1
+n1 &lt;- structure(1,class=c(&#34;father&#34;))
+# 在node函数中传入n1,执行node.father()函数
+node(n1)
+[1] &#34;father&#34;
+
+# 定义n2，设置class属性为两个
+&lt;- structure(1,class=c(&#34;son&#34;,&#34;father&#34;))
+# 在node函数中传入n2,执行node.son()函数和node.father()函数
+node(n2)
+# [1] &#34;son&#34; &#34;father&#34;
+</code></pre><p>通过对node()函数传入n2的参数，node.son()先被执行，然后通过NextMethod()函数继续执行了node.father()函数。这样其实就模拟了，子函数调用父函数的过程，实现了面向对象编程中的继承。</p>
+<p>另外一个更详细的例子</p>
+<pre tabindex="0"><code>doit = function(...) UseMethod(&#34;doit&#34;)
+doit.character = function(...) {
+    cat(&#34;With STRING class attribute\n&#34;)
+    NextMethod()
+}
+
+doit.integer = function(...) {
+    cat(&#34;With INTEGER class attribute\n&#34;)
+    NextMethod()
+}
+
+doit.God = function(...) {
+    cat(&#34;With God class attribute\n&#34;)
+    NextMethod()
+}
+
+doit.default = function(...) {
+    cat(&#34;UNKNOWN class attribute\n&#34;)
+}
+
+## 多CLASS属性对象
+x = &#34;abc&#34;
+class(x) = c(&#34;UNKNOWN&#34;, &#34;integer&#34;, &#34;character&#34;, &#34;God&#34;)
+doit(x)
+# With INTEGER class attribute
+# With STRING class attribute
+# With God class attribute
+# UNKNOWN class attribute
+
+# 或者同样的
+
+x = &#34;abcd&#34;
+attr(x, &#34;class&#34;) &lt;- c(&#34;UNKNOWN&#34;, &#34;integer&#34;, &#34;character&#34;, &#34;God&#34;)
+doit(x)
+# With INTEGER class attribute
+# With STRING class attribute
+# With God class attribute
+# UNKNOWN class attribute
+</code></pre><p>- 循环最外层从CLASS属性向量第一个“已知”类属性开始，依次嵌套</p>
+<p>- default方法在循环最内层，而且不管有几个“未知”类属性，它只执行一次</p>
+<p>- 循环层次和“未知”类属性的位置无关</p>
+<h2 id="s3对象的缺点">S3对象的缺点<a href="#s3对象的缺点" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>从上面S3对象的介绍上来看，S3对象并不是完全的面向对象实现，而是一种通过泛型函数模拟的面向对象的实现。</p>
+<ul>
+<li>
+<p>S3用起来简单，但在实际的面向对象编程的过程中，当对象关系有一定的复杂度，S3对象所表达的意义就变得不太清楚</p>
+</li>
+<li>
+<p>S3封装的内部函数，可以绕过泛型函数的检查，以直接被调用</p>
+</li>
+<li>
+<p>S3参数的class属性，可以被任意设置，没有预处理的检查</p>
+</li>
+<li>
+<p>S3参数，只能通过调用class属性进行函数调用，其他属性则不会被class()函数执行</p>
+</li>
+<li>
+<p>S3参数的class属性有多个值时，调用时会被按照程序赋值顺序来调用第一个合法的函数</p>
+</li>
+</ul>
+<p>所以，S3只是R语言面向对象的一种简单的实现。</p>
+<h2 id="与python区别">与python区别<a href="#与python区别" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>Python是面向对象的语言，类的定义很简介，一个类的属性和方法都是在一个代码块中，很容易让人理解。但是R不一样了，R的类属性和方法是分离的，需要泛型函数将他们连接起来。Python是实实在在对对象进行编程，不存在方法派送的问题，而R中的S3似乎更像是面向函数的编程。</p>
+<p>一个python中的类的例子</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; class Student(object):
+...     def __init__(self,name,age):
+...             self.name = name
+...             self.age = age
+...
+&gt;&gt;&gt;
+&gt;&gt;&gt; bart = Student(&#39;zth&#39;,20)
+&gt;&gt;&gt;
+&gt;&gt;&gt; bart.name
+&#39;zth&#39;
+&gt;&gt;&gt; bart.age
+20
+</code></pre><h2 id="实用的例子">实用的例子<a href="#实用的例子" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<pre tabindex="0"><code>j &lt;- list(name = &#34;Joe&#34;, salary=5000, union=T)
+
+class(j) &lt;- &#34;employee&#34; ## 创建了类，employee
+
+print.employee &lt;- function(wrkr){
+cat(&#34;Name:&#34;, wrkr$name, &#34;\n&#34;)
+cat(&#34;Salary: &#34;, wrkr$salary, &#34;\n&#34;)
+cat(&#34;Union member: &#34;, wrkr$union, &#34;\n&#34;)
+}
+
+print(j)
+
+
+# Name: Joe 
+# Salary:  5000 
+# Union member:  TRUE 
+</code></pre><p>如果使用python来写</p>
+<pre tabindex="0"><code>class employee(object):
+  def __init__(self,name,salary):
+    self.name = name
+    self.salary = salary
+
+j = employee(&#34;Joe&#34;, 5000)
+</code></pre><p>或者这样写</p>
+<pre tabindex="0"><code>class Employee:
+   &#39;所有员工的基类&#39;
+   empCount = 0
+ 
+   def __init__(self, name, salary):
+      self.name = name
+      self.salary = salary
+      Employee.empCount += 1
+   
+   def displayCount(self):
+     print &#34;Total Employee %d&#34; % Employee.empCount
+ 
+   def displayEmployee(self):
+      print &#34;Name : &#34;, self.name,  &#34;, Salary: &#34;, self.salary
+</code></pre><p>另一个例子</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span># 创建类
+</span></span><span style="display:flex;"><span>## 使用函数创建了一个类，一句话创建类
+</span></span><span style="display:flex;"><span>my_person &lt;- function(ln, a, ht){
+</span></span><span style="display:flex;"><span>  structure(list(lastName = ln, age = a, height = ht), class = &#34;my_person&#34;)
+</span></span><span style="display:flex;"><span>} 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>## 创建第一个泛型函数
+</span></span><span style="display:flex;"><span>display &lt;- function(obj) UseMethod(&#34;display&#34;)
+</span></span><span style="display:flex;"><span># 创建方法
+</span></span><span style="display:flex;"><span>display.my_person &lt;- function(obj){
+</span></span><span style="display:flex;"><span>  cat(&#34;Last name : &#34;, obj$lastName, &#34;\n&#34;)
+</span></span><span style="display:flex;"><span>  cat(&#34;Age       : &#34;, obj$age, &#34;\n&#34;)
+</span></span><span style="display:flex;"><span>  cat(&#34;Height    : &#34;, obj$height, &#34;\n&#34;)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>## 创建第二个泛型函数，如果泛型函数的方法又多个参数，务必加上...
+</span></span><span style="display:flex;"><span>nYear &lt;- function(obj,...) UseMethod(&#34;nYear&#34;)
+</span></span><span style="display:flex;"><span># 创建方法
+</span></span><span style="display:flex;"><span>nYear.my_person &lt;- function(obj,n){
+</span></span><span style="display:flex;"><span>  obj$age &lt;- obj$age + n
+</span></span><span style="display:flex;"><span>  cat(&#34;Age after&#34;,n,&#34;years is:&#34;, obj$age, &#34;\n&#34;)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 由类创建对象
+</span></span><span style="display:flex;"><span>Tom &lt;- my_person(&#34;Godden&#34;, 19, 176)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 第一个泛型函数派送
+</span></span><span style="display:flex;"><span>display(Tom)
+</span></span><span style="display:flex;"><span>## Last name :  Godden 
+</span></span><span style="display:flex;"><span>## Age       :  19 
+</span></span><span style="display:flex;"><span>## Height    :  176
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 第二个泛型函数派送
+</span></span><span style="display:flex;"><span>nYear(Tom,7)
+</span></span><span style="display:flex;"><span>## Age after 7 years is: 26
+</span></span></code></pre></div>
+<p style="color:#777;">最后一次修改于 2022-03-29</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       订阅 </a>
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+

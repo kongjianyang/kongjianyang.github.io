@@ -1,0 +1,186 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>git取消链接并删除本地库</h1>
+
+<p>Liang 
+ / 2018-11-24 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-24-git%e5%8f%96%e6%b6%88%e9%93%be%e6%8e%a5%e5%b9%b6%e5%88%a0%e9%99%a4%e6%9c%ac%e5%9c%b0%e5%ba%93.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+
+<div class="body-text list-text">
+<p>有的时候我们需要删除从GitHub上克隆下来的库</p>
+<p>从github上clone一个仓库：</p>
+<pre tabindex="0"><code>git clone git@github.com:USERNAME/repo.git
+</code></pre><p>在本地目录下关联远程repository</p>
+<pre tabindex="0"><code>git remote add origin git@github.com:git_username/repository_name.git
+</code></pre><p>取消本地目录下关联的远程库</p>
+<pre tabindex="0"><code>git remote remove origin
+</code></pre><p>删除本地库</p>
+<pre tabindex="0"><code>Quincy_C@Quincy MINGW64 /gitskills/gitskills (master) 
+$ git branch #显示本地所有分支 
+* master
+
+Quincy_C@Quincy MINGW64 /gitskills/gitskills (master) 
+$ git init 1#初始化仓库 
+Reinitialized existing Git repository in D:/Program Files/Git/gitskills/gitskills/.git/
+
+Quincy_C@Quincy MINGW64 /gitskills/gitskills (master) 
+$ ls -a 2#查看内部文件 
+./ ../ .git/ README.md
+
+Quincy_C@Quincy MINGW64 /gitskills/gitskills (master) 
+$ rm -rf .git 3#强删.git
+
+Quincy_C@Quincy MINGW64 /gitskills/gitskills 
+$ ls -a 4#查看内部文件 
+./ ../ README.md
+
+Quincy_C@Quincy MINGW64 /gitskills/gitskills 
+$ cd .. 5#回退
+
+Quincy_C@Quincy MINGW64 /gitskills 
+$ rm -rf gitskills 6# 强删文件夹
+
+Quincy_C@Quincy MINGW64 /gitskills 
+$ cd .. 7# 回退
+
+Quincy_C@Quincy MINGW64 / 
+$ rm -rf gitskills 8# 强删文件夹
+</code></pre>
+<p style="color:#777;">最后一次修改于 2018-11-24</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       订阅 </a>
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+

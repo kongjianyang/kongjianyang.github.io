@@ -1,0 +1,379 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>R语言glue包介绍</h1>
+
+<p>KJY 
+ / 2021-04-22 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2021-04-22-R%e8%af%ad%e8%a8%80glue%e5%8c%85%e4%bb%8b%e7%bb%8d.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+<aside class="toc">
+Table of Contents:
+<nav id="TableOfContents">
+  <ol>
+    <li><a href="#安装"><strong>安装</strong></a></li>
+    <li><a href="#使用"><strong>使用</strong></a>
+      <ol>
+        <li><a href="#1-导入"><strong>1. 导入</strong></a></li>
+        <li><a href="#2-简单使用"><strong>2. 简单使用</strong></a></li>
+        <li><a href="#3-glue_data-搭配管道符"><strong>3. glue_data 搭配管道符</strong></a></li>
+        <li><a href="#4-字符串"><strong>4. 字符串</strong></a></li>
+        <li><a href="#5-指定分隔符"><strong>5. 指定分隔符</strong></a></li>
+        <li><a href="#6-sql-语句"><strong>6. SQL 语句</strong></a></li>
+        <li><a href="#7-字符串向量的折叠"><strong>7. 字符串向量的折叠</strong></a></li>
+        <li><a href="#8-单个元素的引用"><strong>8. 单个元素的引用</strong></a></li>
+        <li><a href="#9-为输出着色"><strong>9. 为输出着色</strong></a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+</aside>
+
+
+<div class="body-text list-text">
+<p><code>glue</code> 提供了轻巧、快速和无依赖的可解释字符串，<code>glue</code> 通过将 <code>R</code> 表达式嵌入到花括号中，然后对其求值并将其插入字符串中。</p>
+<p>glue包可用于自定义变量，然后通过传参的方式，对字符串部分内容进行自适应修改。</p>
+<p>例如：可将日期赋值为：date = as.Date(&ldquo;2019-12-05&rdquo;)，然后通过字符串拼接的形式，实现文件名称自动更新，glue(&ldquo;The day is {date}.&quot;。</p>
+<h2 id="安装"><strong>安装</strong><a href="#安装" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<pre tabindex="0"><code>install.packages(&#34;glue&#34;)
+# or
+install.packages(&#34;glue&#34;)
+# install.packages(&#34;devtools&#34;)
+devtools::install_github(&#34;tidyverse/glue&#34;)
+</code></pre><h2 id="使用"><strong>使用</strong><a href="#使用" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<h3 id="1-导入"><strong>1. 导入</strong><a href="#1-导入" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<h3 id="2-简单使用"><strong>2. 简单使用</strong><a href="#2-简单使用" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>将变量直接传递到字符串中</p>
+<pre tabindex="0"><code>&gt; name &lt;- &#34;Fred&#34;
+&gt; glue(&#39;My name is {name}.&#39;)
+My name is Fred.
+</code></pre><p>通过将变量名放置在一对花括号之间，<code>glue</code> 会将变量名替换为相应的值</p>
+<p>字符串可以写成多行的形式，最后会自动将这些行连接起来</p>
+<pre tabindex="0"><code>&gt; name &lt;- &#34;Fred&#34;
+&gt; age &lt;- 50
+&gt; anniversary &lt;- as.Date(&#34;1991-10-12&#34;)
+&gt; glue(&#39;My name is {name},&#39;,
++      &#39; my age next year is {age + 1},&#39;,
++      &#39; my anniversary is {format(anniversary, &#34;%A, %B %d, %Y&#34;)}.&#39;)
+My name is Fred, my age next year is 51, my anniversary is 星期六, 十月 12, 1991.
+</code></pre><p>在 <code>glue</code> 中使用命名参数来指定临时变量</p>
+<pre tabindex="0"><code>&gt; glue(&#39;My name is {name},&#39;,
++      &#39; my age next year is {age + 1},&#39;,
++      &#39; my anniversary is {format(anniversary, &#34;%A, %B %d, %Y&#34;)}.&#39;,
++      name = &#34;Joe&#34;,
++      age = 40,
++      anniversary = as.Date(&#34;2001-10-12&#34;))
+My name is Joe, my age next year is 41, my anniversary is 星期五, 十月 12, 2001.
+</code></pre><h3 id="3-glue_data-搭配管道符"><strong>3. glue_data 搭配管道符</strong><a href="#3-glue_data-搭配管道符" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p><code>glue_data()</code> 搭配管道符非常有用</p>
+<pre tabindex="0"><code>&gt; head(mtcars)
+                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+
+&gt; head(mtcars) %&gt;% glue_data(&#34;{rownames(.)} has {hp} hp&#34;)
+Mazda RX4 has 110 hp
+Mazda RX4 Wag has 110 hp
+Datsun 710 has 93 hp
+Hornet 4 Drive has 110 hp
+Hornet Sportabout has 175 hp
+Valiant has 105 hp
+</code></pre><p>也可以搭配 <code>dplyr</code> 使用</p>
+<pre tabindex="0"><code>&gt; head(iris) %&gt;%
++     mutate(description = glue(&#34;This {Species} has a petal length of {Petal.Length}&#34;))
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species                           description
+1          5.1         3.5          1.4         0.2  setosa This setosa has a petal length of 1.4
+2          4.9         3.0          1.4         0.2  setosa This setosa has a petal length of 1.4
+3          4.7         3.2          1.3         0.2  setosa This setosa has a petal length of 1.3
+4          4.6         3.1          1.5         0.2  setosa This setosa has a petal length of 1.5
+5          5.0         3.6          1.4         0.2  setosa This setosa has a petal length of 1.4
+6          5.4         3.9          1.7         0.4  setosa This setosa has a petal length of 1.7
+</code></pre><h3 id="4-字符串"><strong>4. 字符串</strong><a href="#4-字符串" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>前导空格和第一行以及最后一行的换行符会自动被修剪</p>
+<pre tabindex="0"><code>&gt; glue(&#34;
++     A formatted string
++     Can have multiple lines
++       with additional indention preserved
++     &#34;)
+A formatted string
+Can have multiple lines
+  with additional indention preserved
+</code></pre><p>可以在首行或尾行多添加一个换行符来实现空行</p>
+<pre tabindex="0"><code>&gt; glue(&#34;
++ 
++   leading or trailing newlines can be added explicitly
++ 
++   &#34;)
+
+leading or trailing newlines can be added explicitly
+</code></pre><p>在行尾使用 <code>\\</code> 可以将两行合并</p>
+<pre tabindex="0"><code>&gt; glue(&#34;
++     A formatted string \\
++     can also be on a \\
++     single line
++     &#34;)
+A formatted string can also be on a single line
+</code></pre><p>如果要字符串中使用花括号，需要使用双花括号</p>
+<pre tabindex="0"><code>&gt; name &lt;- &#34;Fred&#34;
+&gt; glue(&#34;My name is {name}, not {{name}}.&#34;)
+My name is Fred, not {name}.
+</code></pre><p>双花括号需要连用</p>
+<p>可以使用 <code>+</code> 连接字符串</p>
+<pre tabindex="0"><code>&gt; x &lt;- 1
+&gt; y &lt;- 3
+&gt; glue(&#34;x + y&#34;) + &#34; = {x + y}&#34;
+x + y = 4
+</code></pre><h3 id="5-指定分隔符"><strong>5. 指定分隔符</strong><a href="#5-指定分隔符" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p><code>glue</code> 默认将花括号之间的字符作为变量名或者表达式，我们可以通过设置 <code>.open</code> 和 .<code>close</code> 参数来指定分隔符</p>
+<pre tabindex="0"><code>&gt; one &lt;- &#34;1&#34;
+&gt; glue(&#34;The value of $e^{2\\pi i}$ is $&lt;&lt;one&gt;&gt;$.&#34;, .open = &#34;&lt;&lt;&#34;, .close = &#34;&gt;&gt;&#34;)
+The value of $e^{2\pi i}$ is $1$.
+</code></pre><h3 id="6-sql-语句"><strong>6. SQL 语句</strong><a href="#6-sql-语句" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p><code>glue</code> 还提供了 <code>glue_sql</code> 函数，用于格式化 <code>SQL</code> 语句，例如</p>
+<pre tabindex="0"><code>&gt; con &lt;- DBI::dbConnect(RSQLite::SQLite(), &#34;:memory:&#34;)
+&gt; colnames(iris) &lt;- gsub(&#34;[.]&#34;, &#34;_&#34;, tolower(colnames(iris)))
+&gt; DBI::dbWriteTable(con, &#34;iris&#34;, iris)
+&gt; var &lt;- &#34;sepal_width&#34;
+&gt; tbl &lt;- &#34;iris&#34;
+&gt; num &lt;- 2
+&gt; val &lt;- &#34;setosa&#34;
+&gt; glue_sql(&#34;
++   SELECT {`var`}
++   FROM {`tbl`}
++   WHERE {`tbl`}.sepal_length &gt; {num}
++     AND {`tbl`}.species = {val}
++   &#34;, .con = con)
+&lt;SQL&gt; SELECT `sepal_width`
+FROM `iris`
+WHERE `iris`.sepal_length &gt; 2
+  AND `iris`.species = &#39;setosa&#39;
+</code></pre><p>还可以配合 <code>DBI::dbBind()</code> 进行参数化查询</p>
+<pre tabindex="0"><code>&gt; sql &lt;- glue_sql(&#34;
++     SELECT {`var`}
++     FROM {`tbl`}
++     WHERE {`tbl`}.sepal_length &gt; ?
++   &#34;, .con = con)
+&gt; query &lt;- DBI::dbSendQuery(con, sql)
+&gt; DBI::dbBind(query, list(num))
+&gt; DBI::dbFetch(query, n = 4)
+  sepal_width
+1         3.5
+2         3.0
+3         3.2
+4         3.1
+</code></pre><p>还支持更复杂的查询，比例嵌套子查询</p>
+<pre tabindex="0"><code>&gt; sub_query &lt;- glue_sql(&#34;
++   SELECT *
++   FROM {`tbl`}
++   &#34;, .con = con)
+&gt; 
+&gt; glue_sql(&#34;
++   SELECT s.{`var`}
++   FROM ({sub_query}) AS s
++   &#34;, .con = con)
+&lt;SQL&gt; SELECT s.`sepal_width`
+FROM (SELECT *
+FROM `iris`) AS s
+</code></pre><p>还可以在 <code>IN</code> 声明之后添加 <code>*</code> 来接受多个值</p>
+<pre tabindex="0"><code>&gt; glue_sql(&#34;SELECT * FROM {`tbl`} WHERE sepal_length IN ({vals*})&#34;,
++          vals = 1, .con = con)
+&lt;SQL&gt; SELECT * FROM `iris` WHERE sepal_length IN (1)
+&gt; glue_sql(&#34;SELECT * FROM {`tbl`} WHERE sepal_length IN ({vals*})&#34;,
++          vals = 1:5, .con = con)
+&lt;SQL&gt; SELECT * FROM `iris` WHERE sepal_length IN (1, 2, 3, 4, 5)
+&gt; glue_sql(&#34;SELECT * FROM {`tbl`} WHERE species IN ({vals*})&#34;,
++          vals = &#34;setosa&#34;, .con = con)
+&lt;SQL&gt; SELECT * FROM `iris` WHERE species IN (&#39;setosa&#39;)
+&gt; glue_sql(&#34;SELECT * FROM {`tbl`} WHERE species IN ({vals*})&#34;,
++          vals = c(&#34;setosa&#34;, &#34;versicolor&#34;), .con = con)
+&lt;SQL&gt; SELECT * FROM `iris` WHERE species IN (&#39;setosa&#39;, &#39;versicolor&#39;)
+</code></pre><h3 id="7-字符串向量的折叠"><strong>7. 字符串向量的折叠</strong><a href="#7-字符串向量的折叠" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>可以使用 <code>glue_collapse</code> 将任意长度的字符串向量折叠为长度为 1 的字符串向量</p>
+<pre tabindex="0"><code>glue_collapse(x, sep = &#34;&#34;, width = Inf, last = &#34;&#34;)
+</code></pre><ul>
+<li>
+<p><code>x</code> ：字符串向量</p>
+</li>
+<li>
+<p><code>sep</code> ：用来分隔向量中元素的字符串</p>
+</li>
+<li>
+<p><code>width</code> ：折叠之后加上 <code>...</code> 之后的最大长度，</p>
+</li>
+<li>
+<p><code>last</code> ： 如果 <code>x</code> 至少有 <code>2</code> 个元素，则用于分隔最后两个元素的字符串</p>
+</li>
+</ul>
+<pre tabindex="0"><code>&gt; glue_collapse(glue(&#34;{1:10}&#34;))
+12345678910
+&gt; glue_collapse(glue(&#34;{1:10}&#34;), width = 7)
+1234...
+&gt; glue_collapse(1:4, &#34;, &#34;, last = &#34; and &#34;)
+1, 2, 3 and 4
+</code></pre><h3 id="8-单个元素的引用"><strong>8. 单个元素的引用</strong><a href="#8-单个元素的引用" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p>下面三个对单个元素引用函数可以搭配 <code>glue_collapse</code> 使用</p>
+<ul>
+<li><code>single_quote(x)</code>：用单引号包裹字符串元素</li>
+<li><code>double_quote(x)</code>：用双引号包裹字符串元素</li>
+<li><code>backtick(x)</code>：用反引号包裹字符串元素</li>
+</ul>
+<pre tabindex="0"><code>&gt; glue(&#39;Values of x: {glue_collapse(backtick(x), sep = &#34;, &#34;, last = &#34; and &#34;)}&#39;)
+Values of x: `1`, `2`, `3`, `4` and `5`
+&gt; glue(&#39;Values of x: {glue_collapse(single_quote(x), sep = &#34;, &#34;, last = &#34; and &#34;)}&#39;)
+Values of x: &#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39; and &#39;5&#39;
+&gt; glue(&#39;Values of x: {glue_collapse(double_quote(x), sep = &#34;, &#34;, last = &#34; and &#34;)}&#39;)
+Values of x: &#34;1&#34;, &#34;2&#34;, &#34;3&#34;, &#34;4&#34; and &#34;5&#34;
+</code></pre><h3 id="9-为输出着色"><strong>9. 为输出着色</strong><a href="#9-为输出着色" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<p><code>glue</code> 可以搭配 <code>crayon</code> 包定义的一些用于终端输出着色的函数，来为我们的输出文本着色</p>
+<p>先导入 <code>crayon</code></p>
+<p><code>glue</code> 提供了 <code>glue_col()</code> 和 <code>glue_data_col()</code> 两个着色函数</p>
+<p><img src="https://pic1.zhimg.com/v2-e96cfd2df07422aaf3c26bb8d80b4b88_b.jpg" alt=""></p>
+<p>我们可以设置白底黑字</p>
+<pre tabindex="0"><code>&gt; white_on_grey &lt;- bgBlack $ white
+&gt; glue_col(&#34;{white_on_grey
++     Roses are {red {colors()[[552]]}}
++     Violets are {blue {colors()[[26]]}}
++     `glue_col()` can show {red c}{yellow o}{green l}{cyan o}{blue r}{magenta s}
++     and {bold bold} and {underline underline} too!
++     }&#34;)
+</code></pre>
+<p style="color:#777;">最后一次修改于 2021-04-22</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       订阅 </a>
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+

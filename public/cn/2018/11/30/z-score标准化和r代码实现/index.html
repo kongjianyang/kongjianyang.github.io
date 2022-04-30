@@ -1,0 +1,239 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>z-score标准化和R代码实现</h1>
+
+<p>Liang 
+ / 2018-11-30 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-11-30-z-score%e6%a0%87%e5%87%86%e5%8c%96%e5%92%8cR%e4%bb%a3%e7%a0%81%e5%ae%9e%e7%8e%b0.Rmd'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+
+<div class="body-text list-text">
+
+
+
+<p>z-score标准化：标准分数（standard score）也叫z分数（z-score）,是一个分数与平均数的差再除以标准差的过程。 用公式表示为：z=(x-μ)/σ。或者说Z = (x - x(mean)) / x(sd)，其中x为某一具体分数，μ为平均数，σ为标准差。 Z值代表着原始分数和母体平均值之间的距离，是以标准差为单位计算。 标准分数可以回答这样一个问题：“一个给定分数距离平均数多少个标准差?”在平均数之上的分数会得到一个正的标准分数，在平均数之下的分数会得到一个负的标准分数。 经过处理的数据符合标准正态分布，即均值为0，标准差为1， Z score 也可以用来表示组织特异性，0 表示没有组织特异性， Z-score &gt;3 表示组织特异性强</p>
+<p>z-score标准化也叫做标准差标准化，经过处理之后的数据会符合标准正态分布，其均值为0，标准差为1。</p>
+<p>z-score标准化方法适用于属性A的最大值和最小值未知的情况，或有超出取值范围的离群数据的情况。其他还有</p>
+<ul>
+<li>最小-最大规范化——标准化：对原始数据的线性变换，将数据映射到[0,1]之间 x-min(x) / max(x)-min(x)</li>
+<li>移动变量的小数点位置来将变量映射到[-1,1]</li>
+</ul>
+<pre class="r"><code>data &lt;- matrix(1:16,nrow=4)
+data</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    5    9   13
+## [2,]    2    6   10   14
+## [3,]    3    7   11   15
+## [4,]    4    8   12   16</code></pre>
+<p>函数density计算的是数据的核心密度（kernal density）分布，其中density的计算可以通过bw参数（bandwidth）来控制，bw参数最直观的影响就是曲线的平滑性。默认的bw是通过函数bw.nrd0()计算得出，也可以手动设置。</p>
+<pre class="r"><code>d&lt;-density(data)
+plot(d)</code></pre>
+<p><img src="/cn/2018-11-30-z-score%E6%A0%87%E5%87%86%E5%8C%96%E5%92%8CR%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>a&lt;-round(scale(data),2)
+a</code></pre>
+<pre><code>##       [,1]  [,2]  [,3]  [,4]
+## [1,] -1.16 -1.16 -1.16 -1.16
+## [2,] -0.39 -0.39 -0.39 -0.39
+## [3,]  0.39  0.39  0.39  0.39
+## [4,]  1.16  1.16  1.16  1.16
+## attr(,&quot;scaled:center&quot;)
+## [1]  2.5  6.5 10.5 14.5
+## attr(,&quot;scaled:scale&quot;)
+## [1] 1.290994 1.290994 1.290994 1.290994</code></pre>
+<p>也可以使用自己的函数进行计算z-score函数</p>
+<pre class="r"><code>apply(data, 1, function(x){(x - mean(x)) / sd(x)})</code></pre>
+<pre><code>##            [,1]       [,2]       [,3]       [,4]
+## [1,] -1.1618950 -1.1618950 -1.1618950 -1.1618950
+## [2,] -0.3872983 -0.3872983 -0.3872983 -0.3872983
+## [3,]  0.3872983  0.3872983  0.3872983  0.3872983
+## [4,]  1.1618950  1.1618950  1.1618950  1.1618950</code></pre>
+<pre class="r"><code>#看一下正态分布图片
+d&lt;-density(a)
+plot(d)</code></pre>
+<p><img src="/cn/2018-11-30-z-score%E6%A0%87%E5%87%86%E5%8C%96%E5%92%8CR%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="section level1">
+<h1>检查分布情况</h1>
+<pre class="r"><code>#input.data应为矩阵
+normal_test&lt;- function(input.data,alpha=0.05,picplot=TRUE){
+  if(picplot==TRUE){#画图形
+    par(mfrow=c(2,1))
+
+    #Q-Q图法
+    qqnorm(input.data,main=&quot;QQ Plot&quot;)
+    qqline(input.data)
+
+    #概率密度曲线比较法
+    hist(input.data,freq=F,main=&quot;Histogram and Density Estimation Curve&quot;)
+        #如果画出的图缺少尖端部分则使用下面这句代码
+    #hist(input.data,freq=F,main=&quot;Histogram and Density Estimation Curve&quot;,ylim = c(0,0.3))#使用合适的值来避免红蓝线缺少尖端部分，这里根据已经跑出来的图像我得出0.5
+    lines(density(input.data),col=&quot;blue&quot;) #密度估计曲线
+    x&lt;-seq(min(input.data),max(input.data),0.0001)
+        #使用seq(),若取0.0000001太密集跑大一点的数据就容易死机，建议0.0001
+    lines(x,dnorm(x,mean(input.data),sd(input.data)),col=&quot;red&quot;) 
+        #正态分布曲线，思想是根据求每个x应该对应的标准正态y值，然后将x与求出的y放在一起做出所求数据如果按照正态分布应该是怎样的，并于实际密度曲线（蓝线）对比 
+  }#sd标准差 mean平均值
+
+  #夏皮罗-威尔克（Shapiro-Wilk）检验法【数据不能过大，范围为3~5000，假如有一个300*300的矩阵那么这个方法运行函数时作废】
+  shapiro_result&lt;- shapiro.test(input.data)
+  if(shapiro_result$p.value&gt;alpha){
+    print(paste(&quot;success:Obey normal distribution,p.value=&quot;,shapiro_result$p.value,&quot;&gt;&quot;,alpha))    
+  }else{
+    print(paste(&quot;error:Not obey normal distribution,p.value=&quot;,shapiro_result$p.value,&quot;&lt;=&quot;,alpha))
+  }
+  shapiro_result
+}</code></pre>
+<pre class="r"><code>normal_test(data)</code></pre>
+<p><img src="/cn/2018-11-30-z-score%E6%A0%87%E5%87%86%E5%8C%96%E5%92%8CR%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre><code>## [1] &quot;success:Obey normal distribution,p.value= 0.712313033478994 &gt; 0.05&quot;</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  input.data
+## W = 0.96277, p-value = 0.7123</code></pre>
+<pre class="r"><code>normal_test(a)</code></pre>
+<p><img src="/cn/2018-11-30-z-score%E6%A0%87%E5%87%86%E5%8C%96%E5%92%8CR%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre><code>## [1] &quot;error:Not obey normal distribution,p.value= 0.0247304187985943 &lt;= 0.05&quot;</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  input.data
+## W = 0.8673, p-value = 0.02473</code></pre>
+</div>
+
+<p style="color:#777;">最后一次修改于 2018-11-30</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       订阅 </a>
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+

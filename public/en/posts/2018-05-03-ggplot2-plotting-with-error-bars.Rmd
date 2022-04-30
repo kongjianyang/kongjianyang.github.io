@@ -1,0 +1,76 @@
+---
+title: ggplot2 plotting with error bars
+author: Liang
+date: '2018-05-03'
+slug: ggplot2-plotting-with-error-bars
+categories:
+  - R
+tags:
+  - R
+---
+## Problem
+
+As a biologist, we need to plot a lot of data every day. To make our result more convincing, usually we need to add error bars on the bar plot results. In this Poster, I will show how to use ggplot2 to make a bar plot with error bar.
+
+## Solution
+
+### Prepare Data
+
+The data we are using in this practice is `ToothGrowth`, we can get the data in `datasets` library. first we can look at the dataset.
+```{r}
+library(datasets)
+library(ggplot2)
+
+data(ToothGrowth)
+summary(ToothGrowth)
+head(ToothGrowth)
+```
+
+Next, We will use `summarySE` function to summary the dataset. Please consider about the difference between `summary` and `summarySE`. `summarySE` is in `Rmisc` library, so first require `Rmisc`
+
+```{r, warning=FALSE, message=FALSE}
+library(Rmisc)
+tg <- ToothGrowth
+# summarySE provides the standard deviation, standard error of the mean, and a (default 95%) confidence interval
+tgc <- summarySE(tg, measurevar="len", groupvars=c("supp","dose"))
+tgc
+#>   supp dose  N   len       sd        se       ci
+#> 1   OJ  0.5 10 13.23 4.459709 1.4102837 3.190283
+#> 2   OJ  1.0 10 22.70 3.910953 1.2367520 2.797727
+#> 3   OJ  2.0 10 26.06 2.655058 0.8396031 1.899314
+#> 4   VC  0.5 10  7.98 2.746634 0.8685620 1.964824
+#> 5   VC  1.0 10 16.77 2.515309 0.7954104 1.799343
+#> 6   VC  2.0 10 26.14 4.797731 1.5171757 3.432090
+```
+
+After the data is summarized, we can make the graph. I will show the basic bar graph in ggplot2 with error bars representing either the standard error of the mean, or 95% confidence interval.
+
+### Bar plot with ggplot
+
+```{r}
+# Use dose as a factor rather than numeric
+tgc$dose <- factor(tgc$dose)
+
+ggplot(tgc, aes(x=dose, y=len, fill=supp)) + 
+    geom_bar(position=position_dodge(), stat="identity",
+             colour="black", # Use black outlines,
+             size=.3) +      # Thinner lines
+    geom_errorbar(aes(ymin=len-se, ymax=len+se),
+                  size=.3,    # Thinner lines
+                  width=.2,
+                  position=position_dodge(.9)) + # adjust errorbar`s position
+    xlab("Dose (mg)") +
+    ylab("Tooth length") +
+    scale_fill_hue(name="Supplement type", # Legend label, use darker colors
+                   breaks=c("OJ", "VC"),
+                   labels=c("Orange juice", "Ascorbic acid")) +
+    ggtitle("The Effect of Vitamin C on\nTooth Growth in Guinea Pigs") +
+    scale_y_continuous(breaks=0:20*4) +
+    theme_classic()
+```
+
+`scale_fill_hue` is one way to modify the legend. And also there some other way in ggplot2.
+
+
+Reference:
+[Plotting means and error bars (ggplot2)](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/)
