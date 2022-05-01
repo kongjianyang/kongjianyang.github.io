@@ -1,31 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>hugo on KJY</title><link>https://kongjianyang.github.io/categories/hugo/</link><description>Recent content in hugo on KJY</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 30 Apr 2022 19:10:27 -0400</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/hugo/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo文章加密</title><link>https://kongjianyang.github.io/cn/2022/04/30/encryptor/</link><pubDate>Sat, 30 Apr 2022 19:10:27 -0400</pubDate><guid>https://kongjianyang.github.io/cn/2022/04/30/encryptor/</guid><description>&lt;p>参考的这个资料：&lt;/p>
-&lt;p>https://github.com/Li4n0/hugo_encryptor/blob/master/README-zh_CN.md&lt;/p>
-&lt;p>下载 Hugo-Encryptor 并安装其所需要的依赖库&lt;/p>
-&lt;pre tabindex="0">&lt;code>$ git clone https://github.com/Li4n0/hugo_encryptor.git
-$ cd hugo_encryptor
-$ chmod +x hugo_encryptor.py
-$ pip3 install -r requirements.txt
-&lt;/code>&lt;/pre>&lt;p>将 &lt;code>hugo-encryptor.py&lt;/code>放入博客根目录&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ cp hugo-encryptor.py /path/to/your/blog/hugo-encryptor.py
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>将&lt;code>shortcodes/hugo-encryptor.html&lt;/code>放入博客&lt;code>shortcodes&lt;/code>目录&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ mkdir -p /path/to/your/blog/layouts/shortcodes
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ cp shortcodes/hugo-encryptor.html /path/to/your/blog/layouts/shortcodes/hugo-encryptor.html
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>使用方法&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>使用 &lt;code>hugo-encryptor&lt;/code>标签包裹需要加密文章内容&lt;a href="https://www.10101.io/usr/uploads/2021/06/1320048532.png" target="_blank" rel="noreferrer noopener">&lt;img src="https://www.10101.io/usr/uploads/2021/06/1320048532.png" alt="img">&lt;/a>
-&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>生成网站&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>rm -rf public &lt;span style="color:#408080;font-style:italic">#删除原来的 public 文件夹&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>hugo &lt;span style="color:#408080;font-style:italic">#重新生成 public 文件夹&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;li>
-&lt;p>进行加密&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>python3 hugo-encryptor.py
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol>
-&lt;p>至此，文章就已经被加密好了，然后把 public 文件夹内容上传到服务器就好了。&lt;/p>
-&lt;h2 id="heading">&lt;/h2>
-&lt;p>&lt;strong>这里必须存在一些明文文字以及概要标签:&lt;/strong>&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>hugo on KJY</title><link>https://kongjianyang.github.io/categories/hugo/</link><description>Recent content in hugo on KJY</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 30 Apr 2022 19:10:27 -0400</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/hugo/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo文章加密</title><link>https://kongjianyang.github.io/cn/2022/04/30/encryptor/</link><pubDate>Sat, 30 Apr 2022 19:10:27 -0400</pubDate><guid>https://kongjianyang.github.io/cn/2022/04/30/encryptor/</guid><description>参考的这个资料：
+https://github.com/Li4n0/hugo_encryptor/blob/master/README-zh_CN.md
+下载 Hugo-Encryptor 并安装其所需要的依赖库
+$ git clone https://github.com/Li4n0/hugo_encryptor.git $ cd hugo_encryptor $ chmod +x hugo_encryptor.py $ pip3 install -r requirements.txt 将 hugo-encryptor.py放入博客根目录
+$ cp hugo-encryptor.py /path/to/your/blog/hugo-encryptor.py 将shortcodes/hugo-encryptor.html放入博客shortcodes目录
+$ mkdir -p /path/to/your/blog/layouts/shortcodes $ cp shortcodes/hugo-encryptor.html /path/to/your/blog/layouts/shortcodes/hugo-encryptor.html 使用方法
+使用 hugo-encryptor标签包裹需要加密文章内容 生成网站
+rm -rf public #删除原来的 public 文件夹 hugo #重新生成 public 文件夹 进行加密
+python3 hugo-encryptor.py 至此，文章就已经被加密好了，然后把 public 文件夹内容上传到服务器就好了。
+这里必须存在一些明文文字以及概要标签:
+文章的部分内容被密码保护：
+--- DON'T MODIFY THIS LINE --- 这里是你要加密的内容!</description></item></channel></rss>

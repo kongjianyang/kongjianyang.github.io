@@ -1,34 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>article on KJY</title><link>https://kongjianyang.github.io/tags/article/</link><description>Recent content in article on KJY</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 30 Apr 2022 19:10:27 -0400</lastBuildDate><atom:link href="https://kongjianyang.github.io/tags/article/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo文章加密</title><link>https://kongjianyang.github.io/cn/2022/04/30/encryptor/</link><pubDate>Sat, 30 Apr 2022 19:10:27 -0400</pubDate><guid>https://kongjianyang.github.io/cn/2022/04/30/encryptor/</guid><description>&lt;p>参考的这个资料：&lt;/p>
-&lt;p>https://github.com/Li4n0/hugo_encryptor/blob/master/README-zh_CN.md&lt;/p>
-&lt;p>下载 Hugo-Encryptor 并安装其所需要的依赖库&lt;/p>
-&lt;pre tabindex="0">&lt;code>$ git clone https://github.com/Li4n0/hugo_encryptor.git
-$ cd hugo_encryptor
-$ chmod +x hugo_encryptor.py
-$ pip3 install -r requirements.txt
-&lt;/code>&lt;/pre>&lt;p>将 &lt;code>hugo-encryptor.py&lt;/code>放入博客根目录&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ cp hugo-encryptor.py /path/to/your/blog/hugo-encryptor.py
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>将&lt;code>shortcodes/hugo-encryptor.html&lt;/code>放入博客&lt;code>shortcodes&lt;/code>目录&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ mkdir -p /path/to/your/blog/layouts/shortcodes
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ cp shortcodes/hugo-encryptor.html /path/to/your/blog/layouts/shortcodes/hugo-encryptor.html
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>使用方法&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>使用 &lt;code>hugo-encryptor&lt;/code>标签包裹需要加密文章内容&lt;a href="https://www.10101.io/usr/uploads/2021/06/1320048532.png" target="_blank" rel="noreferrer noopener">&lt;img src="https://www.10101.io/usr/uploads/2021/06/1320048532.png" alt="img">&lt;/a>
-&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>生成网站&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>rm -rf public &lt;span style="color:#408080;font-style:italic">#删除原来的 public 文件夹&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>hugo &lt;span style="color:#408080;font-style:italic">#重新生成 public 文件夹&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;li>
-&lt;p>进行加密&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>python3 hugo-encryptor.py
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol>
-&lt;p>至此，文章就已经被加密好了，然后把 public 文件夹内容上传到服务器就好了。&lt;/p>
-&lt;h2 id="heading">&lt;/h2>
-&lt;p>&lt;strong>这里必须存在一些明文文字以及概要标签:&lt;/strong>&lt;/p></description></item><item><title>Linux下打印带有空格的目录</title><link>https://kongjianyang.github.io/cn/2022/04/25/dirt_space/</link><pubDate>Mon, 25 Apr 2022 13:42:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2022/04/25/dirt_space/</guid><description>有时候在macos下会有很多空格的目录文件需要处理，很麻烦，可以使用下面的命令自动处理带有空格的文件
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>article on KJY</title><link>https://kongjianyang.github.io/tags/article/</link><description>Recent content in article on KJY</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 30 Apr 2022 19:10:27 -0400</lastBuildDate><atom:link href="https://kongjianyang.github.io/tags/article/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo文章加密</title><link>https://kongjianyang.github.io/cn/2022/04/30/encryptor/</link><pubDate>Sat, 30 Apr 2022 19:10:27 -0400</pubDate><guid>https://kongjianyang.github.io/cn/2022/04/30/encryptor/</guid><description>参考的这个资料：
+https://github.com/Li4n0/hugo_encryptor/blob/master/README-zh_CN.md
+下载 Hugo-Encryptor 并安装其所需要的依赖库
+$ git clone https://github.com/Li4n0/hugo_encryptor.git $ cd hugo_encryptor $ chmod +x hugo_encryptor.py $ pip3 install -r requirements.txt 将 hugo-encryptor.py放入博客根目录
+$ cp hugo-encryptor.py /path/to/your/blog/hugo-encryptor.py 将shortcodes/hugo-encryptor.html放入博客shortcodes目录
+$ mkdir -p /path/to/your/blog/layouts/shortcodes $ cp shortcodes/hugo-encryptor.html /path/to/your/blog/layouts/shortcodes/hugo-encryptor.html 使用方法
+使用 hugo-encryptor标签包裹需要加密文章内容 生成网站
+rm -rf public #删除原来的 public 文件夹 hugo #重新生成 public 文件夹 进行加密
+python3 hugo-encryptor.py 至此，文章就已经被加密好了，然后把 public 文件夹内容上传到服务器就好了。
+这里必须存在一些明文文字以及概要标签:
+文章的部分内容被密码保护：
+--- DON'T MODIFY THIS LINE --- 这里是你要加密的内容!</description></item><item><title>Linux下打印带有空格的目录</title><link>https://kongjianyang.github.io/cn/2022/04/25/dirt_space/</link><pubDate>Mon, 25 Apr 2022 13:42:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2022/04/25/dirt_space/</guid><description>有时候在macos下会有很多空格的目录文件需要处理，很麻烦，可以使用下面的命令自动处理带有空格的文件
 alias cwd=&amp;#39;printf &amp;#34;%q\n&amp;#34; &amp;#34;$(pwd)&amp;#34; | tee &amp;gt;(pbcopy)&amp;#39; printf命令 printf 命令模仿 C 程序库（library）里的 printf() 程序。
 printf 由 POSIX 标准所定义，因此使用 printf 的脚本比使用 echo 移植性好。
 printf 使用引用文本或空格分隔的参数，外面可以在 printf 中使用格式化字符串，还可以制定字符串的宽度、左右对齐方式等。默认的 printf 不会像 echo 自动添加换行符，我们可以手动添加 \n。
@@ -107,11 +88,9 @@ map2函数是map函数的变形，映射对象有两个，需要注意两个列�
 map2(.x,.y, .f, …) .x: 列表或向量； .y: 列表或向量,与.x等长； .f: 映射函数； ...: 映射函数的其他参数
 pmap函数是map函数的变形，映射对象为多个，需要注意多个列表/向量的长度必须相同。
 pmap(.l, .f, …) .l: 列表向量/列表； .f: 映射函数； ...: 映射函数的其他参数
-reduce函数表示规约，计算向量中相邻的两个元素，结果再与第三个元素计算，…，最后计算出一个值。 reduce(.x, .f, …) .x: 列表向量/列表； .</description></item><item><title>Markdown 试水</title><link>https://kongjianyang.github.io/cn/2021/01/07/first-post-cn/</link><pubDate>Thu, 07 Jan 2021 13:42:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2021/01/07/first-post-cn/</guid><description>如果好奇以下的内容是如何实现的，请参考本页源代码 。
-第一级标题 第二级标题 第三级标题 第四级标题 第五级标题 第六级标题 列表 Water Water Water Water Water Water Water Water Water Water Water Water 表格 Water Water Water Water Water Water Water Water1 Water Water Water Water 引语 知之为知之，不知为不知，是知也2。 — 孔子
-数学公式 最简单的如，$1 + 1 = 3$</description></item><item><title>Markdown 试水</title><link>https://kongjianyang.github.io/cn/2021/01/07/first-post-cn/</link><pubDate>Thu, 07 Jan 2021 13:42:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2021/01/07/first-post-cn/</guid><description>如果好奇以下的内容是如何实现的，请参考本页源代码 。
-第一级标题 第二级标题 第三级标题 第四级标题 第五级标题 第六级标题 列表 Water Water Water Water Water Water Water Water Water Water Water Water 表格 Water Water Water Water Water Water Water Water1 Water Water Water Water 引语 知之为知之，不知为不知，是知也2。 — 孔子
-数学公式 最简单的如，$1 + 1 = 3$</description></item><item><title>Markdown Testing</title><link>https://kongjianyang.github.io/en/2021/01/07/second-post/</link><pubDate>Thu, 07 Jan 2021 13:37:57 -0500</pubDate><guid>https://kongjianyang.github.io/en/2021/01/07/second-post/</guid><description>See the source code of this page if you are interested.
+reduce函数表示规约，计算向量中相邻的两个元素，结果再与第三个元素计算，…，最后计算出一个值。 reduce(.x, .f, …) .x: 列表向量/列表； .</description></item><item><title>Markdown 试水</title><link>https://kongjianyang.github.io/cn/2021/01/07/first-post-cn/</link><pubDate>Thu, 07 Jan 2021 13:42:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2021/01/07/first-post-cn/</guid><description>第一级标题 第二级标题 第三级标题 第四级标题 第五级标题 第六级标题 列表 Water Water Water Water Water Water Water Water Water Water Water Water 表格 Water Water Water Water Water Water Water Water[^1] Water Water Water Water 引语 知之为知之，不知为不知，是知也[^2]。 — 孔子
+数学公式 最简单的如，$1 + 1 = 3$
+你可以加入索引:</description></item><item><title>Markdown 试水</title><link>https://kongjianyang.github.io/cn/2021/01/07/first-post-cn/</link><pubDate>Thu, 07 Jan 2021 13:42:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2021/01/07/first-post-cn/</guid><description/></item><item><title>Markdown Testing</title><link>https://kongjianyang.github.io/en/2021/01/07/second-post/</link><pubDate>Thu, 07 Jan 2021 13:37:57 -0500</pubDate><guid>https://kongjianyang.github.io/en/2021/01/07/second-post/</guid><description>See the source code of this page if you are interested.
 H1 H2 H3 H4 H5 H6 List Water Water Water Water Water Water Water Water Water Water Water Water Table Water Water Water Water Water Water Water Water1 Water Water Water Water Quotes What I cannot create, I do not understand2.</description></item><item><title>R语言tidyverse风格简介</title><link>https://kongjianyang.github.io/cn/2020/02/13/tidy-verse_style/</link><pubDate>Thu, 13 Feb 2020 13:42:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2020/02/13/tidy-verse_style/</guid><description>tidyverse有两层基本含义：（1）基于Google 社区的R 代码风格（Google’s R style guide）衍生的一种使代码清晰可读的编程风格；（2）一系列基于前述风格而编写的数据处理R 包。tidyverse一词中的tidy意为整洁，verse意为诗篇、诗行，合起来意指代码或数据如诗行般整洁易读，即成为“整洁代码”（tidy code）或“整洁数据”（tidy data）。熟悉这一风格和相关R 包，可使数据处理和代码编写过程更为便捷高效，且易于与其他数据分析者交流沟通。
 建立较为统一的代码书写风格，可方便不同用户之间的沟通与协作。这里基于tidyverse模式择要介绍目前R 编程中的主流风格，并根据中文用户的习惯做部分调整和说明。某些内容可能初学者并不一定很快遇到，但仍宜先行阅读，以建立良好的书写规范。详细的tidyverse风格说明参见如下链接：
 http://style.tidyverse.org
