@@ -74,9 +74,9 @@ hugo new site liang.github.io **# quickstart 可以换成任何你想用的名�
       <pubDate>Thu, 07 Jan 2021 13:42:27 -0500</pubDate>
       
       <guid>https://kongjianyang.github.io/cn/2021/01/07/first-post-cn/</guid>
-      <description>如果好奇以下的内容是如何实现的，请参考本页源代码 。 
-第一级标题 第二级标题 第三级标题 第四级标题 第五级标题 第六级标题 列表  Water Water Water  Water Water Water   Water  Water Water Water  Water Water      表格    Water Water Water     Water Water Water   Water Water1 Water   Water Water Water    引语  知之为知之，不知为不知，是知也2。 — 孔子
- 数学公式 最简单的如，$1 + 1 = 3$</description>
+      <description>第一级标题 第二级标题 第三级标题 第四级标题 第五级标题 第六级标题 列表  Water Water Water  Water Water Water   Water  Water Water Water  Water Water      表格    Water Water Water     Water Water Water   Water Water[^1] Water   Water Water Water    引语  知之为知之，不知为不知，是知也[^2]。 — 孔子
+ 数学公式 最简单的如，$1 + 1 = 3$
+你可以加入索引:</description>
     </item>
     
     <item>
@@ -85,9 +85,7 @@ hugo new site liang.github.io **# quickstart 可以换成任何你想用的名�
       <pubDate>Thu, 07 Jan 2021 13:42:27 -0500</pubDate>
       
       <guid>https://kongjianyang.github.io/cn/2021/01/07/first-post-cn/</guid>
-      <description>如果好奇以下的内容是如何实现的，请参考本页源代码 。 
-第一级标题 第二级标题 第三级标题 第四级标题 第五级标题 第六级标题 列表  Water Water Water  Water Water Water   Water  Water Water Water  Water Water      表格    Water Water Water     Water Water Water   Water Water1 Water   Water Water Water    引语  知之为知之，不知为不知，是知也2。 — 孔子
- 数学公式 最简单的如，$1 + 1 = 3$</description>
+      <description></description>
     </item>
     
     <item>
@@ -96,8 +94,7 @@ hugo new site liang.github.io **# quickstart 可以换成任何你想用的名�
       <pubDate>Thu, 07 Jan 2021 13:37:57 -0500</pubDate>
       
       <guid>https://kongjianyang.github.io/en/2021/01/07/second-post/</guid>
-      <description>See the source code of this page if you are interested.
- H1 H2 H3 H4 H5 H6 List  Water Water Water  Water Water Water   Water  Water Water Water  Water Water      Table    Water Water Water     Water Water Water   Water Water1 Water   Water Water Water    Quotes  What I cannot create, I do not understand2.</description>
+      <description></description>
     </item>
     
     <item>
