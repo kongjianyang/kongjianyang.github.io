@@ -223,6 +223,16 @@ open content/cn/hobby/_index.md -a TextEdit
 
 
 
+关于网站主题的修改可以在
+
+```
+/themes/hugo-ht/static
+```
+
+下面修改。
+
+主要是CSS和JS的内容进行修改
+
 ## 6. 一些原理
 
 
