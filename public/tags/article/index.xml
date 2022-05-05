@@ -9,10 +9,10 @@
     <lastBuildDate>Wed, 04 May 2022 21:25:49 -0400</lastBuildDate><atom:link href="https://kongjianyang.github.io/tags/article/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>R语言查看函数源码并修改</title>
-      <link>https://kongjianyang.github.io/cn/2022/05/04/r%E8%AF%AD%E8%A8%80%E6%9F%A5%E7%9C%8B%E5%87%BD%E6%95%B0%E6%BA%90%E7%A0%81%E5%B9%B6%E4%BF%AE%E6%94%B9/</link>
+      <link>https://kongjianyang.github.io/cn/2022/05/04/r_raw_code/</link>
       <pubDate>Wed, 04 May 2022 21:25:49 -0400</pubDate>
       
-      <guid>https://kongjianyang.github.io/cn/2022/05/04/r%E8%AF%AD%E8%A8%80%E6%9F%A5%E7%9C%8B%E5%87%BD%E6%95%B0%E6%BA%90%E7%A0%81%E5%B9%B6%E4%BF%AE%E6%94%B9/</guid>
+      <guid>https://kongjianyang.github.io/cn/2022/05/04/r_raw_code/</guid>
       <description>在R语言中可以检查各种包内的函数，如果有必要的话可以进行修改已满足自己的需要，接下来介绍几个方法查看函数源码。
   直接键入函数(不加括号)，大部分函数源代码就可以直接显现出来。
   用函数page()，不过，结果在另一个窗口显示,选择电脑上的程序打开
