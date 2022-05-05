@@ -1,4 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>article on KJY</title><link>https://kongjianyang.github.io/tags/article/</link><description>Recent content in article on KJY</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 04 May 2022 21:25:49 -0400</lastBuildDate><atom:link href="https://kongjianyang.github.io/tags/article/index.xml" rel="self" type="application/rss+xml"/><item><title>R语言查看函数源码并修改</title><link>https://kongjianyang.github.io/cn/2022/05/04/r_raw_code/</link><pubDate>Wed, 04 May 2022 21:25:49 -0400</pubDate><guid>https://kongjianyang.github.io/cn/2022/05/04/r_raw_code/</guid><description>在R语言中可以检查各种包内的函数，如果有必要的话可以进行修改已满足自己的需要，接下来介绍几个方法查看函数源码。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>article on KJY</title><link>https://kongjianyang.github.io/tags/article/</link><description>Recent content in article on KJY</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 04 May 2022 22:21:53 -0400</lastBuildDate><atom:link href="https://kongjianyang.github.io/tags/article/index.xml" rel="self" type="application/rss+xml"/><item><title>R语言必须掌握的包</title><link>https://kongjianyang.github.io/cn/2022/05/04/r_packages/</link><pubDate>Wed, 04 May 2022 22:21:53 -0400</pubDate><guid>https://kongjianyang.github.io/cn/2022/05/04/r_packages/</guid><description>这是网络上收集的内容，具有一些参考价值
+qinwf/awesome-R: A curated list of awesome R packages, frameworks and software. (github.com) 但是对于我的日常来讲，会有以下一些包进行日常使用，可以常用常新
+1. 数据导入 【精】readr：实现表格数据的快速导入。https://readr.tidyverse.org readxl：读取Microsoft Excel电子表格数据
+dplyr：提供了一个访问常见数据库的接口
+data.table：data.table包的fread()函数可以快速读取大数据集
+rio：一站式导入/导出几乎所有格式数据（使用import()/export()函数）
+2. 数据整理 【精】tidyr：用于整理表格数据的布局
+【精】dplyr：用于将多个数据表连接成一个整齐的数据集
+purrr：函数式编程工具，在做数据整理时非常有用。
+3. 数据可视化 【精】ggplot2及其扩展：ggplot2包提供了一个强大的绘图系统，并实现了以下扩展
+ggthemes：提供扩展的图形风格主题
+【精】ggpubr: 生成杂志期刊等出版物的图形的包，是ggplot的一个补充。
+ggrepel：用于避免图形标签重叠,美化ggplot；
+cowplot：ggplot2拓展工具箱（多图合并、图层叠加、添加标签等）
+【精】see：ggplot2拓展工具箱（更丰富更美观的主题配色方案）Model Visualisation Toolbox for easystats and ggplot2 • see 4. 数据转换 【精】dplyr：一个用于高效数据清理的R包。视频学习课程
+magrittr：一个高效的管道操作工具包。
+【精】pipeR: 比magrittr更好用的管道操作工具包
+tibble：高效的显示表格数据的结构
+【精】stringr：一个字符串处理工具集
+data.table：用于快速处理大数据集
+stringi：一个快速字符串处理工具</description></item><item><title>R语言查看函数源码并修改</title><link>https://kongjianyang.github.io/cn/2022/05/04/r_raw_code/</link><pubDate>Wed, 04 May 2022 21:25:49 -0400</pubDate><guid>https://kongjianyang.github.io/cn/2022/05/04/r_raw_code/</guid><description>在R语言中可以检查各种包内的函数，如果有必要的话可以进行修改已满足自己的需要，接下来介绍几个方法查看函数源码。
 直接键入函数(不加括号)，大部分函数源代码就可以直接显现出来。
 用函数page()，不过，结果在另一个窗口显示,选择电脑上的程序打开
 用函数edit(), 这个函数允许我们来修改函数，修改的函数可以直接用。函数edit()不仅可以修改包中的函数作为急用，也可以用来修改自己正在写的函数。并且这个命令查看的源码会有高亮显示，比较方便
