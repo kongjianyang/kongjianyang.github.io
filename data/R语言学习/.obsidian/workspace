@@ -1,0 +1,108 @@
+{
+  "main": {
+    "id": "54b293fb67d86cc5",
+    "type": "split",
+    "children": [
+      {
+        "id": "13502b571fcb48ce",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "R语言常见的包.md",
+            "mode": "source",
+            "backlinks": true,
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "f4a383b9f1b0da71",
+    "type": "split",
+    "children": [
+      {
+        "id": "511a64324546f2fa",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ae2a0d1189b3d3ff",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "40bd4627f06051b9",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 195
+  },
+  "right": {
+    "id": "bf21f3cd1f6cbca2",
+    "type": "split",
+    "children": [
+      {
+        "id": "84772e93745f9010",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "156ecad281ba20f0",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "R语言常见的包.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "9448aa205c5f3e8b",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "13502b571fcb48ce",
+  "lastOpenFiles": [
+    "R语言常见的包.md",
+    "近期任务.md",
+    "Pasted image 20220505195504.png.md",
+    "Pasted image 20220505195504.png",
+    "Pasted image 20220505195314.png"
+  ]
+}

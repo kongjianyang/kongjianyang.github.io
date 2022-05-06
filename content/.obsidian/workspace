@@ -1,0 +1,130 @@
+{
+  "main": {
+    "id": "7799df5830074629",
+    "type": "split",
+    "children": [
+      {
+        "id": "84787feecb1ebc7a",
+        "type": "leaf",
+        "dimension": 86.3021751910641,
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "cn/posts/2022-05-04-R语言查看函数源码并修改.md",
+            "mode": "source",
+            "source": false
+          }
+        },
+        "group": "0be39ace0a090326"
+      },
+      {
+        "id": "e4819a41b9e598e2",
+        "type": "leaf",
+        "dimension": 13.697824808935918,
+        "state": {
+          "type": "outline",
+          "state": {
+            "file": "cn/posts/2022-05-04-R语言查看函数源码并修改.md"
+          }
+        },
+        "group": "0be39ace0a090326"
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "65a190f8e5bc9f8f",
+    "type": "split",
+    "children": [
+      {
+        "id": "2bc58fd18100129a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f41606230fb7df60",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "44ddc03a9ce48e9f",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 432
+  },
+  "right": {
+    "id": "22d65240cb4e0c28",
+    "type": "split",
+    "children": [
+      {
+        "id": "b9faf0d8c9cc7f1f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4ca2d78bc0d283e6",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "cn/posts/2022-05-04-R语言查看函数源码并修改.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "847e47598126187d",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "3b158ebfc3b3078c",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "cn/posts/2022-05-04-R语言查看函数源码并修改.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "e4819a41b9e598e2",
+  "lastOpenFiles": [
+    "cn/posts/2022-05-04-R语言查看函数源码并修改.md",
+    "cn/posts/2022-05-04-R语言必须包【持续更新】.md"
+  ]
+}
