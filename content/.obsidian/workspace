@@ -6,11 +6,11 @@
       {
         "id": "84787feecb1ebc7a",
         "type": "leaf",
-        "dimension": 86.3021751910641,
+        "dimension": 86.30217519106408,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "cn/posts/2022-05-04-R语言查看函数源码并修改.md",
+            "file": "cn/posts/2022-05-05-R语言stringr学习.md",
             "mode": "source",
             "source": false
           }
@@ -20,11 +20,11 @@
       {
         "id": "e4819a41b9e598e2",
         "type": "leaf",
-        "dimension": 13.697824808935918,
+        "dimension": 13.697824808935916,
         "state": {
           "type": "outline",
           "state": {
-            "file": "cn/posts/2022-05-04-R语言查看函数源码并修改.md"
+            "file": "cn/posts/2022-05-05-R语言stringr学习.md"
           }
         },
         "group": "0be39ace0a090326"
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "cn/posts/2022-05-04-R语言查看函数源码并修改.md",
+                "file": "cn/posts/2022-05-05-R语言stringr学习.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "cn/posts/2022-05-04-R语言查看函数源码并修改.md"
+                "file": "cn/posts/2022-05-05-R语言stringr学习.md"
               }
             }
           }
@@ -122,9 +122,11 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "e4819a41b9e598e2",
+  "active": "84787feecb1ebc7a",
   "lastOpenFiles": [
+    "cn/posts/2022-05-05-R语言stringr学习.md",
     "cn/posts/2022-05-04-R语言查看函数源码并修改.md",
-    "cn/posts/2022-05-04-R语言必须包【持续更新】.md"
+    "cn/posts/2022-05-04-R语言必须包【持续更新】.md",
+    "cn/_index.md"
   ]
 }

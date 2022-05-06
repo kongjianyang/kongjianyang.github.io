@@ -6,7 +6,20 @@
     <description>Recent content in article on KJY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 04 May 2022 22:21:53 -0400</lastBuildDate><atom:link href="https://kongjianyang.github.io/tags/article/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 May 2022 23:57:39 -0400</lastBuildDate><atom:link href="https://kongjianyang.github.io/tags/article/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>R语言stringr学习</title>
+      <link>https://kongjianyang.github.io/cn/2022/05/05/strigr/</link>
+      <pubDate>Thu, 05 May 2022 23:57:39 -0400</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/05/05/strigr/</guid>
+      <description>stringr包被定义为一致的、简单易用的字符串工具集。所有的函数和参数定义都具有一致性，比如，用相同的方法进行NA处理和0长度的向量处理。
+对于R语言本身的base包提供的字符串基础函数，随着时间的积累，已经变得很多地方不一致，不规范的命名，不标准的参数定义，很难看一眼就上手使用。字符串处理在其他语言中都是非常方便的事情，R语言在这方面确实落后了。stringr包就是为了解决这个问题，让字符串处理变得简单易用，提供友好的字符串操作接口。
+R语言中处理字符串主要有stringi和stringr两种，更加推荐使用stringr,因为stringi命令太多太复杂了&amp;hellip;
+来自Hadley Wickham的评价
+ stringi provides tools to do anything we could ever want to do with strings, where stringr provides tools to do the most common 95% of operations. This allows stringr to be much simpler, and the cost of some flexibility. Additionally stringi is implemented in C using the ICU string library, so it&amp;rsquo;s very fast and very correct (it deals with unicode better than base R).</description>
+    </item>
+    
     <item>
       <title>R语言必须掌握的包</title>
       <link>https://kongjianyang.github.io/cn/2022/05/04/r_packages/</link>

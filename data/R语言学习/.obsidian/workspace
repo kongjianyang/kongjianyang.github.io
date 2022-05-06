@@ -11,7 +11,7 @@
           "state": {
             "file": "R语言常见的包.md",
             "mode": "source",
-            "backlinks": true,
+            "backlinks": false,
             "source": false
           }
         }
@@ -100,6 +100,7 @@
   "active": "13502b571fcb48ce",
   "lastOpenFiles": [
     "R语言常见的包.md",
+    "R语言小技巧.md",
     "近期任务.md",
     "Pasted image 20220505195504.png.md",
     "Pasted image 20220505195504.png",
