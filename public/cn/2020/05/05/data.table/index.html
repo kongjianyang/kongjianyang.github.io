@@ -59,6 +59,10 @@ Table of Contents:
 </nav>
 </aside>
 <div class="body-text list-text">
+<p>关于data.table和pandas之间的比较：<a href="https://atrebas.github.io/post/2020-06-14-datatable-pandas/" rel="noreferrer noopener" target="_blank">A data.table and pandas small stroll · Home (atrebas.github.io)</a>
+</p>
+<p>关于data.table和dplyr之间的比较：<a href="https://atrebas.github.io/post/2019-03-03-datatable-dplyr/" rel="noreferrer noopener" target="_blank">A data.table and dplyr tour · Home (atrebas.github.io)</a>
+</p>
 <h2 id="介绍">介绍<a arialabel="Anchor" class="header-anchor" href="#介绍"> # </a></h2>
 <p><code>data.frame</code>是R内置的、默认的数据框类型（即一个具有行和列的数据表）。从外部导入的数据一般都以<code>data.frame</code>数据框格式在R里面进行处理和分析。</p>
 <p><code>data.table</code>作为一种高级数据类型，首先继承了<code>data.frame</code>基础数据类型，其<a href="https://link.zhihu.com/?target=https%3A//cran.r-project.org/web/packages/data.table/data.table.pdf" rel="noreferrer noopener" target="_blank">官方文档</a>
@@ -88,6 +92,11 @@ Table of Contents:
 <li><code>data.table</code>是强烈建议掌握的一个兼具数据类型和数据处理功能的R包</li>
 <li>这三者是可以兼容并包、组合使用的</li>
 </ul>
+<p>data.table包提供了一个非常简洁的通用格式：DT[i,j,by]，一句话概括：<strong>用 i 选择行，用 j 操作列，根据 by 分组</strong>。</p>
+<p>其中，j 表达式非常强大和灵活，可以选择、修改、汇总、计算新列，甚至可以接受任意表达式。需要记住的最关键一点是：<strong>只要返回等长元素或长度为 1 元素的 list，每个 list 元素将转化为结果 data.table 的一列。</strong></p>
+<p>注意:</p>
+<p>data.table之后，一些常规的data.frame的操作就失效了，譬如：</p>
+<p>data[,-1]、data[,1]这样的操作就不是这么用的了。</p>
 <h2 id="使用datatable包操作数据">使用data.table包操作数据<a arialabel="Anchor" class="header-anchor" href="#使用datatable包操作数据"> # </a></h2>
 <p><strong>data.table包提供了一个加强版的data.frame，它运行效率极高，而且能够处理适合内存的大数据集，它使用[]实现了一种自然地数据操作语法</strong>。使用下面命令进行安装：</p>
 <pre tabindex="0"><code>install.packages("data.table")
