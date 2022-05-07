@@ -1,0 +1,336 @@
+---
+title: R语言data.table实战
+author: Liang
+date: '2020-05-05'
+slug: R语言data.table实战
+categories:
+  - R
+tags: []
+lastmod: '2020-05-05T16:22:09-05:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+
+# 1. 用data.table创建数据集
+
+通常情况，我们用data.frame创建一个数据集时，可以使用下面的语法。
+
+```{r}
+df<-data.frame(a=c('A','B','C','A','A','B'),b=rnorm(6))
+```
+
+对于data.table来说，创建一个数据集是和data.frame同样语法。
+
+```{r}
+library(data.table)
+dt = data.table(a=c('A','B','C','A','A','B'),b=rnorm(6))
+```
+
+但是他们的类型是不同的
+
+
+```{r}
+class(df)
+
+class(dt)
+```
+
+如果是外部文件可以使用fread函数读入，也可以使用 nrow 参数来决定读取多少行：
+
+```
+library(data.table)
+
+mydata <- fread("some_kind_of_data.csv")
+mydata <- fread("some_kind_of_data.csv", nrows = 10)
+```
+
+
+
+
+
+# 2. 用data.table进行查询
+
+由于data.table对用户使用上是希望和data.frame的操作尽量相似，所以适用于data.frame的查询方法基本都适用于data.table，同时data.table自己具有的一些特性，提供了自定义keys来进行高效的查询。
+
+```{r}
+dt = data.table(a=c('A','B','C','A','A','B'),b=rnorm(6))
+
+# 取第二行的数据
+
+dt[2, ]
+
+# 不加,也可以
+
+dt[2]
+
+# 取a列的值
+# 是一个list
+dt$a 
+
+
+# 取a列中值为B的行
+dt[a == "B", ]
+
+# 取a列中值为B的行的判断
+
+dt[, a=="B"]
+```
+
+上面的操作，不管是用索引值，== 和 $ 都是data.frame操作一样的。下面我们取data.table特殊设计的keys来查询。
+
+```{r}
+# 设置a列为索引列
+
+setkey(dt, a)
+
+# 打印dt对象，发现数据已经按照a列字母对应ASCII码值进行了排序。
+dt
+```
+
+按照自定义的索引进行查询。
+
+```{r}
+# 取a列中值为B的行
+
+dt["B"]
+
+# 取a列中值为B的行，并保留第一行
+
+dt["B",mult="first"]
+```
+从上面的代码测试中我们可以看出，在定义了keys后，我们要查询的时候就不用再指定列了，默认会把方括号中的第一位置留给keys，作为索引匹配的查询条件。从代码的角度，又节省了一个变量定义的代码。同时，可以用mult参数，对数据集增加过滤条件，让代码本身也变得更高效。如果查询的值，不是索引列包括的值，则返回NA。
+
+通过列名选择列是，是否需要打双引号是一个值得考虑的问题，因为两者各有优劣。 data.table 支持打双引号的原生 R 的做法：
+
+```
+data1 <- mydata[, c("columnA", "columnB", "columnC", "columnD")]
+```
+
+但也可以使用不打双引号，这样会更方便（就好像 tidyverse 里面的 select），只不过需要用到 list：
+
+```
+data1 <- mydata[, list(columnA, columnB, columnC, columnD)]
+
+# 可以使用一个点代替 list：
+
+data1 <- mydata[, .(columnA, columnB, columnC, column)]
+```
+
+在 data.table 的中括号里，.() 就是 list()的简写形式。
+
+如果你想使用一个已经存在的列名向量，比如：
+
+```
+mycols <- c("columnA", "columnB", "columnC", "columnD")
+```
+
+直接套用是行不通的：mydata[, mycols]，而是需要在这个列名向量前面加两个点：
+
+```
+data1 <- mydata[, ..mycols]
+```
+
+借用命令行里面 .. 的含义去理解，可以认为是从括号里面的命名空间上升到全局变量了。
+
+
+
+
+# 3. 对data.table对象进行增、删、改操作
+给data.table对象增加一列，可以使用这样的格式 data.table[, colname := var1]。
+
+```{r}
+# 增加1列，列名为c
+dt[,c:=b+2]
+
+dt
+```
+```{r}
+# 增加2列，列名为c1,c2
+dt[,`:=`(c1 = 1:6, c2 = 2:7)]
+
+dt
+# 增加2列，第2种写法
+
+dt[,c('d1','d2'):=list(1:6,2:7)]
+
+dt
+```
+
+给data.table对象删除一列时，就是给这列赋值为空，使用这样的格式 data.table[, colname := NULL]。我们继续使用刚才创建的dt对象。
+
+```{r}
+# 删除c1列
+dt[,c1:=NULL]
+
+dt
+
+# 同时删除d1,d2列
+dt[, c('d1', 'd2'):=NULL]
+dt
+```
+
+修改data.table对象的值，就是通过索引定位后进行值的替换，通过这样的格式 data.table[condition, colname := 0]。我们继续使用刚才创建的dt对象。
+
+```{r}
+dt[,b:=30]
+
+dt
+```
+```{r}
+# 对a列值为B的行，c2列值值大于3的行，的b列赋值为100
+
+dt[a=='B' & c2>3, b:=100]
+dt 
+
+# 还有另一种写法
+
+dt[,b:=ifelse(a=='B' & c2>3,50,b)]
+
+dt
+
+```
+
+# 4. data.table的分组计算
+
+基于data.frame对象做分组计算时，要么使用apply函数自己处理，要么用plyr包的分组计算功能。对于data.table包本身就支持了分组计算，很像SQL的group by这样的功能，这是data.table包主打的优势。
+
+比如，按a列分组，并对b列按分组求和。
+
+
+```{r}
+dt = data.table(a=c('A','B','C','A','A','B'),b=rnorm(6))
+
+# 对整个b列数据求和
+
+dt[,sum(b)]
+
+# 按a列分组，并对b列按分组求和
+
+dt[, sum(b), by =a]
+```
+
+setkey(DT, colA, colB)，可以使得检索和分组更加快速。同时设置两个key变量的方式，也是可以的。
+
+```
+key(data)    #检查该数据集key是什么？
+haskey(data) #检查是否有Key
+attributes(data)
+```
+
+
+```
+mygroup= group_by(try,gender,buy_online)
+from_dplyr<-summarize(mygroup,mean=mean(new_car))                          #dplyr用两步    
+
+from_data_table<-try[,.(mean=mean(new_car)),by=.(gender,buy_online)]       #data.table用一步
+```
+
+dplyr：先用group_by设置分组，然后利用summarize求平均，mean=mean()；
+
+data.table，在try数据集中，通过by=.(x,y)来分组，而且可以设定x/y两种分组，来求new_car的平均值。
+
+```
+mydata[,.(sum(Ozone,na.rm=T),sd(Ozone,na.rm=T))]                           #求和、求标准差操作
+DT[,list(MySum=sum(v),
+         MyMin=min(v),
+         MyMax=max(v)),
+   by=.(x)]  
+```
+多种方式混合，而且代码编译上也会有很多不同之处。DT数据集按照x分组，然后计算v变量的和、最小值、最大值。
+
+
+
+# 5. 多个data.table的连接操作
+
+在操作数据的时候，经常会出现2个或多个数据集通过一个索引键进行关联，而我们的算法要把多种数据合并到一起再进行处理，那么这个时候就会用的数据的连接操作，类似关系型数据库的左连接(LEFT JOIN)。
+
+举个例子，学生考试的场景。按照ER设计方法，我们通常会按照实体进行数据划分。这里存在2个实体，一个是学生，一个是成绩。学生实体会包括，学生姓名等的基本资料，而成绩实体会包括，考试的科目，考试的成绩。
+
+假设有6个学生，分别参加A和B两门考试，每门考试得分是不一样的。
+
+
+```{r}
+# 学生
+student <- data.table(id=1:6,name=c('Dan','Mike','Ann','Yang','Li','Kate'))
+
+student
+
+# 分别参加A和B两门考试
+
+score <- data.table(id=1:12,stuId=rep(1:6,2),score=runif(12,60,99),class=c(rep('A',6),rep('B',6)))
+
+score
+```
+通过学生ID，把学生和考试成绩2个数据集进行连接。
+
+```{r}
+# 设置score数据集，key为stuId
+setkey(score,"stuId")
+
+# 设置student数据集，key为id
+setkey(student,"id")
+
+# 合并两个数据集的数据
+
+student[score,nomatch=NA,mult="all"]
+```
+
+这种方法和tidyverse的方法很不一样。
+
+
+mult参数
+mult参数是用来控制i匹配到的哪一行的返回结果默认情况下会返回该分组的所有元素 
+返回匹配到键值所在列(V2列)所有行中的第一行
+
+nomatch参数用于控制，当在i中没有到匹配数据的返回结果，默认为NA，也能设定为0。0意味着对于没有匹配到的行将不会返回。 
+
+# 6.一些问题
+
+data.table取列时，可以用data[,1,with=FALSE]取data的第一列，相对于对数据框的操作
+
+在data.table行操作跟data.frame很像，可以data[1,]就可以获得第一行的数据，同时也可以用，data[1]来获得行信息，这个是data.table特有的。
+
+除了行，就是列的问题了。在data.table操作列，真的是费劲，常规来看，data[，.(x)]   还有 data$x，如果有很多名字很长的指标，data.table中如果按列进行遍历呢？data[,1]是不行的[其实是可以的]，选中列的方式是用列名。
+
+
+```{r}
+dt = data.table(a=c('A','B','C','A','A','B'),b=rnorm(6))
+
+dt[, 1] 
+
+dt[, 1, with=FALSE]
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

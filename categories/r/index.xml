@@ -46,7 +46,7 @@ stringi：一个快速字符串处理工具</description></item><item><title>R�
 用函数edit(), 这个函数允许我们来修改函数，修改的函数可以直接用。函数edit()不仅可以修改包中的函数作为急用，也可以用来修改自己正在写的函数。并且这个命令查看的源码会有高亮显示，比较方便
 对于计算方法不同的函数，要用methods()来定义具体的查看对象
 methods()得出的类函数中带星号标注的源代码，用函数getAnywhere()
-直接上CRAN 下载源代码包</description></item><item><title>R语言data.table学习</title><link>https://kongjianyang.github.io/cn/2020/05/05/data.table/</link><pubDate>Tue, 05 May 2020 23:57:39 -0400</pubDate><guid>https://kongjianyang.github.io/cn/2020/05/05/data.table/</guid><description>介绍 data.frame是R内置的、默认的数据框类型（即一个具有行和列的数据表）。从外部导入的数据一般都以data.frame数据框格式在R里面进行处理和分析。
+直接上CRAN 下载源代码包</description></item><item><title>R语言data.table学习</title><link>https://kongjianyang.github.io/cn/2020/05/05/data.table/</link><pubDate>Tue, 05 May 2020 23:57:39 -0400</pubDate><guid>https://kongjianyang.github.io/cn/2020/05/05/data.table/</guid><description>关于data.table和pandas之间的比较：A data.table and pandas small stroll · Home (atrebas.github.io) 关于data.table和dplyr之间的比较：A data.table and dplyr tour · Home (atrebas.github.io) 介绍 data.frame是R内置的、默认的数据框类型（即一个具有行和列的数据表）。从外部导入的数据一般都以data.frame数据框格式在R里面进行处理和分析。
 data.table作为一种高级数据类型，首先继承了data.frame基础数据类型，其官方文档 已经明确说明“data.table是data.frame的扩展（extension）”。
 data.table具备很多独特而出色的性质，与其他数据类型（如data.frame、tibble/tbl_df）相比具有很多优势。
 高效：轻松、快速处理GB级别的大数据，并且融合了SQL数据库的语法风格 极简：只需很短的代码就能完成数据的行、列、分组、合并、重塑等相关操作 丰富：数据类型自带筛选、计算、分组、合并等多种方法，无需借助其他函数 此外，一部分R用户需要在数据框里面“嵌套表”，由于data.frame无法实现而十分推崇tibble（tbl_df）。其实，这一点不仅tibble能实现，data.table也完全能实现。
@@ -54,11 +54,13 @@ Jan Gorecki 曾对比过不同开源软件及程序包在数据处理方面的�
 使用data.table包并不意味着排斥或弃用其他R包——相反，data.table包是能够和tidyverse、dplyr等著名R包兼容并存、相辅相成的。
 这里需要明确几个事实：
 tidyverse本身只是一系列常用包的集合（包括dplyr、ggplot2、lubridate、stringr、tibble、tidyr等），并且载入时会为用户默认载入某些常用包，但它本身并没有什么实质性的函数（不信可以查看它的帮助文档）。 管道操作符（%&amp;gt;%）非常好用，也与data.table完全兼容，但它本身既不是tidyverse包里的，也不是dplyr包里的，而是magrittr包里的。 dplyr包的各种数据操作或处理函数，完全适用于data.frame、tibble/tbl_df、data.table等数据类型，因此data.table与dplyr并不冲突（比如，我个人也喜欢用dplyr::left_join()函数对data.table数据进行匹配拼接处理）。 总之：
-tidyverse是建议安装的一个综合性R包（并不必然与tibble相联系） dplyr是建议掌握的一个数据处理R包（并不必然与tibble相联系） data.table是强烈建议掌握的一个兼具数据类型和数据处理功能的R包 这三者是可以兼容并包、组合使用的 使用data.table包操作数据 data.table包提供了一个加强版的data.frame，它运行效率极高，而且能够处理适合内存的大数据集，它使用[]实现了一种自然地数据操作语法。使用下面命令进行安装：
-install.packages(&amp;#34;data.table&amp;#34;) 载入包：
-library(data.table) #&amp;gt; #&amp;gt; 载入程辑包：&amp;#39;data.table&amp;#39; #&amp;gt; The following objects are masked from &amp;#39;package:reshape2&amp;#39;: #&amp;gt; #&amp;gt; dcast, melt 注意，data.table包提供了加强版的dcast()和melt()，它们的功能更强大、性能更高，内存使用也更高效。
-创建data.table与创建data.frame类似：
-dt = data.table(x = 1:3, y = rnorm(3), z = letters[1:3]) dt #&amp;gt; x y z #&amp;gt; 1: 1 0.</description></item><item><title>R中处理错误</title><link>https://kongjianyang.github.io/cn/2019/06/07/r_errors/</link><pubDate>Fri, 07 Jun 2019 14:32:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2019/06/07/r_errors/</guid><description>方案一：使用try语句 使用方法
+tidyverse是建议安装的一个综合性R包（并不必然与tibble相联系） dplyr是建议掌握的一个数据处理R包（并不必然与tibble相联系） data.table是强烈建议掌握的一个兼具数据类型和数据处理功能的R包 这三者是可以兼容并包、组合使用的 data.table包提供了一个非常简洁的通用格式：DT[i,j,by]，一句话概括：用 i 选择行，用 j 操作列，根据 by 分组。
+其中，j 表达式非常强大和灵活，可以选择、修改、汇总、计算新列，甚至可以接受任意表达式。需要记住的最关键一点是：只要返回等长元素或长度为 1 元素的 list，每个 list 元素将转化为结果 data.table 的一列。
+注意:
+data.table之后，一些常规的data.frame的操作就失效了，譬如：
+data[,-1]、data[,1]这样的操作就不是这么用的了。
+使用data.table包操作数据 data.table包提供了一个加强版的data.frame，它运行效率极高，而且能够处理适合内存的大数据集，它使用[]实现了一种自然地数据操作语法。使用下面命令进行安装：
+install.packages(&amp;#34;data.table&amp;#34;) 载入包：</description></item><item><title>R中处理错误</title><link>https://kongjianyang.github.io/cn/2019/06/07/r_errors/</link><pubDate>Fri, 07 Jun 2019 14:32:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2019/06/07/r_errors/</guid><description>方案一：使用try语句 使用方法
 在R语言中，try语句的用法如下所示: try(expr, silent = FALSE, outFile = getOption(&amp;#34;try.outFile&amp;#34;, default = stderr())) 可以看到，try语句共有三个参数，常用的是前两个参数。第一个参数expr为我们所要使用的表达式，第二个参数silent表示当错误出现时是否需要报告错误信息，其输入值应为逻辑变量，默认为FALSE，即选择不保持“沉默”，当错误出现时会立即报告错误信息。
 如果参数expr所代表的表达式可以正确运行，则try语句的输出即为该表达式的运行结果，如果表达式无法正确运行，则try语句会输出一个“try-error”类的不可见对象，因此可以通过if语句对try语句的输出结果进行判断从而进行下一步的处理。
 如果大段代码中有错误，想忽略错误，可以采用try()，但大段代码需放在**{ }**中：
