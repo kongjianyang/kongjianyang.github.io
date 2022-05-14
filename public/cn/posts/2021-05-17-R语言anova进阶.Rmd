@@ -1,0 +1,299 @@
+---
+title: "R语言anova进阶"
+date: '2021-05-17'
+author: KJY
+slug: purrr
+draft: false
+categories:
+  - R
+tags: []
+lastmod: '2021-05-17T10:30:09-07:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+
+---
+
+参考：
+
+https://www.r-bloggers.com/2022/05/one-way-anova-example-in-r-quick-guide/
+
+https://www.r-bloggers.com/2022/05/two-way-anova-example-in-r-quick-guide/
+
+
+# one way anova
+
+One way ANOVA Example in R, the one-way analysis of variance (ANOVA), also known as one-factor ANOVA, is an extension of the independent two-sample t-test for comparing means when more than two groups are present.
+
+You can use the t-test if you just have two groups. The F-test and the t-test are equivalent in this scenario.
+
+
+
+Assume we have three groups to compare (A, B, and C):
+
+Calculate the common variance, often known as residual variance or variance within samples (S2within).
+
+首先计算的是common variance，residual variance
+
+Calculate the difference in sample means as follows:
+
+Calculate the average of each group.
+
+Calculate the difference in sample means (S2between)
+
+As the ratio of S2between/S2within, calculate the F-statistic.
+
+原来F测试是测量组间和组内差异的
+
+Note that a lower ratio (ratio 1) suggests that the means of the samples being compared are not significantly different.
+
+A greater ratio, on the other hand, indicates that the differences in group means are significant.
+
+
+
+
+```{r}
+data <- PlantGrowth
+
+set.seed(123)
+dplyr::sample_n(data, 10)
+```
+```{r}
+levels(data$group)
+```
+
+
+```{r}
+data$group <- ordered(data$group,
+                         levels = c("ctrl", "trt1", "trt2"))
+```
+
+
+```{r}
+library(dplyr)
+group_by(data, group) %>%
+  summarise(
+    count = n(),
+    mean = mean(weight, na.rm = TRUE),
+    sd = sd(weight, na.rm = TRUE)
+  )
+```
+可视化数据
+
+```{r}
+library("ggpubr")
+ggboxplot(data, x = "group", y = "weight",
+          color = "group", palette = c("#00AFBB", "#E7B800", "#FC4E07"),
+          order = c("ctrl", "trt1", "trt2"),
+          ylab = "Weight", xlab = "Treatment")
+```
+
+很方便的加上mean和se
+
+```{r}
+library("ggpubr")
+ggline(data, x = "group", y = "weight",
+       add = c("mean_se", "jitter"),
+       order = c("ctrl", "trt1", "trt2"),
+       ylab = "Weight", xlab = "Treatment")
+```
+进行anova测试
+
+```{r}
+res.aov <- aov(weight ~ group, data = data)
+
+summary(res.aov)
+```
+
+The columns F value and Pr(>F) in the output corresponding to the p-value of the test.
+
+The results of one-way ANOVA testing should be interpreted.
+
+We can conclude that there are significant differences between the groups highlighted with “*” in the model summary because the p-value is less than the significance level of 0.05.
+
+
+但是这只能告诉你他们之间有区别，但是没有告诉你具体是那两组之间有区别
+
+We can compute Tukey HSD (Tukey Honest Significant Differences, R function: TukeyHSD()) for doing numerous pairwise comparisons between the means of groups because the ANOVA test is significant.
+
+```{r}
+TukeyHSD(res.aov)
+```
+
+lwr, upr: the lower and upper-end points of the confidence interval at 95 percent (default) p adj: p-value after multiple comparisons adjustment.
+
+Only the difference between trt2 and trt1 is significant, as shown by the output, with an adjusted p-value of 0.012.
+
+The function glht() [in the multcomp package] can be used to do multiple comparison processes for an ANOVA. General linear hypothesis tests are abbreviated as glht. The following is a simplified format:
+
+glht(model, lincft)
+
+model: a model that has been fitted, such as an object returned by aov ().
+
+lincft() specifies the linear hypotheses that will be tested. Objects provided from the function mcp are used to specify multiple comparisons in ANOVA models ().
+
+
+
+```{r}
+library(multcomp)
+
+summary(glht(res.aov, linfct = mcp(group = "Tukey")))
+```
+
+pairwise.t.test的结果和anova的结果还是不一样的。
+
+```{r}
+pairwise.t.test(data$weight, data$group,
+                 p.adjust.method = "BH")
+```
+
+
+
+The ANOVA test assumes that the data are normally distributed and that group variance is uniform. With certain diagnostic plots, we can verify this.
+
+group variance应该是一样的
+
+```{r}
+plot(res.aov, 1)
+```
+
+# two way anova
+
+two-way ANOVA test is used to compare the effects of two grouping variables (A and B) on a response variable at the same time.
+
+
+two-way ANOVA的假设：
+
+There is no difference in factor A’s means.
+
+There is no difference in factor B’s means.
+
+Factors A and B do not interact in any way.
+
+two-way ANOVA assumes that the observations within each cell are normally distributed with equal variances.
+
+
+
+
+```{r}
+data <- ToothGrowth
+
+str(data)
+```
+
+R treats “dose” as a numeric variable based on the output. As follows, we’ll transform it to a factor variable (i.e., grouping variable).
+
+```{r}
+data$dose <- factor(data$dose,
+                  levels = c(0.5, 1, 2),
+                  labels = c("D0.5", "D1", "D2"))
+str(data)
+```
+
+
+Make frequency tables by:
+
+
+```{r}
+table(data$supp,data$dose)
+```
+
+```{r}
+sample_n(data, 10)
+```
+
+
+```{r}
+ggboxplot(data, x = "dose", y = "len", color = "supp",
+          palette = c("#00AFBB", "#E7B800"))
+```
+
+```{r}
+ggline(data, x = "dose", y = "len", color = "supp",
+       add = c("mean_se", "dotplot"),
+       palette = c("#00AFBB", "#E7B800"))
+```
+
+
+```{r}
+res.aov2 <- aov(len ~ supp + dose, data = data)
+summary(res.aov2)
+```
+
+We may deduce from the ANOVA table that both supp and dose are statistically significant. The most important factor variable is dosage.
+
+These findings led us to anticipate that modifying the delivery technique (supp) or the vitamin C dose will have a major impact on the mean tooth length.
+
+
+```{r}
+res.aov3 <- aov(len ~ supp * dose, data = data)
+summary(res.aov3)
+```
+
+
+```{r}
+res.aov4 <- aov(len ~ supp + dose + supp * dose, data = data)
+summary(res.aov3)
+```
+
+
+以上两种写法是一样的。
+
+Supp has a p-value <0.05 (significant), indicating that varied levels of supp are associated with varying tooth lengths.
+
+The dose p-value <0.05 (significant), indicating that differing treatment levels are linked with substantial differences in tooth length.
+
+The interaction between supp*dose has a p-value of 0.02 (significant), indicating that the connection between dose and tooth length is influenced by the supp technique.
+
+
+
+```{r}
+TukeyHSD(res.aov3, which = "dose")
+```
+
+
+```{r}
+TukeyHSD(res.aov3, which = "supp")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

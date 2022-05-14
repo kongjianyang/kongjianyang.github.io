@@ -6,7 +6,20 @@
 <description>Recent content in Home on KJY</description>
 <generator>Hugo -- gohugo.io</generator>
 <language>en-us</language>
-<lastBuildDate>Thu, 05 May 2022 23:57:39 -0400</lastBuildDate><atom:link href="https://kongjianyang.github.io/index.xml" rel="self" type="application/rss+xml"/>
+<lastBuildDate>Sat, 07 May 2022 19:10:27 -0400</lastBuildDate><atom:link href="https://kongjianyang.github.io/index.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>其他源产生的html文件兼容hug</title>
+<link>https://kongjianyang.github.io/cn/2022/05/07/html/</link>
+<pubDate>Sat, 07 May 2022 19:10:27 -0400</pubDate>
+<guid>https://kongjianyang.github.io/cn/2022/05/07/html/</guid>
+<description>迁移博客系统之后之前一些产生的html文件不能在hugo系统中显示了，例如从rmd或者jupyter生产的html文件，尝试之后发现问题是生产的html文件没有frontmatter，加上之后就能解决问题。
+参考：[SOLVED] Using HTML for content pages instead of Markdown - support - HUGO (gohugo.io) 所以在html文件上加下如下内容就能使之显示。
++++ title = &amp;#34;R语言元编程&amp;#34; date = &amp;#34;2020-04-17T12:15:02-00:00&amp;#34; categories = &amp;#34;R&amp;#34; tags = &amp;#34;R&amp;#34; +++ &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; Front-matter 是文件最上方以 --- 分隔的区域，用于指定个别文件的变量，举例来说：
+--- title: Hello World date: 2013/7/13 20:46:25 --- 补充知识 仅仅使用 markdown 格式写完文章是不够的，还需要在 .md 文档前面声明文档的信息，告诉 Hugo 这篇文章的标题、写作时间，这个时候就需要用到 Hugo Front Matter Formats 元数据格式。
+Front Matter一般放在文章的最顶部，Hugo支持三种书写格式，
+ TOML使用+++来包裹内容 YAML使用---来包裹内容 JSON使用{和}来包裹内容  可配置的内容见Hugo官方文档: front-matter 。
+在使用hugo new来创建文章时，会查找archetypes下的内容并填充到文章内容，查找archetypes原型内容的顺序如下:</description>
+</item>
 <item>
 <title>R语言stringr学习</title>
 <link>https://kongjianyang.github.io/cn/2022/05/05/strigr/</link>
@@ -356,11 +369,11 @@ l &amp;lt;- list(A=c(&amp;#34;one&amp;#34;, &amp;#34;two&amp;#34;, &amp;#34;thre
 &amp;gt; stack(l) values ind 1 one A 2 two A 3 three A 4 four A 5 one B 6 two B 7 two C 8 four C 9 five C 10 six C 11 six D 12 seven D Stacking vectors concatenates multiple vectors into a single vector along with a factor indicating where each observation originated.</description>
 </item>
 <item>
-<title>dash使用介绍</title>
+<title>Snippet工具使用介绍</title>
 <link>https://kongjianyang.github.io/cn/2019/11/23/dash/</link>
 <pubDate>Sat, 23 Nov 2019 14:42:27 -0500</pubDate>
 <guid>https://kongjianyang.github.io/cn/2019/11/23/dash/</guid>
-<description>1. 功能简介 官方用一句话就概括了它的用途：Dash是一个API文档浏览器（ API Documentation Browser），以及代码片段管理工具（Code Snippet Manager）。你没看错，它就只有这两个功能，但确实是程序员（至少对于我来说）最为关心的特性，自己之前也用过了不少类似的工具，可以毫不夸张地说，Dash是它们之中做的最好的一个！
+<description>Dash 1. 功能简介 官方用一句话就概括了它的用途：Dash是一个API文档浏览器（ API Documentation Browser），以及代码片段管理工具（Code Snippet Manager）。你没看错，它就只有这两个功能，但确实是程序员（至少对于我来说）最为关心的特性，自己之前也用过了不少类似的工具，可以毫不夸张地说，Dash是它们之中做的最好的一个！
 目前dash已经收费了
 2. 下载 关于下载我还是推介官网下载吧(https://kapeli.com/dash )
 3. 强悍的API文档浏览、搜索功能 想必这个功能是大家最常用的了吧，每天要反复查看、搜索那么多的API细节，没有一个好工具，单靠自己的双手如何应付得来？窗口不停的切来切去，很烦啊！Dash采用集成单一窗口的方式，很好的解决了这个问题。看下面的截图：
@@ -378,6 +391,21 @@ Dash的缩写扩展功能很强大，比方说上面那个例子，在保存代�
 @cursor 代码片段粘贴完毕之后，自动将光标定位到此处
 @date 自动插入当前日期
 @time 自动插入当前时间</description>
+</item>
+<item>
+<title>Snippet工具使用介绍</title>
+<link>https://kongjianyang.github.io/cn/2019/11/23/dash/</link>
+<pubDate>Sat, 23 Nov 2019 14:42:27 -0500</pubDate>
+<guid>https://kongjianyang.github.io/cn/2019/11/23/dash/</guid>
+<description>片段（Snippet）是一個編程用語，指的是原始碼、機器碼、文本中可重複使用的小區塊。通常它們是有正式定義的執行單位，以納入更大的編程模塊。也就是只需要输入少数的几个特定字符，编辑器便能帮我们自动补全为模板代码。目前几乎所有主流编辑器和 IDE 都支持这项功能，如 Eclipse, Sublime Text, Visual Studio Code 和 Atom。
+市面上有很多的Snippet管理工具。
+Alfred 参考这个文章：真正提升你的输入效率，从用好 Alfred 的这个功能开始：Alfred Snippets - 少数派 (sspai.com) 注：Snippets 为 Alfred 的付费功能，需购买 Powerpack 后才能使用。）
+打开 Alfred 的设置菜单，找到 Features 里面的 Snippets，你可以看到下图这个设置面板：
+设置
+想要创建 Snippets，首先要建立一个 Collection（集合）。点击左侧 Collection 底部的 「+」号，输入集合的名字。
+在设置中，你可以选择是否为这个 Collection 设置一个前缀或者后缀，这个功能的主要目的是为了方便区分，当你在使用时，通过输入前缀或者后缀可以快速显示某一个集合内的所有 Snippets。我们在这里给这个名为「Personal」的 Collection 添加一个「!」作为前缀。
+添加 Collection 后，就可以来创建你的第一个 Snippets 了。点击右侧底部的「+」，输入 Snippets 的名字和关键词，然后在下方输入你希望拓展的内容。在这里以添加个人邮箱为例，在上面的 Keyword 里填入「GM」作为关键词，然后下方输入 myemail@gmail.com，点击 Save 来保存，这样我们就创建了一条 Snippets。
+如何使用 Snippets 接下来我们来看看如何使用刚刚创建的 Snippets。回到 Snippets 设置菜单，在右上角你可以找到 Automatically expand snippets by keyword，打开这个选项后你才能在 macOS 中直接输入关键词来进行拓展（第一次打开时需要在「系统设置 - 隐私 - 辅助功能」中开启服务），否则就需要每次手动进行粘贴。</description>
 </item>
 <item>
 <title>R中的fuzzyjoin包介绍</title>

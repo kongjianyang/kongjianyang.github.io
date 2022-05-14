@@ -6,7 +6,22 @@
     <description>Recent content in hugo on KJY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 30 Apr 2022 19:10:27 -0400</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 07 May 2022 19:10:27 -0400</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>其他源产生的html文件兼容hug</title>
+      <link>https://kongjianyang.github.io/cn/2022/05/07/html/</link>
+      <pubDate>Sat, 07 May 2022 19:10:27 -0400</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/05/07/html/</guid>
+      <description>迁移博客系统之后之前一些产生的html文件不能在hugo系统中显示了，例如从rmd或者jupyter生产的html文件，尝试之后发现问题是生产的html文件没有frontmatter，加上之后就能解决问题。
+参考：[SOLVED] Using HTML for content pages instead of Markdown - support - HUGO (gohugo.io) 所以在html文件上加下如下内容就能使之显示。
++++ title = &amp;#34;R语言元编程&amp;#34; date = &amp;#34;2020-04-17T12:15:02-00:00&amp;#34; categories = &amp;#34;R&amp;#34; tags = &amp;#34;R&amp;#34; +++ &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; Front-matter 是文件最上方以 --- 分隔的区域，用于指定个别文件的变量，举例来说：
+--- title: Hello World date: 2013/7/13 20:46:25 --- 补充知识 仅仅使用 markdown 格式写完文章是不够的，还需要在 .md 文档前面声明文档的信息，告诉 Hugo 这篇文章的标题、写作时间，这个时候就需要用到 Hugo Front Matter Formats 元数据格式。
+Front Matter一般放在文章的最顶部，Hugo支持三种书写格式，
+ TOML使用+++来包裹内容 YAML使用---来包裹内容 JSON使用{和}来包裹内容  可配置的内容见Hugo官方文档: front-matter 。
+在使用hugo new来创建文章时，会查找archetypes下的内容并填充到文章内容，查找archetypes原型内容的顺序如下:</description>
+    </item>
+    
     <item>
       <title>Hugo文章加密</title>
       <link>https://kongjianyang.github.io/cn/2022/04/30/encryptor/</link>
