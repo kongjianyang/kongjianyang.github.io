@@ -1,0 +1,223 @@
+---
+title: "R语言ggblanket美化ggplot图"
+date: '2022-05-15'
+author: KJY
+slug: purrr
+draft: false
+categories:
+  - R
+tags: []
+lastmod: '2022-05-15T10:30:09-07:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+
+---
+
+参考：
+
+https://davidhodge931.github.io/ggblanket/
+
+
+```{r}
+# install.packages("ggblanket")
+```
+
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(ggblanket)
+```
+
+
+```{r}
+penguins2 <- palmerpenguins::penguins %>% 
+  tidyr::drop_na() %>% 
+  mutate(body_mass_kg = body_mass_g / 1000) 
+
+sample_n(penguins2, 10)
+```
+
+
+这是默认的gg histogram
+
+```{r}
+penguins2 %>% 
+  ggplot() +
+  geom_histogram(aes(x = body_mass_kg)) 
+```
+
+使用这个包的话就步骤更简单，然后更好看
+
+```{r}
+penguins2 %>% 
+  gg_histogram(x = body_mass_kg)
+```
+
+这是默认的图
+
+
+```{r}
+penguins2 %>%
+  group_by(species, sex, island) %>%
+  summarise(body_mass_kg = mean(body_mass_kg)) %>%
+  ggplot() +
+  geom_col(
+    aes(x = body_mass_kg, y = species, fill = sex), 
+    position = "dodge"
+    ) +
+  facet_wrap( ~ island) +
+  theme(legend.position = "bottom")
+```
+
+
+可以看得到就代码更加简单了
+
+
+```{r}
+penguins2 %>%
+  group_by(species, sex, island) %>%
+  summarise(body_mass_kg = mean(body_mass_kg)) %>%
+  gg_col(
+    x = body_mass_kg,
+    y = species,
+    col = sex,
+    facet = island,
+    position = "dodge",
+    col_legend_place = "b"
+  )
+```
+
+
+
+```{r}
+storms %>% 
+  group_by(year) %>% 
+  summarise(wind = mean(wind, na.rm = TRUE)) %>% 
+  gg_line(x = year, 
+          y = wind, 
+          y_zero = TRUE,
+          title = "Storm wind speed",
+          subtitle = "USA average storm wind speed, 1975\u20132020", 
+          y_title = "Wind speed (knots)", 
+          caption = "Source: NOAA",
+          theme = gg_theme(y_grid = TRUE)) +
+  geom_point()
+```
+
+```{r}
+penguins2 %>% 
+  gg_density(
+    x = body_mass_kg, 
+    col = species, 
+    facet = sex, 
+    col_legend_place = "b")
+```
+
+
+```{r}
+penguins2 %>% 
+  gg_smooth(
+    x = bill_length_mm,
+    y = flipper_length_mm,
+    col = species,
+    ) 
+```
+
+这里有个包：‘pals’ 
+
+https://cran.r-project.org/web/packages/pals/vignettes/pals_examples.html
+
+```{r}
+penguins2 %>%
+  gg_histogram(
+    x = body_mass_kg,
+    col = species, 
+    facet = sex, 
+    col_legend_place = "b", 
+    pal = pals::brewer.dark2(3))
+```
+
+```{r}
+df <- data.frame(
+  trt = factor(c(1, 1, 2, 2)),
+  resp = c(1, 5, 3, 4),
+  group = factor(c(1, 2, 1, 2)),
+  upper = c(1.1, 5.3, 3.3, 4.2),
+  lower = c(0.8, 4.6, 2.4, 3.6)
+)
+
+dodger <- position_dodge(width = 0.75)
+
+gg_blank(df, x = resp, xmin = lower, xmax = upper, y = trt, col = group) +
+  geom_col(position = dodger, width = 0.75, alpha = 0.9) +
+  geom_errorbar(position = dodger, width = 0.2, col = "#232323")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 查看函数
+
+能看到查看的函数内的功能也更简单
+
+```{r}
+gg_histogram
+```
+
+这样的就很不清楚
+
+```{r}
+geom_col
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

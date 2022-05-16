@@ -6,7 +6,16 @@
     <description>Recent content in 中文博客 on KJY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 07 May 2022 19:10:27 -0400</lastBuildDate><atom:link href="https://kongjianyang.github.io/cn/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 May 2022 14:42:27 -0500</lastBuildDate><atom:link href="https://kongjianyang.github.io/cn/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>R语言ggblanket美化ggplot的图</title>
+      <link>https://kongjianyang.github.io/cn/2022/05/15/ggblanket/</link>
+      <pubDate>Sun, 15 May 2022 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/05/15/ggblanket/</guid>
+      <description>R语言ggblanket美化ggplot图 // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child&#34;); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;;var t=[],r=Object.</description>
+    </item>
+    
     <item>
       <title>其他源产生的html文件兼容hug</title>
       <link>https://kongjianyang.github.io/cn/2022/05/07/html/</link>
@@ -279,6 +288,15 @@ macs2 predictd -i input.bam #!/bin/bash module load bioinfo module load bioconta
 brew install hugo 完成后，在 Terminal 中输入 hugo version, 如果显示 Hugo Static Site Generator... 证明安装成功。
 2. 新建一个 Hugo 网站 Hugo 博客就是一个文件夹。首先你要确定把这个文件夹放在哪里。到达自己需要的地址之后使用以下命令
 hugo new site liang.github.io **# quickstart 可以换成任何你想用的名称** cd quickstart/themes git clone https://github.com/hongtaoh/hugo-ht mkdir hugo-ht-new cp -r hugo-ht/* hugo-ht-new rm -rf hugo-ht mv hugo-ht-new hugo-ht cd .. cp -r themes/hugo-ht/exampleSite/* . 这是使用一个Hugo-ht为主题的网站，之后可以折腾其他主题。但是这样会你目前 Hugo 网站中的 Content 文件夹和 config.toml 替换为 Hugo-ht 自带的内容。如果你当前 Hugo 网站中的 Content 文件夹及config.</description>
+    </item>
+    
+    <item>
+      <title>R语言anova进阶</title>
+      <link>https://kongjianyang.github.io/cn/2021/05/17/anova_advance/</link>
+      <pubDate>Mon, 17 May 2021 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2021/05/17/anova_advance/</guid>
+      <description>R语言anova进阶 // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child&#34;); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;;var t=[],r=Object.</description>
     </item>
     
     <item>
