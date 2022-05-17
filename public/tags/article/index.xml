@@ -372,6 +372,15 @@ map表示映射，可以在一个或多个列表/向量的每个位置上应用�
     </item>
     
     <item>
+      <title>R语言使用dplyr编程【练习】</title>
+      <link>https://kongjianyang.github.io/cn/2020/12/14/dplyr/</link>
+      <pubDate>Mon, 14 Dec 2020 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2020/12/14/dplyr/</guid>
+      <description>R语言使用dplyr编程【练习】 // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child&#34;); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;;var t=[],r=Object.</description>
+    </item>
+    
+    <item>
       <title>R语言data.table学习</title>
       <link>https://kongjianyang.github.io/cn/2020/05/05/data.table/</link>
       <pubDate>Tue, 05 May 2020 23:57:39 -0400</pubDate>
@@ -392,6 +401,15 @@ data.table之后，一些常规的data.frame的操作就失效了，譬如：
 data[,-1]、data[,1]这样的操作就不是这么用的了。
 使用data.table包操作数据 data.table包提供了一个加强版的data.frame，它运行效率极高，而且能够处理适合内存的大数据集，它使用[]实现了一种自然地数据操作语法。使用下面命令进行安装：
 install.packages(&amp;#34;data.table&amp;#34;) 载入包：</description>
+    </item>
+    
+    <item>
+      <title>R语言data.table实战</title>
+      <link>https://kongjianyang.github.io/cn/2020/05/05/data.table/</link>
+      <pubDate>Tue, 05 May 2020 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2020/05/05/data.table/</guid>
+      <description>R语言data.table实战 // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child&#34;); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;;var t=[],r=Object.</description>
     </item>
     
     <item>
@@ -484,6 +502,15 @@ Alfred 参考这个文章：真正提升你的输入效率，从用好 Alfred �
     </item>
     
     <item>
+      <title>R语言绘制桑吉图</title>
+      <link>https://kongjianyang.github.io/cn/2019/10/11/sankey/</link>
+      <pubDate>Fri, 11 Oct 2019 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2019/10/11/sankey/</guid>
+      <description>R语言绘制桑吉图 // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child&#34;); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;;var t=[],r=Object.</description>
+    </item>
+    
+    <item>
       <title>html基本入门</title>
       <link>https://kongjianyang.github.io/cn/2019/08/27/html_intro/</link>
       <pubDate>Tue, 27 Aug 2019 13:42:27 -0500</pubDate>
@@ -558,6 +585,15 @@ VS Code 检测到操作系统的 UI 语言，并会提示您安装适当的语�
   afterDelay - 在配置的延迟（默认 1000 毫秒）后保存文件。
   onFocusChange - 当焦点移出脏文件的编辑器时保存文件。
   onWindowChange - 当焦点移出 VS Code 窗口时保存文件。</description>
+    </item>
+    
+    <item>
+      <title>NMF包绘制热图</title>
+      <link>https://kongjianyang.github.io/cn/2018/12/30/heatmap/</link>
+      <pubDate>Sun, 30 Dec 2018 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/12/30/heatmap/</guid>
+      <description>NMF包绘制热图 // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child&#34;); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;;var t=[],r=Object.</description>
     </item>
     
     <item>

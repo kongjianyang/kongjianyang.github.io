@@ -111,6 +111,15 @@ stringi：一个快速字符串处理工具</description>
     </item>
     
     <item>
+      <title>R语言使用dplyr编程【练习】</title>
+      <link>https://kongjianyang.github.io/cn/2020/12/14/dplyr/</link>
+      <pubDate>Mon, 14 Dec 2020 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2020/12/14/dplyr/</guid>
+      <description>R语言使用dplyr编程【练习】 // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child&#34;); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;;var t=[],r=Object.</description>
+    </item>
+    
+    <item>
       <title>R语言data.table学习</title>
       <link>https://kongjianyang.github.io/cn/2020/05/05/data.table/</link>
       <pubDate>Tue, 05 May 2020 23:57:39 -0400</pubDate>
@@ -134,12 +143,30 @@ install.packages(&amp;#34;data.table&amp;#34;) 载入包：</description>
     </item>
     
     <item>
+      <title>R语言data.table实战</title>
+      <link>https://kongjianyang.github.io/cn/2020/05/05/data.table/</link>
+      <pubDate>Tue, 05 May 2020 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2020/05/05/data.table/</guid>
+      <description>R语言data.table实战 // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child&#34;); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;;var t=[],r=Object.</description>
+    </item>
+    
+    <item>
       <title>R语言元编程</title>
       <link>https://kongjianyang.github.io/cn/2020/04/17/r%E8%AF%AD%E8%A8%80%E5%85%83%E7%BC%96%E7%A8%8B/</link>
       <pubDate>Fri, 17 Apr 2020 12:15:02 +0000</pubDate>
       
       <guid>https://kongjianyang.github.io/cn/2020/04/17/r%E8%AF%AD%E8%A8%80%E5%85%83%E7%BC%96%E7%A8%8B/</guid>
       <description>R语言元编程 // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child&#34;); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;;var t=[],r=Object.getPrototypeOf,s=t.slice,g=t.flat?function(e){return t.</description>
+    </item>
+    
+    <item>
+      <title>R语言绘制桑吉图</title>
+      <link>https://kongjianyang.github.io/cn/2019/10/11/sankey/</link>
+      <pubDate>Fri, 11 Oct 2019 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2019/10/11/sankey/</guid>
+      <description>R语言绘制桑吉图 // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child&#34;); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;;var t=[],r=Object.</description>
     </item>
     
     <item>
@@ -155,6 +182,15 @@ install.packages(&amp;#34;data.table&amp;#34;) 载入包：</description>
 你可以捕获**try()的输出，如果程序运行成功，返回计算结果；如果程序运行不成功，则可以通过class()**函数返回，错误类型 &amp;rsquo;try-error&amp;rsquo;。
 使用示例  A = list(a=1,b=&amp;#39;abc&amp;#39;,c=-2,d=3) # 运行log(&amp;#39;abc&amp;#39;)会报错，运行log(-2)会出现警告 B = list() for (nm in names(A)) {  x &amp;lt;- A[[nm]]  temp &amp;lt;- try(log(x),silent=FALSE)  if(&amp;#39;try-error&amp;#39; %in% class(temp)) # 判断当前循环的try语句中的表达式是否运行正确  {  temp &amp;lt;- NA # 此处可以对运行错误的情况进行处理应对  }  B[[nm]] &amp;lt;- temp } 方案二：使用tryCatch语句  使用方法
 相较于try语句，tryCatch语句更为全面，能够处理和应对更为复杂的问题。其不仅能够处理表达式出现错误error的情形，还能够处理出现警告warning的情况。主要用法如下所示：  tryCatch(  { expr },  warning = function(w) { warning-handler-code },  error = function(e) { error-handler-code },  finally = { cleanup-code }  ) 可以看到，tryCatch语句的内部可以被划分为四个不同的部分。</description>
+    </item>
+    
+    <item>
+      <title>NMF包绘制热图</title>
+      <link>https://kongjianyang.github.io/cn/2018/12/30/heatmap/</link>
+      <pubDate>Sun, 30 Dec 2018 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2018/12/30/heatmap/</guid>
+      <description>NMF包绘制热图 // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child&#34;); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;;var t=[],r=Object.</description>
     </item>
     
     <item>
