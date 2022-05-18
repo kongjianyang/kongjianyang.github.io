@@ -1,0 +1,85 @@
+---
+title: R语言中的多元方差分析【MANOVA】
+author: Liang
+date: '2021-06-17'
+slug: MANOVA
+categories:
+  - R
+tags: []
+lastmod: '2021-06-17T20:29:32-07:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+
+多变量方差分析（multivariate analysis of variance，简称MANOVA），通常也称为多元方差分析，指的是对于多个组之间多项指标进行比较时所采用的一种复杂的方差分析形式，通过一个综合结果去解释影响因素对多项指标的效应，从而得到一个统一结论。多变量方差分析用于研究控制变量对多个因变量的影响。多变量方差分析的基本原理与单变量方差分析的原理相似，用于分析控制因素取不同水平时因变量的均值是否存在显著性差异。
+
+
+For example, we might run an experiment in which we give two groups of mice two treatments (A and B) and measure their weight and height.
+
+The weight and height of mice are two dependent variables in this example, and our hypothesis is that the difference in treatment affects both.
+
+treatment能够同时影响weight和height
+
+We conclude that the associated impact (treatment) is significant if the global multivariate test is significant.
+
+多变量能够都被treatment影响
+
+The next step is to figure out whether the treatment impacts only the weight, only the height, or both. To put it another way, we want to figure out which dependent variables led to the substantial global effect.
+
+然后具体去看那种variance被影响，可以用one-way anova进行测试
+
+We can evaluate each dependent variable separately using one-way ANOVA (or univariate ANOVA) to address this question.
+
+接下来是代码测试
+
+```{r}
+library(dplyr)
+data <- iris
+
+sample_n(data, 10) # 随机选取10个数据观察
+```
+
+```{r}
+
+res.man <- manova(cbind(Sepal.Length, Petal.Length) ~ Species, data = iris)
+summary(res.man)
+```
+
+manova测试告诉我们两个变量都有影响。
+
+
+接下来用summary.aov测试看出来单个变量也有影响
+
+```{r}
+summary.aov(res.man)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+

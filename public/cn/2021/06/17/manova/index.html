@@ -32,13 +32,13 @@
 </header>
 <main class="content" role="main">
 <div style="text-align: center">
-<h1>R语言data.table实战</h1>
+<h1>R语言中的多元方差分析【MANOVA】</h1>
 <p>KJY 
- / 2020-05-05 </p>
+ / 2021-06-17 </p>
 <hr/>
 </div>
 <span class="article-toolbar">
-<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2020-05-05-R%e8%af%ad%e8%a8%80data.table%e5%ae%9e%e6%88%98.Rmd" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
+<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2021-06-17-R%e8%af%ad%e8%a8%80%e4%b8%ad%e7%9a%84%e5%a4%9a%e5%85%83%e6%96%b9%e5%b7%ae%e5%88%86%e6%9e%90%e3%80%90MANOVA%e3%80%91.Rmd" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
 </a>
 </span>
 <aside class="toc">
@@ -52,8 +52,8 @@ Table of Contents:
 <meta content="pandoc" name="generator"/>
 <meta content="IE=EDGE" http-equiv="X-UA-Compatible"/>
 <meta content="Liang" name="author"/>
-<meta content="2020-05-05" name="date"/>
-<title>R语言data.table实战</title>
+<meta content="2021-06-17" name="date"/>
+<title>R语言中的多元方差分析【MANOVA】</title>
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
 document.addEventListener('DOMContentLoaded', function(e) {
@@ -370,327 +370,76 @@ pre code {
 <!-- code folding -->
 <div class="container-fluid main-container">
 <div id="header">
-<h1 class="title toc-ignore">R语言data.table实战</h1>
+<h1 class="title toc-ignore">R语言中的多元方差分析【MANOVA】</h1>
 <h4 class="author">Liang</h4>
-<h4 class="date">2020-05-05</h4>
+<h4 class="date">2021-06-17</h4>
 </div>
-<div class="section level1" id="用data.table创建数据集">
-<h1>1. 用data.table创建数据集</h1>
-<p>通常情况，我们用data.frame创建一个数据集时，可以使用下面的语法。</p>
-<pre class="r"><code>df&lt;-data.frame(a=c('A','B','C','A','A','B'),b=rnorm(6))</code></pre>
-<p>对于data.table来说，创建一个数据集是和data.frame同样语法。</p>
-<pre class="r"><code>library(data.table)
-dt = data.table(a=c('A','B','C','A','A','B'),b=rnorm(6))</code></pre>
-<p>但是他们的类型是不同的</p>
-<pre class="r"><code>class(df)</code></pre>
-<pre><code>## [1] "data.frame"</code></pre>
-<pre class="r"><code>class(dt)</code></pre>
-<pre><code>## [1] "data.table" "data.frame"</code></pre>
-<p>如果是外部文件可以使用fread函数读入，也可以使用 nrow
-参数来决定读取多少行：</p>
-<pre><code>library(data.table)
+<p>多变量方差分析（multivariate analysis of
+variance，简称MANOVA），通常也称为多元方差分析，指的是对于多个组之间多项指标进行比较时所采用的一种复杂的方差分析形式，通过一个综合结果去解释影响因素对多项指标的效应，从而得到一个统一结论。多变量方差分析用于研究控制变量对多个因变量的影响。多变量方差分析的基本原理与单变量方差分析的原理相似，用于分析控制因素取不同水平时因变量的均值是否存在显著性差异。</p>
+<p>For example, we might run an experiment in which we give two groups
+of mice two treatments (A and B) and measure their weight and
+height.</p>
+<p>The weight and height of mice are two dependent variables in this
+example, and our hypothesis is that the difference in treatment affects
+both.</p>
+<p>treatment能够同时影响weight和height</p>
+<p>We conclude that the associated impact (treatment) is significant if
+the global multivariate test is significant.</p>
+<p>多变量能够都被treatment影响</p>
+<p>The next step is to figure out whether the treatment impacts only the
+weight, only the height, or both. To put it another way, we want to
+figure out which dependent variables led to the substantial global
+effect.</p>
+<p>然后具体去看那种variance被影响，可以用one-way anova进行测试</p>
+<p>We can evaluate each dependent variable separately using one-way
+ANOVA (or univariate ANOVA) to address this question.</p>
+<p>接下来是代码测试</p>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: 'dplyr'</code></pre>
+<pre><code>## The following objects are masked from 'package:stats':
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>data &lt;- iris
 
-mydata &lt;- fread("some_kind_of_data.csv")
-mydata &lt;- fread("some_kind_of_data.csv", nrows = 10)</code></pre>
-</div>
-<div class="section level1" id="用data.table进行查询">
-<h1>2. 用data.table进行查询</h1>
-<p>由于data.table对用户使用上是希望和data.frame的操作尽量相似，所以适用于data.frame的查询方法基本都适用于data.table，同时data.table自己具有的一些特性，提供了自定义keys来进行高效的查询。</p>
-<pre class="r"><code>dt = data.table(a=c('A','B','C','A','A','B'),b=rnorm(6))
-
-# 取第二行的数据
-
-dt[2, ]</code></pre>
-<pre><code>##    a         b
-## 1: B -1.100145</code></pre>
-<pre class="r"><code># 不加,也可以
-
-dt[2]</code></pre>
-<pre><code>##    a         b
-## 1: B -1.100145</code></pre>
-<pre class="r"><code># 取a列的值
-# 是一个list
-dt$a </code></pre>
-<pre><code>## [1] "A" "B" "C" "A" "A" "B"</code></pre>
-<pre class="r"><code># 取a列中值为B的行
-dt[a == "B", ]</code></pre>
-<pre><code>##    a         b
-## 1: B -1.100145
-## 2: B  1.959228</code></pre>
-<pre class="r"><code># 取a列中值为B的行的判断
-
-dt[, a=="B"]</code></pre>
-<pre><code>## [1] FALSE  TRUE FALSE FALSE FALSE  TRUE</code></pre>
-<p>上面的操作，不管是用索引值，== 和 $
-都是data.frame操作一样的。下面我们取data.table特殊设计的keys来查询。</p>
-<pre class="r"><code># 设置a列为索引列
-
-setkey(dt, a)
-
-# 打印dt对象，发现数据已经按照a列字母对应ASCII码值进行了排序。
-dt</code></pre>
-<pre><code>##    a          b
-## 1: A  1.4520446
-## 2: A -2.4933079
-## 3: A -0.7583275
-## 4: B -1.1001446
-## 5: B  1.9592276
-## 6: C  0.8833778</code></pre>
-<p>按照自定义的索引进行查询。</p>
-<pre class="r"><code># 取a列中值为B的行
-
-dt["B"]</code></pre>
-<pre><code>##    a         b
-## 1: B -1.100145
-## 2: B  1.959228</code></pre>
-<pre class="r"><code># 取a列中值为B的行，并保留第一行
-
-dt["B",mult="first"]</code></pre>
-<pre><code>##    a         b
-## 1: B -1.100145</code></pre>
-<p>从上面的代码测试中我们可以看出，在定义了keys后，我们要查询的时候就不用再指定列了，默认会把方括号中的第一位置留给keys，作为索引匹配的查询条件。从代码的角度，又节省了一个变量定义的代码。同时，可以用mult参数，对数据集增加过滤条件，让代码本身也变得更高效。如果查询的值，不是索引列包括的值，则返回NA。</p>
-<p>通过列名选择列是，是否需要打双引号是一个值得考虑的问题，因为两者各有优劣。
-data.table 支持打双引号的原生 R 的做法：</p>
-<pre><code>data1 &lt;- mydata[, c("columnA", "columnB", "columnC", "columnD")]</code></pre>
-<p>但也可以使用不打双引号，这样会更方便（就好像 tidyverse 里面的
-select），只不过需要用到 list：</p>
-<pre><code>data1 &lt;- mydata[, list(columnA, columnB, columnC, columnD)]
-
-# 可以使用一个点代替 list：
-
-data1 &lt;- mydata[, .(columnA, columnB, columnC, column)]</code></pre>
-<p>在 data.table 的中括号里，.() 就是 list()的简写形式。</p>
-<p>如果你想使用一个已经存在的列名向量，比如：</p>
-<pre><code>mycols &lt;- c("columnA", "columnB", "columnC", "columnD")</code></pre>
-<p>直接套用是行不通的：mydata[,
-mycols]，而是需要在这个列名向量前面加两个点：</p>
-<pre><code>data1 &lt;- mydata[, ..mycols]</code></pre>
-<p>借用命令行里面 ..
-的含义去理解，可以认为是从括号里面的命名空间上升到全局变量了。</p>
-</div>
-<div class="section level1" id="对data.table对象进行增删改操作">
-<h1>3. 对data.table对象进行增、删、改操作</h1>
-<p>给data.table对象增加一列，可以使用这样的格式 data.table[, colname :=
-var1]。</p>
-<pre class="r"><code># 增加1列，列名为c
-dt[,c:=b+2]
-
-dt</code></pre>
-<pre><code>##    a          b          c
-## 1: A  1.4520446  3.4520446
-## 2: A -2.4933079 -0.4933079
-## 3: A -0.7583275  1.2416725
-## 4: B -1.1001446  0.8998554
-## 5: B  1.9592276  3.9592276
-## 6: C  0.8833778  2.8833778</code></pre>
-<pre class="r"><code># 增加2列，列名为c1,c2
-dt[,`:=`(c1 = 1:6, c2 = 2:7)]
-
-dt</code></pre>
-<pre><code>##    a          b          c c1 c2
-## 1: A  1.4520446  3.4520446  1  2
-## 2: A -2.4933079 -0.4933079  2  3
-## 3: A -0.7583275  1.2416725  3  4
-## 4: B -1.1001446  0.8998554  4  5
-## 5: B  1.9592276  3.9592276  5  6
-## 6: C  0.8833778  2.8833778  6  7</code></pre>
-<pre class="r"><code># 增加2列，第2种写法
-
-dt[,c('d1','d2'):=list(1:6,2:7)]
-
-dt</code></pre>
-<pre><code>##    a          b          c c1 c2 d1 d2
-## 1: A  1.4520446  3.4520446  1  2  1  2
-## 2: A -2.4933079 -0.4933079  2  3  2  3
-## 3: A -0.7583275  1.2416725  3  4  3  4
-## 4: B -1.1001446  0.8998554  4  5  4  5
-## 5: B  1.9592276  3.9592276  5  6  5  6
-## 6: C  0.8833778  2.8833778  6  7  6  7</code></pre>
-<p>给data.table对象删除一列时，就是给这列赋值为空，使用这样的格式
-data.table[, colname := NULL]。我们继续使用刚才创建的dt对象。</p>
-<pre class="r"><code># 删除c1列
-dt[,c1:=NULL]
-
-dt</code></pre>
-<pre><code>##    a          b          c c2 d1 d2
-## 1: A  1.4520446  3.4520446  2  1  2
-## 2: A -2.4933079 -0.4933079  3  2  3
-## 3: A -0.7583275  1.2416725  4  3  4
-## 4: B -1.1001446  0.8998554  5  4  5
-## 5: B  1.9592276  3.9592276  6  5  6
-## 6: C  0.8833778  2.8833778  7  6  7</code></pre>
-<pre class="r"><code># 同时删除d1,d2列
-dt[, c('d1', 'd2'):=NULL]
-dt</code></pre>
-<pre><code>##    a          b          c c2
-## 1: A  1.4520446  3.4520446  2
-## 2: A -2.4933079 -0.4933079  3
-## 3: A -0.7583275  1.2416725  4
-## 4: B -1.1001446  0.8998554  5
-## 5: B  1.9592276  3.9592276  6
-## 6: C  0.8833778  2.8833778  7</code></pre>
-<p>修改data.table对象的值，就是通过索引定位后进行值的替换，通过这样的格式
-data.table[condition, colname := 0]。我们继续使用刚才创建的dt对象。</p>
-<pre class="r"><code>dt[,b:=30]
-
-dt</code></pre>
-<pre><code>##    a  b          c c2
-## 1: A 30  3.4520446  2
-## 2: A 30 -0.4933079  3
-## 3: A 30  1.2416725  4
-## 4: B 30  0.8998554  5
-## 5: B 30  3.9592276  6
-## 6: C 30  2.8833778  7</code></pre>
-<pre class="r"><code># 对a列值为B的行，c2列值值大于3的行，的b列赋值为100
-
-dt[a=='B' &amp; c2&gt;3, b:=100]
-dt </code></pre>
-<pre><code>##    a   b          c c2
-## 1: A  30  3.4520446  2
-## 2: A  30 -0.4933079  3
-## 3: A  30  1.2416725  4
-## 4: B 100  0.8998554  5
-## 5: B 100  3.9592276  6
-## 6: C  30  2.8833778  7</code></pre>
-<pre class="r"><code># 还有另一种写法
-
-dt[,b:=ifelse(a=='B' &amp; c2&gt;3,50,b)]
-
-dt</code></pre>
-<pre><code>##    a  b          c c2
-## 1: A 30  3.4520446  2
-## 2: A 30 -0.4933079  3
-## 3: A 30  1.2416725  4
-## 4: B 50  0.8998554  5
-## 5: B 50  3.9592276  6
-## 6: C 30  2.8833778  7</code></pre>
-</div>
-<div class="section level1" id="data.table的分组计算">
-<h1>4. data.table的分组计算</h1>
-<p>基于data.frame对象做分组计算时，要么使用apply函数自己处理，要么用plyr包的分组计算功能。对于data.table包本身就支持了分组计算，很像SQL的group
-by这样的功能，这是data.table包主打的优势。</p>
-<p>比如，按a列分组，并对b列按分组求和。</p>
-<pre class="r"><code>dt = data.table(a=c('A','B','C','A','A','B'),b=rnorm(6))
-
-# 对整个b列数据求和
-
-dt[,sum(b)]</code></pre>
-<pre><code>## [1] 1.853691</code></pre>
-<pre class="r"><code># 按a列分组，并对b列按分组求和
-
-dt[, sum(b), by =a]</code></pre>
-<pre><code>##    a        V1
-## 1: A -0.157817
-## 2: B  1.464485
-## 3: C  0.547023</code></pre>
-<p>setkey(DT, colA,
-colB)，可以使得检索和分组更加快速。同时设置两个key变量的方式，也是可以的。</p>
-<pre><code>key(data)    #检查该数据集key是什么？
-haskey(data) #检查是否有Key
-attributes(data)</code></pre>
-<pre><code>mygroup= group_by(try,gender,buy_online)
-from_dplyr&lt;-summarize(mygroup,mean=mean(new_car))                          #dplyr用两步    
-
-from_data_table&lt;-try[,.(mean=mean(new_car)),by=.(gender,buy_online)]       #data.table用一步</code></pre>
-<p>dplyr：先用group_by设置分组，然后利用summarize求平均，mean=mean()；</p>
-<p>data.table，在try数据集中，通过by=.(x,y)来分组，而且可以设定x/y两种分组，来求new_car的平均值。</p>
-<pre><code>mydata[,.(sum(Ozone,na.rm=T),sd(Ozone,na.rm=T))]                           #求和、求标准差操作
-DT[,list(MySum=sum(v),
-         MyMin=min(v),
-         MyMax=max(v)),
-   by=.(x)]  </code></pre>
-<p>多种方式混合，而且代码编译上也会有很多不同之处。DT数据集按照x分组，然后计算v变量的和、最小值、最大值。</p>
-</div>
-<div class="section level1" id="多个data.table的连接操作">
-<h1>5. 多个data.table的连接操作</h1>
-<p>在操作数据的时候，经常会出现2个或多个数据集通过一个索引键进行关联，而我们的算法要把多种数据合并到一起再进行处理，那么这个时候就会用的数据的连接操作，类似关系型数据库的左连接(LEFT
-JOIN)。</p>
-<p>举个例子，学生考试的场景。按照ER设计方法，我们通常会按照实体进行数据划分。这里存在2个实体，一个是学生，一个是成绩。学生实体会包括，学生姓名等的基本资料，而成绩实体会包括，考试的科目，考试的成绩。</p>
-<p>假设有6个学生，分别参加A和B两门考试，每门考试得分是不一样的。</p>
-<pre class="r"><code># 学生
-student &lt;- data.table(id=1:6,name=c('Dan','Mike','Ann','Yang','Li','Kate'))
-
-student</code></pre>
-<pre><code>##    id name
-## 1:  1  Dan
-## 2:  2 Mike
-## 3:  3  Ann
-## 4:  4 Yang
-## 5:  5   Li
-## 6:  6 Kate</code></pre>
-<pre class="r"><code># 分别参加A和B两门考试
-
-score &lt;- data.table(id=1:12,stuId=rep(1:6,2),score=runif(12,60,99),class=c(rep('A',6),rep('B',6)))
-
-score</code></pre>
-<pre><code>##     id stuId    score class
-##  1:  1     1 83.47343     A
-##  2:  2     2 79.11669     A
-##  3:  3     3 90.85995     A
-##  4:  4     4 94.58636     A
-##  5:  5     5 77.45066     A
-##  6:  6     6 61.55506     A
-##  7:  7     1 61.27800     B
-##  8:  8     2 63.52879     B
-##  9:  9     3 82.44424     B
-## 10: 10     4 82.00565     B
-## 11: 11     5 71.84342     B
-## 12: 12     6 64.20929     B</code></pre>
-<p>通过学生ID，把学生和考试成绩2个数据集进行连接。</p>
-<pre class="r"><code># 设置score数据集，key为stuId
-setkey(score,"stuId")
-
-# 设置student数据集，key为id
-setkey(student,"id")
-
-# 合并两个数据集的数据
-
-student[score,nomatch=NA,mult="all"]</code></pre>
-<pre><code>##     id name i.id    score class
-##  1:  1  Dan    1 83.47343     A
-##  2:  1  Dan    7 61.27800     B
-##  3:  2 Mike    2 79.11669     A
-##  4:  2 Mike    8 63.52879     B
-##  5:  3  Ann    3 90.85995     A
-##  6:  3  Ann    9 82.44424     B
-##  7:  4 Yang    4 94.58636     A
-##  8:  4 Yang   10 82.00565     B
-##  9:  5   Li    5 77.45066     A
-## 10:  5   Li   11 71.84342     B
-## 11:  6 Kate    6 61.55506     A
-## 12:  6 Kate   12 64.20929     B</code></pre>
-<p>这种方法和tidyverse的方法很不一样。</p>
-<p>mult参数
-mult参数是用来控制i匹配到的哪一行的返回结果默认情况下会返回该分组的所有元素
-返回匹配到键值所在列(V2列)所有行中的第一行</p>
-<p>nomatch参数用于控制，当在i中没有到匹配数据的返回结果，默认为NA，也能设定为0。0意味着对于没有匹配到的行将不会返回。</p>
-</div>
-<div class="section level1" id="一些问题">
-<h1>6.一些问题</h1>
-<p>data.table取列时，可以用data[,1,with=FALSE]取data的第一列，相对于对数据框的操作</p>
-<p>在data.table行操作跟data.frame很像，可以data[1,]就可以获得第一行的数据，同时也可以用，data[1]来获得行信息，这个是data.table特有的。</p>
-<p>除了行，就是列的问题了。在data.table操作列，真的是费劲，常规来看，data[，.(x)]
-还有
-data$x，如果有很多名字很长的指标，data.table中如果按列进行遍历呢？data[,1]是不行的[其实是可以的]，选中列的方式是用列名。</p>
-<pre class="r"><code>dt = data.table(a=c('A','B','C','A','A','B'),b=rnorm(6))
-
-dt[, 1] </code></pre>
-<pre><code>##    a
-## 1: A
-## 2: B
-## 3: C
-## 4: A
-## 5: A
-## 6: B</code></pre>
-<pre class="r"><code>dt[, 1, with=FALSE]</code></pre>
-<pre><code>##    a
-## 1: A
-## 2: B
-## 3: C
-## 4: A
-## 5: A
-## 6: B</code></pre>
-</div>
+sample_n(data, 10) # 随机选取10个数据观察</code></pre>
+<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 1           6.8         3.2          5.9         2.3 virginica
+## 2           6.9         3.2          5.7         2.3 virginica
+## 3           6.7         3.1          5.6         2.4 virginica
+## 4           5.0         3.3          1.4         0.2    setosa
+## 5           6.4         2.8          5.6         2.2 virginica
+## 6           6.4         2.7          5.3         1.9 virginica
+## 7           7.7         3.8          6.7         2.2 virginica
+## 8           4.7         3.2          1.6         0.2    setosa
+## 9           6.7         3.0          5.2         2.3 virginica
+## 10          5.7         3.8          1.7         0.3    setosa</code></pre>
+<pre class="r"><code>res.man &lt;- manova(cbind(Sepal.Length, Petal.Length) ~ Species, data = iris)
+summary(res.man)</code></pre>
+<pre><code>##            Df Pillai approx F num Df den Df    Pr(&gt;F)    
+## Species     2 0.9885   71.829      4    294 &lt; 2.2e-16 ***
+## Residuals 147                                            
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<p>manova测试告诉我们两个变量都有影响。</p>
+<p>接下来用summary.aov测试看出来单个变量也有影响</p>
+<pre class="r"><code>summary.aov(res.man)</code></pre>
+<pre><code>##  Response Sepal.Length :
+##              Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## Species       2 63.212  31.606  119.26 &lt; 2.2e-16 ***
+## Residuals   147 38.956   0.265                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+##  Response Petal.Length :
+##              Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## Species       2 437.10 218.551  1180.2 &lt; 2.2e-16 ***
+## Residuals   147  27.22   0.185                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <script>
 
@@ -726,7 +475,7 @@ $(document).ready(function () {
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
-<p style="color:#777;">最后一次修改于 2020-05-05</p>
+<p style="color:#777;">最后一次修改于 2021-06-17</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
 </main>
