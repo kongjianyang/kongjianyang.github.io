@@ -6,7 +6,44 @@
     <description>Recent content in article on KJY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 17 May 2022 19:10:27 -0400</lastBuildDate><atom:link href="https://kongjianyang.github.io/tags/article/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 21 May 2022 14:42:27 -0500</lastBuildDate><atom:link href="https://kongjianyang.github.io/tags/article/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python绘制地图热图</title>
+      <link>https://kongjianyang.github.io/cn/2022/05/21/map_heatmap/</link>
+      <pubDate>Sat, 21 May 2022 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/05/21/map_heatmap/</guid>
+      <description>2022-05-21-Python绘制地图热图 pre { line-height: 125%; } td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; } span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; } td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; } span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; } .highlight .hll { background-color: var(--jp-cell-editor-active-background) } .highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) } .highlight .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */ .</description>
+    </item>
+    
+    <item>
+      <title>为Mac系统添加QuickLook插件</title>
+      <link>https://kongjianyang.github.io/cn/2022/05/18/html/</link>
+      <pubDate>Wed, 18 May 2022 19:10:27 -0400</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/05/18/html/</guid>
+      <description>安装命令：brew cask install  卸载命令：brew cask uninstall  软件包被安装的路径： /Users/用户名称/Library/QuickLook
+QuickLook（快速预览）是 Mac OS X 中一项很好的功能。用户选择文件后，按下空格键即可快速预览。因为不用点击打开，还能使用方向键切换，从而节省了大量的时间。但对于开发者来说，系统内置的功能还不能完全满足需求。
+需要拓展安装一些插件
+最方便的方式是通过brew进行
+查找所有插件
+brew search quicklook ==&amp;gt; Formulae quickjs ==&amp;gt; Casks caskroom/cask/epubquicklook ipynb-quicklook caskroom/cask/gltfquicklook osirix-quicklook caskroom/cask/ipynb-quicklook quicklook-csv caskroom/cask/osirix-quicklook quicklook-json ✔ caskroom/cask/quicklook-csv quicklook-pat caskroom/cask/quicklook-json ✔ quicklook-pfm caskroom/cask/quicklook-pat quicklookapk caskroom/cask/quicklook-pfm quicklookase ✔ caskroom/cask/quicklookapk receiptquicklook caskroom/cask/quicklookase ✔ ttscoff-mmd-quicklook caskroom/cask/receiptquicklook webpquicklook ✔ caskroom/cask/ttscoff-mmd-quicklook quickbooks caskroom/cask/webpquicklook ✔ quickboot epubquicklook quickjson gltfquicklook quicknfo 安装一些插件
+brew install --cask qlimagesize qlvideo qlmarkdown brew install --cask qlcolorcode quicklook-json qlstephen suspicious-package provisionql quicklook-csv brew install highlight luarocks # 相关的依赖包 </description>
+    </item>
+    
+    <item>
+      <title>Linux上的定时任务</title>
+      <link>https://kongjianyang.github.io/cn/2022/05/17/crontab/</link>
+      <pubDate>Tue, 17 May 2022 19:10:27 -0400</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/05/17/crontab/</guid>
+      <description>介绍 我们经常使用的是crontab命令是cron table的简写，它是cron的配置文件，也可以叫它作业列表
+我们常用的命令如下：
+crontab [-u username]　//省略用户表表示操作当前用户的crontab -e (编辑工作表) -l (列出工作表里的命令) -r (删除工作作) 我们用crontab -e进入当前用户的工作表编辑，是常见的vim界面。每行是一条命令。
+Each line of a crontab file represents a job, and looks like this:
+# ┌───────────── minute (0 - 59) # │ ┌───────────── hour (0 - 23) # │ │ ┌───────────── day of the month (1 - 31) # │ │ │ ┌───────────── month (1 - 12) # │ │ │ │ ┌───────────── day of the week (0 - 6) (Sunday to Saturday; # │ │ │ │ │ 7 is also Sunday on some systems) # │ │ │ │ │ # │ │ │ │ │ # * * * * * The syntax of each line expects a cron expression made of five fields which represent the time to execute the command, followed by a shell command to execute.</description>
+    </item>
+    
     <item>
       <title>macOS上的神器</title>
       <link>https://kongjianyang.github.io/cn/2022/05/17/good_tools/</link>

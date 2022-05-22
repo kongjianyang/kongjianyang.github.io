@@ -6,7 +6,22 @@
     <description>Recent content in hugo on KJY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 07 May 2022 19:10:27 -0400</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 May 2022 19:10:27 -0400</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>为Mac系统添加QuickLook插件</title>
+      <link>https://kongjianyang.github.io/cn/2022/05/18/html/</link>
+      <pubDate>Wed, 18 May 2022 19:10:27 -0400</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/05/18/html/</guid>
+      <description>安装命令：brew cask install  卸载命令：brew cask uninstall  软件包被安装的路径： /Users/用户名称/Library/QuickLook
+QuickLook（快速预览）是 Mac OS X 中一项很好的功能。用户选择文件后，按下空格键即可快速预览。因为不用点击打开，还能使用方向键切换，从而节省了大量的时间。但对于开发者来说，系统内置的功能还不能完全满足需求。
+需要拓展安装一些插件
+最方便的方式是通过brew进行
+查找所有插件
+brew search quicklook ==&amp;gt; Formulae quickjs ==&amp;gt; Casks caskroom/cask/epubquicklook ipynb-quicklook caskroom/cask/gltfquicklook osirix-quicklook caskroom/cask/ipynb-quicklook quicklook-csv caskroom/cask/osirix-quicklook quicklook-json ✔ caskroom/cask/quicklook-csv quicklook-pat caskroom/cask/quicklook-json ✔ quicklook-pfm caskroom/cask/quicklook-pat quicklookapk caskroom/cask/quicklook-pfm quicklookase ✔ caskroom/cask/quicklookapk receiptquicklook caskroom/cask/quicklookase ✔ ttscoff-mmd-quicklook caskroom/cask/receiptquicklook webpquicklook ✔ caskroom/cask/ttscoff-mmd-quicklook quickbooks caskroom/cask/webpquicklook ✔ quickboot epubquicklook quickjson gltfquicklook quicknfo 安装一些插件
+brew install --cask qlimagesize qlvideo qlmarkdown brew install --cask qlcolorcode quicklook-json qlstephen suspicious-package provisionql quicklook-csv brew install highlight luarocks # 相关的依赖包 </description>
+    </item>
+    
     <item>
       <title>其他源产生的html文件兼容hug</title>
       <link>https://kongjianyang.github.io/cn/2022/05/07/html/</link>

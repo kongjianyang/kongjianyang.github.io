@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on KJY</title>
+    <link>https://kongjianyang.github.io/categories/python/</link>
+    <description>Recent content in Python on KJY</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 21 May 2022 14:42:27 -0500</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python绘制地图热图</title>
+      <link>https://kongjianyang.github.io/cn/2022/05/21/map_heatmap/</link>
+      <pubDate>Sat, 21 May 2022 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/05/21/map_heatmap/</guid>
+      <description>2022-05-21-Python绘制地图热图 pre { line-height: 125%; } td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; } span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; } td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; } span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; } .highlight .hll { background-color: var(--jp-cell-editor-active-background) } .highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) } .highlight .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */ .</description>
+    </item>
+    
+  </channel>
+</rss>
