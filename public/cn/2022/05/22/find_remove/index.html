@@ -1,6 +1,6 @@
+<html><body><a name="top"></a>
 <!DOCTYPE html>
-<html lang="en-us">
-<head>
+
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>KJY</title>
@@ -16,8 +16,6 @@
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-</head>
-<body>
 <div class="wrapper">
 <header class="header">
 <nav class="nav">
@@ -25,75 +23,39 @@
 <img alt="" height="" src="/media/%3cnil%3e" width=""/>
 </a>
 <ul class="nav-links">
+<li><a href="/cn/about/">关于</a></li>
+<li><a href="/cn/posts/">日志</a></li>
+<li><a href="/cn/newsletter/">周刊</a></li>
+<li><a href="/">English</a></li>
 </ul>
 </nav>
 </header>
-<h1>Categories</h1>
 <main class="content" role="main">
-<div class="body-text list-text">
-<ul class="terms">
-<li>
-<a href="/categories/-glue/">-glue</a> (1)
-  </li>
-<li>
-<a href="/categories/-linux/">-Linux</a> (1)
-  </li>
-<li>
-<a href="/categories/bioinfo/">Bioinfo</a> (7)
-  </li>
-<li>
-<a href="/categories/chipseeker/">ChIPseeker</a> (2)
-  </li>
-<li>
-<a href="/categories/hugo/">hugo</a> (3)
-  </li>
-<li>
-<a href="/categories/life/">Life</a> (1)
-  </li>
-<li>
-<a href="/categories/linux/">linux</a> (1)
-  </li>
-<li>
-<a href="/categories/linux%E6%8A%80%E5%B7%A7/">Linux技巧</a> (20)
-  </li>
-<li>
-<a href="/categories/macos/">macOS</a> (1)
-  </li>
-<li>
-<a href="/categories/news/">news</a> (1)
-  </li>
-<li>
-<a href="/categories/newsletter/">newsletter</a> (1)
-  </li>
-<li>
-<a href="/categories/python/">Python</a> (1)
-  </li>
-<li>
-<a href="/categories/r/">R</a> (35)
-  </li>
-<li>
-<a href="/categories/statics/">Statics</a> (1)
-  </li>
-<li>
-<a href="/categories/test/">test</a> (14)
-  </li>
-<li>
-<a href="/categories/tmux/">tmux</a> (1)
-  </li>
-<li>
-<a href="/categories/tools/">tools</a> (2)
-  </li>
-<li>
-<a href="/categories/vscode/">vscode</a> (1)
-  </li>
-<li>
-<a href="/categories/%E5%A4%A7%E8%9F%92%E7%AC%94%E8%AE%B0/">大蟒笔记</a> (14)
-  </li>
-<li>
-<a href="/categories/%E7%94%9F%E4%BF%A1%E4%BF%AE%E7%82%BC/">生信修炼</a> (48)
-  </li>
-</ul>
+<div style="text-align: center">
+<h1>Linux下删除特定前缀名文件的快捷方式</h1>
+<p>KJY 
+ / 2022-05-22 </p>
+<hr/>
 </div>
+<span class="article-toolbar">
+<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2022-05-22-Linux%e4%b8%8b%e5%88%a0%e9%99%a4%e7%89%b9%e5%ae%9a%e5%89%8d%e7%bc%80%e5%90%8d%e6%96%87%e4%bb%b6%e7%9a%84%e5%bf%ab%e6%8d%b7%e6%96%b9%e5%bc%8f.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
+</a>
+</span>
+<aside class="toc">
+Table of Contents:
+<nav id="TableOfContents"></nav>
+</aside>
+<div class="body-text list-text">
+<p>有时候folder下会有奇怪前缀名的文件，如下</p>
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>./~<span style="color:#19177c">$Varian_Intern3</span>.pptx
+</span></span><span style="display:flex;"><span>./~<span style="color:#19177c">$Varian_Interview_With_Director</span>.pptx
+</span></span><span style="display:flex;"><span>./~<span style="color:#19177c">$Varian_Intern2</span>.pptx
+</span></span></code></pre></div><p>通过正常rm是没有办法删除的，这时候可以使用find的功能进行删除</p>
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>find . -name ~$<span style="color:#b62;font-weight:bold">\*</span> -delete
+</span></span></code></pre></div><p>这样就可以找到并且删除文件了</p>
+<p style="color:#777;">最后一次修改于 2022-05-22</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
 </main>
 <footer class="footer">
 <script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
@@ -102,13 +64,13 @@
 <script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 <script src="/js/center-img.js" type="text/javascript"></script>
 <ul class="footer-links">
-<li><a href="/categories/posts/index.xml" title="RSS feed" type="application/rss+xml">
-       Subscribe </a>
+<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
+       订阅 </a>
 </li>
 <li>
-<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
-        License
+        版权
         <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
 </a>
 </li>

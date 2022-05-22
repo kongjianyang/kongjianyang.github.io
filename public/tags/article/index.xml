@@ -6,7 +6,18 @@
     <description>Recent content in article on KJY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 21 May 2022 14:42:27 -0500</lastBuildDate><atom:link href="https://kongjianyang.github.io/tags/article/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 22 May 2022 10:43:55 -0600</lastBuildDate><atom:link href="https://kongjianyang.github.io/tags/article/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux下删除特定前缀名文件的快捷方式</title>
+      <link>https://kongjianyang.github.io/cn/2022/05/22/find_remove/</link>
+      <pubDate>Sun, 22 May 2022 10:43:55 -0600</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/05/22/find_remove/</guid>
+      <description>有时候folder下会有奇怪前缀名的文件，如下
+./~$Varian_Intern3.pptx ./~$Varian_Interview_With_Director.pptx ./~$Varian_Intern2.pptx 通过正常rm是没有办法删除的，这时候可以使用find的功能进行删除
+find . -name ~$\* -delete 这样就可以找到并且删除文件了</description>
+    </item>
+    
     <item>
       <title>Python绘制地图热图</title>
       <link>https://kongjianyang.github.io/cn/2022/05/21/map_heatmap/</link>
