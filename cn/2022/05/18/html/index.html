@@ -1,0 +1,39 @@
+<a name=top></a><!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>KJY</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/fonts.css><link href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css rel=stylesheet><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/vega@5.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-lite@4.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-embed@6.12.2></script>
+<script>hljs.initHighlightingOnLoad()</script></head><body><div class=wrapper><header class=header><nav class=nav><a href=/ class=nav-logo><img src=/media/%3cnil%3e width height alt></a><ul class=nav-links><li><a href=/cn/about/>关于</a></li><li><a href=/cn/posts/>日志</a></li><li><a href=/cn/newsletter/>周刊</a></li><li><a href=/>English</a></li></ul></nav></header><main class=content role=main><div style=text-align:center><h1>为Mac系统添加QuickLook插件</h1><p>KJY
+/ 2022-05-18</p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2022-05-18-%e4%b8%baMac%e7%b3%bb%e7%bb%9f%e6%b7%bb%e5%8a%a0QuickLook%e6%8f%92%e4%bb%b6.md style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title=编辑本页></i></a></span><aside class=toc>Table of Contents:<nav id=TableOfContents></nav></aside><div class="body-text list-text"><p><strong>安装命令</strong>：brew cask install <package><strong>卸载命令</strong>：brew cask uninstall <package><strong>软件包被安装的路径</strong>： /Users/用户名称/Library/QuickLook</p><p>QuickLook（快速预览）是 Mac OS X 中一项很好的功能。用户选择文件后，按下空格键即可快速预览。因为不用点击打开，还能使用方向键切换，从而节省了大量的时间。但对于开发者来说，系统内置的功能还不能完全满足需求。</p><p>需要拓展安装一些插件</p><p>最方便的方式是通过brew进行</p><p>查找所有插件</p><pre tabindex=0><code>brew search quicklook
+
+==&gt; Formulae
+quickjs
+
+==&gt; Casks
+caskroom/cask/epubquicklook              ipynb-quicklook
+caskroom/cask/gltfquicklook              osirix-quicklook
+caskroom/cask/ipynb-quicklook            quicklook-csv
+caskroom/cask/osirix-quicklook           quicklook-json ✔
+caskroom/cask/quicklook-csv              quicklook-pat
+caskroom/cask/quicklook-json ✔           quicklook-pfm
+caskroom/cask/quicklook-pat              quicklookapk
+caskroom/cask/quicklook-pfm              quicklookase ✔
+caskroom/cask/quicklookapk               receiptquicklook
+caskroom/cask/quicklookase ✔             ttscoff-mmd-quicklook
+caskroom/cask/receiptquicklook           webpquicklook ✔
+caskroom/cask/ttscoff-mmd-quicklook      quickbooks
+caskroom/cask/webpquicklook ✔            quickboot
+epubquicklook                            quickjson
+gltfquicklook                            quicknfo
+</code></pre><p>安装一些插件</p><pre tabindex=0><code>brew install --cask qlimagesize qlvideo qlmarkdown
+
+brew install --cask qlcolorcode quicklook-json qlstephen suspicious-package provisionql quicklook-csv
+brew install highlight luarocks  # 相关的依赖包
+</code></pre><p style=color:#777>最后一次修改于 2022-05-18</p></div><a href=#top><i class="fa fa-chevron-up" style=font-size:30px;color:#000></i></a></main><footer class=footer><script src=https://utteranc.es/client.js repo=kongjianyang/kongjianyang.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><script type=text/javascript src=/js/math-code.js></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type=text/javascript src=/js/center-img.js></script><ul class=footer-links><li><a href=/cn/posts/index.xml type=application/rss+xml title="RSS feed">订阅</a></li><li><a href=http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>版权
+<i class="fa fa-cc" aria-hidden=true title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a></li></ul><div class=copyright-text>©
+KJY
+2018-2021</div></footer>
