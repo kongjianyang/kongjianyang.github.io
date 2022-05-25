@@ -1,5 +1,7 @@
 {
   "legacyEditor": false,
   "livePreview": true,
-  "showUnsupportedFiles": true
+  "showUnsupportedFiles": true,
+  "attachmentFolderPath": "./images/2022-05-23-single_cell_sequencing入门",
+  "useMarkdownLinks": true
 }

@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "cn/posts/2022-05-22-Linux下删除特定前缀名文件的快捷方式.md",
+            "file": "cn/posts/2022-05-23-single_cell_sequencing入门.md",
             "mode": "source",
             "source": false
           }
@@ -20,11 +20,11 @@
       {
         "id": "e4819a41b9e598e2",
         "type": "leaf",
-        "dimension": 13.697824808935916,
+        "dimension": 13.697824808935913,
         "state": {
           "type": "outline",
           "state": {
-            "file": "cn/posts/2022-05-22-Linux下删除特定前缀名文件的快捷方式.md"
+            "file": "cn/posts/2022-05-23-single_cell_sequencing入门.md"
           }
         },
         "group": "0be39ace0a090326"
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "cn/posts/2022-05-22-Linux下删除特定前缀名文件的快捷方式.md",
+                "file": "cn/posts/2022-05-23-single_cell_sequencing入门.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "cn/posts/2022-05-22-Linux下删除特定前缀名文件的快捷方式.md"
+                "file": "cn/posts/2022-05-23-single_cell_sequencing入门.md"
               }
             }
           }
@@ -124,13 +124,15 @@
   },
   "active": "84787feecb1ebc7a",
   "lastOpenFiles": [
+    "cn/posts/2022-05-23-single_cell_sequencing入门.md",
+    "_index.md",
+    "Pasted image 20220523161345.png",
+    "Pasted image 20220523161213.png",
+    "Pasted image 20220523161027.png",
     "cn/posts/2022-05-22-Linux下删除特定前缀名文件的快捷方式.md",
     "cn/posts/2022-05-07-其他源产生的html文件兼容hugo.md",
     "cn/posts/2022-05-17-macOS上的神器.md",
     "cn/posts/2022-05-18-为Mac系统添加QuickLook插件.md",
-    "cn/posts/2022-05-05-R语言stringr学习.md",
-    "cn/posts/2022-05-04-R语言查看函数源码并修改.md",
-    "cn/posts/2022-05-04-R语言必须包【持续更新】.md",
-    "cn/_index.md"
+    "cn/posts/2022-05-05-R语言stringr学习.md"
   ]
 }

@@ -6,7 +6,31 @@
     <description>Recent content in article on KJY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 22 May 2022 10:43:55 -0600</lastBuildDate><atom:link href="https://kongjianyang.github.io/tags/article/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 23 May 2022 16:03:40 -0600</lastBuildDate><atom:link href="https://kongjianyang.github.io/tags/article/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Single_cell_sequencing入门</title>
+      <link>https://kongjianyang.github.io/cn/2022/05/23/scrna/</link>
+      <pubDate>Mon, 23 May 2022 16:03:40 -0600</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/05/23/scrna/</guid>
+      <description>Reference:
+https://broadinstitute.github.io/KrumlovSingleCellWorkshop2020/index.html
+https://satijalab.org/seurat/articles/pbmc3k_tutorial.html#finding-differentially-expressed-features-cluster-biomarkers-
+https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html
+Background 单细胞RNA-seq能够独立地提供每个细胞的RNA表达谱，并鉴定异质细胞群中的稀有细胞。尽管肿瘤异质性可归因于累积突变，但即使是遗传上相同的细胞在相同环境下也可能表现出基因和蛋白表达水平的差异，从而导致耐药性的产生。单细胞RNA-seq就能够发现这些稀有个体。
+单细胞RNA-seq的流程
+当然，单细胞RNA-seq的开展绝非易事，需要用到一系列尖端技术。大家首先要高效分离单细胞，然后进行RNA提取、逆转录、文库制备和测序，最后再通过生物信息学软件进行数据分析。其中，第一步 – 单细胞分离就相当棘手。
+单细胞分离 从异质性的细胞群体中分离单细胞，目前的选择有不少，新方法也在不断面世。选择分离方法时，您可能需要考虑它是高通量还是低通量，以及是盲选还是有偏向的选择（基于某个参数）。
+一些高通量的技术，比如最常用的荧光激活细胞分选（FACS）和磁性激活细胞分选（MACS），可根据细胞的大小/形状或细胞表面标志物的表达进行有偏向的选择，而基于微流体和液滴的技术可实现细胞的无偏向分离。不过，需要注意的是，组织/细胞的解离过程可能会改变RNA的表达谱。
+RNA-Seq方案 标准的文库制备方案适用于10-100 ng的DNA起始材料。然而，单个细胞平均只含有10 pg的总RNA。因此，RNA提取和文库制备的流程必须经过调整和优化，才能用于单细胞材料。
+首先，需要裂解分离出的单细胞，以获得RNA。这个步骤可通过自动化设备完成。当然，细胞裂解和RNA纯化的操作可同时进行。
+然后，大多数方案是通过polyA选择来富集mRNA，并利用经过修饰的oligo dT引物来进行逆转录。在逆转录的过程中，有些方案利用独特分子标识符（UMI）对单分子进行标记，这些是随机的六核苷酸，可以更精确地定量单细胞中mRNA分子的初始量。之后，通过体外转录或PCR扩增cDNA，然后将扩增好的cDNA文库用于文库制备和高通量测序。
+PCR方法的优点在于能够产生全长cDNA。不过，对于不同片段（如GC含量较高），PCR的效率可能不同，导致文库的覆盖度不均匀。另一方面，体外转录产生的文库能够避免PCR的序列偏向，但有些序列的转录效率低，导致序列drop-out或不完整。
+数据分析 由于每个单细胞都是独特的，不可能开展重复实验并评估噪音。因此，必须采取一些质量控制手段，以确保数据的可靠性。专家建议，向每个细胞裂解液中加入已知序列和数量的合成mRNA，如外源RNA对照联盟（ERCC）开发的加标RNA。这些RNA的读数将提供样本间差异的信息。
+总的来说，单细胞水平的转录组分析可以揭示细胞群体中的细胞异质性，强调了个别细胞的与众不同。此外，同时分析多种分子（如DNA、RNA和蛋白质）的方法也不断被开发出来。这种更全面的单细胞组图有望进一步加深我们对生物学过程的了解，对未来的科研及临床研究大有裨益。
+Data analysis In contrast to bulk RNA-seq, scRNA-seq provides quantitative measurements of the expression of every gene in a single cell.</description>
+    </item>
+    
     <item>
       <title>Linux下删除特定前缀名文件的快捷方式</title>
       <link>https://kongjianyang.github.io/cn/2022/05/22/find_remove/</link>

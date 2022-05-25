@@ -1,0 +1,313 @@
+---
+title: "单细胞RNAseq入门"
+date: '2022-05-23'
+author: KJY
+slug: purrr
+draft: false
+categories:
+  - R
+tags: []
+lastmod: '2022-05-15T10:30:09-07:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+
+---
+title: "Single_cell_sequencing入门"
+date: 2022-05-23T16:03:40-06:00
+author: KJY
+slug: scRNA
+draft: false
+toc: true
+categories:  
+  -Bioinfo
+tags:        
+  - article
+---
+
+Reference:
+
+<https://broadinstitute.github.io/KrumlovSingleCellWorkshop2020/index.html>
+
+<https://satijalab.org/seurat/articles/pbmc3k_tutorial.html#finding-differentially-expressed-features-cluster-biomarkers->
+
+<https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html>
+
+# Background
+
+单细胞RNA-seq能够独立地提供每个细胞的RNA表达谱，并鉴定异质细胞群中的稀有细胞。尽管肿瘤异质性可归因于累积突变，但即使是遗传上相同的细胞在相同环境下也可能表现出基因和蛋白表达水平的差异，从而导致耐药性的产生。单细胞RNA-seq就能够发现这些稀有个体。
+
+**单细胞RNA-seq的流程**
+
+![](http://www.ebiotrade.com/imagewatermark/UploadFile/2018091116524262.JPG)
+
+当然，单细胞RNA-seq的开展绝非易事，需要用到一系列尖端技术。大家首先要高效分离单细胞，然后进行RNA提取、逆转录、文库制备和测序，最后再通过生物信息学软件进行数据分析。其中，第一步 -- 单细胞分离就相当棘手。
+
+## 单细胞分离
+
+从异质性的细胞群体中分离单细胞，目前的选择有不少，新方法也在不断面世。选择分离方法时，您可能需要考虑它是高通量还是低通量，以及是盲选还是有偏向的选择（基于某个参数）。
+
+一些高通量的技术，比如最常用的荧光激活细胞分选（FACS）和磁性激活细胞分选（MACS），可根据细胞的大小/形状或细胞表面标志物的表达进行有偏向的选择，而基于微流体和液滴的技术可实现细胞的无偏向分离。不过，需要注意的是，组织/细胞的解离过程可能会改变RNA的表达谱。
+
+## RNA-Seq方案
+
+标准的文库制备方案适用于10-100 ng的DNA起始材料。然而，单个细胞平均只含有10 pg的总RNA。因此，RNA提取和文库制备的流程必须经过调整和优化，才能用于单细胞材料。
+
+首先，需要裂解分离出的单细胞，以获得RNA。这个步骤可通过自动化设备完成。当然，细胞裂解和RNA纯化的操作可同时进行。
+
+然后，大多数方案是通过polyA选择来富集mRNA，并利用经过修饰的oligo dT引物来进行逆转录。在逆转录的过程中，有些方案利用独特分子标识符（UMI）对单分子进行标记，这些是随机的六核苷酸，可以更精确地定量单细胞中mRNA分子的初始量。之后，通过体外转录或PCR扩增cDNA，然后将扩增好的cDNA文库用于文库制备和高通量测序。
+
+PCR方法的优点在于能够产生全长cDNA。不过，对于不同片段（如GC含量较高），PCR的效率可能不同，导致文库的覆盖度不均匀。另一方面，体外转录产生的文库能够避免PCR的序列偏向，但有些序列的转录效率低，导致序列drop-out或不完整。
+
+## 数据分析
+
+由于每个单细胞都是独特的，不可能开展重复实验并评估噪音。因此，必须采取一些质量控制手段，以确保数据的可靠性。专家建议，向每个细胞裂解液中加入已知序列和数量的合成mRNA，如外源RNA对照联盟（ERCC）开发的加标RNA。这些RNA的读数将提供样本间差异的信息。
+
+总的来说，单细胞水平的转录组分析可以揭示细胞群体中的细胞异质性，强调了个别细胞的与众不同。此外，同时分析多种分子（如DNA、RNA和蛋白质）的方法也不断被开发出来。这种更全面的单细胞组图有望进一步加深我们对生物学过程的了解，对未来的科研及临床研究大有裨益。
+
+# Data analysis
+
+In contrast to bulk RNA-seq, scRNA-seq provides quantitative measurements of the expression of every gene in a single cell.
+
+Seurat R package ([http://satijalab.org/seurat/)](http://satijalab.org/seurat/),) is a popular and powerful set of tools to conduct scRNA-seq analysis in R
+
+loading packages
+
+```{r}
+# install.packages('Seurat')
+
+library(Seurat)
+library(dplyr)
+library(Matrix)
+
+```
+
+download this dataset: <https://cf.10xgenomics.com/samples/cell-vdj/2.2.0/vdj_v1_hs_nsclc_5gex/vdj_v1_hs_nsclc_5gex_filtered_gene_bc_matrices.tar.gz>
+
+## 1. Check the data 
+
+```{r}
+counts <- Read10X(data.dir = "./filtered_gene_bc_matrices/GRCh38/")  # Seurat function to read in 10x count data
+
+
+
+counts[1:10, 1:3]
+```
+
+Interest, because ./filtered_gene_bc_matrices/GRCh38/ have three different files: barcodes.tsv, genes.tsv, matrix.mtx
+
+\`Read10x\`: Enables easy loading of sparse data matrices provided by 10X genomics.
+
+data.dir: Directory containing the matrix.mtx, genes.tsv (or features.tsv), and barcodes.tsv files provided by 10X. A vector or named vector can be given in order to load several data directories. If a named vector is given, the cell barcode names will be prefixed with the name.
+
+The columns are indexed by 10x cell barcodes (each 16 nt long), and the rows are the gene names. We mentioned these matrices are sparse, here we see only zeroes (indicated by the "." symbol); this is the most common value in these sparse matrices.
+
+```{r}
+dim(counts) # report number of genes (rows) and number of cells (columns)
+```
+
+Here we see the counts matrix has 33694 genes and 7802 cells.
+
+## 2. Filtering low-quality cells
+
+the summary counts for genes and cells
+
+Matrix包：先进的稀疏矩阵处理，不了解稀疏矩阵概念的时候内存占用和运行速度都不忍直视。
+
+```{r}
+counts_per_cell <- Matrix::colSums(counts)
+cat("counts per cell: ", counts_per_cell[1:5], "\n") ## counts for first 5 cells
+```
+
+```{r}
+counts_per_gene <- Matrix::rowSums(counts)
+cat("counts per gene: ", counts_per_gene[1:5], "\n")  ## counts for first 5 genes
+```
+
+```{r}
+genes_per_cell <- Matrix::colSums(counts > 0) # count gene only if it has non-zero reads mapped.
+cat("counts for non-zero genes: ", genes_per_cell[1:5])  ## counts for first 5 genes
+```
+
+```{r}
+#### cells_per_gene <- Matrix::?(counts>?) # only count cells where the gene is expressed
+cells_per_gene <-  Matrix::rowSums(counts > 0)# only count cells where the gene is expressed
+cat("count of cells with expressed genes: ", cells_per_gene[1:5])
+```
+
+```{r}
+
+# only genes that are are expressed in 3 or more cells and cells with complexity of 350 genes or more
+seurat <- CreateSeuratObject(counts = counts, min.cells = 3, min.features = 350, project = "10X_NSCLC")
+```
+
+check first 10 rows (genes) and the first 10 columns (cells).
+
+```{r}
+seurat@assays$RNA@counts[1:10,1:10]
+```
+
+give object information
+
+```{r}
+seurat
+```
+
+print out of the entire structure of the object by using the str commmand.
+
+```{r}
+# Compactly Display the Structure of an Arbitrary R Object
+
+str(seurat)
+```
+
+exclude cells that are damaged, When the cells apoptose due to stress, their mitochondria becomes leaky and there is widespread RNA degradation. Thus a relative enrichment of mitochondrially derived genes can be a tell-tale sign of cell stress.
+
+compute the proportion of transcripts that are of mitochondrial origin for every cell (percent.mt), and visualize its distribution as a violin plot.
+
+```{r}
+# The number of genes and UMIs (nFeature_RNA nCount_RNA) are automatically calculated
+# for every object by Seurat.  For non-UMI data, nCount_RNA represents the sum of
+# the non-normalized values within a cell We calculate the percentage of
+# mitochondrial genes here and store it in percent.mt using AddMetaData.
+# We use GetAssayData(object = seurat, slot = 'data') since this represents non-transformed and
+# non-log-normalized counts The % of UMI mapping to MT-genes is a common
+# scRNA-seq QC metric.
+
+
+# The [[ operator can add columns to object metadata. This is a great place to stash QC stats
+seurat[["percent.mt"]] <- PercentageFeatureSet(object = seurat, pattern = "^MT-")
+# PercentageFeatureSet: Calculate the percentage of all counts that belong to a given set of features
+
+# PercentageFeatureSet adds columns to object@meta.data, and is a great place to stash QC stats.
+# This also allows us to plot the metadata values using the Seurat's VlnPlot().
+head(seurat@meta.data) # Before adding
+```
+
+```{r}
+# VlnPlot: Single cell violin plot
+VlnPlot(object = seurat, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
+```
+
+third metric we use is the number of house keeping genes expressed in a cell. These genes reflect commomn processes active in a cell and hence are a good global quality measure. They are also abundant and are usually steadliy expressed in cells, thus less sensitive to the high dropout.
+
+```{r}
+# FeatureScatter is typically used to visualize feature-feature relationships, but can be used
+# for anything calculated by the object, i.e. columns in object metadata, PC scores etc.
+
+plot1 <- FeatureScatter(seurat, feature1 = "nCount_RNA", feature2 = "percent.mt")
+plot2 <- FeatureScatter(seurat, feature1 = "nCount_RNA", feature2 = "nFeature_RNA")
+## could be genes or meta data columns
+plot3 <- FeatureScatter(object = seurat, feature1 = "nCount_RNA", feature2 = "nFeature_RNA")
+CombinePlots(plots = list(plot1, plot2, plot3))
+```
+
+```{r}
+VlnPlot(object = seurat, features = c("nFeature_RNA"), group.by = c('orig.ident'))
+```
+
+Identity is a concept that is used in the Seurat object to refer to the cell identity. In this case, the cell identity is 10X_NSCLC, but after we cluster the cells, the cell identity will be whatever cluster the cell belongs to. We will see how identity updates as we go throught the analysis.
+
+```{r}
+VlnPlot(object = seurat, features = c("nFeature_RNA","percent.mt","n.exp.hkgenes"), ncol = 3)
+```
+
+```{r}
+# seurat <- SubsetData(object = seurat, subset.names = c("nFeature_RNA", "percent.mito","n.exp.hkgenes"), low.thresholds = c(350, -Inf,55), high.thresholds = c(5000, 0.1, Inf))
+
+seurat <- subset(seurat, nFeature_RNA < 5000)
+seurat <- subset(seurat, nFeature_RNA > 350)
+seuart <- subset(seurat, percent.mt < 10)
+
+seuart
+```
+
+20213 features across 7109 samples within 1 assay before. cells reduced a lot while gene is not.
+
+## 3. Expression normalization
+
+By default, we employ a global-scaling normalization method "LogNormalize" that normalizes the gene expression measurements for each cell by the total expression, multiplies this by a scale factor (10,000 by default), and log-transforms the result. There have been many methods to normalize the data, but this is the simplest and the most intuitive.
+
+```{r}
+seurat <- NormalizeData(object = seurat, normalization.method = "LogNormalize", scale.factor = 1e4)
+```
+
+## 4. Detection of variable genes across the single cells
+
+FindVariableFeatures calculates the average expression and dispersion for each gene, places these genes into bins, and then calculates a z-score for dispersion within each bin.
+
+```{r}
+# FindVariableFeatures: Identifies features that are outliers on a 'mean variability plot'.
+seurat <- FindVariableFeatures(object = seurat, selection.method = "vst", nfeatures = 2000)
+
+# Identify the 10 most highly variable genes
+top10 <- head(VariableFeatures(seurat), 10)
+
+top10
+```
+
+```{r}
+length(x = seurat@assays$RNA@var.features)
+```
+
+```{r}
+# plot variable features with and without labels
+plot1 <- VariableFeaturePlot(seurat)
+plot2 <- LabelPoints(plot = plot1, points = top10, repel = TRUE)
+
+CombinePlots(plots = list(plot1, plot2))
+
+plot2
+```
+
+## 5. Gene set expression across cells
+
+```{r}
+# Read in a list of cell cycle markers, from Tirosh et al, 2015.
+# We can segregate this list into markers of G2/M phase and markers of S phase.
+s.genes <- Seurat::cc.genes$s.genes
+
+s.genes
+s.genes <- s.genes[s.genes %in% rownames(seurat)] # genes in dataset
+g2m.genes <- Seurat::cc.genes$g2m.genes
+g2m.genes <- g2m.genes[g2m.genes %in% rownames(seurat)] # genes in dataset
+
+# CellCycleScoring: Score cell cycle phases
+seurat <- CellCycleScoring(object = seurat, s.features = s.genes, g2m.features = g2m.genes, set.ident = TRUE)
+
+seurat
+```
+
+```{r}
+# Genes upregulated during dissociation of tissue into single cells.
+genes.dissoc <- c("ATF3", "BTG2", "CEBPB", "CEBPD", "CXCL3", "CXCL2", "CXCL1", "DNAJA1", "DNAJB1", "DUSP1", 
+                  "EGR1", "FOS", "FOSB", "HSP90AA1", "HSP90AB1", "HSPA1A", "HSPA1B", "HSPA1A", "HSPA1B", 
+                  "HSPA8", "HSPB1", "HSPE1", "HSPH1", "ID3", "IER2", "JUN", "JUNB", "JUND", "MT1X", "NFKBIA", 
+                  "NR4A1", "PPP1R15A", "SOCS3", "ZFP36")
+#### seurat <- ?(?, genes.list = list(?), ctrl.size = 20, enrich.name = "genes_dissoc")
+seurat <- AddModuleScore(seurat, features = list(genes.dissoc), ctrl.size = 20, enrich.name = "genes_dissoc")
+```
+
+Plot the correlation between number of genes and S score
+
+```{r}
+# GenePlot(seurat, "S.Score", "nGene")
+FeatureScatter(seurat, "S.Score", "nFeature_RNA")
+```
