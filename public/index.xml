@@ -6,7 +6,14 @@
 <description>Recent content in Home on KJY</description>
 <generator>Hugo -- gohugo.io</generator>
 <language>en-us</language>
-<lastBuildDate>Mon, 23 May 2022 16:03:40 -0600</lastBuildDate><atom:link href="https://kongjianyang.github.io/index.xml" rel="self" type="application/rss+xml"/>
+<lastBuildDate>Sat, 28 May 2022 16:03:40 -0600</lastBuildDate><atom:link href="https://kongjianyang.github.io/index.xml" rel="self" type="application/rss+xml"/>
+<item>
+<title>One sample proportion test (单比率检验)</title>
+<link>https://kongjianyang.github.io/cn/2022/05/28/one_sample_proportion/</link>
+<pubDate>Sat, 28 May 2022 16:03:40 -0600</pubDate>
+<guid>https://kongjianyang.github.io/cn/2022/05/28/one_sample_proportion/</guid>
+<description>One sample proportion test (单比率检验) // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child"); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){"use strict";"object"==typeof module&amp;&amp;"object"==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error("jQuery requires a window with a document"</description>
+</item>
 <item>
 <title>Single_cell_sequencing入门</title>
 <link>https://kongjianyang.github.io/cn/2022/05/23/scrna/</link>
