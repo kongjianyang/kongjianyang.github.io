@@ -1,0 +1,132 @@
+---
+title: "One sample proportion test (单比率检验)"
+date: '2022-05-28'
+author: KJY
+slug: One_sample_proportion
+draft: false
+categories:
+  - R
+tags: []
+lastmod: '2022-05-28T10:30:09-07:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+
+---
+title: "One sample proportion test (单比率检验)"
+date: 2022-05-28T16:03:40-06:00
+author: KJY
+slug: One_sample_proportion
+draft: false
+toc: true
+categories:  
+  -statis
+tags:        
+  - article
+---
+
+Reference:
+
+
+https://www.r-bloggers.com/2022/05/one-sample-proportion-test-in-r-complete-guide/
+
+https://zhuanlan.zhihu.com/p/349916370
+
+One sample proportion test in R, when there are just two categories, the one proportion Z-test is used to compare an observed proportion to a theoretical one.
+
+have a population that is half male and half female (p = 0.5 = 50%). Some of these total (n = 160), including 100 males and 60 females, acquired a spontaneous malignancy.
+
+[Malignancy (from Latin male 'badly', and -gnus 'born') is the tendency of a medical condition to become progressively worse.]
+
+Question: We’d like to know if cancer affects more men than women.
+
+The observed male proportion (po) is 100/160.
+The observed female percentage (q) is 1-po.
+The predicted male proportion (pe) is 0.5. (50 percent )
+A total of 160 observations (n) were made.
+
+The following are the relevant alternative hypothesis (H1)
+
+H1:po≠pe (different); hypotheses 1
+H1:po>pe (greater); hypotheses 2
+H1:po<pe (less); hypotheses 3
+Note that:
+
+Two-tailed tests are used to test hypotheses 1.
+One-tailed tests are used to test hypotheses 2 and 3.
+
+To do a one-proportion test, use the R methods binom.test() and prop.test():
+
+Calculate the exact binomial test with binom.test(). When the sample size is small, prop.test() is recommended.
+
+
+
+```
+binom.test(x, n, p = 0.5, alternative = "two.sided")
+prop.test(x, n, p = NULL, alternative = "two.sided", correct = TRUE)
+```
+
+x: the number of successes
+n: the total number of trials
+p: the probability to test against.
+correct: a logical indicator of whether Yates’ continuity correction should be used if at all practicable.
+
+```{r}
+prop <- prop.test(x = 100, n = 160, p = 0.5, correct = FALSE)
+prop
+```
+
+
+If you wish to see if the percentage of men with cancer is less than 0.5 (one-tailed test), enter:
+
+```{r}
+prop.test(x = 100, n = 160, p = 0.5, correct = FALSE, alternative = "less")
+```
+
+
+# Other information
+
+单一变量的假设检验是对数据中某一个变量（数值变量、或多项有序分类变量、或多项无序分类变量、或二项分类变量）所进行的统计分析，常常比较该样本统计量与总体参数或中位数之间是否不同。
+
+> 一个变量和总体之间的比较
+
+例如下问就是很标准的单样本检测的问题
+
+某校18岁男生的身高情况如表1，已知全国18岁男性身高为172cm，问该校18岁男生的身高是否与全国水平相同？
+
+或者是
+
+产线设定的产品不良率是99%，然后我们收集1000的产品数据，不良数是999.查看不良率是否等于我们假定的99%？
+
+
+A Z-score is a numerical measurement that describes a value's relationship to the mean of a group of values. Z-score is measured in terms of standard deviations from the mean. If a Z-score is 0, it indicates that the data point's score is identical to the mean score.
+
+A z-table, also called the standard normal table, is a mathematical table that allows us to know the percentage of values below (to the left) a z-score in a standard normal distribution (SND)
+
+
+
+
+
+
+
+
+
+
+

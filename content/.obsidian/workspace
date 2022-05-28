@@ -10,7 +10,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "cn/posts/2022-05-23-single_cell_sequencing入门.md",
+            "file": "cn/posts/2020-07-20-Linux上的定时任务.md",
             "mode": "source",
             "source": false
           }
@@ -24,7 +24,7 @@
         "state": {
           "type": "outline",
           "state": {
-            "file": "cn/posts/2022-05-23-single_cell_sequencing入门.md"
+            "file": "cn/posts/2020-07-20-Linux上的定时任务.md"
           }
         },
         "group": "0be39ace0a090326"
@@ -83,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "cn/posts/2022-05-23-single_cell_sequencing入门.md",
+                "file": "cn/posts/2020-07-20-Linux上的定时任务.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "cn/posts/2022-05-23-single_cell_sequencing入门.md"
+                "file": "cn/posts/2020-07-20-Linux上的定时任务.md"
               }
             }
           }
@@ -124,6 +124,7 @@
   },
   "active": "84787feecb1ebc7a",
   "lastOpenFiles": [
+    "cn/posts/2020-07-20-Linux上的定时任务.md",
     "cn/posts/2022-05-23-single_cell_sequencing入门.md",
     "_index.md",
     "Pasted image 20220523161345.png",
@@ -132,7 +133,6 @@
     "cn/posts/2022-05-22-Linux下删除特定前缀名文件的快捷方式.md",
     "cn/posts/2022-05-07-其他源产生的html文件兼容hugo.md",
     "cn/posts/2022-05-17-macOS上的神器.md",
-    "cn/posts/2022-05-18-为Mac系统添加QuickLook插件.md",
-    "cn/posts/2022-05-05-R语言stringr学习.md"
+    "cn/posts/2022-05-18-为Mac系统添加QuickLook插件.md"
   ]
 }

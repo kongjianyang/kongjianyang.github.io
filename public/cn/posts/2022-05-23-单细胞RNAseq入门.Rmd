@@ -101,7 +101,7 @@ library(Matrix)
 
 download this dataset: <https://cf.10xgenomics.com/samples/cell-vdj/2.2.0/vdj_v1_hs_nsclc_5gex/vdj_v1_hs_nsclc_5gex_filtered_gene_bc_matrices.tar.gz>
 
-## 1. Check the data 
+## 1. Check the data
 
 ```{r}
 counts <- Read10X(data.dir = "./filtered_gene_bc_matrices/GRCh38/")  # Seurat function to read in 10x count data
@@ -292,7 +292,7 @@ g2m.genes <- g2m.genes[g2m.genes %in% rownames(seurat)] # genes in dataset
 # CellCycleScoring: Score cell cycle phases
 seurat <- CellCycleScoring(object = seurat, s.features = s.genes, g2m.features = g2m.genes, set.ident = TRUE)
 
-seurat
+(seurat@meta.data)
 ```
 
 ```{r}
