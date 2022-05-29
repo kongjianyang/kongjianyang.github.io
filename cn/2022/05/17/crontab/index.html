@@ -39,7 +39,7 @@ bash avoid_purge.sh &gt; log.out
 </code></pre><p>给run.sh和avoid_purge.sh赋予执行权限</p><pre tabindex=0><code>chmod -x run.sh
 chmod -x avoid_purge.sh
 </code></pre><p>命令行输入（不指定用户的话，默认当前用户的定时任务）</p><pre tabindex=0><code>crontab -e
-</code></pre><p>此命令输完之后，会让我们选择编辑器，选择vim，之后会出来一个编辑页面，输入一下内容</p><pre tabindex=0><code>28 13 * * * /bin/sh /home/tang389/run.sh
+</code></pre><p>此命令输完之后，会让我们选择编辑器，选择vim，之后会出来一个编辑页面，输入一下内容</p><pre tabindex=0><code>50 14 * * * /bin/sh /home/tang389/run.sh
 </code></pre><p>表示每天的13点28定时执行run.sh脚本任务</p><p style=color:#777>最后一次修改于 2022-05-17</p></div><a href=#top><i class="fa fa-chevron-up" style=font-size:30px;color:#000></i></a></main><footer class=footer><script src=https://utteranc.es/client.js repo=kongjianyang/kongjianyang.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><script type=text/javascript src=/js/math-code.js></script>
 <script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 <script type=text/javascript src=/js/center-img.js></script><ul class=footer-links><li><a href=/cn/posts/index.xml type=application/rss+xml title="RSS feed">订阅</a></li><li><a href=http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>版权
