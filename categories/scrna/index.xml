@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>scRNA on KJY</title><link>https://kongjianyang.github.io/categories/scrna/</link><description>Recent content in scRNA on KJY</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 03 Jun 2022 14:42:27 -0500</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/scrna/index.xml" rel="self" type="application/rss+xml"/><item><title>single cell RNA-seq分析入门</title><link>https://kongjianyang.github.io/cn/2022/06/03/single-cell-rna-seq%E5%88%86%E6%9E%90%E5%85%A5%E9%97%A8/</link><pubDate>Fri, 03 Jun 2022 14:42:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2022/06/03/single-cell-rna-seq%E5%88%86%E6%9E%90%E5%85%A5%E9%97%A8/</guid><description>scRNA toturial
+// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc :first-child");
+var i, h, a;
+for (i = 0; i 0) h.removeAttribute(a[0].name);
+}
+});
+/*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */
+!function(e,t){"use strict";"object"==typeof module&amp;&amp;"object"==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error("jQuery requires a window with a document");return t(e)}:t(e)}("undefined"!=typeof window?window:this,function(C,e){"use strict"</description></item></channel></rss>
