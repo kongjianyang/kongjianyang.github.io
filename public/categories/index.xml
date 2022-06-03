@@ -6,7 +6,16 @@
     <description>Recent content in Categories on KJY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 28 May 2022 16:03:40 -0600</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 03 Jun 2022 14:42:27 -0500</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>scRNA</title>
+      <link>https://kongjianyang.github.io/categories/scrna/</link>
+      <pubDate>Fri, 03 Jun 2022 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/categories/scrna/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>-statis</title>
       <link>https://kongjianyang.github.io/categories/-statis/</link>

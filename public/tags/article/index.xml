@@ -6,7 +6,16 @@
     <description>Recent content in article on KJY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 28 May 2022 16:03:40 -0600</lastBuildDate><atom:link href="https://kongjianyang.github.io/tags/article/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 03 Jun 2022 14:42:27 -0500</lastBuildDate><atom:link href="https://kongjianyang.github.io/tags/article/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>single cell RNA-seq分析入门</title>
+      <link>https://kongjianyang.github.io/cn/2022/06/03/single-cell-rna-seq%E5%88%86%E6%9E%90%E5%85%A5%E9%97%A8/</link>
+      <pubDate>Fri, 03 Jun 2022 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/06/03/single-cell-rna-seq%E5%88%86%E6%9E%90%E5%85%A5%E9%97%A8/</guid>
+      <description>scRNA toturial// Pandoc 2.9 adds attributes on both header and div. We remove the former (to// be compatible with the behavior of Pandoc :first-child&#34;);var i, h, a;for (i = 0; i 0) h.removeAttribute(a[0].name);}});/*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */!function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;</description>
+    </item>
+    
     <item>
       <title>One sample proportion test (单比率检验)</title>
       <link>https://kongjianyang.github.io/cn/2022/05/28/one_sample_proportion/</link>
@@ -489,6 +498,15 @@ map表示映射，可以在一个或多个列表/向量的每个位置上应用�
       
       <guid>https://kongjianyang.github.io/cn/2020/12/14/dplyr/</guid>
       <description>R语言使用dplyr编程【练习】 // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child&#34;); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;;var t=[],r=Object.</description>
+    </item>
+    
+    <item>
+      <title>Python给包含数字的字符串排序</title>
+      <link>https://kongjianyang.github.io/cn/2020/09/12/python%E7%BB%99%E5%8C%85%E5%90%AB%E6%95%B0%E5%AD%97%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F/</link>
+      <pubDate>Sat, 12 Sep 2020 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2020/09/12/python%E7%BB%99%E5%8C%85%E5%90%AB%E6%95%B0%E5%AD%97%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F/</guid>
+      <description>2020-09-12-Python给包含数字的字符串排序 pre { line-height: 125%; } td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; } span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; } td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; } span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; } .highlight .hll { background-color: var(--jp-cell-editor-active-background) } .highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) } .highlight .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */ .</description>
     </item>
     
     <item>
