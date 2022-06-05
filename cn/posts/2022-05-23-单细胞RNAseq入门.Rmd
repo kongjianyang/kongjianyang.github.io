@@ -1,11 +1,10 @@
 ---
 title: "单细胞RNAseq入门"
+author: "KJY"
 date: '2022-05-23'
-author: KJY
 slug: purrr
-draft: false
-categories:
-  - R
+draft: no
+categories: R
 tags: []
 lastmod: '2022-05-15T10:30:09-07:00'
 keywords: []
@@ -50,6 +49,10 @@ Reference:
 
 <https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html>
 
+<https://www.plob.org/article/23166.html>
+
+<https://www.plob.org/article/23217.html>
+
 # Background
 
 单细胞RNA-seq能够独立地提供每个细胞的RNA表达谱，并鉴定异质细胞群中的稀有细胞。尽管肿瘤异质性可归因于累积突变，但即使是遗传上相同的细胞在相同环境下也可能表现出基因和蛋白表达水平的差异，从而导致耐药性的产生。单细胞RNA-seq就能够发现这些稀有个体。
@@ -64,7 +67,23 @@ Reference:
 
 从异质性的细胞群体中分离单细胞，目前的选择有不少，新方法也在不断面世。选择分离方法时，您可能需要考虑它是高通量还是低通量，以及是盲选还是有偏向的选择（基于某个参数）。
 
-一些高通量的技术，比如最常用的荧光激活细胞分选（FACS）和磁性激活细胞分选（MACS），可根据细胞的大小/形状或细胞表面标志物的表达进行有偏向的选择，而基于微流体和液滴的技术可实现细胞的无偏向分离。不过，需要注意的是，组织/细胞的解离过程可能会改变RNA的表达谱。
+一些高通量的技术，比如最常用的荧光激活细胞分选（FACS）和磁性激活细胞分选（MACS），可根据细胞的大小/形状或细胞表面标志物的表达进行有偏向的选择，而基于微流体和液滴的技术可实现细胞的无偏向分离。不过，需要注意的是，【组织/细胞的解离过程可能会改变RNA的表达谱】。
+
+根据实验方案不同，单细胞分离的方式也有所不同。 - 基于平板的技术将细胞分到到板上的孔中。 - 基于液滴的方法则依赖于微流体液滴捕获单个细胞。
+
+基于液滴的方法需要通过低的输入细胞浓度来保持低的doublets率，因此空液滴是特别常见的 （一般beads和细胞的输入比例是20:1）。
+
+每个孔或液滴均包含必要的试剂以裂解细胞膜并进行文库构建 (植物单细胞就要注意了，需要提前去除细胞壁)。文库构建包括捕获细胞内mRNA、反转录为cDNA分子并进行扩增等过程。因为文库构建时每个细胞是独立的，所以每个细胞的mRNA也就特异的标记了孔特异性或液滴特异性细胞barcode。此外，许多实验方案还使用唯一分子标识符（UMI）标记捕获的RNA分子。一般在测序之前需要先扩增细胞cDNA以增加其被检测的可能性。但微量扩增更容易引入PCR偏好性。UMI使我们能够区分测到的reads是来源于mRNA分子的不同扩增拷贝还是来源于独立的mRNA分子，从而可以进行更准确的定量。
+
+DropSeq和商用的10X都是基于液滴（Droplet）的方法来产生单细胞基因表达数据集。基于液滴型方法是使用微流体芯片将单个细胞与单个凝珠(beads)包裹进油囊化液滴中，理想情况下每个液滴最多包含一个细胞。
+
+凝珠 (beads)上附有数目极多的DNA寡核苷酸探针（DNA oligos）。DNA寡核苷酸的3'末端是一个poly（T）尾巴，可用于捕获细胞中的mRNA （更准确的说是捕获细胞中有poly-A尾巴的RNA，既有mRNA，也有ncRNA）；5'末端是用于标记细胞的cell barcode序列，一个凝珠上结合的所有寡核苷酸的cell barcode都一样；中间还有一个具有高度多样性的唯一分子标识符（unique molecular identifier，UMI），磁珠上的每个寡核苷酸的UMI都不一样 (这个不能同意，UMI的种类是少于一个凝珠上所有寡核苷酸的数目的)。
+
+在液滴中，细胞破裂，磁珠上的DNA寡核苷酸捕获并标记释放的转录本；随后液滴破裂，所有细胞一起进行、逆转录、PCR扩增并通过高通量平台测序。测序得到序列与参考基因组进行比对，对应到注释的基因；再根据比对序列上的cell barcode区分来自同一个细胞序列。最后使用UMI计算每个细胞中表达的单个基因的转录本的拷贝数，从而可以生成基因表达矩阵（DGE, digital gene expression），这个矩阵就是包含了细胞barcode和基因counts的表格文件。
+
+DNA寡核苷酸的3'末端是一个poly（T）尾巴，可用于捕获细胞中的mRNA ；5'末端是用于标记细胞的cell barcode序列，一个凝珠上结合的所有寡核苷酸的cell barcode都一样；中间还有一个具有高度多样性的唯一分子标识符（unique molecular identifier，UMI），磁珠上的每个寡核苷酸的UMI都不一样。
+
+![](https://image.plob.org/wp-content/uploads/2014/01/1582930955-9646-YRJHkYrODic3vlmBFBDMHibpZgsg.jpg)
 
 ## RNA-Seq方案
 
@@ -82,232 +101,77 @@ PCR方法的优点在于能够产生全长cDNA。不过，对于不同片段（�
 
 总的来说，单细胞水平的转录组分析可以揭示细胞群体中的细胞异质性，强调了个别细胞的与众不同。此外，同时分析多种分子（如DNA、RNA和蛋白质）的方法也不断被开发出来。这种更全面的单细胞组图有望进一步加深我们对生物学过程的了解，对未来的科研及临床研究大有裨益。
 
-# Data analysis
+单细胞测序不只获得mRNA，更准确说是带poly-A尾巴的RNA，包括mRNA和lncRNA等
 
-In contrast to bulk RNA-seq, scRNA-seq provides quantitative measurements of the expression of every gene in a single cell.
+质控有3个指标：
 
-Seurat R package ([http://satijalab.org/seurat/)](http://satijalab.org/seurat/),) is a popular and powerful set of tools to conduct scRNA-seq analysis in R
+-   测到的转录本分子总数
+-   测到的基因总数
+-   来源于线粒体基因的转录本所占比例
 
-loading packages
+质控就是检查这3个指标的分布中是否存在异常峰并设置阈值去除。这些异常的barcodes可能对应于死细胞、细胞膜破损的细胞或doublets。
 
-```{r}
-# install.packages('Seurat')
+分开考虑这三个QC变量中的任何一个都可能导致对细胞状态的错误解读。例如，线粒体计数相对较高的细胞可能是呼吸过程比较活跃（如心脏细胞总mRNA的30%是线粒体基因，具体见对单细胞RNA综述的评述：细胞和基因质控参数的选择）。同样，其他QC变量也具有相应的生物学意义。总分子数和/或基因数低的细胞可能是处于静息状态的细胞群体；总分子数和/或基因数高的细胞也可能是细胞自身体积较大。实际上，细胞之间的总分子数自身也可能有很大差异（具体见Github上的案例研究）。因此，在做出是否过滤的单阈值决策时，应联合考虑3个QC变量，并且应将这些阈值设置的尽可能宽松，以避免无意间滤除有效的细胞群。将来，考虑多元QC依赖的过滤模型可能会提供更敏感的QC选择方式。
 
-library(Seurat)
-library(dplyr)
-library(Matrix)
+计数矩阵中的每个数值代表细胞中一个mRNA分子被成功捕获、逆转录和测序。
 
+[特异性偏差是由mRNA捕获效率引起的，在所有液滴中mRNA分子没有以相同比例被磁珠捕获，这被称为"dropout events"，它也是数据稀疏的主要原因]
+
+由于每个操作步骤固有的可变性，即便同一个细胞测序两次获得的计数深度也可能会有所不同。因此，当基于原始计数数据比较细胞之间的基因表达时，得到的差异可能来自于技术原因。Normalization可以通过调整计数数据 (scaling count data)等解决这一问题，以获得细胞之间可比的相对基因表达丰度。
+
+在bulk RNA测序中，需要被标准化的多批数据几乎来自相似的生物材料（例如将血细胞与血细胞进行比较），但是在单细胞测序中，单个细胞并不属于同一类型，这就需要调整标准化的参数以保留细胞间差异，同时还要消除技术差异带来的批次效应和细胞特异性偏差。
+
+mRNA捕获效率很低（例如，DropSeq被认为最多能捕获每个细胞10％左右的mRNA），这是液滴型单细胞测序数据的分析面临的最大挑战。由于这些"dropout events"，DGE矩阵大部分数据都会是0，这就是数据稀疏了。因此在解释数据之前，标准化和归一化至关重要。不过，这需要假设细胞在生物学上不需要严格准确
+
+总结来说有四种不同的差异来源：
+
+-   不同细胞的捕获效率 (Cell-specific capture efficiency)：不同细胞捕获的转录本数量不同，导致测序深度不同（例如，转录组的10-50%）。
+
+```{=html}
+<!-- -->
 ```
+-   文库质量 (Library quality)：降解的RNA、低活性/濒死的细胞、大量游离的RNA、分离不好的细胞以及细胞定量不准确都会导致测序质量过低。
 
-download this dataset: <https://cf.10xgenomics.com/samples/cell-vdj/2.2.0/vdj_v1_hs_nsclc_5gex/vdj_v1_hs_nsclc_5gex_filtered_gene_bc_matrices.tar.gz>
-
-## 1. Check the data
-
-```{r}
-counts <- Read10X(data.dir = "./filtered_gene_bc_matrices/GRCh38/")  # Seurat function to read in 10x count data
-
-
-
-counts[1:10, 1:3]
+```{=html}
+<!-- -->
 ```
+-   扩增偏差 (Amplification bias)：在建库（library preparation）的扩增步骤中，并非所有的转录本都被扩增到相同的水平。
 
-Interest, because ./filtered_gene_bc_matrices/GRCh38/ have three different files: barcodes.tsv, genes.tsv, matrix.mtx
-
-\`Read10x\`: Enables easy loading of sparse data matrices provided by 10X genomics.
-
-data.dir: Directory containing the matrix.mtx, genes.tsv (or features.tsv), and barcodes.tsv files provided by 10X. A vector or named vector can be given in order to load several data directories. If a named vector is given, the cell barcode names will be prefixed with the name.
-
-The columns are indexed by 10x cell barcodes (each 16 nt long), and the rows are the gene names. We mentioned these matrices are sparse, here we see only zeroes (indicated by the "." symbol); this is the most common value in these sparse matrices.
-
-```{r}
-dim(counts) # report number of genes (rows) and number of cells (columns)
+```{=html}
+<!-- -->
 ```
+-   批次差异 (Batch effects)：批次问题是单细胞RNA分析中的一个重要问题，因此你可以看到由于批次问题而导致的基因表达上的显著差异。
 
-Here we see the counts matrix has 33694 genes and 7802 cells.
+最常用的标准化方法是测序深度标准化，也称为"每百万计数"或CPM normalization。该方法来自普通转录组表达分析，使用每个细胞的测序深度作为size factor对计数数据进行标准化。CPM标准化假设数据集中的所有细胞最初都包含相等数量的mRNA分子，并且计数深度差异来源于技术问题。
 
-## 2. Filtering low-quality cells
+标准化是对细胞计数数据进行缩放处理以使其在细胞之间可比，也可以在基因层面对基因计数进行归一化 (scale)以便于基因内部进行直接比较。基因归一化是指一个基因减去其在所有样品表达的均值然后除以其在所有样品表达值的标准差。归一化后，这个基因在所有样品表达值均值为0，用单位方差形式表示其表达值。归一化后，所有基因在下游分析时权重是一样的。
 
-the summary counts for genes and cells
+标准化后，数据矩阵通常进行log(x+1)转换。此转换具有三个重要作用。
 
-Matrix包：先进的稀疏矩阵处理，不了解稀疏矩阵概念的时候内存占用和运行速度都不忍直视。
+-   首先，对数转换后的表达式值之间的差值可对应于对数转换后的倍数变化，这是衡量基因表达变化的常用方法。
+-   其次，对数转换可减轻（但不能消除）单细胞数据的均值-方差关系 (mean-variance relationship) （均值-方差关系展示数据在特征空间的分布关系。方差越大数据分布越广，后续采用线性回归算法时效果越差。）。
+-   最后，对数转换可以减少数据的偏态分布，从而使数据近似于正态分布，更符合许多下游分析工具对数据分布的假设要求。 尽管scRNA-seq数据实际上不是对数正态分布的，但这三个效果使对数转换成为一种粗略但有用的工具。这一有用性在下游差异表达分析或批次校正时有更好的体现。但是应该注意的是，数据的对数转换会在数据中引入虚假的差异表达结果。而且如果size factor在组间差异更大时影响尤其明显。
 
-```{r}
-counts_per_cell <- Matrix::colSums(counts)
-cat("counts per cell: ", counts_per_cell[1:5], "\n") ## counts for first 5 cells
-```
+人单细胞RNA-seq数据集可包含多达25,000个基因的表达值。对于一个给定的scRNA-seq数据集，其中有许多基因都不能提供有用信息，并且大多只包含零计数。即使在QC步骤中滤除了这些零计数基因后，单细胞数据集的特征空间也可能超过15,000个维度（即还会剩余15,000多基因）。为了减轻下游分析工具的计算负担、减少数据中的噪声并方便数据可视化，可以使用多种方法来对数据集进行降维。
 
-```{r}
-counts_per_gene <- Matrix::rowSums(counts)
-cat("counts per gene: ", counts_per_gene[1:5], "\n")  ## counts for first 5 genes
-```
+scRNA-seq数据集降维的第一步通常是特征选择。在此步骤中，对数据集基因进行过滤仅保留对数据的变异性具有信息贡献的基因（在数据中变异大的基因）。这些基因通常被定义为高变化基因（HVG，highly variable genes）。根据任务和数据集的复杂性，通常选择1,000到5,000个HVG用于下游分析。Klein et al.的初步结果表明，下游分析对HVG的数量不太敏感。在HVG数量从200到2,400之间选择不同的数目时，评估显示PCA结果相差不大。基于此结果，我们宁愿选择更多的HVG用于下游分析
 
-```{r}
-genes_per_cell <- Matrix::colSums(counts > 0) # count gene only if it has non-zero reads mapped.
-cat("counts for non-zero genes: ", genes_per_cell[1:5])  ## counts for first 5 genes
-```
+在Scanpy和Seurat中都实现了一种简单而流行的选择HVG的方法。在这里，基因按其均值表达进行分组，将每个组内方差/均值比最高的基因选为每个分组的HVG。该算法在不同软件中输入不同，Seurat需要原始count data；Cell Ranger需要对数转换的数据。
 
-```{r}
-#### cells_per_gene <- Matrix::?(counts>?) # only count cells where the gene is expressed
-cells_per_gene <-  Matrix::rowSums(counts > 0)# only count cells where the gene is expressed
-cat("count of cells with expressed genes: ", cells_per_gene[1:5])
-```
+特征选择后，可以通过专用的降维算法进一步对单细胞表达矩阵进行降维。这些算法将表达式矩阵映射到低维空间中，同时以尽可能少的维数捕获数据中所有的信息。
 
-```{r}
+降维有两个主要目标：可视化和信息汇总（summarization）。可视化是尝试在二维或三维空间最优地展示数据集。降维后的维度值就是数据在新的空间进行可视化如绘制散点图时的坐标值。信息汇总没有规定输出的维数；但更高的维数对表示原有数据的差异越来越不重要.
 
-# only genes that are are expressed in 3 or more cells and cells with complexity of 350 genes or more
-seurat <- CreateSeuratObject(counts = counts, min.cells = 3, min.features = 350, project = "10X_NSCLC")
-```
+降维后的维度是通过对基因表达向量进行线性或非线性组合生成的。特别是在非线性情况下，降维后的数据难以解释其生物含义。
 
-check first 10 rows (genes) and the first 10 columns (cells).
+主成分分析是一种线性方法，通过最大化每个可能维度中捕获的残差 (residual variance)来进行降维。尽管PCA不能像非线性方法那样在更少的维度捕获原始数据更多的信息，但是它是许多当前可用的聚类或轨迹推断工具的基础。实际上，PCA通常用作非线性降维方法的预处理步骤。通常，PCA通过其前N个主成分来代表原始数据集，其中N可以通过elbow算法（参见图4F）或基于置换检验的jackstraw方法确定。PCA简单线性化的优势是：降维空间中的距离在该空间的所有区域具有一致的解释。因此，我们可以将感兴趣的统计量与主成分进行关联分析，以评估其重要性。
 
-```{r}
-seurat@assays$RNA@counts[1:10,1:10]
-```
+可视化时一般使用非线性降维方法（图4）。scRNA-seq数据可视化的最常见的降维方法是t‐SNE （ t‐distributed stochastic neighbour embedding） 。t‐SNE的维度着重于以牺牲全局结构为代价来保留局部相似性 (PCA则是尽可能多的保留全局差异)。因此，这些可视化可能会夸大细胞群体之间的差异，而忽略群体之间的潜在联系 (t‐SNE dimensions focus on capturing local similarity at the expense of global structure. Thus, these visualizations may exaggerate differences between cell populations and overlook potential connections between these populations)。另一个困难是对参数perplexity parameter的选择，因为t-SNE图会因为这个参数值不同而显示出明显不同的分簇数。
 
-give object information
+t‐SNE的常见替代方法是UMAP (Uniform Approximation and Projection method)或基于图的工具
 
-```{r}
-seurat
-```
+在此比较中，使UMAP与众不同的是它的速度快和能应用于更大规模数据的能力（Becht et al，2018）。因此，在没有特定生物学问题限制的情况下，我们将UMAP视为探索性数据可视化分析的最佳实践。此外，UMAP还可以把数据降维到二维以上的新数据。
 
-print out of the entire structure of the object by using the str commmand.
+下游分析的方法指应用于生物学发现并描述潜在的生物学系统的方法。通过将可以解释的模型拟合到数据中获得相应的结论，比如有相似基因表达谱的细胞群代表一个细胞簇、相似细胞之间基因表达的微小变化指示连续（分化）轨迹；或具有相关表达趋势的基因指示共调控等。
 
-```{r}
-# Compactly Display the Structure of an Arbitrary R Object
-
-str(seurat)
-```
-
-exclude cells that are damaged, When the cells apoptose due to stress, their mitochondria becomes leaky and there is widespread RNA degradation. Thus a relative enrichment of mitochondrially derived genes can be a tell-tale sign of cell stress.
-
-compute the proportion of transcripts that are of mitochondrial origin for every cell (percent.mt), and visualize its distribution as a violin plot.
-
-```{r}
-# The number of genes and UMIs (nFeature_RNA nCount_RNA) are automatically calculated
-# for every object by Seurat.  For non-UMI data, nCount_RNA represents the sum of
-# the non-normalized values within a cell We calculate the percentage of
-# mitochondrial genes here and store it in percent.mt using AddMetaData.
-# We use GetAssayData(object = seurat, slot = 'data') since this represents non-transformed and
-# non-log-normalized counts The % of UMI mapping to MT-genes is a common
-# scRNA-seq QC metric.
-
-
-# The [[ operator can add columns to object metadata. This is a great place to stash QC stats
-seurat[["percent.mt"]] <- PercentageFeatureSet(object = seurat, pattern = "^MT-")
-# PercentageFeatureSet: Calculate the percentage of all counts that belong to a given set of features
-
-# PercentageFeatureSet adds columns to object@meta.data, and is a great place to stash QC stats.
-# This also allows us to plot the metadata values using the Seurat's VlnPlot().
-head(seurat@meta.data) # Before adding
-```
-
-```{r}
-# VlnPlot: Single cell violin plot
-VlnPlot(object = seurat, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
-```
-
-third metric we use is the number of house keeping genes expressed in a cell. These genes reflect commomn processes active in a cell and hence are a good global quality measure. They are also abundant and are usually steadliy expressed in cells, thus less sensitive to the high dropout.
-
-```{r}
-# FeatureScatter is typically used to visualize feature-feature relationships, but can be used
-# for anything calculated by the object, i.e. columns in object metadata, PC scores etc.
-
-plot1 <- FeatureScatter(seurat, feature1 = "nCount_RNA", feature2 = "percent.mt")
-plot2 <- FeatureScatter(seurat, feature1 = "nCount_RNA", feature2 = "nFeature_RNA")
-## could be genes or meta data columns
-plot3 <- FeatureScatter(object = seurat, feature1 = "nCount_RNA", feature2 = "nFeature_RNA")
-CombinePlots(plots = list(plot1, plot2, plot3))
-```
-
-```{r}
-VlnPlot(object = seurat, features = c("nFeature_RNA"), group.by = c('orig.ident'))
-```
-
-Identity is a concept that is used in the Seurat object to refer to the cell identity. In this case, the cell identity is 10X_NSCLC, but after we cluster the cells, the cell identity will be whatever cluster the cell belongs to. We will see how identity updates as we go throught the analysis.
-
-```{r}
-VlnPlot(object = seurat, features = c("nFeature_RNA","percent.mt","n.exp.hkgenes"), ncol = 3)
-```
-
-```{r}
-# seurat <- SubsetData(object = seurat, subset.names = c("nFeature_RNA", "percent.mito","n.exp.hkgenes"), low.thresholds = c(350, -Inf,55), high.thresholds = c(5000, 0.1, Inf))
-
-seurat <- subset(seurat, nFeature_RNA < 5000)
-seurat <- subset(seurat, nFeature_RNA > 350)
-seuart <- subset(seurat, percent.mt < 10)
-
-seuart
-```
-
-20213 features across 7109 samples within 1 assay before. cells reduced a lot while gene is not.
-
-## 3. Expression normalization
-
-By default, we employ a global-scaling normalization method "LogNormalize" that normalizes the gene expression measurements for each cell by the total expression, multiplies this by a scale factor (10,000 by default), and log-transforms the result. There have been many methods to normalize the data, but this is the simplest and the most intuitive.
-
-```{r}
-seurat <- NormalizeData(object = seurat, normalization.method = "LogNormalize", scale.factor = 1e4)
-```
-
-## 4. Detection of variable genes across the single cells
-
-FindVariableFeatures calculates the average expression and dispersion for each gene, places these genes into bins, and then calculates a z-score for dispersion within each bin.
-
-```{r}
-# FindVariableFeatures: Identifies features that are outliers on a 'mean variability plot'.
-seurat <- FindVariableFeatures(object = seurat, selection.method = "vst", nfeatures = 2000)
-
-# Identify the 10 most highly variable genes
-top10 <- head(VariableFeatures(seurat), 10)
-
-top10
-```
-
-```{r}
-length(x = seurat@assays$RNA@var.features)
-```
-
-```{r}
-# plot variable features with and without labels
-plot1 <- VariableFeaturePlot(seurat)
-plot2 <- LabelPoints(plot = plot1, points = top10, repel = TRUE)
-
-CombinePlots(plots = list(plot1, plot2))
-
-plot2
-```
-
-## 5. Gene set expression across cells
-
-```{r}
-# Read in a list of cell cycle markers, from Tirosh et al, 2015.
-# We can segregate this list into markers of G2/M phase and markers of S phase.
-s.genes <- Seurat::cc.genes$s.genes
-
-s.genes
-s.genes <- s.genes[s.genes %in% rownames(seurat)] # genes in dataset
-g2m.genes <- Seurat::cc.genes$g2m.genes
-g2m.genes <- g2m.genes[g2m.genes %in% rownames(seurat)] # genes in dataset
-
-# CellCycleScoring: Score cell cycle phases
-seurat <- CellCycleScoring(object = seurat, s.features = s.genes, g2m.features = g2m.genes, set.ident = TRUE)
-
-(seurat@meta.data)
-```
-
-```{r}
-# Genes upregulated during dissociation of tissue into single cells.
-genes.dissoc <- c("ATF3", "BTG2", "CEBPB", "CEBPD", "CXCL3", "CXCL2", "CXCL1", "DNAJA1", "DNAJB1", "DUSP1", 
-                  "EGR1", "FOS", "FOSB", "HSP90AA1", "HSP90AB1", "HSPA1A", "HSPA1B", "HSPA1A", "HSPA1B", 
-                  "HSPA8", "HSPB1", "HSPE1", "HSPH1", "ID3", "IER2", "JUN", "JUNB", "JUND", "MT1X", "NFKBIA", 
-                  "NR4A1", "PPP1R15A", "SOCS3", "ZFP36")
-#### seurat <- ?(?, genes.list = list(?), ctrl.size = 20, enrich.name = "genes_dissoc")
-seurat <- AddModuleScore(seurat, features = list(genes.dissoc), ctrl.size = 20, enrich.name = "genes_dissoc")
-```
-
-Plot the correlation between number of genes and S score
-
-```{r}
-# GenePlot(seurat, "S.Score", "nGene")
-FeatureScatter(seurat, "S.Score", "nFeature_RNA")
-```
+完整分析请看另一个帖子
