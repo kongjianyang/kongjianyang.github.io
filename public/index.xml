@@ -53,6 +53,13 @@ PCR方法的优点在于能够产生全长cDNA。不过，对于不同片段（�
 Data analysis In contrast to bulk RNA-seq, scRNA-seq provides quantitative measurements of the expression of every gene in a single cell.</description>
 </item>
 <item>
+<title>Single_cell_sequencing入门</title>
+<link>https://kongjianyang.github.io/cn/2022/05/23/scrna/</link>
+<pubDate>Mon, 23 May 2022 16:03:40 -0600</pubDate>
+<guid>https://kongjianyang.github.io/cn/2022/05/23/scrna/</guid>
+<description>Single_cell_sequencing入门 // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child"); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){"use strict";"object"==typeof module&amp;&amp;"object"==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error("jQuery requires a window with a document");return t(e)}:t(e)}("undefined"!=typeof window?window:this,function(C,e){"use strict";var t=[],r=Object.</description>
+</item>
+<item>
 <title>Linux下删除特定前缀名文件的快捷方式</title>
 <link>https://kongjianyang.github.io/cn/2022/05/22/find_remove/</link>
 <pubDate>Sun, 22 May 2022 10:43:55 -0600</pubDate>
