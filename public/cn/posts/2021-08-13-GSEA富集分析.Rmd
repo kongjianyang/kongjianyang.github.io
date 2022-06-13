@@ -1,0 +1,185 @@
+---
+title: "GSEA富集分析"
+author: "KJY"
+date: '2021-08-13'
+slug: purrr
+draft: no
+categories: R
+tags: []
+lastmod: '2021-08-13T10:30:09-07:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+
+---
+title: "GSEA富集分析"
+date: 2021-08-13T16:03:40-06:00
+author: KJY
+slug: GSEA
+draft: false
+toc: true
+categories:  
+  -Bioinfo
+tags:        
+  - article
+---
+
+Reference:
+
+<https://www.modb.pro/db/401751>
+
+<https://zhuanlan.zhihu.com/p/259894818>
+
+基因富集分析(gene set enrichment analysis)是在一组基因或蛋白中找到一类过表达的基因或蛋白。
+
+## GSEA跟传统的基因富集分析的区别
+
+传统的基因功能富集分析的时候肯定遇到这样的情况，一条富集到的通路中，既有上调的差异表达基因，也有下调的差异表达基因，那么这条通路总体是被抑制还是被激活呢？那么这条通路中的基因表达水平在实验组相比于对照组究竟是上升了呢，还是下降了呢？
+
+在传统的富集分析时，我们其实根本不关心这些差异表达的基因究竟是上调还是下调。这是因为传统的富集分析根本不考虑基因表达量的变化趋势，其算法的核心只关注这些差异表达基因的分布是否跟随机抽样得到的分布一致，即使在后续可视化时，我们在通路图上用不同颜色标记了上调和下调的基因，但是由于没有采用有效的统计学方法去分析这条通路中所有差异基因的总体变化趋势，这使得传统的富集分析结果无法回答上述的问题。
+
+GSEA（Gene Set Enrichment Analysis），该方法发表于2005年的Gene set enrichment analysis: a knowledge-based approach forinterpreting genome-wide expression profiles，是一种基于基因集的富集分析方法，在对基因表达数据分析时，首先确定分析的目的，即选择MSigDB中的一个或多个功能基因集进行分析（基因矩阵转置文件格式（\* .gmt）中已经介绍过），然后基于基因表达数据与表型的关联度（也可以理解为表达量的变化）的大小进行排序。然后判断每个基因集内的基因是否富集于表型相关度排序后基因列表的上部或下部，从而判断此基因集内基因的协同变化对表型变化的影响。
+
+> gmt（Gene Matrix Transposed，基因矩阵转置）文件，里面保存的是一些基因列表的信息。每一行代表一个基因列表，基因之间以制表符隔开。下面是一个gmt文件的示例。第一列是基因列表的名字，第二列一般是描述信息，说明这套基因列表从哪里收集的，也可以为空或者用NA表示。从第三列开始，每一列是一个基因的名字。每一行的长度可以不一致，也就是说每一个基因列表中包含的基因数可以不一样。
+
+> C4 : computational gene sets 该类别包含计算机软件预测出来的基因集合，主要是和癌症相关的基因
+
+![](https://pic1.zhimg.com/v2-da08744c1d14b1d7de7b935baf4d6cd8_b.jpg)
+
+GSEA的输入是一个基因表达量矩阵，其中的样本分成了A和B两组，找到两组之间差异表达的基因，然后根据foldchange进行排序，用来表示基因在两组间表达量的变化趋势。排序之后的基因列表其顶部可以看做是上调的差异基因，其底部是下调的差异基因。GSEA分析的是一个基因集下的所有基因是否在这个排序列表的顶部或者底部富集，如果在顶部富集，我们可以说，从总体上看，该基因集是上调趋势，反之，如果在底部富集，则是下调趋势。
+
+以上就是GSEA的分析原理，那么进行GSEA的结果怎样解读呢？
+
+GSEA分析结果最常见的是下图：
+
+![](https://pic4.zhimg.com/v2-4682f801280a1bac96881a8aa9dc20eb_b.jpg)
+
+1、图最上面部分展示的是富集分数（ES,enrichment score）值计算过程，从左至右每到一个基因，计算出一个ES值，连成线。在最左侧或最右侧有一个特别明显的峰值就是基因集表型上的ES值。图中间部分每一条线代表基因集中的一个基因，及其在基因列表中的排序位置。
+
+2、最下面部分展示的是基因与表型关联的矩阵，红色为与第一个表型(class A)正相关，在class A中表达高，蓝色与第二个表型(class B)正相关，在class B中表达高。
+
+3、Leading-edge subset 对富集得分贡献最大的基因成员。若富集得分为正值，则是峰左侧的基因；若富集得分为负值，则是峰右侧的基因。
+
+4、FDR GSEA默认提供所有的分析结果，并且设定FDR\<0.25为可信的富集，最可能获得有功能研究价值的结果。但如果样品数目少，而且选择了gene_set作为Permumation type则需要使用更为严格的标准，比如FDR\<0.05。
+
+## 代码部分
+
+Genes are ranked based on their phenotypes. Given apriori defined set of gene *S* (e.g., genes sharing the same *DO* category), the goal of GSEA is to determine whether the members of *S* are randomly distributed throughout the ranked gene list (*L*) or primarily found at the top or bottom.
+
+There are three key elements of the GSEA method:
+
+-   Calculation of an Enrichment Score.
+    -   The enrichment score (*ES*) represents the degree to which a set *S* is over-represented at the top or bottom of the ranked list *L*. The score is calculated by walking down the list *L*, increasing a running-sum statistic when we encounter a gene in *S* and decreasing when it is not encountered. The magnitude of the increment depends on the gene statistics (e.g., correlation of the gene with phenotype). The *ES* is the maximum deviation from zero encountered in the random walk; it corresponds to a weighted Kolmogorov-Smirnov(KS)-like statistic ([Subramanian et al. 2005](http://yulab-smu.top/biomedical-knowledge-mining-book/references.html#ref-subramanian_gene_2005)).
+-   Esimation of Significance Level of *ES*.
+    -   The *p*-value of the *ES* is calculated using a permutation test. Specifically, we permute the gene labels of the gene list *L* and recompute the *ES* of the gene set for the permutated data, which generate a null distribution for the *ES*. The *p*-value of the observed *ES* is then calculated relative to this null distribution.
+-   Adjustment for Multiple Hypothesis Testing.
+    -   When the entire gene sets are evaluated, the estimated significance level is adjusted to account for multiple hypothesis testing and also *q*-values are calculated for FDR control.
+
+```{r}
+## 批量载入包
+lapply(c('clusterProfiler','enrichplot','patchwork'), 
+       function(x) {library(x, character.only = T)})
+```
+
+做GSEA分析需要排序基因表L和预先定义的基因集S这两个东西。
+
+排序的基因表L:这里需要构建一个genelist，可以是来自自己测序数据差异分析的结果或者是GEO数据集，anyway，这个genelist由两列构成，第一列表示差异表达的基因ID（基因ID不能重复的,形式同样为entrezID），第二列为基因对应的表达量或者是FC等数值型向量，注意按照数值从高到低排列（为什么要由高到低因为要制作排序 的基因表L）
+
+```{r}
+# 载入测试数据
+data(geneList, package="DOSE")  
+# Please go to https://yulab-smu.github.io/clusterProfiler-book/ for the full vignette.
+# 这个geneList是基因的ENTREZID命名的logFC值从大到小排列的的向量
+
+head(geneList)
+```
+
+接下来需要基因集S，可以直接读取自己提前准备好的gmt文件或者clusterProfiler的自带基因集文件或者从R包msigdf中提取. GSEA分析中已知功能的基因集可以从许多地方进行获取，包括Broad的Molecular Signatures Database（MSigDB）和The Gene Ontology Resource，关键是选择最能回答当前生物学问题的基因集。举个栗子，通常您不会使用Broad的C7（免疫学基因集）中的基因集来回答有关神经元发育的问题（除非有充分的理由！）。
+
+```{r}
+
+# Gene Set Enrichment Analysis of KEGG
+## GSEA分析，物种：'hsa'人；‘ssc’猪
+kk2 <- gseKEGG(geneList     = geneList,
+               organism     = 'hsa',
+               nPerm        = 10000,
+               minGSSize    = 10,
+               maxGSSize    = 200,
+               pvalueCutoff = 0.05,
+               pAdjustMethod = "none" )
+head(kk2@result) 
+```
+
+```{r}
+## 选出分别富集在左端和右端的NES值排在前五的通路
+data <- kk2@result
+e_left <- data$Description[tail(order(data$NES),5)]
+e_right <- data$Description[head(order(data$NES),5)]
+data$enrich <- ifelse(data$Description %in% e_left ,"left",
+                      ifelse(data$Description %in% e_right ,"right","no"))
+```
+
+```{r}
+## 火山图可视化gsea结果
+library(ggrepel)
+ggplot(data = data, aes(x = NES,y=-log10(pvalue),color=enrich)) + 
+        geom_point(alpha=0.65,size=3.5) + 
+        theme_set(theme_set(theme_bw(base_size = 20))) + 
+        xlab("NES") + ylab("-log10(pvalue)") + 
+        scale_color_manual(values = c("#4393C3","#00000033","#FC4E2A"))+
+        theme_bw()+theme(legend.position="none")+
+         geom_text_repel(data = data[data$Description %in% c(e_left,e_right),],
+                         aes(label = Description),
+                         size =3,
+                          color = "black",
+                           show.legend = F)
+```
+
+```{r}
+## GSEA作图
+gseaplot2(kk2, 
+          color = "red",
+          geneSetID = which(data$Description %in% e_left),
+          pvalue_table = F,title = " ",)  +
+gseaplot2(kk2, 
+          color = "red",
+          geneSetID = which(data$Description %in% e_right),
+          pvalue_table = F,title = " ",)
+```
+
+# 补充
+
+**GSEA方法的原假设是：**某个通路的全部基因在我们排序后的基因列表中随机分布，如果我们看到它们"意外"出现在基因列表的某一端（从图上看是在某一侧形成一个峰），那么就可以计算显著性来看看富集程度如何。如果富集结果显著，那么就拒绝原假设，认为这个通路的基因在我们的基因列表中富集，并且看到富集分数
+
+名词解释 富集分数：这个名词是个重点，划下来! 英文名称是：ES(Enrichment score)。当使用基因集的基因来遍历我们的基因列表时，就会判断基因集的基因是不是存在于基因列表。如果存在就加分，不存在就减分。但具体的分数计算规则看看这个图就好（<https://bioinformatics.cancer.gov/sites/default/files/course_material/GSEA_Theory.pptx>）。只要明白GSEA的那条曲曲折折的线就是通过不断的加分减分做出来的就行了。那些对ES值有贡献的基因称为 Leading Edge Subset
+
+![](https://jieandze1314-1255603621.cos.ap-guangzhou.myqcloud.com/blog/2020-01-22-062329.png)
+
+计算富集得分 (ES, enrichment score). ES反应基因集成员s在排序列表L的两端富集的程度。计算方式是，从基因集L的第一个基因开始，计算一个累计统计值。当遇到一个落在s里面的基因，则增加统计值。遇到一个不在s里面的基因，则降低统计值。每一步统计值增加或减少的幅度与基因的表达变化程度（更严格的是与基因和表型的关联度）是相关的。富集得分ES最后定义为最大的峰值。正值ES表示基因集在列表的顶部富集，负值ES表示基因集在列表的底部富集。
+
+评估富集得分(ES)的显著性。通过基于表型而不改变基因之间关系的排列检验 (permutation test)计算观察到的富集得分(ES)出现的可能性。若样品量少，也可基于基因集做排列检验 (permutation test)，计算p-value。
+
+多重假设检验矫正。首先对每个基因子集s计算得到的ES根据基因集的大小进行标准化得到Normalized Enrichment Score (NES)。随后针对NES计算假阳性率。（计算NES也有另外一种方法，是计算出的ES除以排列检验得到的所有ES的平均值）
+
+由于ES是根据分析的数据集中的gene是否在一个功能gene set中出现来计算的，但各个功能gene set中包含的gene数目不同，且不同功能gene set与data之间的相关性也不同，因此，比较data set在不同功能gene set中的富集程度要对ES进行标准化处理，也就是NES
+
+NES=某一功能gene set的ES/数据集所有随机组合得到的ES平均值
+
+Leading-edge subset，对富集得分贡献最大的基因成员。
