@@ -1,5 +1,5 @@
 ---
-title: "Meachine learning in R"
+title: "Meachine learning in R - Unsupervised Learning"
 author: "KJY"
 date: '2022-01-01'
 slug: mechine_learning_in_R
@@ -26,6 +26,8 @@ sequenceDiagrams:
   enable: no
   options: ''
 ---
+
+
 
 ```{r}
 library(tidyverse)
@@ -86,25 +88,7 @@ Calculate the centre of each subgroup as the average position of all observation
 Each observation is then assigned to the group of its nearest centre.
 It’s also possible to stop the algorithm after a certain number of iterations, or once the centres move less than a certain distance.
 
-```{r}
 
-centres <- sapply(1:3, function(i) colMeans(x[init == i, ], ))
-
-centres
-
-centres <- t(centres)
-
-points(centres[, 1], centres[, 2], pch = 19, col = 1:3)
-
-centres
-
-rbind(centres, x)
-
-tmp <- dist(rbind(centres, x))
-
-ki <- apply(tmp, 1, which.min)
-ki <- ki[-(1:3)]
-```
 
 
 
@@ -144,6 +128,144 @@ tot_within_ss <- sapply(ks, function(k) {
 })
 plot(ks, tot_within_ss, type = "b")
 ```
+
+## Hierarchical clustering
+
+Initialisation: Starts by assigning each of the n points its own cluster
+
+Iteration
+
+Find the two nearest clusters, and join them together, leading to n-1 clusters
+Continue the cluster merging process until all are grouped into a single cluster
+Termination: All observations are grouped within a single cluster.
+
+
+The results of hierarchical clustering are typically visualised along a dendrogram, where the distance between the clusters is proportional to the branch lengths.
+
+In R:
+
+Calculate the distance using dist, typically the Euclidean distance.
+Hierarchical clustering on this distance matrix using hclust
+
+```{r}
+d <- dist(iris[, 1:4])
+hcl <- hclust(d)
+hcl
+```
+
+
+```{r}
+plot(hcl)
+```
+
+In R we can us the cutree function to
+
+cut the tree at a specific height: cutree(hcl, h = 1.5)
+cut the tree to get a certain number of clusters: cutree(hcl, k = 2)
+
+```{r}
+km <- kmeans(iris[, 1:4], centers = 3, nstart = 10)
+hcl <- hclust(dist(iris[, 1:4]))
+table(km$cluster, cutree(hcl, k = 3))
+
+par(mfrow = c(1, 2))
+plot(iris$Petal.Length, iris$Sepal.Length, col = km$cluster, main = "k-means")
+plot(iris$Petal.Length, iris$Sepal.Length, col = cutree(hcl, k = 3), main = "Hierarchical clustering")
+```
+
+Many of the machine learning methods that are regularly used are sensitive to difference scales.
+
+A typical way to pre-process the data prior to learning is to scale the data, or apply principal component analysis (next section). Scaling assures that all data columns have a mean of 0 and standard deviation of 1.
+
+```{r}
+hcl1 <- hclust(dist(mtcars))
+hcl2 <- hclust(dist(scale(mtcars)))
+par(mfrow = c(1, 2))
+plot(hcl1, main = "original data")
+plot(hcl2, main = "scaled data")
+```
+
+## PCA
+
+
+Dimensionality reduction techniques are widely used and versatile techniques that can be used to:
+
+find structure in features
+pre-processing for other ML algorithms, and
+aid in visualisation.
+
+Principal Component Analysis (PCA) is a technique that transforms the original n-dimensional data into a new n-dimensional space.
+
+Use PCA to reduce the dimension.
+
+```{r}
+irispca <- prcomp(iris[, -5])
+summary(irispca)
+```
+
+PC1 explain 92%, PC2 explain 5%, PC3 explain 1.7% 
+
+```{r}
+irispca
+```
+
+```{r}
+biplot(irispca)
+```
+
+```{r}
+par(mfrow = c(1, 2))
+plot(irispca$x[, 1:2], col = iris$Species)
+plot(irispca$x[, 3:4], col = iris$Species)
+```
+
+Real datasets often come with missing values. In R, these should be encoded using NA. Unfortunately, PCA cannot deal with missing values, and observations containing NA values will be dropped automatically. This is a viable solution only when the proportion of missing values is low.
+
+
+
+## tSNE 
+
+t-Distributed Stochastic Neighbour Embedding (t-SNE) is a non-linear dimensionality reduction technique, i.e. that different regions of the data space will be subjected to different transformations. t-SNE will compress small distances, thus bringing close neighbours together, and will ignore large distances. It is particularly well suited for very high dimensional data.
+
+```{r}
+library(Rtsne)
+uiris <- unique(iris[, 1:5])
+iristsne <- Rtsne(uiris[, 1:4])
+plot(iristsne$Y, col = uiris$Species)
+```
+
+
+t-SNE (as well as many other methods, in particular classification algorithms) has two important parameters that can substantially influence the clustering of the data
+
+Perplexity: balances global and local aspects of the data.
+Iterations: number of iterations before the clustering is stopped.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
