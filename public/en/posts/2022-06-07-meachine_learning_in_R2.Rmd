@@ -1,0 +1,144 @@
+---
+title: "Meachine learning in R - Supervised Learning"
+author: "KJY"
+date: '2022-06-07'
+slug: mechine_learning_in_R2
+categories: R
+tags: []
+lastmod: '2022-06-07T10:29:22-05:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+
+## KNN 
+
+K-nearest neighbours works by directly measuring the (Euclidean) distance between observations and inferring the class of unlabelled data from the class of its nearest neighbours.
+
+
+Typically in machine learning, there are two clear steps, where one first trains a model and then uses the model to predict new outputs (class labels in this case). In the kNN, these two steps are combined into a single function call to knn.
+
+```{r}
+set.seed(12L)
+
+# from 150 numbers, randomly select 50 numbers
+tr <- sample(150, 50)
+nw <- sample(150, 50)
+
+
+library("class")
+knnres <- knn(iris[tr, -5], iris[nw, -5], iris$Species[tr])
+
+knnres
+
+head(knnres)
+```
+
+
+```{r}
+table(knnres, iris$Species[nw])
+```
+
+
+```{r}
+library(magrittr)
+knnres == iris$Species[nw] %T>% mean()
+```
+
+
+```{r}
+mean(knnres == iris$Species[nw])
+```
+
+
+parameter k defines how many nearest neighbours will be considered to assign a class to a new unlabelled observation
+
+
+```{r}
+args(knn)
+```
+
+
+the default value is 1
+
+## Model performance
+
+```{r}
+library(caret)
+```
+
+
+```{r}
+data(diamonds)
+
+model <- lm(price ~ ., diamonds)
+
+model
+# predict is a generic function for predictions from the results of various model fitting functions.
+p <- predict(model, diamonds)
+```
+
+```{r}
+## Error on prediction
+error <- p - diamonds$price
+rmse_in <- sqrt(mean(error^2)) ## in-sample RMSE root mean squared error (RMSE)
+rmse_in
+```
+
+```{r}
+set.seed(42)
+ntest <- nrow(diamonds) * 0.80
+test <- sample(nrow(diamonds), ntest)
+model <- lm(price ~ ., data = diamonds[test, ])
+p <- predict(model, diamonds[-test, ])
+error <- p - diamonds$price[-test]
+rmse_out <- sqrt(mean(error^2)) ## out-of-sample RMSE
+rmse_out
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
