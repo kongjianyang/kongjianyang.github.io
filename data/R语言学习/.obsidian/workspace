@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "R语言常见的包.md",
+            "file": "R语言小技巧.md",
             "mode": "source",
             "backlinks": false,
             "source": false
@@ -70,7 +70,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "R语言常见的包.md",
+                "file": "R语言小技巧.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,13 +94,12 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "active": "13502b571fcb48ce",
   "lastOpenFiles": [
-    "R语言常见的包.md",
     "R语言小技巧.md",
+    "R语言常见的包.md",
     "近期任务.md",
     "Pasted image 20220505195504.png.md",
     "Pasted image 20220505195504.png",
