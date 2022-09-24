@@ -6,7 +6,7 @@
 <script src=https://cdn.jsdelivr.net/npm/vega-lite@4.17.0></script>
 <script src=https://cdn.jsdelivr.net/npm/vega-embed@6.12.2></script>
 <script>hljs.initHighlightingOnLoad()</script></head><body><div class=wrapper><header class=header><nav class=nav><a href=/ class=nav-logo><img src=/media/%3cnil%3e width height alt></a><ul class=nav-links><li><a href=/cn/about/>关于</a></li><li><a href=/cn/posts/>日志</a></li><li><a href=/cn/newsletter/>周刊</a></li><li><a href=/>English</a></li></ul></nav></header><main class=content role=main><div style=text-align:center><h1>使用Rmd写博客的一些流程</h1><p>KJY
-/ 2018-12-25</p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2018-12-25-%e4%bd%bf%e7%94%a8Rmd%e5%86%99%e5%8d%9a%e5%ae%a2%e7%9a%84%e4%b8%80%e4%ba%9b%e6%b5%81%e7%a8%8b.md style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title=编辑本页></i></a></span><aside class=toc>Table of Contents:<nav id=TableOfContents></nav></aside><div class="body-text list-text"><p>首先将Rmd文件转换为md文件</p><pre tabindex=0><code>library(rmarkdown)
+/ 2018-12-25</p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/%e4%bd%bf%e7%94%a8Rmd%e5%86%99%e5%8d%9a%e5%ae%a2%e7%9a%84%e4%b8%80%e4%ba%9b%e6%b5%81%e7%a8%8b.md style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title=编辑本页></i></a></span><aside class=toc>Table of Contents:<nav id=TableOfContents></nav></aside><div class="body-text list-text"><p>首先将Rmd文件转换为md文件</p><pre tabindex=0><code>library(rmarkdown)
 
 a &lt;- list.files(&#34;./&#34;, pattern = &#34;.Rmd&#34;)
 

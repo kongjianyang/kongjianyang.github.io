@@ -113,7 +113,9 @@ rmse_out
 ```
 
 
+we manage to generate a model with a low RMSE, and possibly lower than the in-sample error.
 
+>均方根误差是用来衡量观测值同真值之间的偏差。和MSE同理，当我们的预测值和真实值之间的差距越小，模型精度越高；相反，则越低。
 
 
 
