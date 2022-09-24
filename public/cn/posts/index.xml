@@ -6,7 +6,16 @@
     <description>Recent content in 中文博客 on KJY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 28 Jun 2022 19:10:27 -0400</lastBuildDate><atom:link href="https://kongjianyang.github.io/cn/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 24 Sep 2022 19:10:27 -0400</lastBuildDate><atom:link href="https://kongjianyang.github.io/cn/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>利用Python进行文件重命名</title>
+      <link>https://kongjianyang.github.io/cn/2022/09/24/python/</link>
+      <pubDate>Sat, 24 Sep 2022 19:10:27 -0400</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/09/24/python/</guid>
+      <description># !#/usr/bin/python3 import os import re import datetime  dir = os.getcwd() files = os.listdir(&amp;#34;./&amp;#34;) # 判断字符串 oldStr = r&amp;#34;(\d{4}-\d{1,2}-\d{1,2}-)&amp;#34; newStr = &amp;#34;&amp;#34;  #判断生成时间 now = datetime.datetime.now() deltaH = datetime.timedelta(days=360)  d = os.walk(dir) for path,dirList,fileList in d:  for fileName in fileList:  oldFile = os.path.join(path, fileName)  if re.findall(oldStr, fileName):  f = datetime.datetime.fromtimestamp(os.path.getmtime(oldFile))  if f &amp;gt; (now-deltaH):  print(oldFile)  newName = re.sub(oldStr, newStr, fileName)  newFile = os.</description>
+    </item>
+    
     <item>
       <title>GSEA和GSVA分析</title>
       <link>https://kongjianyang.github.io/cn/2022/06/28/gsea/</link>

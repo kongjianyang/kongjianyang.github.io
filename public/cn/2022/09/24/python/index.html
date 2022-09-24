@@ -1,0 +1,113 @@
+<html><body><a name="top"></a>
+<!DOCTYPE html>
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>KJY</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="/css/style.css" rel="stylesheet"/>
+<link href="/css/fonts.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<div class="wrapper">
+<header class="header">
+<nav class="nav">
+<a class="nav-logo" href="/">
+<img alt="" height="" src="/media/%3cnil%3e" width=""/>
+</a>
+<ul class="nav-links">
+<li><a href="/cn/about/">关于</a></li>
+<li><a href="/cn/posts/">日志</a></li>
+<li><a href="/cn/newsletter/">周刊</a></li>
+<li><a href="/">English</a></li>
+</ul>
+</nav>
+</header>
+<main class="content" role="main">
+<div style="text-align: center">
+<h1>利用Python进行文件重命名</h1>
+<p>KJY 
+ / 2022-09-24 </p>
+<hr/>
+</div>
+<span class="article-toolbar">
+<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/%e5%88%a9%e7%94%a8Python%e8%bf%9b%e8%a1%8c%e6%96%87%e4%bb%b6%e9%87%8d%e5%91%bd%e5%90%8d.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
+</a>
+</span>
+<aside class="toc">
+Table of Contents:
+<nav id="TableOfContents"></nav>
+</aside>
+<div class="body-text list-text">
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># !#/usr/bin/python3</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">os</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">re</span>
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">datetime</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#008000">dir</span> <span style="color:#666">=</span> os<span style="color:#666">.</span>getcwd()
+</span></span><span style="display:flex;"><span>files <span style="color:#666">=</span> os<span style="color:#666">.</span>listdir(<span style="color:#ba2121">"./"</span>)
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 判断字符串</span>
+</span></span><span style="display:flex;"><span>oldStr <span style="color:#666">=</span> <span style="color:#ba2121">r</span><span style="color:#ba2121">"(\d</span><span style="color:#b68;font-weight:bold">{4}</span><span style="color:#ba2121">-\d{1,2}-\d{1,2}-)"</span>
+</span></span><span style="display:flex;"><span>newStr <span style="color:#666">=</span> <span style="color:#ba2121">""</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#判断生成时间</span>
+</span></span><span style="display:flex;"><span>now <span style="color:#666">=</span> datetime<span style="color:#666">.</span>datetime<span style="color:#666">.</span>now()
+</span></span><span style="display:flex;"><span>deltaH <span style="color:#666">=</span> datetime<span style="color:#666">.</span>timedelta(days<span style="color:#666">=</span><span style="color:#666">360</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>d <span style="color:#666">=</span> os<span style="color:#666">.</span>walk(<span style="color:#008000">dir</span>)
+</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">for</span> path,dirList,fileList <span style="color:#a2f;font-weight:bold">in</span> d:
+</span></span><span style="display:flex;"><span>    <span style="color:#008000;font-weight:bold">for</span> fileName <span style="color:#a2f;font-weight:bold">in</span> fileList:
+</span></span><span style="display:flex;"><span>        oldFile <span style="color:#666">=</span> os<span style="color:#666">.</span>path<span style="color:#666">.</span>join(path, fileName)
+</span></span><span style="display:flex;"><span>        <span style="color:#008000;font-weight:bold">if</span> re<span style="color:#666">.</span>findall(oldStr, fileName):
+</span></span><span style="display:flex;"><span>            f <span style="color:#666">=</span> datetime<span style="color:#666">.</span>datetime<span style="color:#666">.</span>fromtimestamp(os<span style="color:#666">.</span>path<span style="color:#666">.</span>getmtime(oldFile))
+</span></span><span style="display:flex;"><span>            <span style="color:#008000;font-weight:bold">if</span> f <span style="color:#666">&gt;</span> (now<span style="color:#666">-</span>deltaH):
+</span></span><span style="display:flex;"><span>                <span style="color:#008000">print</span>(oldFile)
+</span></span><span style="display:flex;"><span>                newName <span style="color:#666">=</span> re<span style="color:#666">.</span>sub(oldStr, newStr, fileName)
+</span></span><span style="display:flex;"><span>                newFile <span style="color:#666">=</span> os<span style="color:#666">.</span>path<span style="color:#666">.</span>join(path, newName)
+</span></span><span style="display:flex;"><span>                <span style="color:#008000;font-weight:bold">if</span> os<span style="color:#666">.</span>path<span style="color:#666">.</span>isfile(oldFile):
+</span></span><span style="display:flex;"><span>                    os<span style="color:#666">.</span>rename(os<span style="color:#666">.</span>path<span style="color:#666">.</span>join(path, fileName),newFile)
+</span></span><span style="display:flex;"><span>                    <span style="color:#008000">print</span>(newFile)
+</span></span><span style="display:flex;"><span>                    <span style="color:#008000;font-weight:bold">pass</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#008000;font-weight:bold">else</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#008000;font-weight:bold">pass</span>
+</span></span></code></pre></div>
+<p style="color:#777;">最后一次修改于 2022-09-24</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+</main>
+<footer class="footer">
+<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
+</script>
+<script src="/js/math-code.js" type="text/javascript"></script>
+<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/js/center-img.js" type="text/javascript"></script>
+<ul class="footer-links">
+<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
+       订阅 </a>
+</li>
+<li>
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
+</a>
+</li>
+</ul>
+<div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+</footer>
+</div></body></html>

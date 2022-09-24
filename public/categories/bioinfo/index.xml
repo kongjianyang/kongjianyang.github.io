@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Bioinfo on KJY</title>
+    <title>bioinfo on KJY</title>
     <link>https://kongjianyang.github.io/categories/bioinfo/</link>
-    <description>Recent content in Bioinfo on KJY</description>
+    <description>Recent content in bioinfo on KJY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 30 Mar 2022 14:32:27 -0500</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/bioinfo/index.xml" rel="self" type="application/rss+xml" />

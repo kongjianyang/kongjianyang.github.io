@@ -8,12 +8,8 @@
         "type": "leaf",
         "dimension": 86.3021751910641,
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "cn/posts/2019-10-17-snakemake教学.md",
-            "mode": "source",
-            "source": false
-          }
+          "type": "empty",
+          "state": {}
         },
         "group": "0be39ace0a090326"
       },
@@ -23,9 +19,7 @@
         "dimension": 13.697824808935913,
         "state": {
           "type": "outline",
-          "state": {
-            "file": "cn/posts/2019-10-17-snakemake教学.md"
-          }
+          "state": {}
         },
         "group": "0be39ace0a090326"
       }
@@ -83,7 +77,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "cn/posts/2019-10-17-snakemake教学.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,9 +103,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "cn/posts/2019-10-17-snakemake教学.md"
-              }
+              "state": {}
             }
           }
         ]
