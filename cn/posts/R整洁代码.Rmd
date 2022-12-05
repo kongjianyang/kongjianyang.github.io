@@ -1,0 +1,222 @@
+---
+title: R整洁代码
+author: KJY
+date: '2022-12-05'
+slug: R整洁代码
+categories:
+  - R
+tags: []
+lastmod: '2022-12-05T15:06:11-05:00'
+keywords: []
+description: ''
+comment: no
+toc: no
+autoCollapseToc: no
+postMetaInFooter: no
+hiddenFromHomePage: no
+contentCopyright: no
+reward: no
+mathjax: yes
+mathjaxEnableSingleDollar: yes
+mathjaxEnableAutoNumber: yes
+hideHeaderAndFooter: no
+flowchartDiagrams:
+  enable: no
+  options: ''
+sequenceDiagrams:
+  enable: no
+  options: ''
+---
+
+数据屏蔽:使得可以不用带数据框(环境变量)名字，就能使用数据框内的变量(数据变量)，便 于在数据集内计算值
+
+- 环境变量(env-variables) ，一般你在Rstuido右上角的Environment中发现它。比如n <- 10这里的n
+
+- 数据变量(data-variables)，一般指数据框的某个变量。比如data <- data.frame(x = 1, n = 2)中的data$n
+
+但作为函数参数时的间接使用，正常是环境变量，要想作为数据变量使用，则需要用两个大括号括起来 {{var}}:
+
+```{r}
+library(tidyverse)
+var_summary = function(data, var) { 
+  data %>% summarise(n = n(), mean = mean({{var}}))
+}
+
+
+mtcars %>%
+  group_by(cyl) %>%
+  var_summary(mpg)
+```
+
+
+若是字符向量形式，想作为数据变量，则需要在函数体中使用 .data[[var]]，这里 .data 是代替 数据集的代词:
+
+```{r}
+var_summary = function(data, var) { data %>%
+    summarise(n = n(), mean = mean(.data[[var]]))
+}
+mtcars %>%
+  group_by(cyl) %>%
+  var_summary("mpg")
+```
+
+
+同样地，整洁选择作为函数参数时的间接使用，也需要用两个大括号括起来 {{vars}}:
+
+```{r}
+summarise_mean = function(data, vars) { data %>%
+    summarise(n = n(), across({{vars}}, mean))
+}
+mtcars %>%
+  group_by(cyl) %>%
+  summarise_mean(where(is.numeric))
+```
+
+若是字符向量形式，则需要借助函数 all_of() 或 any_of()，取决于你的选择:
+
+```{r}
+vars = c("mpg", "vs")
+mtcars %>% select(all_of(vars))
+mtcars %>% select(!all_of(vars))
+```
+
+以下则不合适
+```{r}
+vars = c("mpg", "vs")
+mtcars %>% select(vars)
+```
+
+使用数据屏蔽或整洁选择同时修改列名的用法:
+
+```{r}
+my_summarise = function(data, mean_var, sd_var) { data %>%
+summarise("mean_{{mean_var}}" := mean({{mean_var}}), "sd_{{sd_var}}" := sd({{sd_var}}))
+}
+mtcars %>%
+  group_by(cyl) %>%
+  my_summarise(mpg, disp)
+```
+
+```{r}
+my_summarise = function(data, group_var, summarise_var) { data %>%
+    group_by(across({{group_var}})) %>% summarise(across({{summarise_var}}, mean, .names = "mean_{.col}")) #整洁选择作为函数参数时的间接使用，也需要用两个大括号括起来 {{vars}}:
+#环境变量要想作为数据变量使用，则需要用两个大括号括起来
+}
+mtcars %>%
+  my_summarise(c(am, cyl), where(is.numeric))
+```
+
+
+
+环境变量在函数中当作mtcars中的数据变量，即当做mtcars的一个列的名字来使用，就需要引用(quote)和解引用(unquote)两个工序：
+
+第一步，用 enquo()把用户传递过来的参数引用起来（引用可以理解为冷冻起来）
+
+第二步，用 !! 解开这个引用（解引用可以理解为解冷），然后使用参数的内容
+
+这个quote-unquote的过程让环境变量名变成了数据变量，也可以理解为在函数评估过程中，数据变量（data-variable）遮盖了环境变量（env-variable），即数据遮盖（data masking），看到cyl，正常情况下，本来应该是到环境变量里去找这个cyl对应的值，然而，数据遮盖机制，插队了，让代码去数据变量中去找cyl以及对应的值。
+
+
+```{r}
+group_var <-  quote(cyl)
+summary_var <-  quote(mpg)
+    
+rlang::qq_show( 
+    data %>%
+    group_by(!!group_var) %>%
+    summarise(mean = mean(!!summary_var))
+)
+```
+
+```{r}
+group_var <-  quote(cyl)
+summary_var <-  quote(mpg)
+mtcars %>%
+    group_by(!!group_var) %>%
+    summarise(mean = mean(!!summary_var))
+```
+
+
+```{r}
+grouped_mean = function(data, summary_var, group_var) { 
+  summary_var = enquo(summary_var)
+  group_var = enquo(group_var)
+data %>%
+    group_by(!!group_var) %>%
+    summarise(mean = mean(!!summary_var))
+}
+grouped_mean(mtcars, mpg, cyl)
+```
+
+是一样的，但是使用{{}}的代码更加简单些
+
+```{r}
+grouped_mean = function(data, summary_var, group_var) { 
+data %>%
+    group_by({{group_var}}) %>%
+    summarise(mean = mean({{summary_var}}))
+}
+grouped_mean(mtcars, mpg, cyl)
+```
+
+要想修改结果列名，可借助 as_label() 函数从引用中提取名字:
+
+```{r}
+grouped_mean = function(data, summary_var, group_var) { 
+  summary_var = enquo(summary_var)
+  group_var = enquo(group_var)
+  summary_nm = str_c("mean_", as_label(summary_var))
+  group_nm = str_c("group_", as_label(group_var))
+  
+   data %>%
+    group_by(!!group_nm := !!group_var) %>%
+    summarise(!!summary_nm := mean(!!summary_var))
+}
+grouped_mean(mtcars, mpg, cyl)
+```
+
+我们希望输出的统计结果中，统计参数名加一个前缀 “avg_”， 可以分三步完成
+
+获取引用参数的默认名
+修改参数的默认名，比如加前缀或者后缀
+!! 解引用并放在 := 左边
+
+```{r}
+grouped_mean2 <- function(.data, .summary_var, ...) {
+  summary_var <- enquo(.summary_var)
+  group_vars <- enquos(...)
+
+  # Get and modify the default name
+  summary_nm <- as_label(summary_var)
+  summary_nm <- paste0("avg_", summary_nm)
+
+  .data %>%
+    group_by(!!!group_vars) %>%
+    summarise(!!summary_nm := mean(!!summary_var))  # Unquote the name
+}
+
+grouped_mean2(mtcars, disp, cyl, am)
+```
+
+或者更简洁的办法
+
+```{r}
+my_summarise <- function(data, group_var, summarise_var) {
+  data %>%
+    group_by(across({{ group_var }})) %>%
+    summarise(across({{ summarise_var }}, mean, .names = "mean_{col}"))
+}
+
+my_summarise(starwars, species, height)
+```
+
+
+
+
+
+
+
+
+
+
+
