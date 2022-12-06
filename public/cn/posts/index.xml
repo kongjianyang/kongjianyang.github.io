@@ -6,7 +6,16 @@
     <description>Recent content in 中文博客 on KJY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 24 Sep 2022 19:10:27 -0400</lastBuildDate><atom:link href="https://kongjianyang.github.io/cn/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 05 Dec 2022 14:42:27 -0500</lastBuildDate><atom:link href="https://kongjianyang.github.io/cn/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>R整洁代码</title>
+      <link>https://kongjianyang.github.io/cn/2022/12/05/rtidy/</link>
+      <pubDate>Mon, 05 Dec 2022 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/12/05/rtidy/</guid>
+      <description>R整洁代码 // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child&#34;); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;;var t=[],r=Object.</description>
+    </item>
+    
     <item>
       <title>利用Python进行文件重命名</title>
       <link>https://kongjianyang.github.io/cn/2022/09/24/python/</link>
