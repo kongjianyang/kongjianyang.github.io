@@ -1,0 +1,195 @@
+<html><body><a name="top"></a>
+<!DOCTYPE html>
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>KJY</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="/css/style.css" rel="stylesheet"/>
+<link href="/css/fonts.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<div class="wrapper">
+<header class="header">
+<nav class="nav">
+<a class="nav-logo" href="/">
+<img alt="" height="" src="/media/%3cnil%3e" width=""/>
+</a>
+<ul class="nav-links">
+<li><a href="/cn/about/">关于</a></li>
+<li><a href="/cn/posts/">日志</a></li>
+<li><a href="/cn/newsletter/">周刊</a></li>
+<li><a href="/">English</a></li>
+</ul>
+</nav>
+</header>
+<main class="content" role="main">
+<div style="text-align: center">
+<h1>在Docker内打开Jupiter-notebook</h1>
+<p>KJY 
+ / 2022-12-06 </p>
+<hr/>
+</div>
+<span class="article-toolbar">
+<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/%e5%9c%a8Docker%e5%86%85%e6%89%93%e5%bc%80jupyter-notebook.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
+</a>
+</span>
+<div class="body-text list-text">
+<p>参考教程：https://medium.com/codex/how-to-setup-jupyter-notebook-on-mac-b0c2e3c66e60</p>
+<h1 id="范例">范例<a arialabel="Anchor" class="header-anchor" href="#范例"> # </a></h1>
+<p>There are many Jupyter images, depending on the variety of Python libraries installed and the additional setup of R and/or PySpark</p>
+<p>use <em>scipy-notebook</em>, which contains most of the basic data science libraries that I need. It contains <a href="https://dask.org/" rel="noreferrer noopener" target="_blank">dask</a>
+
+, <a href="https://pandas.pydata.org/" rel="noreferrer noopener" target="_blank">pandas</a>
+
+, <a href="https://github.com/pydata/numexpr" rel="noreferrer noopener" target="_blank">numexpr</a>
+
+, <a href="https://matplotlib.org/" rel="noreferrer noopener" target="_blank">matplotlib</a>
+
+, <a href="https://www.scipy.org/" rel="noreferrer noopener" target="_blank">scipy</a>
+
+, <a href="https://seaborn.pydata.org/" rel="noreferrer noopener" target="_blank">seaborn</a>
+
+, <a href="http://scikit-learn.org/stable/" rel="noreferrer noopener" target="_blank">scikit-learn</a>
+
+, <a href="http://scikit-image.org/" rel="noreferrer noopener" target="_blank">scikit-image</a>
+
+, <a href="http://www.sympy.org/en/index.html" rel="noreferrer noopener" target="_blank">sympy</a>
+
+, <a href="http://cython.org/" rel="noreferrer noopener" target="_blank">cython</a>
+
+, <a href="https://patsy.readthedocs.io/en/latest/" rel="noreferrer noopener" target="_blank">patsy</a>
+
+, <a href="http://www.statsmodels.org/stable/index.html" rel="noreferrer noopener" target="_blank">statsmodel</a>
+
+, <a href="https://github.com/cloudpipe/cloudpickle" rel="noreferrer noopener" target="_blank">cloudpickle</a>
+
+, <a href="https://pypi.python.org/pypi/dill" rel="noreferrer noopener" target="_blank">dill</a>
+
+, <a href="https://numba.pydata.org/" rel="noreferrer noopener" target="_blank">numba</a>
+
+, <a href="https://bokeh.pydata.org/en/latest/" rel="noreferrer noopener" target="_blank">bokeh</a>
+
+, <a href="https://www.sqlalchemy.org/" rel="noreferrer noopener" target="_blank">sqlalchemy</a>
+
+, <a href="http://www.h5py.org/" rel="noreferrer noopener" target="_blank">hdf5</a>
+
+, <a href="http://vincent.readthedocs.io/en/latest/" rel="noreferrer noopener" target="_blank">vincent</a>
+
+, <a href="https://www.crummy.com/software/BeautifulSoup/" rel="noreferrer noopener" target="_blank">beautifulsoup</a>
+
+, <a href="https://developers.google.com/protocol-buffers/docs/pythontutorial" rel="noreferrer noopener" target="_blank">protobuf</a>
+
+, <a href="http://www.python-excel.org/" rel="noreferrer noopener" target="_blank">xlrd</a>
+
+, <a href="https://bottleneck.readthedocs.io/en/latest/" rel="noreferrer noopener" target="_blank">bottleneck</a>
+
+, and <a href="https://www.pytables.org/" rel="noreferrer noopener" target="_blank">pytables</a>
+
+ packages.</p>
+<pre tabindex="0"><code># To download the image, start Docker and run the following command in your terminal:
+docker image pull jupyter/scipy-notebook
+
+# launch the container
+docker container run --name jupyter -p 8888:8888 -v ~/Desktop/jupyter_notebook jupyter/scipy-notebook
+</code></pre><p><code>docker container run</code> speaks for itself. It creates a container from the image.</p>
+<p><code>--name jupyter</code> provides a name for our container. In this way, we can refer to it instead of a long technical name.</p>
+<p><code>-p 8888:8888</code> indicates which ports will be used for communication between the container and your system. As Jupyter is a web-based application, you need to tell the system which port will be assigned to it.</p>
+<p><code>-v ~/Desktop/jupyter_notebook</code> defines which folder from your computer should be mounted to the container. Usually, this is a folder with project working files.  For example, I have project files on my desktop and I would use <code>~/Desktop/jupyter_notebook</code>.</p>
+<p>To install additional packages, you could go into the container by running the following command in the terminal:</p>
+<pre tabindex="0"><code>docker container exec -it jupyter bash
+</code></pre><p>Extensions can be installed using the following command launched inside the docker container.</p>
+<pre tabindex="0"><code>pip install jupyter_contrib_nbextensions &amp;&amp; jupyter contrib nbextension install --user
+</code></pre><p>After installation, you should stop and launch the container again to see a new tab with extensions in Jupyter.</p>
+<h1 id="常用方法">常用方法：<a arialabel="Anchor" class="header-anchor" href="#常用方法"> # </a></h1>
+<p>将 image 文件从仓库抓取到本地。</p>
+<blockquote>
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker image pull library/hello-world
+</span></span></code></pre></div></blockquote>
+<p>上面代码中，<code>docker image pull</code>是抓取 image 文件的命令。<code>library/hello-world</code>是 image 文件在仓库里面的位置，其中<code>library</code>是 image 文件所在的组，<code>hello-world</code>是 image 文件的名字。</p>
+<p>查看image</p>
+<pre tabindex="0"><code>$ docker images
+REPOSITORY               TAG       IMAGE ID       CREATED        SIZE
+jupyter/scipy-notebook   latest    c72931167ad2   29 hours ago   3.03GB
+python                   3.7.4     9fa56d0addae   3 years ago    918MB
+
+$ docker image ls
+REPOSITORY               TAG       IMAGE ID       CREATED        SIZE
+jupyter/scipy-notebook   latest    c72931167ad2   29 hours ago   3.03GB
+python
+</code></pre><pre tabindex="0"><code># 列出本机正在运行的容器
+$ docker container ls 
+
+# 列出本机所有容器，包括终止运行的容器
+$ docker container ls --all
+</code></pre><p>终止运行的容器文件，依然会占据硬盘空间，可以使用<a href="https://docs.docker.com/engine/reference/commandline/container_rm/" rel="noreferrer noopener" target="_blank"><code>docker container rm</code></a>
+
+命令删除。</p>
+<blockquote>
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker container rm <span style="color:#666">[</span>containerID<span style="color:#666">]</span>/<span style="color:#666">[</span>containerName<span style="color:#666">]</span>
+</span></span></code></pre></div></blockquote>
+<p>运行上面的命令之后，再使用<code>docker container ls --all</code>命令，就会发现被删除的容器文件已经消失了。</p>
+<p><code>docker container run</code>命令是新建容器，每运行一次，就会新建一个容器。同样的命令运行两次，就会生成两个一模一样的容器文件。如果希望重复使用容器，就要使用<code>docker container start</code>命令，它用来启动已经生成、已经停止运行的容器文件。</p>
+<p><code>docker container kill</code>命令终止容器运行，相当于向容器里面的主进程发出 SIGKILL 信号。而<code>docker container stop</code>命令也是用来终止容器运行，相当于向容器里面的主进程发出 SIGTERM 信号，然后过一段时间再发出 SIGKILL 信号。</p>
+<blockquote>
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker container stop <span style="color:#666">[</span>containerID<span style="color:#666">]</span>/<span style="color:#666">[</span>containerName<span style="color:#666">]</span>
+</span></span></code></pre></div></blockquote>
+<p><code>docker container logs</code>命令用来查看 docker 容器的输出，即容器里面 Shell 的标准输出。如果<code>docker run</code>命令运行容器的时候，没有使用<code>-it</code>参数，就要用这个命令查看输出。</p>
+<blockquote>
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker container logs <span style="color:#666">[</span>containerID<span style="color:#666">]</span>
+</span></span></code></pre></div></blockquote>
+<p><code>docker container exec</code>命令用于进入一个正在运行的 docker 容器。如果<code>docker run</code>命令运行容器的时候，没有使用<code>-it</code>参数，就要用这个命令进入容器。一旦进入了容器，就可以在容器的 Shell 执行命令了。</p>
+<blockquote>
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker container <span style="color:#008000">exec</span> -it <span style="color:#666">[</span>containerID<span style="color:#666">]</span> /bin/bash
+</span></span></code></pre></div></blockquote>
+<p><code>docker container cp</code>命令用于从正在运行的 Docker 容器里面，将文件拷贝到本机。下面是拷贝到当前目录的写法。</p>
+<blockquote>
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker container cp <span style="color:#666">[</span>containID<span style="color:#666">]</span>:<span style="color:#666">[</span>/path/to/file<span style="color:#666">]</span> .
+</span></span></code></pre></div></blockquote>
+<h1 id="简单流程">简单流程<a arialabel="Anchor" class="header-anchor" href="#简单流程"> # </a></h1>
+<pre tabindex="0"><code>docker container ls --all
+docker container start jupyter
+docker container logs jupyter
+docker container exec -it jupyter bash
+docker container stop jupyter
+</code></pre>
+<p style="color:#777;">最后一次修改于 2022-12-06</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+</main>
+<footer class="footer">
+<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
+</script>
+<script src="/js/math-code.js" type="text/javascript"></script>
+<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="/js/center-img.js" type="text/javascript"></script>
+<ul class="footer-links">
+<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
+       订阅 </a>
+</li>
+<li>
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
+</a>
+</li>
+</ul>
+<div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+</footer>
+</div></body></html>

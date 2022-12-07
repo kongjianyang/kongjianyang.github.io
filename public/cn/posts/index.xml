@@ -6,7 +6,18 @@
     <description>Recent content in 中文博客 on KJY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 05 Dec 2022 14:42:27 -0500</lastBuildDate><atom:link href="https://kongjianyang.github.io/cn/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://kongjianyang.github.io/cn/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在Docker内打开Jupiter-notebook</title>
+      <link>https://kongjianyang.github.io/cn/2022/12/06/%E5%9C%A8docker%E5%86%85%E6%89%93%E5%BC%80jupiter-notebook/</link>
+      <pubDate>Tue, 06 Dec 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/12/06/%E5%9C%A8docker%E5%86%85%E6%89%93%E5%BC%80jupiter-notebook/</guid>
+      <description>参考教程：https://medium.com/codex/how-to-setup-jupyter-notebook-on-mac-b0c2e3c66e60
+范例 There are many Jupyter images, depending on the variety of Python libraries installed and the additional setup of R and/or PySpark
+use scipy-notebook, which contains most of the basic data science libraries that I need. It contains dask , pandas , numexpr , matplotlib , scipy , seaborn , scikit-learn , scikit-image , sympy , cython , patsy , statsmodel , cloudpickle , dill , numba , bokeh , sqlalchemy , hdf5 , vincent , beautifulsoup , protobuf , xlrd , bottleneck , and pytables packages.</description>
+    </item>
+    
     <item>
       <title>R整洁代码</title>
       <link>https://kongjianyang.github.io/cn/2022/12/05/rtidy/</link>
