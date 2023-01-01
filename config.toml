@@ -114,14 +114,13 @@ posts = "/posts/:year/:month/:day/:slug/"
       cn = "版权"
 
 [markup]
- defaultMarkdownHandler = "goldmark"
+defaultMarkdownHandler = "goldmark"
 
   [markup.goldmark]
 
     [markup.goldmark.extensions]
     definitionList = true
-    footnote = true
-    linkify = false
+    footnote = trues
     strikethrough = true
     table = true
     taskList = true

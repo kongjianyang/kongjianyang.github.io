@@ -101,7 +101,7 @@ posts = "/posts/:year/:month/:day/:slug/"
       cn = "版权"
 
 [markup]
- defaultMarkdownHandler = "goldmark"
+defaultMarkdownHandler = "goldmark"
 
   [markup.goldmark]
 

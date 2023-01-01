@@ -170,5 +170,8 @@ docker container start jupyter
 docker container logs jupyter
 docker container exec -it jupyter bash
 docker container stop jupyter
+
+# maybe used 
+docker container cp ~/Desktop/joyful-pandas-master/data 89fcf2f6530c:/home/jovyan/
 ```
 
