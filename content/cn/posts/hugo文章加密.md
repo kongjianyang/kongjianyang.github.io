@@ -61,7 +61,7 @@ $ cp shortcodes/hugo-encryptor.html /path/to/your/blog/layouts/shortcodes/hugo-e
 
 ##  
 
-
+```
 **这里必须存在一些明文文字以及概要标签:**
 
 
@@ -86,3 +86,4 @@ python hugo-encryptor
 **别忘了闭合 `hugo-encryptor` shortcode 标签:**
 
 {{% /hugo-encryptor %}}
+```
