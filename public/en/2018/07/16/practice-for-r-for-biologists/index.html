@@ -1,48 +1,95 @@
-<html><body><a name="top"></a>
+<a name="top"></a>
 <!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>KJY</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-<link href="/css/style.css" rel="stylesheet"/>
-<link href="/css/fonts.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
 <script>hljs.initHighlightingOnLoad();</script>
-<div class="wrapper">
-<header class="header">
-<nav class="nav">
-<a class="nav-logo" href="/">
-<img alt="" height="" src="/media/%3cnil%3e" width=""/>
-</a>
-<ul class="nav-links">
-<li><a href="/">Home</a></li>
-<li><a href="/en/about/">About</a></li>
-<li><a href="/en/posts/">Posts</a></li>
-<li><a href="/cn/posts/">中文</a></li>
-</ul>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/">Home</a></li>
+       
+           <li><a href="/en/about/">About</a></li>
+       
+           <li><a href="/en/posts/">Posts</a></li>
+       
+           <li><a href="/cn/posts/">中文</a></li>
+       
+       
+      </ul>
 </nav>
-</header>
-<main class="content" role="main">
+      </header>
+
+<main class = "content" role="main">
 <div style="text-align: center">
-<h1>Practice for 'R for Biologists'</h1>
+
+<h1>Practice for &#39;R for Biologists&#39;</h1>
+
 <p>Liang 
  / 2018-07-16 </p>
+
 <hr/>
 </div>
+
 <span class="article-toolbar">
-<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/en/posts/practice-for-r-for-biologists.Rmd" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="Suggest an edit of this page"></i>
-</a>
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/en/posts/practice-for-r-for-biologists.Rmd'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="Suggest an edit of this page"></i>
+  </a>
+  
+  
+  
 </span>
+
+
+
 <div class="body-text list-text">
-<div class="section level1" id="part-1-basic">
+
+
+
+<div id="part-1-basic" class="section level1">
 <h1>Part 1 Basic</h1>
 <p>R displays 7 digits by default. You can display more digits with options(). More than 15 digits could be unreliable. This is a <strong>global option</strong>; remains in effect until further notice</p>
 <pre class="r"><code>options(digits = 15)
@@ -61,13 +108,13 @@ exp(1)               </code></pre>
 <pre><code>## [1] 1.4142135623731</code></pre>
 <p>cat() function concatenates strings, inside double quotes, and interpolated values of variables</p>
 <pre class="r"><code>x= 2.1
-cat("x =", x, "\n")</code></pre>
+cat(&quot;x =&quot;, x, &quot;\n&quot;)</code></pre>
 <pre><code>## x = 2.1</code></pre>
-<pre class="r"><code>cat("root2 =", sqrt(2), "\n", "root3 =", sqrt(3), "\n")</code></pre>
+<pre class="r"><code>cat(&quot;root2 =&quot;, sqrt(2), &quot;\n&quot;, &quot;root3 =&quot;, sqrt(3), &quot;\n&quot;)</code></pre>
 <pre><code>## root2 = 1.4142135623731 
 ##  root3 = 1.73205080756888</code></pre>
 </div>
-<div class="section level1" id="part-2-help">
+<div id="part-2-help" class="section level1">
 <h1>Part 2 Help</h1>
 <pre class="r"><code># To see a sequence of simple graphics pictures
 demo(graphics)        </code></pre>
@@ -85,27 +132,27 @@ demo(graphics)        </code></pre>
 ## &gt; ## Here is some code which illustrates some of the differences between
 ## &gt; ## R and S graphics capabilities.  Note that colors are generally specified
 ## &gt; ## by a character string name (taken from the X11 rgb.txt file) and that line
-## &gt; ## textures are given similarly.  The parameter "bg" sets the background
-## &gt; ## parameter for the plot and there is also an "fg" parameter which sets
+## &gt; ## textures are given similarly.  The parameter &quot;bg&quot; sets the background
+## &gt; ## parameter for the plot and there is also an &quot;fg&quot; parameter which sets
 ## &gt; ## the foreground color.
 ## &gt; 
 ## &gt; 
 ## &gt; x &lt;- stats::rnorm(50)
 ## 
-## &gt; opar &lt;- par(bg = "white")
+## &gt; opar &lt;- par(bg = &quot;white&quot;)
 ## 
-## &gt; plot(x, ann = FALSE, type = "n")</code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-4-1.png" width="672"/></p>
+## &gt; plot(x, ann = FALSE, type = &quot;n&quot;)</code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <pre><code>## 
 ## &gt; abline(h = 0, col = gray(.90))
 ## 
-## &gt; lines(x, col = "green4", lty = "dotted")
+## &gt; lines(x, col = &quot;green4&quot;, lty = &quot;dotted&quot;)
 ## 
-## &gt; points(x, bg = "limegreen", pch = 21)
+## &gt; points(x, bg = &quot;limegreen&quot;, pch = 21)
 ## 
-## &gt; title(main = "Simple Use of Color In a Plot",
-## +       xlab = "Just a Whisper of a Label",
-## +       col.main = "blue", col.lab = gray(.8),
+## &gt; title(main = &quot;Simple Use of Color In a Plot&quot;,
+## +       xlab = &quot;Just a Whisper of a Label&quot;,
+## +       col.main = &quot;blue&quot;, col.lab = gray(.8),
 ## +       cex.main = 1.2, cex.lab = 1.0, font.main = 4, font.lab = 3)
 ## 
 ## &gt; ## A little color wheel.    This code just plots equally spaced hues in
@@ -115,37 +162,37 @@ demo(graphics)        </code></pre>
 ## &gt; ## the RGB primaries.  On the other hand on the SGI Indy at work the
 ## &gt; ## effect is near perfect.
 ## &gt; 
-## &gt; par(bg = "gray")
+## &gt; par(bg = &quot;gray&quot;)
 ## 
 ## &gt; pie(rep(1,24), col = rainbow(24), radius = 0.9)</code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-4-2.png" width="672"/></p>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
 <pre><code>## 
-## &gt; title(main = "A Sample Color Wheel", cex.main = 1.4, font.main = 3)
+## &gt; title(main = &quot;A Sample Color Wheel&quot;, cex.main = 1.4, font.main = 3)
 ## 
-## &gt; title(xlab = "(Use this as a test of monitor linearity)",
+## &gt; title(xlab = &quot;(Use this as a test of monitor linearity)&quot;,
 ## +       cex.lab = 0.8, font.lab = 3)
 ## 
 ## &gt; ## We have already confessed to having these.  This is just showing off X11
-## &gt; ## color names (and the example (from the postscript manual) is pretty "cute".
+## &gt; ## color names (and the example (from the postscript manual) is pretty &quot;cute&quot;.
 ## &gt; 
 ## &gt; pie.sales &lt;- c(0.12, 0.3, 0.26, 0.16, 0.04, 0.12)
 ## 
-## &gt; names(pie.sales) &lt;- c("Blueberry", "Cherry",
-## +              "Apple", "Boston Cream", "Other", "Vanilla Cream")
+## &gt; names(pie.sales) &lt;- c(&quot;Blueberry&quot;, &quot;Cherry&quot;,
+## +              &quot;Apple&quot;, &quot;Boston Cream&quot;, &quot;Other&quot;, &quot;Vanilla Cream&quot;)
 ## 
 ## &gt; pie(pie.sales,
-## +     col = c("purple","violetred1","green3","cornsilk","cyan","white"))</code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-4-3.png" width="672"/></p>
+## +     col = c(&quot;purple&quot;,&quot;violetred1&quot;,&quot;green3&quot;,&quot;cornsilk&quot;,&quot;cyan&quot;,&quot;white&quot;))</code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-4-3.png" width="672" /></p>
 <pre><code>## 
-## &gt; title(main = "January Pie Sales", cex.main = 1.8, font.main = 1)
+## &gt; title(main = &quot;January Pie Sales&quot;, cex.main = 1.8, font.main = 1)
 ## 
-## &gt; title(xlab = "(Don't try this at home kids)", cex.lab = 0.8, font.lab = 3)
+## &gt; title(xlab = &quot;(Don&#39;t try this at home kids)&quot;, cex.lab = 0.8, font.lab = 3)
 ## 
-## &gt; ## Boxplots:  I couldn't resist the capability for filling the "box".
+## &gt; ## Boxplots:  I couldn&#39;t resist the capability for filling the &quot;box&quot;.
 ## &gt; ## The use of color seems like a useful addition, it focuses attention
 ## &gt; ## on the central bulk of the data.
 ## &gt; 
-## &gt; par(bg="cornsilk")
+## &gt; par(bg=&quot;cornsilk&quot;)
 ## 
 ## &gt; n &lt;- 10
 ## 
@@ -153,14 +200,14 @@ demo(graphics)        </code></pre>
 ## 
 ## &gt; x &lt;- rnorm(n*100) + sqrt(as.numeric(g))
 ## 
-## &gt; boxplot(split(x,g), col="lavender", notch=TRUE)</code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-4-4.png" width="672"/></p>
+## &gt; boxplot(split(x,g), col=&quot;lavender&quot;, notch=TRUE)</code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-4-4.png" width="672" /></p>
 <pre><code>## 
-## &gt; title(main="Notched Boxplots", xlab="Group", font.main=4, font.lab=1)
+## &gt; title(main=&quot;Notched Boxplots&quot;, xlab=&quot;Group&quot;, font.main=4, font.lab=1)
 ## 
 ## &gt; ## An example showing how to fill between curves.
 ## &gt; 
-## &gt; par(bg="white")
+## &gt; par(bg=&quot;white&quot;)
 ## 
 ## &gt; n &lt;- 100
 ## 
@@ -172,67 +219,67 @@ demo(graphics)        </code></pre>
 ## 
 ## &gt; yy &lt;- c(x, rev(y))
 ## 
-## &gt; plot(xx, yy, type="n", xlab="Time", ylab="Distance")</code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-4-5.png" width="672"/></p>
+## &gt; plot(xx, yy, type=&quot;n&quot;, xlab=&quot;Time&quot;, ylab=&quot;Distance&quot;)</code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-4-5.png" width="672" /></p>
 <pre><code>## 
-## &gt; polygon(xx, yy, col="gray")
+## &gt; polygon(xx, yy, col=&quot;gray&quot;)
 ## 
-## &gt; title("Distance Between Brownian Motions")
+## &gt; title(&quot;Distance Between Brownian Motions&quot;)
 ## 
 ## &gt; ## Colored plot margins, axis labels and titles.    You do need to be
-## &gt; ## careful with these kinds of effects.    It's easy to go completely
+## &gt; ## careful with these kinds of effects.    It&#39;s easy to go completely
 ## &gt; ## over the top and you can end up with your lunch all over the keyboard.
 ## &gt; ## On the other hand, my market research clients love it.
 ## &gt; 
 ## &gt; x &lt;- c(0.00, 0.40, 0.86, 0.85, 0.69, 0.48, 0.54, 1.09, 1.11, 1.73, 2.05, 2.02)
 ## 
-## &gt; par(bg="lightgray")
+## &gt; par(bg=&quot;lightgray&quot;)
 ## 
-## &gt; plot(x, type="n", axes=FALSE, ann=FALSE)</code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-4-6.png" width="672"/></p>
+## &gt; plot(x, type=&quot;n&quot;, axes=FALSE, ann=FALSE)</code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-4-6.png" width="672" /></p>
 <pre><code>## 
-## &gt; usr &lt;- par("usr")
+## &gt; usr &lt;- par(&quot;usr&quot;)
 ## 
-## &gt; rect(usr[1], usr[3], usr[2], usr[4], col="cornsilk", border="black")
+## &gt; rect(usr[1], usr[3], usr[2], usr[4], col=&quot;cornsilk&quot;, border=&quot;black&quot;)
 ## 
-## &gt; lines(x, col="blue")
+## &gt; lines(x, col=&quot;blue&quot;)
 ## 
-## &gt; points(x, pch=21, bg="lightcyan", cex=1.25)
+## &gt; points(x, pch=21, bg=&quot;lightcyan&quot;, cex=1.25)
 ## 
-## &gt; axis(2, col.axis="blue", las=1)
+## &gt; axis(2, col.axis=&quot;blue&quot;, las=1)
 ## 
-## &gt; axis(1, at=1:12, lab=month.abb, col.axis="blue")
+## &gt; axis(1, at=1:12, lab=month.abb, col.axis=&quot;blue&quot;)
 ## 
 ## &gt; box()
 ## 
-## &gt; title(main= "The Level of Interest in R", font.main=4, col.main="red")
+## &gt; title(main= &quot;The Level of Interest in R&quot;, font.main=4, col.main=&quot;red&quot;)
 ## 
-## &gt; title(xlab= "1996", col.lab="red")
+## &gt; title(xlab= &quot;1996&quot;, col.lab=&quot;red&quot;)
 ## 
 ## &gt; ## A filled histogram, showing how to change the font used for the
 ## &gt; ## main title without changing the other annotation.
 ## &gt; 
-## &gt; par(bg="cornsilk")
+## &gt; par(bg=&quot;cornsilk&quot;)
 ## 
 ## &gt; x &lt;- rnorm(1000)
 ## 
-## &gt; hist(x, xlim=range(-4, 4, x), col="lavender", main="")</code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-4-7.png" width="672"/></p>
+## &gt; hist(x, xlim=range(-4, 4, x), col=&quot;lavender&quot;, main=&quot;&quot;)</code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-4-7.png" width="672" /></p>
 <pre><code>## 
-## &gt; title(main="1000 Normal Random Variates", font.main=3)
+## &gt; title(main=&quot;1000 Normal Random Variates&quot;, font.main=3)
 ## 
 ## &gt; ## A scatterplot matrix
 ## &gt; ## The good old Iris data (yet again)
 ## &gt; 
-## &gt; pairs(iris[1:4], main="Edgar Anderson's Iris Data", font.main=4, pch=19)</code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-4-8.png" width="672"/></p>
+## &gt; pairs(iris[1:4], main=&quot;Edgar Anderson&#39;s Iris Data&quot;, font.main=4, pch=19)</code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-4-8.png" width="672" /></p>
 <pre><code>## 
-## &gt; pairs(iris[1:4], main="Edgar Anderson's Iris Data", pch=21,
-## +       bg = c("red", "green3", "blue")[unclass(iris$Species)])</code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-4-9.png" width="672"/></p>
+## &gt; pairs(iris[1:4], main=&quot;Edgar Anderson&#39;s Iris Data&quot;, pch=21,
+## +       bg = c(&quot;red&quot;, &quot;green3&quot;, &quot;blue&quot;)[unclass(iris$Species)])</code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-4-9.png" width="672" /></p>
 <pre><code>## 
 ## &gt; ## Contour plotting
-## &gt; ## This produces a topographic map of one of Auckland's many volcanic "peaks".
+## &gt; ## This produces a topographic map of one of Auckland&#39;s many volcanic &quot;peaks&quot;.
 ## &gt; 
 ## &gt; x &lt;- 10*1:nrow(volcano)
 ## 
@@ -240,9 +287,9 @@ demo(graphics)        </code></pre>
 ## 
 ## &gt; lev &lt;- pretty(range(volcano), 10)
 ## 
-## &gt; par(bg = "lightcyan")
+## &gt; par(bg = &quot;lightcyan&quot;)
 ## 
-## &gt; pin &lt;- par("pin")
+## &gt; pin &lt;- par(&quot;pin&quot;)
 ## 
 ## &gt; xdelta &lt;- diff(range(x))
 ## 
@@ -260,30 +307,30 @@ demo(graphics)        </code></pre>
 ## 
 ## &gt; plot(numeric(0), numeric(0),
 ## +      xlim = range(x)+c(-1,1)*xadd, ylim = range(y)+c(-1,1)*yadd,
-## +      type = "n", ann = FALSE)</code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-4-10.png" width="672"/></p>
+## +      type = &quot;n&quot;, ann = FALSE)</code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-4-10.png" width="672" /></p>
 <pre><code>## 
-## &gt; usr &lt;- par("usr")
+## &gt; usr &lt;- par(&quot;usr&quot;)
 ## 
-## &gt; rect(usr[1], usr[3], usr[2], usr[4], col="green3")
+## &gt; rect(usr[1], usr[3], usr[2], usr[4], col=&quot;green3&quot;)
 ## 
-## &gt; contour(x, y, volcano, levels = lev, col="yellow", lty="solid", add=TRUE)
+## &gt; contour(x, y, volcano, levels = lev, col=&quot;yellow&quot;, lty=&quot;solid&quot;, add=TRUE)
 ## 
 ## &gt; box()
 ## 
-## &gt; title("A Topographic Map of Maunga Whau", font= 4)
+## &gt; title(&quot;A Topographic Map of Maunga Whau&quot;, font= 4)
 ## 
-## &gt; title(xlab = "Meters North", ylab = "Meters West", font= 3)
+## &gt; title(xlab = &quot;Meters North&quot;, ylab = &quot;Meters West&quot;, font= 3)
 ## 
-## &gt; mtext("10 Meter Contour Spacing", side=3, line=0.35, outer=FALSE,
-## +       at = mean(par("usr")[1:2]), cex=0.7, font=3)
+## &gt; mtext(&quot;10 Meter Contour Spacing&quot;, side=3, line=0.35, outer=FALSE,
+## +       at = mean(par(&quot;usr&quot;)[1:2]), cex=0.7, font=3)
 ## 
 ## &gt; ## Conditioning plots
 ## &gt; 
-## &gt; par(bg="cornsilk")
+## &gt; par(bg=&quot;cornsilk&quot;)
 ## 
-## &gt; coplot(lat ~ long | depth, data = quakes, pch = 21, bg = "green3")</code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-4-11.png" width="672"/></p>
+## &gt; coplot(lat ~ long | depth, data = quakes, pch = 21, bg = &quot;green3&quot;)</code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-4-11.png" width="672" /></p>
 <pre><code>## 
 ## &gt; par(opar)</code></pre>
 <pre class="r"><code># To see a sequence of 3D graphics
@@ -309,27 +356,27 @@ example(plot)         </code></pre>
 ## plot&gt; require(stats) # for lowess, rpois, rnorm
 ## 
 ## plot&gt; plot(cars)</code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-5-1.png" width="672"/></p>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <pre><code>## 
 ## plot&gt; lines(lowess(cars))
 ## 
 ## plot&gt; plot(sin, -pi, 2*pi) # see ?plot.function</code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-5-2.png" width="672"/></p>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
 <pre><code>## 
 ## plot&gt; ## Discrete Distribution Plot:
-## plot&gt; plot(table(rpois(100, 5)), type = "h", col = "red", lwd = 10,
-## plot+      main = "rpois(100, lambda = 5)")</code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-5-3.png" width="672"/></p>
+## plot&gt; plot(table(rpois(100, 5)), type = &quot;h&quot;, col = &quot;red&quot;, lwd = 10,
+## plot+      main = &quot;rpois(100, lambda = 5)&quot;)</code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-5-3.png" width="672" /></p>
 <pre><code>## 
 ## plot&gt; ## Simple quantiles/ECDF, see ecdf() {library(stats)} for a better one:
-## plot&gt; plot(x &lt;- sort(rnorm(47)), type = "s", main = "plot(x, type = \"s\")")</code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-5-4.png" width="672"/></p>
+## plot&gt; plot(x &lt;- sort(rnorm(47)), type = &quot;s&quot;, main = &quot;plot(x, type = \&quot;s\&quot;)&quot;)</code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-5-4.png" width="672" /></p>
 <pre><code>## 
-## plot&gt; points(x, cex = .5, col = "dark red")</code></pre>
+## plot&gt; points(x, cex = .5, col = &quot;dark red&quot;)</code></pre>
 <pre class="r"><code># To list all R commands containing the string plot; could be too much info
-help.search("plot")   
+help.search(&quot;plot&quot;)   
  
-# Same as help.search("plot")
+# Same as help.search(&quot;plot&quot;)
 ??plot   </code></pre>
 <p>: operator has higher predecence than the arithmetical operations.</p>
 <pre class="r"><code>sequence_1 = 0 : 10 - 2
@@ -342,77 +389,77 @@ print(sequence_2)</code></pre>
 square_root_x = sqrt(x)
  
 plot(x, square_root_x)</code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-7-1.png" width="672"/></p>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
-<div class="section level1" id="part-3-graphics">
+<div id="part-3-graphics" class="section level1">
 <h1>Part 3 Graphics</h1>
 <pre class="r"><code>x = seq(from =0, to =10, by=0.5)
 square_root_x = sqrt(x)
 plot(x, square_root_x)</code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-8-1.png" width="672"/></p>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <pre class="r"><code># To pause between plots
 par(ask = TRUE) 
 
 # To add title
-plot(x, square_root_x, main = "My First Plot")                         </code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-8-2.png" width="672"/></p>
+plot(x, square_root_x, main = &quot;My First Plot&quot;)                         </code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
 <pre class="r"><code># To add label to y-axis
-plot(x, square_root_x, main = "My First Plot", ylab = "sqrt(x)")        </code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-8-3.png" width="672"/></p>
+plot(x, square_root_x, main = &quot;My First Plot&quot;, ylab = &quot;sqrt(x)&quot;)        </code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-8-3.png" width="672" /></p>
 <pre class="r"><code># To set limits of y-axis
-plot(x, square_root_x, main = "My First Plot", ylab = "sqrt(x)", ylim = c(0, 10))  </code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-8-4.png" width="672"/></p>
+plot(x, square_root_x, main = &quot;My First Plot&quot;, ylab = &quot;sqrt(x)&quot;, ylim = c(0, 10))  </code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-8-4.png" width="672" /></p>
 <pre class="r"><code># add color
-plot(x, square_root_x, main = "my fisrt plot", ylab = "sqrt(x)", ylim = c(0,10), col = "blue")</code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-8-5.png" width="672"/></p>
+plot(x, square_root_x, main = &quot;my fisrt plot&quot;, ylab = &quot;sqrt(x)&quot;, ylim = c(0,10), col = &quot;blue&quot;)</code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-8-5.png" width="672" /></p>
 <pre class="r"><code># To over strike with both plotting characters, pch, and connecting lines
-plot(x, square_root_x, main = "My First Plot", ylab = "sqrt(x)", ylim = c(0, 10),col = "blue", type = "o")  </code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-8-6.png" width="672"/></p>
+plot(x, square_root_x, main = &quot;My First Plot&quot;, ylab = &quot;sqrt(x)&quot;, ylim = c(0, 10),col = &quot;blue&quot;, type = &quot;o&quot;)  </code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-8-6.png" width="672" /></p>
 <pre class="r"><code># To set the line type
-plot(x, square_root_x, main = "My First Plot", ylab = "sqrt(x)", ylim = c(0, 10), col = "blue", type = "o", lty = "dotted") </code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-8-7.png" width="672"/></p>
+plot(x, square_root_x, main = &quot;My First Plot&quot;, ylab = &quot;sqrt(x)&quot;, ylim = c(0, 10), col = &quot;blue&quot;, type = &quot;o&quot;, lty = &quot;dotted&quot;) </code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-8-7.png" width="672" /></p>
 <pre class="r"><code># To set plotting character 
-plot(x, square_root_x, main = "My First Plot", ylab = "sqrt(x)", ylim = c(0, 10), col = "blue", type = "o", lty = "dotted", pch = 22)   </code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-8-8.png" width="672"/></p>
+plot(x, square_root_x, main = &quot;My First Plot&quot;, ylab = &quot;sqrt(x)&quot;, ylim = c(0, 10), col = &quot;blue&quot;, type = &quot;o&quot;, lty = &quot;dotted&quot;, pch = 22)   </code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-8-8.png" width="672" /></p>
 <p>plot() is a high-level plotting function that opens a new plotting window, using low-level functions, one can add to the open plot,some of the commonly used adding functions are: points(), lines(), abline(), legend(), text()</p>
 <pre class="r"><code>t = seq(from = 0, to = 10, by = 0.5)
         
 # To pause between plots
 #par(ask = TRUE)                                           
     
-plot(t, sqrt(2 * t), main = "Adding to Plot", sub = "A function and its inverse", xlab = "", ylab = "", xlim = c(0, 10), ylim = c(0, 10), pch = 16, type = "o") 
+plot(t, sqrt(2 * t), main = &quot;Adding to Plot&quot;, sub = &quot;A function and its inverse&quot;, xlab = &quot;&quot;, ylab = &quot;&quot;, xlim = c(0, 10), ylim = c(0, 10), pch = 16, type = &quot;o&quot;) 
  
 # To add the inverse function
-points(t, 0.5 * t * t, col = "red" , pch = 16, type = "o")    
+points(t, 0.5 * t * t, col = &quot;red&quot; , pch = 16, type = &quot;o&quot;)    
  
 # To add the line with intercept = 0, slope = 1
-abline(0, 1, col = "gray", lwd = 3, lty = "dashed")      
+abline(0, 1, col = &quot;gray&quot;, lwd = 3, lty = &quot;dashed&quot;)      
  
 # To add text
-text(7, 7.3, "45-degree line", srt = 45)                 
-legend("bottomright", legend = c("funtion", "inverse"), pch = 16, col = c("black", "red"))
+text(7, 7.3, &quot;45-degree line&quot;, srt = 45)                 
+legend(&quot;bottomright&quot;, legend = c(&quot;funtion&quot;, &quot;inverse&quot;), pch = 16, col = c(&quot;black&quot;, &quot;red&quot;))
  
 # One can add graphs of mathematical functions using, for example:
 x = seq(from =0, to =10, by=0.5)
 lines(curve(sin(x) + cos(x) + 5,  add = TRUE))</code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-9-1.png" width="672"/></p>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>curve() is also a high-level mathematical plotting function that opens a new plotting window, Variable in the mathematical formula must be x, add more graphs by setting add = TRUE</p>
-<pre class="r"><code>curve(sin(x), xlim = c(-4*pi, 4*pi), ylim = c(-2, 2), col = "red", ylab = "")
+<pre class="r"><code>curve(sin(x), xlim = c(-4*pi, 4*pi), ylim = c(-2, 2), col = &quot;red&quot;, ylab = &quot;&quot;)
  
 # To plot horizontal line using h
-abline(h=0, lty= "dotted")    
+abline(h=0, lty= &quot;dotted&quot;)    
  
 # To mark the origin      
 points(0, 0, pch = 3)                
  
-curve(cos(x),  col = "blue", add = TRUE) 
-curve(sin(x) + cos(x),  col = "purple", lwd = 3, add = TRUE)
+curve(cos(x),  col = &quot;blue&quot;, add = TRUE) 
+curve(sin(x) + cos(x),  col = &quot;purple&quot;, lwd = 3, add = TRUE)
  
-title("sin(x) + cos(x)")
+title(&quot;sin(x) + cos(x)&quot;)
  
-legend("bottomright", legend = c("sin(x)", "cos(x)", "sin(x) + cos(x)"), 
-        lty = 1, col = c("red", "blue", "purple"))</code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-10-1.png" width="672"/></p>
+legend(&quot;bottomright&quot;, legend = c(&quot;sin(x)&quot;, &quot;cos(x)&quot;, &quot;sin(x) + cos(x)&quot;), 
+        lty = 1, col = c(&quot;red&quot;, &quot;blue&quot;, &quot;purple&quot;))</code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>par() command can set the multi plot environment. mfcol = c(nr,nc) partitions the graphic window as a matrix of nr rows and nc columns, the plots are then drawn in columns. mfrow = c(nr,nc) partitions the graphic window as a matrix of nr rows and nc columns, the plots are then drawn in rows. You can get fancy partitions of the plotting window with layout() function</p>
 <pre class="r"><code># Prepare for 2x2 plots, to be filled by rows
 par(mfrow = c(2, 2))          
@@ -422,20 +469,20 @@ plot(t, sin(t))
 curve(sinh(x), -5, 5)
 curve(tan(x), n = 500, -5, 5)
 curve(round(x), n = 500, -5, 5) </code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-11-1.png" width="672"/></p>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <pre class="r"><code># Return to single plot
 par(mfrow = c(1, 1))          
  
 curve(sin(x), -5, 5) </code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-11-2.png" width="672"/></p>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
 </div>
-<div class="section level1" id="part-4-curve-fitting">
+<div id="part-4-curve-fitting" class="section level1">
 <h1>Part 4 Curve Fitting</h1>
 <p>Linear Model function lm(y~x) computes the least square fit line to data points; y as a function of x. Type ?formula for help with legal formulas. lm() can also be used to fit nonlinear models where the parameters enter into model linearly</p>
 <pre class="r"><code># fit a line to two data points
 x2 = c(1,2)
 y2 = c(1.5,2.5)
-plot(x2,y2, main = "Unique line through 2 points", xlim = c(0,4), ylim = c(0, 4))
+plot(x2,y2, main = &quot;Unique line through 2 points&quot;, xlim = c(0,4), ylim = c(0, 4))
 
 # compute the least square line 
 
@@ -449,8 +496,8 @@ print(ls_fit_line)</code></pre>
 ## (Intercept)           x2  
 ##         0.5          1.0</code></pre>
 <pre class="r"><code># plot the least square line stored in ls_fit_line
-abline(ls_fit_line, col = "red")</code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-12-1.png" width="672"/></p>
+abline(ls_fit_line, col = &quot;red&quot;)</code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <pre class="r"><code># plot the vector contain the intercept and slope 
 print(coef(ls_fit_line))</code></pre>
 <pre><code>## (Intercept)          x2 
@@ -476,10 +523,10 @@ print(summary(ls_fit_line))</code></pre>
 x3 = c(1, 2, 3)
 y3 = c(1.5, 2.5, 2.8)
  
-plot(x3, y3, main="Best-fit line through 3 points", xlim=c(0, 4), ylim = c(0, 4)) 
+plot(x3, y3, main=&quot;Best-fit line through 3 points&quot;, xlim=c(0, 4), ylim = c(0, 4)) 
 fit3 = lm(y3 ~ x3)
-abline(fit3, col = "red")</code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-13-1.png" width="672"/></p>
+abline(fit3, col = &quot;red&quot;)</code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <pre class="r"><code>print(fit3)</code></pre>
 <pre><code>## 
 ## Call:
@@ -507,7 +554,7 @@ abline(fit3, col = "red")</code></pre>
 ## F-statistic: 10.3469387755 on 1 and 1 DF,  p-value: 0.191883024573</code></pre>
 <pre class="r"><code># Compute the parabola through 3 data points
  
-plot(x3, y3, main="Unique parabola through 3 points", xlim=c(0, 6), ylim = c(0, 6)) 
+plot(x3, y3, main=&quot;Unique parabola through 3 points&quot;, xlim=c(0, 6), ylim = c(0, 6)) 
 fit_parabola3 = lm(y3 ~ x3 + I(x3^2))
 print(fit_parabola3 )</code></pre>
 <pre><code>## 
@@ -517,20 +564,20 @@ print(fit_parabola3 )</code></pre>
 ## Coefficients:
 ## (Intercept)           x3      I(x3^2)  
 ##       -0.20         2.05        -0.35</code></pre>
-<pre class="r"><code>curve(coef(fit_parabola3)[1] + coef(fit_parabola3)[2]* x + coef(fit_parabola3)[3]*x^2, 0, 6, col = "red", add=TRUE)</code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-15-1.png" width="672"/></p>
+<pre class="r"><code>curve(coef(fit_parabola3)[1] + coef(fit_parabola3)[2]* x + coef(fit_parabola3)[3]*x^2, 0, 6, col = &quot;red&quot;, add=TRUE)</code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <pre class="r"><code># Compute a best-fit parabola for 4 data points
  
 x4 = c(1, 2, 3, 4)
 y4 = c(1.5, 2.5, 2.8, 1.7)
  
-plot(x4, y4, main="Best-fit parabola through 4 points", xlim=c(0, 6), ylim = c(0, 6)) 
+plot(x4, y4, main=&quot;Best-fit parabola through 4 points&quot;, xlim=c(0, 6), ylim = c(0, 6)) 
 fit_parabola4 = lm(y4 ~ x4 + I(x4^2))
-curve(coef(fit_parabola4)[1] + coef(fit_parabola4)[2]* x + coef(fit_parabola4)[3]*x^2, 0, 6, col = "red", add=TRUE)
+curve(coef(fit_parabola4)[1] + coef(fit_parabola4)[2]* x + coef(fit_parabola4)[3]*x^2, 0, 6, col = &quot;red&quot;, add=TRUE)
  
 # Add the predicted points
-points(x4, predict(fit_parabola4), col = "green") </code></pre>
-<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-16-1.png" width="672"/></p>
+points(x4, predict(fit_parabola4), col = &quot;green&quot;) </code></pre>
+<p><img src="/en/2018-07-16-practice-for-r-for-biologists_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <pre class="r"><code>print(fit_parabola4)</code></pre>
 <pre><code>## 
 ## Call:
@@ -540,29 +587,51 @@ points(x4, predict(fit_parabola4), col = "green") </code></pre>
 ## (Intercept)           x4      I(x4^2)  
 ##      -0.725        2.715       -0.525</code></pre>
 </div>
+
 <p style="color:#777;">Last modified on 2018-07-16</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
 </main>
+
 <footer class="footer">
-<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
 </script>
-<script src="/js/math-code.js" type="text/javascript"></script>
-<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/js/center-img.js" type="text/javascript"></script>
-<ul class="footer-links">
-<li><a href="/en/posts/index.xml" title="RSS feed" type="application/rss+xml">
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/en/posts/index.xml" type="application/rss+xml" title="RSS feed">
        Subscribe </a>
-</li>
-<li>
-<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
+       </li>
+       
+       
+       <li>
+       
+        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
        
         License
-        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
-</a>
-</li>
-</ul>
-<div class="copyright-text">
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
             
             ©
             
@@ -571,5 +640,10 @@ points(x4, predict(fit_parabola4), col = "green") </code></pre>
             2018-2021
             
      </div>
+
 </footer>
-</div></body></html>
+
+
+
+
+

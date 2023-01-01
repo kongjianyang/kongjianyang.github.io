@@ -1,62 +1,109 @@
-<html><body><a name="top"></a>
+<a name="top"></a>
 <!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>KJY</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-<link href="/css/style.css" rel="stylesheet"/>
-<link href="/css/fonts.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
 <script>hljs.initHighlightingOnLoad();</script>
-<div class="wrapper">
-<header class="header">
-<nav class="nav">
-<a class="nav-logo" href="/">
-<img alt="" height="" src="/media/%3cnil%3e" width=""/>
-</a>
-<ul class="nav-links">
-<li><a href="/">Home</a></li>
-<li><a href="/en/about/">About</a></li>
-<li><a href="/en/posts/">Posts</a></li>
-<li><a href="/cn/posts/">中文</a></li>
-</ul>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/">Home</a></li>
+       
+           <li><a href="/en/about/">About</a></li>
+       
+           <li><a href="/en/posts/">Posts</a></li>
+       
+           <li><a href="/cn/posts/">中文</a></li>
+       
+       
+      </ul>
 </nav>
-</header>
-<main class="content" role="main">
+      </header>
+
+<main class = "content" role="main">
 <div style="text-align: center">
+
 <h1>Add p value and significant marker for ggplot based on ggpubr</h1>
+
 <p>Liang 
  / 2018-06-07 </p>
+
 <hr/>
 </div>
+
 <span class="article-toolbar">
-<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/en/posts/add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr.Rmd" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="Suggest an edit of this page"></i>
-</a>
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/en/posts/add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr.Rmd'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="Suggest an edit of this page"></i>
+  </a>
+  
+  
+  
 </span>
+
+
+
 <div class="body-text list-text">
+
+
+
 <blockquote>
 <p>The ‘ggpubr’ package provides some easy-to-use functions for creating and customizing ‘ggplot2’- based publication ready plots. -A. Kassambara.</p>
 </blockquote>
 <p><a href="http://www.sthda.com/english/rpkgs/ggpubr">Reference</a></p>
-<div class="section level1" id="preparation">
+<div id="preparation" class="section level1">
 <h1>1. Preparation</h1>
 <p>install the package</p>
-<pre class="r"><code>install.packages("ggpubr")</code></pre>
+<pre class="r"><code>install.packages(&quot;ggpubr&quot;)</code></pre>
 <p>or you can install the latest version form github</p>
-<pre class="r"><code>if(!require(devtools)) install.packages("devtools") # if havn`t install devtools before, install it first
-devtools::install_github("kassambara/ggpubr")</code></pre>
+<pre class="r"><code>if(!require(devtools)) install.packages(&quot;devtools&quot;) # if havn`t install devtools before, install it first
+devtools::install_github(&quot;kassambara/ggpubr&quot;)</code></pre>
 <p>load package</p>
 <pre class="r"><code>library(ggpubr)</code></pre>
 <p>load data</p>
-<pre class="r"><code>data("ToothGrowth")
+<pre class="r"><code>data(&quot;ToothGrowth&quot;)
 head(ToothGrowth)</code></pre>
 <pre><code>##    len supp dose
 ## 1  4.2   VC  0.5
@@ -66,9 +113,9 @@ head(ToothGrowth)</code></pre>
 ## 5  6.4   VC  0.5
 ## 6 10.0   VC  0.5</code></pre>
 </div>
-<div class="section level1" id="comparing-means-in-r">
+<div id="comparing-means-in-r" class="section level1">
 <h1>2. Comparing means in R</h1>
-<p>Reference here: <a class="uri" href="http://www.sthda.com/english/wiki/comparing-means-in-r">http://www.sthda.com/english/wiki/comparing-means-in-r</a></p>
+<p>Reference here: <a href="http://www.sthda.com/english/wiki/comparing-means-in-r" class="uri">http://www.sthda.com/english/wiki/comparing-means-in-r</a></p>
 <p>a short summary here</p>
 <table>
 <thead>
@@ -102,14 +149,14 @@ head(ToothGrowth)</code></pre>
 </tbody>
 </table>
 </div>
-<div class="section level1" id="two-functions">
+<div id="two-functions" class="section level1">
 <h1>3. Two functions</h1>
 <ul>
 <li>compare_means()</li>
 <li>stat_compare_means()</li>
 </ul>
 <p>usage</p>
-<pre><code>compare_means(formula, data, method="wilcox.test", paired=FALSE, 
+<pre><code>compare_means(formula, data, method=&quot;wilcox.test&quot;, paired=FALSE, 
               group.by=NULL, ref.group = NULL, ...)</code></pre>
 <blockquote>
 <p>formula: a formula of the form x ~ group where x is a numeric variable giving the data values and group is a factor with one or multiple levels giving the corresponding groups</p>
@@ -124,83 +171,83 @@ head(ToothGrowth)</code></pre>
                    label.x = NULL,
                    label.y = NULL)</code></pre>
 </div>
-<div class="section level1" id="compare-two-group">
+<div id="compare-two-group" class="section level1">
 <h1>4. Compare two group</h1>
 <pre class="r"><code>compare_means(len ~ supp, data = ToothGrowth) </code></pre>
 <pre><code>## # A tibble: 1 x 8
 ##   .y.   group1 group2      p p.adj p.format p.signif method  
 ##   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
 ## 1 len   OJ     VC     0.0645 0.064 0.064    ns       Wilcoxon</code></pre>
-<pre class="r"><code>p &lt;- ggboxplot(ToothGrowth, x="supp",
-               y = "len", color = "supp", add = "point")
+<pre class="r"><code>p &lt;- ggboxplot(ToothGrowth, x=&quot;supp&quot;,
+               y = &quot;len&quot;, color = &quot;supp&quot;, add = &quot;point&quot;)
 # add p value
 p + stat_compare_means() # the default method for comparision is wilcox.test() </code></pre>
-<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-6-1.png" width="672"/></p>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>change comparision method</p>
-<pre class="r"><code>p + stat_compare_means(method = "t.test")</code></pre>
-<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-7-1.png" width="672"/></p>
+<pre class="r"><code>p + stat_compare_means(method = &quot;t.test&quot;)</code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>add the p.signif and change the location</p>
 <pre class="r"><code>p + stat_compare_means(aes(label = ..p.signif..),
                        label.x = 1.5, 
                        label.y = 40)</code></pre>
-<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-8-1.png" width="672"/></p>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
-<div class="section level1" id="compare-two-paired-group">
+<div id="compare-two-paired-group" class="section level1">
 <h1>5. Compare two paired group</h1>
 <pre class="r"><code>compare_means(len ~ supp, data = ToothGrowth, paired = TRUE)</code></pre>
 <pre><code>## # A tibble: 1 x 8
 ##   .y.   group1 group2       p  p.adj p.format p.signif method  
 ##   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
 ## 1 len   OJ     VC     0.00431 0.0043 0.0043   **       Wilcoxon</code></pre>
-<pre class="r"><code>ggpaired(ToothGrowth, x="supp", y="len",
-         color="supp", line.color="gray",
-         line.size=0.4, palette = "point") + 
+<pre class="r"><code>ggpaired(ToothGrowth, x=&quot;supp&quot;, y=&quot;len&quot;,
+         color=&quot;supp&quot;, line.color=&quot;gray&quot;,
+         line.size=0.4, palette = &quot;point&quot;) + 
     stat_compare_means(paired = TRUE)</code></pre>
-<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-9-1.png" width="672"/></p>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
-<div class="section level1" id="multiple-group-comparision">
+<div id="multiple-group-comparision" class="section level1">
 <h1>6. multiple group comparision</h1>
 <p>global test</p>
-<pre class="r"><code>compare_means(len ~ dose, data = ToothGrowth, method = "anova")</code></pre>
+<pre class="r"><code>compare_means(len ~ dose, data = ToothGrowth, method = &quot;anova&quot;)</code></pre>
 <pre><code>## # A tibble: 1 x 6
 ##   .y.          p    p.adj p.format p.signif method
 ##   &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt; 
 ## 1 len   9.53e-16 9.50e-16 9.5e-16  ****     Anova</code></pre>
-<pre class="r"><code>ggboxplot(ToothGrowth, x = "dose", y = "len", color = "dose", add = "point") + 
-    stat_compare_means(method = "anova")</code></pre>
-<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-11-1.png" width="672"/></p>
+<pre class="r"><code>ggboxplot(ToothGrowth, x = &quot;dose&quot;, y = &quot;len&quot;, color = &quot;dose&quot;, add = &quot;point&quot;) + 
+    stat_compare_means(method = &quot;anova&quot;)</code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>you can specify the comparison group</p>
-<pre class="r"><code>my_comparisons &lt;- list(c("0.5","1"), c("1", "2"),
-                       c("0.5", "2"))
-ggboxplot(ToothGrowth, x="dose", y="len",
-          color="dose", add = "point") +
+<pre class="r"><code>my_comparisons &lt;- list(c(&quot;0.5&quot;,&quot;1&quot;), c(&quot;1&quot;, &quot;2&quot;),
+                       c(&quot;0.5&quot;, &quot;2&quot;))
+ggboxplot(ToothGrowth, x=&quot;dose&quot;, y=&quot;len&quot;,
+          color=&quot;dose&quot;, add = &quot;point&quot;) +
     stat_compare_means(comparisons = my_comparisons) + #add comparision group p value 
     stat_compare_means(label.y = 50) # add global p value </code></pre>
-<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-12-1.png" width="672"/></p>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 </div>
-<div class="section level1" id="multiple-group-comparision-with-a-reference-group">
+<div id="multiple-group-comparision-with-a-reference-group" class="section level1">
 <h1>7. multiple group comparision with a reference group</h1>
 <pre class="r"><code>compare_means(len ~ dose, data = ToothGrowth,
-              ref.group = "0.5", 
-              method = "t.test")</code></pre>
+              ref.group = &quot;0.5&quot;, 
+              method = &quot;t.test&quot;)</code></pre>
 <pre><code>## # A tibble: 2 x 8
 ##   .y.   group1 group2        p    p.adj p.format p.signif method
 ##   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt; 
 ## 1 len   0.5    1      1.27e- 7 1.30e- 7 1.3e-07  ****     T-test
 ## 2 len   0.5    2      4.40e-14 8.80e-14 4.4e-14  ****     T-test</code></pre>
 <p>Visualize the result</p>
-<pre class="r"><code>ggboxplot(ToothGrowth, x="dose", y="len",
-          color="dose", add = "point") + 
-    stat_compare_means(method="anova", label.y=40) + # add global p value 
-    stat_compare_means(label="p.signif", method="t.test",
-                       ref.group = "0.5") # add signif marker</code></pre>
-<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-14-1.png" width="672"/></p>
+<pre class="r"><code>ggboxplot(ToothGrowth, x=&quot;dose&quot;, y=&quot;len&quot;,
+          color=&quot;dose&quot;, add = &quot;point&quot;) + 
+    stat_compare_means(method=&quot;anova&quot;, label.y=40) + # add global p value 
+    stat_compare_means(label=&quot;p.signif&quot;, method=&quot;t.test&quot;,
+                       ref.group = &quot;0.5&quot;) # add signif marker</code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>use all data as the base-mean do the paired comparison</p>
 <pre class="r"><code># Load myeloma data from GitHub
-myeloma &lt;- read.delim("https://raw.githubusercontent.com/kassambara/data/master/myeloma.txt")
+myeloma &lt;- read.delim(&quot;https://raw.githubusercontent.com/kassambara/data/master/myeloma.txt&quot;)
 
 compare_means(DEPDC1 ~ molecular_group,  data = myeloma,
-              ref.group = ".all.", method = "t.test")</code></pre>
+              ref.group = &quot;.all.&quot;, method = &quot;t.test&quot;)</code></pre>
 <pre><code>## # A tibble: 7 x 8
 ##   .y.    group1 group2                 p    p.adj p.format p.signif method
 ##   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;              &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt; 
@@ -211,63 +258,63 @@ compare_means(DEPDC1 ~ molecular_group,  data = myeloma,
 ## 5 DEPDC1 .all.  MAF              2.54e-1  1.00e+0 0.25     ns       T-test
 ## 6 DEPDC1 .all.  MMSET            5.78e-1  1.00e+0 0.58     ns       T-test
 ## 7 DEPDC1 .all.  Proliferation    2.39e-5  1.20e-4 2.4e-05  ****     T-test</code></pre>
-<pre class="r"><code>ggboxplot(myeloma, x="molecular_group", y="DEPDC1",
-          color="molecular_group", add="jitter",
-          legend="none") + 
+<pre class="r"><code>ggboxplot(myeloma, x=&quot;molecular_group&quot;, y=&quot;DEPDC1&quot;,
+          color=&quot;molecular_group&quot;, add=&quot;jitter&quot;,
+          legend=&quot;none&quot;) + 
     rotate_x_text(angle = 45) + 
     geom_hline(yintercept = mean(myeloma$DEPDC1),
                linetype=2) + #  add base mean
-     stat_compare_means(method = "anova", label.y = 1600)+        # Add global annova p-value
-  stat_compare_means(label = "p.signif", method = "t.test",
-                     ref.group = ".all.")                      # Pairwise comparison against all</code></pre>
-<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-16-1.png" width="672"/></p>
+     stat_compare_means(method = &quot;anova&quot;, label.y = 1600)+        # Add global annova p-value
+  stat_compare_means(label = &quot;p.signif&quot;, method = &quot;t.test&quot;,
+                     ref.group = &quot;.all.&quot;)                      # Pairwise comparison against all</code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 </div>
-<div class="section level1" id="generate-sub-figure">
+<div id="generate-sub-figure" class="section level1">
 <h1>8. generate sub figure</h1>
-<pre class="r"><code>p &lt;- ggboxplot(ToothGrowth, x = "supp", y = "len",
-          color = "supp",
-          add = "point",
-          facet.by = "dose", short.panel.labs = FALSE)
+<pre class="r"><code>p &lt;- ggboxplot(ToothGrowth, x = &quot;supp&quot;, y = &quot;len&quot;,
+          color = &quot;supp&quot;,
+          add = &quot;point&quot;,
+          facet.by = &quot;dose&quot;, short.panel.labs = FALSE)
 # Use only p.format as label. Remove method name.
-p + stat_compare_means(label = "p.format")</code></pre>
-<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-17-1.png" width="672"/></p>
+p + stat_compare_means(label = &quot;p.format&quot;)</code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <pre class="r"><code># Or use significance symbol as label
-p + stat_compare_means(label =  "p.signif", label.x = 1.5)</code></pre>
-<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-18-1.png" width="672"/></p>
+p + stat_compare_means(label =  &quot;p.signif&quot;, label.x = 1.5)</code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p>put all figure in one</p>
-<pre class="r"><code>p &lt;- ggboxplot(ToothGrowth, x = "dose", y = "len",
-          color = "supp", palette = "jco",
-          add = "jitter")
+<pre class="r"><code>p &lt;- ggboxplot(ToothGrowth, x = &quot;dose&quot;, y = &quot;len&quot;,
+          color = &quot;supp&quot;, palette = &quot;jco&quot;,
+          add = &quot;jitter&quot;)
 p + stat_compare_means(aes(group = supp))</code></pre>
-<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-19-1.png" width="672"/></p>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <pre class="r"><code># only p value 
-p + stat_compare_means(aes(group = supp), label = "p.format")</code></pre>
-<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-20-1.png" width="672"/></p>
+p + stat_compare_means(aes(group = supp), label = &quot;p.format&quot;)</code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 </div>
-<div class="section level1" id="other-figure">
+<div id="other-figure" class="section level1">
 <h1>9. Other figure</h1>
 <pre class="r"><code># barplot add mean_se
-ggbarplot(ToothGrowth, x = "dose", y = "len", add = "mean_se")+
+ggbarplot(ToothGrowth, x = &quot;dose&quot;, y = &quot;len&quot;, add = &quot;mean_se&quot;)+
   stat_compare_means() +                                         # Global p-value
-  stat_compare_means(ref.group = "0.5", label = "p.signif",
+  stat_compare_means(ref.group = &quot;0.5&quot;, label = &quot;p.signif&quot;,
                      label.y = c(22, 29))                   # compare to ref.group</code></pre>
-<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-21-1.png" width="672"/></p>
-<pre class="r"><code>ggline(ToothGrowth, x = "dose", y = "len", add = "mean_se")+
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<pre class="r"><code>ggline(ToothGrowth, x = &quot;dose&quot;, y = &quot;len&quot;, add = &quot;mean_se&quot;)+
   stat_compare_means() +                                         # Global p-value
-  stat_compare_means(ref.group = "0.5", label = "p.signif",
+  stat_compare_means(ref.group = &quot;0.5&quot;, label = &quot;p.signif&quot;,
                      label.y = c(22, 29))  </code></pre>
-<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-22-1.png" width="672"/></p>
-<pre class="r"><code>ggbarplot(ToothGrowth, x = "dose", y = "len", add = "mean_se",
-          color = "supp", palette = "jco", 
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<pre class="r"><code>ggbarplot(ToothGrowth, x = &quot;dose&quot;, y = &quot;len&quot;, add = &quot;mean_se&quot;,
+          color = &quot;supp&quot;, palette = &quot;jco&quot;, 
           position = position_dodge(0.8))+
-  stat_compare_means(aes(group = supp), label = "p.signif", label.y = 29)</code></pre>
-<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-23-1.png" width="672"/></p>
-<pre class="r"><code>ggline(ToothGrowth, x = "dose", y = "len", add = "mean_se",
-          color = "supp", palette = "jco")+
-  stat_compare_means(aes(group = supp), label = "p.signif", 
+  stat_compare_means(aes(group = supp), label = &quot;p.signif&quot;, label.y = 29)</code></pre>
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<pre class="r"><code>ggline(ToothGrowth, x = &quot;dose&quot;, y = &quot;len&quot;, add = &quot;mean_se&quot;,
+          color = &quot;supp&quot;, palette = &quot;jco&quot;)+
+  stat_compare_means(aes(group = supp), label = &quot;p.signif&quot;, 
                      label.y = c(16, 25, 29))</code></pre>
-<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-24-1.png" width="672"/></p>
-<div class="section level2" id="sessioninfo">
+<p><img src="/en/2018-06-07-add-p-value-and-significant-marker-for-ggplot-based-on-ggpubr_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<div id="sessioninfo" class="section level2">
 <h2>SessionInfo</h2>
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>## R version 3.5.0 (2018-04-23)
@@ -305,29 +352,51 @@ ggbarplot(ToothGrowth, x = "dose", y = "len", add = "mean_se")+
 ## [49] rstudioapi_0.8   R6_2.3.0         nlme_3.1-137     compiler_3.5.0</code></pre>
 </div>
 </div>
+
 <p style="color:#777;">Last modified on 2018-06-07</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
 </main>
+
 <footer class="footer">
-<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
 </script>
-<script src="/js/math-code.js" type="text/javascript"></script>
-<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/js/center-img.js" type="text/javascript"></script>
-<ul class="footer-links">
-<li><a href="/en/posts/index.xml" title="RSS feed" type="application/rss+xml">
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/en/posts/index.xml" type="application/rss+xml" title="RSS feed">
        Subscribe </a>
-</li>
-<li>
-<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
+       </li>
+       
+       
+       <li>
+       
+        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
        
         License
-        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
-</a>
-</li>
-</ul>
-<div class="copyright-text">
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
             
             ©
             
@@ -336,5 +405,10 @@ ggbarplot(ToothGrowth, x = "dose", y = "len", add = "mean_se")+
             2018-2021
             
      </div>
+
 </footer>
-</div></body></html>
+
+
+
+
+

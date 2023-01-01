@@ -1,72 +1,117 @@
-<html><body><a name="top"></a>
+<a name="top"></a>
 <!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>KJY</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-<link href="/css/style.css" rel="stylesheet"/>
-<link href="/css/fonts.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
 <script>hljs.initHighlightingOnLoad();</script>
-<div class="wrapper">
-<header class="header">
-<nav class="nav">
-<a class="nav-logo" href="/">
-<img alt="" height="" src="/media/%3cnil%3e" width=""/>
-</a>
-<ul class="nav-links">
-<li><a href="/cn/about/">关于</a></li>
-<li><a href="/cn/posts/">日志</a></li>
-<li><a href="/cn/newsletter/">周刊</a></li>
-<li><a href="/">English</a></li>
-</ul>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
 </nav>
-</header>
-<main class="content" role="main">
+      </header>
+
+<main class = "content" role="main">
 <div style="text-align: center">
+
 <h1>R中进行文件以及文件系统管理</h1>
+
 <p>KJY 
  / 2018-11-25 </p>
+
 <hr/>
 </div>
+
 <span class="article-toolbar">
-<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/R%e4%b8%ad%e8%bf%9b%e8%a1%8c%e6%96%87%e4%bb%b6%e5%8f%8a%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e7%ae%a1%e7%90%86.Rmd" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
-</a>
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/R%e4%b8%ad%e8%bf%9b%e8%a1%8c%e6%96%87%e4%bb%b6%e5%8f%8a%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e7%ae%a1%e7%90%86.Rmd'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
 </span>
+
+
 <aside class="toc">
 Table of Contents:
 <nav id="TableOfContents">
-<ol>
-<li><a href="#1-文件操作">1. 文件操作</a></li>
-<li><a href="#2-目录操作">2. 目录操作</a></li>
-<li><a href="#3-小结">3. 小结</a></li>
-</ol>
+  <ol>
+    <li><a href="#1-文件操作">1. 文件操作</a></li>
+    <li><a href="#2-目录操作">2. 目录操作</a></li>
+    <li><a href="#3-小结">3. 小结</a></li>
+  </ol>
 </nav>
 </aside>
+
+
 <div class="body-text list-text">
 <p>本文中提到的文件系统管理主要是指文件和目录（即文件夹）的创建、查看、重命名、复制、删除和文件权限处理。</p>
-<h2 id="1-文件操作">1. 文件操作<a arialabel="Anchor" class="header-anchor" href="#1-文件操作"> # </a></h2>
+<h2 id="1-文件操作">1. 文件操作<a href="#1-文件操作" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>创建文件</p>
 <pre><code># 创建一个空文件 A.txt
-file.create("A.txt")
+file.create(&quot;A.txt&quot;)
 # 查看当前目录下的子目录和文件
 list.files()
 
 # 创建多个空文件 A1.txt，A2.txt，A3.txt
-file.create("A1.txt", "A2.txt", "A3.txt")
+file.create(&quot;A1.txt&quot;, &quot;A2.txt&quot;, &quot;A3.txt&quot;)
 # 查看当前目录下的子目录和文件
 list.files()
 
 # 创建一个有内容的文件 B.txt
-cat("文件测试\n", file = "B.txt")
+cat(&quot;文件测试\n&quot;, file = &quot;B.txt&quot;)
 list.files()
 </code></pre>
 <p>查看文件</p>
@@ -82,78 +127,78 @@ list.files(, full.names = TRUE, recursive = TRUE)
 
 # 检查文件是否存在
 ## 存在的文件
-file.exists("A.txt")
+file.exists(&quot;A.txt&quot;)
 ## 不存在的文件
-file.exists("readme.txt")
+file.exists(&quot;readme.txt&quot;)
 # 判断是否是文件
-file_test("-f", "A.txt")
+file_test(&quot;-f&quot;, &quot;A.txt&quot;)
 </code></pre>
 <p>读取文件</p>
 <pre><code># 文件A.txt读取
-readLines("A.txt")
+readLines(&quot;A.txt&quot;)
 
 # 文件B.txt读取
-readLines("B.txt")
+readLines(&quot;B.txt&quot;)
 </code></pre>
 <p>文件重命名</p>
 <pre><code># 给文件A.txt重命名为AA.txt
-file.rename("A.txt","AA.txt") #早知道有这个rename函数就不麻烦使用Python给文件改名了
+file.rename(&quot;A.txt&quot;,&quot;AA.txt&quot;) #早知道有这个rename函数就不麻烦使用Python给文件改名了
 list.files()
 </code></pre>
 <p>复制文件</p>
-<pre><code>file.copy("B.txt", "C.txt")
+<pre><code>file.copy(&quot;B.txt&quot;, &quot;C.txt&quot;)
 # 查看文件内容
-readLines("C.txt")
+readLines(&quot;C.txt&quot;)
 </code></pre>
 <p>删除文件</p>
 <pre><code># 新建文件
-file.create("tempa1", "tempa2", "tempa3", "tempa4")
+file.create(&quot;tempa1&quot;, &quot;tempa2&quot;, &quot;tempa3&quot;, &quot;tempa4&quot;)
 list.files()
 # 删除文件
-file.remove("tempa1", "tempa2", "tempa3", "tempa4")
+file.remove(&quot;tempa1&quot;, &quot;tempa2&quot;, &quot;tempa3&quot;, &quot;tempa4&quot;)
 list.files()
 </code></pre>
 <p>查看文件权限</p>
 <pre><code># 查看文件完整信息
-file.info("A.txt")
+file.info(&quot;A.txt&quot;)
 
 # 查看文件访问权限
 # 0表示有相关权限
 # 1表示没有相关权限
 
 ## 是否存在
-file.access("A.txt",0)
+file.access(&quot;A.txt&quot;,0)
 
 ## 是否可执行
-file.access("A.txt",1)
+file.access(&quot;A.txt&quot;,1)
 
 ## 是否可写
-file.access("A.txt",2)
+file.access(&quot;A.txt&quot;,2)
 
 ## 是否可读
-file.access("A.txt",4)
+file.access(&quot;A.txt&quot;,4)
 
 # 文件权限修改
 
 ## 查看文件信息
-file.info("A.txt")
+file.info(&quot;A.txt&quot;)
 
 ## 修改文件权限，创建者可读可写可执行，其他人无权限
-Sys.chmod("A.txt", mode = "0400", use_umask = TRUE)
+Sys.chmod(&quot;A.txt&quot;, mode = &quot;0400&quot;, use_umask = TRUE)
 
 ## 查看文件信息
-file.info("A.txt")
+file.info(&quot;A.txt&quot;)
 
 #这些我更加倾向使用bash的命令来查看修改
 </code></pre>
-<h2 id="2-目录操作">2. 目录操作<a arialabel="Anchor" class="header-anchor" href="#2-目录操作"> # </a></h2>
+<h2 id="2-目录操作">2. 目录操作<a href="#2-目录操作" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>创建目录</p>
 <pre><code># 新建一个目录
-dir.create("test") # 不能同时创建多个目录
+dir.create(&quot;test&quot;) # 不能同时创建多个目录
 list.dirs()
 
 # 递归创建
-dir.create("test/test",recursive = TRUE)
+dir.create(&quot;test/test&quot;,recursive = TRUE)
 list.dirs()
 </code></pre>
 <p>查看目录</p>
@@ -170,34 +215,34 @@ list.dirs()
 list.dirs(recursive= FALSE)
 
 # 通过系统命令查看目录结构
-system("tree") #tree的功能很强大
+system(&quot;tree&quot;) #tree的功能很强大
 
 # 检查目录是否存在
 # 存在的目录
-file.exists(".")
-file.exists("./test")
+file.exists(&quot;.&quot;)
+file.exists(&quot;./test&quot;)
 
 # 不存在的目录
-file.exists("./test1")
+file.exists(&quot;./test1&quot;)
 
 # 判断是否是目录
 
 ## 下面两个语句结果相同
-file_test("-d", "./test")
-file_test("-d", "test")
+file_test(&quot;-d&quot;, &quot;./test&quot;)
+file_test(&quot;-d&quot;, &quot;test&quot;)
 </code></pre>
 <p>目录重命名</p>
 <pre><code># 查看目录
 dir()
 
 # 对test目录重命名
-file.rename("test", "test1")
+file.rename(&quot;test&quot;, &quot;test1&quot;)
 
 # 查看目录
 dir()
 
 # 目录重命名
-file.rename("test1", "test")
+file.rename(&quot;test1&quot;, &quot;test&quot;)
 </code></pre>
 <p>删除目录</p>
 <pre><code>dir.create('temp')
@@ -205,15 +250,15 @@ dir.create('temp1/temp1', recursive = TRUE)
 dir()
 
 # 删除temp目录
-unlink("temp", recursive = TRUE) # unlink也可用来删除文件，此时不需要设置参数recursive
+unlink(&quot;temp&quot;, recursive = TRUE) # unlink也可用来删除文件，此时不需要设置参数recursive
 dir() # unlink用来删除文件和目录
 
-unlink("temp1", recursive = TRUE)
+unlink(&quot;temp1&quot;, recursive = TRUE)
 dir()
 </code></pre>
 <p>目录的权限</p>
 <pre><code># 查看目录完整信息
-file.info(".")
+file.info(&quot;.&quot;)
 
 # 检查目录的权限
 df&lt;-dir(full.names = TRUE)
@@ -231,34 +276,56 @@ file.access(df, 2) == 0
 file.access(df, 4) == 0
 
 # 修改目录权限，所有用户只读
-Sys.chmod("./test", mode = "0555", use_umask = TRUE)
-file.info("./test")
+Sys.chmod(&quot;./test&quot;, mode = &quot;0555&quot;, use_umask = TRUE)
+file.info(&quot;./test&quot;)
 </code></pre>
-<h2 id="3-小结">3. 小结<a arialabel="Anchor" class="header-anchor" href="#3-小结"> # </a></h2>
-<p><img alt="" src="https://snag.gy/dTOImU.jpg"/></p>
+<h2 id="3-小结">3. 小结<a href="#3-小结" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p><img src="https://snag.gy/dTOImU.jpg" alt=""></p>
+
 <p style="color:#777;">最后一次修改于 2018-11-25</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
 </main>
+
 <footer class="footer">
-<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
 </script>
-<script src="/js/math-code.js" type="text/javascript"></script>
-<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/js/center-img.js" type="text/javascript"></script>
-<ul class="footer-links">
-<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
        订阅 </a>
-</li>
-<li>
-<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
         版权
-        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
-</a>
-</li>
-</ul>
-<div class="copyright-text">
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
             
             ©
             
@@ -267,5 +334,10 @@ file.info("./test")
             2018-2021
             
      </div>
+
 </footer>
-</div></body></html>
+
+
+
+
+

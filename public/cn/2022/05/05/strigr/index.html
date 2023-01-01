@@ -1,66 +1,111 @@
-<html><body><a name="top"></a>
+<a name="top"></a>
 <!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>KJY</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-<link href="/css/style.css" rel="stylesheet"/>
-<link href="/css/fonts.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
 <script>hljs.initHighlightingOnLoad();</script>
-<div class="wrapper">
-<header class="header">
-<nav class="nav">
-<a class="nav-logo" href="/">
-<img alt="" height="" src="/media/%3cnil%3e" width=""/>
-</a>
-<ul class="nav-links">
-<li><a href="/cn/about/">关于</a></li>
-<li><a href="/cn/posts/">日志</a></li>
-<li><a href="/cn/newsletter/">周刊</a></li>
-<li><a href="/">English</a></li>
-</ul>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
 </nav>
-</header>
-<main class="content" role="main">
+      </header>
+
+<main class = "content" role="main">
 <div style="text-align: center">
+
 <h1>R语言stringr学习</h1>
+
 <p>KJY 
  / 2022-05-05 </p>
+
 <hr/>
 </div>
+
 <span class="article-toolbar">
-<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/R%e8%af%ad%e8%a8%80stringr%e5%ad%a6%e4%b9%a0.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
-</a>
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/R%e8%af%ad%e8%a8%80stringr%e5%ad%a6%e4%b9%a0.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
 </span>
+
+
 <aside class="toc">
 Table of Contents:
 <nav id="TableOfContents">
-<ol>
-<li>
-<ol>
-<li></li>
-</ol>
-</li>
-</ol>
+  <ol>
+    <li>
+      <ol>
+        <li></li>
+      </ol>
+    </li>
+  </ol>
 </nav>
 </aside>
+
+
 <div class="body-text list-text">
 <p>stringr包被定义为一致的、简单易用的字符串工具集。所有的函数和参数定义都具有一致性，比如，用相同的方法进行NA处理和0长度的向量处理。</p>
 <p>对于R语言本身的base包提供的字符串基础函数，随着时间的积累，已经变得很多地方不一致，不规范的命名，不标准的参数定义，很难看一眼就上手使用。字符串处理在其他语言中都是非常方便的事情，R语言在这方面确实落后了。stringr包就是为了解决这个问题，让字符串处理变得简单易用，提供友好的字符串操作接口。</p>
-<p>R语言中处理字符串主要有stringi和stringr两种，更加推荐使用stringr,因为stringi命令太多太复杂了…</p>
+<p>R语言中处理字符串主要有stringi和stringr两种，更加推荐使用stringr,因为stringi命令太多太复杂了&hellip;</p>
 <p>来自Hadley Wickham的评价</p>
 <ul>
 <li><code>stringi</code> provides tools to do anything we could ever want to do with strings, where <code>stringr</code> provides tools to do the most common 95% of operations. This allows <code>stringr</code> to be much simpler, and the cost of some flexibility.</li>
-<li>Additionally <code>stringi</code> is implemented in C using the ICU string library, so it’s very fast and very correct (it deals with unicode better than base R).</li>
+<li>Additionally <code>stringi</code> is implemented in C using the ICU string library, so it&rsquo;s very fast and very correct (it deals with unicode better than base R).</li>
 <li>Fortunately, <code>stringr</code> and <code>stringi</code> have very similar interfaces, so we should be able to move up from <code>stringr</code> to <code>stringi</code> very easily. The next version of <code>stringr</code> will use <code>stringi</code>, so <code>stringr</code> will get all the performance benefits (and bug fixes!), and we can continue to use the simple interface.</li>
 </ul>
 <p>stringr包中所有的函数都已<code>str_</code>开头，让待处理字符做第一个参数，这样处理好处明显，方便使用以及记忆。</p>
@@ -68,11 +113,11 @@ Table of Contents:
 <li>字符串长度</li>
 </ul>
 <pre tabindex="0"><code>library(stringr)
-char &lt;- "我是R语言学习者"
+char &lt;- &#34;我是R语言学习者&#34;
 str_length(char)
 #&gt; [1] 8
 # 向量化
-str_length(c("a", "R for data science", NA))
+str_length(c(&#34;a&#34;, &#34;R for data science&#34;, NA))
 #&gt; [1]  1 18 NA
 </code></pre><ul>
 <li>连接字符串</li>
@@ -80,41 +125,41 @@ str_length(c("a", "R for data science", NA))
 <p>R中字符串不像python中可以用加号连接字符串,如下所示:</p>
 <p>R 版本</p>
 <pre tabindex="0"><code>#base R
-paste0('a','b')
-#&gt; [1] "ab"
+paste0(&#39;a&#39;,&#39;b&#39;)
+#&gt; [1] &#34;ab&#34;
 
 #stringr
-str_c("a","b")
-#&gt; [1] "ab"
-str_c("a", "b", sep = ", ") #sep 参数控制分隔符
-#&gt; [1] "a, b"
+str_c(&#34;a&#34;,&#34;b&#34;)
+#&gt; [1] &#34;ab&#34;
+str_c(&#34;a&#34;, &#34;b&#34;, sep = &#34;, &#34;) #sep 参数控制分隔符
+#&gt; [1] &#34;a, b&#34;
 </code></pre><p>Python 版本</p>
 <p>多个字符串合并为一个字符,<code>stringr</code>中的函数都是向量化的，合并一个和多个字符都是同样道理。</p>
 <pre tabindex="0"><code>#base R
-paste0(c('a','b','d','e'),collapse = ',')
-#&gt; [1] "a,b,d,e"
+paste0(c(&#39;a&#39;,&#39;b&#39;,&#39;d&#39;,&#39;e&#39;),collapse = &#39;,&#39;)
+#&gt; [1] &#34;a,b,d,e&#34;
 #stringr
-str_c(c('a','b','d','e'),collapse = ',')  #collapse 参数控制
-#&gt; [1] "a,b,d,e"
+str_c(c(&#39;a&#39;,&#39;b&#39;,&#39;d&#39;,&#39;e&#39;),collapse = &#39;,&#39;)  #collapse 参数控制
+#&gt; [1] &#34;a,b,d,e&#34;
 </code></pre><ul>
 <li>移除</li>
 </ul>
 <p>在正则表达式中 有特殊含义,有时需要两个 ，多体会下面这段，代码实现移除“||”的功能。</p>
-<pre tabindex="0"><code>str_remove(string = 'a||b',pattern = "\\|\\|")
-#&gt; [1] "ab"
+<pre tabindex="0"><code>str_remove(string = &#39;a||b&#39;,pattern = &#34;\\|\\|&#34;)
+#&gt; [1] &#34;ab&#34;
 </code></pre><p>另外常见的\n, \t需要被转义处理,在字符清洗,如小说语义分析,网页爬虫后整理等数据清洗过程中经常用到.</p>
-<h4 id="截取字符">截取字符<a arialabel="Anchor" class="header-anchor" href="#截取字符"> # </a></h4>
+<h4 id="截取字符">截取字符<a href="#截取字符" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
 <p>与<code>Excle</code>中<code>left</code>,<code>mid</code>,<code>right</code>函数功能类似</p>
 <p>str_sub() 函数 三个参数:</p>
 <p>string:需要被截取的字符串</p>
 <p>start: 默认1L,即从最开始截取</p>
 <p>end:默认-1L,即截取到最后</p>
 <pre tabindex="0"><code>#注意end 3 和 -3的区别
-str_sub(string = '我是R语言学习者',start = 2,end = 3)
-#&gt; [1] "是R"
-str_sub(string = '我是R语言学习者',start = 2,end = -3)
-#&gt; [1] "是R语言学"
-</code></pre><h4 id="匹配字符">匹配字符<a arialabel="Anchor" class="header-anchor" href="#匹配字符"> # </a></h4>
+str_sub(string = &#39;我是R语言学习者&#39;,start = 2,end = 3)
+#&gt; [1] &#34;是R&#34;
+str_sub(string = &#39;我是R语言学习者&#39;,start = 2,end = -3)
+#&gt; [1] &#34;是R语言学&#34;
+</code></pre><h4 id="匹配字符">匹配字符<a href="#匹配字符" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
 <p>查看函数帮助文档,str_match()按照指定pattern(正则表达式)查找字符。困难点在于正则表达式的编写。</p>
 <pre tabindex="0"><code>str_match(string, pattern)
 str_match_all(string, pattern)
@@ -122,201 +167,222 @@ str_extract(string, pattern)
 str_extract_all(string, pattern, simplify = FALSE)
 </code></pre><p>str_extract()函数返回向量,str_match()函数返回矩阵.</p>
 <pre tabindex="0"><code># 测试文字来源烽火戏诸侯的&lt;剑来&gt;
-strings &lt;- c('陈平安放下新折的那根桃枝,吹灭蜡烛,走出屋子后,坐在台阶上,仰头望去,星空璀璨.') 
-str_extract(strings,'陈平安')
-#&gt; [1] "陈平安"
-str_match(strings,'陈平安')
+strings &lt;- c(&#39;陈平安放下新折的那根桃枝,吹灭蜡烛,走出屋子后,坐在台阶上,仰头望去,星空璀璨.&#39;) 
+str_extract(strings,&#39;陈平安&#39;)
+#&gt; [1] &#34;陈平安&#34;
+str_match(strings,&#39;陈平安&#39;)
 #&gt;      [,1]    
-#&gt; [1,] "陈平安"
+#&gt; [1,] &#34;陈平安&#34;
 </code></pre><ul>
 <li>匹配中文</li>
 </ul>
 <p>匹配中文的正则表达式\[-]</p>
-<pre tabindex="0"><code>str_extract_all(strings,'[\u4e00-\u9fa5]') #返回list
+<pre tabindex="0"><code>str_extract_all(strings,&#39;[\u4e00-\u9fa5]&#39;) #返回list
 #&gt; [[1]]
-#&gt;  [1] "陈" "平" "安" "放" "下" "新" "折" "的" "那" "根" "桃" "枝" "吹" "灭" "蜡"
-#&gt; [16] "烛" "走" "出" "屋" "子" "后" "坐" "在" "台" "阶" "上" "仰" "头" "望" "去"
-#&gt; [31] "星" "空" "璀" "璨"
+#&gt;  [1] &#34;陈&#34; &#34;平&#34; &#34;安&#34; &#34;放&#34; &#34;下&#34; &#34;新&#34; &#34;折&#34; &#34;的&#34; &#34;那&#34; &#34;根&#34; &#34;桃&#34; &#34;枝&#34; &#34;吹&#34; &#34;灭&#34; &#34;蜡&#34;
+#&gt; [16] &#34;烛&#34; &#34;走&#34; &#34;出&#34; &#34;屋&#34; &#34;子&#34; &#34;后&#34; &#34;坐&#34; &#34;在&#34; &#34;台&#34; &#34;阶&#34; &#34;上&#34; &#34;仰&#34; &#34;头&#34; &#34;望&#34; &#34;去&#34;
+#&gt; [31] &#34;星&#34; &#34;空&#34; &#34;璀&#34; &#34;璨&#34;
 </code></pre><ul>
 <li>匹配数字或英文</li>
 </ul>
 <p>查找数字的正则表达式[0-9];查找英文的正则表达式:[a-zA-Z]</p>
-<pre tabindex="0"><code>strings &lt;- c('00123545','LOL league of legends')
-str_extract_all(strings,'[0-9]')
+<pre tabindex="0"><code>strings &lt;- c(&#39;00123545&#39;,&#39;LOL league of legends&#39;)
+str_extract_all(strings,&#39;[0-9]&#39;)
 #&gt; [[1]]
-#&gt; [1] "0" "0" "1" "2" "3" "5" "4" "5"
+#&gt; [1] &#34;0&#34; &#34;0&#34; &#34;1&#34; &#34;2&#34; &#34;3&#34; &#34;5&#34; &#34;4&#34; &#34;5&#34;
 #&gt; 
 #&gt; [[2]]
 #&gt; character(0)
-str_extract_all(strings,'[a-zA-Z]') 
+str_extract_all(strings,&#39;[a-zA-Z]&#39;) 
 #&gt; [[1]]
 #&gt; character(0)
 #&gt; 
 #&gt; [[2]]
-#&gt;  [1] "L" "O" "L" "l" "e" "a" "g" "u" "e" "o" "f" "l" "e" "g" "e" "n" "d" "s"
-</code></pre><h4 id="添加字符">添加字符<a arialabel="Anchor" class="header-anchor" href="#添加字符"> # </a></h4>
+#&gt;  [1] &#34;L&#34; &#34;O&#34; &#34;L&#34; &#34;l&#34; &#34;e&#34; &#34;a&#34; &#34;g&#34; &#34;u&#34; &#34;e&#34; &#34;o&#34; &#34;f&#34; &#34;l&#34; &#34;e&#34; &#34;g&#34; &#34;e&#34; &#34;n&#34; &#34;d&#34; &#34;s&#34;
+</code></pre><h4 id="添加字符">添加字符<a href="#添加字符" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
 <p>str_pad() 函数向字符串添加字符。像工作中处理月份的时候,1,2,3,4,5,6,7,8,9,10,11,12变成01,02,03,04,05,06,07,08,09,10,11,12.按照日期时间输出文件名称,如下所示:</p>
-<pre tabindex="0"><code>str_pad(string = 1:12,width = 2,side = 'left',pad = '0')
-#&gt;  [1] "01" "02" "03" "04" "05" "06" "07" "08" "09" "10" "11" "12"
-</code></pre><h4 id="去除空格">去除空格<a arialabel="Anchor" class="header-anchor" href="#去除空格"> # </a></h4>
+<pre tabindex="0"><code>str_pad(string = 1:12,width = 2,side = &#39;left&#39;,pad = &#39;0&#39;)
+#&gt;  [1] &#34;01&#34; &#34;02&#34; &#34;03&#34; &#34;04&#34; &#34;05&#34; &#34;06&#34; &#34;07&#34; &#34;08&#34; &#34;09&#34; &#34;10&#34; &#34;11&#34; &#34;12&#34;
+</code></pre><h4 id="去除空格">去除空格<a href="#去除空格" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
 <p>与<code>excel</code>中<code>trim</code>函数功能类似，剔除字符中的空格，但是不可以剔除字符中的空格</p>
 <pre tabindex="0"><code># side 可选 both  left right
-str_trim(' ab af ',side = 'both')
-#&gt; [1] "ab af"
-</code></pre><h4 id="分割字符">分割字符<a arialabel="Anchor" class="header-anchor" href="#分割字符"> # </a></h4>
+str_trim(&#39; ab af &#39;,side = &#39;both&#39;)
+#&gt; [1] &#34;ab af&#34;
+</code></pre><h4 id="分割字符">分割字符<a href="#分割字符" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
 <p><code>str_split()</code>处理后的结果是列表</p>
 <pre tabindex="0"><code># 得到列表,需要向量化
-str_split("a,b,d,e",pattern = ',')
+str_split(&#34;a,b,d,e&#34;,pattern = &#39;,&#39;)
 #&gt; [[1]]
-#&gt; [1] "a" "b" "d" "e"
+#&gt; [1] &#34;a&#34; &#34;b&#34; &#34;d&#34; &#34;e&#34;
 
-str_split('ab||cd','\\|\\|') %&gt;% unlist()
-#&gt; [1] "ab" "cd"
+str_split(&#39;ab||cd&#39;,&#39;\\|\\|&#39;) %&gt;% unlist()
+#&gt; [1] &#34;ab&#34; &#34;cd&#34;
 # same above
-#str_split('ab||cd','\\|\\|') %&gt;% purrr::as_vector()
+#str_split(&#39;ab||cd&#39;,&#39;\\|\\|&#39;) %&gt;% purrr::as_vector()
 </code></pre><p>当待处理的字符串是字符串向量时，得到的列表长度与向量长度一致</p>
 <pre tabindex="0"><code>fruits &lt;- c(
-  "apples and oranges and pears and bananas",
-  "pineapples and mangos and guavas"
+  &#34;apples and oranges and pears and bananas&#34;,
+  &#34;pineapples and mangos and guavas&#34;
 )
 
-str_split(fruits, " and ")
+str_split(fruits, &#34; and &#34;)
 #&gt; [[1]]
-#&gt; [1] "apples"  "oranges" "pears"   "bananas"
+#&gt; [1] &#34;apples&#34;  &#34;oranges&#34; &#34;pears&#34;   &#34;bananas&#34;
 #&gt; 
 #&gt; [[2]]
-#&gt; [1] "pineapples" "mangos"     "guavas"
-</code></pre><h4 id="替换字符">替换字符<a arialabel="Anchor" class="header-anchor" href="#替换字符"> # </a></h4>
+#&gt; [1] &#34;pineapples&#34; &#34;mangos&#34;     &#34;guavas&#34;
+</code></pre><h4 id="替换字符">替换字符<a href="#替换字符" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
 <p><code>str_replace()</code>，<code>str_replace_all()</code>函数用来替换字符</p>
-<pre tabindex="0"><code>fruits &lt;- c("one apple", "two pears", "three bananas")
-str_replace(fruits, "[aeiou]", "-")
-#&gt; [1] "-ne apple"     "tw- pears"     "thr-e bananas"
-str_replace_all(fruits, "[aeiou]", "-")
-#&gt; [1] "-n- -ppl-"     "tw- p--rs"     "thr-- b-n-n-s"
-</code></pre><h4 id="移除字符">移除字符<a arialabel="Anchor" class="header-anchor" href="#移除字符"> # </a></h4>
+<pre tabindex="0"><code>fruits &lt;- c(&#34;one apple&#34;, &#34;two pears&#34;, &#34;three bananas&#34;)
+str_replace(fruits, &#34;[aeiou]&#34;, &#34;-&#34;)
+#&gt; [1] &#34;-ne apple&#34;     &#34;tw- pears&#34;     &#34;thr-e bananas&#34;
+str_replace_all(fruits, &#34;[aeiou]&#34;, &#34;-&#34;)
+#&gt; [1] &#34;-n- -ppl-&#34;     &#34;tw- p--rs&#34;     &#34;thr-- b-n-n-s&#34;
+</code></pre><h4 id="移除字符">移除字符<a href="#移除字符" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
 <p><code>str_remove()</code>,<code>str_remove_all()</code>移除字符。本人常用该函数剔除文本中的空格。</p>
-<pre tabindex="0"><code>fruits &lt;- c("one apple", "two pears", "three bananas")
-str_remove(fruits, "[aeiou]")
-#&gt; [1] "ne apple"     "tw pears"     "thre bananas"
-str_remove_all(fruits, "[aeiou]")
-#&gt; [1] "n ppl"    "tw prs"   "thr bnns"
+<pre tabindex="0"><code>fruits &lt;- c(&#34;one apple&#34;, &#34;two pears&#34;, &#34;three bananas&#34;)
+str_remove(fruits, &#34;[aeiou]&#34;)
+#&gt; [1] &#34;ne apple&#34;     &#34;tw pears&#34;     &#34;thre bananas&#34;
+str_remove_all(fruits, &#34;[aeiou]&#34;)
+#&gt; [1] &#34;n ppl&#34;    &#34;tw prs&#34;   &#34;thr bnns&#34;
 </code></pre><p>移除文本中空格</p>
-<pre tabindex="0"><code>str_replace_all(string = ' d a  b ',pattern = ' ',replacement = '')
-#&gt; [1] "dab"
-</code></pre><h4 id="字符排序">字符排序<a arialabel="Anchor" class="header-anchor" href="#字符排序"> # </a></h4>
+<pre tabindex="0"><code>str_replace_all(string = &#39; d a  b &#39;,pattern = &#39; &#39;,replacement = &#39;&#39;)
+#&gt; [1] &#34;dab&#34;
+</code></pre><h4 id="字符排序">字符排序<a href="#字符排序" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
 <p>numeric 参数决定是否按照数字排序。</p>
-<pre tabindex="0"><code>str_order(x, decreasing = FALSE, na_last = TRUE, locale = "en",
+<pre tabindex="0"><code>str_order(x, decreasing = FALSE, na_last = TRUE, locale = &#34;en&#34;,
   numeric = FALSE, ...)
 
-str_sort(x, decreasing = FALSE, na_last = TRUE, locale = "en",
+str_sort(x, decreasing = FALSE, na_last = TRUE, locale = &#34;en&#34;,
   numeric = FALSE, ...)
 </code></pre><pre tabindex="0"><code>str_order(letters)
 #&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
 #&gt; [26] 26
 str_sort(letters)
-#&gt;  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"
-#&gt; [20] "t" "u" "v" "w" "x" "y" "z"
+#&gt;  [1] &#34;a&#34; &#34;b&#34; &#34;c&#34; &#34;d&#34; &#34;e&#34; &#34;f&#34; &#34;g&#34; &#34;h&#34; &#34;i&#34; &#34;j&#34; &#34;k&#34; &#34;l&#34; &#34;m&#34; &#34;n&#34; &#34;o&#34; &#34;p&#34; &#34;q&#34; &#34;r&#34; &#34;s&#34;
+#&gt; [20] &#34;t&#34; &#34;u&#34; &#34;v&#34; &#34;w&#34; &#34;x&#34; &#34;y&#34; &#34;z&#34;
 </code></pre><p>numeric参数</p>
-<pre tabindex="0"><code>x &lt;- c("100a10", "100a5", "2b", "2a")
+<pre tabindex="0"><code>x &lt;- c(&#34;100a10&#34;, &#34;100a5&#34;, &#34;2b&#34;, &#34;2a&#34;)
 str_sort(x)
-#&gt; [1] "100a10" "100a5"  "2a"     "2b"
+#&gt; [1] &#34;100a10&#34; &#34;100a5&#34;  &#34;2a&#34;     &#34;2b&#34;
 str_sort(x, numeric = TRUE)
-#&gt; [1] "2a"     "2b"     "100a5"  "100a10"
-</code></pre><h4 id="提取单词">提取单词<a arialabel="Anchor" class="header-anchor" href="#提取单词"> # </a></h4>
+#&gt; [1] &#34;2a&#34;     &#34;2b&#34;     &#34;100a5&#34;  &#34;100a10&#34;
+</code></pre><h4 id="提取单词">提取单词<a href="#提取单词" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
 <p>从句子中提取单词。</p>
 <ul>
 <li>参数</li>
 </ul>
-<pre tabindex="0"><code>word(string, start = 1L, end = start, sep = fixed(" "))
+<pre tabindex="0"><code>word(string, start = 1L, end = start, sep = fixed(&#34; &#34;))
 </code></pre><ul>
 <li>案例</li>
 </ul>
-<pre tabindex="0"><code>sentences &lt;- c("Jane saw a cat", "Jane sat down")
+<pre tabindex="0"><code>sentences &lt;- c(&#34;Jane saw a cat&#34;, &#34;Jane sat down&#34;)
 word(sentences, 2, -1)
-#&gt; [1] "saw a cat" "sat down"
+#&gt; [1] &#34;saw a cat&#34; &#34;sat down&#34;
 word(sentences[1], 1:3, -1)
-#&gt; [1] "Jane saw a cat" "saw a cat"      "a cat"
+#&gt; [1] &#34;Jane saw a cat&#34; &#34;saw a cat&#34;      &#34;a cat&#34;
 </code></pre><p>指定分隔符</p>
 <pre tabindex="0"><code># Can define words by other separators
-str &lt;- 'abc.def..123.4568.999'
-word(str, 1, sep = fixed('..'))
-#&gt; [1] "abc.def"
-word(str, 2, sep = fixed('..'))
-#&gt; [1] "123.4568.999"
-</code></pre><h4 id="其他函数">其他函数<a arialabel="Anchor" class="header-anchor" href="#其他函数"> # </a></h4>
+str &lt;- &#39;abc.def..123.4568.999&#39;
+word(str, 1, sep = fixed(&#39;..&#39;))
+#&gt; [1] &#34;abc.def&#34;
+word(str, 2, sep = fixed(&#39;..&#39;))
+#&gt; [1] &#34;123.4568.999&#34;
+</code></pre><h4 id="其他函数">其他函数<a href="#其他函数" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
 <ul>
 <li>str_subset str_which</li>
 </ul>
 <p><code>str_subset()</code>是对x[str_detect(x,pattern)]的包装，<code>str_which()</code>是which(str_detect(x,pattern))的包装。</p>
-<pre tabindex="0"><code>fruit &lt;- c("apple", "banana", "pear", "pinapple")
-str_subset(fruit, "a")
-#&gt; [1] "apple"    "banana"   "pear"     "pinapple"
+<pre tabindex="0"><code>fruit &lt;- c(&#34;apple&#34;, &#34;banana&#34;, &#34;pear&#34;, &#34;pinapple&#34;)
+str_subset(fruit, &#34;a&#34;)
+#&gt; [1] &#34;apple&#34;    &#34;banana&#34;   &#34;pear&#34;     &#34;pinapple&#34;
 # 匹配字符首次出现的位置
-str_which(fruit, "a") 
+str_which(fruit, &#34;a&#34;) 
 #&gt; [1] 1 2 3 4
 </code></pre><p>匹配字符串本身做行筛选。</p>
 <pre tabindex="0"><code>#筛选出字母行
 set.seed(24)
 dt &lt;- data.table::data.table(col=sample(c(letters,1:10),100,replace = T))
-head(dt[str_which(col,pattern = '[a-z]')])
+head(dt[str_which(col,pattern = &#39;[a-z]&#39;)])
 </code></pre><ul>
 <li>str_dup()</li>
 </ul>
 <p><code>str_dup()</code>功能是复制字符串。</p>
-<pre tabindex="0"><code>fruit &lt;- c("apple", "pear", "banana")
+<pre tabindex="0"><code>fruit &lt;- c(&#34;apple&#34;, &#34;pear&#34;, &#34;banana&#34;)
 str_dup(fruit, 2)
 str_dup(fruit, 1:3)
-str_c("ba", str_dup("na", 0:5))
+str_c(&#34;ba&#34;, str_dup(&#34;na&#34;, 0:5))
 </code></pre><ul>
 <li>str_starts() str_ends()</li>
 </ul>
 <p>从str_detect()包装得到.</p>
-<pre tabindex="0"><code>str_starts('abd','a')
+<pre tabindex="0"><code>str_starts(&#39;abd&#39;,&#39;a&#39;)
 #&gt; [1] TRUE
-str_detect('abd','^a')
+str_detect(&#39;abd&#39;,&#39;^a&#39;)
 #&gt; [1] TRUE
 
-str_ends('abd','d')
+str_ends(&#39;abd&#39;,&#39;d&#39;)
 #&gt; [1] TRUE
-str_detect('abd','d$')
+str_detect(&#39;abd&#39;,&#39;d$&#39;)
 #&gt; [1] TRUE
 </code></pre><ul>
 <li>大小写转换</li>
 </ul>
 <p><code>str_to_upper()</code>函数将全部字符转换为大写，<code>str_to_lower()</code>函数将全部字符转换为小写，<code>str_to_title()</code>将每个单词的首字母转换为大写，<code>str_to_sentence()</code>将一个字符的首字母转换为大写。</p>
-<pre tabindex="0"><code>dog &lt;- "The quick brown dog"
+<pre tabindex="0"><code>dog &lt;- &#34;The quick brown dog&#34;
 str_to_upper(dog)
-#&gt; [1] "THE QUICK BROWN DOG"
+#&gt; [1] &#34;THE QUICK BROWN DOG&#34;
 str_to_lower(dog)
-#&gt; [1] "the quick brown dog"
+#&gt; [1] &#34;the quick brown dog&#34;
 str_to_title(dog)
-#&gt; [1] "The Quick Brown Dog"
-str_to_sentence("the quick brown dog")
-#&gt; [1] "The quick brown dog"
+#&gt; [1] &#34;The Quick Brown Dog&#34;
+str_to_sentence(&#34;the quick brown dog&#34;)
+#&gt; [1] &#34;The quick brown dog&#34;
 </code></pre>
 <p style="color:#777;">最后一次修改于 2022-05-05</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
 </main>
+
 <footer class="footer">
-<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
 </script>
-<script src="/js/math-code.js" type="text/javascript"></script>
-<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/js/center-img.js" type="text/javascript"></script>
-<ul class="footer-links">
-<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
        订阅 </a>
-</li>
-<li>
-<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
         版权
-        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
-</a>
-</li>
-</ul>
-<div class="copyright-text">
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
             
             ©
             
@@ -325,5 +391,10 @@ str_to_sentence("the quick brown dog")
             2018-2021
             
      </div>
+
 </footer>
-</div></body></html>
+
+
+
+
+

@@ -1,119 +1,219 @@
-<html><body><a name="top"></a>
+<a name="top"></a>
 <!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>KJY</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-<link href="/css/style.css" rel="stylesheet"/>
-<link href="/css/fonts.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
 <script>hljs.initHighlightingOnLoad();</script>
-<div class="wrapper">
-<header class="header">
-<nav class="nav">
-<a class="nav-logo" href="/">
-<img alt="" height="" src="/media/%3cnil%3e" width=""/>
-</a>
-<ul class="nav-links">
-<li><a href="/cn/about/">关于</a></li>
-<li><a href="/cn/posts/">日志</a></li>
-<li><a href="/cn/newsletter/">周刊</a></li>
-<li><a href="/">English</a></li>
-</ul>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
 </nav>
-</header>
-<main class="content" role="main">
+      </header>
+
+<main class = "content" role="main">
 <div style="text-align: center">
+
 <h1>Hugo文章加密</h1>
+
 <p>KJY 
  / 2022-04-30 </p>
+
 <hr/>
 </div>
+
 <span class="article-toolbar">
-<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/hugo%e6%96%87%e7%ab%a0%e5%8a%a0%e5%af%86.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
-</a>
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/hugo%e6%96%87%e7%ab%a0%e5%8a%a0%e5%af%86.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
 </span>
+
+
 <aside class="toc">
 Table of Contents:
 <nav id="TableOfContents">
-<ol>
-<li><a href="#heading"></a></li>
-</ol>
+  <ol>
+    <li><a href="#heading"></a></li>
+  </ol>
 </nav>
 </aside>
+
+
 <div class="body-text list-text">
 <p>参考的这个资料：</p>
-<p>https://github.com/Li4n0/hugo_encryptor/blob/master/README-zh_CN.md</p>
+<p><a href="https://github.com/Li4n0/hugo_encryptor/blob/master/README-zh_CN.md" target="_blank" rel="noreferrer noopener">https://github.com/Li4n0/hugo_encryptor/blob/master/README-zh_CN.md</a>
+
+</p>
 <p>下载 Hugo-Encryptor 并安装其所需要的依赖库</p>
 <pre tabindex="0"><code>$ git clone https://github.com/Li4n0/hugo_encryptor.git
 $ cd hugo_encryptor
 $ chmod +x hugo_encryptor.py
 $ pip3 install -r requirements.txt
 </code></pre><p>将 <code>hugo-encryptor.py</code>放入博客根目录</p>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cp hugo-encryptor.py /path/to/your/blog/hugo-encryptor.py
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cp hugo-encryptor.py /path/to/your/blog/hugo-encryptor.py
 </span></span></code></pre></div><p>将<code>shortcodes/hugo-encryptor.html</code>放入博客<code>shortcodes</code>目录</p>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ mkdir -p /path/to/your/blog/layouts/shortcodes
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ mkdir -p /path/to/your/blog/layouts/shortcodes
 </span></span><span style="display:flex;"><span>$ cp shortcodes/hugo-encryptor.html /path/to/your/blog/layouts/shortcodes/hugo-encryptor.html
 </span></span></code></pre></div><p>使用方法</p>
 <ol>
 <li>
-<p>使用 <code>hugo-encryptor</code>标签包裹需要加密文章内容<a href="https://www.10101.io/usr/uploads/2021/06/1320048532.png" rel="noreferrer noopener" target="_blank"><img alt="img" src="https://www.10101.io/usr/uploads/2021/06/1320048532.png"/></a>
+<p>使用 <code>hugo-encryptor</code>标签包裹需要加密文章内容<a href="https://www.10101.io/usr/uploads/2021/06/1320048532.png" target="_blank" rel="noreferrer noopener"><img src="https://www.10101.io/usr/uploads/2021/06/1320048532.png" alt="img"></a>
+
 </p>
 </li>
 <li>
 <p>生成网站</p>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rm -rf public <span style="color:#408080;font-style:italic">#删除原来的 public 文件夹</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rm -rf public <span style="color:#408080;font-style:italic">#删除原来的 public 文件夹</span>
 </span></span><span style="display:flex;"><span>hugo <span style="color:#408080;font-style:italic">#重新生成 public 文件夹</span>
 </span></span></code></pre></div></li>
 <li>
 <p>进行加密</p>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python3 hugo-encryptor.py
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python3 hugo-encryptor.py
 </span></span></code></pre></div></li>
 </ol>
 <p>至此，文章就已经被加密好了，然后把 public 文件夹内容上传到服务器就好了。</p>
-<h2 id="heading"><a arialabel="Anchor" class="header-anchor" href="#heading"> # </a></h2>
+<h2 id="heading"><a href="#heading" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p><strong>这里必须存在一些明文文字以及概要标签:</strong></p>
+
+
+
+
 <div class="hugo-encryptor-container">
-<div class="hugo-encryptor-prompt">
-<p>文章的部分内容被密码保护：</p>
+  <div class="hugo-encryptor-prompt">
+    
+      <p>文章的部分内容被密码保护：</p>
+    
+  </div>
+  <div class="hugo-encryptor-form">
+    <input
+      class="hugo-encryptor-input"
+      placeholder='请输入密码'
+    />
+    <input
+      class="hugo-encryptor-button"
+      type="button"
+      value='点击验证'
+      onclick="_click_handler(this)"
+    />
+  </div>
+  <div
+    class="hugo-encryptor-cipher-text"
+    data-password="KJY"
+    style="display: none;"
+  >
+    <span style="display: none;">--- DON'T MODIFY THIS LINE ---</span>
+    <h1 id="这里是你要加密的内容">这里是你要加密的内容!<a href="#这里是你要加密的内容" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
+<p>这里是你要加密的内容!</p>
+<p>看不到我看不到我</p>
+<p>在deploy.sh中加入这个</p>
+<pre tabindex="0"><code>#!/bin/bash
+hugo
+python hugo-encryptor
+</code></pre><p><strong>别忘了闭合 <code>hugo-encryptor</code> shortcode 标签:</strong></p>
+
+  </div>
 </div>
-<div class="hugo-encryptor-form">
-<input class="hugo-encryptor-input" placeholder="请输入密码"/>
-<input class="hugo-encryptor-button" onclick="_click_handler(this)" type="button" value="点击验证"/>
-</div>
-<div class="hugo-encryptor-cipher-text" style="display: none;">TBrPHD0Nsv/toY2KZThvZe4Pl2pBHtlEjWTACnAV4zPdSV8YKy56Jh8aLkHKyAzJglQyOQsOFItXYNvOy8249TpzpcFYjsythi3IxCcmeKXq/SrKHuDDwpy8gAiQDPkhU+JSm2zcYd9HcfxUJEDao9QcKb4DlBN0wENkHlE3SSmHfGq/P0I9MREyszVFtmsCkdWQomJpWw8u3CRQ00iTY27IUWEeLmQDZuNGmSKvMtJfxxRDQnK3fzRhoX406ocHYEWfjHkdCtrCU4PDCFhq6vf15hxwhOMiivqGpfKDNtPOb2qb/cnJi2GfhYhUJyGHBXY36wyMO/hZAtiQPro2zX+h+rtrz9iHUXrbSYyyX6yPeWSv2xx2pWjUQ+WXEsqjRH3GlKM7JJOy0pf000u+mb0/3Jd8Vj9ih80hhXprCdGxStmQDtgWx+7aUpzyYQKQUKuDkM+/wjpPntpViE6ZYJAb2iiZ9htzKJOeOR+S9hvodFfsIVGLmyo/mC6Y0EofZvR7rWAa8ARjKuQJme11+nfD82bXrTtfTIKeeOOP9rdiHiZB2YJwLLtxFEkIgR24bA0SPPVHd/PnzWW33n9BIlfQ6DiO2TTv/nZ1+X0qW5j7Flt8GeZlOL0pR/+nSCoFx6XLwy5yX3SjZivlMfHlGdaTuBMVnPBq1GlypFumVmo=</div>
-</div>
+
+
 <p style="color:#777;">最后一次修改于 2022-04-30</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
 </main>
+
 <footer class="footer">
-<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
 </script>
-<script src="/js/math-code.js" type="text/javascript"></script>
-<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/js/center-img.js" type="text/javascript"></script>
-<ul class="footer-links">
-<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
        订阅 </a>
-</li>
-<li>
-<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
         版权
-        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
-</a>
-</li>
-</ul>
-<div class="copyright-text">
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
             
             ©
             
@@ -122,5 +222,10 @@ $ pip3 install -r requirements.txt
             2018-2021
             
      </div>
+
 </footer>
-</div><script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script><script src="/decrypt.js"></script></body></html>
+
+
+
+
+

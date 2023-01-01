@@ -1,46 +1,90 @@
-<html><body><a name="top"></a>
+<a name="top"></a>
 <!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>KJY</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-<link href="/css/style.css" rel="stylesheet"/>
-<link href="/css/fonts.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
 <script>hljs.initHighlightingOnLoad();</script>
-<div class="wrapper">
-<header class="header">
-<nav class="nav">
-<a class="nav-logo" href="/">
-<img alt="" height="" src="/media/%3cnil%3e" width=""/>
-</a>
-<ul class="nav-links">
-<li><a href="/cn/about/">关于</a></li>
-<li><a href="/cn/posts/">日志</a></li>
-<li><a href="/cn/newsletter/">周刊</a></li>
-<li><a href="/">English</a></li>
-</ul>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
 </nav>
-</header>
-<main class="content" role="main">
+      </header>
+
+<main class = "content" role="main">
 <div style="text-align: center">
+
 <h1>序列比较中ClustalW和BLAST的区别</h1>
+
 <p>Liang 
  / 2018-11-24 </p>
+
 <hr/>
 </div>
+
 <span class="article-toolbar">
-<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/%e5%ba%8f%e5%88%97%e6%af%94%e8%be%83%e4%b8%adClustalW%e5%92%8cBLAST%e7%9a%84%e5%8c%ba%e5%88%ab.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
-</a>
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/%e5%ba%8f%e5%88%97%e6%af%94%e8%be%83%e4%b8%adClustalW%e5%92%8cBLAST%e7%9a%84%e5%8c%ba%e5%88%ab.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
 </span>
+
+
+
 <div class="body-text list-text">
 <p>序列比对是生物信息学研究中一种常见且经典的手段。经过多年的发展，序列比对也诞生了很多种方法，这篇文章选择讨论的是两种比较常见的序列比对方法，选择哪种比对方法也是科研中容易踩坑的一个点。</p>
 <p>#BLAST</p>
@@ -54,12 +98,12 @@
 </ol>
 <ol>
 <li>
-<p>将Query序列中每k个字的组合做成一个表，以k=3为例(DNA序列中，我们则常以k=11为例)，我们"依序"将Query序列中每3个字的组合视为一个字组，并将这些字组列在一张字组表上，直到Query序列中最后一个字也被收入进表上为止
-<img alt="制作字母表" src="https://upload-images.jianshu.io/upload_images/3014937-6f0b5436a2859d76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
+<p>将Query序列中每k个字的组合做成一个表，以k=3为例(DNA序列中，我们则常以k=11为例)，我们&quot;依序&quot;将Query序列中每3个字的组合视为一个字组，并将这些字组列在一张字组表上，直到Query序列中最后一个字也被收入进表上为止
+<img src="https://upload-images.jianshu.io/upload_images/3014937-6f0b5436a2859d76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="制作字母表"></p>
 </li>
 <li>
 <p>根据打分矩阵(scoring matrix)为所有的字母对打分。下面是一个比较常见打分矩阵，相同匹配加2，AG，CT减5，其他不匹配减7，空位减5。给出一个阈值T，留下高于T的单词匹配对，作为后面extend的seed。
-<img alt="字母对打分表" src="https://upload-images.jianshu.io/upload_images/3014937-cea0158aebc2c6ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
+<img src="https://upload-images.jianshu.io/upload_images/3014937-cea0158aebc2c6ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="字母对打分表"></p>
 </li>
 <li>
 <p>为每对单词执行上面步骤，找出所有打分高于T单词对。找到所有的seed。</p>
@@ -67,7 +111,7 @@
 </ol>
 <p>4.在实际运行中，算法最大的消耗在步骤extend上面，减少extend的方法就是减少seed的数目。对于选出的seed，可以将距离相近的合并为一个seed，这样就可以减少大量extend的计算量。</p>
 <p>5.下一步是extend的步骤，对于每一对选择出来的种子，将其向两边延伸，使其在尽可能长的距离得到尽可能多的分数。具体方法是逐渐向两边扩展，规定常数 D，在扩展到分数为Highest Score-D时停止，如果最终得分大于得分阈值S，则将其设为高分区域HSP(high-scoring segment pair, HSP)。
-<img alt="extend字组" src="https://upload-images.jianshu.io/upload_images/3014937-f34d9d7b9609ece0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
+<img src="https://upload-images.jianshu.io/upload_images/3014937-f34d9d7b9609ece0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="extend字组"></p>
 <ol start="6">
 <li>
 <p>将相邻的或距离较近的HSP合并。</p>
@@ -79,9 +123,9 @@
 <p>这里我们知道BLAST是基于局部比对的方法，另一个常用来做序列比对的方法是全局比对，ClustalW是其中的一个代表。</p>
 <p>#ClustalW
 CLUSTALW(它的PC版本是CLUSTALX)是目前使用最广泛的多序列比对程序。它采用的是一种渐进的比对方法(progressive methods)，先将多个序列两两比对构建距离矩阵，反映序列之间两两关系；然后根据距离矩阵计算产生系统进化指导树，对关系密切的序列进行加权；然后从最紧密的两条序列开始，逐步引入临近的序列并不断重新构建比对，直到所有序列都被加入为止。</p>
-<p><img alt="ClustalW基本步骤" src="https://upload-images.jianshu.io/upload_images/3014937-b6ef22c42dddd5a6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3014937-b6ef22c42dddd5a6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ClustalW基本步骤"></p>
 <p>ClustalW采用的是全局比对的算法，所以当我们用BLAST和ClustalW进行比对的时候结果很大概率上是不一样的，下图是一个例子
-<img alt="全局比对VS局部比对" src="https://upload-images.jianshu.io/upload_images/3014937-420ce025cb1ccfbf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
+<img src="https://upload-images.jianshu.io/upload_images/3014937-420ce025cb1ccfbf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="全局比对VS局部比对"></p>
 <p>这样引出一个问题，我们什么时候选择用BLAST，什么时候选择用ClustalW呢？
 下面的表可以用来进行参考</p>
 <table>
@@ -115,30 +159,52 @@ CLUSTALW(它的PC版本是CLUSTALX)是目前使用最广泛的多序列比对程
 </tbody>
 </table>
 <p>上世纪70年代，Needleman-Wunsch提出了End-to-end的全局比对算法，但是随着越来越多的蛋白质被测序，人们越来约发现某些蛋白差异虽然很大，但是在局部的功能域上却很相似，这些功能域相当保守且发挥相近的重要功能，但是仅靠全局比对算法却很那发现他们。所以就有了Smith-Whaterman算法。Smith-Whaterman算法的主要创新点是给Needleman-Wunsch的算法设置了一个最低罚分不超过0的选项。公式看起来很简单。但是这个0花了整整10年时间，其实这个0只是赋予了一部分（局部）重新开始的机会。</p>
-<p><img alt="全局对比和局部比对算法" src="https://upload-images.jianshu.io/upload_images/3014937-db27275d8d26ecb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3014937-db27275d8d26ecb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="全局对比和局部比对算法"></p>
+
 <p style="color:#777;">最后一次修改于 2018-11-24</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
 </main>
+
 <footer class="footer">
-<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
 </script>
-<script src="/js/math-code.js" type="text/javascript"></script>
-<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/js/center-img.js" type="text/javascript"></script>
-<ul class="footer-links">
-<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
        订阅 </a>
-</li>
-<li>
-<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
         版权
-        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
-</a>
-</li>
-</ul>
-<div class="copyright-text">
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
             
             ©
             
@@ -147,5 +213,10 @@ CLUSTALW(它的PC版本是CLUSTALX)是目前使用最广泛的多序列比对程
             2018-2021
             
      </div>
+
 </footer>
-</div></body></html>
+
+
+
+
+

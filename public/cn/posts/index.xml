@@ -6,7 +6,26 @@
     <description>Recent content in 中文博客 on KJY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 06 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://kongjianyang.github.io/cn/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 23 Dec 2022 19:10:27 -0400</lastBuildDate><atom:link href="https://kongjianyang.github.io/cn/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python机器学习</title>
+      <link>https://kongjianyang.github.io/cn/2022/12/23/python-ml/</link>
+      <pubDate>Fri, 23 Dec 2022 19:10:27 -0400</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/12/23/python-ml/</guid>
+      <description>参考教程：
+系列教程 (showmeai.tech) argparse模块在jupyter notebook中传参 在python代码文件中，通常需要传参，传参就需要经常使用argparse。使用argparse模块在py文件中是正常的，但是jupyter notebook就会报错。</description>
+    </item>
+    
+    <item>
+      <title>MySQL简单学习</title>
+      <link>https://kongjianyang.github.io/cn/2022/12/13/mysql/</link>
+      <pubDate>Tue, 13 Dec 2022 19:10:27 -0400</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/12/13/mysql/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>在Docker内打开Jupiter-notebook</title>
       <link>https://kongjianyang.github.io/cn/2022/12/06/%E5%9C%A8docker%E5%86%85%E6%89%93%E5%BC%80jupiter-notebook/</link>
@@ -83,10 +102,7 @@ enrichmentScore：富集得分。ES 反映基因集中的基因（S）在排序�
       
       <guid>https://kongjianyang.github.io/cn/2022/05/23/scrna/</guid>
       <description>Reference:
-https://broadinstitute.github.io/KrumlovSingleCellWorkshop2020/index.html
-https://satijalab.org/seurat/articles/pbmc3k_tutorial.html#finding-differentially-expressed-features-cluster-biomarkers-
-https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html
-Background 单细胞RNA-seq能够独立地提供每个细胞的RNA表达谱，并鉴定异质细胞群中的稀有细胞。尽管肿瘤异质性可归因于累积突变，但即使是遗传上相同的细胞在相同环境下也可能表现出基因和蛋白表达水平的差异，从而导致耐药性的产生。单细胞RNA-seq就能够发现这些稀有个体。
+https://broadinstitute.github.io/KrumlovSingleCellWorkshop2020/index.html https://satijalab.org/seurat/articles/pbmc3k_tutorial.html#finding-differentially-expressed-features-cluster-biomarkers- https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html Background 单细胞RNA-seq能够独立地提供每个细胞的RNA表达谱，并鉴定异质细胞群中的稀有细胞。尽管肿瘤异质性可归因于累积突变，但即使是遗传上相同的细胞在相同环境下也可能表现出基因和蛋白表达水平的差异，从而导致耐药性的产生。单细胞RNA-seq就能够发现这些稀有个体。
 单细胞RNA-seq的流程
 当然，单细胞RNA-seq的开展绝非易事，需要用到一系列尖端技术。大家首先要高效分离单细胞，然后进行RNA提取、逆转录、文库制备和测序，最后再通过生物信息学软件进行数据分析。其中，第一步 – 单细胞分离就相当棘手。
 单细胞分离 从异质性的细胞群体中分离单细胞，目前的选择有不少，新方法也在不断面世。选择分离方法时，您可能需要考虑它是高通量还是低通量，以及是盲选还是有偏向的选择（基于某个参数）。
@@ -294,8 +310,7 @@ stringi：一个快速字符串处理工具</description>
       
       <guid>https://kongjianyang.github.io/cn/2022/04/30/encryptor/</guid>
       <description>参考的这个资料：
-https://github.com/Li4n0/hugo_encryptor/blob/master/README-zh_CN.md
-下载 Hugo-Encryptor 并安装其所需要的依赖库
+https://github.com/Li4n0/hugo_encryptor/blob/master/README-zh_CN.md 下载 Hugo-Encryptor 并安装其所需要的依赖库
 $ git clone https://github.com/Li4n0/hugo_encryptor.git $ cd hugo_encryptor $ chmod +x hugo_encryptor.py $ pip3 install -r requirements.txt 将 hugo-encryptor.py放入博客根目录
 $ cp hugo-encryptor.py /path/to/your/blog/hugo-encryptor.py 将shortcodes/hugo-encryptor.html放入博客shortcodes目录
 $ mkdir -p /path/to/your/blog/layouts/shortcodes $ cp shortcodes/hugo-encryptor.html /path/to/your/blog/layouts/shortcodes/hugo-encryptor.html 使用方法
@@ -426,8 +441,7 @@ tmux attach 可以接入上次保存的会话。
 MACS2作为使用最广泛的peak calling软件，在v2版本中添加了差异peak分析的功能，所有的子命令功能描述如下
 通过bdgdiff子命令来进行差异peak分析， 该命令不需要基于已有的peak calling结果，只需要输入每个样本对应的bedGraph格式的文件。需要注意的是，该命令只针对两个样本间的差异peak进行设计，适用于没有生物学重复的情况。
 对于使用macs2来进行差异peak的完整流程，官方给出了详细的说明文档，链接如下
- https://github.com/taoliu/MACS/wiki/Call-differential-binding-events
- 可以分为以下3步
+ https://github.com/taoliu/MACS/wiki/Call-differential-binding-events  可以分为以下3步
 1. 预测插入片段长度 通过predictd子命令可以预测样本的fragment size，命令如下
 macs2 predictd -i input.bam #!/bin/bash module load bioinfo module load biocontainers/default module load macs2/2.2.7.1-py39 for i in `ls [A-H][1-9][A-H][1-9][A-H][1-9].bam`; do msg=&amp;#34;macs2 predictd -i $i&amp;#34;; echo $msg; macs2 predictd -i $i; 2. peak calling 在peak calling时，需要添加-B参数，这样才可以输出样本对应的bedgraph文件，同时需要保证peak calling时采用一致的--extsize的值，就是第一步预测出来的数值，取多个样本的均值即可。官方也给出了推荐值，对于大多数的转录因子chip_seq数据，推荐值为200， 对于大部分组蛋白修饰的chip_seq数据，推荐值为147，命令如下
 # condition1 macs2 callpeak -B -t cond1_ChIP.bam -c cond1_Control.bam -n cond1 --nomodel --extsize 147 # condition2 # broad peak calling: macs2 callpeak -B -t cond1_ChIP.</description>
@@ -607,8 +621,7 @@ install.packages(&amp;#34;data.table&amp;#34;) 载入包：</description>
       <guid>https://kongjianyang.github.io/cn/2020/02/13/tidy-verse_style/</guid>
       <description>tidyverse有两层基本含义：（1）基于Google 社区的R 代码风格（Google’s R style guide）衍生的一种使代码清晰可读的编程风格；（2）一系列基于前述风格而编写的数据处理R 包。tidyverse一词中的tidy意为整洁，verse意为诗篇、诗行，合起来意指代码或数据如诗行般整洁易读，即成为“整洁代码”（tidy code）或“整洁数据”（tidy data）。熟悉这一风格和相关R 包，可使数据处理和代码编写过程更为便捷高效，且易于与其他数据分析者交流沟通。
 建立较为统一的代码书写风格，可方便不同用户之间的沟通与协作。这里基于tidyverse模式择要介绍目前R 编程中的主流风格，并根据中文用户的习惯做部分调整和说明。某些内容可能初学者并不一定很快遇到，但仍宜先行阅读，以建立良好的书写规范。详细的tidyverse风格说明参见如下链接：
-http://style.tidyverse.org
-三、命名规范
+http://style.tidyverse.org 三、命名规范
 1.文件名
 文件名应能体现文件的实质内容，只使用数字、英文字母、中划线-和下划线_。尽量避免文件名中的英文字母大小写混用，宜只使用小写，并建议使用_或-连接文件名中的不同英文，如nankai_psy_2017。
 若多个文件存在特定顺序，应以数字作为前缀。如果有超过10个文件，对于个位数的前缀要在前面添补一个0。例如：
@@ -673,7 +686,7 @@ Alfred 参考这个文章：真正提升你的输入效率，从用好 Alfred �
 设置
 想要创建 Snippets，首先要建立一个 Collection（集合）。点击左侧 Collection 底部的 「+」号，输入集合的名字。
 在设置中，你可以选择是否为这个 Collection 设置一个前缀或者后缀，这个功能的主要目的是为了方便区分，当你在使用时，通过输入前缀或者后缀可以快速显示某一个集合内的所有 Snippets。我们在这里给这个名为「Personal」的 Collection 添加一个「!」作为前缀。
-添加 Collection 后，就可以来创建你的第一个 Snippets 了。点击右侧底部的「+」，输入 Snippets 的名字和关键词，然后在下方输入你希望拓展的内容。在这里以添加个人邮箱为例，在上面的 Keyword 里填入「GM」作为关键词，然后下方输入 myemail@gmail.com，点击 Save 来保存，这样我们就创建了一条 Snippets。
+添加 Collection 后，就可以来创建你的第一个 Snippets 了。点击右侧底部的「+」，输入 Snippets 的名字和关键词，然后在下方输入你希望拓展的内容。在这里以添加个人邮箱为例，在上面的 Keyword 里填入「GM」作为关键词，然后下方输入 myemail@gmail.com ，点击 Save 来保存，这样我们就创建了一条 Snippets。
 如何使用 Snippets 接下来我们来看看如何使用刚刚创建的 Snippets。回到 Snippets 设置菜单，在右上角你可以找到 Automatically expand snippets by keyword，打开这个选项后你才能在 macOS 中直接输入关键词来进行拓展（第一次打开时需要在「系统设置 - 隐私 - 辅助功能」中开启服务），否则就需要每次手动进行粘贴。</description>
     </item>
     
@@ -694,8 +707,7 @@ Alfred 参考这个文章：真正提升你的输入效率，从用好 Alfred �
       <pubDate>Thu, 17 Oct 2019 19:10:27 -0400</pubDate>
       
       <guid>https://kongjianyang.github.io/cn/2019/10/17/snakemake/</guid>
-      <description>参考： https://qinqianshan.com/python/py_module/snakemake/ https://xizhihui.github.io/2018/10/28/%E6%B5%81%E7%A8%8B%E6%9E%84%E5%BB%BA-Snakemake%E4%BD%BF%E7%94%A8%E5%88%9D%E6%AD%A5/
-如果你编译过软件，那你应该见过和用过make, 但是你估计也没有仔细想过make是干嘛用的。Make是最常用的软件构建工具，诞生于1977年，主要用于C语言的项目，是为了处理编译时存在各种依赖关系，尤其是部分文件更新后，Make能够重新生成需要更新的文件以及其对应的文件。
+      <description>参考： https://qinqianshan.com/python/py_module/snakemake/ https://xizhihui.github.io/2018/10/28/%E6%B5%81%E7%A8%8B%E6%9E%84%E5%BB%BA-Snakemake%E4%BD%BF%E7%94%A8%E5%88%9D%E6%AD%A5/ 如果你编译过软件，那你应该见过和用过make, 但是你估计也没有仔细想过make是干嘛用的。Make是最常用的软件构建工具，诞生于1977年，主要用于C语言的项目，是为了处理编译时存在各种依赖关系，尤其是部分文件更新后，Make能够重新生成需要更新的文件以及其对应的文件。
 Snakemake和Make功能一致，只不过用Python实现，增加了许多Python的特性，并且和Python一样非常容易阅读。
 Snakemake是一个工作流程管理系统。它是基于Python的、用于创建可重现和可扩展的数据分析的工具（当然现在也可以直接将它当做Python的一个模块）。Snakemake所创建的流程还可以无缝扩展到服务器、集群和云环境等不同环境，当然前提是你需要提前将所需的软件和依赖配置好，一起打包封装在conda环境中。
 安装软件
@@ -906,8 +918,12 @@ element &amp;lt;- sample(letters[1:5], 1e4, replace=T) value &amp;lt;- rnorm(1e4
       
       <guid>https://kongjianyang.github.io/cn/2018/12/13/%E5%88%A9%E7%94%A8flarum%E5%BC%80%E5%8F%91%E8%AE%BA%E5%9D%9B/</guid>
       <description>&lt;p&gt;未完待续！&lt;/p&gt;
-&lt;p&gt;https://bbs.fatdoge.cn/&lt;/p&gt;
-&lt;p&gt;https://hero-x.cn/website&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://bbs.fatdoge.cn/&#34; target=&#34;_blank&#34; rel=&#34;noreferrer noopener&#34;&gt;https://bbs.fatdoge.cn/&lt;/a&gt;
+
+&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://hero-x.cn/website&#34; target=&#34;_blank&#34; rel=&#34;noreferrer noopener&#34;&gt;https://hero-x.cn/website&lt;/a&gt;
+
+&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://flarum.org.cn/&#34; target=&#34;_blank&#34; rel=&#34;noreferrer noopener&#34;&gt;中文网址&lt;/a&gt;
 
 &lt;/p&gt;</description>
@@ -944,7 +960,7 @@ ToothGrowth$dose &amp;lt;- as.factor(ToothGrowth$dose) ggplot(ToothGrowth, aes(x
       <description>鼠标取词
 在任何文字区域上按下 control+cmd+D 就可呼出取词窗口，词典会根据鼠标的位置自动取词，不需要启动词典程序
 单词发音 在accessibility下面的speech下面选择开启speak selected text when the key is pressed，可以打开快捷键如 Option+Esc。在词典查询结果的窗口下按下快捷键会将窗口文本朗读一遍，当然，我们在乎只是英文单词的发音而已，再按一次停止。
-https://kaihao.io/2018/mdict-to-macos-dictionary/</description>
+https://kaihao.io/2018/mdict-to-macos-dictionary/ </description>
     </item>
     
     <item>
@@ -1151,9 +1167,7 @@ track type=bedGraph name=&amp;#34;BedGraph Format&amp;#34; description=&amp;#34;
       <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/blogdown%E5%BB%BA%E7%AB%8B%E7%BD%91%E7%AB%99/</guid>
-      <description>https://d.cosx.org/d/419791-blogdown-netlify-non-zero-exist-code-255
-https://cosx.org/2018/01/build-blog-with-blogdown-hugo-netlify-github/
-https://testliang.netlify.com/</description>
+      <description>https://d.cosx.org/d/419791-blogdown-netlify-non-zero-exist-code-255 https://cosx.org/2018/01/build-blog-with-blogdown-hugo-netlify-github/ https://testliang.netlify.com/ </description>
     </item>
     
     <item>
@@ -1518,7 +1532,7 @@ l &amp;lt;- data.frame() for(i in 1:3){ df.now &amp;lt;- get(paste0(&amp;#34;df&
       <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%AD%E7%9A%84biocparallel%E5%92%8Cparallel%E5%8C%85/</guid>
-      <description>https://bioconductor.org/packages/release/bioc/vignettes/BiocParallel/inst/doc/Introduction_To_BiocParallel.pdf</description>
+      <description>https://bioconductor.org/packages/release/bioc/vignettes/BiocParallel/inst/doc/Introduction_To_BiocParallel.pdf </description>
     </item>
     
     <item>
@@ -1695,7 +1709,7 @@ tab.prior &amp;lt;- table(df[df$days.from.opt &amp;lt; 0, &amp;#34;campaign.id&a
       <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9F%A9%E9%98%B5%E5%88%86%E6%9E%90%E5%8F%8A%E5%85%B6%E5%8F%AF%E8%A7%86%E5%8C%96/</guid>
-      <description>https://zhuanlan.zhihu.com/p/33617479?from_voters_page=true</description>
+      <description>https://zhuanlan.zhihu.com/p/33617479?from_voters_page=true </description>
     </item>
     
     <item>
@@ -1819,7 +1833,7 @@ $ bash $ echo $SHELL # 确认一下 /bin/bash ##2.简单的shell脚本 假设我
       <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/tmux-%E6%8C%87%E5%8D%97/</guid>
-      <description>我的tmux配置 https://wdxtub.com/2016/03/30/tmux-guide/</description>
+      <description>我的tmux配置 https://wdxtub.com/2016/03/30/tmux-guide/ </description>
     </item>
     
     <item>
@@ -1907,7 +1921,7 @@ conda install -c conda-forge jupyter_contrib_nbextensions 第三步, 开启toc2�
       <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/%E4%BD%BF%E7%94%A8-rdiagrammer-%E5%92%8C-blogdown-%E5%BF%AB%E9%80%9F%E7%94%BB%E7%AE%AD%E5%A4%B4%E5%9B%BE%E8%A1%A8/</guid>
-      <description>https://www.jianshu.com/p/5e28292fc5d1</description>
+      <description>https://www.jianshu.com/p/5e28292fc5d1 </description>
     </item>
     
     <item>
@@ -2078,7 +2092,7 @@ source deactivate py36 </description>
       <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/%E6%9F%A5r%E9%87%8C%E9%9D%A2%E5%87%BD%E6%95%B0%E7%9A%84%E6%BA%90%E7%A0%81/</guid>
-      <description>https://blog.csdn.net/bangemantou/article/details/17097101</description>
+      <description>https://blog.csdn.net/bangemantou/article/details/17097101 </description>
     </item>
     
     <item>
@@ -2087,9 +2101,7 @@ source deactivate py36 </description>
       <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/%E7%83%AD%E5%9B%BE%E5%AE%9E%E8%B7%B5/</guid>
-      <description>https://bioconductor.statistik.tu-dortmund.de/packages/3.1/bioc/vignettes/ComplexHeatmap/inst/doc/ComplexHeatmap.html
-https://www.bioconductor.org/packages/devel/bioc/vignettes/ComplexHeatmap/inst/doc/s9.examples.html
-https://www.bioconductor.org/packages/devel/bioc/vignettes/ComplexHeatmap/inst/doc/s3.a_list_of_heatmaps.html</description>
+      <description>https://bioconductor.statistik.tu-dortmund.de/packages/3.1/bioc/vignettes/ComplexHeatmap/inst/doc/ComplexHeatmap.html https://www.bioconductor.org/packages/devel/bioc/vignettes/ComplexHeatmap/inst/doc/s9.examples.html https://www.bioconductor.org/packages/devel/bioc/vignettes/ComplexHeatmap/inst/doc/s3.a_list_of_heatmaps.html </description>
     </item>
     
     <item>

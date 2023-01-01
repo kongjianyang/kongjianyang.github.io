@@ -120,7 +120,7 @@ defaultMarkdownHandler = "goldmark"
 
     [markup.goldmark.extensions]
     definitionList = true
-    footnote = trues
+    footnote = true
     strikethrough = true
     table = true
     taskList = true

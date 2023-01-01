@@ -1,48 +1,92 @@
-<html><body><a name="top"></a>
+<a name="top"></a>
 <!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>KJY</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-<link href="/css/style.css" rel="stylesheet"/>
-<link href="/css/fonts.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
 <script>hljs.initHighlightingOnLoad();</script>
-<div class="wrapper">
-<header class="header">
-<nav class="nav">
-<a class="nav-logo" href="/">
-<img alt="" height="" src="/media/%3cnil%3e" width=""/>
-</a>
-<ul class="nav-links">
-<li><a href="/cn/about/">关于</a></li>
-<li><a href="/cn/posts/">日志</a></li>
-<li><a href="/cn/newsletter/">周刊</a></li>
-<li><a href="/">English</a></li>
-</ul>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
 </nav>
-</header>
-<main class="content" role="main">
+      </header>
+
+<main class = "content" role="main">
 <div style="text-align: center">
+
 <h1>详解MySQL及RMySQL</h1>
+
 <p>Liang 
  / 2018-11-24 </p>
+
 <hr/>
 </div>
+
 <span class="article-toolbar">
-<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/%e8%af%a6%e8%a7%a3MySQL%e5%8f%8aRMySQL.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
-</a>
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/%e8%af%a6%e8%a7%a3MySQL%e5%8f%8aRMySQL.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
 </span>
+
+
+
 <div class="body-text list-text">
-<h1 id="01-mac上安装mysql">01. Mac上安装MySQL<a arialabel="Anchor" class="header-anchor" href="#01-mac上安装mysql"> # </a></h1>
+<h1 id="01-mac上安装mysql">01. Mac上安装MySQL<a href="#01-mac上安装mysql" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
 <p>访问MySQL的官网http://www.mysql.com/downloads/ 然后在页面中会看到“MySQL Community Server”下方有一个“download”点击。进入MySQL的下载界面（http://www.mysql.com/downloads/mysql/），如果你是用的Mac OS来访问的话那么就会默认为你选好了Mac OS X 平台，而下面罗列的都是在Mac OS上能用的MySQL的版本，如果是用的其他平台，在“Select Platform”选项的下拉列表中选一下就好了。按照安装步骤一路向下走，记得保存最后弹出框中的密码（它是你mysql root账号的密码）。 打开设置并且点击MySQL并开启MySQL服务。</p>
 <p>此时我们在终端输入此时我们在命令行输入mysql -uroot -p命令会提示没有commod not found，我们还需要将mysql加入系统环境变量。</p>
 <p>(1).进入/usr/local/mysql/bin,查看此目录下是否有mysql。</p>
@@ -51,90 +95,90 @@
 </code></pre><p>添加完成后，按esc，然后输入wq保存。最后在命令行输入source ~/.bash_profile。
 现在你就可以通过mysql -uroot -p登录mysql了，会让你输入密码，就是之前弹窗中记录的密码</p>
 <p>至此MySQL成功安装到mac电脑下，可以进行下面的开发了。</p>
-<h1 id="02-安装rmysql">02. 安装RMySQL<a arialabel="Anchor" class="header-anchor" href="#02-安装rmysql"> # </a></h1>
+<h1 id="02-安装rmysql">02. 安装RMySQL<a href="#02-安装rmysql" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
 <p>安装<em>RMySQL</em>非常简单，安装之后可以使用<code>help</code>命令查询包的介绍信息</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">install.packages("RMySQL")
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">install.packages(&#34;RMySQL&#34;)
 library(RMySQL)
-</code></pre><pre tabindex="0"><code class="language-{r}" data-lang="{r}">help("RMySQL")
-</code></pre><h1 id="03-rmysql基本操作">03. RMySQL基本操作<a arialabel="Anchor" class="header-anchor" href="#03-rmysql基本操作"> # </a></h1>
-<p>创造一个新的数据库并使用，SQL查询可以通过dbSendQuery或dbGetQuery传给数据库管理系统。dbGetQuery传送查询语句，把结果以数据框形式返回。dbSendQuery传送查询，返回的结果是继承"DBIResult"的一个子类的对象。函数fetch用于获得查询结果的部分或全部行，并以列表返回。函数dbHasCompleted确定是否所有行已经获得了，而dbGetRowCount返回结果中行的数目。如果只是简单的读整个表，也可以用dbReadTable函数。</p>
+</code></pre><pre tabindex="0"><code class="language-{r}" data-lang="{r}">help(&#34;RMySQL&#34;)
+</code></pre><h1 id="03-rmysql基本操作">03. RMySQL基本操作<a href="#03-rmysql基本操作" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
+<p>创造一个新的数据库并使用，SQL查询可以通过dbSendQuery或dbGetQuery传给数据库管理系统。dbGetQuery传送查询语句，把结果以数据框形式返回。dbSendQuery传送查询，返回的结果是继承&quot;DBIResult&quot;的一个子类的对象。函数fetch用于获得查询结果的部分或全部行，并以列表返回。函数dbHasCompleted确定是否所有行已经获得了，而dbGetRowCount返回结果中行的数目。如果只是简单的读整个表，也可以用dbReadTable函数。</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">library(RMySQL)
 
 mydb = dbConnect(MySQL(), #数据库平台类型
-                 user='root', #登录账号（MySQL初始安装时设置的账号）
-                 password='password', #登录密码（MySQL初始安装时设置的密码）
-                 host='localhost')
+                 user=&#39;root&#39;, #登录账号（MySQL初始安装时设置的账号）
+                 password=&#39;password&#39;, #登录密码（MySQL初始安装时设置的密码）
+                 host=&#39;localhost&#39;)
 # creating a database using RMySQL in R
-dbSendQuery(mydb, "CREATE DATABASE bookstore;")
-dbSendQuery(mydb, "USE bookstore;")
+dbSendQuery(mydb, &#34;CREATE DATABASE bookstore;&#34;)
+dbSendQuery(mydb, &#34;USE bookstore;&#34;)
 # reconnecting to database we just created using following command in R :
-mydb = dbConnect(MySQL(), user='root', password='password', host='localhost', dbname="bookstore") # 重连数据库
-dbSendQuery(mydb, "drop table if exists books, authors")
+mydb = dbConnect(MySQL(), user=&#39;root&#39;, password=&#39;password&#39;, host=&#39;localhost&#39;, dbname=&#34;bookstore&#34;) # 重连数据库
+dbSendQuery(mydb, &#34;drop table if exists books, authors&#34;)
 </code></pre><p>在数据库中创造表：</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}"># creating tables in bookstore:
-dbSendQuery(mydb, "
+dbSendQuery(mydb, &#34;
 CREATE TABLE books (
 book_id INT,
 title VARCHAR(50),
-author VARCHAR(50));")
+author VARCHAR(50));&#34;)
 </code></pre><p>显示数据库中的表：</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}"># Show table using R:
 dbListTables(mydb)
 </code></pre><p>在包中插入新的列：</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">dbSendQuery(mydb, "ALTER TABLE books
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">dbSendQuery(mydb, &#34;ALTER TABLE books
 CHANGE COLUMN book_id book_id INT AUTO_INCREMENT PRIMARY KEY,
 CHANGE COLUMN author author_id INT,
 ADD COLUMN description TEXT,
-ADD COLUMN genre ENUM('novel','poetry','drama', 'tutorials', 'text', 'other'),
+ADD COLUMN genre ENUM(&#39;novel&#39;,&#39;poetry&#39;,&#39;drama&#39;, &#39;tutorials&#39;, &#39;text&#39;, &#39;other&#39;),
 ADD COLUMN publisher_id INT,
 ADD COLUMN pub_year VARCHAR(4),
-ADD COLUMN isbn VARCHAR(20);")
+ADD COLUMN isbn VARCHAR(20);&#34;)
 </code></pre><p>创造新的表并创造一些列名：</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># Now, Before moving on to adding data to our books table, let's quickly set up the authors table.
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># Now, Before moving on to adding data to our books table, let&#39;s quickly set up the authors table.
 
-dbSendQuery(mydb, "CREATE TABLE authors
+dbSendQuery(mydb, &#34;CREATE TABLE authors
 (author_id INT AUTO_INCREMENT PRIMARY KEY,
 author_last VARCHAR(50),
 author_first VARCHAR(50),
-country VARCHAR(50));")
+country VARCHAR(50));&#34;)
 </code></pre><p>往新的表中插入数据：</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}"># Adding data into tables
-dbSendQuery(mydb, "INSERT INTO authors
+dbSendQuery(mydb, &#34;INSERT INTO authors
 (author_last, author_first, country)
-VALUES('Kumar','Manoj','India');")
+VALUES(&#39;Kumar&#39;,&#39;Manoj&#39;,&#39;India&#39;);&#34;)
 </code></pre><p>从数据库中获取选取结果：</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}"># fetching last data insert id number:
-last_id = fetch(dbSendQuery(mydb, "SELECT LAST_INSERT_ID();"))
+last_id = fetch(dbSendQuery(mydb, &#34;SELECT LAST_INSERT_ID();&#34;))
 last_id
 </code></pre><p>插入新的值到book表，并查看插入的值：</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}"># Inserting data into books table and using last insert ID number:
 
-dbSendQuery(mydb, "INSERT INTO books
+dbSendQuery(mydb, &#34;INSERT INTO books
 (title, author_id, isbn, genre, pub_year)
-VALUES('R and MySQL', 1,'6900690075','tutorials','2014');")
+VALUES(&#39;R and MySQL&#39;, 1,&#39;6900690075&#39;,&#39;tutorials&#39;,&#39;2014&#39;);&#34;)
 
-try1 = fetch(dbSendQuery(mydb, "SELECT book_id, title, description FROM books WHERE genre = 'tutorials';"))
+try1 = fetch(dbSendQuery(mydb, &#34;SELECT book_id, title, description FROM books WHERE genre = &#39;tutorials&#39;;&#34;))
 </code></pre><p>显示所有的表并插入数值到新的表：</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">dbListTables(mydb) # 显示所有的表
-dbWriteTable(mydb, name = "mtcars", value = mtcars[,]) # 插入R自带的数据mtcars形成新的表
+dbWriteTable(mydb, name = &#34;mtcars&#34;, value = mtcars[,]) # 插入R自带的数据mtcars形成新的表
 dbListTables(mydb)
 </code></pre><p>插入表格的时候如果有错误的话如：</p>
 <pre tabindex="0"><code>Error in .local(conn, statement, ...) : could not run statement: The used command is not allowed with this MySQL version
 </code></pre><p>则是因为MySQL的一些安全问题，可以在MySQL的命令界面通过命令查询：</p>
-<pre tabindex="0"><code>SHOW VARIABLES LIKE 'local_infile';
+<pre tabindex="0"><code>SHOW VARIABLES LIKE &#39;local_infile&#39;;
 </code></pre><p>全局更改则可以依据以下命令：</p>
 <pre tabindex="0"><code>SET GLOBAL local_infile = 1;
 </code></pre><p>读取数据库里面的表格：</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">mtcars &lt;- dbReadTable(mydb, "mtcars")
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">mtcars &lt;- dbReadTable(mydb, &#34;mtcars&#34;)
 head(mtcars)
 </code></pre><p>删除表格：</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">dbGetQuery(mydb,"DROP TABLE mtcars")
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">dbGetQuery(mydb,&#34;DROP TABLE mtcars&#34;)
 dbListTables(mydb)
 </code></pre><p>删除数据库：</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">dbGetQuery(mydb,"DROP DATABASE bookstore;")
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">dbGetQuery(mydb,&#34;DROP DATABASE bookstore;&#34;)
 </code></pre><p>断开连接：</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">dbDisconnect(mydb)
-</code></pre><h1 id="查询配置文件">查询配置文件<a arialabel="Anchor" class="header-anchor" href="#查询配置文件"> # </a></h1>
+</code></pre><h1 id="查询配置文件">查询配置文件<a href="#查询配置文件" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
 <p>可以使用下面的命令进行查询配置文件</p>
 <pre tabindex="0"><code>mysql --verbose --help | grep my.cnf
 </code></pre><ul>
@@ -145,33 +189,55 @@ dbListTables(mydb)
 <li>~/.my.cnf - User-specific</li>
 <li>~/.mylogin.cnf - User-specific (clients only)</li>
 </ul>
-<h1 id="04-相关">04. 相关<a arialabel="Anchor" class="header-anchor" href="#04-相关"> # </a></h1>
+<h1 id="04-相关">04. 相关<a href="#04-相关" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
 <p>查询mysql数据存放的位置</p>
-<pre tabindex="0"><code>mysql&gt; show global variables like "%datadir%";
+<pre tabindex="0"><code>mysql&gt; show global variables like &#34;%datadir%&#34;;
 </code></pre><p>Mac系统下默认是没有MySQL的配置文件my.cnf的，如果需求的话需要自己创建并修改。</p>
+
 <p style="color:#777;">最后一次修改于 2018-11-24</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
 </main>
+
 <footer class="footer">
-<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
 </script>
-<script src="/js/math-code.js" type="text/javascript"></script>
-<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/js/center-img.js" type="text/javascript"></script>
-<ul class="footer-links">
-<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
        订阅 </a>
-</li>
-<li>
-<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
         版权
-        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
-</a>
-</li>
-</ul>
-<div class="copyright-text">
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
             
             ©
             
@@ -180,5 +246,10 @@ dbListTables(mydb)
             2018-2021
             
      </div>
+
 </footer>
-</div></body></html>
+
+
+
+
+

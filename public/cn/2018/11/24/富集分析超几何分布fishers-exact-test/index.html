@@ -1,52 +1,96 @@
-<html><body><a name="top"></a>
+<a name="top"></a>
 <!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>KJY</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-<link href="/css/style.css" rel="stylesheet"/>
-<link href="/css/fonts.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
 <script>hljs.initHighlightingOnLoad();</script>
-<div class="wrapper">
-<header class="header">
-<nav class="nav">
-<a class="nav-logo" href="/">
-<img alt="" height="" src="/media/%3cnil%3e" width=""/>
-</a>
-<ul class="nav-links">
-<li><a href="/cn/about/">关于</a></li>
-<li><a href="/cn/posts/">日志</a></li>
-<li><a href="/cn/newsletter/">周刊</a></li>
-<li><a href="/">English</a></li>
-</ul>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
 </nav>
-</header>
-<main class="content" role="main">
+      </header>
+
+<main class = "content" role="main">
 <div style="text-align: center">
-<h1>富集分析（超几何分布）（Fisher's-Exact-Test）</h1>
+
+<h1>富集分析（超几何分布）（Fisher&#39;s-Exact-Test）</h1>
+
 <p>Liang 
  / 2018-11-24 </p>
+
 <hr/>
 </div>
+
 <span class="article-toolbar">
-<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/%e5%af%8c%e9%9b%86%e5%88%86%e6%9e%90%ef%bc%88%e8%b6%85%e5%87%a0%e4%bd%95%e5%88%86%e5%b8%83%ef%bc%89%ef%bc%88Fisher%27s-Exact-Test%ef%bc%89.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
-</a>
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/%e5%af%8c%e9%9b%86%e5%88%86%e6%9e%90%ef%bc%88%e8%b6%85%e5%87%a0%e4%bd%95%e5%88%86%e5%b8%83%ef%bc%89%ef%bc%88Fisher%27s-Exact-Test%ef%bc%89.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
 </span>
+
+
+
 <div class="body-text list-text">
-<h1 id="1-简介">1. 简介<a arialabel="Anchor" class="header-anchor" href="#1-简介"> # </a></h1>
+<h1 id="1-简介">1. 简介<a href="#1-简介" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
 <p>超几何分布（hypergeometric）是统计学上一种离散概率分布。它描述了由有限个物件中抽出n个物件，成功抽出指定种类的物件的个数（不归还）。</p>
-<p>超几何分布和Fisher’s Exact Test是完全一模一样的原理，只是两种不同的称谓。</p>
+<p>超几何分布和Fisher&rsquo;s Exact Test是完全一模一样的原理，只是两种不同的称谓。</p>
 <p>例如在有N个样本，其中m个是不及格的。超几何分布描述了在该N个样本中抽出n个，其中k个是不及格的机率：</p>
-<p><img alt="公式" src="https://upload-images.jianshu.io/upload_images/3014937-38681a7eb825d7e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3014937-38681a7eb825d7e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="公式"></p>
 <p>上式可如此理解：n^N 表示所有在N个样本中抽出n个，而抽出的结果不一样的数目。
 k^m 表示在m个样本中，抽出k个的方法数目。剩下来的样本都是及格的，而及格的样本有N-m个，剩下的抽法便有(n-K^N-m)种。</p>
 <p>若n=1，超几何分布还原为伯努利分布。</p>
@@ -54,11 +98,11 @@ k^m 表示在m个样本中，抽出k个的方法数目。剩下来的样本都�
 <p>然后计算得到的p-value通过Bonferroni校正之后，以0.05为阈值（小于0.05），满足此条件的GO term定义为显著富集。</p>
 <p>（1）超几何分布的模型是不放回抽样</p>
 <p>（2）超几何分布中的参数是M,N,n上述超几何分布记作X~H(n，M，N）。</p>
-<h1 id="2-例子">2. 例子<a arialabel="Anchor" class="header-anchor" href="#2-例子"> # </a></h1>
+<h1 id="2-例子">2. 例子<a href="#2-例子" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
 <p>以文章Gene Expre ssion in Ovarian Cancer Reflects Both Morphology and Biological Behavior, Distinguishing Clear Cell from Other Poor-Prognosis Ovarian Carcinomas所鉴定的差异基因为例。</p>
 <p>测试一下这些基因和化学刺激响应的相关性。</p>
 <p>样本的大小是n，属于“化学刺激响应”这个分类的基因有k个。</p>
-<pre tabindex="0"><code>eg &lt;- c("7980", "3081", "3162", "3059", "1545", "1917", "6696", "5797", "6648" , "10397" , "6781", "5817", "1282", "1284", "6948", "7077")
+<pre tabindex="0"><code>eg &lt;- c(&#34;7980&#34;, &#34;3081&#34;, &#34;3162&#34;, &#34;3059&#34;, &#34;1545&#34;, &#34;1917&#34;, &#34;6696&#34;, &#34;5797&#34;, &#34;6648&#34; , &#34;10397&#34; , &#34;6781&#34;, &#34;5817&#34;, &#34;1282&#34;, &#34;1284&#34;, &#34;6948&#34;, &#34;7077&#34;)
 n &lt;- length(eg)
 k &lt;- sum(eg %in% allgeneInCategory)
 n
@@ -67,7 +111,7 @@ k
 #12
 </code></pre><p>那么做为背景，总体基因为N，属于“化学刺激响应”这个分类的基因有M个。</p>
 <pre tabindex="0"><code>library(org.Hs.eg.db)
-goid &lt;- "GO:0042221"
+goid &lt;- &#34;GO:0042221&#34;
 allgeneInCategory &lt;- unique(get(goid, org.Hs.egGO2ALLEGS))
 M &lt;- length(allgeneInCategory)
 N &lt;- length(mappedkeys(org.Hs.egGO))
@@ -75,31 +119,31 @@ M
 N
 #4373
 #19307
-</code></pre><h2 id="21-二项式分布">2.1 二项式分布<a arialabel="Anchor" class="header-anchor" href="#21-二项式分布"> # </a></h2>
+</code></pre><h2 id="21-二项式分布">2.1 二项式分布<a href="#21-二项式分布" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>从总体上看，要拿到一个基因属于“化学刺激响应”这个分类的概率是M/N。那么现在抽了n个基因，里面有k个基于这个分类，p值为</p>
 <pre tabindex="0"><code>1-sum(sapply(0:k-1, function(i) choose(n,i) * (M/N)^i * (1-M/N)^(n-i)))
 #1.301651e-05
-</code></pre><h2 id="22-超几何分布">2.2 超几何分布<a arialabel="Anchor" class="header-anchor" href="#22-超几何分布"> # </a></h2>
+</code></pre><h2 id="22-超几何分布">2.2 超几何分布<a href="#22-超几何分布" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>二项式分布，是有放回的抽样，你可以多次抽到同一基因，这是不符合的。所以这个计算只能说是做为近似的估计值，无放回的抽样，符合超几何分布，通过超几何分布的计算，p值为：</p>
 <pre tabindex="0"><code>phyper(k-1,M, N-M, n, lower.tail=FALSE)
 #1.289306e-05
 </code></pre><p>用2x2表做独立性分析</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">d &lt;- data.frame(gene.not.interest=c(M-k, N-M-n+k), gene.in.interest=c(k, n-k))
-row.names(d) &lt;- c("In_category", "not_in_category")
+row.names(d) &lt;- c(&#34;In_category&#34;, &#34;not_in_category&#34;)
 d
-</code></pre><p><img alt="2x2表分析" src="https://upload-images.jianshu.io/upload_images/3014937-b7e20d37f208921f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
+</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-b7e20d37f208921f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2x2表分析"></p>
 <p>##2.3 卡方检验
 对于２x２表来说，卡方检验通常也只能做为近似估计值，特别是当sample size或expected ell count比较小的时候，计算并不准确。</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">chisq.test(d, )
 #Chi-squared approximation may be incorrect
-#	Pearson's Chi-squared test with Yates' continuity correction
+#	Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 
 #data:  d
 #X-squared = 22.148, df = 1, p-value = 2.525e-06
 </code></pre><p>##2.4 Fisher精确检验
 名副其实，真的就比较exact，因为它使用的是超几何分布来计算p值。Fisher精确检验是基于超几何分布计算的，它分为两种，分别是单边检验（等同于超几何检验）和双边检验。</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">fisher.test(d)
-#	Fisher's Exact Test for Count Data
+#	Fisher&#39;s Exact Test for Count Data
 
 #data:  d
 #p-value = 1.289e-05
@@ -109,33 +153,55 @@ d
 #sample estimates:
 #odds ratio 
 #0.09739934 
-</code></pre><h1 id="3-额外">3. 额外<a arialabel="Anchor" class="header-anchor" href="#3-额外"> # </a></h1>
-<p>1.n大于等于40.所有理论频数大于等于5—用卡方检验
-2.n大于等于40，所有理论频数大于1，小于5—-用校正的卡方
-3.n小于40，理论频数小于1—–用fish精确概率法</p>
+</code></pre><h1 id="3-额外">3. 额外<a href="#3-额外" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
+<p>1.n大于等于40.所有理论频数大于等于5&mdash;用卡方检验
+2.n大于等于40，所有理论频数大于1，小于5&mdash;-用校正的卡方
+3.n小于40，理论频数小于1&mdash;&ndash;用fish精确概率法</p>
+
 <p style="color:#777;">最后一次修改于 2018-11-24</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
 </main>
+
 <footer class="footer">
-<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
 </script>
-<script src="/js/math-code.js" type="text/javascript"></script>
-<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/js/center-img.js" type="text/javascript"></script>
-<ul class="footer-links">
-<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
        订阅 </a>
-</li>
-<li>
-<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
         版权
-        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
-</a>
-</li>
-</ul>
-<div class="copyright-text">
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
             
             ©
             
@@ -144,5 +210,10 @@ d
             2018-2021
             
      </div>
+
 </footer>
-</div></body></html>
+
+
+
+
+

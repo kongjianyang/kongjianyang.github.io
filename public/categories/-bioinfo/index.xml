@@ -14,10 +14,7 @@
       
       <guid>https://kongjianyang.github.io/cn/2022/05/23/scrna/</guid>
       <description>Reference:
-https://broadinstitute.github.io/KrumlovSingleCellWorkshop2020/index.html
-https://satijalab.org/seurat/articles/pbmc3k_tutorial.html#finding-differentially-expressed-features-cluster-biomarkers-
-https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html
-Background 单细胞RNA-seq能够独立地提供每个细胞的RNA表达谱，并鉴定异质细胞群中的稀有细胞。尽管肿瘤异质性可归因于累积突变，但即使是遗传上相同的细胞在相同环境下也可能表现出基因和蛋白表达水平的差异，从而导致耐药性的产生。单细胞RNA-seq就能够发现这些稀有个体。
+https://broadinstitute.github.io/KrumlovSingleCellWorkshop2020/index.html https://satijalab.org/seurat/articles/pbmc3k_tutorial.html#finding-differentially-expressed-features-cluster-biomarkers- https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html Background 单细胞RNA-seq能够独立地提供每个细胞的RNA表达谱，并鉴定异质细胞群中的稀有细胞。尽管肿瘤异质性可归因于累积突变，但即使是遗传上相同的细胞在相同环境下也可能表现出基因和蛋白表达水平的差异，从而导致耐药性的产生。单细胞RNA-seq就能够发现这些稀有个体。
 单细胞RNA-seq的流程
 当然，单细胞RNA-seq的开展绝非易事，需要用到一系列尖端技术。大家首先要高效分离单细胞，然后进行RNA提取、逆转录、文库制备和测序，最后再通过生物信息学软件进行数据分析。其中，第一步 – 单细胞分离就相当棘手。
 单细胞分离 从异质性的细胞群体中分离单细胞，目前的选择有不少，新方法也在不断面世。选择分离方法时，您可能需要考虑它是高通量还是低通量，以及是盲选还是有偏向的选择（基于某个参数）。

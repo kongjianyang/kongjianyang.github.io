@@ -1,50 +1,95 @@
-<html><body><a name="top"></a>
+<a name="top"></a>
 <!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>KJY</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-<link href="/css/style.css" rel="stylesheet"/>
-<link href="/css/fonts.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
 <script>hljs.initHighlightingOnLoad();</script>
-<div class="wrapper">
-<header class="header">
-<nav class="nav">
-<a class="nav-logo" href="/">
-<img alt="" height="" src="/media/%3cnil%3e" width=""/>
-</a>
-<ul class="nav-links">
-<li><a href="/cn/about/">关于</a></li>
-<li><a href="/cn/posts/">日志</a></li>
-<li><a href="/cn/newsletter/">周刊</a></li>
-<li><a href="/">English</a></li>
-</ul>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
 </nav>
-</header>
-<main class="content" role="main">
+      </header>
+
+<main class = "content" role="main">
 <div style="text-align: center">
+
 <h1>GSEA和GSVA分析</h1>
+
 <p>KJY 
  / 2022-06-28 </p>
+
 <hr/>
 </div>
+
 <span class="article-toolbar">
-<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/GSEA%e5%92%8cGSVA%e5%88%86%e6%9e%90.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
-</a>
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/GSEA%e5%92%8cGSVA%e5%88%86%e6%9e%90.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
 </span>
+
+
 <aside class="toc">
 Table of Contents:
 <nav id="TableOfContents"></nav>
 </aside>
+
+
 <div class="body-text list-text">
 <p>GSEA全称Gene Set Enrichment Analysis，GSVA全称Gene Set Variation Analysis，它们都是基于基因集开展的分析，因此我们先要了解基因集的定义。基因集顾名思义就是一些基因的集合，任何一些基因放在一起都可以叫做基因集，但是我们用来分析的基因集要求有一定的生物学意义。</p>
 <p>MSigDB（Molecular Signatures Database）数据库中定义了已知的基因集合：http://software.broadinstitute.org/gsea/msigdb 包括H和C1-C7八个系列（Collection），每个系列分别是：</p>
@@ -58,7 +103,7 @@ C6: oncogenic signatures：癌症特征基因集合，大部分来源于NCBI GEO
 C7: immunologic signatures: 免疫相关基因集合。</p>
 <p>常规GO/KEGG富集分析需要设定阈值过滤差异基因，阈值太宽富集的结果太多，阈值太严又可能会遗漏一些关键结果。GO/KEGG富集的结果通常还很宽泛，并不能很好地解释生物学现象。有鉴于此，Broad研究所开发了基因集富集分析(GSEA)方法。GSEA使用无监督算法，不用过滤任何基因，配合MSigDB数据库使用，更容易找到解释生物学现象的基因集.</p>
 <p>GSEA分析要先将样本做组间对比分析, 对比分析之后要按结果将基因排序，以差异倍数方法为例，把所有基因按差异倍数(FC)的值降序排列以供后续分析。</p>
-<p><img alt="img" src="https://upload-images.jianshu.io/upload_images/19009296-fa72995c15acb2f8?imageMogr2/auto-orient/strip%7CimageView2/2/w/1080/format/webp"/></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/19009296-fa72995c15acb2f8?imageMogr2/auto-orient/strip%7CimageView2/2/w/1080/format/webp" alt="img"></p>
 <p>上图小人脚下的小方块代表排序好的差异基因列表，蓝色之外的其他色块代表属于某个基因集的基因，如黄色属于基因集A，绿色属于基因集B。最下面高低不等的竖条代表与基因列表对应的FC值，红色上调、蓝色下调、黄色没有变化。基因集的富集分析需要经历三步：</p>
 <p>基因集A富集分析时，小人从基因列表的左端走到右端，每经过一个蓝色基因扣分，每遇到一个黄色基因加分，扣分时与FC无关，加分时考虑FC的权重。基因集A最终的富集分数(ES)是小人曾经得过的最高/低分，实际公式比这复杂，但基本理念如此。</p>
 <p>采用置换检验(Permutation testing)计算基因集A的显著性，即p值。</p>
@@ -74,36 +119,58 @@ C7: immunologic signatures: 免疫相关基因集合。</p>
 <p>这里得到的表格即说明（假设是由两组分析后得到的 logFC 作为分子的值）对应的基因集在两组内有差异，当 ES 或者 NES 为正时，说明该基因集在高表达组（头部）富集；当 ES 或者 NES 为负时，说明该基因集在低表达组（尾部）富集。结果这里一般只需要关注满足阈值（p.adj）</p>
 <p>GSEA虽然是一种强大的富集分析工具，但是它的应用场景通常局限于Case/Control的实验设计。</p>
 <p>GSVA不需要预先进行样本之间的差异分析，它依据表达矩阵就可以计算每个样本中特定基因集的变异分数。简单的说，输入以基因为行的表达矩阵和基因集数据库给GSVA，它就输出以基因集名称为行的变异分数矩阵，如下图所示：</p>
-<p><img alt="img" src="https://upload-images.jianshu.io/upload_images/19009296-f092b5b61ea13972?imageMogr2/auto-orient/strip%7CimageView2/2/w/1080/format/webp"/></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/19009296-f092b5b61ea13972?imageMogr2/auto-orient/strip%7CimageView2/2/w/1080/format/webp" alt="img"></p>
 <p>左侧输入基因表达矩阵和基因集数据库，中间是GSVA算法原理，右侧是输出的基因集变异分数矩阵。基因集变异分数可以理解为基因集内所有基因的综合表达值。</p>
 <p>(1)算法会对表达数据进行核密度估计；</p>
 <p>(2)基于第一步的结果对样本进行表达水平排序；</p>
 <p>(3)对于每一个基因集进行类似K-S检验的秩统计量计算；</p>
 <p>(4)获取GSVA富集分数。最终输出为以每个基因集对应每个样本的数据矩阵。</p>
 <p>GSVA 可以寻找样本间有显著差异的基因集。这些“差异表达”的基因集，相对于基因而言，更加具有生物学意义，更具有可解释性，可以进一步用于肿瘤subtype的分型等等与生物学意义结合密切的探究。</p>
+
 <p style="color:#777;">最后一次修改于 2022-06-28</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
 </main>
+
 <footer class="footer">
-<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
 </script>
-<script src="/js/math-code.js" type="text/javascript"></script>
-<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/js/center-img.js" type="text/javascript"></script>
-<ul class="footer-links">
-<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
        订阅 </a>
-</li>
-<li>
-<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
         版权
-        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
-</a>
-</li>
-</ul>
-<div class="copyright-text">
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
             
             ©
             
@@ -112,5 +179,10 @@ C7: immunologic signatures: 免疫相关基因集合。</p>
             2018-2021
             
      </div>
+
 </footer>
-</div></body></html>
+
+
+
+
+

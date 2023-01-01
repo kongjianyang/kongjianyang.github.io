@@ -1,80 +1,124 @@
-<html><body><a name="top"></a>
+<a name="top"></a>
 <!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>KJY</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-<link href="/css/style.css" rel="stylesheet"/>
-<link href="/css/fonts.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
 <script>hljs.initHighlightingOnLoad();</script>
-<div class="wrapper">
-<header class="header">
-<nav class="nav">
-<a class="nav-logo" href="/">
-<img alt="" height="" src="/media/%3cnil%3e" width=""/>
-</a>
-<ul class="nav-links">
-<li><a href="/cn/about/">关于</a></li>
-<li><a href="/cn/posts/">日志</a></li>
-<li><a href="/cn/newsletter/">周刊</a></li>
-<li><a href="/">English</a></li>
-</ul>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
 </nav>
-</header>
-<main class="content" role="main">
+      </header>
+
+<main class = "content" role="main">
 <div style="text-align: center">
+
 <h1>shell编程-bash-shell的布尔运算</h1>
+
 <p>Liang 
  / 2018-11-24 </p>
+
 <hr/>
 </div>
+
 <span class="article-toolbar">
-<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/shell%e7%bc%96%e7%a8%8b-bash-shell%e7%9a%84%e5%b8%83%e5%b0%94%e8%bf%90%e7%ae%97.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
-</a>
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/shell%e7%bc%96%e7%a8%8b-bash-shell%e7%9a%84%e5%b8%83%e5%b0%94%e8%bf%90%e7%ae%97.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
 </span>
+
+
+
 <div class="body-text list-text">
 <p>在 Bash 里有这样的常量(实际上是两个内置命令，在这里我们姑且这么认为，后面将介绍)，即 true 和 false，一个表示真，一个表示假。对它们可以进行与、或、非运算等常规的逻辑运算。</p>
-<h2 id="1-与或非运算">1. 与或非运算<a arialabel="Anchor" class="header-anchor" href="#1-与或非运算"> # </a></h2>
-<pre tabindex="0"><code>$ if true;then echo "YES"; else echo "NO"; fi
+<h2 id="1-与或非运算">1. 与或非运算<a href="#1-与或非运算" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<pre tabindex="0"><code>$ if true;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
 YES
-$ if false;then echo "YES"; else echo "NO"; fi
+$ if false;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
 NO
 </code></pre><p>与运算用&amp;&amp;表示</p>
-<pre tabindex="0"><code>$ if true &amp;&amp; true;then echo "YES"; else echo "NO"; fi
+<pre tabindex="0"><code>$ if true &amp;&amp; true;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
 YES
-$ if true &amp;&amp; false;then echo "YES"; else echo "NO"; fi
+$ if true &amp;&amp; false;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
 NO
-$ if false &amp;&amp; false;then echo "YES"; else echo "NO"; fi
+$ if false &amp;&amp; false;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
 NO
-$ if false &amp;&amp; true;then echo "YES"; else echo "NO"; fi
+$ if false &amp;&amp; true;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
 NO
 </code></pre><p>或运算用||表示</p>
-<pre tabindex="0"><code>$ if true || true;then echo "YES"; else echo "NO"; fi
+<pre tabindex="0"><code>$ if true || true;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
 YES
-$ if true || false;then echo "YES"; else echo "NO"; fi
+$ if true || false;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
 YES
-$ if false || true;then echo "YES"; else echo "NO"; fi
+$ if false || true;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
 YES
-$ if false || false;then echo "YES"; else echo "NO"; fi
+$ if false || false;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
 NO
 </code></pre><p>非运算，即取反用!表示</p>
-<pre tabindex="0"><code>$ if ! false;then echo "YES"; else echo "NO"; fi
+<pre tabindex="0"><code>$ if ! false;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
 YES
-$ if ! true;then echo "YES"; else echo "NO"; fi
+$ if ! true;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
 NO
-</code></pre><h2 id="2-true和false的本质">2. true和false的本质<a arialabel="Anchor" class="header-anchor" href="#2-true和false的本质"> # </a></h2>
+</code></pre><h2 id="2-true和false的本质">2. true和false的本质<a href="#2-true和false的本质" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>true 和 false 都是 Shell 的内置命令，它们的返回值是一个“逻辑值”，其中true 返回了 0，而 false 则返回了 1</p>
 <p>在 Shell 里，将 0 作为程序是否成功结束的标志，这就是 Shell 里头 true 和 false 的实质，它们用以反应某个程序是否正确结束，而并非传统的真假值（1 和 0），相反地，它们返回的是 0 和 1，即true返回0而false返回1.</p>
-<h2 id="3条件测试">3.条件测试<a arialabel="Anchor" class="header-anchor" href="#3条件测试"> # </a></h2>
+<h2 id="3条件测试">3.条件测试<a href="#3条件测试" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>shell中使用 test 进行数值测试（各种数值属性测试）、字符串测试（各种字符串属性测试）和文件测试（各种文件属性测试）。</p>
 <p><strong>数值测试</strong>，具体参数可以使用help test查看</p>
 <table>
@@ -111,9 +155,9 @@ NO
 </tr>
 </tbody>
 </table>
-<pre tabindex="0"><code>$ if test 5 -eq 5;then echo "YES"; else echo "NO"; fi #两数相等
+<pre tabindex="0"><code>$ if test 5 -eq 5;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi #两数相等
 YES
-$ if test 5 -ne 5;then echo "YES"; else echo "NO"; fi #两数不相等
+$ if test 5 -ne 5;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi #两数不相等
 NO
 </code></pre><p><strong>字符串测试</strong></p>
 <table>
@@ -150,13 +194,13 @@ NO
 </tr>
 </tbody>
 </table>
-<pre tabindex="0"><code>$ if test -n "not empty";then echo "YES"; else echo "NO"; fi
+<pre tabindex="0"><code>$ if test -n &#34;not empty&#34;;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
 YES
-$ if test -z "not empty";then echo "YES"; else echo "NO"; fi
+$ if test -z &#34;not empty&#34;;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
 NO
-$ if test -z "";then echo "YES"; else echo "NO"; fi
+$ if test -z &#34;&#34;;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
 YES
-$ if test -n "";then echo "YES"; else echo "NO"; fi
+$ if test -n &#34;&#34;;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
 NO
 </code></pre><p><strong>文件测试</strong></p>
 <table>
@@ -213,11 +257,11 @@ NO
 </tr>
 </tbody>
 </table>
-<pre tabindex="0"><code>$ if test -f /bin/bash; then echo "YES"; else echo "NO"; fi
+<pre tabindex="0"><code>$ if test -f /bin/bash; then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
 YES
-$ if test -d /bin/bash; then echo "YES"; else echo "NO"; fi
+$ if test -d /bin/bash; then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
 NO
-</code></pre><h2 id="4逻辑运算符">4.逻辑运算符<a arialabel="Anchor" class="header-anchor" href="#4逻辑运算符"> # </a></h2>
+</code></pre><h2 id="4逻辑运算符">4.逻辑运算符<a href="#4逻辑运算符" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>test 命令内部的逻辑运算和 Shell 的逻辑运算符有一些区别，对应的为 -a 和 &amp;&amp;，-o 与 ||，这两者不能混淆使用。而非运算都是 !</p>
 <p>-a 和 -o 作为测试命令的参数用在测试命令的内部，而 &amp;&amp; 和 || 则用来运算测试的返回值，! 为两者通用。需要关注的是：</p>
 <ul>
@@ -227,17 +271,17 @@ NO
 </ul>
 <p>用 [ ] 可以取代 test，这样看上去会“美观”很多</p>
 <pre tabindex="0"><code>$ i=5 #赋值不要空行
-$ if [ $i -eq 5 ]; then echo "YES"; else echo "NO"; fi
+$ if [ $i -eq 5 ]; then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
 YES
-$ if [ $i -gt 4 ] &amp;&amp; [ $i -lt 6 ]; then echo "YES"; else echo "NO"; fi
+$ if [ $i -gt 4 ] &amp;&amp; [ $i -lt 6 ]; then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
 YES
-</code></pre><p>记得给一些字符串变量加上 “"，记得 [ 之后与 ] 之前多加一个空格，不然会出现问题</p>
-<pre tabindex="0"><code>$ str=""
-$ if [ "$str" = "test" ]; then echo "YES"; else echo "NO"; fi
+</code></pre><p>记得给一些字符串变量加上 &ldquo;&quot;，记得 [ 之后与 ] 之前多加一个空格，不然会出现问题</p>
+<pre tabindex="0"><code>$ str=&#34;&#34;
+$ if [ &#34;$str&#34; = &#34;test&#34; ]; then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
 NO
-</code></pre><h2 id="5-命令列表">5. 命令列表<a arialabel="Anchor" class="header-anchor" href="#5-命令列表"> # </a></h2>
+</code></pre><h2 id="5-命令列表">5. 命令列表<a href="#5-命令列表" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>命令列表的执行规律符合逻辑运算的运算规律，用 &amp;&amp; 连接起来的命令，如果前者成功返回，将执行后面的命令，反之不然；用 || 连接起来的命令，如果前者成功返回，将不执行后续命令，反之不然。这个时候的&amp;&amp;和||和上面的与运算和或运算不同。</p>
-<pre tabindex="0"><code>$ ping -c 1 www.google.com -W 1 &amp;&amp; echo "=======connected=======" # ping -c 指定ping的次数 -W 指定等待响应时间（单位是毫秒） 
+<pre tabindex="0"><code>$ ping -c 1 www.google.com -W 1 &amp;&amp; echo &#34;=======connected=======&#34; # ping -c 指定ping的次数 -W 指定等待响应时间（单位是毫秒） 
 PING www.google.com (216.58.192.228): 56 data bytes
 
 --- www.google.com ping statistics ---
@@ -245,29 +289,51 @@ PING www.google.com (216.58.192.228): 56 data bytes
 round-trip min/avg/max/stddev = 10.240/10.240/10.240/0.000 ms
 =======connected======= 
 </code></pre><p>用命令列表取代 if/then 等条件分支结构可以省掉一些代码，而且使得程序比较美观、易读。</p>
+
 <p style="color:#777;">最后一次修改于 2018-11-24</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
 </main>
+
 <footer class="footer">
-<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
 </script>
-<script src="/js/math-code.js" type="text/javascript"></script>
-<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/js/center-img.js" type="text/javascript"></script>
-<ul class="footer-links">
-<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
        订阅 </a>
-</li>
-<li>
-<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
         版权
-        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
-</a>
-</li>
-</ul>
-<div class="copyright-text">
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
             
             ©
             
@@ -276,5 +342,10 @@ round-trip min/avg/max/stddev = 10.240/10.240/10.240/0.000 ms
             2018-2021
             
      </div>
+
 </footer>
-</div></body></html>
+
+
+
+
+

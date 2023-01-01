@@ -1,51 +1,95 @@
-<html><body><a name="top"></a>
+<a name="top"></a>
 <!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>KJY</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-<link href="/css/style.css" rel="stylesheet"/>
-<link href="/css/fonts.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
 <script>hljs.initHighlightingOnLoad();</script>
-<div class="wrapper">
-<header class="header">
-<nav class="nav">
-<a class="nav-logo" href="/">
-<img alt="" height="" src="/media/%3cnil%3e" width=""/>
-</a>
-<ul class="nav-links">
-<li><a href="/cn/about/">关于</a></li>
-<li><a href="/cn/posts/">日志</a></li>
-<li><a href="/cn/newsletter/">周刊</a></li>
-<li><a href="/">English</a></li>
-</ul>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
 </nav>
-</header>
-<main class="content" role="main">
+      </header>
+
+<main class = "content" role="main">
 <div style="text-align: center">
+
 <h1>shell编程-shell编程基础</h1>
+
 <p>Liang 
  / 2018-11-24 </p>
+
 <hr/>
 </div>
+
 <span class="article-toolbar">
-<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/shell%e7%bc%96%e7%a8%8b-shell%e7%bc%96%e7%a8%8b%e5%9f%ba%e7%a1%80.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
-</a>
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/shell%e7%bc%96%e7%a8%8b-shell%e7%bc%96%e7%a8%8b%e5%9f%ba%e7%a1%80.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
 </span>
+
+
+
 <div class="body-text list-text">
-<h2 id="1什么是shell">1.什么是shell<a arialabel="Anchor" class="header-anchor" href="#1什么是shell"> # </a></h2>
+<h2 id="1什么是shell">1.什么是shell<a href="#1什么是shell" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>shell是介于用户和操作系统之间的一个接口，用来接收用户的键盘输入，并分析和执行输入字符串中的命令，然后给用户返回执行结果，于GUI相比，shell因为使用命令行，所以使用起来可能比较复杂，但是使用的资源会比较少，而且拥有批处理的功能。</p>
 <p>一图看shell在操作系统中的位置
-<img alt="image.png" src="https://upload-images.jianshu.io/upload_images/3014937-059886f9c6c9c5e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
+<img src="https://upload-images.jianshu.io/upload_images/3014937-059886f9c6c9c5e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <p>使用命令查看当前shell</p>
 <pre tabindex="0"><code>echo $SHELL
 #/bin/zsh
@@ -59,34 +103,56 @@ $ echo $SHELL  # 确认一下
 假设我们设计一个test.sh的脚本，内容如下</p>
 <pre tabindex="0"><code>#!/bin/bash
 # test.sh
-echo "Hello, World"
+echo &#34;Hello, World&#34;
 </code></pre><p>重点是该文件的第一行，当我们直接运行该脚本文件时，该行告诉操作系统使用用#! 符号之后面的解释器以及相应的参数来解释该脚本文件，通过分析第一行，我们发现对应的解释器是 /bin/bash。</p>
-<h2 id="3shell的执行原理">3.shell的执行原理<a arialabel="Anchor" class="header-anchor" href="#3shell的执行原理"> # </a></h2>
+<h2 id="3shell的执行原理">3.shell的执行原理<a href="#3shell的执行原理" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>Shell 接收用户输入的脚本名，并进行分析。如果文件被标记为可执行，但不是被编译过的程序，Shell 就认为它是一个 Shell 脚本。 Shell 将读取其中的内容，并加以解释执行。所以，从用户的观点看，执行 Shell 脚本的方式与执行一般的可执行文件的方式相似。</p>
 <p>因此，用户开发的 Shell 脚本可以驻留在命令搜索路径的目录之下（通常是 /bin、/usr/bin等），像普通命令一样使用。这样，也就开发出自己的新命令。如果打算反复使用编好的 Shell 脚本，那么采用这种方式就比较方便。</p>
+
 <p style="color:#777;">最后一次修改于 2018-11-24</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
 </main>
+
 <footer class="footer">
-<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
 </script>
-<script src="/js/math-code.js" type="text/javascript"></script>
-<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/js/center-img.js" type="text/javascript"></script>
-<ul class="footer-links">
-<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
        订阅 </a>
-</li>
-<li>
-<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
         版权
-        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
-</a>
-</li>
-</ul>
-<div class="copyright-text">
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
             
             ©
             
@@ -95,5 +161,10 @@ echo "Hello, World"
             2018-2021
             
      </div>
+
 </footer>
-</div></body></html>
+
+
+
+
+

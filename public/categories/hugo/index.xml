@@ -75,8 +75,7 @@ Front Matter一般放在文章的最顶部，Hugo支持三种书写格式，
       
       <guid>https://kongjianyang.github.io/cn/2022/04/30/encryptor/</guid>
       <description>参考的这个资料：
-https://github.com/Li4n0/hugo_encryptor/blob/master/README-zh_CN.md
-下载 Hugo-Encryptor 并安装其所需要的依赖库
+https://github.com/Li4n0/hugo_encryptor/blob/master/README-zh_CN.md 下载 Hugo-Encryptor 并安装其所需要的依赖库
 $ git clone https://github.com/Li4n0/hugo_encryptor.git $ cd hugo_encryptor $ chmod +x hugo_encryptor.py $ pip3 install -r requirements.txt 将 hugo-encryptor.py放入博客根目录
 $ cp hugo-encryptor.py /path/to/your/blog/hugo-encryptor.py 将shortcodes/hugo-encryptor.html放入博客shortcodes目录
 $ mkdir -p /path/to/your/blog/layouts/shortcodes $ cp shortcodes/hugo-encryptor.html /path/to/your/blog/layouts/shortcodes/hugo-encryptor.html 使用方法

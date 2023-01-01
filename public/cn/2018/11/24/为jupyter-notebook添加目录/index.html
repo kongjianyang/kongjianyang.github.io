@@ -1,87 +1,154 @@
-<html><body><a name="top"></a>
+<a name="top"></a>
 <!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>KJY</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-<link href="/css/style.css" rel="stylesheet"/>
-<link href="/css/fonts.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
 <script>hljs.initHighlightingOnLoad();</script>
-<div class="wrapper">
-<header class="header">
-<nav class="nav">
-<a class="nav-logo" href="/">
-<img alt="" height="" src="/media/%3cnil%3e" width=""/>
-</a>
-<ul class="nav-links">
-<li><a href="/cn/about/">关于</a></li>
-<li><a href="/cn/posts/">日志</a></li>
-<li><a href="/cn/newsletter/">周刊</a></li>
-<li><a href="/">English</a></li>
-</ul>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
 </nav>
-</header>
-<main class="content" role="main">
+      </header>
+
+<main class = "content" role="main">
 <div style="text-align: center">
+
 <h1>为Jupyter-Notebook添加目录</h1>
+
 <p>Liang 
  / 2018-11-24 </p>
+
 <hr/>
 </div>
+
 <span class="article-toolbar">
-<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/%e4%b8%baJupyter-Notebook%e6%b7%bb%e5%8a%a0%e7%9b%ae%e5%bd%95.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
-</a>
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/%e4%b8%baJupyter-Notebook%e6%b7%bb%e5%8a%a0%e7%9b%ae%e5%bd%95.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
 </span>
+
+
+
 <div class="body-text list-text">
-<h2 id="1-问题">1. 问题<a arialabel="Anchor" class="header-anchor" href="#1-问题"> # </a></h2>
+<h2 id="1-问题">1. 问题<a href="#1-问题" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>从R的RMarkdown转到Python的Jupyter Notebook的时候会发现一个问题. 使用RStudio生成RMarkdown的时候, 可以添加目录(Table of Contents, TOC).  在RStudio添加一个目录, 目录里面的内容根据RMarkdown每一个标题自动生成. 这样只需要点击目录里面相应的内容, 就可以很快的跳到RMarkdown对应的地方，非常有效率。但是很可惜的是, 默认Jupyter Notebook是没有生成目录这个功能的。但是我们可以通过Jupyter Notebook extensions开启这个功能。</p>
-<h2 id="2-解决">2. 解决<a arialabel="Anchor" class="header-anchor" href="#2-解决"> # </a></h2>
+<h2 id="2-解决">2. 解决<a href="#2-解决" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>第一步, 安装 Jupyter Notebook</p>
-<p>这个是必须的. 如果还没安装的话, 建议安装 <a href="http://link.zhihu.com/?target=https%3A//www.continuum.io/downloads" rel="noreferrer noopener" target="_blank">anaconda</a>
+<p>这个是必须的. 如果还没安装的话, 建议安装 <a href="http://link.zhihu.com/?target=https%3A//www.continuum.io/downloads" target="_blank" rel="noreferrer noopener">anaconda</a>
+
 </p>
 <p>第二步, 安装Jupyter Notebook extensions</p>
 <pre tabindex="0"><code>conda install -c conda-forge jupyter_contrib_nbextensions
 </code></pre><p>第三步, 开启toc2插件</p>
 <p>运行Jupyter Notebook, 在打开的Notebook界面里, 你会发现多了一个Nbextensions,点击这个tab, 会有如下界面</p>
-<p><img alt="" src="http://upload-images.jianshu.io/upload_images/3014937-afa984e03d8b6ede.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3014937-afa984e03d8b6ede.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>勾选Table of Contents (有的版本是toc2). 然后创建或者打开一个Jupter Notebook</p>
 <p>第四步, 生成目录</p>
-<p>在Notebook上面选项中,多了一个生成目录图标, 如下图中最右边的图标.<img alt="" src="http://upload-images.jianshu.io/upload_images/3014937-f50d55a8d1af7ff1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
+<p>在Notebook上面选项中,多了一个生成目录图标, 如下图中最右边的图标.<img src="http://upload-images.jianshu.io/upload_images/3014937-f50d55a8d1af7ff1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>点击这个图标就会生成一个目录. 在Notebook里添加标题(也就是用###生成的Markdown内容)会自动添加到目录里面. 在目录上面, 有个小的n图标, 这表示自动对每个标题编号, 点击这个图标可以打开或者关闭这个功能。</p>
-<h2 id="3-总结">3. 总结<a arialabel="Anchor" class="header-anchor" href="#3-总结"> # </a></h2>
+<h2 id="3-总结">3. 总结<a href="#3-总结" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>Rmarkdown和Jupyter notebook用来做轻量级的编程都是非常好的，他们彼此之间的相似点也非常多，这两个工具某种程度上也降低了R和Python语言学习门槛，可以花更多的时间在这两个工具上。</p>
+
 <p style="color:#777;">最后一次修改于 2018-11-24</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
 </main>
+
 <footer class="footer">
-<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
 </script>
-<script src="/js/math-code.js" type="text/javascript"></script>
-<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/js/center-img.js" type="text/javascript"></script>
-<ul class="footer-links">
-<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
        订阅 </a>
-</li>
-<li>
-<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
         版权
-        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
-</a>
-</li>
-</ul>
-<div class="copyright-text">
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
             
             ©
             
@@ -90,5 +157,10 @@
             2018-2021
             
      </div>
+
 </footer>
-</div></body></html>
+
+
+
+
+

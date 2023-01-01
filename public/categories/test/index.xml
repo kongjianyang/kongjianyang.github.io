@@ -106,8 +106,7 @@ hugo new site liang.github.io **# quickstart 可以换成任何你想用的名�
       <guid>https://kongjianyang.github.io/cn/2020/02/13/tidy-verse_style/</guid>
       <description>tidyverse有两层基本含义：（1）基于Google 社区的R 代码风格（Google’s R style guide）衍生的一种使代码清晰可读的编程风格；（2）一系列基于前述风格而编写的数据处理R 包。tidyverse一词中的tidy意为整洁，verse意为诗篇、诗行，合起来意指代码或数据如诗行般整洁易读，即成为“整洁代码”（tidy code）或“整洁数据”（tidy data）。熟悉这一风格和相关R 包，可使数据处理和代码编写过程更为便捷高效，且易于与其他数据分析者交流沟通。
 建立较为统一的代码书写风格，可方便不同用户之间的沟通与协作。这里基于tidyverse模式择要介绍目前R 编程中的主流风格，并根据中文用户的习惯做部分调整和说明。某些内容可能初学者并不一定很快遇到，但仍宜先行阅读，以建立良好的书写规范。详细的tidyverse风格说明参见如下链接：
-http://style.tidyverse.org
-三、命名规范
+http://style.tidyverse.org 三、命名规范
 1.文件名
 文件名应能体现文件的实质内容，只使用数字、英文字母、中划线-和下划线_。尽量避免文件名中的英文字母大小写混用，宜只使用小写，并建议使用_或-连接文件名中的不同英文，如nankai_psy_2017。
 若多个文件存在特定顺序，应以数字作为前缀。如果有超过10个文件，对于个位数的前缀要在前面添补一个0。例如：

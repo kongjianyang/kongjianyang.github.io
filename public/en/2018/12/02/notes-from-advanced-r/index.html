@@ -1,63 +1,110 @@
-<html><body><a name="top"></a>
+<a name="top"></a>
 <!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>KJY</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-<link href="/css/style.css" rel="stylesheet"/>
-<link href="/css/fonts.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
 <script>hljs.initHighlightingOnLoad();</script>
-<div class="wrapper">
-<header class="header">
-<nav class="nav">
-<a class="nav-logo" href="/">
-<img alt="" height="" src="/media/%3cnil%3e" width=""/>
-</a>
-<ul class="nav-links">
-<li><a href="/">Home</a></li>
-<li><a href="/en/about/">About</a></li>
-<li><a href="/en/posts/">Posts</a></li>
-<li><a href="/cn/posts/">中文</a></li>
-</ul>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/">Home</a></li>
+       
+           <li><a href="/en/about/">About</a></li>
+       
+           <li><a href="/en/posts/">Posts</a></li>
+       
+           <li><a href="/cn/posts/">中文</a></li>
+       
+       
+      </ul>
 </nav>
-</header>
-<main class="content" role="main">
+      </header>
+
+<main class = "content" role="main">
 <div style="text-align: center">
+
 <h1>Notes From Advanced R Part One</h1>
+
 <p>Liang 
  / 2018-12-02 </p>
+
 <hr/>
 </div>
+
 <span class="article-toolbar">
-<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/en/posts/notes-from-advanced-r-1.Rmd" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="Suggest an edit of this page"></i>
-</a>
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/en/posts/notes-from-advanced-r-1.Rmd'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="Suggest an edit of this page"></i>
+  </a>
+  
+  
+  
 </span>
+
+
+
 <div class="body-text list-text">
-<div class="section level1" id="data-structure">
+
+
+
+<div id="data-structure" class="section level1">
 <h1>1. Data structure</h1>
 <p>The three properties of a vector are type, length, and attributes.</p>
 <p>All objects can have arbitrary additional attributes</p>
 <p>Attributes can be accessed individually with <code>attr()</code> or all at once (as a list) with <code>attributes()</code>.</p>
 <pre class="r"><code>y &lt;- 1:10
-attr(y, "my_attribute") &lt;- "This is a vector"
-attr(y, "my_attribute")</code></pre>
-<pre><code>## [1] "This is a vector"</code></pre>
+attr(y, &quot;my_attribute&quot;) &lt;- &quot;This is a vector&quot;
+attr(y, &quot;my_attribute&quot;)</code></pre>
+<pre><code>## [1] &quot;This is a vector&quot;</code></pre>
 </div>
-<div class="section level1" id="subsetting">
+<div id="subsetting" class="section level1">
 <h1>2. Subsetting</h1>
 <p><code>outer()</code> function applies a function to two arrays.</p>
 <pre class="r"><code>x &lt;- c(1, 2.3, 2, 3, 4, 8, 12, 43)
 y&lt;- c(2, 4)
-outer(x, y, "+")</code></pre>
+outer(x, y, &quot;+&quot;)</code></pre>
 <pre><code>##      [,1] [,2]
 ## [1,]  3.0  5.0
 ## [2,]  4.3  6.3
@@ -68,7 +115,7 @@ outer(x, y, "+")</code></pre>
 ## [7,] 14.0 16.0
 ## [8,] 45.0 47.0</code></pre>
 <p>Multiply array x elements with array y elements:</p>
-<pre class="r"><code>x %o% y  #equal to outer(x,y,"*")</code></pre>
+<pre class="r"><code>x %o% y  #equal to outer(x,y,&quot;*&quot;)</code></pre>
 <pre><code>##      [,1]  [,2]
 ## [1,]  2.0   4.0
 ## [2,]  4.6   9.2
@@ -78,27 +125,27 @@ outer(x, y, "+")</code></pre>
 ## [6,] 16.0  32.0
 ## [7,] 24.0  48.0
 ## [8,] 86.0 172.0</code></pre>
-<pre class="r"><code>vals &lt;- outer(1:5, 1:5, FUN = "paste", sep = ",")
+<pre class="r"><code>vals &lt;- outer(1:5, 1:5, FUN = &quot;paste&quot;, sep = &quot;,&quot;)
 vals</code></pre>
 <pre><code>##      [,1]  [,2]  [,3]  [,4]  [,5] 
-## [1,] "1,1" "1,2" "1,3" "1,4" "1,5"
-## [2,] "2,1" "2,2" "2,3" "2,4" "2,5"
-## [3,] "3,1" "3,2" "3,3" "3,4" "3,5"
-## [4,] "4,1" "4,2" "4,3" "4,4" "4,5"
-## [5,] "5,1" "5,2" "5,3" "5,4" "5,5"</code></pre>
+## [1,] &quot;1,1&quot; &quot;1,2&quot; &quot;1,3&quot; &quot;1,4&quot; &quot;1,5&quot;
+## [2,] &quot;2,1&quot; &quot;2,2&quot; &quot;2,3&quot; &quot;2,4&quot; &quot;2,5&quot;
+## [3,] &quot;3,1&quot; &quot;3,2&quot; &quot;3,3&quot; &quot;3,4&quot; &quot;3,5&quot;
+## [4,] &quot;4,1&quot; &quot;4,2&quot; &quot;4,3&quot; &quot;4,4&quot; &quot;4,5&quot;
+## [5,] &quot;5,1&quot; &quot;5,2&quot; &quot;5,3&quot; &quot;5,4&quot; &quot;5,5&quot;</code></pre>
 <p><code>[</code> will simplify the results to the lowest possible dimensionality. add <code>drop = F</code></p>
 <pre class="r"><code>vals[,1]</code></pre>
-<pre><code>## [1] "1,1" "2,1" "3,1" "4,1" "5,1"</code></pre>
+<pre><code>## [1] &quot;1,1&quot; &quot;2,1&quot; &quot;3,1&quot; &quot;4,1&quot; &quot;5,1&quot;</code></pre>
 <pre class="r"><code>vals[,1, drop= F]</code></pre>
 <pre><code>##      [,1] 
-## [1,] "1,1"
-## [2,] "2,1"
-## [3,] "3,1"
-## [4,] "4,1"
-## [5,] "5,1"</code></pre>
+## [1,] &quot;1,1&quot;
+## [2,] &quot;2,1&quot;
+## [3,] &quot;3,1&quot;
+## [4,] &quot;4,1&quot;
+## [5,] &quot;5,1&quot;</code></pre>
 <p>Subsetting operators diffenent in S3 and S4 objects. In S4 object, <code>@</code> (equivalent to <code>$</code>), and <code>slot()</code> (equivalent to <code>[[</code>). <code>@</code> is more restrictive than <code>$</code> in that it will return an error if the slot does not exist.</p>
 <p><code>upper.tri</code> returns a matrix of logicals the same size of a given matrix with entries TRUE</p>
-<pre class="r"><code>x &lt;- outer(1:5, 1:5, FUN = "*")
+<pre class="r"><code>x &lt;- outer(1:5, 1:5, FUN = &quot;*&quot;)
 upper.tri(x)</code></pre>
 <pre><code>##       [,1]  [,2]  [,3]  [,4]  [,5]
 ## [1,] FALSE  TRUE  TRUE  TRUE  TRUE
@@ -118,7 +165,7 @@ upper.tri(x)</code></pre>
 ## [2,]    0   10    0    0
 ## [3,]    0    0   10    0</code></pre>
 <p><strong>Factor: drops any unused levels.</strong></p>
-<pre class="r"><code>z &lt;- factor(c("a", "b"))
+<pre class="r"><code>z &lt;- factor(c(&quot;a&quot;, &quot;b&quot;))
 z[1]</code></pre>
 <pre><code>## [1] a
 ## Levels: a b</code></pre>
@@ -126,11 +173,11 @@ z[1]</code></pre>
 <pre><code>## [1] a
 ## Levels: a</code></pre>
 <p><code>$</code> diffenent with <code>[[</code></p>
-<pre class="r"><code>var &lt;- "cyl"
-# Doesn't work - mtcars$var translated to mtcars[["var"]]
+<pre class="r"><code>var &lt;- &quot;cyl&quot;
+# Doesn&#39;t work - mtcars$var translated to mtcars[[&quot;var&quot;]]
 mtcars$var</code></pre>
 <pre><code>## NULL</code></pre>
-<pre class="r"><code># mtcars@var doesn't work
+<pre class="r"><code># mtcars@var doesn&#39;t work
 mtcars[[var]]</code></pre>
 <pre><code>##  [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4</code></pre>
 <p><code>$</code> does partial matching while <code>[[</code> doesn’t</p>
@@ -140,7 +187,7 @@ x</code></pre>
 ## [1] 1</code></pre>
 <pre class="r"><code>x$a</code></pre>
 <pre><code>## [1] 1</code></pre>
-<pre class="r"><code>x[["a"]]</code></pre>
+<pre class="r"><code>x[[&quot;a&quot;]]</code></pre>
 <pre><code>## NULL</code></pre>
 <pre class="r"><code>mod &lt;- lm(mpg ~ wt, data = mtcars)
 mod</code></pre>
@@ -166,7 +213,7 @@ mod</code></pre>
 ## (Intercept)  37.2851     1.8776  19.858  &lt; 2e-16 ***
 ## wt           -5.3445     0.5591  -9.559 1.29e-10 ***
 ## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 3.046 on 30 degrees of freedom
 ## Multiple R-squared:  0.7528, Adjusted R-squared:  0.7446 
@@ -246,34 +293,34 @@ mtcars</code></pre>
 ## $carb
 ##  [1] 4 4 1 1 2 1 4 2 2 4 4 3 3 3 4 4 4 1 2 1 1 2 2 4 2 1 2 2 4 6 8 2</code></pre>
 </div>
-<div class="section level1" id="vocabulary">
+<div id="vocabulary" class="section level1">
 <h1>3. Vocabulary</h1>
 <p><code>on.exit()</code> can be used in the function to perform some side effect. For example, in addition to returning a value, the following function uses on.exit() to also print two messages.</p>
 <pre class="r"><code>myfun = function(x){
-        on.exit(print("first"))
-        on.exit(print("second"), add = TRUE)
+        on.exit(print(&quot;first&quot;))
+        on.exit(print(&quot;second&quot;), add = TRUE)
         return(x)
 }
 myfun(2)</code></pre>
-<pre><code>## [1] "first"
-## [1] "second"</code></pre>
+<pre><code>## [1] &quot;first&quot;
+## [1] &quot;second&quot;</code></pre>
 <pre><code>## [1] 2</code></pre>
 <p>remove add=TRUE from the second <code>on.exit()</code> usage.</p>
 <pre class="r"><code>fun = function(x){
-        on.exit(print("first"))
-        on.exit(print("second"))
+        on.exit(print(&quot;first&quot;))
+        on.exit(print(&quot;second&quot;))
         return(x)
 }
 fun(2)</code></pre>
-<pre><code>## [1] "second"</code></pre>
+<pre><code>## [1] &quot;second&quot;</code></pre>
 <pre><code>## [1] 2</code></pre>
 <pre class="r"><code>fun = function(x){
-        return(print("first"))
-        return(print("second"))
+        return(print(&quot;first&quot;))
+        return(print(&quot;second&quot;))
         return(x)
 }
 fun(2)</code></pre>
-<pre><code>## [1] "first"</code></pre>
+<pre><code>## [1] &quot;first&quot;</code></pre>
 <p><code>invisible</code> Return a (temporarily) invisible copy of an object.</p>
 <pre class="r"><code>f1 &lt;- function(x) x
 f2 &lt;- function(x) invisible(x)
@@ -282,19 +329,19 @@ f1(1)  # prints</code></pre>
 <pre class="r"><code>f2(1)  # does not</code></pre>
 <pre class="r"><code>f1 &lt;- function(x){
   if( x &gt; 0 ){
-     invisible("bigger than 0")
+     invisible(&quot;bigger than 0&quot;)
   }else{
-     return("negative number")
+     return(&quot;negative number&quot;)
   }
-  "something went wrong"
+  &quot;something went wrong&quot;
 }
 f1(1)</code></pre>
-<pre><code>## [1] "something went wrong"</code></pre>
+<pre><code>## [1] &quot;something went wrong&quot;</code></pre>
 <pre class="r"><code>f2 &lt;- function(x){
   if( x &gt; 0 ){
-     return(invisible("bigger than 0"))
+     return(invisible(&quot;bigger than 0&quot;))
   }else{
-     return("negative number")
+     return(&quot;negative number&quot;)
   }
 }
 
@@ -302,7 +349,7 @@ f2(1) # not visible</code></pre>
 <p><code>invisible</code> not print its return value but pass on the value as usual:</p>
 <pre class="r"><code>a &lt;- f2(1)
 a</code></pre>
-<pre><code>## [1] "bigger than 0"</code></pre>
+<pre><code>## [1] &quot;bigger than 0&quot;</code></pre>
 <p>force invisible to visible</p>
 <pre class="r"><code>f1 &lt;- function() 1
 f2 &lt;- function() invisible(1)
@@ -312,7 +359,7 @@ f1()</code></pre>
 (f2())</code></pre>
 <pre><code>## [1] 1</code></pre>
 </div>
-<div class="section level1" id="style">
+<div id="style" class="section level1">
 <h1>4. Style</h1>
 <p>Nothing New.</p>
 <p>Commenting guidelines</p>
@@ -320,7 +367,7 @@ f1()</code></pre>
 
 # Plot data ---------------------------</code></pre>
 </div>
-<div class="section level1" id="functions">
+<div id="functions" class="section level1">
 <h1>5. Functions</h1>
 <p>R function have three parts: <code>body()</code>, <code>formals()</code>, <code>environment()</code>.</p>
 <pre class="r"><code>f &lt;- function(x) x^2
@@ -334,14 +381,14 @@ f</code></pre>
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <p>The <code>body()</code>, <code>formals()</code>, <code>environment()</code> call of Primitive functions is NULL.</p>
 <p>Primitive functions are in base package and they are more efficient</p>
-<pre class="r"><code>objs &lt;- mget(ls("package:base"), inherits = TRUE)
+<pre class="r"><code>objs &lt;- mget(ls(&quot;package:base&quot;), inherits = TRUE)
 objs[1]</code></pre>
 <pre><code>## $`-`
-## function (e1, e2)  .Primitive("-")</code></pre>
+## function (e1, e2)  .Primitive(&quot;-&quot;)</code></pre>
 <pre class="r"><code>funs &lt;- Filter(is.function, objs)
 funs[1]</code></pre>
 <pre><code>## $`-`
-## function (e1, e2)  .Primitive("-")</code></pre>
+## function (e1, e2)  .Primitive(&quot;-&quot;)</code></pre>
 <blockquote>
 <p>is.function estimate an object is a function or not Filter is powerful than filter in dplyr, Filter extracts the elements of a vector for which a predicate (logical) function gives true mget: Return the Value of a Named Object</p>
 </blockquote>
@@ -385,7 +432,7 @@ o()</code></pre>
 <p><code>codetools::findGlobals()</code> can be used to lists all the external dependencies of a function</p>
 <pre class="r"><code>f &lt;- function() x + 1
 codetools::findGlobals(f)</code></pre>
-<pre><code>## [1] "+" "x"</code></pre>
+<pre><code>## [1] &quot;+&quot; &quot;x&quot;</code></pre>
 <p>```, the backtick, can be used to refer a functions or variables that have otherwise reserved or illegal names:</p>
 <pre class="r"><code>for (i in 1:2) print(i)</code></pre>
 <pre><code>## [1] 1
@@ -402,7 +449,7 @@ codetools::findGlobals(f)</code></pre>
 ## [1] 2
 ## [1] 3</code></pre>
 <pre class="r"><code>x &lt;- list(1:3, 4:9, 10:12)
-sapply(x, "[", 2)</code></pre>
+sapply(x, &quot;[&quot;, 2)</code></pre>
 <pre><code>## [1]  2  5 11</code></pre>
 <pre class="r"><code># equivalent to
 sapply(x, function(x) x[2])</code></pre>
@@ -410,12 +457,12 @@ sapply(x, function(x) x[2])</code></pre>
 <p>Arguments are matched first by exact name (perfect matching), then by prefix matching, and finally by position.</p>
 <p><code>stop</code>: stops execution of the current expression and executes an error action.</p>
 <pre class="r"><code>iter &lt;- 12
-try(if(iter &gt; 10) stop("too many iterations"))
+try(if(iter &gt; 10) stop(&quot;too many iterations&quot;))
 
-tst1 &lt;- function(...) stop("dummy error")
+tst1 &lt;- function(...) stop(&quot;dummy error&quot;)
 try(tst1(1:10, long, calling, expression))
 
-tst2 &lt;- function(...) stop("dummy error", call. = FALSE)
+tst2 &lt;- function(...) stop(&quot;dummy error&quot;, call. = FALSE)
 try(tst2(1:10, longcalling, expression, but.not.seen.in.Error))</code></pre>
 <pre class="r"><code>add &lt;- function(x) {
   function(y) x + y
@@ -431,16 +478,16 @@ f &lt;- function(x = ls()) {
 }
 # ls() evaluated inside f:
 f()</code></pre>
-<pre><code>## [1] "a" "x"</code></pre>
+<pre><code>## [1] &quot;a&quot; &quot;x&quot;</code></pre>
 <pre class="r"><code># ls() evaluated in global environment 
 f(ls())</code></pre>
-<pre><code>## [1] "f"</code></pre>
+<pre><code>## [1] &quot;f&quot;</code></pre>
 <p><code>...</code> will match any arguments not otherwise matched, and can be easily passed on to other functions.</p>
 <pre class="r"><code>f &lt;- function(...) {
   names(list(...))
 }
 f(a = 1, b = 2)</code></pre>
-<pre><code>## [1] "a" "b"</code></pre>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot;</code></pre>
 <p>Using <code>...</code> comes at a price — any misspelled arguments will not raise an error, and any arguments after … must be fully named. This makes it easy for typos to go unnoticed:</p>
 <pre class="r"><code>sum(1, 2, NA, na.mr = TRUE)</code></pre>
 <pre><code>## [1] NA</code></pre>
@@ -466,26 +513,26 @@ x</code></pre>
 <p>using pryr::address() to find the memory address, find the address is different</p>
 <pre class="r"><code>library(pryr)</code></pre>
 <pre><code>## 
-## Attaching package: 'pryr'</code></pre>
-<pre><code>## The following object is masked _by_ '.GlobalEnv':
+## Attaching package: &#39;pryr&#39;</code></pre>
+<pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
 ## 
 ##     f</code></pre>
-<pre><code>## The following objects are masked from 'package:purrr':
+<pre><code>## The following objects are masked from &#39;package:purrr&#39;:
 ## 
 ##     compose, partial</code></pre>
 <pre class="r"><code>x &lt;- 1:10
 address(x)</code></pre>
-<pre><code>## [1] "0x7fb188c4c498"</code></pre>
+<pre><code>## [1] &quot;0x7fb188c4c498&quot;</code></pre>
 <pre class="r"><code>second(x) &lt;- 6L
 address(x)</code></pre>
-<pre><code>## [1] "0x7fb18ab0fa38"</code></pre>
+<pre><code>## [1] &quot;0x7fb18ab0fa38&quot;</code></pre>
 <p>but the default subset is not change the address</p>
 <pre class="r"><code>x &lt;- 1:10
 address(x)</code></pre>
-<pre><code>## [1] "0x7fb186530188"</code></pre>
+<pre><code>## [1] &quot;0x7fb186530188&quot;</code></pre>
 <pre class="r"><code>x[2] &lt;- 7L
 address(x)</code></pre>
-<pre><code>## [1] "0x7fb18b96dfd8"</code></pre>
+<pre><code>## [1] &quot;0x7fb18b96dfd8&quot;</code></pre>
 <pre class="r"><code>x &lt;- 1:10
 `modify&lt;-` &lt;- function(x, position, value) {
   x[position] &lt;- value
@@ -499,32 +546,54 @@ x &lt;- `modify&lt;-`(x, 1, 10)
 x</code></pre>
 <pre><code>##  [1] 10  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="r"><code>x &lt;- 1:10
-# modify(get("x"), 1) &lt;- 10 # do not work because this the same with 
-# get("x") &lt;- `modify&lt;-`(get("x"), 1, 10)</code></pre>
+# modify(get(&quot;x&quot;), 1) &lt;- 10 # do not work because this the same with 
+# get(&quot;x&quot;) &lt;- `modify&lt;-`(get(&quot;x&quot;), 1, 10)</code></pre>
 </div>
+
 <p style="color:#777;">Last modified on 2018-12-02</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
 </main>
+
 <footer class="footer">
-<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
 </script>
-<script src="/js/math-code.js" type="text/javascript"></script>
-<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/js/center-img.js" type="text/javascript"></script>
-<ul class="footer-links">
-<li><a href="/en/posts/index.xml" title="RSS feed" type="application/rss+xml">
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/en/posts/index.xml" type="application/rss+xml" title="RSS feed">
        Subscribe </a>
-</li>
-<li>
-<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
+       </li>
+       
+       
+       <li>
+       
+        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
        
         License
-        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
-</a>
-</li>
-</ul>
-<div class="copyright-text">
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
             
             ©
             
@@ -533,5 +602,10 @@ x</code></pre>
             2018-2021
             
      </div>
+
 </footer>
-</div></body></html>
+
+
+
+
+

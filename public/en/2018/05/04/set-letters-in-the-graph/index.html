@@ -1,59 +1,107 @@
-<html><body><a name="top"></a>
+<a name="top"></a>
 <!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>KJY</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-<link href="/css/style.css" rel="stylesheet"/>
-<link href="/css/fonts.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
 <script>hljs.initHighlightingOnLoad();</script>
-<div class="wrapper">
-<header class="header">
-<nav class="nav">
-<a class="nav-logo" href="/">
-<img alt="" height="" src="/media/%3cnil%3e" width=""/>
-</a>
-<ul class="nav-links">
-<li><a href="/">Home</a></li>
-<li><a href="/en/about/">About</a></li>
-<li><a href="/en/posts/">Posts</a></li>
-<li><a href="/cn/posts/">中文</a></li>
-</ul>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/">Home</a></li>
+       
+           <li><a href="/en/about/">About</a></li>
+       
+           <li><a href="/en/posts/">Posts</a></li>
+       
+           <li><a href="/cn/posts/">中文</a></li>
+       
+       
+      </ul>
 </nav>
-</header>
-<main class="content" role="main">
+      </header>
+
+<main class = "content" role="main">
 <div style="text-align: center">
+
 <h1>Set Significant Letters in the Bar Plot in ggplot2</h1>
+
 <p>Liang 
  / 2018-05-04 </p>
+
 <hr/>
 </div>
+
 <span class="article-toolbar">
-<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/en/posts/set-letters-in-the-graph.Rmd" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="Suggest an edit of this page"></i>
-</a>
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/en/posts/set-letters-in-the-graph.Rmd'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="Suggest an edit of this page"></i>
+  </a>
+  
+  
+  
 </span>
+
+
+
 <div class="body-text list-text">
-<div class="section level2" id="problem">
+
+
+
+<div id="problem" class="section level2">
 <h2>Problem</h2>
 <p>As a biologist, one daily work is comparing the treatment and untreatment group and find if there are any significant difference. One common way is drawing a barplot with error bar and put the significant letters a little higher than the bar plot. Like a figure showing below: annotations for significant differences based on p value.</p>
 <div class="figure">
-<img src="http://esapubs.org/archive/ecol/E093/167/AppDimages/FigD1.jpg"/>
+<img src="http://esapubs.org/archive/ecol/E093/167/AppDimages/FigD1.jpg" />
+
 </div>
 <p>Results are usually drawn in a barplot. For all variables with the same letter, the difference between the means is not statistically significant. If two variables have different letters, they are significantly different.</p>
 <p>But draw this graph in ggplot are not easy. This post will solve this problem.</p>
 </div>
-<div class="section level2" id="solution">
+<div id="solution" class="section level2">
 <h2>Solution</h2>
-<div class="section level3" id="prepare-data">
+<div id="prepare-data" class="section level3">
 <h3>prepare data</h3>
 <pre class="r"><code>x&lt;-c(25.6,22.2,28.0,29.8,24.4,30.0,29.0,27.5,25.0,27.7,23.0,32.2,28.8,28.0,31.5,25.9,20.6,21.2,22.0,21.2) 
 b&lt;-data.frame(x,a=gl(5,4,20)) ## a is factor
@@ -67,7 +115,7 @@ head(b)</code></pre>
 ## 5 24.4 2
 ## 6 30.0 2</code></pre>
 </div>
-<div class="section level3" id="anova-test-and-tukey-multiple-comparisons">
+<div id="anova-test-and-tukey-multiple-comparisons" class="section level3">
 <h3>anova test and Tukey multiple comparisons</h3>
 <pre class="r"><code>m1&lt;-aov(x~a,data=b)
 TukeyHSD(m1)</code></pre>
@@ -90,10 +138,10 @@ TukeyHSD(m1)</code></pre>
 ## 5-4 -7.300 -13.343582 -1.2564182 0.0146983</code></pre>
 <p><code>TukeyHSD</code> means Tukey’s ‘Honest Significant Difference’ method which create a set of confidence intervals on the differences between the means of the levels of a factor with the specified family-wise probability of coverage. From the result, only 5 and 2, 5 and 4 have significantly different.</p>
 </div>
-<div class="section level3" id="hsd.test-mutiple-comparisons">
+<div id="hsd.test-mutiple-comparisons" class="section level3">
 <h3>HSD.test mutiple comparisons</h3>
 <pre class="r"><code>library(agricolae)
-results &lt;- HSD.test(m1, "a", group=TRUE)
+results &lt;- HSD.test(m1, &quot;a&quot;, group=TRUE)
 results$groups</code></pre>
 <pre><code>##        x groups
 ## 4 28.550      a
@@ -104,7 +152,7 @@ results$groups</code></pre>
 <pre class="r"><code>oder.group &lt;- results$groups[order(rownames(results$groups)),]</code></pre>
 <p>Using <code>HSD.test</code> function, we can assign our group to significant letters, the default significant level is 0.05.</p>
 </div>
-<div class="section level3" id="creat-barplot-with-error-bar-and-significant-letters.">
+<div id="creat-barplot-with-error-bar-and-significant-letters." class="section level3">
 <h3>Creat barplot with error bar and significant letters.</h3>
 <pre class="r"><code>library(Rmisc)</code></pre>
 <pre><code>## Loading required package: lattice</code></pre>
@@ -115,15 +163,15 @@ results$groups</code></pre>
 ## library(plyr); library(dplyr)</code></pre>
 <pre><code>## -------------------------------------------------------------------------</code></pre>
 <pre><code>## 
-## Attaching package: 'plyr'</code></pre>
-<pre><code>## The following objects are masked from 'package:dplyr':
+## Attaching package: &#39;plyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
 ## 
 ##     arrange, count, desc, failwith, id, mutate, rename, summarise,
 ##     summarize</code></pre>
-<pre><code>## The following object is masked from 'package:purrr':
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
 ## 
 ##     compact</code></pre>
-<pre class="r"><code>stats &lt;- summarySE(b, measurevar="x", groupvars=c("a"),na.rm=TRUE)
+<pre class="r"><code>stats &lt;- summarySE(b, measurevar=&quot;x&quot;, groupvars=c(&quot;a&quot;),na.rm=TRUE)
 stats</code></pre>
 <pre><code>##   a N      x        sd        se        ci
 ## 1 1 4 26.400 3.2863353 1.6431677 5.2292929
@@ -133,47 +181,69 @@ stats</code></pre>
 ## 5 5 4 21.250 0.5744563 0.2872281 0.9140881</code></pre>
 <pre class="r"><code>library(ggplot2)
 ggplot(stats, aes(x=a, y=x)) + 
-  geom_bar(position=position_dodge(.5), stat="identity",
-             colour="black", width = 0.5) +      # Change bar size with width = 0.5
+  geom_bar(position=position_dodge(.5), stat=&quot;identity&quot;,
+             colour=&quot;black&quot;, width = 0.5) +      # Change bar size with width = 0.5
     geom_errorbar(aes(ymin=x-se, ymax=x+se),
                   size=.5,    # Thinner lines
                   width=.2,
                   position=position_dodge(.5)) + 
-  theme_classic() + geom_text(aes(x=a, y=x+se+2,label=oder.group$groups), position=position_dodge(width=0.9), size=4)#text(x = stats$a, y = stats$x+stats$se+5, labels = c("ab", "a", "ab", "a", "b"))</code></pre>
-<p><img src="/en/2018-05-04-set-letters-in-the-graph_files/figure-html/unnamed-chunk-5-1.png" width="672"/></p>
+  theme_classic() + geom_text(aes(x=a, y=x+se+2,label=oder.group$groups), position=position_dodge(width=0.9), size=4)#text(x = stats$a, y = stats$x+stats$se+5, labels = c(&quot;ab&quot;, &quot;a&quot;, &quot;ab&quot;, &quot;a&quot;, &quot;b&quot;))</code></pre>
+<p><img src="/en/2018-05-04-set-letters-in-the-graph_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>For the graph above, we know only 5 have significant difference with 2 and 4.</p>
 </div>
 </div>
-<div class="section level2" id="reference">
+<div id="reference" class="section level2">
 <h2>Reference:</h2>
 <p><a href="https://magesblog.com/post/2012-03-21-copy-and-paste-small-data-sets-into-r/">Copy and paste small data sets into R</a></p>
 <p><a href="https://stats.stackexchange.com/questions/31547/how-to-obtain-the-results-of-a-tukey-hsd-post-hoc-test-in-a-table-showing-groupe">How to obtain the results of a Tukey HSD post-hoc test in a table showing grouped pairs?</a></p>
 <p><a href="http://www.sthda.com/english/wiki/ggplot2-texts-add-text-annotations-to-a-graph-in-r-software">ggplot2 texts : Add text annotations to a graph in R software</a></p>
 <p><a href="https://www.researchgate.net/post/How_to_denote_letters_to_mark_significant_differences_in_a_bar_chart_plot">How to denote letters to mark significant differences in a bar chart plot</a></p>
 </div>
+
 <p style="color:#777;">Last modified on 2018-05-04</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
 </main>
+
 <footer class="footer">
-<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
 </script>
-<script src="/js/math-code.js" type="text/javascript"></script>
-<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/js/center-img.js" type="text/javascript"></script>
-<ul class="footer-links">
-<li><a href="/en/posts/index.xml" title="RSS feed" type="application/rss+xml">
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/en/posts/index.xml" type="application/rss+xml" title="RSS feed">
        Subscribe </a>
-</li>
-<li>
-<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
+       </li>
+       
+       
+       <li>
+       
+        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
        
         License
-        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
-</a>
-</li>
-</ul>
-<div class="copyright-text">
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
             
             ©
             
@@ -182,5 +252,10 @@ ggplot(stats, aes(x=a, y=x)) +
             2018-2021
             
      </div>
+
 </footer>
-</div></body></html>
+
+
+
+
+

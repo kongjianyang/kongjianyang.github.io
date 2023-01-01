@@ -230,7 +230,7 @@ $ bash $ echo $SHELL # 确认一下 /bin/bash ##2.简单的shell脚本 假设我
       <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/tmux-%E6%8C%87%E5%8D%97/</guid>
-      <description>我的tmux配置 https://wdxtub.com/2016/03/30/tmux-guide/</description>
+      <description>我的tmux配置 https://wdxtub.com/2016/03/30/tmux-guide/ </description>
     </item>
     
     <item>

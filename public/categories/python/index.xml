@@ -31,8 +31,7 @@
       <pubDate>Thu, 17 Oct 2019 19:10:27 -0400</pubDate>
       
       <guid>https://kongjianyang.github.io/cn/2019/10/17/snakemake/</guid>
-      <description>参考： https://qinqianshan.com/python/py_module/snakemake/ https://xizhihui.github.io/2018/10/28/%E6%B5%81%E7%A8%8B%E6%9E%84%E5%BB%BA-Snakemake%E4%BD%BF%E7%94%A8%E5%88%9D%E6%AD%A5/
-如果你编译过软件，那你应该见过和用过make, 但是你估计也没有仔细想过make是干嘛用的。Make是最常用的软件构建工具，诞生于1977年，主要用于C语言的项目，是为了处理编译时存在各种依赖关系，尤其是部分文件更新后，Make能够重新生成需要更新的文件以及其对应的文件。
+      <description>参考： https://qinqianshan.com/python/py_module/snakemake/ https://xizhihui.github.io/2018/10/28/%E6%B5%81%E7%A8%8B%E6%9E%84%E5%BB%BA-Snakemake%E4%BD%BF%E7%94%A8%E5%88%9D%E6%AD%A5/ 如果你编译过软件，那你应该见过和用过make, 但是你估计也没有仔细想过make是干嘛用的。Make是最常用的软件构建工具，诞生于1977年，主要用于C语言的项目，是为了处理编译时存在各种依赖关系，尤其是部分文件更新后，Make能够重新生成需要更新的文件以及其对应的文件。
 Snakemake和Make功能一致，只不过用Python实现，增加了许多Python的特性，并且和Python一样非常容易阅读。
 Snakemake是一个工作流程管理系统。它是基于Python的、用于创建可重现和可扩展的数据分析的工具（当然现在也可以直接将它当做Python的一个模块）。Snakemake所创建的流程还可以无缝扩展到服务器、集群和云环境等不同环境，当然前提是你需要提前将所需的软件和依赖配置好，一起打包封装在conda环境中。
 安装软件

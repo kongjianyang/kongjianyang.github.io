@@ -1,48 +1,95 @@
-<html><body><a name="top"></a>
+<a name="top"></a>
 <!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>KJY</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-<link href="/css/style.css" rel="stylesheet"/>
-<link href="/css/fonts.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
 <script>hljs.initHighlightingOnLoad();</script>
-<div class="wrapper">
-<header class="header">
-<nav class="nav">
-<a class="nav-logo" href="/">
-<img alt="" height="" src="/media/%3cnil%3e" width=""/>
-</a>
-<ul class="nav-links">
-<li><a href="/">Home</a></li>
-<li><a href="/en/about/">About</a></li>
-<li><a href="/en/posts/">Posts</a></li>
-<li><a href="/cn/posts/">中文</a></li>
-</ul>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/">Home</a></li>
+       
+           <li><a href="/en/about/">About</a></li>
+       
+           <li><a href="/en/posts/">Posts</a></li>
+       
+           <li><a href="/cn/posts/">中文</a></li>
+       
+       
+      </ul>
 </nav>
-</header>
-<main class="content" role="main">
+      </header>
+
+<main class = "content" role="main">
 <div style="text-align: center">
+
 <h1>Notes From Advanced R Part Two</h1>
+
 <p>Liang 
  / 2018-12-06 </p>
+
 <hr/>
 </div>
+
 <span class="article-toolbar">
-<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/en/posts/notes-from-advanced-r-part-two.Rmd" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="Suggest an edit of this page"></i>
-</a>
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/en/posts/notes-from-advanced-r-part-two.Rmd'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="Suggest an edit of this page"></i>
+  </a>
+  
+  
+  
 </span>
+
+
+
 <div class="body-text list-text">
-<div class="section level1" id="oo-object-oriented-field-guide">
+
+
+
+<div id="oo-object-oriented-field-guide" class="section level1">
 <h1>1. OO (Object-oriented) field guide</h1>
 <p>R has four object oriented systems:</p>
 <ul>
@@ -53,18 +100,18 @@
 </ul>
 <p>A class defines the behaviour of objects by describing their attributes and their relationship to other classes.</p>
 <p><code>pryr</code> provides tools to pry back the surface of R and dig into the details.</p>
-<div class="section level2" id="base-types">
+<div id="base-types" class="section level2">
 <h2>Base types</h2>
 <p>new base types are added very rarely. determine the object’s base type with typeof().</p>
-<pre class="r"><code># The type of a function is "closure"
+<pre class="r"><code># The type of a function is &quot;closure&quot;
 f &lt;- function() {}
 typeof(f)</code></pre>
-<pre><code>## [1] "closure"</code></pre>
+<pre><code>## [1] &quot;closure&quot;</code></pre>
 <pre class="r"><code>is.function(f)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code># The type of a primitive function is "builtin"
+<pre class="r"><code># The type of a primitive function is &quot;builtin&quot;
 typeof(sum)</code></pre>
-<pre><code>## [1] "builtin"</code></pre>
+<pre><code>## [1] &quot;builtin&quot;</code></pre>
 <pre class="r"><code>is.primitive(sum)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 <p>Functions for different base types are almost always written in C. S3 objects can be built on top of any base type, S4 objects use a special base type, and RC objects are a combination of S4 and environments.</p>
@@ -77,104 +124,104 @@ typeof(sum)</code></pre>
 <pre class="r"><code>is.object(as.factor(1:3)) # TRUE</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 </div>
-<div class="section level2" id="s3-type">
+<div id="s3-type" class="section level2">
 <h2>S3 type</h2>
 <p>S3 is the only OO system used in the base and stats packages.</p>
 <p><code>pryr::otype():</code> can be used to test if an object is an S3 object in base R.</p>
 <pre class="r"><code>library(pryr)</code></pre>
 <pre><code>## 
-## Attaching package: 'pryr'</code></pre>
-<pre><code>## The following object is masked _by_ '.GlobalEnv':
+## Attaching package: &#39;pryr&#39;</code></pre>
+<pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
 ## 
 ##     f</code></pre>
-<pre><code>## The following objects are masked from 'package:purrr':
+<pre><code>## The following objects are masked from &#39;package:purrr&#39;:
 ## 
 ##     compose, partial</code></pre>
 <pre class="r"><code>df &lt;- data.frame(x = 1:10, y = letters[1:10])
 otype(df)    # A data frame is an S3 class</code></pre>
-<pre><code>## [1] "S3"</code></pre>
-<pre class="r"><code>otype(df$x)  # A numeric vector isn't</code></pre>
-<pre><code>## [1] "base"</code></pre>
+<pre><code>## [1] &quot;S3&quot;</code></pre>
+<pre class="r"><code>otype(df$x)  # A numeric vector isn&#39;t</code></pre>
+<pre><code>## [1] &quot;base&quot;</code></pre>
 <pre class="r"><code>otype(df$y)  # A factor is</code></pre>
-<pre><code>## [1] "S3"</code></pre>
+<pre><code>## [1] &quot;S3&quot;</code></pre>
 <p>In S3, methods belong to functions, called generic functions. S3 methods do not belong to objects or classes.</p>
 <p><code>ftype()</code> can describes the object system and to determinate if a function is an S3 method or generic:</p>
 <pre class="r"><code>ftype(mean)</code></pre>
-<pre><code>## [1] "s3"      "generic"</code></pre>
+<pre><code>## [1] &quot;s3&quot;      &quot;generic&quot;</code></pre>
 <pre class="r"><code>ftype(t.data.frame) # data frame method for t()</code></pre>
-<pre><code>## [1] "s3"     "method"</code></pre>
+<pre><code>## [1] &quot;s3&quot;     &quot;method&quot;</code></pre>
 <pre class="r"><code>ftype(t.test)       # generic function for t tests</code></pre>
-<pre><code>## [1] "s3"      "generic"</code></pre>
-<div class="section level3" id="defining-classes-and-creating-objects">
+<pre><code>## [1] &quot;s3&quot;      &quot;generic&quot;</code></pre>
+<div id="defining-classes-and-creating-objects" class="section level3">
 <h3>Defining classes and creating objects</h3>
 <pre class="r"><code># Create and assign class in one step
-foo &lt;- structure(list(), class = "foo")
+foo &lt;- structure(list(), class = &quot;foo&quot;)
 # ftype(foo)
 # Create, then set class
 foo &lt;- list()
-class(foo) &lt;- "foo"
+class(foo) &lt;- &quot;foo&quot;
 foo</code></pre>
 <pre><code>## list()
-## attr(,"class")
-## [1] "foo"</code></pre>
-<p>determine the class of any object using <code>class(x)</code>, and see if an object inherits from a specific class using <code>inherits(x, "classname")</code>.</p>
+## attr(,&quot;class&quot;)
+## [1] &quot;foo&quot;</code></pre>
+<p>determine the class of any object using <code>class(x)</code>, and see if an object inherits from a specific class using <code>inherits(x, &quot;classname&quot;)</code>.</p>
 <pre class="r"><code>class(foo)</code></pre>
-<pre><code>## [1] "foo"</code></pre>
-<pre class="r"><code>inherits(foo, "foo")</code></pre>
+<pre><code>## [1] &quot;foo&quot;</code></pre>
+<pre class="r"><code>inherits(foo, &quot;foo&quot;)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<p><img align="center/" height="200" src="https://snag.gy/fQLdeK.jpg" width="200"/></p>
+<p><img src="https://snag.gy/fQLdeK.jpg" width= "200" height = "200" align=center/></p>
 <p>we can change the class of existing objects:</p>
 </div>
-<div class="section level3" id="creating-new-methods-and-generics">
+<div id="creating-new-methods-and-generics" class="section level3">
 <h3>Creating new methods and generics</h3>
 <p>To add a new generic, just need to create a function that calls UseMethod().</p>
-<pre class="r"><code>f &lt;- function(x) UseMethod("f")
-f.a &lt;- function(x) "Class a"
-f.b &lt;- function(x) "Class b"
-a &lt;- structure(list(), class = "a")
+<pre class="r"><code>f &lt;- function(x) UseMethod(&quot;f&quot;)
+f.a &lt;- function(x) &quot;Class a&quot;
+f.b &lt;- function(x) &quot;Class b&quot;
+a &lt;- structure(list(), class = &quot;a&quot;)
 class(a)</code></pre>
-<pre><code>## [1] "a"</code></pre>
+<pre><code>## [1] &quot;a&quot;</code></pre>
 <pre class="r"><code>f(a)</code></pre>
-<pre><code>## [1] "Class a"</code></pre>
+<pre><code>## [1] &quot;Class a&quot;</code></pre>
 <pre class="r"><code>f.a(a)</code></pre>
-<pre><code>## [1] "Class a"</code></pre>
+<pre><code>## [1] &quot;Class a&quot;</code></pre>
 <pre class="r"><code>f.b(a)</code></pre>
-<pre><code>## [1] "Class b"</code></pre>
-<pre class="r"><code>b &lt;- structure(list(), class = "b")
+<pre><code>## [1] &quot;Class b&quot;</code></pre>
+<pre class="r"><code>b &lt;- structure(list(), class = &quot;b&quot;)
 class(b)</code></pre>
-<pre><code>## [1] "b"</code></pre>
+<pre><code>## [1] &quot;b&quot;</code></pre>
 <pre class="r"><code>f(b)</code></pre>
-<pre><code>## [1] "Class b"</code></pre>
+<pre><code>## [1] &quot;Class b&quot;</code></pre>
 <pre class="r"><code>f.a(b)</code></pre>
-<pre><code>## [1] "Class a"</code></pre>
+<pre><code>## [1] &quot;Class a&quot;</code></pre>
 <pre class="r"><code>f.b(b)</code></pre>
-<pre><code>## [1] "Class b"</code></pre>
-<pre class="r"><code>f &lt;- function(x) UseMethod("f")
-f.a &lt;- function(x) "Class a"
-f.default &lt;- function(x) "Unknown class"
+<pre><code>## [1] &quot;Class b&quot;</code></pre>
+<pre class="r"><code>f &lt;- function(x) UseMethod(&quot;f&quot;)
+f.a &lt;- function(x) &quot;Class a&quot;
+f.default &lt;- function(x) &quot;Unknown class&quot;
 
 # Method for a class
-f(structure(list(), class = "a"))</code></pre>
-<pre><code>## [1] "Class a"</code></pre>
+f(structure(list(), class = &quot;a&quot;))</code></pre>
+<pre><code>## [1] &quot;Class a&quot;</code></pre>
 <pre class="r"><code># No method for b class, so uses method for a class
-f(structure(list(), class = c("b", "a")))</code></pre>
-<pre><code>## [1] "Class b"</code></pre>
+f(structure(list(), class = c(&quot;b&quot;, &quot;a&quot;)))</code></pre>
+<pre><code>## [1] &quot;Class b&quot;</code></pre>
 <pre class="r"><code># No method for c class, so falls back to default
-f(structure(list(), class = "c"))</code></pre>
-<pre><code>## [1] "Unknown class"</code></pre>
+f(structure(list(), class = &quot;c&quot;))</code></pre>
+<pre><code>## [1] &quot;Unknown class&quot;</code></pre>
 <pre class="r"><code># Force R to call the wrong method, f.a should only use for a class
-f.a(structure(list(), class = "c"))</code></pre>
-<pre><code>## [1] "Class a"</code></pre>
+f.a(structure(list(), class = &quot;c&quot;))</code></pre>
+<pre><code>## [1] &quot;Class a&quot;</code></pre>
 </div>
 </div>
-<div class="section level2" id="s4-type">
+<div id="s4-type" class="section level2">
 <h2>S4 type</h2>
 <ul>
 <li><p>Classes have formal definitions which describe their fields and inheritance structures (parent classes).</p></li>
 <li><p>Method dispatch can be based on multiple arguments to a generic function</p></li>
 <li><p>There is a special operator, @, for extracting slots from an S4 object.</p></li>
 </ul>
-<div class="section level3" id="recognising-objects-generic-functions-and-methods">
+<div id="recognising-objects-generic-functions-and-methods" class="section level3">
 <h3>Recognising objects, generic functions, and methods</h3>
 <p>No S4 classes in the base packages</p>
 <pre class="r"><code>library(stats4)
@@ -188,12 +235,12 @@ fit &lt;- mle(nLL, start = list(lambda = 5), nobs = length(y))
 isS4(fit)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 <pre class="r"><code>otype(fit)</code></pre>
-<pre><code>## [1] "S4"</code></pre>
+<pre><code>## [1] &quot;S4&quot;</code></pre>
 <pre class="r"><code>ftype(nobs)</code></pre>
-<pre><code>## [1] "s4"      "generic"</code></pre>
+<pre><code>## [1] &quot;s4&quot;      &quot;generic&quot;</code></pre>
 <pre class="r"><code># nobs is a function to extract the number of observations from a Fit.</code></pre>
 </div>
-<div class="section level3" id="defining-classes-and-creating-objects-1">
+<div id="defining-classes-and-creating-objects-1" class="section level3">
 <h3>Defining classes and creating objects</h3>
 <p>An S4 class has three key properties:</p>
 <ul>
@@ -201,48 +248,48 @@ isS4(fit)</code></pre>
 <li>A named list of slots (fields), which defines slot names and permitted classes.</li>
 <li>A string giving the class it inherits from, or, in S4 terminology, that it contains.</li>
 </ul>
-<pre class="r"><code>setClass("Person",
-  slots = list(name = "character", age = "numeric"))
-setClass("Employee",
-  slots = list(boss = "Person"),
-  contains = "Person")
+<pre class="r"><code>setClass(&quot;Person&quot;,
+  slots = list(name = &quot;character&quot;, age = &quot;numeric&quot;))
+setClass(&quot;Employee&quot;,
+  slots = list(boss = &quot;Person&quot;),
+  contains = &quot;Person&quot;)
 
-alice &lt;- new("Person", name = "Alice", age = 40)
-john &lt;- new("Employee", name = "John", age = 20, boss = alice)</code></pre>
+alice &lt;- new(&quot;Person&quot;, name = &quot;Alice&quot;, age = 40)
+john &lt;- new(&quot;Employee&quot;, name = &quot;John&quot;, age = 20, boss = alice)</code></pre>
 <pre class="r"><code>alice</code></pre>
-<pre><code>## An object of class "Person"
-## Slot "name":
-## [1] "Alice"
+<pre><code>## An object of class &quot;Person&quot;
+## Slot &quot;name&quot;:
+## [1] &quot;Alice&quot;
 ## 
-## Slot "age":
+## Slot &quot;age&quot;:
 ## [1] 40</code></pre>
 <pre class="r"><code>alice@name</code></pre>
-<pre><code>## [1] "Alice"</code></pre>
-<pre class="r"><code>john@boss; slot(john, "boss")</code></pre>
-<pre><code>## An object of class "Person"
-## Slot "name":
-## [1] "Alice"
+<pre><code>## [1] &quot;Alice&quot;</code></pre>
+<pre class="r"><code>john@boss; slot(john, &quot;boss&quot;)</code></pre>
+<pre><code>## An object of class &quot;Person&quot;
+## Slot &quot;name&quot;:
+## [1] &quot;Alice&quot;
 ## 
-## Slot "age":
+## Slot &quot;age&quot;:
 ## [1] 40</code></pre>
-<pre><code>## An object of class "Person"
-## Slot "name":
-## [1] "Alice"
+<pre><code>## An object of class &quot;Person&quot;
+## Slot &quot;name&quot;:
+## [1] &quot;Alice&quot;
 ## 
-## Slot "age":
+## Slot &quot;age&quot;:
 ## [1] 40</code></pre>
 <p><code>(@ is equivalent to $, and slot() to [[.) but the $ and slot() doesn't work for S4</code></p>
 <pre class="r"><code># john$boss</code></pre>
 </div>
-<div class="section level3" id="creating-new-methods-and-generics-1">
+<div id="creating-new-methods-and-generics-1" class="section level3">
 <h3>Creating new methods and generics</h3>
 <p>we could take union(), which usually just works on vectors, and make it work with data frames:</p>
-<pre class="r"><code>alist &lt;- c("a", "b", "a")
-blist &lt;- c("a", "c", "d")
+<pre class="r"><code>alist &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;a&quot;)
+blist &lt;- c(&quot;a&quot;, &quot;c&quot;, &quot;d&quot;)
 union(alist, blist)</code></pre>
-<pre><code>## [1] "a" "b" "c" "d"</code></pre>
-<pre class="r"><code>x &lt;- data.frame("SN" = 1:2, "Age" = c(21,15), "Name" = c("John","Dora"))
-y &lt;- data.frame("SN" = 1:2, "Age" = c(21,15), "Name" = c("John","Alice"))
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;</code></pre>
+<pre class="r"><code>x &lt;- data.frame(&quot;SN&quot; = 1:2, &quot;Age&quot; = c(21,15), &quot;Name&quot; = c(&quot;John&quot;,&quot;Dora&quot;))
+y &lt;- data.frame(&quot;SN&quot; = 1:2, &quot;Age&quot; = c(21,15), &quot;Name&quot; = c(&quot;John&quot;,&quot;Alice&quot;))
 union(x, y)</code></pre>
 <pre><code>## Warning: Column `Name` joining factors with different levels, coercing to
 ## character vector</code></pre>
@@ -250,10 +297,10 @@ union(x, y)</code></pre>
 ## 1  2  15 Alice
 ## 2  2  15  Dora
 ## 3  1  21  John</code></pre>
-<pre class="r"><code>setGeneric("union")</code></pre>
-<pre><code>## [1] "union"</code></pre>
-<pre class="r"><code>setMethod("union",
-  c(x = "data.frame", y = "data.frame"),
+<pre class="r"><code>setGeneric(&quot;union&quot;)</code></pre>
+<pre><code>## [1] &quot;union&quot;</code></pre>
+<pre class="r"><code>setMethod(&quot;union&quot;,
+  c(x = &quot;data.frame&quot;, y = &quot;data.frame&quot;),
   function(x, y) {
     unique(rbind(x, y))
   }
@@ -266,18 +313,18 @@ union(x, y)</code></pre>
 </div>
 </div>
 </div>
-<div class="section level1" id="environments">
+<div id="environments" class="section level1">
 <h1>2. Environments</h1>
-<div class="section level2" id="environment-basics">
+<div id="environment-basics" class="section level2">
 <h2>Environment basics</h2>
 <p>an environment serve as a bag of names: Each name points to an object stored in memory:</p>
 <pre class="r"><code>e &lt;- new.env()
 e$a &lt;- FALSE
-e$b &lt;- "a"
+e$b &lt;- &quot;a&quot;
 e$c &lt;- 2.3
 e$d &lt;- 1:3
 ls(e) # show all object in the environment</code></pre>
-<pre><code>## [1] "a" "b" "c" "d"</code></pre>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;</code></pre>
 <p>multiple names can point to the same object, Every environment has a parent, another environment.</p>
 <p>an environment is similar to a list, with four important exceptions:</p>
 <ul>
@@ -295,13 +342,13 @@ ls(e) # show all object in the environment</code></pre>
 </ul>
 <p>search() lists all parents of the global environment.</p>
 <pre class="r"><code>search()</code></pre>
-<pre><code>##  [1] ".GlobalEnv"        "package:stats4"    "package:pryr"     
-##  [4] "package:stats"     "package:graphics"  "package:grDevices"
-##  [7] "package:utils"     "package:datasets"  "package:magrittr" 
-## [10] "package:forcats"   "package:stringr"   "package:dplyr"    
-## [13] "package:purrr"     "package:readr"     "package:tidyr"    
-## [16] "package:tibble"    "package:ggplot2"   "package:tidyverse"
-## [19] "package:methods"   "Autoloads"         "package:base"</code></pre>
+<pre><code>##  [1] &quot;.GlobalEnv&quot;        &quot;package:stats4&quot;    &quot;package:pryr&quot;     
+##  [4] &quot;package:stats&quot;     &quot;package:graphics&quot;  &quot;package:grDevices&quot;
+##  [7] &quot;package:utils&quot;     &quot;package:datasets&quot;  &quot;package:magrittr&quot; 
+## [10] &quot;package:forcats&quot;   &quot;package:stringr&quot;   &quot;package:dplyr&quot;    
+## [13] &quot;package:purrr&quot;     &quot;package:readr&quot;     &quot;package:tidyr&quot;    
+## [16] &quot;package:tibble&quot;    &quot;package:ggplot2&quot;   &quot;package:tidyverse&quot;
+## [19] &quot;package:methods&quot;   &quot;Autoloads&quot;         &quot;package:base&quot;</code></pre>
 <p>Autoloads is used to save memory by only loading package objects</p>
 <p>use new.env() to create an environment, use parent.env() to see its parent</p>
 <pre class="r"><code>e &lt;- new.env()
@@ -311,7 +358,7 @@ parent.env(e)</code></pre>
 <pre class="r"><code>e$a &lt;- 1
 e$b &lt;- 2
 ls(e)</code></pre>
-<pre><code>## [1] "a" "b"</code></pre>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot;</code></pre>
 <pre class="r"><code>e$a</code></pre>
 <pre><code>## [1] 1</code></pre>
 <p>useful way to view an environment is ls.str()</p>
@@ -319,29 +366,29 @@ ls(e)</code></pre>
 <pre><code>## a :  num 1
 ## b :  num 2</code></pre>
 <p>extract the value from a name</p>
-<pre class="r"><code>e$a; e[["a"]]; get("a", envir = e)</code></pre>
+<pre class="r"><code>e$a; e[[&quot;a&quot;]]; get(&quot;a&quot;, envir = e)</code></pre>
 <pre><code>## [1] 1</code></pre>
 <pre><code>## [1] 1</code></pre>
 <pre><code>## [1] 1</code></pre>
 <p>use rm() to remove the binding.</p>
-<pre class="r"><code>rm("a", envir = e)
+<pre class="r"><code>rm(&quot;a&quot;, envir = e)
 ls.str(e)</code></pre>
 <pre><code>## b :  num 2</code></pre>
 <p>use exists() to determine if a variable in an environment</p>
 <pre class="r"><code>x &lt;- 10
-exists("x", envir = e)</code></pre>
+exists(&quot;x&quot;, envir = e)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 <pre class="r"><code>identical(globalenv(), environment())</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 </div>
-<div class="section level2" id="recursing-over-environments">
+<div id="recursing-over-environments" class="section level2">
 <h2>Recursing over environments</h2>
 <p>where() finds the environment where that name is defined, using R’s regular scoping rules:</p>
 <pre class="r"><code>library(pryr)
 x &lt;- 5
-where("x")</code></pre>
+where(&quot;x&quot;)</code></pre>
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
-<pre class="r"><code>where("mean")</code></pre>
+<pre class="r"><code>where(&quot;mean&quot;)</code></pre>
 <pre><code>## &lt;environment: base&gt;</code></pre>
 <p>definition of where()</p>
 <pre class="r"><code>where</code></pre>
@@ -350,7 +397,7 @@ where("x")</code></pre>
 ##     stopifnot(is.character(name), length(name) == 1)
 ##     env &lt;- to_env(env)
 ##     if (identical(env, emptyenv())) {
-##         stop("Can't find ", name, call. = FALSE)
+##         stop(&quot;Can&#39;t find &quot;, name, call. = FALSE)
 ##     }
 ##     if (exists(name, env, inherits = FALSE)) {
 ##         env
@@ -364,12 +411,12 @@ where("x")</code></pre>
 <table>
 <tr>
 <td bgcolor="orange">
-<font color="gray" size="7">Not Interesting</font>
+<font color=gray size=7>Not Interesting</font>
 </td>
 </tr>
 </table>
 </div>
-<div class="section level2" id="explicit-environments">
+<div id="explicit-environments" class="section level2">
 <h2>Explicit environments</h2>
 <p>the original list is not changed because modifying a list actually creates and modifies a copy.</p>
 <pre class="r"><code>modify &lt;- function(x) {
@@ -389,7 +436,7 @@ x_e$a</code></pre>
 <pre><code>## [1] 2</code></pre>
 </div>
 </div>
-<div class="section level1" id="functional-programming">
+<div id="functional-programming" class="section level1">
 <h1>3. Functional programming</h1>
 <p>R is a functional programming (FP) language.</p>
 <p>three building blocks of functional programming</p>
@@ -424,7 +471,7 @@ df</code></pre>
 ## 5  1 10 5  9  8 6
 ## 6  6  2 1  3  8 5</code></pre>
 <p>code have more advantages</p>
-<div class="section level2" id="anonymous-functions">
+<div id="anonymous-functions" class="section level2">
 <h2>Anonymous functions</h2>
 <pre class="r"><code># the anonymous function is same
 (function(x) x + 3)(10)</code></pre>
@@ -433,7 +480,7 @@ df</code></pre>
 f(10)</code></pre>
 <pre><code>## [1] 13</code></pre>
 </div>
-<div class="section level2" id="closures">
+<div id="closures" class="section level2">
 <h2>Closures</h2>
 <p>closure have two</p>
 <pre class="r"><code># two variable inside
@@ -490,7 +537,7 @@ unenclose(counter_one)</code></pre>
 <pre class="r"><code>counter_one()</code></pre>
 <pre><code>## [1] 2</code></pre>
 </div>
-<div class="section level2" id="lists-of-functions">
+<div id="lists-of-functions" class="section level2">
 <h2>Lists of functions</h2>
 <p>functions can be stored in lists.</p>
 <pre class="r"><code>compute_mean &lt;- list(
@@ -558,7 +605,7 @@ midpoint(sin, 0, pi)</code></pre>
 <pre><code>## [1] 1.923671e-16</code></pre>
 </div>
 </div>
-<div class="section level1" id="functionals">
+<div id="functionals" class="section level1">
 <h1>4. Functionals</h1>
 <p>A higher-order function is a function that takes a function as an input or returns a function as output. The complement to a closure is a functional</p>
 <pre class="r"><code>randomise &lt;- function(f) f(runif(1e3)) # f is a function as input
@@ -566,7 +613,7 @@ randomise(mean)</code></pre>
 <pre><code>## [1] 0.5078925</code></pre>
 <p>lapply() takes a function, applies it to each element in a list, and returns the results in the form of a list.</p>
 <pre class="r"><code>lapply2 &lt;- function(x, f, ...) {
-  out &lt;- vector("list", length(x))
+  out &lt;- vector(&quot;list&quot;, length(x))
   for (i in seq_along(x)) {
     out[[i]] &lt;- f(x[[i]], ...)
   }
@@ -582,15 +629,15 @@ unlist(lapply(l, length))</code></pre>
 <pre class="r"><code># What class is each column?
 unlist(lapply(mtcars, class))</code></pre>
 <pre><code>##       mpg       cyl      disp        hp      drat        wt      qsec 
-## "numeric" "numeric" "numeric" "numeric" "numeric" "numeric" "numeric" 
+## &quot;numeric&quot; &quot;numeric&quot; &quot;numeric&quot; &quot;numeric&quot; &quot;numeric&quot; &quot;numeric&quot; &quot;numeric&quot; 
 ##        vs        am      gear      carb 
-## "numeric" "numeric" "numeric" "numeric"</code></pre>
+## &quot;numeric&quot; &quot;numeric&quot; &quot;numeric&quot; &quot;numeric&quot;</code></pre>
 <pre class="r"><code># rcauchy return a cauchy distribution
 trims &lt;- c(0, 0.1, 0.2, 0.5)
 x &lt;- rcauchy(1000)
 unlist(lapply(trims, function(trim) mean(x, trim = trim)))</code></pre>
 <pre><code>## [1] 0.31527829 0.07795881 0.04608098 0.04652580</code></pre>
-<div class="section level2" id="sapply-and-vapply">
+<div id="sapply-and-vapply" class="section level2">
 <h2>sapply and vapply</h2>
 <p>vapply() takes an additional argument specifying the output type.</p>
 <pre class="r"><code>sapply(mtcars, is.numeric)</code></pre>
@@ -605,19 +652,19 @@ unlist(lapply(trims, function(trim) mean(x, trim = trim)))</code></pre>
 <pre class="r"><code>df &lt;- data.frame(x = 1:10, y = letters[1:10])
 sapply(df, class)</code></pre>
 <pre><code>##         x         y 
-## "integer"  "factor"</code></pre>
+## &quot;integer&quot;  &quot;factor&quot;</code></pre>
 <pre class="r"><code>vapply(df, class, character(1))</code></pre>
 <pre><code>##         x         y 
-## "integer"  "factor"</code></pre>
+## &quot;integer&quot;  &quot;factor&quot;</code></pre>
 <pre class="r"><code>df2 &lt;- data.frame(x = 1:10, y = Sys.time() + 1:10)
 sapply(df2, class)</code></pre>
 <pre><code>## $x
-## [1] "integer"
+## [1] &quot;integer&quot;
 ## 
 ## $y
-## [1] "POSIXct" "POSIXt"</code></pre>
+## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
 </div>
-<div class="section level2" id="multiple-inputs-map-and-mapply">
+<div id="multiple-inputs-map-and-mapply" class="section level2">
 <h2>Multiple inputs: Map (and mapply)</h2>
 <pre class="r"><code># Generate some sample data
 xs &lt;- replicate(5, runif(10), simplify = FALSE)
@@ -642,12 +689,12 @@ unlist(lapply(1:5, function(i) {
 apply(a, 1, mean)</code></pre>
 <pre><code>## [1]  8.5  9.5 10.5 11.5 12.5</code></pre>
 </div>
-<div class="section level2" id="function-operators">
+<div id="function-operators" class="section level2">
 <h2>Function operators</h2>
 <pre class="r"><code>chatty &lt;- function(f) {
   function(x, ...) {
     res &lt;- f(x, ...)
-    cat("Processing ", x, "\n", sep = "")
+    cat(&quot;Processing &quot;, x, &quot;\n&quot;, sep = &quot;&quot;)
     res
   }
 }
@@ -663,29 +710,51 @@ chatty(f)(1)</code></pre>
 <pre><code>## [1] 9 4 1</code></pre>
 </div>
 </div>
+
 <p style="color:#777;">Last modified on 2018-12-06</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
 </main>
+
 <footer class="footer">
-<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
 </script>
-<script src="/js/math-code.js" type="text/javascript"></script>
-<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/js/center-img.js" type="text/javascript"></script>
-<ul class="footer-links">
-<li><a href="/en/posts/index.xml" title="RSS feed" type="application/rss+xml">
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/en/posts/index.xml" type="application/rss+xml" title="RSS feed">
        Subscribe </a>
-</li>
-<li>
-<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
+       </li>
+       
+       
+       <li>
+       
+        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
        
         License
-        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
-</a>
-</li>
-</ul>
-<div class="copyright-text">
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
             
             ©
             
@@ -694,5 +763,10 @@ chatty(f)(1)</code></pre>
             2018-2021
             
      </div>
+
 </footer>
-</div></body></html>
+
+
+
+
+

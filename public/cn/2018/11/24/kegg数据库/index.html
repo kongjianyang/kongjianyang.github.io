@@ -1,63 +1,107 @@
-<html><body><a name="top"></a>
+<a name="top"></a>
 <!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>KJY</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-<link href="/css/style.css" rel="stylesheet"/>
-<link href="/css/fonts.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
 <script>hljs.initHighlightingOnLoad();</script>
-<div class="wrapper">
-<header class="header">
-<nav class="nav">
-<a class="nav-logo" href="/">
-<img alt="" height="" src="/media/%3cnil%3e" width=""/>
-</a>
-<ul class="nav-links">
-<li><a href="/cn/about/">关于</a></li>
-<li><a href="/cn/posts/">日志</a></li>
-<li><a href="/cn/newsletter/">周刊</a></li>
-<li><a href="/">English</a></li>
-</ul>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
 </nav>
-</header>
-<main class="content" role="main">
+      </header>
+
+<main class = "content" role="main">
 <div style="text-align: center">
+
 <h1>KEGG数据库</h1>
+
 <p>Liang 
  / 2018-11-24 </p>
+
 <hr/>
 </div>
+
 <span class="article-toolbar">
-<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/KEGG%e6%95%b0%e6%8d%ae%e5%ba%93.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
-</a>
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/KEGG%e6%95%b0%e6%8d%ae%e5%ba%93.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
 </span>
+
+
+
 <div class="body-text list-text">
-<h1 id="1-简介">1. 简介<a arialabel="Anchor" class="header-anchor" href="#1-简介"> # </a></h1>
+<h1 id="1-简介">1. 简介<a href="#1-简介" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
 <p>KEGG(Kyoto Encyclopedia of Genes and Genomes)是系统分析基因功能、基因组信息数据库，它有助于研究者把基因及表达信息作为一个整体网络进行研究。KEGG主要包含以下数据库：
-<img alt="" src="https://upload-images.jianshu.io/upload_images/3014937-4e2dd818e7c4087f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
+<img src="https://upload-images.jianshu.io/upload_images/3014937-4e2dd818e7c4087f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>其中在 KEGG PATHWAY 数据库中，将生物代谢通路划分为 6 类，分别为：细胞过程（Cellular Processes）、环境信息处理（Environmental Information Processing）、遗传信息处理（Genetic Information Processing）、人类疾病（Human Diseases）、新陈代谢（Metabolism）、生物体系统（Organismal Systems），其中每类又被系统分类为二、三、四层。第二层目前包括有 43 种子 pathway；第三层即为其代谢通路图；第四层为每个代谢通路图的具体注释信息。</p>
-<h1 id="2-探索">2. 探索<a arialabel="Anchor" class="header-anchor" href="#2-探索"> # </a></h1>
+<h1 id="2-探索">2. 探索<a href="#2-探索" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
 <p>首先打开KEGG数据库，你会进入下面这个界面，我们直奔主题，点击KEGG PATHWAY。
-<img alt="" src="https://upload-images.jianshu.io/upload_images/3014937-96e9136d05a8e512.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
-<p><img alt="" src="https://upload-images.jianshu.io/upload_images/3014937-9154223f43e75942.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
-<p><img alt="" src="https://upload-images.jianshu.io/upload_images/3014937-62ef46c4eb54d38d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/>
+<img src="https://upload-images.jianshu.io/upload_images/3014937-96e9136d05a8e512.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3014937-9154223f43e75942.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3014937-62ef46c4eb54d38d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="">
 点击三级分类的通路，就可以找到我们想要的pathway map了。比如点击三级分类pathway map 的“cell cycle”，然后就进入了下面这样的界面。</p>
-<p><img alt="" src="https://upload-images.jianshu.io/upload_images/3014937-893919bc52192dc9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3014937-893919bc52192dc9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>一般默认是人的pathway，如果你像查看其他物种上的pathway，你需要点击下拉三角形，选择你所关心的物种。如下面图中所示</p>
-<p><img alt="" src="https://upload-images.jianshu.io/upload_images/3014937-151e70b360f25940.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/>
-KEGG pathway中有着大量的通路图，以PI3K-Akt signaling pathway（ko04151）为例，里面包含了大量的蛋白等化合物，以及它们之间相互作用的关系。<br/>
-<img alt="" src="https://upload-images.jianshu.io/upload_images/3014937-5f5708fb5d95dcb4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
-<h1 id="3-看图说话">3. 看图说话<a arialabel="Anchor" class="header-anchor" href="#3-看图说话"> # </a></h1>
+<p><img src="https://upload-images.jianshu.io/upload_images/3014937-151e70b360f25940.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="">
+KEGG pathway中有着大量的通路图，以PI3K-Akt signaling pathway（ko04151）为例，里面包含了大量的蛋白等化合物，以及它们之间相互作用的关系。<br>
+<img src="https://upload-images.jianshu.io/upload_images/3014937-5f5708fb5d95dcb4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="3-看图说话">3. 看图说话<a href="#3-看图说话" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
 <p>在KEGG中有两种代谢图</p>
 <ul>
 <li>
@@ -80,33 +124,59 @@ KEGG pathway中有着大量的通路图，以PI3K-Akt signaling pathway（ko0415
 <li>RP+num： 反应物对</li>
 </ul>
 <p>图例作用关系：</p>
-<p><img alt="" src="https://upload-images.jianshu.io/upload_images/3014937-c07690f6350716cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3014937-c07690f6350716cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>参考：
-https://www.wxwenku.com/d/106727898
-http://blog.sciencenet.cn/blog-1835014-1123749.html</p>
+<a href="https://www.wxwenku.com/d/106727898" target="_blank" rel="noreferrer noopener">https://www.wxwenku.com/d/106727898</a>
+
+
+<a href="http://blog.sciencenet.cn/blog-1835014-1123749.html" target="_blank" rel="noreferrer noopener">http://blog.sciencenet.cn/blog-1835014-1123749.html</a>
+
+</p>
+
 <p style="color:#777;">最后一次修改于 2018-11-24</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
 </main>
+
 <footer class="footer">
-<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
 </script>
-<script src="/js/math-code.js" type="text/javascript"></script>
-<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/js/center-img.js" type="text/javascript"></script>
-<ul class="footer-links">
-<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
        订阅 </a>
-</li>
-<li>
-<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
         版权
-        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
-</a>
-</li>
-</ul>
-<div class="copyright-text">
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
             
             ©
             
@@ -115,5 +185,10 @@ http://blog.sciencenet.cn/blog-1835014-1123749.html</p>
             2018-2021
             
      </div>
+
 </footer>
-</div></body></html>
+
+
+
+
+

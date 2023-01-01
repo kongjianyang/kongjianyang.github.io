@@ -1,54 +1,101 @@
-<html><body><a name="top"></a>
+<a name="top"></a>
 <!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>KJY</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-<link href="/css/style.css" rel="stylesheet"/>
-<link href="/css/fonts.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
 <script>hljs.initHighlightingOnLoad();</script>
-<div class="wrapper">
-<header class="header">
-<nav class="nav">
-<a class="nav-logo" href="/">
-<img alt="" height="" src="/media/%3cnil%3e" width=""/>
-</a>
-<ul class="nav-links">
-<li><a href="/">Home</a></li>
-<li><a href="/en/about/">About</a></li>
-<li><a href="/en/posts/">Posts</a></li>
-<li><a href="/cn/posts/">中文</a></li>
-</ul>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/">Home</a></li>
+       
+           <li><a href="/en/about/">About</a></li>
+       
+           <li><a href="/en/posts/">Posts</a></li>
+       
+           <li><a href="/cn/posts/">中文</a></li>
+       
+       
+      </ul>
 </nav>
-</header>
-<main class="content" role="main">
+      </header>
+
+<main class = "content" role="main">
 <div style="text-align: center">
+
 <h1>ggplot2 plotting with error bars</h1>
+
 <p>Liang 
  / 2018-05-03 </p>
+
 <hr/>
 </div>
+
 <span class="article-toolbar">
-<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/en/posts/ggplot2-plotting-with-error-bars.Rmd" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="Suggest an edit of this page"></i>
-</a>
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/en/posts/ggplot2-plotting-with-error-bars.Rmd'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="Suggest an edit of this page"></i>
+  </a>
+  
+  
+  
 </span>
+
+
+
 <div class="body-text list-text">
-<div class="section level2" id="problem">
+
+
+
+<div id="problem" class="section level2">
 <h2>Problem</h2>
 <p>As a biologist, we need to plot a lot of data every day. To make our result more convincing, usually we need to add error bars on the bar plot results. In this Poster, I will show how to use ggplot2 to make a bar plot with error bar.</p>
 </div>
-<div class="section level2" id="solution">
+<div id="solution" class="section level2">
 <h2>Solution</h2>
-<div class="section level3" id="prepare-data">
+<div id="prepare-data" class="section level3">
 <h3>Prepare Data</h3>
 <p>The data we are using in this practice is <code>ToothGrowth</code>, we can get the data in <code>datasets</code> library. first we can look at the dataset.</p>
 <pre class="r"><code>library(datasets)
@@ -75,7 +122,7 @@ summary(ToothGrowth)</code></pre>
 <pre class="r"><code>library(Rmisc)
 tg &lt;- ToothGrowth
 # summarySE provides the standard deviation, standard error of the mean, and a (default 95%) confidence interval
-tgc &lt;- summarySE(tg, measurevar="len", groupvars=c("supp","dose"))
+tgc &lt;- summarySE(tg, measurevar=&quot;len&quot;, groupvars=c(&quot;supp&quot;,&quot;dose&quot;))
 tgc</code></pre>
 <pre><code>##   supp dose  N   len       sd        se       ci
 ## 1   OJ  0.5 10 13.23 4.459709 1.4102837 3.190283
@@ -93,55 +140,77 @@ tgc</code></pre>
 #&gt; 6   VC  2.0 10 26.14 4.797731 1.5171757 3.432090</code></pre>
 <p>After the data is summarized, we can make the graph. I will show the basic bar graph in ggplot2 with error bars representing either the standard error of the mean, or 95% confidence interval.</p>
 </div>
-<div class="section level3" id="bar-plot-with-ggplot">
+<div id="bar-plot-with-ggplot" class="section level3">
 <h3>Bar plot with ggplot</h3>
 <pre class="r"><code># Use dose as a factor rather than numeric
 tgc$dose &lt;- factor(tgc$dose)
 
 ggplot(tgc, aes(x=dose, y=len, fill=supp)) + 
-    geom_bar(position=position_dodge(), stat="identity",
-             colour="black", # Use black outlines,
+    geom_bar(position=position_dodge(), stat=&quot;identity&quot;,
+             colour=&quot;black&quot;, # Use black outlines,
              size=.3) +      # Thinner lines
     geom_errorbar(aes(ymin=len-se, ymax=len+se),
                   size=.3,    # Thinner lines
                   width=.2,
                   position=position_dodge(.9)) + # adjust errorbar`s position
-    xlab("Dose (mg)") +
-    ylab("Tooth length") +
-    scale_fill_hue(name="Supplement type", # Legend label, use darker colors
-                   breaks=c("OJ", "VC"),
-                   labels=c("Orange juice", "Ascorbic acid")) +
-    ggtitle("The Effect of Vitamin C on\nTooth Growth in Guinea Pigs") +
+    xlab(&quot;Dose (mg)&quot;) +
+    ylab(&quot;Tooth length&quot;) +
+    scale_fill_hue(name=&quot;Supplement type&quot;, # Legend label, use darker colors
+                   breaks=c(&quot;OJ&quot;, &quot;VC&quot;),
+                   labels=c(&quot;Orange juice&quot;, &quot;Ascorbic acid&quot;)) +
+    ggtitle(&quot;The Effect of Vitamin C on\nTooth Growth in Guinea Pigs&quot;) +
     scale_y_continuous(breaks=0:20*4) +
     theme_classic()</code></pre>
-<p><img src="/en/2018-05-03-ggplot2-plotting-with-error-bars_files/figure-html/unnamed-chunk-3-1.png" width="672"/></p>
+<p><img src="/en/2018-05-03-ggplot2-plotting-with-error-bars_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p><code>scale_fill_hue</code> is one way to modify the legend. And also there some other way in ggplot2.</p>
 <p>Reference: <a href="http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/">Plotting means and error bars (ggplot2)</a></p>
 </div>
 </div>
+
 <p style="color:#777;">Last modified on 2018-05-03</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
 </main>
+
 <footer class="footer">
-<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
 </script>
-<script src="/js/math-code.js" type="text/javascript"></script>
-<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/js/center-img.js" type="text/javascript"></script>
-<ul class="footer-links">
-<li><a href="/en/posts/index.xml" title="RSS feed" type="application/rss+xml">
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/en/posts/index.xml" type="application/rss+xml" title="RSS feed">
        Subscribe </a>
-</li>
-<li>
-<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
+       </li>
+       
+       
+       <li>
+       
+        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
        
         License
-        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
-</a>
-</li>
-</ul>
-<div class="copyright-text">
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
             
             ©
             
@@ -150,5 +219,10 @@ ggplot(tgc, aes(x=dose, y=len, fill=supp)) +
             2018-2021
             
      </div>
+
 </footer>
-</div></body></html>
+
+
+
+
+

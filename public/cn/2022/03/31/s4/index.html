@@ -1,63 +1,109 @@
-<html><body><a name="top"></a>
+<a name="top"></a>
 <!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>KJY</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-<link href="/css/style.css" rel="stylesheet"/>
-<link href="/css/fonts.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
 <script>hljs.initHighlightingOnLoad();</script>
-<div class="wrapper">
-<header class="header">
-<nav class="nav">
-<a class="nav-logo" href="/">
-<img alt="" height="" src="/media/%3cnil%3e" width=""/>
-</a>
-<ul class="nav-links">
-<li><a href="/cn/about/">关于</a></li>
-<li><a href="/cn/posts/">日志</a></li>
-<li><a href="/cn/newsletter/">周刊</a></li>
-<li><a href="/">English</a></li>
-</ul>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
 </nav>
-</header>
-<main class="content" role="main">
+      </header>
+
+<main class = "content" role="main">
 <div style="text-align: center">
+
 <h1>R语言基于S4的面向对象编程</h1>
+
 <p>KJY 
  / 2022-03-31 </p>
+
 <hr/>
 </div>
+
 <span class="article-toolbar">
-<a href="https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/R%e8%af%ad%e8%a8%80%e5%9f%ba%e4%ba%8eS4%e7%9a%84%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1%e7%bc%96%e7%a8%8b.md" style="font-size: 24px; color: black;" target="_blank"><i aria-hidden="true" class="fa fa-edit" title="编辑本页"></i>
-</a>
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/R%e8%af%ad%e8%a8%80%e5%9f%ba%e4%ba%8eS4%e7%9a%84%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1%e7%bc%96%e7%a8%8b.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
 </span>
+
+
 <aside class="toc">
 Table of Contents:
 <nav id="TableOfContents">
-<ol>
-<li><a href="#s4-框架介绍">S4 框架介绍</a></li>
-<li><a href="#定义类并创建对象">定义类并创建对象</a></li>
-<li><a href="#构造泛型类和方法类">构造泛型类和方法类</a></li>
-<li><a href="#s4的泛型函数的定义和调用">S4的泛型函数的定义和调用</a></li>
-<li><a href="#另一个更详细的例子">另一个更详细的例子：</a></li>
-<li><a href="#s3中的泛函">S3中的泛函</a></li>
-<li><a href="#一个例子说明s3以及s4编程">一个例子说明S3以及S4编程</a></li>
-</ol>
+  <ol>
+    <li><a href="#s4-框架介绍">S4 框架介绍</a></li>
+    <li><a href="#定义类并创建对象">定义类并创建对象</a></li>
+    <li><a href="#构造泛型类和方法类">构造泛型类和方法类</a></li>
+    <li><a href="#s4的泛型函数的定义和调用">S4的泛型函数的定义和调用</a></li>
+    <li><a href="#另一个更详细的例子">另一个更详细的例子：</a></li>
+    <li><a href="#s3中的泛函">S3中的泛函</a></li>
+    <li><a href="#一个例子说明s3以及s4编程">一个例子说明S3以及S4编程</a></li>
+  </ol>
 </nav>
 </aside>
+
+
 <div class="body-text list-text">
 <p>参考资料：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/21396190" rel="noreferrer noopener" target="_blank">R 学习笔记: S4 编程基础 - 知乎 (zhihu.com)</a>
+<p><a href="https://zhuanlan.zhihu.com/p/21396190" target="_blank" rel="noreferrer noopener">R 学习笔记: S4 编程基础 - 知乎 (zhihu.com)</a>
+
 </p>
 <p>不同的语言进行面向对象编程中, 有许多东西是共同的. 就像浩巍说的, 编程就是一通百通. 如果了解 Python 的面向对象编程, 里面的很多思想也能使用在 R 语言面向对象编程中.</p>
 <ul>
@@ -70,9 +116,10 @@ Table of Contents:
 <p><strong>S4</strong>的工作机制和S3类似，但是更加正式。S4和S3有两点主要的区别：首先S4对类有正规的定义，来描述该类的属性和继承关系；另外S4有特定的函数来定义范型和方法。S4还有多重派遣特性，即S4的范型函数可以根据任意多个参数的类来选择多个方法，而不仅仅是根据一个参数的类。</p>
 <p>一些程序员认为S3类不具有面向对象编程固有的安全性。例如，你可以任意修改S3类，哪怕是不合法的修改。相比而言，S4类更加安全。</p>
 <p>所有的S4相关代码均存在methods包中，S4非常复杂，但是好在有很多权威的资料供我们参考。如：</p>
-<p><a href="https://links.jianshu.com/go?to=http%3A%2F%2Fwww.bioconductor.org%2Fhelp%2Fcourse-materials%2F2010%2FAdvancedR%2FS4InBioconductor.pdf" rel="noreferrer noopener" target="_blank">Bioconductor 中开发课程资料</a>
+<p><a href="https://links.jianshu.com/go?to=http%3A%2F%2Fwww.bioconductor.org%2Fhelp%2Fcourse-materials%2F2010%2FAdvancedR%2FS4InBioconductor.pdf" target="_blank" rel="noreferrer noopener">Bioconductor 中开发课程资料</a>
+
 </p>
-<h2 id="s4-框架介绍">S4 框架介绍<a arialabel="Anchor" class="header-anchor" href="#s4-框架介绍"> # </a></h2>
+<h2 id="s4-框架介绍">S4 框架介绍<a href="#s4-框架介绍" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>S4的泛型函数分离了方法的定义和实现，也就是常说的接口和调用分离。即通过S4对象系统，把原来的函数定义和调用2步法，分成了4步进行：</p>
 <ol>
 <li>
@@ -139,84 +186,84 @@ Table of Contents:
 </tr>
 </tbody>
 </table>
-<h2 id="定义类并创建对象">定义类并创建对象<a arialabel="Anchor" class="header-anchor" href="#定义类并创建对象"> # </a></h2>
+<h2 id="定义类并创建对象">定义类并创建对象<a href="#定义类并创建对象" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>如上表所示，S4的类(class)可以通过setClass()实现，而new()则可以通过类名和slots中的参数创建跟该类相关的对象。</p>
 <p>对于 S4 类的定义, 其定义中只包含类的名称和其变量, 也就是 slot, 而不包括方法. 定义 S4 类要使用 setClass 函数.</p>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 创建Class - Person</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 创建Class - Person</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># slot和attr类似，都是属性</span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">setClass</span>(<span style="color:#ba2121">"Person"</span>, slots <span style="color:#666">=</span> <span style="color:#00f">list</span>(name <span style="color:#666">=</span> <span style="color:#ba2121">"character"</span>, age <span style="color:#666">=</span> <span style="color:#ba2121">"numeric"</span>))
+</span></span><span style="display:flex;"><span><span style="color:#00f">setClass</span>(<span style="color:#ba2121">&#34;Person&#34;</span>, slots <span style="color:#666">=</span> <span style="color:#00f">list</span>(name <span style="color:#666">=</span> <span style="color:#ba2121">&#34;character&#34;</span>, age <span style="color:#666">=</span> <span style="color:#ba2121">&#34;numeric&#34;</span>))
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 创建Class - Employee，利用contains表明参数继承自Person。</span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">setClass</span>(<span style="color:#ba2121">"Employee"</span>, slots <span style="color:#666">=</span> <span style="color:#00f">list</span>(boss <span style="color:#666">=</span> <span style="color:#ba2121">"Person"</span>), contains <span style="color:#666">=</span> <span style="color:#ba2121">"Person"</span>)
+</span></span><span style="display:flex;"><span><span style="color:#00f">setClass</span>(<span style="color:#ba2121">&#34;Employee&#34;</span>, slots <span style="color:#666">=</span> <span style="color:#00f">list</span>(boss <span style="color:#666">=</span> <span style="color:#ba2121">&#34;Person&#34;</span>), contains <span style="color:#666">=</span> <span style="color:#ba2121">&#34;Person&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 设置基于Class - Person的对象</span>
-</span></span><span style="display:flex;"><span>alice <span style="color:#666">&lt;-</span> <span style="color:#00f">new</span>(<span style="color:#ba2121">"Person"</span>, name <span style="color:#666">=</span> <span style="color:#ba2121">"Alice"</span>, age <span style="color:#666">=</span> <span style="color:#666">40</span>)
+</span></span><span style="display:flex;"><span>alice <span style="color:#666">&lt;-</span> <span style="color:#00f">new</span>(<span style="color:#ba2121">&#34;Person&#34;</span>, name <span style="color:#666">=</span> <span style="color:#ba2121">&#34;Alice&#34;</span>, age <span style="color:#666">=</span> <span style="color:#666">40</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 设置基于Class - Employee的对象</span>
-</span></span><span style="display:flex;"><span>john <span style="color:#666">&lt;-</span> <span style="color:#00f">new</span>(<span style="color:#ba2121">"Employee"</span>, name <span style="color:#666">=</span> <span style="color:#ba2121">"John"</span>, age <span style="color:#666">=</span> <span style="color:#666">20</span>, boss <span style="color:#666">=</span> alice)
+</span></span><span style="display:flex;"><span>john <span style="color:#666">&lt;-</span> <span style="color:#00f">new</span>(<span style="color:#ba2121">&#34;Employee&#34;</span>, name <span style="color:#666">=</span> <span style="color:#ba2121">&#34;John&#34;</span>, age <span style="color:#666">=</span> <span style="color:#666">20</span>, boss <span style="color:#666">=</span> alice)
 </span></span><span style="display:flex;"><span><span style="color:#00f">str</span>(alice)
 </span></span><span style="display:flex;"><span><span style="color:#00f">str</span>(john) <span style="color:#408080;font-style:italic"># 可以看到jhon多了一个slot，即@boss，boss是alice</span>
-</span></span></code></pre></div><div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># Formal class 'Employee' [package ".GlobalEnv"] with 3 slots</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#   ..@ boss:Formal class 'Person' [package ".GlobalEnv"] with 2 slots</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#   .. .. ..@ name: chr "Alice"</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># Formal class &#39;Employee&#39; [package &#34;.GlobalEnv&#34;] with 3 slots</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#   ..@ boss:Formal class &#39;Person&#39; [package &#34;.GlobalEnv&#34;] with 2 slots</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#   .. .. ..@ name: chr &#34;Alice&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#   .. .. ..@ age : num 40</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#   ..@ name: chr "John"</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#   ..@ name: chr &#34;John&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#   ..@ age : num 20</span>
 </span></span></code></pre></div><p>但是在创建类的时候, 应该指定每个 slots 的类型, 最好是可以限定的基本类型, 如 numeric, character, 等 atomic 类型. 而最好不要是 list 等类型, 因为我们可以向 list 中添加任何类型的数据, 这样就使得类的变量变得不可控, 也不好建立合适的方法. slots 接受一个 vector 或者 list, 把变量名和其类型名对应起来即可.</p>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#00f">setClass</span>(
-</span></span><span style="display:flex;"><span>    Class <span style="color:#666">=</span> <span style="color:#ba2121">"IcecreamMachine"</span>,
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#00f">setClass</span>(
+</span></span><span style="display:flex;"><span>    Class <span style="color:#666">=</span> <span style="color:#ba2121">&#34;IcecreamMachine&#34;</span>,
 </span></span><span style="display:flex;"><span>    slots <span style="color:#666">=</span> <span style="color:#00f">c</span>(
-</span></span><span style="display:flex;"><span>        strawberry <span style="color:#666">=</span> <span style="color:#ba2121">"numeric"</span>,
-</span></span><span style="display:flex;"><span>        chocolate  <span style="color:#666">=</span> <span style="color:#ba2121">"numeric"</span>,
-</span></span><span style="display:flex;"><span>        mango      <span style="color:#666">=</span> <span style="color:#ba2121">"numeric"</span>
+</span></span><span style="display:flex;"><span>        strawberry <span style="color:#666">=</span> <span style="color:#ba2121">&#34;numeric&#34;</span>,
+</span></span><span style="display:flex;"><span>        chocolate  <span style="color:#666">=</span> <span style="color:#ba2121">&#34;numeric&#34;</span>,
+</span></span><span style="display:flex;"><span>        mango      <span style="color:#666">=</span> <span style="color:#ba2121">&#34;numeric&#34;</span>
 </span></span><span style="display:flex;"><span>    )
 </span></span><span style="display:flex;"><span>)
 </span></span></code></pre></div><p>通过prototype 设置初始值，当创建对象时，如果slots中的属性为空时，该对象会调用初始值作填入。</p>
 <p>设定默认值的时候, prototype 接受一个 list, 其中变量名和默认值一一对应.</p>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 创建Class - Person</span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">setClass</span>(<span style="color:#ba2121">"Person"</span>, slots <span style="color:#666">=</span> <span style="color:#00f">list</span>(name <span style="color:#666">=</span> <span style="color:#ba2121">"character"</span>, age <span style="color:#666">=</span> <span style="color:#ba2121">"numeric"</span>), prototype <span style="color:#666">=</span> <span style="color:#00f">list</span>(age <span style="color:#666">=</span> <span style="color:#666">20</span>))
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 创建Class - Person</span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">setClass</span>(<span style="color:#ba2121">&#34;Person&#34;</span>, slots <span style="color:#666">=</span> <span style="color:#00f">list</span>(name <span style="color:#666">=</span> <span style="color:#ba2121">&#34;character&#34;</span>, age <span style="color:#666">=</span> <span style="color:#ba2121">&#34;numeric&#34;</span>), prototype <span style="color:#666">=</span> <span style="color:#00f">list</span>(age <span style="color:#666">=</span> <span style="color:#666">20</span>))
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>alice <span style="color:#666">&lt;-</span> <span style="color:#00f">new</span>(<span style="color:#ba2121">"Person"</span>, name <span style="color:#666">=</span> <span style="color:#ba2121">"Alice"</span>)
+</span></span><span style="display:flex;"><span>alice <span style="color:#666">&lt;-</span> <span style="color:#00f">new</span>(<span style="color:#ba2121">&#34;Person&#34;</span>, name <span style="color:#666">=</span> <span style="color:#ba2121">&#34;Alice&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#00f">str</span>(alice)
 </span></span></code></pre></div><p>通过setValidity设置类属性检查，当通过new()创建对象时，setValidity将对slots 中的参数进行检查、输出报告。</p>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#00f">setClass</span>(<span style="color:#ba2121">"Person"</span>, slots <span style="color:#666">=</span> <span style="color:#00f">list</span>(name <span style="color:#666">=</span> <span style="color:#ba2121">"character"</span>, age <span style="color:#666">=</span> <span style="color:#ba2121">"numeric"</span>), prototype <span style="color:#666">=</span> <span style="color:#00f">list</span>(age <span style="color:#666">=</span> <span style="color:#666">20</span>))
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#00f">setClass</span>(<span style="color:#ba2121">&#34;Person&#34;</span>, slots <span style="color:#666">=</span> <span style="color:#00f">list</span>(name <span style="color:#666">=</span> <span style="color:#ba2121">&#34;character&#34;</span>, age <span style="color:#666">=</span> <span style="color:#ba2121">&#34;numeric&#34;</span>), prototype <span style="color:#666">=</span> <span style="color:#00f">list</span>(age <span style="color:#666">=</span> <span style="color:#666">20</span>))
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">setValidity</span>(<span style="color:#ba2121">"Person"</span>,  
+</span></span><span style="display:flex;"><span><span style="color:#00f">setValidity</span>(<span style="color:#ba2121">&#34;Person&#34;</span>,  
 </span></span><span style="display:flex;"><span> <span style="color:#00f">function</span>(object){
 </span></span><span style="display:flex;"><span> <span style="color:#00f">if </span>(object<span style="color:#666">@</span>age <span style="color:#666">&lt;</span> <span style="color:#666">18</span>)
-</span></span><span style="display:flex;"><span> <span style="color:#ba2121">"he/she is too yong to get the job."</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ba2121">&#34;he/she is too yong to get the job.&#34;</span>
 </span></span><span style="display:flex;"><span> })
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">new</span>(<span style="color:#ba2121">"Person"</span>, name <span style="color:#666">=</span> <span style="color:#ba2121">"Penny"</span>, age <span style="color:#666">=</span> <span style="color:#666">17</span>) <span style="color:#408080;font-style:italic"># this will get error</span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">new</span>(<span style="color:#ba2121">&#34;Person&#34;</span>, name <span style="color:#666">=</span> <span style="color:#ba2121">&#34;Penny&#34;</span>, age <span style="color:#666">=</span> <span style="color:#666">17</span>) <span style="color:#408080;font-style:italic"># this will get error</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># Error in validObject(.Object) : invalid class “Person” object: he/she is too yong to get the job.</span>
 </span></span></code></pre></div><p>如果定义的S4类(class)中包含(继承)了S3类或基础类，该S4类(class)中将有一个包含底层基础类或S3对象的.Data slots：</p>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#00f">setClass</span>(<span style="color:#ba2121">"RangedNumeric"</span>,
-</span></span><span style="display:flex;"><span> slots <span style="color:#666">=</span> <span style="color:#00f">list</span>(min <span style="color:#666">=</span> <span style="color:#ba2121">"numeric"</span>, max <span style="color:#666">=</span> <span style="color:#ba2121">"numeric"</span>)，
-</span></span><span style="display:flex;"><span> contains <span style="color:#666">=</span> <span style="color:#ba2121">"numeric"</span>)
-</span></span><span style="display:flex;"><span>rn <span style="color:#666">&lt;-</span> <span style="color:#00f">new</span>(<span style="color:#ba2121">"RangedNumeric"</span>, <span style="color:#666">1</span><span style="color:#666">:</span><span style="color:#666">10</span>, min <span style="color:#666">=</span> <span style="color:#666">1</span>, max <span style="color:#666">=</span> <span style="color:#666">10</span>)
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#00f">setClass</span>(<span style="color:#ba2121">&#34;RangedNumeric&#34;</span>,
+</span></span><span style="display:flex;"><span> slots <span style="color:#666">=</span> <span style="color:#00f">list</span>(min <span style="color:#666">=</span> <span style="color:#ba2121">&#34;numeric&#34;</span>, max <span style="color:#666">=</span> <span style="color:#ba2121">&#34;numeric&#34;</span>)，
+</span></span><span style="display:flex;"><span> contains <span style="color:#666">=</span> <span style="color:#ba2121">&#34;numeric&#34;</span>)
+</span></span><span style="display:flex;"><span>rn <span style="color:#666">&lt;-</span> <span style="color:#00f">new</span>(<span style="color:#ba2121">&#34;RangedNumeric&#34;</span>, <span style="color:#666">1</span><span style="color:#666">:</span><span style="color:#666">10</span>, min <span style="color:#666">=</span> <span style="color:#666">1</span>, max <span style="color:#666">=</span> <span style="color:#666">10</span>)
 </span></span><span style="display:flex;"><span><span style="color:#00f">str</span>(rn)
-</span></span></code></pre></div><p>在S3对象中，一般我使用$来访问一个对象的属性，但在S4对象中，我们只能用@来访问一个对象的属性。使用 “@” 符号可以直接获得 S4 对象的属性</p>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 查看alice对象的name属性</span>
+</span></span></code></pre></div><p>在S3对象中，一般我使用$来访问一个对象的属性，但在S4对象中，我们只能用@来访问一个对象的属性。使用 &ldquo;@&rdquo; 符号可以直接获得 S4 对象的属性</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 查看alice对象的name属性</span>
 </span></span><span style="display:flex;"><span>alice<span style="color:#666">@</span>name
 </span></span></code></pre></div><blockquote>
 <p>Given an S4 object you can see its class with <code>is()</code> and access slots with <code>@</code> (equivalent to <code>$</code>) and <code>slot()</code> (equivalent to <code>[[</code>):</p>
 </blockquote>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 查看alice对象的name属性</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 查看alice对象的name属性</span>
 </span></span><span style="display:flex;"><span>alice<span style="color:#666">@</span>name
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># "Alice"</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># &#34;Alice&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">slot</span>(alice, <span style="color:#ba2121">"age"</span>)
+</span></span><span style="display:flex;"><span><span style="color:#00f">slot</span>(alice, <span style="color:#ba2121">&#34;age&#34;</span>)
 </span></span><span style="display:flex;"><span>alice<span style="color:#666">@</span>age
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 40</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 40</span>
-</span></span></code></pre></div><h2 id="构造泛型类和方法类">构造泛型类和方法类<a arialabel="Anchor" class="header-anchor" href="#构造泛型类和方法类"> # </a></h2>
-<p>setGeneric()可以创建或将原有的类转换为泛型类，如果setGeneric()只是将原有的类转换为泛型，那么只需要setGeneric(“names”)就可以了；如果从头创建一个新的泛型，还需要提供一个名叫standardGeneric()的function，function里面就填泛型类的名字就可以：</p>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#00f">setGeneric</span>(<span style="color:#ba2121">"myGeneric"</span>, <span style="color:#00f">function</span>(x) {
-</span></span><span style="display:flex;"><span> <span style="color:#00f">standardGeneric</span>(<span style="color:#ba2121">"myGeneric"</span>)
+</span></span></code></pre></div><h2 id="构造泛型类和方法类">构造泛型类和方法类<a href="#构造泛型类和方法类" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>setGeneric()可以创建或将原有的类转换为泛型类，如果setGeneric()只是将原有的类转换为泛型，那么只需要setGeneric(&ldquo;names&rdquo;)就可以了；如果从头创建一个新的泛型，还需要提供一个名叫standardGeneric()的function，function里面就填泛型类的名字就可以：</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#00f">setGeneric</span>(<span style="color:#ba2121">&#34;myGeneric&#34;</span>, <span style="color:#00f">function</span>(x) {
+</span></span><span style="display:flex;"><span> <span style="color:#00f">standardGeneric</span>(<span style="color:#ba2121">&#34;myGeneric&#34;</span>)
 </span></span><span style="display:flex;"><span>})
 </span></span></code></pre></div><p>S4的泛型函数通过调用setGeneric函数产生，该函数的用法如下：</p>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#00f">setGeneric</span>(name, def <span style="color:#666">=</span> , group <span style="color:#666">=</span> <span style="color:#00f">list</span>(), valueClass <span style="color:#666">=</span> <span style="color:#00f">character</span>(), where <span style="color:#666">=</span> ,
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#00f">setGeneric</span>(name, def <span style="color:#666">=</span> , group <span style="color:#666">=</span> <span style="color:#00f">list</span>(), valueClass <span style="color:#666">=</span> <span style="color:#00f">character</span>(), where <span style="color:#666">=</span> ,
 </span></span><span style="display:flex;"><span>    package <span style="color:#666">=</span> , signature <span style="color:#666">=</span> , useAsDefault <span style="color:#666">=</span> , genericFunction <span style="color:#666">=</span> , simpleInheritanceOnly <span style="color:#666">=</span> )
 </span></span></code></pre></div><p>参数虽然很多，但常用两个：</p>
 <ul>
@@ -224,7 +271,7 @@ Table of Contents:
 <li>def: 这是可选项。如果name参数没有对应的已有函数，这一项必需提供。如果name已经有对应的函数，使用def项可以指定其他的函数作为泛型函数（偷梁换柱）。</li>
 </ul>
 <p>泛型函数的方法使用setMethod函数进行定义：</p>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#00f">setMethod</span>(f, signature <span style="color:#666">=</span> <span style="color:#00f">character</span>(), definition, where <span style="color:#666">=</span> <span style="color:#00f">topenv</span>(<span style="color:#00f">parent.frame</span>()),
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#00f">setMethod</span>(f, signature <span style="color:#666">=</span> <span style="color:#00f">character</span>(), definition, where <span style="color:#666">=</span> <span style="color:#00f">topenv</span>(<span style="color:#00f">parent.frame</span>()),
 </span></span><span style="display:flex;"><span>    valueClass <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">NULL</span>, sealed <span style="color:#666">=</span> <span style="color:#008000;font-weight:bold">FALSE</span>)
 </span></span></code></pre></div><ul>
 <li>f：泛型函数名称</li>
@@ -232,55 +279,55 @@ Table of Contents:
 </ul>
 <p>setMethod()利用泛型的名称、与该方法相关联的类以及实现该方法的函数实现参数调用和函数运行。</p>
 <p>可以使用getGenerics()获得所有S4泛型的列表；使用getClasses()获得所有S4类的列表；可以使用showMethods()列出所有S4方法。</p>
-<h2 id="s4的泛型函数的定义和调用">S4的泛型函数的定义和调用<a arialabel="Anchor" class="header-anchor" href="#s4的泛型函数的定义和调用"> # </a></h2>
-<p>该代码参考(copy)自<a href="https://links.jianshu.com/go?to=http%3A%2F%2Fblog.fens.me%2Fseries-r%2F" rel="noreferrer noopener" target="_blank">R的极客理想</a>
+<h2 id="s4的泛型函数的定义和调用">S4的泛型函数的定义和调用<a href="#s4的泛型函数的定义和调用" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>该代码参考(copy)自<a href="https://links.jianshu.com/go?to=http%3A%2F%2Fblog.fens.me%2Fseries-r%2F" target="_blank" rel="noreferrer noopener">R的极客理想</a>
 
-中的<a href="https://links.jianshu.com/go?to=http%3A%2F%2Fblog.fens.me%2Fr-class-s4%2F" rel="noreferrer noopener" target="_blank">R语言基于S4的面向对象编程</a>
+中的<a href="https://links.jianshu.com/go?to=http%3A%2F%2Fblog.fens.me%2Fr-class-s4%2F" target="_blank" rel="noreferrer noopener">R语言基于S4的面向对象编程</a>
 
 ，全文用深入浅出的方式介绍了S4泛型函数。</p>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 定义几何图形类</span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">setClass</span>(<span style="color:#ba2121">"geometric_figure"</span>, slots <span style="color:#666">=</span> <span style="color:#00f">list</span>(name <span style="color:#666">=</span> <span style="color:#ba2121">"character"</span>,
-</span></span><span style="display:flex;"><span> shape <span style="color:#666">=</span> <span style="color:#ba2121">"character"</span>))
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 定义几何图形类</span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">setClass</span>(<span style="color:#ba2121">&#34;geometric_figure&#34;</span>, slots <span style="color:#666">=</span> <span style="color:#00f">list</span>(name <span style="color:#666">=</span> <span style="color:#ba2121">&#34;character&#34;</span>,
+</span></span><span style="display:flex;"><span> shape <span style="color:#666">=</span> <span style="color:#ba2121">&#34;character&#34;</span>))
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 定义圆形类, 利用prototype定义默认属性参数</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 利用contains表明参数继承自geometric_figure。</span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">setClass</span>(<span style="color:#ba2121">"Circle"</span>, slots <span style="color:#666">=</span> <span style="color:#00f">list</span>(radius<span style="color:#666">=</span><span style="color:#ba2121">"numeric"</span>),
-</span></span><span style="display:flex;"><span> prototype <span style="color:#666">=</span> <span style="color:#00f">list</span>(shape <span style="color:#666">=</span> <span style="color:#ba2121">"circle"</span>),
-</span></span><span style="display:flex;"><span> contains <span style="color:#666">=</span> <span style="color:#ba2121">"geometric_figure"</span>)
+</span></span><span style="display:flex;"><span><span style="color:#00f">setClass</span>(<span style="color:#ba2121">&#34;Circle&#34;</span>, slots <span style="color:#666">=</span> <span style="color:#00f">list</span>(radius<span style="color:#666">=</span><span style="color:#ba2121">&#34;numeric&#34;</span>),
+</span></span><span style="display:flex;"><span> prototype <span style="color:#666">=</span> <span style="color:#00f">list</span>(shape <span style="color:#666">=</span> <span style="color:#ba2121">&#34;circle&#34;</span>),
+</span></span><span style="display:flex;"><span> contains <span style="color:#666">=</span> <span style="color:#ba2121">&#34;geometric_figure&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 定义验证类，保证Circle 类中的属性正常</span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">setValidity</span>(<span style="color:#ba2121">"Circle"</span>, <span style="color:#00f">function</span>(object){
+</span></span><span style="display:flex;"><span><span style="color:#00f">setValidity</span>(<span style="color:#ba2121">&#34;Circle&#34;</span>, <span style="color:#00f">function</span>(object){
 </span></span><span style="display:flex;"><span> <span style="color:#00f">if </span>(object<span style="color:#666">@</span>radius <span style="color:#666">&lt;=</span> <span style="color:#666">0</span>)
-</span></span><span style="display:flex;"><span> <span style="color:#00f">stop</span>(<span style="color:#ba2121">"The radius of circle is negative！"</span>)
+</span></span><span style="display:flex;"><span> <span style="color:#00f">stop</span>(<span style="color:#ba2121">&#34;The radius of circle is negative！&#34;</span>)
 </span></span><span style="display:flex;"><span>})
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 面积计算 --------------------------------------------------------------------</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 定义计算面积的泛型函数接口</span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">setGeneric</span>(<span style="color:#ba2121">"area"</span>,<span style="color:#00f">function</span>(object){
-</span></span><span style="display:flex;"><span> <span style="color:#00f">standardGeneric</span>(<span style="color:#ba2121">"area"</span>)
+</span></span><span style="display:flex;"><span><span style="color:#00f">setGeneric</span>(<span style="color:#ba2121">&#34;area&#34;</span>,<span style="color:#00f">function</span>(object){
+</span></span><span style="display:flex;"><span> <span style="color:#00f">standardGeneric</span>(<span style="color:#ba2121">&#34;area&#34;</span>)
 </span></span><span style="display:flex;"><span> })
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 定义面积的计算方法</span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">setMethod</span>(<span style="color:#ba2121">"area"</span>,<span style="color:#ba2121">"Circle"</span>,<span style="color:#00f">function</span>(object){
-</span></span><span style="display:flex;"><span> <span style="color:#00f">cat</span>(<span style="color:#ba2121">"The shape of"</span>, object<span style="color:#666">@</span>name, <span style="color:#ba2121">"is"</span>, object<span style="color:#666">@</span>shape,
-</span></span><span style="display:flex;"><span> <span style="color:#ba2121">"\nThe Area of it is"</span>, <span style="color:#008000;font-weight:bold">pi</span><span style="color:#666">*</span>object<span style="color:#666">@</span>radius^2)
+</span></span><span style="display:flex;"><span><span style="color:#00f">setMethod</span>(<span style="color:#ba2121">&#34;area&#34;</span>,<span style="color:#ba2121">&#34;Circle&#34;</span>,<span style="color:#00f">function</span>(object){
+</span></span><span style="display:flex;"><span> <span style="color:#00f">cat</span>(<span style="color:#ba2121">&#34;The shape of&#34;</span>, object<span style="color:#666">@</span>name, <span style="color:#ba2121">&#34;is&#34;</span>, object<span style="color:#666">@</span>shape,
+</span></span><span style="display:flex;"><span> <span style="color:#ba2121">&#34;\nThe Area of it is&#34;</span>, <span style="color:#008000;font-weight:bold">pi</span><span style="color:#666">*</span>object<span style="color:#666">@</span>radius^2)
 </span></span><span style="display:flex;"><span> })
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 周长计算 --------------------------------------------------------------------</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 定义计算周长的泛型函数接口</span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">setGeneric</span>(<span style="color:#ba2121">"circum"</span>,<span style="color:#00f">function</span>(object) <span style="color:#00f">standardGeneric</span>(<span style="color:#ba2121">"circum"</span>))
+</span></span><span style="display:flex;"><span><span style="color:#00f">setGeneric</span>(<span style="color:#ba2121">&#34;circum&#34;</span>,<span style="color:#00f">function</span>(object) <span style="color:#00f">standardGeneric</span>(<span style="color:#ba2121">&#34;circum&#34;</span>))
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 定义计算周长的方法</span>
-</span></span><span style="display:flex;"><span> <span style="color:#00f">setMethod</span>(<span style="color:#ba2121">"circum"</span>,<span style="color:#ba2121">"Circle"</span>,<span style="color:#00f">function</span>(object){
-</span></span><span style="display:flex;"><span> <span style="color:#00f">cat</span>(<span style="color:#ba2121">"The circumference of"</span>, object<span style="color:#666">@</span>name, <span style="color:#ba2121">"is"</span>,
+</span></span><span style="display:flex;"><span> <span style="color:#00f">setMethod</span>(<span style="color:#ba2121">&#34;circum&#34;</span>,<span style="color:#ba2121">&#34;Circle&#34;</span>,<span style="color:#00f">function</span>(object){
+</span></span><span style="display:flex;"><span> <span style="color:#00f">cat</span>(<span style="color:#ba2121">&#34;The circumference of&#34;</span>, object<span style="color:#666">@</span>name, <span style="color:#ba2121">&#34;is&#34;</span>,
 </span></span><span style="display:flex;"><span> <span style="color:#666">2</span><span style="color:#666">*</span><span style="color:#008000;font-weight:bold">pi</span><span style="color:#666">*</span>object<span style="color:#666">@</span>radius)
 </span></span><span style="display:flex;"><span> })
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 创建圆形实例</span>
-</span></span><span style="display:flex;"><span>c <span style="color:#666">&lt;-</span><span style="color:#00f">new</span>(<span style="color:#ba2121">"Circle"</span>, name<span style="color:#666">=</span><span style="color:#ba2121">"c"</span>, radius<span style="color:#666">=</span><span style="color:#666">5</span>)
+</span></span><span style="display:flex;"><span>c <span style="color:#666">&lt;-</span><span style="color:#00f">new</span>(<span style="color:#ba2121">&#34;Circle&#34;</span>, name<span style="color:#666">=</span><span style="color:#ba2121">&#34;c&#34;</span>, radius<span style="color:#666">=</span><span style="color:#666">5</span>)
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 函数调用 --------------------------------------------------------------------</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 上面利用setMethod定义了area和circum两个函数</span>
 </span></span><span style="display:flex;"><span>                      
@@ -288,20 +335,20 @@ Table of Contents:
 </span></span><span style="display:flex;"><span><span style="color:#00f">circum</span>(c)
 </span></span></code></pre></div><p>上述过程已经创建了几何图形(geometric_figure)类和面积|周长的泛型函数接口。如果想要计算其他图形，如椭圆、正方形、矩形，三角形、梯形等的周长和面积，只需要通过setClass()定义好继承类，然后再利用setMethod()定义好计算方法，最后就可以通过area()或者circum调用相关函数进行计算，自此就实现了接口和调用分离的S4函数调用全程。</p>
 <p>S4的泛型函数实现有别于S3的实现，S4分离了方法的定义和实现，如在其他语言中我们常说的接口和实现分离。通过setGeneric()来定义接口，通过setMethod()来定义现实类。这样可以让S4对象系统，更符合面向对象的特征。</p>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 这是普通方法</span>
-</span></span><span style="display:flex;"><span>work<span style="color:#666">&lt;-</span><span style="color:#00f">function</span>(x) <span style="color:#00f">cat</span>(x, <span style="color:#ba2121">"is working"</span>)
-</span></span><span style="display:flex;"><span><span style="color:#00f">work</span>(<span style="color:#ba2121">'Conan'</span>)
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 这是普通方法</span>
+</span></span><span style="display:flex;"><span>work<span style="color:#666">&lt;-</span><span style="color:#00f">function</span>(x) <span style="color:#00f">cat</span>(x, <span style="color:#ba2121">&#34;is working&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#00f">work</span>(<span style="color:#ba2121">&#39;Conan&#39;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># Conan is working</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># S4的方法</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 定义Person对象</span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">setClass</span>(<span style="color:#ba2121">"Person"</span>,slots<span style="color:#666">=</span><span style="color:#00f">list</span>(name<span style="color:#666">=</span><span style="color:#ba2121">"character"</span>,age<span style="color:#666">=</span><span style="color:#ba2121">"numeric"</span>))
+</span></span><span style="display:flex;"><span><span style="color:#00f">setClass</span>(<span style="color:#ba2121">&#34;Person&#34;</span>,slots<span style="color:#666">=</span><span style="color:#00f">list</span>(name<span style="color:#666">=</span><span style="color:#ba2121">&#34;character&#34;</span>,age<span style="color:#666">=</span><span style="color:#ba2121">&#34;numeric&#34;</span>))
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 定义泛型函数work，即接口</span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">setGeneric</span>(<span style="color:#ba2121">"work"</span>,<span style="color:#00f">function</span>(object) <span style="color:#00f">standardGeneric</span>(<span style="color:#ba2121">"work"</span>))
+</span></span><span style="display:flex;"><span><span style="color:#00f">setGeneric</span>(<span style="color:#ba2121">&#34;work&#34;</span>,<span style="color:#00f">function</span>(object) <span style="color:#00f">standardGeneric</span>(<span style="color:#ba2121">&#34;work&#34;</span>))
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 定义work的现实，并指定参数类型为Person对象</span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">setMethod</span>(<span style="color:#ba2121">"work"</span>, <span style="color:#00f">signature</span>(object <span style="color:#666">=</span> <span style="color:#ba2121">"Person"</span>), <span style="color:#00f">function</span>(object) <span style="color:#00f">cat</span>(object<span style="color:#666">@</span>name , <span style="color:#ba2121">"is working"</span>) )
+</span></span><span style="display:flex;"><span><span style="color:#00f">setMethod</span>(<span style="color:#ba2121">&#34;work&#34;</span>, <span style="color:#00f">signature</span>(object <span style="color:#666">=</span> <span style="color:#ba2121">&#34;Person&#34;</span>), <span style="color:#00f">function</span>(object) <span style="color:#00f">cat</span>(object<span style="color:#666">@</span>name , <span style="color:#ba2121">&#34;is working&#34;</span>) )
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 创建一个Person对象a</span>
-</span></span><span style="display:flex;"><span>a<span style="color:#666">&lt;-</span><span style="color:#00f">new</span>(<span style="color:#ba2121">"Person"</span>,name<span style="color:#666">=</span><span style="color:#ba2121">"Conan"</span>,age<span style="color:#666">=</span><span style="color:#666">16</span>)
+</span></span><span style="display:flex;"><span>a<span style="color:#666">&lt;-</span><span style="color:#00f">new</span>(<span style="color:#ba2121">&#34;Person&#34;</span>,name<span style="color:#666">=</span><span style="color:#ba2121">&#34;Conan&#34;</span>,age<span style="color:#666">=</span><span style="color:#666">16</span>)
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 把对象a传入work函数</span>
 </span></span><span style="display:flex;"><span><span style="color:#00f">work</span>(a)
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># Conan is working</span>
@@ -312,28 +359,28 @@ Table of Contents:
 <p>（4）把数据对象以参数传入到接口函数，执行实现函数</p>
 <p>通过S4对象系统，是一个结构化的，完整的面向对象实现。</p>
 <p>当我们使用S4对象进行面向对象封装后，我们还需要能查看到S4对象的定义和函数定义。</p>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#00f">library</span>(pryr)
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#00f">library</span>(pryr)
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 检查work的类型</span>
 </span></span><span style="display:flex;"><span><span style="color:#00f">ftype</span>(work)
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># "s4"      "generic"</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># &#34;s4&#34;      &#34;generic&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 直接查看work函数</span>
 </span></span><span style="display:flex;"><span>work
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 查看work函数的现实定义</span>
 </span></span><span style="display:flex;"><span> <span style="color:#00f">showMethods</span>(work)
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 查看Person对象的work函数现实</span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">getMethod</span>(<span style="color:#ba2121">"work"</span>, <span style="color:#ba2121">"Person"</span>)
-</span></span><span style="display:flex;"><span><span style="color:#00f">selectMethod</span>(<span style="color:#ba2121">"work"</span>, <span style="color:#ba2121">"Person"</span>)
+</span></span><span style="display:flex;"><span><span style="color:#00f">getMethod</span>(<span style="color:#ba2121">&#34;work&#34;</span>, <span style="color:#ba2121">&#34;Person&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#00f">selectMethod</span>(<span style="color:#ba2121">&#34;work&#34;</span>, <span style="color:#ba2121">&#34;Person&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 检查Person对象有没有work函数</span>
-</span></span><span style="display:flex;"><span> <span style="color:#00f">existsMethod</span>(<span style="color:#ba2121">"work"</span>, <span style="color:#ba2121">"Person"</span>)
-</span></span><span style="display:flex;"><span> <span style="color:#00f">hasMethod</span>(<span style="color:#ba2121">"work"</span>, <span style="color:#ba2121">"Person"</span>)
-</span></span></code></pre></div><h2 id="另一个更详细的例子">另一个更详细的例子：<a arialabel="Anchor" class="header-anchor" href="#另一个更详细的例子"> # </a></h2>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 创造一个IcecreamMachine的类</span>
+</span></span><span style="display:flex;"><span> <span style="color:#00f">existsMethod</span>(<span style="color:#ba2121">&#34;work&#34;</span>, <span style="color:#ba2121">&#34;Person&#34;</span>)
+</span></span><span style="display:flex;"><span> <span style="color:#00f">hasMethod</span>(<span style="color:#ba2121">&#34;work&#34;</span>, <span style="color:#ba2121">&#34;Person&#34;</span>)
+</span></span></code></pre></div><h2 id="另一个更详细的例子">另一个更详细的例子：<a href="#另一个更详细的例子" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 创造一个IcecreamMachine的类</span>
 </span></span><span style="display:flex;"><span><span style="color:#00f">setClass</span>(
-</span></span><span style="display:flex;"><span>    Class     <span style="color:#666">=</span> <span style="color:#ba2121">"IcecreamMachine"</span>,
+</span></span><span style="display:flex;"><span>    Class     <span style="color:#666">=</span> <span style="color:#ba2121">&#34;IcecreamMachine&#34;</span>,
 </span></span><span style="display:flex;"><span>    slots     <span style="color:#666">=</span> <span style="color:#00f">c</span>(
-</span></span><span style="display:flex;"><span>        strawberry <span style="color:#666">=</span> <span style="color:#ba2121">"numeric"</span>,
-</span></span><span style="display:flex;"><span>        chocolate  <span style="color:#666">=</span> <span style="color:#ba2121">"numeric"</span>,
-</span></span><span style="display:flex;"><span>        mango      <span style="color:#666">=</span> <span style="color:#ba2121">"numeric"</span>
+</span></span><span style="display:flex;"><span>        strawberry <span style="color:#666">=</span> <span style="color:#ba2121">&#34;numeric&#34;</span>,
+</span></span><span style="display:flex;"><span>        chocolate  <span style="color:#666">=</span> <span style="color:#ba2121">&#34;numeric&#34;</span>,
+</span></span><span style="display:flex;"><span>        mango      <span style="color:#666">=</span> <span style="color:#ba2121">&#34;numeric&#34;</span>
 </span></span><span style="display:flex;"><span>    ),
 </span></span><span style="display:flex;"><span>    prototype <span style="color:#666">=</span> <span style="color:#00f">list</span>(
 </span></span><span style="display:flex;"><span>        strawberry <span style="color:#666">=</span> <span style="color:#666">0</span>,
@@ -344,9 +391,9 @@ Table of Contents:
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 创造了一个IcecreamStore的类，并且IcecreamStore类包含IcecreamMachine</span>
 </span></span><span style="display:flex;"><span><span style="color:#00f">setClass</span>(
-</span></span><span style="display:flex;"><span>    Class <span style="color:#666">=</span> <span style="color:#ba2121">"IcecreamStore"</span>,
-</span></span><span style="display:flex;"><span>    slots <span style="color:#666">=</span> <span style="color:#00f">c</span>(place <span style="color:#666">=</span> <span style="color:#ba2121">"character"</span>),
-</span></span><span style="display:flex;"><span>    contains <span style="color:#666">=</span> <span style="color:#ba2121">"IcecreamMachine"</span>
+</span></span><span style="display:flex;"><span>    Class <span style="color:#666">=</span> <span style="color:#ba2121">&#34;IcecreamStore&#34;</span>,
+</span></span><span style="display:flex;"><span>    slots <span style="color:#666">=</span> <span style="color:#00f">c</span>(place <span style="color:#666">=</span> <span style="color:#ba2121">&#34;character&#34;</span>),
+</span></span><span style="display:flex;"><span>    contains <span style="color:#666">=</span> <span style="color:#ba2121">&#34;IcecreamMachine&#34;</span>
 </span></span><span style="display:flex;"><span>)
 </span></span></code></pre></div><p>R 语言提供了很多方便使用的自省函数, S4 类也有一些方便使用的函数.</p>
 <ul>
@@ -354,162 +401,162 @@ Table of Contents:
 <li>获得类 slot, getSlots 函数.</li>
 <li>获得类, getClass 函数.</li>
 </ul>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#00f">slotNames</span>(<span style="color:#ba2121">"IcecreamMachine"</span>)
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#[1] "strawberry" "chocolate"  "mango"</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#00f">slotNames</span>(<span style="color:#ba2121">&#34;IcecreamMachine&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#[1] &#34;strawberry&#34; &#34;chocolate&#34;  &#34;mango&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">getSlots</span>(<span style="color:#ba2121">"IcecreamMachine"</span>)
+</span></span><span style="display:flex;"><span><span style="color:#00f">getSlots</span>(<span style="color:#ba2121">&#34;IcecreamMachine&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#strawberry  chocolate      mango </span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># "numeric"  "numeric"  "numeric"</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># &#34;numeric&#34;  &#34;numeric&#34;  &#34;numeric&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">getClass</span>(<span style="color:#ba2121">"IcecreamMachine"</span>)
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#Class "IcecreamMachine" [in ".GlobalEnv"]</span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">getClass</span>(<span style="color:#ba2121">&#34;IcecreamMachine&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#Class &#34;IcecreamMachine&#34; [in &#34;.GlobalEnv&#34;]</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#Slots:</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#Name:  strawberry  chocolate      mango</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#Class:    numeric    numeric    numeric</span>
 </span></span></code></pre></div><p>对于已经存在的方法原型, 可以直接使用 setMethod. 而对于自定义的方法则需要先设置方法原型, 使用 setGeneric 范式函数.</p>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 定义getIcecream的泛型函数接口</span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 定义getIcecream的泛型函数接口</span>
 </span></span><span style="display:flex;"><span><span style="color:#00f">setGeneric</span>(
-</span></span><span style="display:flex;"><span>    name <span style="color:#666">=</span> <span style="color:#ba2121">"getIcecream"</span>,
+</span></span><span style="display:flex;"><span>    name <span style="color:#666">=</span> <span style="color:#ba2121">&#34;getIcecream&#34;</span>,
 </span></span><span style="display:flex;"><span>    def  <span style="color:#666">=</span> <span style="color:#00f">function</span>(object,<span style="color:#008000;font-weight:bold">...</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#00f">standardGeneric</span>(<span style="color:#ba2121">"getIcecream"</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#00f">standardGeneric</span>(<span style="color:#ba2121">&#34;getIcecream&#34;</span>)
 </span></span><span style="display:flex;"><span>    })<span style="color:#00f">setMethod</span>(
-</span></span><span style="display:flex;"><span>    f          <span style="color:#666">=</span> <span style="color:#ba2121">"getIcecream"</span>,
-</span></span><span style="display:flex;"><span>    signature  <span style="color:#666">=</span> <span style="color:#ba2121">"IcecreamMachine"</span>,
+</span></span><span style="display:flex;"><span>    f          <span style="color:#666">=</span> <span style="color:#ba2121">&#34;getIcecream&#34;</span>,
+</span></span><span style="display:flex;"><span>    signature  <span style="color:#666">=</span> <span style="color:#ba2121">&#34;IcecreamMachine&#34;</span>,
 </span></span><span style="display:flex;"><span>    definition <span style="color:#666">=</span> <span style="color:#00f">function</span>(object, type) {
 </span></span><span style="display:flex;"><span>        <span style="color:#00f">slot</span>(object, type) <span style="color:#666">&lt;-</span> <span style="color:#00f">slot</span>(object, type) <span style="color:#666">-</span> <span style="color:#666">1</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#00f">return</span>(<span style="color:#666">1</span>)
 </span></span><span style="display:flex;"><span>    })
 </span></span></code></pre></div><p>S4 类的方法和 S4 类的定义是独立的. S4 的方法要使用 setMethod 函数来定义.</p>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#00f">setMethod</span>(
-</span></span><span style="display:flex;"><span>    f           <span style="color:#666">=</span> <span style="color:#ba2121">"show"</span>,
-</span></span><span style="display:flex;"><span>    signature   <span style="color:#666">=</span> <span style="color:#ba2121">"IcecreamMachine"</span>,
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#00f">setMethod</span>(
+</span></span><span style="display:flex;"><span>    f           <span style="color:#666">=</span> <span style="color:#ba2121">&#34;show&#34;</span>,
+</span></span><span style="display:flex;"><span>    signature   <span style="color:#666">=</span> <span style="color:#ba2121">&#34;IcecreamMachine&#34;</span>,
 </span></span><span style="display:flex;"><span>    definition <span style="color:#666">=</span> <span style="color:#00f">function</span>(object) {
-</span></span><span style="display:flex;"><span>        <span style="color:#00f">cat</span>(<span style="color:#ba2121">"*** Wounderful Icecream Machine! ***\n"</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#00f">cat</span>(<span style="color:#ba2121">"Taste:\n"</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#00f">cat</span>(<span style="color:#ba2121">"\tStrawberry: "</span>, object<span style="color:#666">@</span>strawberry, <span style="color:#ba2121">"\n"</span>) 
-</span></span><span style="display:flex;"><span>        <span style="color:#00f">cat</span>(<span style="color:#ba2121">"\tChocolate: "</span>, object<span style="color:#666">@</span>chocolate, <span style="color:#ba2121">"\n"</span>) 
-</span></span><span style="display:flex;"><span>        <span style="color:#00f">cat</span>(<span style="color:#ba2121">"\tMango: "</span>, object<span style="color:#666">@</span>mango, <span style="color:#ba2121">"\n"</span>) 
+</span></span><span style="display:flex;"><span>        <span style="color:#00f">cat</span>(<span style="color:#ba2121">&#34;*** Wounderful Icecream Machine! ***\n&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#00f">cat</span>(<span style="color:#ba2121">&#34;Taste:\n&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#00f">cat</span>(<span style="color:#ba2121">&#34;\tStrawberry: &#34;</span>, object<span style="color:#666">@</span>strawberry, <span style="color:#ba2121">&#34;\n&#34;</span>) 
+</span></span><span style="display:flex;"><span>        <span style="color:#00f">cat</span>(<span style="color:#ba2121">&#34;\tChocolate: &#34;</span>, object<span style="color:#666">@</span>chocolate, <span style="color:#ba2121">&#34;\n&#34;</span>) 
+</span></span><span style="display:flex;"><span>        <span style="color:#00f">cat</span>(<span style="color:#ba2121">&#34;\tMango: &#34;</span>, object<span style="color:#666">@</span>mango, <span style="color:#ba2121">&#34;\n&#34;</span>) 
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>)
 </span></span></code></pre></div><p>直接获得某个方法的代码, 使用函数 getMethod.</p>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#00f">getMethod</span>(f<span style="color:#666">=</span><span style="color:#ba2121">"show"</span>, signature<span style="color:#666">=</span><span style="color:#ba2121">"IcecreamMachine"</span>)
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#00f">getMethod</span>(f<span style="color:#666">=</span><span style="color:#ba2121">&#34;show&#34;</span>, signature<span style="color:#666">=</span><span style="color:#ba2121">&#34;IcecreamMachine&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#Method Definition:</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#function (object) </span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#{</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#    cat("*** Wounderful Icecream Machine! ***\n")</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#    cat("Taste:\n")</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#    cat("\tStrawberry: ", object@strawberry, "\n")</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#    cat("\tChocolate: ", object@chocolate, "\n")</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#    cat("\tMango: ", object@mango, "\n")</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#    cat(&#34;*** Wounderful Icecream Machine! ***\n&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#    cat(&#34;Taste:\n&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#    cat(&#34;\tStrawberry: &#34;, object@strawberry, &#34;\n&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#    cat(&#34;\tChocolate: &#34;, object@chocolate, &#34;\n&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#    cat(&#34;\tMango: &#34;, object@mango, &#34;\n&#34;)</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#}</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#Signatures:</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#        object</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#target  "IcecreamMachine"</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#defined "IcecreamMachine"</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#target  &#34;IcecreamMachine&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#defined &#34;IcecreamMachine&#34;</span>
 </span></span></code></pre></div><p>泛型函数通俗的就是同一个函数名， 遇到<strong>不同的对象</strong>产生不同的效果。</p>
 <p>泛函是R语言中最主要的面向对象的体现，这点和python的差别挺大，在R中几乎看不到定义一个类，然后在类中定义方法的现象。R是通过泛函的形式，来实现对不同对象使用不同的方法。</p>
 <p>S4的泛型函数通过**setGeneric()**来定义泛型接口，通过setMethod()来定义现实类。这样可以让S4对象系统，更符合面向对象的特征。下面的例子说明了什么泛型函数</p>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 设定一个函数来 自我介绍 </span>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 设定一个函数来 自我介绍 </span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 普通函数 </span>
 </span></span><span style="display:flex;"><span>selfIntroduce<span style="color:#666">&lt;-</span> <span style="color:#00f">function</span>(name){
-</span></span><span style="display:flex;"><span>  <span style="color:#00f">sprintf</span>(<span style="color:#ba2121">"my name is %s"</span>, name)
+</span></span><span style="display:flex;"><span>  <span style="color:#00f">sprintf</span>(<span style="color:#ba2121">&#34;my name is %s&#34;</span>, name)
 </span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#00f">selfIntroduce</span>(<span style="color:#ba2121">"Sun wukong"</span>)
-</span></span><span style="display:flex;"><span><span style="color:#666">&gt;</span><span style="color:#ba2121">"my name is Sun wukong"</span> 
+</span></span><span style="display:flex;"><span><span style="color:#00f">selfIntroduce</span>(<span style="color:#ba2121">&#34;Sun wukong&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#666">&gt;</span><span style="color:#ba2121">&#34;my name is Sun wukong&#34;</span> 
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 将函数定义为泛型函数，即接口</span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">setGeneric</span>(<span style="color:#ba2121">"selfIntroduce"</span>,
+</span></span><span style="display:flex;"><span><span style="color:#00f">setGeneric</span>(<span style="color:#ba2121">&#34;selfIntroduce&#34;</span>,
 </span></span><span style="display:flex;"><span>           <span style="color:#00f">function</span>(object){
-</span></span><span style="display:flex;"><span>             <span style="color:#00f">standardGeneric</span>(<span style="color:#ba2121">"selfIntroduce"</span>)
+</span></span><span style="display:flex;"><span>             <span style="color:#00f">standardGeneric</span>(<span style="color:#ba2121">&#34;selfIntroduce&#34;</span>)
 </span></span><span style="display:flex;"><span>          }
 </span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span><span style="color:#00f">selfIntroduce</span>(<span style="color:#ba2121">"Sun wukong"</span>)<span style="color:#408080;font-style:italic"># 这时普通函数已经不能使用了， 泛型函数必须指定具体类的方法</span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">selfIntroduce</span>(<span style="color:#ba2121">&#34;Sun wukong&#34;</span>)<span style="color:#408080;font-style:italic"># 这时普通函数已经不能使用了， 泛型函数必须指定具体类的方法</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#Error in (function (classes, fdef, mtable)  : </span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># unable to find an inherited method for function ‘selfIntroduce’ for signature #‘"character"’ </span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># unable to find an inherited method for function ‘selfIntroduce’ for signature #‘&#34;character&#34;’ </span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 定义函数的现实，并指定参数类型为person对象时如何运行</span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">setMethod</span>(<span style="color:#ba2121">"selfIntroduce"</span>, 
-</span></span><span style="display:flex;"><span>          <span style="color:#00f">signature</span>(object <span style="color:#666">=</span> <span style="color:#ba2121">"person"</span>),
+</span></span><span style="display:flex;"><span><span style="color:#00f">setMethod</span>(<span style="color:#ba2121">&#34;selfIntroduce&#34;</span>, 
+</span></span><span style="display:flex;"><span>          <span style="color:#00f">signature</span>(object <span style="color:#666">=</span> <span style="color:#ba2121">&#34;person&#34;</span>),
 </span></span><span style="display:flex;"><span>          <span style="color:#00f">function</span>(object){
-</span></span><span style="display:flex;"><span>            <span style="color:#00f">sprintf</span>(<span style="color:#ba2121">"my name is %s, i'm %d years old"</span>, object<span style="color:#666">@</span>name, object<span style="color:#666">@</span>age)
+</span></span><span style="display:flex;"><span>            <span style="color:#00f">sprintf</span>(<span style="color:#ba2121">&#34;my name is %s, i&#39;m %d years old&#34;</span>, object<span style="color:#666">@</span>name, object<span style="color:#666">@</span>age)
 </span></span><span style="display:flex;"><span>          }
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span><span style="color:#00f">selfIntroduce</span>(zhangsan)
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># "my name is zhangsan, i'm 26 years old"</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># &#34;my name is zhangsan, i&#39;m 26 years old&#34;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 增加一个函数的现实，指定参数类型为character对象时如何运行</span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">setMethod</span>(<span style="color:#ba2121">"selfIntroduce"</span>, 
-</span></span><span style="display:flex;"><span>          <span style="color:#00f">signature</span>(object <span style="color:#666">=</span> <span style="color:#ba2121">"character"</span>),
+</span></span><span style="display:flex;"><span><span style="color:#00f">setMethod</span>(<span style="color:#ba2121">&#34;selfIntroduce&#34;</span>, 
+</span></span><span style="display:flex;"><span>          <span style="color:#00f">signature</span>(object <span style="color:#666">=</span> <span style="color:#ba2121">&#34;character&#34;</span>),
 </span></span><span style="display:flex;"><span>          <span style="color:#00f">function</span>(object){
-</span></span><span style="display:flex;"><span>            <span style="color:#00f">sprintf</span>(<span style="color:#ba2121">"my name is %s"</span>, object)
+</span></span><span style="display:flex;"><span>            <span style="color:#00f">sprintf</span>(<span style="color:#ba2121">&#34;my name is %s&#34;</span>, object)
 </span></span><span style="display:flex;"><span>          }
 </span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span><span style="color:#00f">selfIntroduce</span>(<span style="color:#ba2121">"Sun wukong"</span>)
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># "my name is Sun wukong" </span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">selfIntroduce</span>(<span style="color:#ba2121">&#34;Sun wukong&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># &#34;my name is Sun wukong&#34; </span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 查看类函数</span>
 </span></span><span style="display:flex;"><span><span style="color:#666">&gt;</span> <span style="color:#00f">showMethods</span>(selfIntroduce)
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># Function: selfIntroduce (package .GlobalEnv)</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># object="character"</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># object="Person"</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># object=&#34;character&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># object=&#34;Person&#34;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 查看类函数定义</span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">getMethod</span>(<span style="color:#ba2121">"selfIntroduce"</span>, <span style="color:#ba2121">"person"</span>)
+</span></span><span style="display:flex;"><span><span style="color:#00f">getMethod</span>(<span style="color:#ba2121">&#34;selfIntroduce&#34;</span>, <span style="color:#ba2121">&#34;person&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># Method Definition:</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># </span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># function (object) </span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># {</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#     sprintf("my name is %s, i'm %d years old", object@name, </span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#     sprintf(&#34;my name is %s, i&#39;m %d years old&#34;, object@name, </span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#         object@age)</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># }</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># </span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># Signatures:</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#         object  </span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># target  "person"</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># defined "person"</span>
-</span></span></code></pre></div><h2 id="s3中的泛函">S3中的泛函<a arialabel="Anchor" class="header-anchor" href="#s3中的泛函"> # </a></h2>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 定义泛函</span>
-</span></span><span style="display:flex;"><span>move <span style="color:#666">&lt;-</span> <span style="color:#00f">function</span>(x, <span style="color:#008000;font-weight:bold">...</span>) <span style="color:#00f">UseMethod</span>(<span style="color:#ba2121">'move'</span>) <span style="color:#408080;font-style:italic"># 后面的字符串必须与前面函数名相同</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># target  &#34;person&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># defined &#34;person&#34;</span>
+</span></span></code></pre></div><h2 id="s3中的泛函">S3中的泛函<a href="#s3中的泛函" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 定义泛函</span>
+</span></span><span style="display:flex;"><span>move <span style="color:#666">&lt;-</span> <span style="color:#00f">function</span>(x, <span style="color:#008000;font-weight:bold">...</span>) <span style="color:#00f">UseMethod</span>(<span style="color:#ba2121">&#39;move&#39;</span>) <span style="color:#408080;font-style:italic"># 后面的字符串必须与前面函数名相同</span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 定义各种方法</span>
-</span></span><span style="display:flex;"><span>move.default <span style="color:#666">&lt;-</span> <span style="color:#00f">function</span>(x) <span style="color:#00f">print</span>(<span style="color:#ba2121">'I am moving'</span>)
-</span></span><span style="display:flex;"><span>move.dog <span style="color:#666">&lt;-</span> <span style="color:#00f">function</span>(x) <span style="color:#00f">print</span>(<span style="color:#ba2121">'I am running'</span>)
-</span></span><span style="display:flex;"><span>move.fish <span style="color:#666">&lt;-</span> <span style="color:#00f">function</span>(x) <span style="color:#00f">print</span>(<span style="color:#ba2121">'I am swimmning'</span>)
+</span></span><span style="display:flex;"><span>move.default <span style="color:#666">&lt;-</span> <span style="color:#00f">function</span>(x) <span style="color:#00f">print</span>(<span style="color:#ba2121">&#39;I am moving&#39;</span>)
+</span></span><span style="display:flex;"><span>move.dog <span style="color:#666">&lt;-</span> <span style="color:#00f">function</span>(x) <span style="color:#00f">print</span>(<span style="color:#ba2121">&#39;I am running&#39;</span>)
+</span></span><span style="display:flex;"><span>move.fish <span style="color:#666">&lt;-</span> <span style="color:#00f">function</span>(x) <span style="color:#00f">print</span>(<span style="color:#ba2121">&#39;I am swimmning&#39;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 创建变量并指定类</span>
-</span></span><span style="display:flex;"><span>onedog <span style="color:#666">&lt;-</span> <span style="color:#ba2121">"a"</span> <span style="color:#408080;font-style:italic"># 这里赋值是多少不重要</span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">attr</span>(onedog,<span style="color:#ba2121">"class"</span>) <span style="color:#666">&lt;-</span> <span style="color:#ba2121">"dog"</span> <span style="color:#408080;font-style:italic"># 将变量onedog指定为dog类，对应上面的move.dog函数</span>
-</span></span><span style="display:flex;"><span>onefish <span style="color:#666">&lt;-</span> <span style="color:#ba2121">"b"</span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">attr</span>(onefish,<span style="color:#ba2121">"class"</span>) <span style="color:#666">&lt;-</span> <span style="color:#ba2121">"fish"</span> <span style="color:#408080;font-style:italic"># 将变量onefish指定为fish类，对应上面的move.fish函数</span>
-</span></span><span style="display:flex;"><span>anything <span style="color:#666">&lt;-</span> <span style="color:#ba2121">"c"</span> <span style="color:#408080;font-style:italic"># 不指定类，是一个字符串</span>
+</span></span><span style="display:flex;"><span>onedog <span style="color:#666">&lt;-</span> <span style="color:#ba2121">&#34;a&#34;</span> <span style="color:#408080;font-style:italic"># 这里赋值是多少不重要</span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">attr</span>(onedog,<span style="color:#ba2121">&#34;class&#34;</span>) <span style="color:#666">&lt;-</span> <span style="color:#ba2121">&#34;dog&#34;</span> <span style="color:#408080;font-style:italic"># 将变量onedog指定为dog类，对应上面的move.dog函数</span>
+</span></span><span style="display:flex;"><span>onefish <span style="color:#666">&lt;-</span> <span style="color:#ba2121">&#34;b&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">attr</span>(onefish,<span style="color:#ba2121">&#34;class&#34;</span>) <span style="color:#666">&lt;-</span> <span style="color:#ba2121">&#34;fish&#34;</span> <span style="color:#408080;font-style:italic"># 将变量onefish指定为fish类，对应上面的move.fish函数</span>
+</span></span><span style="display:flex;"><span>anything <span style="color:#666">&lt;-</span> <span style="color:#ba2121">&#34;c&#34;</span> <span style="color:#408080;font-style:italic"># 不指定类，是一个字符串</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 检验变量所属类</span>
 </span></span><span style="display:flex;"><span><span style="color:#00f">class</span>(onedog)
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># [1] "dog"</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># [1] &#34;dog&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#00f">class</span>(onefish)
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># [1] "fish"</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># [1] &#34;fish&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#00f">class</span>(anything)
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># [1] "character"</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># [1] &#34;character&#34;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 调用泛函</span>
 </span></span><span style="display:flex;"><span><span style="color:#00f">move</span>(onedog)
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># [1] "I am running"</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># [1] &#34;I am running&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#00f">move</span>(onefish)
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># [1] "I am swimmning"</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># [1] &#34;I am swimmning&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#00f">move</span>(anything)
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># [1] "I am moving"</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># [1] &#34;I am moving&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#00f">move.dog</span>(anything) <span style="color:#408080;font-style:italic"># 因为这里函数没有对输入的x进行检验，所以接一个不是这个类的也没事</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># [1] "I am running"</span>
-</span></span></code></pre></div><h2 id="一个例子说明s3以及s4编程">一个例子说明S3以及S4编程<a arialabel="Anchor" class="header-anchor" href="#一个例子说明s3以及s4编程"> # </a></h2>
-<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;" tabindex="0"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># S3 class</span>
+</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># [1] &#34;I am running&#34;</span>
+</span></span></code></pre></div><h2 id="一个例子说明s3以及s4编程">一个例子说明S3以及S4编程<a href="#一个例子说明s3以及s4编程" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># S3 class</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>newstudent <span style="color:#666">&lt;-</span> <span style="color:#00f">function</span>(sid, sname, ssex){
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  tmp <span style="color:#666">&lt;-</span> <span style="color:#00f">list</span>(id <span style="color:#666">=</span> sid, name <span style="color:#666">=</span> sname, sex <span style="color:#666">=</span> ssex)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#00f">class</span>(tmp) <span style="color:#666">&lt;-</span> <span style="color:#ba2121">"student"</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#00f">class</span>(tmp) <span style="color:#666">&lt;-</span> <span style="color:#ba2121">&#34;student&#34;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#00f">return</span>(tmp)
 </span></span><span style="display:flex;"><span>
@@ -517,15 +564,15 @@ Table of Contents:
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>print.student <span style="color:#666">&lt;-</span> <span style="color:#00f">function</span>(st){
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#00f">cat</span>(st<span style="color:#666">$</span>id, <span style="color:#ba2121">"\n"</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#00f">cat</span>(st<span style="color:#666">$</span>id, <span style="color:#ba2121">&#34;\n&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#00f">cat</span>(st<span style="color:#666">$</span>name, <span style="color:#ba2121">"\n"</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#00f">cat</span>(st<span style="color:#666">$</span>name, <span style="color:#ba2121">&#34;\n&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#00f">cat</span>(st<span style="color:#666">$</span>sex, <span style="color:#ba2121">"\n"</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#00f">cat</span>(st<span style="color:#666">$</span>sex, <span style="color:#ba2121">&#34;\n&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>st <span style="color:#666">=</span> <span style="color:#00f">newstudent</span>(<span style="color:#666">11</span>, <span style="color:#ba2121">"jack"</span>, <span style="color:#ba2121">"male"</span>)
+</span></span><span style="display:flex;"><span>st <span style="color:#666">=</span> <span style="color:#00f">newstudent</span>(<span style="color:#666">11</span>, <span style="color:#ba2121">&#34;jack&#34;</span>, <span style="color:#ba2121">&#34;male&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#print(st)</span>
 </span></span><span style="display:flex;"><span>
@@ -533,33 +580,33 @@ Table of Contents:
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># S4 class</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">setClass</span>(<span style="color:#ba2121">"student"</span>,
+</span></span><span style="display:flex;"><span><span style="color:#00f">setClass</span>(<span style="color:#ba2121">&#34;student&#34;</span>,
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>         <span style="color:#00f">representation</span>(
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>           id <span style="color:#666">=</span> <span style="color:#ba2121">"numeric"</span>,
+</span></span><span style="display:flex;"><span>           id <span style="color:#666">=</span> <span style="color:#ba2121">&#34;numeric&#34;</span>,
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>           name <span style="color:#666">=</span> <span style="color:#ba2121">"character"</span>,
+</span></span><span style="display:flex;"><span>           name <span style="color:#666">=</span> <span style="color:#ba2121">&#34;character&#34;</span>,
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>           sex <span style="color:#666">=</span> <span style="color:#ba2121">"character"</span>
+</span></span><span style="display:flex;"><span>           sex <span style="color:#666">=</span> <span style="color:#ba2121">&#34;character&#34;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>         ))
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># print is not a S4 generic. show methods are mapped to print for convenience, though. </span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#00f">setMethod</span>(<span style="color:#ba2121">"show"</span>, <span style="color:#ba2121">"student"</span>,
+</span></span><span style="display:flex;"><span><span style="color:#00f">setMethod</span>(<span style="color:#ba2121">&#34;show&#34;</span>, <span style="color:#ba2121">&#34;student&#34;</span>,
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>          <span style="color:#00f">function</span>(object){
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            <span style="color:#00f">cat</span>(object<span style="color:#666">@</span>id, <span style="color:#ba2121">"\n"</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#00f">cat</span>(object<span style="color:#666">@</span>id, <span style="color:#ba2121">&#34;\n&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            <span style="color:#00f">cat</span>(object<span style="color:#666">@</span>name, <span style="color:#ba2121">"\n"</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#00f">cat</span>(object<span style="color:#666">@</span>name, <span style="color:#ba2121">&#34;\n&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            <span style="color:#00f">cat</span>(object<span style="color:#666">@</span>sex, <span style="color:#ba2121">"\n"</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#00f">cat</span>(object<span style="color:#666">@</span>sex, <span style="color:#ba2121">&#34;\n&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>          })
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>st <span style="color:#666">=</span> <span style="color:#00f">new</span>(<span style="color:#ba2121">"student"</span>, id <span style="color:#666">=</span> <span style="color:#666">41</span>, name <span style="color:#666">=</span> <span style="color:#ba2121">"tom"</span>,  sex <span style="color:#666">=</span> <span style="color:#ba2121">"male"</span>)
+</span></span><span style="display:flex;"><span>st <span style="color:#666">=</span> <span style="color:#00f">new</span>(<span style="color:#ba2121">&#34;student&#34;</span>, id <span style="color:#666">=</span> <span style="color:#666">41</span>, name <span style="color:#666">=</span> <span style="color:#ba2121">&#34;tom&#34;</span>,  sex <span style="color:#666">=</span> <span style="color:#ba2121">&#34;male&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#print(st)</span>
 </span></span><span style="display:flex;"><span>
@@ -568,26 +615,47 @@ Table of Contents:
 <p style="color:#777;">最后一次修改于 2022-03-31</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
 </main>
+
 <footer class="footer">
-<script async="" crossorigin="anonymous" issue-term="pathname" repo="kongjianyang/kongjianyang.github.io" src="https://utteranc.es/client.js" theme="github-light">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
 </script>
-<script src="/js/math-code.js" type="text/javascript"></script>
-<script async="" src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script src="/js/center-img.js" type="text/javascript"></script>
-<ul class="footer-links">
-<li><a href="/cn/posts/index.xml" title="RSS feed" type="application/rss+xml">
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
        订阅 </a>
-</li>
-<li>
-<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
        
         版权
-        <i aria-hidden="true" class="fa fa-cc" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i>
-</a>
-</li>
-</ul>
-<div class="copyright-text">
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
             
             ©
             
@@ -596,5 +664,10 @@ Table of Contents:
             2018-2021
             
      </div>
+
 </footer>
-</div></body></html>
+
+
+
+
+
