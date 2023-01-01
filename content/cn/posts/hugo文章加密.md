@@ -67,7 +67,7 @@ $ cp shortcodes/hugo-encryptor.html /path/to/your/blog/layouts/shortcodes/hugo-e
 
 
 
-{{% hugo-encryptor "KJY" %}}
+#{{% hugo-encryptor "KJY" %}}
 
 # 这里是你要加密的内容!
 
@@ -85,5 +85,5 @@ python hugo-encryptor
 
 **别忘了闭合 `hugo-encryptor` shortcode 标签:**
 
-{{% /hugo-encryptor %}}
+#{{% /hugo-encryptor %}}
 ```
