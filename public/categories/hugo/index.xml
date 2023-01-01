@@ -68,24 +68,5 @@ Front Matter一般放在文章的最顶部，Hugo支持三种书写格式，
 在使用hugo new来创建文章时，会查找archetypes下的内容并填充到文章内容，查找archetypes原型内容的顺序如下:</description>
     </item>
     
-    <item>
-      <title>Hugo文章加密</title>
-      <link>https://kongjianyang.github.io/cn/2022/04/30/encryptor/</link>
-      <pubDate>Sat, 30 Apr 2022 19:10:27 -0400</pubDate>
-      
-      <guid>https://kongjianyang.github.io/cn/2022/04/30/encryptor/</guid>
-      <description>参考的这个资料：
-https://github.com/Li4n0/hugo_encryptor/blob/master/README-zh_CN.md 下载 Hugo-Encryptor 并安装其所需要的依赖库
-$ git clone https://github.com/Li4n0/hugo_encryptor.git $ cd hugo_encryptor $ chmod +x hugo_encryptor.py $ pip3 install -r requirements.txt 将 hugo-encryptor.py放入博客根目录
-$ cp hugo-encryptor.py /path/to/your/blog/hugo-encryptor.py 将shortcodes/hugo-encryptor.html放入博客shortcodes目录
-$ mkdir -p /path/to/your/blog/layouts/shortcodes $ cp shortcodes/hugo-encryptor.html /path/to/your/blog/layouts/shortcodes/hugo-encryptor.html 使用方法
-  使用 hugo-encryptor标签包裹需要加密文章内容   生成网站
-rm -rf public #删除原来的 public 文件夹 hugo #重新生成 public 文件夹   进行加密
-python3 hugo-encryptor.py   至此，文章就已经被加密好了，然后把 public 文件夹内容上传到服务器就好了。
- 这里必须存在一些明文文字以及概要标签:
-文章的部分内容被密码保护：
-  --- DON&#39;T MODIFY THIS LINE --- 这里是你要加密的内容!</description>
-    </item>
-    
   </channel>
 </rss>
