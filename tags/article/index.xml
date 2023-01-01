@@ -101,17 +101,7 @@ stringi：一个快速字符串处理工具</description></item><item><title>R�
 用函数edit(), 这个函数允许我们来修改函数，修改的函数可以直接用。函数edit()不仅可以修改包中的函数作为急用，也可以用来修改自己正在写的函数。并且这个命令查看的源码会有高亮显示，比较方便
 对于计算方法不同的函数，要用methods()来定义具体的查看对象
 methods()得出的类函数中带星号标注的源代码，用函数getAnywhere()
-直接上CRAN 下载源代码包</description></item><item><title>Hugo文章加密</title><link>https://kongjianyang.github.io/cn/2022/04/30/encryptor/</link><pubDate>Sat, 30 Apr 2022 19:10:27 -0400</pubDate><guid>https://kongjianyang.github.io/cn/2022/04/30/encryptor/</guid><description>参考的这个资料：
-https://github.com/Li4n0/hugo_encryptor/blob/master/README-zh_CN.md 下载 Hugo-Encryptor 并安装其所需要的依赖库
-$ git clone https://github.com/Li4n0/hugo_encryptor.git $ cd hugo_encryptor $ chmod +x hugo_encryptor.py $ pip3 install -r requirements.txt 将 hugo-encryptor.py放入博客根目录
-$ cp hugo-encryptor.py /path/to/your/blog/hugo-encryptor.py 将shortcodes/hugo-encryptor.html放入博客shortcodes目录
-$ mkdir -p /path/to/your/blog/layouts/shortcodes $ cp shortcodes/hugo-encryptor.html /path/to/your/blog/layouts/shortcodes/hugo-encryptor.html 使用方法
-使用 hugo-encryptor标签包裹需要加密文章内容 生成网站
-rm -rf public #删除原来的 public 文件夹 hugo #重新生成 public 文件夹 进行加密
-python3 hugo-encryptor.py 至此，文章就已经被加密好了，然后把 public 文件夹内容上传到服务器就好了。
-这里必须存在一些明文文字以及概要标签:
-文章的部分内容被密码保护：
---- DON'T MODIFY THIS LINE --- 这里是你要加密的内容!</description></item><item><title>Linux下打印带有空格的目录</title><link>https://kongjianyang.github.io/cn/2022/04/25/dirt_space/</link><pubDate>Mon, 25 Apr 2022 13:42:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2022/04/25/dirt_space/</guid><description>有时候在macos下会有很多空格的目录文件需要处理，很麻烦，可以使用下面的命令自动处理带有空格的文件
+直接上CRAN 下载源代码包</description></item><item><title>Linux下打印带有空格的目录</title><link>https://kongjianyang.github.io/cn/2022/04/25/dirt_space/</link><pubDate>Mon, 25 Apr 2022 13:42:27 -0500</pubDate><guid>https://kongjianyang.github.io/cn/2022/04/25/dirt_space/</guid><description>有时候在macos下会有很多空格的目录文件需要处理，很麻烦，可以使用下面的命令自动处理带有空格的文件
 alias cwd=&amp;#39;printf &amp;#34;%q\n&amp;#34; &amp;#34;$(pwd)&amp;#34; | tee &amp;gt;(pbcopy)&amp;#39; printf命令 printf 命令模仿 C 程序库（library）里的 printf() 程序。
 printf 由 POSIX 标准所定义，因此使用 printf 的脚本比使用 echo 移植性好。
 printf 使用引用文本或空格分隔的参数，外面可以在 printf 中使用格式化字符串，还可以制定字符串的宽度、左右对齐方式等。默认的 printf 不会像 echo 自动添加换行符，我们可以手动添加 \n。
