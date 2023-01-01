@@ -24,8 +24,7 @@ brew install --cask qlimagesize qlvideo qlmarkdown brew install --cask qlcolorco
 Front Matter一般放在文章的最顶部，Hugo支持三种书写格式，
 TOML使用+++来包裹内容 YAML使用---来包裹内容 JSON使用{和}来包裹内容 可配置的内容见Hugo官方文档: front-matter 。
 在使用hugo new来创建文章时，会查找archetypes下的内容并填充到文章内容，查找archetypes原型内容的顺序如下:</description></item><item><title>Hugo文章加密</title><link>https://kongjianyang.github.io/cn/2022/04/30/encryptor/</link><pubDate>Sat, 30 Apr 2022 19:10:27 -0400</pubDate><guid>https://kongjianyang.github.io/cn/2022/04/30/encryptor/</guid><description>参考的这个资料：
-https://github.com/Li4n0/hugo_encryptor/blob/master/README-zh_CN.md
-下载 Hugo-Encryptor 并安装其所需要的依赖库
+https://github.com/Li4n0/hugo_encryptor/blob/master/README-zh_CN.md 下载 Hugo-Encryptor 并安装其所需要的依赖库
 $ git clone https://github.com/Li4n0/hugo_encryptor.git $ cd hugo_encryptor $ chmod +x hugo_encryptor.py $ pip3 install -r requirements.txt 将 hugo-encryptor.py放入博客根目录
 $ cp hugo-encryptor.py /path/to/your/blog/hugo-encryptor.py 将shortcodes/hugo-encryptor.html放入博客shortcodes目录
 $ mkdir -p /path/to/your/blog/layouts/shortcodes $ cp shortcodes/hugo-encryptor.html /path/to/your/blog/layouts/shortcodes/hugo-encryptor.html 使用方法

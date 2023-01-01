@@ -22,5 +22,5 @@ Alfred 参考这个文章：真正提升你的输入效率，从用好 Alfred �
 设置
 想要创建 Snippets，首先要建立一个 Collection（集合）。点击左侧 Collection 底部的 「+」号，输入集合的名字。
 在设置中，你可以选择是否为这个 Collection 设置一个前缀或者后缀，这个功能的主要目的是为了方便区分，当你在使用时，通过输入前缀或者后缀可以快速显示某一个集合内的所有 Snippets。我们在这里给这个名为「Personal」的 Collection 添加一个「!」作为前缀。
-添加 Collection 后，就可以来创建你的第一个 Snippets 了。点击右侧底部的「+」，输入 Snippets 的名字和关键词，然后在下方输入你希望拓展的内容。在这里以添加个人邮箱为例，在上面的 Keyword 里填入「GM」作为关键词，然后下方输入 myemail@gmail.com，点击 Save 来保存，这样我们就创建了一条 Snippets。
+添加 Collection 后，就可以来创建你的第一个 Snippets 了。点击右侧底部的「+」，输入 Snippets 的名字和关键词，然后在下方输入你希望拓展的内容。在这里以添加个人邮箱为例，在上面的 Keyword 里填入「GM」作为关键词，然后下方输入 myemail@gmail.com ，点击 Save 来保存，这样我们就创建了一条 Snippets。
 如何使用 Snippets 接下来我们来看看如何使用刚刚创建的 Snippets。回到 Snippets 设置菜单，在右上角你可以找到 Automatically expand snippets by keyword，打开这个选项后你才能在 macOS 中直接输入关键词来进行拓展（第一次打开时需要在「系统设置 - 隐私 - 辅助功能」中开启服务），否则就需要每次手动进行粘贴。</description></item></channel></rss>

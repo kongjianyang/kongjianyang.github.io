@@ -17,7 +17,8 @@ mv hugo-ht-new hugo-ht
 cd ..
 cp -r themes/hugo-ht/exampleSite/* .
 </code></pre><p>这是使用一个Hugo-ht为主题的网站，之后可以折腾其他主题。但是这样会你目前 Hugo 网站中的 <code>Content</code> 文件夹和 <code>config.toml</code> 替换为 <code>Hugo-ht</code> 自带的内容。如果你当前 Hugo 网站中的 Content 文件夹及<code>config.toml</code>尚未备份，请千万小心。</p><p>然后运行</p><pre tabindex=0><code>hugo server -D # 这里的 D 是 draft 的意思
-</code></pre><p>打开终端显示的 http://localhost:1313/ ，不出意外的话你能看到和 https://hugo-ht.hongtaoh.com/ 一模一样的个人网站。</p><p>如果没有什么问题，在终端输入 Ctrl+C 停止预览。</p><h2 id=3-新建-github-仓库>3. 新建 GitHub 仓库<a href=#3-新建-github-仓库 class=header-anchor arialabel=Anchor> #</a></h2><p>登陆 GitHub, 点击头像左侧的加号，再点击’new repository&rsquo;。</p><p>在 Repository name 这里输入 <code>你的 GitHub 用户名.github.io</code>。Description 这里你写啥都可以。其他都不要动，点击 Create repository。</p><p>在根目录下输入以下命令：</p><pre tabindex=0><code>mkdir .github
+</code></pre><p>打开终端显示的 http://localhost:1313/ ，不出意外的话你能看到和 <a href=https://hugo-ht.hongtaoh.com/ target=_blank rel="noreferrer noopener">https://hugo-ht.hongtaoh.com/</a>
+一模一样的个人网站。</p><p>如果没有什么问题，在终端输入 Ctrl+C 停止预览。</p><h2 id=3-新建-github-仓库>3. 新建 GitHub 仓库<a href=#3-新建-github-仓库 class=header-anchor arialabel=Anchor> #</a></h2><p>登陆 GitHub, 点击头像左侧的加号，再点击’new repository&rsquo;。</p><p>在 Repository name 这里输入 <code>你的 GitHub 用户名.github.io</code>。Description 这里你写啥都可以。其他都不要动，点击 Create repository。</p><p>在根目录下输入以下命令：</p><pre tabindex=0><code>mkdir .github
 mkdir .github/workflows
 touch .github/workflows/gh-pages.yml
 </code></pre><p>输入</p><pre tabindex=0><code>cd ~/.ssh
@@ -61,7 +62,7 @@ git commit -m &#34;first commit.&#34;
 git remote add origin https://github.com/USERNAME/USERNAME.github.io.git
 git push -u origin master
 </code></pre><p>回到 GitHub 你新建的仓库。把屏幕拉宽，点击 Settings，一直往下拖，到你看到 Pages 为止。在 Source 那里，Branch 选择 gh-pages, 右侧的框框选择 root，然后点 Save。等一两分钟，当出现</p><pre tabindex=0><code>Your site is published at https://USERNAME.github.io/
-</code></pre><h2 id=5一些修改>5.一些修改<a href=#5一些修改 class=header-anchor arialabel=Anchor> #</a></h2><p>Hugo 文件夹根目录下的 config.toml 有几个地方需要你自己改：</p><ul><li>baseURL: 替换成 https://USERNAME.github.io/</li><li>GithubEdit: 把所有的 USERNAME 换成你的 GitHub 用户名，把所有的 REPONAME 换成 github用户名.github.io</li><li>Params.lang 部分 <code>Your Nam</code> 和「你的名字」换成你的大名。</li></ul><p>在 Hugo 文件夹根目录下用文本编辑器新建一个文件，命名为 <code>deploy.sh</code>，把以下内容复制粘贴到里面：</p><div class=highlight><pre tabindex=0 style=-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>git add .
+</code></pre><h2 id=5一些修改>5.一些修改<a href=#5一些修改 class=header-anchor arialabel=Anchor> #</a></h2><p>Hugo 文件夹根目录下的 config.toml 有几个地方需要你自己改：</p><ul><li>baseURL: 替换成 <a href=https://USERNAME.github.io/ target=_blank rel="noreferrer noopener">https://USERNAME.github.io/</a></li><li>GithubEdit: 把所有的 USERNAME 换成你的 GitHub 用户名，把所有的 REPONAME 换成 github用户名.github.io</li><li>Params.lang 部分 <code>Your Nam</code> 和「你的名字」换成你的大名。</li></ul><p>在 Hugo 文件夹根目录下用文本编辑器新建一个文件，命名为 <code>deploy.sh</code>，把以下内容复制粘贴到里面：</p><div class=highlight><pre tabindex=0 style=-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>git add .
 </span></span><span style=display:flex><span><span style=color:#19177c>msg</span><span style=color:#666>=</span><span style=color:#ba2121>&#34;updating site on </span><span style=color:green;font-weight:700>$(</span>date<span style=color:green;font-weight:700>)</span><span style=color:#ba2121>&#34;</span> 
 </span></span><span style=display:flex><span>git commit -m <span style=color:#ba2121>&#34;</span><span style=color:#19177c>$msg</span><span style=color:#ba2121>&#34;</span>
 </span></span><span style=display:flex><span>git push origin master
