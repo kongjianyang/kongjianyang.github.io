@@ -105,7 +105,7 @@ awk is /usr/bin/awk
 bc 1.06
 Copyright 1991-1994, 1997, 1998, 2000 Free Software Foundation, Inc.
 This is free software with ABSOLUTELY NO WARRANTY.
-For details type `warranty&#39;.
+For details type `warranty'.
 3^2
 9
 </code></pre><p>let 命令是 BASH 中用于计算的工具，用于执行一个或多个表达式，变量计算中不需要加上 $ 来表示变量。如果表达式中包含了空格或其他特殊字符，则必须引起来。</p>
@@ -134,14 +134,14 @@ $ ((i=5**2))
 $ echo $i
 
 25
-$ echo &#34;5^2&#34; | bc
+$ echo &quot;5^2&quot; | bc
 25
 </code></pre><h2 id="3-浮点数计算">3. 浮点数计算<a href="#3-浮点数计算" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>let 和 expr 都无法进行浮点运算，但是 bc 和 awk 可以。</p>
-<pre tabindex="0"><code>$ echo &#34;scale=3; 1/13&#34;  | bc
+<pre tabindex="0"><code>$ echo &quot;scale=3; 1/13&quot;  | bc
 .076
 
-$ echo &#34;1 13&#34; | awk &#39;{printf(&#34;%0.3f\n&#34;,$1/$2)}&#39;
+$ echo &quot;1 13&quot; | awk '{printf(&quot;%0.3f\n&quot;,$1/$2)}'
 0.077
 </code></pre><p>bc 在进行浮点运算时需指定精度，否则默认为 0，即进行浮点运算时，默认结果只保留整数。而 awk 在控制小数位数时非常灵活，仅仅通过 printf 的格式控制就可以实现。</p>
 <h2 id="4-获取随机数">4. 获取随机数<a href="#4-获取随机数" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
@@ -149,18 +149,18 @@ $ echo &#34;1 13&#34; | awk &#39;{printf(&#34;%0.3f\n&#34;,$1/$2)}&#39;
 <pre tabindex="0"><code>$ echo $RANDOM
 81
 
-$ echo &#34;&#34; | awk &#39;{srand(); printf(&#34;%f&#34;, rand());}&#39;
+$ echo &quot;&quot; | awk '{srand(); printf(&quot;%f&quot;, rand());}'
 0.237788
 </code></pre><p>说明： srand() 在无参数时，采用当前时间作为 rand() 随机数产生器的一个 seed 。</p>
 <p>随机产生一个从 0 到 255 之间的数字</p>
 <pre tabindex="0"><code>$ expr $RANDOM / 128
 208
 
-$ echo &#34;&#34; | awk &#39;{srand(); printf(&#34;%d\n&#34;, rand()*255);}&#39;
+$ echo &quot;&quot; | awk '{srand(); printf(&quot;%d\n&quot;, rand()*255);}'
 104
 </code></pre><h2 id="5-获取一系列数">5. 获取一系列数<a href="#5-获取一系列数" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>使用seq命令</p>
-<pre tabindex="0"><code>$ for i in {1..12}; do echo -n &#34;$i &#34;; done
+<pre tabindex="0"><code>$ for i in {1..12}; do echo -n &quot;$i &quot;; done
 1 2 3 4 5 6 7 8 9 10 11 12 %
 </code></pre>
 <p style="color:#777;">最后一次修改于 2018-11-24</p>

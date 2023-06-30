@@ -6,7 +6,16 @@
     <description>Recent content in Home on KJY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 23 Dec 2022 19:10:27 -0400</lastBuildDate><atom:link href="https://kongjianyang.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 07 Feb 2023 14:42:27 -0500</lastBuildDate><atom:link href="https://kongjianyang.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>R语言编程补充</title>
+      <link>https://kongjianyang.github.io/cn/2023/02/07/advanced_r/</link>
+      <pubDate>Tue, 07 Feb 2023 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2023/02/07/advanced_r/</guid>
+      <description>R编程补充 // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child&#34;); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;;var t=[],r=Object.</description>
+    </item>
+    
     <item>
       <title>Python机器学习</title>
       <link>https://kongjianyang.github.io/cn/2022/12/23/python-ml/</link>
@@ -52,7 +61,7 @@ use scipy-notebook, which contains most of the basic data science libraries that
       <pubDate>Sat, 24 Sep 2022 19:10:27 -0400</pubDate>
       
       <guid>https://kongjianyang.github.io/cn/2022/09/24/python/</guid>
-      <description># !#/usr/bin/python3 import os import re import datetime  dir = os.getcwd() files = os.listdir(&amp;#34;./&amp;#34;) # 判断字符串 oldStr = r&amp;#34;(\d{4}-\d{1,2}-\d{1,2}-)&amp;#34; newStr = &amp;#34;&amp;#34;  #判断生成时间 now = datetime.datetime.now() deltaH = datetime.timedelta(days=360)  d = os.walk(dir) for path,dirList,fileList in d:  for fileName in fileList:  oldFile = os.path.join(path, fileName)  if re.findall(oldStr, fileName):  f = datetime.datetime.fromtimestamp(os.path.getmtime(oldFile))  if f &amp;gt; (now-deltaH):  print(oldFile)  newName = re.sub(oldStr, newStr, fileName)  newFile = os.</description>
+      <description># !#/usr/bin/python3 import os import re import datetime dir = os.getcwd() files = os.listdir(&amp;#34;./&amp;#34;) # 判断字符串 oldStr = r&amp;#34;(\d{4}-\d{1,2}-\d{1,2}-)&amp;#34; newStr = &amp;#34;&amp;#34; #判断生成时间 now = datetime.datetime.now() deltaH = datetime.timedelta(days=360) d = os.walk(dir) for path,dirList,fileList in d: for fileName in fileList: oldFile = os.path.join(path, fileName) if re.findall(oldStr, fileName): f = datetime.datetime.fromtimestamp(os.path.getmtime(oldFile)) if f &amp;gt; (now-deltaH): print(oldFile) newName = re.sub(oldStr, newStr, fileName) newFile = os.path.join(path, newName) if os.path.isfile(oldFile): os.rename(os.path.join(path, fileName),newFile) print(newFile) pass else: pass </description>
     </item>
     
     <item>
@@ -211,7 +220,7 @@ alfred搜索到文件后打开所在目录
       <guid>https://kongjianyang.github.io/cn/2022/05/07/html/</guid>
       <description>迁移博客系统之后之前一些产生的html文件不能在hugo系统中显示了，例如从rmd或者jupyter生产的html文件，尝试之后发现问题是生产的html文件没有frontmatter，加上之后就能解决问题。
 参考：[SOLVED] Using HTML for content pages instead of Markdown - support - HUGO (gohugo.io) 所以在html文件上加下如下内容就能使之显示。
-+++ title = &amp;#34;R语言元编程&amp;#34; date = &amp;#34;2020-04-17T12:15:02-00:00&amp;#34; categories = &amp;#34;R&amp;#34; tags = &amp;#34;R&amp;#34; +++ &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; Front-matter 是文件最上方以 --- 分隔的区域，用于指定个别文件的变量，举例来说：
++++ title = &amp;quot;R语言元编程&amp;quot; date = &amp;quot;2020-04-17T12:15:02-00:00&amp;quot; categories = &amp;quot;R&amp;quot; tags = &amp;quot;R&amp;quot; +++ &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; Front-matter 是文件最上方以 --- 分隔的区域，用于指定个别文件的变量，举例来说：
 --- title: Hello World date: 2013/7/13 20:46:25 --- 补充知识 仅仅使用 markdown 格式写完文章是不够的，还需要在 .md 文档前面声明文档的信息，告诉 Hugo 这篇文章的标题、写作时间，这个时候就需要用到 Hugo Front Matter Formats 元数据格式。
 Front Matter一般放在文章的最顶部，Hugo支持三种书写格式，
  TOML使用+++来包裹内容 YAML使用---来包裹内容 JSON使用{和}来包裹内容  可配置的内容见Hugo官方文档: front-matter 。
@@ -310,12 +319,12 @@ stringi：一个快速字符串处理工具</description>
       
       <guid>https://kongjianyang.github.io/cn/2022/04/25/dirt_space/</guid>
       <description>有时候在macos下会有很多空格的目录文件需要处理，很麻烦，可以使用下面的命令自动处理带有空格的文件
-alias cwd=&amp;#39;printf &amp;#34;%q\n&amp;#34; &amp;#34;$(pwd)&amp;#34; | tee &amp;gt;(pbcopy)&amp;#39; printf命令 printf 命令模仿 C 程序库（library）里的 printf() 程序。
+alias cwd=&#39;printf &amp;quot;%q\n&amp;quot; &amp;quot;$(pwd)&amp;quot; | tee &amp;gt;(pbcopy)&#39; printf命令 printf 命令模仿 C 程序库（library）里的 printf() 程序。
 printf 由 POSIX 标准所定义，因此使用 printf 的脚本比使用 echo 移植性好。
 printf 使用引用文本或空格分隔的参数，外面可以在 printf 中使用格式化字符串，还可以制定字符串的宽度、左右对齐方式等。默认的 printf 不会像 echo 自动添加换行符，我们可以手动添加 \n。
 printf 命令的语法：
 printf format-string [arguments...] 参数说明：
- format-string: 为格式控制字符串 arguments: 为参数列表。  #!/bin/bash # author:菜鸟教程 # url:www.runoob.com printf &amp;#34;%-10s %-8s %-4s\n&amp;#34; 姓名 性别 体重kg printf &amp;#34;%-10s %-8s %-4.2f\n&amp;#34; 郭靖 男 66.1234 printf &amp;#34;%-10s %-8s %-4.2f\n&amp;#34; 杨过 男 48.6543 printf &amp;#34;%-10s %-8s %-4.</description>
+ format-string: 为格式控制字符串 arguments: 为参数列表。  #!/bin/bash # author:菜鸟教程 # url:www.runoob.com printf &amp;quot;%-10s %-8s %-4s\n&amp;quot; 姓名 性别 体重kg printf &amp;quot;%-10s %-8s %-4.2f\n&amp;quot; 郭靖 男 66.1234 printf &amp;quot;%-10s %-8s %-4.2f\n&amp;quot; 杨过 男 48.6543 printf &amp;quot;%-10s %-8s %-4.</description>
     </item>
     
     <item>
@@ -372,9 +381,9 @@ CRAN - Package rio (r-project.org) 笔记说明 在读《Modern R with the tidyv
 R语言面向对象编程 (dataxujing.github.io) S3对象的介绍 在R语言中，基于S3对象的面向对象编程，是一种基于泛型函数的实现方式。泛型函数是一种特殊的函数，根据传入对象的类型决定调用那个具体的方法。基于S3对象实现面向对象编程，不同其他语言的面型对象编程，是一种动态函数调用的模拟实现。S3对象被广泛应用于R的早期的开发包中。
 R的S3系统有三个组成部分:属性(attribute)(尤其是class属性)、泛型函数(genericfunction)和方法(method)
 创建S3对象 注意：本文会用到pryr,为了方便我们检查对象的类型，引入pryr包作为辅助工具。
-library(pryr) #通过变量创建S3对象 x &amp;lt;- 1 attr(x,&amp;#39;class&amp;#39;) &amp;lt;- &amp;#39;foo&amp;#39; x ## [1] 1 ## attr(,&amp;#34;class&amp;#34;) ## [1] &amp;#34;foo&amp;#34; ## [1] &amp;#34;foo&amp;#34; ## [1] &amp;#34;foo&amp;#34; #用pryr包的otype函数,检查x的类型 otype(x) ## [1] &amp;#34;S3&amp;#34; 通过structure()函数创建S3对象
-y &amp;lt;- structure(2,class=&amp;#34;foo&amp;#34;) y ## [1] 2 ## attr(,&amp;#34;class&amp;#34;) ## [1] &amp;#34;foo&amp;#34; ## [1] &amp;#34;foo&amp;#34; ## [1] &amp;#34;foo&amp;#34; ## [1] &amp;#34;S3&amp;#34; 创建一个多类型的S3对象，S3独享没有明确结构关系，一个S3对象可以有多个类型，S3对象的class属性可以是一个向量，包括多种类型
-x &amp;lt;- 1 attr(x,&amp;#34;class&amp;#34;) &amp;lt;- c(&amp;#34;foo&amp;#34;,&amp;#34;bar&amp;#34;) # 给了x对象两个class属性 class(x) ## [1] &amp;#34;foo&amp;#34; &amp;#34;bar&amp;#34; ## [1] &amp;#34;S3&amp;#34; 如果分配至少一个class属性，就是S3对象，如果没有class属性，就是base对象。</description>
+library(pryr) #通过变量创建S3对象 x &amp;lt;- 1 attr(x,&#39;class&#39;) &amp;lt;- &#39;foo&#39; x ## [1] 1 ## attr(,&amp;quot;class&amp;quot;) ## [1] &amp;quot;foo&amp;quot; ## [1] &amp;quot;foo&amp;quot; ## [1] &amp;quot;foo&amp;quot; #用pryr包的otype函数,检查x的类型 otype(x) ## [1] &amp;quot;S3&amp;quot; 通过structure()函数创建S3对象
+y &amp;lt;- structure(2,class=&amp;quot;foo&amp;quot;) y ## [1] 2 ## attr(,&amp;quot;class&amp;quot;) ## [1] &amp;quot;foo&amp;quot; ## [1] &amp;quot;foo&amp;quot; ## [1] &amp;quot;foo&amp;quot; ## [1] &amp;quot;S3&amp;quot; 创建一个多类型的S3对象，S3独享没有明确结构关系，一个S3对象可以有多个类型，S3对象的class属性可以是一个向量，包括多种类型
+x &amp;lt;- 1 attr(x,&amp;quot;class&amp;quot;) &amp;lt;- c(&amp;quot;foo&amp;quot;,&amp;quot;bar&amp;quot;) # 给了x对象两个class属性 class(x) ## [1] &amp;quot;foo&amp;quot; &amp;quot;bar&amp;quot; ## [1] &amp;quot;S3&amp;quot; 如果分配至少一个class属性，就是S3对象，如果没有class属性，就是base对象。</description>
     </item>
     
     <item>
@@ -434,7 +443,7 @@ MACS2作为使用最广泛的peak calling软件，在v2版本中添加了差异p
 对于使用macs2来进行差异peak的完整流程，官方给出了详细的说明文档，链接如下
  https://github.com/taoliu/MACS/wiki/Call-differential-binding-events  可以分为以下3步
 1. 预测插入片段长度 通过predictd子命令可以预测样本的fragment size，命令如下
-macs2 predictd -i input.bam #!/bin/bash module load bioinfo module load biocontainers/default module load macs2/2.2.7.1-py39 for i in `ls [A-H][1-9][A-H][1-9][A-H][1-9].bam`; do msg=&amp;#34;macs2 predictd -i $i&amp;#34;; echo $msg; macs2 predictd -i $i; 2. peak calling 在peak calling时，需要添加-B参数，这样才可以输出样本对应的bedgraph文件，同时需要保证peak calling时采用一致的--extsize的值，就是第一步预测出来的数值，取多个样本的均值即可。官方也给出了推荐值，对于大多数的转录因子chip_seq数据，推荐值为200， 对于大部分组蛋白修饰的chip_seq数据，推荐值为147，命令如下
+macs2 predictd -i input.bam #!/bin/bash module load bioinfo module load biocontainers/default module load macs2/2.2.7.1-py39 for i in `ls [A-H][1-9][A-H][1-9][A-H][1-9].bam`; do msg=&amp;quot;macs2 predictd -i $i&amp;quot;; echo $msg; macs2 predictd -i $i; 2. peak calling 在peak calling时，需要添加-B参数，这样才可以输出样本对应的bedgraph文件，同时需要保证peak calling时采用一致的--extsize的值，就是第一步预测出来的数值，取多个样本的均值即可。官方也给出了推荐值，对于大多数的转录因子chip_seq数据，推荐值为200， 对于大部分组蛋白修饰的chip_seq数据，推荐值为147，命令如下
 # condition1 macs2 callpeak -B -t cond1_ChIP.bam -c cond1_Control.bam -n cond1 --nomodel --extsize 147 # condition2 # broad peak calling: macs2 callpeak -B -t cond1_ChIP.</description>
     </item>
     
@@ -502,10 +511,10 @@ hugo new site liang.github.io **# quickstart 可以换成任何你想用的名�
       <description>glue 提供了轻巧、快速和无依赖的可解释字符串，glue 通过将 R 表达式嵌入到花括号中，然后对其求值并将其插入字符串中。
 glue包可用于自定义变量，然后通过传参的方式，对字符串部分内容进行自适应修改。
 例如：可将日期赋值为：date = as.Date(&amp;ldquo;2019-12-05&amp;rdquo;)，然后通过字符串拼接的形式，实现文件名称自动更新，glue(&amp;ldquo;The day is {date}.&amp;quot;。
-安装 install.packages(&amp;#34;glue&amp;#34;) # or install.packages(&amp;#34;glue&amp;#34;) # install.packages(&amp;#34;devtools&amp;#34;) devtools::install_github(&amp;#34;tidyverse/glue&amp;#34;) 使用 1. 导入 2. 简单使用 将变量直接传递到字符串中
-&amp;gt; name &amp;lt;- &amp;#34;Fred&amp;#34; &amp;gt; glue(&amp;#39;My name is {name}.&amp;#39;) My name is Fred. 通过将变量名放置在一对花括号之间，glue 会将变量名替换为相应的值
+安装 install.packages(&amp;quot;glue&amp;quot;) # or install.packages(&amp;quot;glue&amp;quot;) # install.packages(&amp;quot;devtools&amp;quot;) devtools::install_github(&amp;quot;tidyverse/glue&amp;quot;) 使用 1. 导入 2. 简单使用 将变量直接传递到字符串中
+&amp;gt; name &amp;lt;- &amp;quot;Fred&amp;quot; &amp;gt; glue(&#39;My name is {name}.&#39;) My name is Fred. 通过将变量名放置在一对花括号之间，glue 会将变量名替换为相应的值
 字符串可以写成多行的形式，最后会自动将这些行连接起来
-&amp;gt; name &amp;lt;- &amp;#34;Fred&amp;#34; &amp;gt; age &amp;lt;- 50 &amp;gt; anniversary &amp;lt;- as.Date(&amp;#34;1991-10-12&amp;#34;) &amp;gt; glue(&amp;#39;My name is {name},&amp;#39;, + &amp;#39; my age next year is {age + 1},&amp;#39;, + &amp;#39; my anniversary is {format(anniversary, &amp;#34;%A, %B %d, %Y&amp;#34;)}.</description>
+&amp;gt; name &amp;lt;- &amp;quot;Fred&amp;quot; &amp;gt; age &amp;lt;- 50 &amp;gt; anniversary &amp;lt;- as.Date(&amp;quot;1991-10-12&amp;quot;) &amp;gt; glue(&#39;My name is {name},&#39;, + &#39; my age next year is {age + 1},&#39;, + &#39; my anniversary is {format(anniversary, &amp;quot;%A, %B %d, %Y&amp;quot;)}.</description>
     </item>
     
     <item>
@@ -593,7 +602,7 @@ Jan Gorecki 曾对比过不同开源软件及程序包在数据处理方面的�
 data.table之后，一些常规的data.frame的操作就失效了，譬如：
 data[,-1]、data[,1]这样的操作就不是这么用的了。
 使用data.table包操作数据 data.table包提供了一个加强版的data.frame，它运行效率极高，而且能够处理适合内存的大数据集，它使用[]实现了一种自然地数据操作语法。使用下面命令进行安装：
-install.packages(&amp;#34;data.table&amp;#34;) 载入包：</description>
+install.packages(&amp;quot;data.table&amp;quot;) 载入包：</description>
     </item>
     
     <item>
@@ -643,7 +652,7 @@ http://style.tidyverse.org 三、命名规范
       <guid>https://kongjianyang.github.io/cn/2020/01/12/multiple_intersects/</guid>
       <description>一个简单的例子讲解怎么做多重数据的交集
 首先创造一个嵌套的list
-l &amp;lt;- list(A=c(&amp;#34;one&amp;#34;, &amp;#34;two&amp;#34;, &amp;#34;three&amp;#34;, &amp;#34;four&amp;#34;), B=c(&amp;#34;one&amp;#34;, &amp;#34;two&amp;#34;), C=c(&amp;#34;two&amp;#34;, &amp;#34;four&amp;#34;, &amp;#34;five&amp;#34;, &amp;#34;six&amp;#34;), D=c(&amp;#34;six&amp;#34;, &amp;#34;seven&amp;#34;)) crossprod(table(stack(l))) l $A [1] &amp;#34;one&amp;#34; &amp;#34;two&amp;#34; &amp;#34;three&amp;#34; &amp;#34;four&amp;#34; $B [1] &amp;#34;one&amp;#34; &amp;#34;two&amp;#34; $C [1] &amp;#34;two&amp;#34; &amp;#34;four&amp;#34; &amp;#34;five&amp;#34; &amp;#34;six&amp;#34; $D [1] &amp;#34;six&amp;#34; &amp;#34;seven&amp;#34; crossprod(table(stack(l))) #的到结果 ind ind A B C D A 4 2 2 0 B 2 2 1 0 C 2 1 4 1 D 0 0 1 2 开始解释这些命令
+l &amp;lt;- list(A=c(&amp;quot;one&amp;quot;, &amp;quot;two&amp;quot;, &amp;quot;three&amp;quot;, &amp;quot;four&amp;quot;), B=c(&amp;quot;one&amp;quot;, &amp;quot;two&amp;quot;), C=c(&amp;quot;two&amp;quot;, &amp;quot;four&amp;quot;, &amp;quot;five&amp;quot;, &amp;quot;six&amp;quot;), D=c(&amp;quot;six&amp;quot;, &amp;quot;seven&amp;quot;)) crossprod(table(stack(l))) l $A [1] &amp;quot;one&amp;quot; &amp;quot;two&amp;quot; &amp;quot;three&amp;quot; &amp;quot;four&amp;quot; $B [1] &amp;quot;one&amp;quot; &amp;quot;two&amp;quot; $C [1] &amp;quot;two&amp;quot; &amp;quot;four&amp;quot; &amp;quot;five&amp;quot; &amp;quot;six&amp;quot; $D [1] &amp;quot;six&amp;quot; &amp;quot;seven&amp;quot; crossprod(table(stack(l))) #的到结果 ind ind A B C D A 4 2 2 0 B 2 2 1 0 C 2 1 4 1 D 0 0 1 2 开始解释这些命令
 首先是stack命令，将潜逃列表变平
 &amp;gt; stack(l) values ind 1 one A 2 two A 3 three A 4 four A 5 one B 6 two B 7 two C 8 four C 9 five C 10 six C 11 six D 12 seven D Stacking vectors concatenates multiple vectors into a single vector along with a factor indicating where each observation originated.</description>
     </item>
@@ -713,7 +722,7 @@ Snakemake和Make功能一致，只不过用Python实现，增加了许多Python�
 Snakemake是一个工作流程管理系统。它是基于Python的、用于创建可重现和可扩展的数据分析的工具（当然现在也可以直接将它当做Python的一个模块）。Snakemake所创建的流程还可以无缝扩展到服务器、集群和云环境等不同环境，当然前提是你需要提前将所需的软件和依赖配置好，一起打包封装在conda环境中。
 安装软件
 pip3 install snakemake 虽然snakemake广泛的应用于生物信息方面的流程编写，但是snakemake的应用并不局限于编写生物信息学的流程，这里以一个简单的合并文件的例子开始介绍snakemake的简单使用。
-#首先我们建立两个文件 echo &amp;#34;Here is hello.&amp;#34; &amp;gt; hello.txt echo &amp;#34;Here is world.&amp;#34; &amp;gt; world.txt #接下来开始编写我们的Snakefile rule concat: # 这里的rule可视为snakemake定义的关键字，concat是我们自定义的这一步任务的名称 input: # input同样是snakemake的关键字，定义了在这个任务中的输入文件 expand(&amp;#34;{file}.txt&amp;#34;, file=[&amp;#34;hello&amp;#34;, &amp;#34;world&amp;#34;]) #expand是一个snakemake定义的替换命令 output: # output也是snakemake的关键字，定义输出结果的保存文件 &amp;#34;merged.txt&amp;#34; shell: # 这里表示我们下面的命令将在命令行中执行 &amp;#34;cat {input} &amp;gt; {output}&amp;#34; #最后就可以在Snakefile的路径执行snakemake命令即可 snakemake cat merge.txt # Here is hello. # Here is world. 在上面的Snakefile脚本中，rule、input、output、shell、expand均为snakemake中的关键字或者命令。同时Snakefile中的每一个rule其实都可以看作是一个简单的shell脚本，通过Snakefile将多个rule组织在一起并按照我们定义的顺序来执行。另外，在output中的结果文件可以是未存在目录中的文件,这时会自动创建不存在的目录。
+#首先我们建立两个文件 echo &amp;quot;Here is hello.&amp;quot; &amp;gt; hello.txt echo &amp;quot;Here is world.&amp;quot; &amp;gt; world.txt #接下来开始编写我们的Snakefile rule concat: # 这里的rule可视为snakemake定义的关键字，concat是我们自定义的这一步任务的名称 input: # input同样是snakemake的关键字，定义了在这个任务中的输入文件 expand(&amp;quot;{file}.txt&amp;quot;, file=[&amp;quot;hello&amp;quot;, &amp;quot;world&amp;quot;]) #expand是一个snakemake定义的替换命令 output: # output也是snakemake的关键字，定义输出结果的保存文件 &amp;quot;merged.txt&amp;quot; shell: # 这里表示我们下面的命令将在命令行中执行 &amp;quot;cat {input} &amp;gt; {output}&amp;quot; #最后就可以在Snakefile的路径执行snakemake命令即可 snakemake cat merge.txt # Here is hello. # Here is world. 在上面的Snakefile脚本中，rule、input、output、shell、expand均为snakemake中的关键字或者命令。同时Snakefile中的每一个rule其实都可以看作是一个简单的shell脚本，通过Snakefile将多个rule组织在一起并按照我们定义的顺序来执行。另外，在output中的结果文件可以是未存在目录中的文件,这时会自动创建不存在的目录。
 snakemake中的规则 rule是Snakefile中最主要的部分。如上面的例子所说，每一个rule定义了一系列pipe中的一步，每一个rule都可以当作一个shell脚本来处理，一般主要包括input、output、shell3个部分。同时还有许多上面没有列出来的用法：
  wildcards。用来获取通配符匹配到的部分，例如对于通配符&amp;quot;{dataset}/file.{group}.txt&amp;quot;匹配到文件101/file.A.txt，则{wildcards.dataset}就是101，{wildcards.group}就是A。 threads。通过在rule里面指定threads参数来指定分配给程序的线程数，egthreads: 8。 resources。可用来指定程序运行的内存，eg. resources: mem_mb=800。 message。使用message参数可以指定每运行到一个rule时，在终端中给出提示信息，eg.</description>
     </item>
@@ -746,9 +755,9 @@ snakemake中的规则 rule是Snakefile中最主要的部分。如上面的例子
 &amp;lt;p&amp;gt;我的猫咪脾气&amp;lt;strong&amp;gt;非常&amp;lt;/strong&amp;gt;暴躁:)&amp;lt;/p&amp;gt; 但是，要确保元素正确嵌套。在上面的示例中，我们&amp;lt;p&amp;gt; 首先打开了元素，然后打开了&amp;lt;strong&amp;gt;元素；因此，我们必须先关闭&amp;lt;strong&amp;gt;元素，然后再关闭&amp;lt;p&amp;gt;元素。以下是不正确的：
 # right &amp;lt;p&amp;gt;我的猫咪脾气&amp;lt;strong&amp;gt;非常暴躁&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt; # wong &amp;lt;p&amp;gt;我的猫咪脾气&amp;lt;strong&amp;gt;非常&amp;lt;/p&amp;gt;暴躁&amp;lt;/strong&amp;gt; 这些元素必须正确地打开和关闭，以使它们清楚地位于彼此内部或外部。如果它们如上所示重叠，则您的Web浏览器将尝试对您要说的内容做出最佳猜测，这可能会导致意外结果。
  空元素 一些元素没有内容，被称为空元素。采取&amp;lt;img&amp;gt; 我们在HTML页面中已经拥有的元素：
-&amp;lt;img src=&amp;#34;/img/earth.jpg&amp;#34; alt=&amp;#34;地球&amp;#34;&amp;gt; 它包含两个属性，但是没有结束&amp;lt;/img&amp;gt;标记，也没有内部内容。其目的是将图像嵌入HTML页面中。
+&amp;lt;img src=&amp;quot;/img/earth.jpg&amp;quot; alt=&amp;quot;地球&amp;quot;&amp;gt; 它包含两个属性，但是没有结束&amp;lt;/img&amp;gt;标记，也没有内部内容。其目的是将图像嵌入HTML页面中。
  HTML文档剖析 总结了各个HTML元素的基础知识。现在，我们将研究如何将单个元素组合以形成整个HTML页面。让我们重新看一下index.html示例中放入的代码：
-&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;utf-8&amp;#34;&amp;gt; &amp;lt;title&amp;gt;测试页面&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;img src=&amp;#34;/img/earth.</description>
+&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt; &amp;lt;title&amp;gt;测试页面&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;img src=&amp;quot;/img/earth.</description>
     </item>
     
     <item>
@@ -758,12 +767,12 @@ snakemake中的规则 rule是Snakefile中最主要的部分。如上面的例子
       
       <guid>https://kongjianyang.github.io/cn/2019/06/07/r_errors/</guid>
       <description>方案一：使用try语句  使用方法
-在R语言中，try语句的用法如下所示:  try(expr, silent = FALSE, outFile = getOption(&amp;#34;try.outFile&amp;#34;, default = stderr())) 可以看到，try语句共有三个参数，常用的是前两个参数。第一个参数expr为我们所要使用的表达式，第二个参数silent表示当错误出现时是否需要报告错误信息，其输入值应为逻辑变量，默认为FALSE，即选择不保持“沉默”，当错误出现时会立即报告错误信息。
+在R语言中，try语句的用法如下所示:  try(expr, silent = FALSE, outFile = getOption(&amp;quot;try.outFile&amp;quot;, default = stderr())) 可以看到，try语句共有三个参数，常用的是前两个参数。第一个参数expr为我们所要使用的表达式，第二个参数silent表示当错误出现时是否需要报告错误信息，其输入值应为逻辑变量，默认为FALSE，即选择不保持“沉默”，当错误出现时会立即报告错误信息。
 如果参数expr所代表的表达式可以正确运行，则try语句的输出即为该表达式的运行结果，如果表达式无法正确运行，则try语句会输出一个“try-error”类的不可见对象，因此可以通过if语句对try语句的输出结果进行判断从而进行下一步的处理。
 如果大段代码中有错误，想忽略错误，可以采用try()，但大段代码需放在**{ }**中：
-你可以捕获**try()的输出，如果程序运行成功，返回计算结果；如果程序运行不成功，则可以通过class()**函数返回，错误类型 &amp;rsquo;try-error&amp;rsquo;。
-使用示例  A = list(a=1,b=&amp;#39;abc&amp;#39;,c=-2,d=3) # 运行log(&amp;#39;abc&amp;#39;)会报错，运行log(-2)会出现警告 B = list() for (nm in names(A)) {  x &amp;lt;- A[[nm]]  temp &amp;lt;- try(log(x),silent=FALSE)  if(&amp;#39;try-error&amp;#39; %in% class(temp)) # 判断当前循环的try语句中的表达式是否运行正确  {  temp &amp;lt;- NA # 此处可以对运行错误的情况进行处理应对  }  B[[nm]] &amp;lt;- temp } 方案二：使用tryCatch语句  使用方法
-相较于try语句，tryCatch语句更为全面，能够处理和应对更为复杂的问题。其不仅能够处理表达式出现错误error的情形，还能够处理出现警告warning的情况。主要用法如下所示：  tryCatch(  { expr },  warning = function(w) { warning-handler-code },  error = function(e) { error-handler-code },  finally = { cleanup-code }  ) 可以看到，tryCatch语句的内部可以被划分为四个不同的部分。</description>
+你可以捕获**try()的输出，如果程序运行成功，返回计算结果；如果程序运行不成功，则可以通过class()**函数返回，错误类型 &amp;lsquo;try-error&amp;rsquo;。
+使用示例  A = list(a=1,b=&amp;#39;abc&amp;#39;,c=-2,d=3) # 运行log(&amp;#39;abc&amp;#39;)会报错，运行log(-2)会出现警告 B = list() for (nm in names(A)) { x &amp;lt;- A[[nm]] temp &amp;lt;- try(log(x),silent=FALSE) if(&amp;#39;try-error&amp;#39; %in% class(temp)) # 判断当前循环的try语句中的表达式是否运行正确 { temp &amp;lt;- NA # 此处可以对运行错误的情况进行处理应对 } B[[nm]] &amp;lt;- temp } 方案二：使用tryCatch语句  使用方法
+相较于try语句，tryCatch语句更为全面，能够处理和应对更为复杂的问题。其不仅能够处理表达式出现错误error的情形，还能够处理出现警告warning的情况。主要用法如下所示：  tryCatch( { expr }, warning = function(w) { warning-handler-code }, error = function(e) { error-handler-code }, finally = { cleanup-code } ) 可以看到，tryCatch语句的内部可以被划分为四个不同的部分。</description>
     </item>
     
     <item>
@@ -833,7 +842,7 @@ gsub(&amp;#39;the&amp;#39;, &amp;#39;**&amp;#39;, c(&amp;#39;New theme&amp;#39;,
       
       <guid>https://kongjianyang.github.io/cn/2018/12/25/rmd/</guid>
       <description>首先将Rmd文件转换为md文件
-library(rmarkdown) a &amp;lt;- list.files(&amp;#34;./&amp;#34;, pattern = &amp;#34;.Rmd&amp;#34;) map(a, render, md_document()) #会将当前文件下所有的Rmd文件转化为md文件  on the Mac you could use the following commands to open RStudio (respectively) in the &amp;lsquo;~/projects/foo&amp;rsquo; directory or the current working directory:
+library(rmarkdown) a &amp;lt;- list.files(&amp;quot;./&amp;quot;, pattern = &amp;quot;.Rmd&amp;quot;) map(a, render, md_document()) #会将当前文件下所有的Rmd文件转化为md文件  on the Mac you could use the following commands to open RStudio (respectively) in the &amp;lsquo;~/projects/foo&amp;rsquo; directory or the current working directory:
  $ open -a RStudio ~/projects/foo $ open -a RStudio . 这里的open命令很有用
 MacOS用户如果有用命令行的话，大多数人应该知道open .会打开Finder。事实上它能打开所有的目录，比如:
 $ open ~/Library/Preferences $ open /etc $ open ../.. 你还能同时打开多个目录：
@@ -1062,10 +1071,10 @@ library(cowplot) ## ## Attaching package: &amp;#39;cowplot&amp;#39; ## The follo
       <description>bookdown支持采用Rmarkdown (R代码可以运行)或普通markdown编写文档，然后编译成HTML, WORD, PDF, Epub等格式。
 1. 基本使用 使用要求：
  安装Rstudio 安装Pandoc  conda install -c conda-forge pandoc 接下来需要到.Renviron中设置环境：
-RSTUDIO_PANDOC=/Applications/RStudio.app/Contents/MacOS/pandoc  安装bookdown  install.packages(&amp;#34;bookdown&amp;#34;) 下载demo：
+RSTUDIO_PANDOC=/Applications/RStudio.app/Contents/MacOS/pandoc  安装bookdown  install.packages(&amp;quot;bookdown&amp;quot;) 下载demo：
 git clone https://github.com/rstudio/bookdown-demo 然后进行编译，运行下载的示例中的bash _build.sh，_book目录下就是成书。
-#!/bin/sh Rscript -e &amp;#34;bookdown::render_book(&amp;#39;index.Rmd&amp;#39;, &amp;#39;bookdown::gitbook&amp;#39;)&amp;#34; # 生成pdf需要安装好latex，如果不需要可以注释掉 Rscript -e &amp;#34;bookdown::render_book(&amp;#39;index.Rmd&amp;#39;, &amp;#39;bookdown::pdf_book&amp;#39;)&amp;#34; 如果想在Rstudio中进行预览：
-bookdown:::serve_book(&amp;#34;./01Demo/bookdown-demo/&amp;#34;) 2. 文件格式   一个典型的bookdown文档包含多个章节，每个章节在一个R Markdown文件里面 (文件的语法可以是pandoc支持的markdown语法，但后缀必须为Rmd)。
+#!/bin/sh Rscript -e &amp;quot;bookdown::render_book(&#39;index.Rmd&#39;, &#39;bookdown::gitbook&#39;)&amp;quot; # 生成pdf需要安装好latex，如果不需要可以注释掉 Rscript -e &amp;quot;bookdown::render_book(&#39;index.Rmd&#39;, &#39;bookdown::pdf_book&#39;)&amp;quot; 如果想在Rstudio中进行预览：
+bookdown:::serve_book(&amp;quot;./01Demo/bookdown-demo/&amp;quot;) 2. 文件格式   一个典型的bookdown文档包含多个章节，每个章节在一个R Markdown文件里面 (文件的语法可以是pandoc支持的markdown语法，但后缀必须为Rmd)。
   每一个章节都必须以# Chapter title开头。后面可以跟一段概括性语句，概述本章的内容，方便理解，同时也防止二级标题出现在这一页。默认系统会按照文件名的顺序合并Rmd文件。
   另外章节的顺序也可在_bookdown.yml文件中通过rmd_files:[&amp;quot;file1.Rmd&amp;quot;, &amp;quot;file2.Rmd&amp;quot;, ..]指定。
   如果有index.Rmd，index.Rmd总是出现在第一个位置。通常index.Rmd里面也需要有一章节，如果不需要对这一章节编号的话，可以写作# Preface {-}, 关键是{-}。
@@ -1083,7 +1092,7 @@ bookdown:::serve_book(&amp;#34;./01Demo/bookdown-demo/&amp;#34;) 2. 文件格式
 RStudio会在当前目录（默认是个人目录下）创建一个R包文件夹，主要文件（夹）包括：man，R，DESCRIPTION，NAMESPACE以及xx.Rproj。下面是文件目录解释：
 testR(包的名字，这里包的名字叫testR) | |--DESCRIPTION(描述文件，包括包的名字，版本号，标题，描述，依赖关系) |--R(函数源文件) |--function1.R |--function2.R |--... |--man(帮助文档) |--function1.Rd |--function2.Rd |--testR-package.Rd |--... |--NAMESPACE(命名空间) |--vignettes(包的描述文件，可以用rmarkdown写) |--src(非R脚本eg.C.C++,Python) |--data(R包中的数据，最好是.rda格式) |--demo(R包中的demo) |--test(R包中的测试代码) |--... DESCRIPTION文件写了这个R的描述信息，主要为了告诉别人（或者自己）这个R包的一些重要的元数据（官方说法），可以按照自己的需要进行修改：
 Package: Rtools Type: Package Title: My First R Package Version: 0.1.0 Author: Liang Maintainer: The package maintainer &amp;lt;yourself@somewhere.net&amp;gt; Description: Just for learn License: GPL Encoding: UTF-8 LazyData: true RoxygenNote: 6.1.1 接下来需要准备好一个写好的R自定义函数，比如在R文件夹创建一个uniprot.R文件，然后将函数写入该文件；我们使用R包就是将输入参数导入函数中，然后函数给我们一个结果。比如我的函数如下：
-idmapping &amp;lt;- function(query, inputid, outputid, fmt){ query &amp;lt;- paste(query, collapse = &amp;#34;,&amp;#34;) r &amp;lt;- httr::POST(&amp;#39;http://www.</description>
+idmapping &amp;lt;- function(query, inputid, outputid, fmt){ query &amp;lt;- paste(query, collapse = &amp;quot;,&amp;quot;) r &amp;lt;- httr::POST(&#39;http://www.</description>
     </item>
     
     <item>
@@ -1135,7 +1144,7 @@ crontab -l 删除任务
 # 打开定时任务设定文件 crontab -e 可以像使用vi编辑其他任何文件那样修改crontab文件并退出。
 删除crontab文件
 crontab -r 可以加上邮件通知
-# send email to me MAILTO=&amp;#34;your email stress&amp;#34; git push origin master 如果上步错误的话，可以用下面的命令
+# send email to me MAILTO=&amp;quot;your email stress&amp;quot; git push origin master 如果上步错误的话，可以用下面的命令
 git remote set-url origin git@github.com:username/repo.git 3. 语法 格式：分 时 日 月 星期几 命令 # 每天12点1分执行[/example/laohou-cron.</description>
     </item>
     
@@ -1182,7 +1191,7 @@ source /etc/profile </description>
       <guid>https://kongjianyang.github.io/cn/2018/11/24/bedgraphbed%E4%BB%A5%E5%8F%8Abam%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/</guid>
       <description>感兴趣的基因信息包含在bedGraph文件中，下面命令是对其文件格式进行转换，一般进行到bam文件可视化的效果比较好。
 1. bedGraph转bed文件 BedGraph ，的数据和bed文件很类似，ChIPseq数据做完peak calling后的bed文件最短只有三列，染色体序号，染色体起始位置和结束位置。如下所示，前面的声明和Wig类似，后面的四列分别表示染色体序号，起始位置，结束位置和value值。相当于为bed文件的延伸格式。
-track type=bedGraph name=&amp;#34;BedGraph Format&amp;#34; description=&amp;#34;BedGraph format&amp;#34; visibility=full color=200,100,0 altColor=0,100,200 priority=20 chr19 49302000 49302300 -1.0 chr19 49302300 49302600 -0.75 chr19 49302600 49302900 -0.50 chr19 49302900 49303200 -0.25 chr19 49303200 49303500 0.0 chr19 49303500 49303800 0.25 chr19 49303800 49304100 0.50 chr19 49304100 49304400 0.75 chr19 49304400 49304700 1.00 所以我们想要得到bed文件只需要提取bedGraph的前三列即可，同时注意不要第一行，利用grep -v命令
+track type=bedGraph name=&amp;quot;BedGraph Format&amp;quot; description=&amp;quot;BedGraph format&amp;quot; visibility=full color=200,100,0 altColor=0,100,200 priority=20 chr19 49302000 49302300 -1.0 chr19 49302300 49302600 -0.75 chr19 49302600 49302900 -0.50 chr19 49302900 49303200 -0.25 chr19 49303200 49303500 0.0 chr19 49303500 49303800 0.25 chr19 49303800 49304100 0.50 chr19 49304100 49304400 0.75 chr19 49304400 49304700 1.00 所以我们想要得到bed文件只需要提取bedGraph的前三列即可，同时注意不要第一行，利用grep -v命令
 # Convert bedGraph to bed file grep -v track GSM1252087_edm2-4_RNAseq.bedGraph | cut -f 1-3 &amp;gt; GSM1252087_edm2-4_RNAseq.bed 2.</description>
     </item>
     
@@ -1281,10 +1290,10 @@ Quincy_C@Quincy MINGW64 /gitskills/gitskills (master) $ git branch #显示本地
       <description>1.问题 heatmap.2是一种绘画热图的gplots包中的一个功能，十分强大，得到一个精美的热图，命令行不超过20行。
 有一个不方便的地方是得到这份热图之后希望知道聚类之后的行名以及具体的数值，以备后续的分析。
 2.解决 查阅之后可以通过以下方法进行解决. 首先制造一个绘图的矩阵
-y &amp;lt;- matrix(rnorm(50), 10, 5, dimnames=list(paste(&amp;#34;g&amp;#34;, 1:10, sep=&amp;#34;&amp;#34;), paste(&amp;#34;t&amp;#34;, 1:5, sep=&amp;#34;&amp;#34;))) 按行进行聚类
-hr &amp;lt;- hclust(as.dist(1-cor(t(y), method=&amp;#34;pearson&amp;#34;)), method=&amp;#34;complete&amp;#34;) 按列进行聚类
-hc &amp;lt;- hclust(as.dist(1-cor(y, method=&amp;#34;spearman&amp;#34;)), method=&amp;#34;complete&amp;#34;) 绘制热图
-library(gplots) heatmap.2(y, Rowv=as.dendrogram(hr), Colv=as.dendrogram(hc), scale=&amp;#34;row&amp;#34;, density.info=&amp;#34;none&amp;#34;, trace=&amp;#34;none&amp;#34;) 得到聚类之后的矩阵结果：
+y &amp;lt;- matrix(rnorm(50), 10, 5, dimnames=list(paste(&amp;quot;g&amp;quot;, 1:10, sep=&amp;quot;&amp;quot;), paste(&amp;quot;t&amp;quot;, 1:5, sep=&amp;quot;&amp;quot;))) 按行进行聚类
+hr &amp;lt;- hclust(as.dist(1-cor(t(y), method=&amp;quot;pearson&amp;quot;)), method=&amp;quot;complete&amp;quot;) 按列进行聚类
+hc &amp;lt;- hclust(as.dist(1-cor(y, method=&amp;quot;spearman&amp;quot;)), method=&amp;quot;complete&amp;quot;) 绘制热图
+library(gplots) heatmap.2(y, Rowv=as.dendrogram(hr), Colv=as.dendrogram(hc), scale=&amp;quot;row&amp;quot;, density.info=&amp;quot;none&amp;quot;, trace=&amp;quot;none&amp;quot;) 得到聚类之后的矩阵结果：
 y[rev(hr$labels[hr$order]), hc$labels[hc$order]] </description>
     </item>
     
@@ -1299,7 +1308,7 @@ y[rev(hr$labels[hr$order]), hc$labels[hc$order]] </description>
 3.技巧 3.1 配置及打开 安装方法之类的不多讲，安装之后希望在任何地方打开Jupyter的话在Terminal下cd到目标文件夹，键入Jupyter Notebook自然能在你的浏览器下打开Jupyter，则工作目录即为你的目标目录。
 希望查看Jupyter的配置文件的话键入jupyter notebook --generate-config则能看到配置文件。
 3.2 加载本地.py文件 还可以将本地的.py文件load到jupyter的一个cell中 例如有一个test.py文件，需要将其载入到jupyter的一个cell中 test.py内容如下：
-import caffe SolverName = &amp;#34;/root/workspace&amp;#34; sovler = caffe.AdamSolver(SolverName) 在需要导入该段代码的cell中只需要输入如下
+import caffe SolverName = &amp;quot;/root/workspace&amp;quot; sovler = caffe.AdamSolver(SolverName) 在需要导入该段代码的cell中只需要输入如下
 %load test.py #test.py是当前路径下的一个python文件 3.3 作为unix command使用 jupyter的cell还可以作为unix command使用，具体方法为：在unix command前面加入一个感叹号“！”
 例子： 查看python版本：!python --version 运行python文件：!python myfile.py 3.4 添加目录功能 还可以为Jupyter Notebook添加目录功能，原始的Jupyter是不支持markdown添加目录功能的，实际上，可以利用Jupyter notebook extensions 去使得这种功能实现，具体方法：  `conda install -c conda-forge jupyter_contrib_nbextensions`  打开Jupyter Notebook，在它的（新增的）Nbextensions标签下勾选“Table of Contents(2)” ，关于extensions还有很多其他的功能可以自行查看。
 3.5 魔法命令 (magic function) 所有以%开头的方法，都是Jupyter里面的所谓魔术方法(Magic function)，也就是ipython内置的一些方法。需要注意的是，魔术方法有%和%%之分，比如%timeit和%%timeit。在ipython中有专门的叫法，前者叫line magic后者叫cell magic。顾名思义，前者是专门针对一行的命令，后者针对多行的命令。</description>
@@ -1312,7 +1321,7 @@ import caffe SolverName = &amp;#34;/root/workspace&amp;#34; sovler = caffe.AdamS
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/jupyter%E4%B8%8D%E6%98%BE%E7%A4%BAwarming-message/</guid>
       <description>运行Jupyter notebook的时候偶尔会提醒有错误信息，让人很烦恼，解决这个问题只需要在cell行内添加一下命令。
-#隐藏警告 import warnings warnings.filterwarnings(&amp;#39;ignore&amp;#39;) </description>
+#隐藏警告 import warnings warnings.filterwarnings(&#39;ignore&#39;) </description>
     </item>
     
     <item>
@@ -1352,11 +1361,11 @@ find ./ -mmin -60 | xargs -I {} cp {} ../ </description>
       <guid>https://kongjianyang.github.io/cn/2018/11/24/linux%E4%B8%8B%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E5%90%8D/</guid>
       <description>方法一：Rename函数 Linux下修改文件名有mv和rename。其中mv命令只能对单个文件重命名，这是mv命令和rename命令的在重命名方面的根本区别。
 linux的rename命令有两个版本，一个是c语言版本的，一个是perl语言版本的，判断方法： 输入man rename 看到第一行是： RENAME(1) Linux Programmer’s Manual RENAME(1) 这个就是C语言版本的 而如果出现： RENAME(1) Perl Programmers Reference Guide RENAME(1) 则是Perl版本的了
-C语言版本格式：rename 原字符串 新字符串 文件名 Perl语言版本格式：rename &amp;rsquo;s/原字符串/新字符串/&amp;rsquo; 文件名
+C语言版本格式：rename 原字符串 新字符串 文件名 Perl语言版本格式：rename &amp;rsquo;s/原字符串/新字符串/&#39; 文件名
 rename支持正则表达式
 例子：
 字母的替换rename &amp;quot;s/AA/aa/&amp;quot; * //把文件名中的AA替换成aa 修改文件的后缀rename &amp;quot;s//.html//.php/&amp;quot; * //把.html 后缀的改成 .php后缀 批量添加文件后缀rename &amp;quot;s/$//.txt/&amp;quot; * //把所有的文件名都以txt结尾 批量删除文件名rename &amp;quot;s//.txt//&amp;quot; * //把所有以.txt结尾的文件名的.txt删掉
-方法二：mv函数  在文件夹shell下创建文件10个文件  touch tmp_{1..10}.txt 找到含有“_“”的文件夹。  find ./ -name &amp;#34;*_*&amp;#34; 读取id, 用mv改名，$为自己理解为赋值后的id，格式为while； do； done  find ./ -name &amp;#34;*_*&amp;#34; | while read id; do mv $id ${id/_/-}; done </description>
+方法二：mv函数  在文件夹shell下创建文件10个文件  touch tmp_{1..10}.txt 找到含有“_“”的文件夹。  find ./ -name &amp;quot;*_*&amp;quot; 读取id, 用mv改名，$为自己理解为赋值后的id，格式为while； do； done  find ./ -name &amp;quot;*_*&amp;quot; | while read id; do mv $id ${id/_/-}; done </description>
     </item>
     
     <item>
@@ -1382,7 +1391,7 @@ Enter 向下n行，需要定义。默认为1行 Ctrl+F 向下滚动一屏 空格
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/linux%E4%B8%8B%E9%80%92%E5%BD%92%E6%9F%A5%E6%89%BE%E6%9F%90%E6%96%87%E4%BB%B6%E5%B9%B6%E7%A7%BB%E5%8A%A8/</guid>
       <description>Linux下递归查找某类型文件可以使用find命令，例如我想查找所有的.sh文件，可以使用一下命令
-find . -name &amp;#34;*.sh&amp;#34; 而如果我们希望移动所有这类型的文件到指定文件夹，在zsh下可以使用
+find . -name &amp;quot;*.sh&amp;quot; 而如果我们希望移动所有这类型的文件到指定文件夹，在zsh下可以使用
 cp **/*.sh sh_file </description>
     </item>
     
@@ -1392,7 +1401,7 @@ cp **/*.sh sh_file </description>
       <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/macos%E4%B8%8B%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%87%E7%BA%A7r%E5%92%8Cr%E5%8C%85%E7%9A%84%E6%96%B9%E5%BC%8F/</guid>
-      <description>升级R #安装devtools包（如果已经安装 跳过此步，进入到下一步） install.packages(&amp;#39;devtools&amp;#39;) library(&amp;#39;devtools&amp;#39;) #安装updateR install_github(&amp;#39;andreacirilloac/updateR&amp;#39;) library(updateR) #更新 updateR(admin_password = &amp;#39;os_admin_user_password&amp;#39;) Reference:
+      <description>升级R #安装devtools包（如果已经安装 跳过此步，进入到下一步） install.packages(&#39;devtools&#39;) library(&#39;devtools&#39;) #安装updateR install_github(&#39;andreacirilloac/updateR&#39;) library(updateR) #更新 updateR(admin_password = &#39;os_admin_user_password&#39;) Reference:
 UpdateR package: update R version with a function (on MAC OSX) 升级R包 使用rvcheck::update_all()可以自动更新CRAN, Bioconductor和Github上的R包。其实可以放到系统任务里，每月自动更新一次，然后就可以完全不用管升级的事情。</description>
     </item>
     
@@ -1454,11 +1463,11 @@ import mpl_finance as mpf </description>
       <guid>https://kongjianyang.github.io/cn/2018/11/24/pandas%E5%88%86%E7%BB%84%E5%87%BD%E6%95%B0groupbypivot_table%E5%8F%8Acrosstab/</guid>
       <description>1. 起因 利用python的pandas库进行数据分组分析十分便捷，其中应用最多的方法包括：groupby、pivot_table及crosstab，以下分别进行介绍。
 2. 详解 首先构造数据
-import numpy as np import pandas as pd df = pd.DataFrame({&amp;#39;key1&amp;#39;:[&amp;#39;a&amp;#39;,&amp;#39;a&amp;#39;,&amp;#39;b&amp;#39;,&amp;#39;b&amp;#39;,&amp;#39;a&amp;#39;],&amp;#39;key2&amp;#39;:[&amp;#39;one&amp;#39;,&amp;#39;two&amp;#39;,&amp;#39;one&amp;#39;,&amp;#39;two&amp;#39;,&amp;#39;one&amp;#39;],&amp;#39;data1&amp;#39;:np.random.randn(5),&amp;#39;data2&amp;#39;:np.random.randn(5)}) 2.1 group函数 分组groupby Pandas中最为常用和有效的分组函数。
+import numpy as np import pandas as pd df = pd.DataFrame({&#39;key1&#39;:[&#39;a&#39;,&#39;a&#39;,&#39;b&#39;,&#39;b&#39;,&#39;a&#39;],&#39;key2&#39;:[&#39;one&#39;,&#39;two&#39;,&#39;one&#39;,&#39;two&#39;,&#39;one&#39;],&#39;data1&#39;:np.random.randn(5),&#39;data2&#39;:np.random.randn(5)}) 2.1 group函数 分组groupby Pandas中最为常用和有效的分组函数。
 1）按列分组
 注意以下使用groupby()函数生成的group1是一个中间分组变量，为GroupBy类型。
-group1 = df.groupby(&amp;#39;key1&amp;#39;) group2 = df.groupby([&amp;#39;key1&amp;#39;,&amp;#39;key2&amp;#39;]) 使用推导式[x for x in group1]可显示分组内容。
-[x for x in group1] [(&amp;#39;a&amp;#39;, data1 data2 key1 key2 0 1.830651 0.407903 a one 1 -0.973132 -0.056084 a two 4 -1.069184 0.043338 a one), (&amp;#39;b&amp;#39;, data1 data2 key1 key2 2 -0.477718 -1.488174 b one 3 -0.</description>
+group1 = df.groupby(&#39;key1&#39;) group2 = df.groupby([&#39;key1&#39;,&#39;key2&#39;]) 使用推导式[x for x in group1]可显示分组内容。
+[x for x in group1] [(&#39;a&#39;, data1 data2 key1 key2 0 1.830651 0.407903 a one 1 -0.973132 -0.056084 a two 4 -1.069184 0.043338 a one), (&#39;b&#39;, data1 data2 key1 key2 2 -0.477718 -1.488174 b one 3 -0.</description>
     </item>
     
     <item>
@@ -1510,7 +1519,7 @@ def myFunc(): B = 10 def inFunc(A): global B B = A ** 5 return B B = 25 myFunc()
 %matplotlib notebook import matplotlib.pyplot as plt import numpy as np data = np.arange(10) data plt.plot(data) matplotlib的图像都位于Figure对象中。你可以用plt.figure创建一个新的Figure： 如果用的是IPython，这时会弹出一个空窗口，但在Jupyter中，必须再输入更多命令才能看到。plt.figure有一些选项，特别是figsize，它用于确保当图片保存到磁盘时具有一定的大小和纵横比。
 不能通过空Figure绘图。必须用add_subplot创建一个或多个subplot才行：
 # 代码的意思是：图像应该是2×2的（即最多4张图）， # 且当前选中的是4个subplot中的第一个（编号从1开始）。 # 如果再把后面两个subplot也创建出来，最终得到的图像如图所示： fig = plt.figure() ax1 = fig.add_subplot(2, 2, 1) ax2 = fig.add_subplot(2, 2, 2) ax3 = fig.add_subplot(2, 2, 3) 使用Jupyter notebook有一点不同，即每个小窗重新执行后，图形会被重置。因此，对于复杂的图形，，你必须将所有的绘图命令存在一个小窗里。 加的绘图命令会在最后一个subplot上.
-fig = plt.figure() ax1 = fig.add_subplot(2, 2, 1) ax2 = fig.add_subplot(2, 2, 2) ax3 = fig.add_subplot(2, 2, 3) plt.plot(np.random.randn(50).cumsum(), &amp;#39;k--&amp;#39;) #plt.plot(np.random.randn(50).cumsum(), &amp;#39;k--&amp;#39;) # ax1.</description>
+fig = plt.figure() ax1 = fig.add_subplot(2, 2, 1) ax2 = fig.add_subplot(2, 2, 2) ax3 = fig.add_subplot(2, 2, 3) plt.plot(np.random.randn(50).cumsum(), &#39;k--&#39;) #plt.plot(np.random.randn(50).cumsum(), &#39;k--&#39;) # ax1.</description>
     </item>
     
     <item>
@@ -1521,7 +1530,7 @@ fig = plt.figure() ax1 = fig.add_subplot(2, 2, 1) ax2 = fig.add_subplot(2, 2, 2)
       <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%AD%E5%88%A9%E7%94%A8aggregate%E5%87%BD%E6%95%B0%E8%BF%9B%E8%A1%8C%E5%A4%9A%E5%9B%A0%E5%AD%90%E7%BB%9F%E8%AE%A1/</guid>
       <description>1.介绍 R中aggregate函数的功能强大，它首先将数据进行分组（按行），然后对每一组数据进行函数统计，最后把结果组合成一个比较nice的表格返回。简单说有点类似sql语言中的group by，可以按照要求把数据打组聚合，然后对聚合以后的数据进行加和、求平均等各种操作。
 2.详解 通过 mtcars 数据集的操作对这个函数进行简单了解。mtcars 是不同类型汽车道路测试的数据框类型数据：
-str(mtcars) &amp;#39;data.frame&amp;#39;:	32 obs. of 11 variables: $ mpg : num 21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ... $ cyl : num 6 6 4 6 8 6 8 4 4 6 ... $ disp: num 160 160 108 258 360 ... $ hp : num 110 110 93 110 175 105 245 62 95 123 ... $ drat: num 3.</description>
+str(mtcars) &#39;data.frame&#39;:	32 obs. of 11 variables: $ mpg : num 21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ... $ cyl : num 6 6 4 6 8 6 8 4 4 6 ... $ disp: num 160 160 108 258 360 ... $ hp : num 110 110 93 110 175 105 245 62 95 123 ... $ drat: num 3.</description>
     </item>
     
     <item>
@@ -1532,9 +1541,9 @@ str(mtcars) &amp;#39;data.frame&amp;#39;:	32 obs. of 11 variables: $ mpg : num 2
       <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%AD%E5%88%A9%E7%94%A8unite%E5%87%BD%E6%95%B0%E8%BF%9B%E8%A1%8C%E5%88%97%E5%90%88%E5%B9%B6/</guid>
       <description>1. 介绍 unite函数是tidyr包中的一个非常实用的函数，和separate函数相对应，可以对于数据框进行按照格式的列合并。
 2.用法 下面实用例子介绍unite函数的用法：
-library(tidyr) name1 &amp;lt;- c(&amp;#34;Bob&amp;#34;,&amp;#34;Mary&amp;#34;,&amp;#34;Jane&amp;#34;,&amp;#34;Kim&amp;#34;) birth &amp;lt;- c(&amp;#34;1990-1&amp;#34;,&amp;#34;1980-2&amp;#34;,&amp;#34;1995-5&amp;#34;,&amp;#34;1996-4&amp;#34;) df &amp;lt;- data.frame(name1, birth) 构造一个名为df的数据框，df结构如下： 下面我们想将birth列和name1列以-进行合并，可以使用unite函数了， unite语法如下：
-unite(data, col, ..., sep = &amp;#34;_&amp;#34;, remove = TRUE) 利用该语法，我们将name1和birth列按照-进行合并，合并结果存到新的列name-birth中，并保留原始的列。
-unite(df,&amp;#34;name-birth&amp;#34;,c(&amp;#34;name1&amp;#34;,&amp;#34;birth&amp;#34;), sep=&amp;#34;-&amp;#34;, remove = F) 合并的结果如下： 3.总结 tidyr包中有很多类似的功能强大的函数，这只是用来进行列合并的其中一列，当然会有很多其他的方法，会在之后详解</description>
+library(tidyr) name1 &amp;lt;- c(&amp;quot;Bob&amp;quot;,&amp;quot;Mary&amp;quot;,&amp;quot;Jane&amp;quot;,&amp;quot;Kim&amp;quot;) birth &amp;lt;- c(&amp;quot;1990-1&amp;quot;,&amp;quot;1980-2&amp;quot;,&amp;quot;1995-5&amp;quot;,&amp;quot;1996-4&amp;quot;) df &amp;lt;- data.frame(name1, birth) 构造一个名为df的数据框，df结构如下： 下面我们想将birth列和name1列以-进行合并，可以使用unite函数了， unite语法如下：
+unite(data, col, ..., sep = &amp;quot;_&amp;quot;, remove = TRUE) 利用该语法，我们将name1和birth列按照-进行合并，合并结果存到新的列name-birth中，并保留原始的列。
+unite(df,&amp;quot;name-birth&amp;quot;,c(&amp;quot;name1&amp;quot;,&amp;quot;birth&amp;quot;), sep=&amp;quot;-&amp;quot;, remove = F) 合并的结果如下： 3.总结 tidyr包中有很多类似的功能强大的函数，这只是用来进行列合并的其中一列，当然会有很多其他的方法，会在之后详解</description>
     </item>
     
     <item>
@@ -1546,8 +1555,8 @@ unite(df,&amp;#34;name-birth&amp;#34;,c(&amp;#34;name1&amp;#34;,&amp;#34;birth&a
       <description>##1.问题 今天利用R写循环的时候出现了一个问题，循环内会产生多个数据框，希望将这多个数据库合并并生产一个最终的数据框，最后利用了list和do.call()功能进行了实现。
 ##2.解决 例如假设我们有如下三个数据框
 df1 &amp;lt;- data.frame(cell=c(1,2,3),val=c(345,123,466)) df2 &amp;lt;- data.frame(cell=c(67,3,2),val=c(234,234,56)) df3 &amp;lt;- data.frame(cell=c(3,67,23),val=c(23,8,34)) 现在我们希望将这三个数据框进行合并： 首先创建一个空list，利用get()将所有数据框写入，形成一个2维的list，然后利用do.call()进行合并。
-l &amp;lt;- list() for(i in 1:3){ df.now &amp;lt;- get(paste0(&amp;#34;df&amp;#34;,i)) l[[i]] &amp;lt;- df.now } do.call(rbind,l) 经过评论提醒，还有一种方法可能会显得更加易于理解些，即先形成一个空的data.frame，然后直接利用rbind将变量数据框合并到最终的数据框中。
-l &amp;lt;- data.frame() for(i in 1:3){ df.now &amp;lt;- get(paste0(&amp;#34;df&amp;#34;,i)) l &amp;lt;- rbind(l, df.now) } 两种方法最后得到的结果都是：
+l &amp;lt;- list() for(i in 1:3){ df.now &amp;lt;- get(paste0(&amp;quot;df&amp;quot;,i)) l[[i]] &amp;lt;- df.now } do.call(rbind,l) 经过评论提醒，还有一种方法可能会显得更加易于理解些，即先形成一个空的data.frame，然后直接利用rbind将变量数据框合并到最终的数据框中。
+l &amp;lt;- data.frame() for(i in 1:3){ df.now &amp;lt;- get(paste0(&amp;quot;df&amp;quot;,i)) l &amp;lt;- rbind(l, df.now) } 两种方法最后得到的结果都是：
  cell val 1 1 345 2 2 123 3 3 466 4 67 234 5 3 234 6 2 56 7 3 23 8 67 8 9 23 34 ##3.</description>
     </item>
     
@@ -1572,9 +1581,9 @@ S3 S3是想了一种基于泛型函数的面对对象方式。泛型函数可以
 result &amp;lt;- mean(v1) 要比
 result = v1.mean() 更加容易理解。
 S3对象是一个list并且有一个名为class的属性，举例说明创建一个foo类的对象并且用class查看他的类
-x &amp;lt;- 1 attr(x, &amp;#34;class&amp;#34;) &amp;lt;- &amp;#34;foo&amp;#34; x [1] 1 attr(,&amp;#34;class&amp;#34;) [1] &amp;#34;foo&amp;#34; class(x) [1] &amp;#34;foo&amp;#34; S3没有正式的类型间关系的定义，一个对象可以有多个类型，表现为其class属性是一个向量
-class(x) &amp;lt;- c(&amp;#34;foo&amp;#34;, &amp;#34;bar&amp;#34;) class(x) [1] &amp;#34;foo&amp;#34; &amp;#34;bar&amp;#34; 方法分派是指由泛型函数 (generic function) 来决定对某个对象使用的方法. 所有泛型函数都有类似的形式: 一个广义的函数名, 并调用 UseMethod() 来决定为对象分派哪个方法. 这也使得泛型函数的形式都很简单, 比如 mean()
-mean function (x, ...) UseMethod(&amp;#34;mean&amp;#34;) &amp;lt;bytecode: 0x103792920&amp;gt; &amp;lt;environment: namespace:base&amp;gt; UseMethod() 会根据对象的 class 属性来决定分派什么方法,所以方法必须以 generic.class 的方式命名才能被 UseMethod() 找到, 比如:
+x &amp;lt;- 1 attr(x, &amp;quot;class&amp;quot;) &amp;lt;- &amp;quot;foo&amp;quot; x [1] 1 attr(,&amp;quot;class&amp;quot;) [1] &amp;quot;foo&amp;quot; class(x) [1] &amp;quot;foo&amp;quot; S3没有正式的类型间关系的定义，一个对象可以有多个类型，表现为其class属性是一个向量
+class(x) &amp;lt;- c(&amp;quot;foo&amp;quot;, &amp;quot;bar&amp;quot;) class(x) [1] &amp;quot;foo&amp;quot; &amp;quot;bar&amp;quot; 方法分派是指由泛型函数 (generic function) 来决定对某个对象使用的方法. 所有泛型函数都有类似的形式: 一个广义的函数名, 并调用 UseMethod() 来决定为对象分派哪个方法. 这也使得泛型函数的形式都很简单, 比如 mean()
+mean function (x, ...) UseMethod(&amp;quot;mean&amp;quot;) &amp;lt;bytecode: 0x103792920&amp;gt; &amp;lt;environment: namespace:base&amp;gt; UseMethod() 会根据对象的 class 属性来决定分派什么方法,所以方法必须以 generic.class 的方式命名才能被 UseMethod() 找到, 比如:
 mean.numeric &amp;lt;- function(x, .</description>
     </item>
     
@@ -1586,7 +1595,7 @@ mean.numeric &amp;lt;- function(x, .</description>
       <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%AD%E7%9A%84sweep%E5%87%BD%E6%95%B0/</guid>
       <description>函数的用途 base包中sweep()函数是处理统计量的工具。所以一般结合apply()函数来使用，一般我们需要将apply()统计出来的统计量要代回原数据集去对应操作的时候就需要用到sweep()。
  扫除、清除也是sweep单词的本义。
- 函数的参数 sweep(x, MARGIN, STATS, FUN = &amp;#34;-&amp;#34;, check.margin = TRUE, ...)  x:即要处理的原数据集 MARGIN：对行或列，或者数列的其他维度进行操作 STATS：需要对原数据集操作用到的统计量 FUN：操作需要用到的四则运算，默认为减法&amp;quot;-&amp;quot;，当然可以修改成&amp;quot;+&amp;quot;,&amp;quot;*&amp;quot;,&amp;quot;/&amp;ldquo;即加、乘、除 check.margin:是否需要检查维度是否适宜的问题，默认为TRUE。 ……  实例分析 1、比如我们需要将原数据集所有数据都减去各列的平均数，所以我们需要用apply()计算出每列的平均数，然后用sweep()完成。
+ 函数的参数 sweep(x, MARGIN, STATS, FUN = &amp;quot;-&amp;quot;, check.margin = TRUE, ...)  x:即要处理的原数据集 MARGIN：对行或列，或者数列的其他维度进行操作 STATS：需要对原数据集操作用到的统计量 FUN：操作需要用到的四则运算，默认为减法&amp;quot;-&amp;quot;，当然可以修改成&amp;quot;+&amp;quot;,&amp;quot;*&amp;quot;,&amp;quot;/&amp;ldquo;即加、乘、除 check.margin:是否需要检查维度是否适宜的问题，默认为TRUE。 ……  实例分析 1、比如我们需要将原数据集所有数据都减去各列的平均数，所以我们需要用apply()计算出每列的平均数，然后用sweep()完成。
 require(stats) # for mean head(attitude, 10) ## rating complaints privileges learning raises critical advance ## 1 43 51 30 39 61 92 45 ## 2 63 64 51 54 63 73 47 ## 3 71 70 68 69 76 86 48 ## 4 61 63 45 47 54 84 35 ## 5 81 78 56 66 71 83 47 ## 6 43 55 49 44 54 49 34 ## 7 58 67 42 56 66 68 35 ## 8 71 75 50 55 70 66 41 ## 9 72 82 72 67 71 83 31 ## 10 67 61 45 47 62 80 41 mean.</description>
     </item>
     
@@ -1639,19 +1648,19 @@ library(ggplot2) df &amp;lt;- ToothGrowth df$dose &amp;lt;- as.factor(df$dose) h
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E5%8C%85%E7%9A%84%E6%9F%A5%E7%9C%8B%E5%8D%B8%E9%99%A4%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8D%B8%E8%BD%BD/</guid>
       <description>01. 卸载自己古老的包 查看自己的包
-mypackages &amp;lt;- installed.packages()[,c(&amp;#39;Package&amp;#39;,&amp;#39;Version&amp;#39;,&amp;#39;LibPath&amp;#39;)] %&amp;gt;% as.data.frame() write.csv(mypackages, &amp;#34;~/Desktop/mypackages.csv&amp;#34;) 从存的文档中找到自己想要卸载的R包
-remove.packages(c(&amp;#34;BSgenome.Athaliana.TAIR.TAIR9&amp;#34;, &amp;#34;BSgenome.Hsapiens.UCSC.hg19&amp;#34;, &amp;#34;GenomeInfoDb&amp;#34;, &amp;#34;GenomeInfoDbData&amp;#34;, &amp;#34;GenomicAlignments&amp;#34;, &amp;#34;GenomicFeatures&amp;#34;, &amp;#34;GenomicRanges&amp;#34;, &amp;#34;GO.db&amp;#34;, &amp;#34;GSEABase&amp;#34;, &amp;#34;KEGGgraph&amp;#34;, &amp;#34;KEGGREST&amp;#34;, &amp;#34;learnr&amp;#34;, &amp;#34;RgoogleMaps&amp;#34;, &amp;#34;RSQLite&amp;#34;, &amp;#34;yeastRNASeq&amp;#34;, &amp;#34;yyplot&amp;#34;), lib = .libPaths()[1]) remove.packages(c(&amp;#34;IRdisplay&amp;#34;, &amp;#34;IRkernel&amp;#34;), lib = .libPaths()[2]) mypackages &amp;lt;- installed.packages()[,c(&amp;#39;Package&amp;#39;,&amp;#39;Version&amp;#39;,&amp;#39;LibPath&amp;#39;)] %&amp;gt;% as.data.frame() write.csv(mypackages, &amp;#34;~/Desktop/mypackages_new.csv&amp;#34;) 查看之后上述的包已经被卸载了。
+mypackages &amp;lt;- installed.packages()[,c(&#39;Package&#39;,&#39;Version&#39;,&#39;LibPath&#39;)] %&amp;gt;% as.data.frame() write.csv(mypackages, &amp;quot;~/Desktop/mypackages.csv&amp;quot;) 从存的文档中找到自己想要卸载的R包
+remove.packages(c(&amp;quot;BSgenome.Athaliana.TAIR.TAIR9&amp;quot;, &amp;quot;BSgenome.Hsapiens.UCSC.hg19&amp;quot;, &amp;quot;GenomeInfoDb&amp;quot;, &amp;quot;GenomeInfoDbData&amp;quot;, &amp;quot;GenomicAlignments&amp;quot;, &amp;quot;GenomicFeatures&amp;quot;, &amp;quot;GenomicRanges&amp;quot;, &amp;quot;GO.db&amp;quot;, &amp;quot;GSEABase&amp;quot;, &amp;quot;KEGGgraph&amp;quot;, &amp;quot;KEGGREST&amp;quot;, &amp;quot;learnr&amp;quot;, &amp;quot;RgoogleMaps&amp;quot;, &amp;quot;RSQLite&amp;quot;, &amp;quot;yeastRNASeq&amp;quot;, &amp;quot;yyplot&amp;quot;), lib = .libPaths()[1]) remove.packages(c(&amp;quot;IRdisplay&amp;quot;, &amp;quot;IRkernel&amp;quot;), lib = .libPaths()[2]) mypackages &amp;lt;- installed.packages()[,c(&#39;Package&#39;,&#39;Version&#39;,&#39;LibPath&#39;)] %&amp;gt;% as.data.frame() write.csv(mypackages, &amp;quot;~/Desktop/mypackages_new.csv&amp;quot;) 查看之后上述的包已经被卸载了。
 02. 补充部分 查看已加载的包
 (.packages()) 卸除已加载的包
-detach(&amp;#34;package:RMySQL&amp;#34;) 注意是卸除，不是卸载，也就是说不是把包从R运行环境中彻底删除，只是不希望该包被加载使用。
+detach(&amp;quot;package:RMySQL&amp;quot;) 注意是卸除，不是卸载，也就是说不是把包从R运行环境中彻底删除，只是不希望该包被加载使用。
 在包使用函数冲突，检验函数依赖时比较有用。
 安装包
-install.packages(&amp;#34;TSA&amp;#34;) 列出包所在库的路径
+install.packages(&amp;quot;TSA&amp;quot;) 列出包所在库的路径
 .libPaths() 包的载入
 library() 或 require() 安装完包后，需要加载才能使用其中的函数，此时括号中不使用引号。两者的不同之处在于library()载入之后不返回任何信息，而require()载入后则会返回TRUE，因此require()适合用于程序的书写。
 包的更新
 update.packages() 彻底删除已安装的包：
-remove. packages(c(&amp;#34;pkg1&amp;#34;,&amp;#34;pkg2&amp;#34;) , lib = file.path(&amp;#34;path&amp;#34;, &amp;#34;to&amp;#34;, &amp;#34;library&amp;#34;)) 查看已安装的包</description>
+remove. packages(c(&amp;quot;pkg1&amp;quot;,&amp;quot;pkg2&amp;quot;) , lib = file.path(&amp;quot;path&amp;quot;, &amp;quot;to&amp;quot;, &amp;quot;library&amp;quot;)) 查看已安装的包</description>
     </item>
     
     <item>
@@ -1673,9 +1682,9 @@ Chr start stop ref alt Hom/het ID chr1 5179574 5183384 ref Del Het 719 chr1 5179
       <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E5%B0%86%E6%95%B0%E6%8D%AE%E6%A1%86%E5%86%85%E7%9B%B8%E5%90%8C%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%8A%A0/</guid>
       <description>1. 问题 有的时候从原始数据读入到R中的数据会有很多的重复数据，并没有进行数据合并，对于后续的处理中会造成麻烦，因为R处理这种数据的时候会只取用第一次出现的结果。处理这个问题有很多方法，记录如下。
 2. 解决 首先建立一个数据框，用来测试我们的方法：
-bevs &amp;lt;- data.frame(cbind(name = c(&amp;#34;Bill&amp;#34;, &amp;#34;Llib&amp;#34;), drink = c(&amp;#34;coffee&amp;#34;, &amp;#34;tea&amp;#34;, &amp;#34;cocoa&amp;#34;, &amp;#34;water&amp;#34;), cost = seq(1:8))) bevs$cost &amp;lt;- as.integer(bevs$cost) bevs 下面利用plyr 包里面的count 函数进行相加
-library(plyr) count(bevs, &amp;#34;name&amp;#34;) 同时统计两列，结果如下：
-count(bevs, c(&amp;#34;name&amp;#34;, &amp;#34;drink&amp;#34;)) 如果想知道Bill和Llib在不同drink上花费的钱是多少呢？可以使用 aggregate函数。
+bevs &amp;lt;- data.frame(cbind(name = c(&amp;quot;Bill&amp;quot;, &amp;quot;Llib&amp;quot;), drink = c(&amp;quot;coffee&amp;quot;, &amp;quot;tea&amp;quot;, &amp;quot;cocoa&amp;quot;, &amp;quot;water&amp;quot;), cost = seq(1:8))) bevs$cost &amp;lt;- as.integer(bevs$cost) bevs 下面利用plyr 包里面的count 函数进行相加
+library(plyr) count(bevs, &amp;quot;name&amp;quot;) 同时统计两列，结果如下：
+count(bevs, c(&amp;quot;name&amp;quot;, &amp;quot;drink&amp;quot;)) 如果想知道Bill和Llib在不同drink上花费的钱是多少呢？可以使用 aggregate函数。
 aggregate(cost ~ name + drink, data = bevs, sum) 统计Bill和Llib的总花费
 aggregate(cost ~ name, data = bevs, sum) 3. 总结 总结而言，利用count和aggregate可以很方便的帮助我们整理数据，将重复出现的变量归到一起进行计算。</description>
     </item>
@@ -1687,10 +1696,10 @@ aggregate(cost ~ name, data = bevs, sum) 3. 总结 总结而言，利用count和
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E6%95%B0%E6%8D%AE%E6%A1%86%E9%80%89%E4%B8%AD%E6%9F%90%E5%88%97%E4%B9%8B%E5%90%8E%E4%B8%8D%E9%99%8D%E4%B8%BA%E6%88%90%E5%88%97%E8%A1%A8/</guid>
       <description>1. 问题 数据处理中一个令人头疼的事情是选中数据框中的某列时经常会被降维成列表而不是保持原来数据框的结构，如下：
-student &amp;lt;- data.frame(ID=c(11,12,13),Name=c(&amp;#34;Devin&amp;#34;,&amp;#34;Edward&amp;#34;,&amp;#34;Wenli&amp;#34;),Gender=c(&amp;#34;M&amp;#34;,&amp;#34;M&amp;#34;,&amp;#34;F&amp;#34;)) student 当我们想得到name这一行的时候会采用以下方法
-name1 &amp;lt;- student$Name name2 &amp;lt;- student[,2] str(name1) str(name2) #Factor w/ 3 levels &amp;#34;Devin&amp;#34;,&amp;#34;Edward&amp;#34;,..: 1 2 3 #Factor w/ 3 levels &amp;#34;Devin&amp;#34;,&amp;#34;Edward&amp;#34;,..: 1 2 3 可以看到数据都是factor类型的，没有保持为数据框，而这是不方面的
+student &amp;lt;- data.frame(ID=c(11,12,13),Name=c(&amp;quot;Devin&amp;quot;,&amp;quot;Edward&amp;quot;,&amp;quot;Wenli&amp;quot;),Gender=c(&amp;quot;M&amp;quot;,&amp;quot;M&amp;quot;,&amp;quot;F&amp;quot;)) student 当我们想得到name这一行的时候会采用以下方法
+name1 &amp;lt;- student$Name name2 &amp;lt;- student[,2] str(name1) str(name2) #Factor w/ 3 levels &amp;quot;Devin&amp;quot;,&amp;quot;Edward&amp;quot;,..: 1 2 3 #Factor w/ 3 levels &amp;quot;Devin&amp;quot;,&amp;quot;Edward&amp;quot;,..: 1 2 3 可以看到数据都是factor类型的，没有保持为数据框，而这是不方面的
 #2. 解决 我们可以利用以下两种方式避免这种情况的发生
-name3 &amp;lt;- student[,2,drop = FALSE] name4 &amp;lt;- student[&amp;#34;Name&amp;#34;] str(name3) str(name4) #&amp;#39;data.frame&amp;#39;:	3 obs. of 1 variable: #$ Name: Factor w/ 3 levels &amp;#34;Devin&amp;#34;,&amp;#34;Edward&amp;#34;,..: 1 2 3 #&amp;#39;data.frame&amp;#39;:	3 obs. of 1 variable: #$ Name: Factor w/ 3 levels &amp;#34;Devin&amp;#34;,&amp;#34;Edward&amp;#34;,.</description>
+name3 &amp;lt;- student[,2,drop = FALSE] name4 &amp;lt;- student[&amp;quot;Name&amp;quot;] str(name3) str(name4) #&#39;data.frame&#39;:	3 obs. of 1 variable: #$ Name: Factor w/ 3 levels &amp;quot;Devin&amp;quot;,&amp;quot;Edward&amp;quot;,..: 1 2 3 #&#39;data.frame&#39;:	3 obs. of 1 variable: #$ Name: Factor w/ 3 levels &amp;quot;Devin&amp;quot;,&amp;quot;Edward&amp;quot;,.</description>
     </item>
     
     <item>
@@ -1725,7 +1734,7 @@ BAD: calculate_avg_clicks , calculateAvgClicks
 Make function names verbs.
 Exception: When creating a classed object, the function name
  3.0 间距(Spacing) 当使用所有二进制运算符(如=,+,-,&amp;lt;,等)在两端空格。例外:当符号 = 是函数调用时的传递参数周围不用空格隔开。 不要在符号“，”前空格隔开，但需要在“，”后添加空格 good style
-tab.prior &amp;lt;- table(df[df$days.from.opt &amp;lt; 0, &amp;#34;campaign.id&amp;#34;]) total &amp;lt;- sum(x[, 1]) total &amp;lt;- sum(x[1, ])123 bad style</description>
+tab.prior &amp;lt;- table(df[df$days.from.opt &amp;lt; 0, &amp;quot;campaign.id&amp;quot;]) total &amp;lt;- sum(x[, 1]) total &amp;lt;- sum(x[1, ])123 bad style</description>
     </item>
     
     <item>
@@ -1744,7 +1753,7 @@ tab.prior &amp;lt;- table(df[df$days.from.opt &amp;lt; 0, &amp;#34;campaign.id&a
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E8%AF%AD%E8%A8%80%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8-rvest%E6%95%99%E7%A8%8B/</guid>
       <description>安装包
-# install.packages(&amp;#34;rvest&amp;#34;) 查看rvest包的详细信息
+# install.packages(&amp;quot;rvest&amp;quot;) 查看rvest包的详细信息
 library(help = rvest) ###包的用法：
   read_html() 读取html文档的函数，其输入可以是线上的url，也可以是本地的html文件，甚至是包含html的字符串也可以。
   html_nodes() 选择提取文档中制定元素的部分。可以使用css selectors，例如html_nodes(doc, &amp;ldquo;table td&amp;rdquo;)；也可以使用xpath selectors，例如html_nodes(doc, xpath = &amp;ldquo;//table//td&amp;rdquo;)。
@@ -1753,7 +1762,7 @@ library(help = rvest) ###包的用法：
   html_form(),set_values()和submit_form() 分别表示提取、修改和提交表单。
   在中文网页中我们经常会遇到乱码的问题，这里提供了两个函数来解决：guess_encoding()用来探测文档的编码，方便我们在读入html文档时设置正确的编码格式，repair_encoding()用来修复html文档读入后的乱码问题。
 还有一些函数，用来模拟网上的浏览行为，如html_session(),jump_to(),follow_link(),back(),forward(),submit_form()等等。
-library(rvest) web&amp;lt;-read_html(&amp;#34;https://book.douban.com/top250?icn=index-book250-all&amp;#34;,encoding=&amp;#34;UTF-8&amp;#34;) position &amp;lt;- web %&amp;gt;% html_nodes(&amp;#34;p.pl&amp;#34;) %&amp;gt;% html_text() web position 第一行是加载Rvest包。
+library(rvest) web&amp;lt;-read_html(&amp;quot;https://book.douban.com/top250?icn=index-book250-all&amp;quot;,encoding=&amp;quot;UTF-8&amp;quot;) position &amp;lt;- web %&amp;gt;% html_nodes(&amp;quot;p.pl&amp;quot;) %&amp;gt;% html_text() web position 第一行是加载Rvest包。
 第二行是用read_html函数读取网页信息（类似Rcurl里的getURL），在这个函数里只需写清楚网址和编码（一般就是UTF-8）即可。
 第三行是获取节点信息。用%&amp;gt;%符号进行层级划分。web就是之前存储网页信息的变量，所以我们从这里开始，然后html_nodes()函数获取网页里的相应节点。在下面代码里我简单的重现了原网页里的一个层级结构。可以看到，实际上我们要爬取的信息在25个class属性为pl的标签里的文本。
 [清] 曹雪芹 著 / 人民文学出版社 / 1996-12 / 59.70元 而对于这样的结构，在htmlnodes()函数里的写法就是简单的 &#34;p.pl&#34;，其中“.”表示class属性的值，如果是id属性则用“#”，如果大家学过CSS选择器就很好理解了，是完全一致的。 最后我们用html_text()函数表示获取文本信息，否则返回的是整个标签。总体上用以下一行代码就可以实现：
@@ -1768,7 +1777,7 @@ Example 2 到天气网(http://lishi.</description>
       <guid>https://kongjianyang.github.io/cn/2018/11/24/shell%E7%BC%96%E7%A8%8B-bash-shell%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E5%8F%98%E9%87%8F/</guid>
       <description>1.介绍 shell有很多以$开头的特殊变量，以下是对于这些变量的说明：
    变量 意义     $$ Shell本身的PID（ProcessID）   $! Shell最后运行的后台Process的PID   $? 最后运行的命令的结束代码（返回值）   $- 使用Set命令设定的Flag一览   $* 所有参数列表。如&amp;quot;$*&amp;ldquo;用「&amp;quot;」括起来的情况、以&amp;rdquo;$1 $2 … $n&amp;quot;的形式输出所有参数。   $@ 所有参数列表。如&amp;quot;$@&amp;ldquo;用「&amp;quot;」括起来的情况、以&amp;rdquo;$1&amp;quot; &amp;ldquo;$2&amp;rdquo; … &amp;ldquo;$n&amp;rdquo; 的形式输出所有参数。   $# 添加到Shell的参数个数   $0 Shell本身的文件名   $1～$n 添加到Shell的各参数值。$1是第1参数、$2是第2参数…    2.例子 下面通过一个例子解释怎么使用这些特殊变量 命令一个variable.sh的简单脚本，其内容如下
-#!/bin/bash echo &amp;#34;number:$#&amp;#34; # $# 是传给脚本的参数个数 echo &amp;#34;scname:$0&amp;#34; # $0 是脚本本身的名字 echo &amp;#34;first :$1&amp;#34; # $1是传递给该shell脚本的第一个参数 echo &amp;#34;second:$2&amp;#34; # $2是传递给该shell脚本的第二个参数 echo &amp;#34;argume:$@&amp;#34; # $@ 是传给脚本的所有参数的列表 echo &amp;#34;all argume:$*&amp;#34; # $* 所有参数列表 echo &amp;#34;finish code:$?</description>
+#!/bin/bash echo &amp;quot;number:$#&amp;quot; # $# 是传给脚本的参数个数 echo &amp;quot;scname:$0&amp;quot; # $0 是脚本本身的名字 echo &amp;quot;first :$1&amp;quot; # $1是传递给该shell脚本的第一个参数 echo &amp;quot;second:$2&amp;quot; # $2是传递给该shell脚本的第二个参数 echo &amp;quot;argume:$@&amp;quot; # $@ 是传给脚本的所有参数的列表 echo &amp;quot;all argume:$*&amp;quot; # $* 所有参数列表 echo &amp;quot;finish code:$?</description>
     </item>
     
     <item>
@@ -1779,11 +1788,11 @@ Example 2 到天气网(http://lishi.</description>
       <guid>https://kongjianyang.github.io/cn/2018/11/24/shell%E7%BC%96%E7%A8%8B-bash-shell%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/</guid>
       <description>1.字符串属性 字符有可能是数字、字母、空格、其他特殊字符，而字符串有可能是它们中的一种或者多种的组合，在组合之后还可能形成具有特定意义的字符串，诸如邮件地址，URL地址等。
 数字或者数字组合
-$ i=5;j=9423483247234; $ echo $i | grep &amp;#34;^[0-9]$&amp;#34; 5 $ echo $j | grep &amp;#34;^[0-9]\+$&amp;#34; 9423483247234 字符组合
-$ c=&amp;#34;A&amp;#34;; d=&amp;#34;fwefewjuew&amp;#34;; e=&amp;#34;fewfEFWefwefe&amp;#34; $ echo $c | grep &amp;#34;^[A-Z]$&amp;#34; A $ echo $d | grep &amp;#34;^[a-z]\+&amp;#34; fwefewjuew $ echo $e | grep &amp;#34;^[a-zA-Z]\+$&amp;#34; fewfEFWefwefe 字母和数字的组合
-$ ic=&amp;#34;432fwfwefeFWEwefwef&amp;#34; $ echo $ic | grep &amp;#34;^[0-9a-zA-Z]\+$&amp;#34; 432fwfwefeFWEwefwef 匹配邮件地址
-$ echo &amp;#34;test2007@lzu.cn&amp;#34; | grep &amp;#34;[0-9a-zA-Z\.]*@[0-9a-zA-Z\.]*&amp;#34; test2007@lzu.cn 匹配 URL 地址
-$ echo &amp;#34;http://news.lzu.edu.cn/article.jsp?newsid=10135&amp;#34; | grep &amp;#34;^http://[0-9a-zA-Z\.</description>
+$ i=5;j=9423483247234; $ echo $i | grep &amp;quot;^[0-9]$&amp;quot; 5 $ echo $j | grep &amp;quot;^[0-9]\+$&amp;quot; 9423483247234 字符组合
+$ c=&amp;quot;A&amp;quot;; d=&amp;quot;fwefewjuew&amp;quot;; e=&amp;quot;fewfEFWefwefe&amp;quot; $ echo $c | grep &amp;quot;^[A-Z]$&amp;quot; A $ echo $d | grep &amp;quot;^[a-z]\+&amp;quot; fwefewjuew $ echo $e | grep &amp;quot;^[a-zA-Z]\+$&amp;quot; fewfEFWefwefe 字母和数字的组合
+$ ic=&amp;quot;432fwfwefeFWEwefwef&amp;quot; $ echo $ic | grep &amp;quot;^[0-9a-zA-Z]\+$&amp;quot; 432fwfwefeFWEwefwef 匹配邮件地址
+$ echo &amp;quot;test2007@lzu.cn&amp;quot; | grep &amp;quot;[0-9a-zA-Z\.]*@[0-9a-zA-Z\.]*&amp;quot; test2007@lzu.cn 匹配 URL 地址
+$ echo &amp;quot;http://news.lzu.edu.cn/article.jsp?newsid=10135&amp;quot; | grep &amp;quot;^http://[0-9a-zA-Z\.</description>
     </item>
     
     <item>
@@ -1793,8 +1802,8 @@ $ echo &amp;#34;http://news.lzu.edu.cn/article.jsp?newsid=10135&amp;#34; | grep 
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/shell%E7%BC%96%E7%A8%8B-bash-shell%E7%9A%84%E5%B8%83%E5%B0%94%E8%BF%90%E7%AE%97/</guid>
       <description>在 Bash 里有这样的常量(实际上是两个内置命令，在这里我们姑且这么认为，后面将介绍)，即 true 和 false，一个表示真，一个表示假。对它们可以进行与、或、非运算等常规的逻辑运算。
-1. 与或非运算 $ if true;then echo &amp;#34;YES&amp;#34;; else echo &amp;#34;NO&amp;#34;; fi YES $ if false;then echo &amp;#34;YES&amp;#34;; else echo &amp;#34;NO&amp;#34;; fi NO 与运算用&amp;amp;&amp;amp;表示
-$ if true &amp;amp;&amp;amp; true;then echo &amp;#34;YES&amp;#34;; else echo &amp;#34;NO&amp;#34;; fi YES $ if true &amp;amp;&amp;amp; false;then echo &amp;#34;YES&amp;#34;; else echo &amp;#34;NO&amp;#34;; fi NO $ if false &amp;amp;&amp;amp; false;then echo &amp;#34;YES&amp;#34;; else echo &amp;#34;NO&amp;#34;; fi NO $ if false &amp;amp;&amp;amp; true;then echo &amp;#34;YES&amp;#34;; else echo &amp;#34;NO&amp;#34;; fi NO 或运算用||表示</description>
+1. 与或非运算 $ if true;then echo &amp;quot;YES&amp;quot;; else echo &amp;quot;NO&amp;quot;; fi YES $ if false;then echo &amp;quot;YES&amp;quot;; else echo &amp;quot;NO&amp;quot;; fi NO 与运算用&amp;amp;&amp;amp;表示
+$ if true &amp;amp;&amp;amp; true;then echo &amp;quot;YES&amp;quot;; else echo &amp;quot;NO&amp;quot;; fi YES $ if true &amp;amp;&amp;amp; false;then echo &amp;quot;YES&amp;quot;; else echo &amp;quot;NO&amp;quot;; fi NO $ if false &amp;amp;&amp;amp; false;then echo &amp;quot;YES&amp;quot;; else echo &amp;quot;NO&amp;quot;; fi NO $ if false &amp;amp;&amp;amp; true;then echo &amp;quot;YES&amp;quot;; else echo &amp;quot;NO&amp;quot;; fi NO 或运算用||表示</description>
     </item>
     
     <item>
@@ -1808,7 +1817,7 @@ man test info test 可以使用type查看一个命令是否是shell内置的函�
 $ type type type is a shell builti $ type awk awk is /usr/bin/awk 从结果可知： let 是 Shell 内置命令，awk是外部命令，在 /usr/bin 目录下
 expr命令是一个手工命令行计数器，用于在UNIX/LINUX下求表达式变量的值，一般用于整数值，也可用于字符串。
 $ expr 5 % 2 1 bc 命令是任意精度计算器语言，通常在linux下当计算器用。它类似基本的计算器, 使用这个计算器可以做基本的数学运算。
-$ bc bc 1.06 Copyright 1991-1994, 1997, 1998, 2000 Free Software Foundation, Inc. This is free software with ABSOLUTELY NO WARRANTY. For details type `warranty&amp;#39;. 3^2 9 let 命令是 BASH 中用于计算的工具，用于执行一个或多个表达式，变量计算中不需要加上 $ 来表示变量。如果表达式中包含了空格或其他特殊字符，则必须引起来。</description>
+$ bc bc 1.06 Copyright 1991-1994, 1997, 1998, 2000 Free Software Foundation, Inc. This is free software with ABSOLUTELY NO WARRANTY. For details type `warranty&#39;. 3^2 9 let 命令是 BASH 中用于计算的工具，用于执行一个或多个表达式，变量计算中不需要加上 $ 来表示变量。如果表达式中包含了空格或其他特殊字符，则必须引起来。</description>
     </item>
     
     <item>
@@ -1818,7 +1827,7 @@ $ bc bc 1.06 Copyright 1991-1994, 1997, 1998, 2000 Free Software Foundation, Inc
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/shell%E7%BC%96%E7%A8%8B-bash-shell%E7%9A%84%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</guid>
       <description>1. 基本操作 ls 命令显示文件基本属性，d 表示目录，- 表示普通文件（或者硬链接），l 表示符号链接，p 表示管道文件，b 和 c 分别表示块设备和字符设备。除此之外还可以使用stat命令，stat以文字的格式来显示inode的内容。
-$ stat bin/ 16777220 8608385535 drwxr-xr-x 37 root wheel 0 1184 &amp;#34;Nov 23 09:06:38 2018&amp;#34; &amp;#34;Nov 10 01:38:56 2018&amp;#34; &amp;#34;Nov 10 01:38:56 2018&amp;#34; &amp;#34;Sep 21 00:17:17 2018&amp;#34; 4096 0 0x88000 bin/ file命令也可以给出文件的基本信息
+$ stat bin/ 16777220 8608385535 drwxr-xr-x 37 root wheel 0 1184 &amp;quot;Nov 23 09:06:38 2018&amp;quot; &amp;quot;Nov 10 01:38:56 2018&amp;quot; &amp;quot;Nov 10 01:38:56 2018&amp;quot; &amp;quot;Sep 21 00:17:17 2018&amp;quot; 4096 0 0x88000 bin/ file命令也可以给出文件的基本信息
 $ file bin bin: directory 可以使用chmod给文件添加权限
 chmod 777 regular_file 可以使用passwd命令给用户修改自己的密码
 passwd #普通用户通过执行该命令，修改自己的密码 可以使用tree显示目录树
@@ -1835,7 +1844,7 @@ $ tree #当前目录 2. 压缩与解压缩文件 #tar $ tar -cf file.tar file #�
 一图看shell在操作系统中的位置 使用命令查看当前shell
 echo $SHELL #/bin/zsh ls -l /bin/zsh #-rwxr-xr-x 1 root wheel 610224 Sep 21 00:17 /bin/zsh 如果你发现当前 Shell 不是 Bash，请用下面的方法替换它：
 $ bash $ echo $SHELL # 确认一下 /bin/bash ##2.简单的shell脚本 假设我们设计一个test.sh的脚本，内容如下
-#!/bin/bash # test.sh echo &amp;#34;Hello, World&amp;#34; 重点是该文件的第一行，当我们直接运行该脚本文件时，该行告诉操作系统使用用#! 符号之后面的解释器以及相应的参数来解释该脚本文件，通过分析第一行，我们发现对应的解释器是 /bin/bash。
+#!/bin/bash # test.sh echo &amp;quot;Hello, World&amp;quot; 重点是该文件的第一行，当我们直接运行该脚本文件时，该行告诉操作系统使用用#! 符号之后面的解释器以及相应的参数来解释该脚本文件，通过分析第一行，我们发现对应的解释器是 /bin/bash。
 3.shell的执行原理 Shell 接收用户输入的脚本名，并进行分析。如果文件被标记为可执行，但不是被编译过的程序，Shell 就认为它是一个 Shell 脚本。 Shell 将读取其中的内容，并加以解释执行。所以，从用户的观点看，执行 Shell 脚本的方式与执行一般的可执行文件的方式相似。
 因此，用户开发的 Shell 脚本可以驻留在命令搜索路径的目录之下（通常是 /bin、/usr/bin等），像普通命令一样使用。这样，也就开发出自己的新命令。如果打算反复使用编好的 Shell 脚本，那么采用这种方式就比较方便。</description>
     </item>
@@ -1901,10 +1910,10 @@ conda list 2.安装jupyterlab conda install -c conda-forge jupyterlab 3.使用Ju
       <guid>https://kongjianyang.github.io/cn/2018/11/24/xargs%E5%91%BD%E4%BB%A4%E4%B8%8E%E7%AE%A1%E9%81%93%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
       <description>xargs是一条Unix 和类Unix 操作系统 的常用命令。它的作用是将参数列表转换成小块分段传递给其他命令，以避免参数列表过长的问题。
 下面两个例子解释xargs命令与管道之间的区别
-echo &amp;#39;main&amp;#39; | cat # main 这条命令中cat会从其标准输入中读取内容并处理，也就是会输出 &amp;lsquo;main&amp;rsquo; 字符串。echo命令将其标准输出的内容 &amp;lsquo;main&amp;rsquo; 通过管道定向到 cat 的标准输入中
-echo &amp;#39;--help&amp;#39; | xargs cat #cat: illegal option -- - #usage: cat [-benstuv] [file ...] 上述的命令类似
+echo &#39;main&#39; | cat # main 这条命令中cat会从其标准输入中读取内容并处理，也就是会输出 &amp;lsquo;main&amp;rsquo; 字符串。echo命令将其标准输出的内容 &amp;lsquo;main&amp;rsquo; 通过管道定向到 cat 的标准输入中
+echo &#39;--help&#39; | xargs cat #cat: illegal option -- - #usage: cat [-benstuv] [file ...] 上述的命令类似
 cat --help 可以看到 echo &amp;lsquo;&amp;ndash;help&amp;rsquo; | cat 该命令输出的是echo的内容，也就是说将echo的内容当作cat处理的文件内容了，实际上就是echo命令的输出通过管道定向到cat的输入了。然后cat从其标准输入中读取待处理的文本内容。这等价于在test.txt文件中有一行字符 &amp;lsquo;&amp;ndash;help&amp;rsquo; 然后运行 cat test.txt 的效果。
-而 echo &amp;lsquo;&amp;ndash;help&amp;rsquo; | xargs cat 等价于 cat &amp;ndash;help 什么意思呢，就是xargs将其接受的字符串 &amp;ndash;help 做成cat的一个命令参数来运行cat命令，同样 echo &amp;rsquo;test.c test.cpp&amp;rsquo; | xargs cat 等价于 cat test.c test.cpp 此时会将test.c和test.cpp的内容都显示出来。</description>
+而 echo &amp;lsquo;&amp;ndash;help&amp;rsquo; | xargs cat 等价于 cat &amp;ndash;help 什么意思呢，就是xargs将其接受的字符串 &amp;ndash;help 做成cat的一个命令参数来运行cat命令，同样 echo &amp;lsquo;test.c test.cpp&amp;rsquo; | xargs cat 等价于 cat test.c test.cpp 此时会将test.c和test.cpp的内容都显示出来。</description>
     </item>
     
     <item>
@@ -1956,7 +1965,7 @@ conda install -c conda-forge jupyter_contrib_nbextensions 第三步, 开启toc2�
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/%E5%88%A9%E7%94%A8ggplot%E7%BB%98%E5%88%B6%E5%B8%A6%E7%99%BE%E5%88%86%E6%AF%94%E9%A5%BC%E5%9B%BE/</guid>
       <description>1. 介绍 有的时候我们需要利用饼图进行统计结果的占比展示，在R中可以利用ggplot进行绘制，但是ggplot中实际上并没有直接的函数可以绘制饼图，饼图实际上是geom_bar的一个变形。下面我们就来看看如何利用ggplot绘制带百分比的饼图。
-2. 步骤 library(dplyr) library(ggplot2) library(ggmap) # 为了引用主题theme_nothing，用来消除原始ggplot绘图自带的一切标签 df &amp;lt;- data.frame(value = c(52, 239, 9), Group = c(&amp;#34;Positive&amp;#34;, &amp;#34;Negative&amp;#34;, &amp;#34;Neutral&amp;#34;)) %&amp;gt;% # factor levels need to be the opposite order of the cumulative sum of the values mutate(Group = factor(Group, levels = c(&amp;#34;Neutral&amp;#34;, &amp;#34;Negative&amp;#34;, &amp;#34;Positive&amp;#34;)), cumulative = cumsum(value), midpoint = cumulative - value / 2, label = paste0(Group, &amp;#34; &amp;#34;, round(value / sum(value) * 100, 1), &amp;#34;%&amp;#34;)) ggplot(df, aes(x = 1, weight = value, fill = Group)) + geom_bar(width = 1, position = &amp;#34;stack&amp;#34;) + coord_polar(theta = &amp;#34;y&amp;#34;) ## 以y轴建立极坐标 + geom_text(aes(x = 1.</description>
+2. 步骤 library(dplyr) library(ggplot2) library(ggmap) # 为了引用主题theme_nothing，用来消除原始ggplot绘图自带的一切标签 df &amp;lt;- data.frame(value = c(52, 239, 9), Group = c(&amp;quot;Positive&amp;quot;, &amp;quot;Negative&amp;quot;, &amp;quot;Neutral&amp;quot;)) %&amp;gt;% # factor levels need to be the opposite order of the cumulative sum of the values mutate(Group = factor(Group, levels = c(&amp;quot;Neutral&amp;quot;, &amp;quot;Negative&amp;quot;, &amp;quot;Positive&amp;quot;)), cumulative = cumsum(value), midpoint = cumulative - value / 2, label = paste0(Group, &amp;quot; &amp;quot;, round(value / sum(value) * 100, 1), &amp;quot;%&amp;quot;)) ggplot(df, aes(x = 1, weight = value, fill = Group)) + geom_bar(width = 1, position = &amp;quot;stack&amp;quot;) + coord_polar(theta = &amp;quot;y&amp;quot;) ## 以y轴建立极坐标 + geom_text(aes(x = 1.</description>
     </item>
     
     <item>
@@ -1968,8 +1977,8 @@ conda install -c conda-forge jupyter_contrib_nbextensions 第三步, 开启toc2�
       <description>1. 问题 有的时候我们有一系列PDF文件我们希望合并到一个PDF中进行查看和打印，这个时候合并PDF文件就非常有用，PyPDF2库可以帮助我们做到这点。
 2. 用法 PyPDF2 包括了 PdfFileReader PdfFileMerger PageObject PdfFileWriter 四个常用的主要 Class。
 以下命令可以解释这个库是怎么工作的
-from PyPDF2 import PdfFileReader, PdfFileWriter readFile = &amp;#39;read.pdf&amp;#39; writeFile = &amp;#39;write.pdf&amp;#39; # 获取一个 PdfFileReader 工具 pdfReader = PdfFileReader(open(readFile, &amp;#39;rb&amp;#39;)) # 获取 PDF 的页数 pageCount = pdfReader.getNumPages() print(pageCount) # 返回一个 PageObject page = pdfReader.getPage(i) # 获取一个 PdfFileWriter 工具 pdfWriter = PdfFileWriter() # 将一个 PageObject 插手到 PdfFileWriter 中 pdfWriter.addPage(page) # 输出到文件中 pdfWriter.write(open(writeFile, &amp;#39;wb&amp;#39;)) 接下来的命令是一个实例
-from PyPDF2 import PdfFileMerger pdfs = [&amp;#39;file1.</description>
+from PyPDF2 import PdfFileReader, PdfFileWriter readFile = &#39;read.pdf&#39; writeFile = &#39;write.pdf&#39; # 获取一个 PdfFileReader 工具 pdfReader = PdfFileReader(open(readFile, &#39;rb&#39;)) # 获取 PDF 的页数 pageCount = pdfReader.getNumPages() print(pageCount) # 返回一个 PageObject page = pdfReader.getPage(i) # 获取一个 PdfFileWriter 工具 pdfWriter = PdfFileWriter() # 将一个 PageObject 插手到 PdfFileWriter 中 pdfWriter.addPage(page) # 输出到文件中 pdfWriter.write(open(writeFile, &#39;wb&#39;)) 接下来的命令是一个实例
+from PyPDF2 import PdfFileMerger pdfs = [&#39;file1.</description>
     </item>
     
     <item>
@@ -1980,8 +1989,8 @@ from PyPDF2 import PdfFileMerger pdfs = [&amp;#39;file1.</description>
       <guid>https://kongjianyang.github.io/cn/2018/11/24/%E5%88%A9%E7%94%A8python%E5%B0%86%E5%9F%BA%E5%9B%A0%E8%A1%A8%E8%BE%BE%E6%95%B0%E6%8D%AE%E5%AD%98%E4%B8%BA%E5%AD%97%E5%85%B8/</guid>
       <description>1. 问题 我们的基因表达数据如下表所示
  cond1 cond2 cond3 gene1 1.57 2.52 12.05 gene2 0.01 8.90 31.20 gene3 57.05 12.14 50.76 我们希望能够利用Python将这个基因表达文件存为一个dictionary，这样我们能很容易的通过基因名和样品名得到基因的表达量，我们还可以筛选表达量大于某个值的所有基因和样品， 如下：
-myDict[(&amp;#39;gene1&amp;#39;,&amp;#39;cond1&amp;#39;)] = 1.57 myDict[(&amp;#39;gene1&amp;#39;,&amp;#39;cond2&amp;#39;)] = 2.52 myDict[(&amp;#39;gene1&amp;#39;,&amp;#39;cond3&amp;#39;)] = 12.05 myDict[(&amp;#39;gene2&amp;#39;,&amp;#39;cond1&amp;#39;)] = 0.01 ... 2. Python解决 利用Python的逻辑是首先将基因名和样品名存为一个元祖，然后将此元祖作为字典里面的key，将基因表达量作为字典里面的value。
-data = open(input_file, &amp;#39;rU&amp;#39;) l = data.readline().rstrip(&amp;#34;\r\n&amp;#34;) conds = l.split(&amp;#34;\t&amp;#34;) conds.pop(0) d = dict() for l in data: l = l.rstrip(&amp;#34;\r\n&amp;#34;) vals = l.split(&amp;#34;\t&amp;#34;) gene = vals[0] vals.pop(0) valIdx = 0 for val in vals: cond = conds[valIdx] d[(gene, cond)] = float(val) valIdx += 1 ## 额外部分，想得到基因表达量大于12的基因和样品 value12={k:v for k,v in d.</description>
+myDict[(&#39;gene1&#39;,&#39;cond1&#39;)] = 1.57 myDict[(&#39;gene1&#39;,&#39;cond2&#39;)] = 2.52 myDict[(&#39;gene1&#39;,&#39;cond3&#39;)] = 12.05 myDict[(&#39;gene2&#39;,&#39;cond1&#39;)] = 0.01 ... 2. Python解决 利用Python的逻辑是首先将基因名和样品名存为一个元祖，然后将此元祖作为字典里面的key，将基因表达量作为字典里面的value。
+data = open(input_file, &#39;rU&#39;) l = data.readline().rstrip(&amp;quot;\r\n&amp;quot;) conds = l.split(&amp;quot;\t&amp;quot;) conds.pop(0) d = dict() for l in data: l = l.rstrip(&amp;quot;\r\n&amp;quot;) vals = l.split(&amp;quot;\t&amp;quot;) gene = vals[0] vals.pop(0) valIdx = 0 for val in vals: cond = conds[valIdx] d[(gene, cond)] = float(val) valIdx += 1 ## 额外部分，想得到基因表达量大于12的基因和样品 value12={k:v for k,v in d.</description>
     </item>
     
     <item>
@@ -1991,7 +2000,7 @@ data = open(input_file, &amp;#39;rU&amp;#39;) l = data.readline().rstrip(&amp;#3
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/%E5%88%A9%E7%94%A8%E9%9B%86%E7%BE%A4cluster%E8%BF%90%E8%A1%8Cr%E8%84%9A%E6%9C%AC%E7%9A%84%E6%8A%80%E5%B7%A7/</guid>
       <description>1. 编写脚本 首先编写一个R脚本保存在当前目录下，例如HeatMap.R
-library(gplots) qlf_path &amp;lt;- &amp;#34;../07DEgene/QLF_DEG/&amp;#34; file_name &amp;lt;- dir(qlf_path) figure_path &amp;lt;- &amp;#34;../07DEgene/figure/qlf_heatmap/&amp;#34; for (k in 21:21){ mymain &amp;lt;- strsplit(file_name[k], &amp;#34;_&amp;#34;)[[1]][c(1,2,4,5)] mymain &amp;lt;- paste(mymain, collapse = &amp;#34;_&amp;#34;) figure_name &amp;lt;- paste0(figure_path, mymain, &amp;#34;.pdf&amp;#34;) pdf(figure_name) qlf_file &amp;lt;- paste0(qlf_path, file_name[k]) data &amp;lt;- read.table(qlf_file) data &amp;lt;- as.matrix(data) mycol &amp;lt;- colorpanel(n=40,low=&amp;#34;blue&amp;#34;,high=&amp;#34;yellow&amp;#34;) heatmap.2(data, col = mycol, scale = &amp;#34;row&amp;#34;, key=TRUE, trace=&amp;#34;none&amp;#34;,cexCol=1,cexRow=0.5, srtRow=45, adjRow=c(0, 1), srtCol=45, adjCol=c(1,1), Rowv= T, Colv = F, lmat=rbind( c(0, 3), c(2,1), c(4,0) ), lhei=c(1.</description>
+library(gplots) qlf_path &amp;lt;- &amp;quot;../07DEgene/QLF_DEG/&amp;quot; file_name &amp;lt;- dir(qlf_path) figure_path &amp;lt;- &amp;quot;../07DEgene/figure/qlf_heatmap/&amp;quot; for (k in 21:21){ mymain &amp;lt;- strsplit(file_name[k], &amp;quot;_&amp;quot;)[[1]][c(1,2,4,5)] mymain &amp;lt;- paste(mymain, collapse = &amp;quot;_&amp;quot;) figure_name &amp;lt;- paste0(figure_path, mymain, &amp;quot;.pdf&amp;quot;) pdf(figure_name) qlf_file &amp;lt;- paste0(qlf_path, file_name[k]) data &amp;lt;- read.table(qlf_file) data &amp;lt;- as.matrix(data) mycol &amp;lt;- colorpanel(n=40,low=&amp;quot;blue&amp;quot;,high=&amp;quot;yellow&amp;quot;) heatmap.2(data, col = mycol, scale = &amp;quot;row&amp;quot;, key=TRUE, trace=&amp;quot;none&amp;quot;,cexCol=1,cexRow=0.5, srtRow=45, adjRow=c(0, 1), srtCol=45, adjCol=c(1,1), Rowv= T, Colv = F, lmat=rbind( c(0, 3), c(2,1), c(4,0) ), lhei=c(1.</description>
     </item>
     
     <item>
@@ -2001,9 +2010,9 @@ library(gplots) qlf_path &amp;lt;- &amp;#34;../07DEgene/QLF_DEG/&amp;#34; file_n
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/%E5%9F%BA%E5%9B%A0%E7%9A%84%E5%88%86%E5%AD%90%E7%BB%93%E6%9E%84/</guid>
       <description>人类结构基因4个区域：①编码区，包括外显子与内含子；②前导区，位于编码区上游，相当于RNA5’末端非编码区（非翻译区）；③尾部区，位于RNA3’编码区下游，相当于末端非编码区（非翻译区）；④调控区，包括启动子和增强子等。基因编码区的两侧也称为侧翼顺序。
-基因经过转录形成Pre mRNA，这里面包含着内含子和外显子（5端是以外显子打头，但是这段外显子不仅包含CDS，还包含5&amp;rsquo; UTR；3端是以外显子结束，但是这段外显子不仅包含CDS，还包含3&amp;rsquo; UTR），经过剪接形成成熟mRNA,内含子已减掉，如果抛开后来加上去的cap和poly A的话，这时全是外显子，但是不全是CDS，因为只有中间的那部分以起始密码子开始、以终止密码子结束的片段才是CDS，只有这部分才会被翻译成蛋白质。
+基因经过转录形成Pre mRNA，这里面包含着内含子和外显子（5端是以外显子打头，但是这段外显子不仅包含CDS，还包含5&#39; UTR；3端是以外显子结束，但是这段外显子不仅包含CDS，还包含3&#39; UTR），经过剪接形成成熟mRNA,内含子已减掉，如果抛开后来加上去的cap和poly A的话，这时全是外显子，但是不全是CDS，因为只有中间的那部分以起始密码子开始、以终止密码子结束的片段才是CDS，只有这部分才会被翻译成蛋白质。
 一个mRNA EXON可能仅部分编码蛋白质，恰恰是上游或下游非编码区存在时。每个Exon的蛋白质编码部分由CDS元件表示。CDS元件还编码终止密码子。
-对于存在非翻译区的区域，将出现UTR。UTR代表Exon的非蛋白质编码部分。UTR（Untranslated Regions)即非翻译区，是信使RNA（mRNA）分子两端的非编码片段。5&amp;rsquo;-UTR从mRNA起点的甲基化鸟嘌呤核苷酸帽延伸至AUG起始密码子，3&amp;rsquo;-UTR从编码区末端的终止密码子延伸至多聚A尾巴（Poly-A）的末端。
+对于存在非翻译区的区域，将出现UTR。UTR代表Exon的非蛋白质编码部分。UTR（Untranslated Regions)即非翻译区，是信使RNA（mRNA）分子两端的非编码片段。5&#39;-UTR从mRNA起点的甲基化鸟嘌呤核苷酸帽延伸至AUG起始密码子，3&#39;-UTR从编码区末端的终止密码子延伸至多聚A尾巴（Poly-A）的末端。
 其中一个基因有可能有多个转录本，原因是由于不同的剪接方式造成的。我们都知道，基因转录之后，首先是形成前体mRNA，通过剪切内含子连接外显子，5’端加帽及3’端加尾之后形成成熟的mRNA。
 但是在剪切的过程中可能会剪切掉外显子，也有可能保留部分内含子，这样就形成了多种mRNA即多个转录本。
 其中注意平时经常说到的promoter不属于intron和Exon的任何一个，属于Non Coding Sequence也是Regulatory Sequence。</description>
@@ -2027,7 +2036,7 @@ library(gplots) qlf_path &amp;lt;- &amp;#34;../07DEgene/QLF_DEG/&amp;#34; file_n
 2. 例子 以文章Gene Expre ssion in Ovarian Cancer Reflects Both Morphology and Biological Behavior, Distinguishing Clear Cell from Other Poor-Prognosis Ovarian Carcinomas所鉴定的差异基因为例。
 测试一下这些基因和化学刺激响应的相关性。
 样本的大小是n，属于“化学刺激响应”这个分类的基因有k个。
-eg &amp;lt;- c(&amp;#34;7980&amp;#34;, &amp;#34;3081&amp;#34;, &amp;#34;3162&amp;#34;, &amp;#34;3059&amp;#34;, &amp;#34;1545&amp;#34;, &amp;#34;1917&amp;#34;, &amp;#34;6696&amp;#34;, &amp;#34;5797&amp;#34;, &amp;#34;6648&amp;#34; , &amp;#34;10397&amp;#34; , &amp;#34;6781&amp;#34;, &amp;#34;5817&amp;#34;, &amp;#34;1282&amp;#34;, &amp;#34;1284&amp;#34;, &amp;#34;6948&amp;#34;, &amp;#34;7077&amp;#34;) n &amp;lt;- length(eg) k &amp;lt;- sum(eg %in% allgeneInCategory) n k #16 #12 那么做为背景，总体基因为N，属于“化学刺激响应”这个分类的基因有M个。</description>
+eg &amp;lt;- c(&amp;quot;7980&amp;quot;, &amp;quot;3081&amp;quot;, &amp;quot;3162&amp;quot;, &amp;quot;3059&amp;quot;, &amp;quot;1545&amp;quot;, &amp;quot;1917&amp;quot;, &amp;quot;6696&amp;quot;, &amp;quot;5797&amp;quot;, &amp;quot;6648&amp;quot; , &amp;quot;10397&amp;quot; , &amp;quot;6781&amp;quot;, &amp;quot;5817&amp;quot;, &amp;quot;1282&amp;quot;, &amp;quot;1284&amp;quot;, &amp;quot;6948&amp;quot;, &amp;quot;7077&amp;quot;) n &amp;lt;- length(eg) k &amp;lt;- sum(eg %in% allgeneInCategory) n k #16 #12 那么做为背景，总体基因为N，属于“化学刺激响应”这个分类的基因有M个。</description>
     </item>
     
     <item>
@@ -2057,7 +2066,7 @@ ClustalW采用的是全局比对的算法，所以当我们用BLAST和ClustalW�
       <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/%E5%BE%AA%E7%8E%AF%E5%AD%98%E5%A4%9A%E5%BC%A0%E5%9B%BE%E7%89%87/</guid>
-      <description>library(ggpubr) trait_names &amp;lt;- colnames(Het_Ind)[5:18] plot &amp;lt;- list() for (i in 1:length(trait_names)){ trait_data &amp;lt;- Het_Ind[, c(&amp;#34;Genotype&amp;#34;, &amp;#34;NRate&amp;#34;, trait_names[i])] colnames(trait_data) &amp;lt;- c(&amp;#34;Genotype&amp;#34;, &amp;#34;Nitrogen&amp;#34;, &amp;#34;Value&amp;#34;) trait_data$Genotype &amp;lt;- factor(trait_data$Genotype, levels = sort(c(&amp;#34;B73xILP1&amp;#34;, &amp;#34;B73xPH207&amp;#34;, &amp;#34;B73xIHP1&amp;#34;, &amp;#34;B73xPHG84&amp;#34;, &amp;#34;B73xLH82&amp;#34;, &amp;#34;B73xMo17&amp;#34;))) trait_data$Nitrogen &amp;lt;- factor(trait_data$Nitrogen, levels = c(&amp;#34;LN&amp;#34;, &amp;#34;HN&amp;#34;)) plot[[i]] &amp;lt;- ggplot(trait_data, aes(x=Genotype, y=Value, fill = Nitrogen)) + geom_bar(stat = &amp;#34;identity&amp;#34;, position= &amp;#34;dodge&amp;#34;, width=0.8) + theme_bw() + geom_text(aes(label=round(trait_data$Value, digits = 2)), position = position_dodge(width = 0.8), size =2.5) + labs(title= trait_names[i], x = &amp;#34;Genotype&amp;#34;, y = &amp;#34;log2(Hybrid / MP)&amp;#34;) + theme(axis.</description>
+      <description>library(ggpubr) trait_names &amp;lt;- colnames(Het_Ind)[5:18] plot &amp;lt;- list() for (i in 1:length(trait_names)){ trait_data &amp;lt;- Het_Ind[, c(&amp;quot;Genotype&amp;quot;, &amp;quot;NRate&amp;quot;, trait_names[i])] colnames(trait_data) &amp;lt;- c(&amp;quot;Genotype&amp;quot;, &amp;quot;Nitrogen&amp;quot;, &amp;quot;Value&amp;quot;) trait_data$Genotype &amp;lt;- factor(trait_data$Genotype, levels = sort(c(&amp;quot;B73xILP1&amp;quot;, &amp;quot;B73xPH207&amp;quot;, &amp;quot;B73xIHP1&amp;quot;, &amp;quot;B73xPHG84&amp;quot;, &amp;quot;B73xLH82&amp;quot;, &amp;quot;B73xMo17&amp;quot;))) trait_data$Nitrogen &amp;lt;- factor(trait_data$Nitrogen, levels = c(&amp;quot;LN&amp;quot;, &amp;quot;HN&amp;quot;)) plot[[i]] &amp;lt;- ggplot(trait_data, aes(x=Genotype, y=Value, fill = Nitrogen)) + geom_bar(stat = &amp;quot;identity&amp;quot;, position= &amp;quot;dodge&amp;quot;, width=0.8) + theme_bw() + geom_text(aes(label=round(trait_data$Value, digits = 2)), position = position_dodge(width = 0.8), size =2.5) + labs(title= trait_names[i], x = &amp;quot;Genotype&amp;quot;, y = &amp;quot;log2(Hybrid / MP)&amp;quot;) + theme(axis.</description>
     </item>
     
     <item>
@@ -2068,7 +2077,7 @@ ClustalW采用的是全局比对的算法，所以当我们用BLAST和ClustalW�
       <guid>https://kongjianyang.github.io/cn/2018/11/24/%E6%88%91%E7%9A%84vim%E4%B8%AA%E6%80%A7%E9%85%8D%E7%BD%AE/</guid>
       <description>mac下安装vim
 brew install vim 我的一些vim配置信息
-&amp;#34; 显示行号 set number &amp;#34; 启用鼠标 set mouse=a &amp;#34; 显示标尺 set ruler &amp;#34; 历史纪录 set history=1000 &amp;#34; 输入的命令显示出来，看的清楚些 set showcmd &amp;#34; 状态行显示的内容 set statusline=%F%m%r%h%w\ [FORMAT=%{&amp;amp;ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\&amp;#34;%d/%m/%y\ -\ %H:%M\&amp;#34;)} &amp;#34; 启动显示状态行1，总是显示状态行2 set laststatus=2 &amp;#34; 语法高亮显示 syntax on set fileencodings=utf-8,gb2312,gbk,cp936,latin-1 set fileencoding=utf-8 set termencoding=utf-8 set fileformat=unix set encoding=utf-8 &amp;#34; 配色方案 colorscheme desert &amp;#34; 指定配色方案是256色 set t_Co=256 set wildmenu &amp;#34; 去掉有关vi一致性模式，避免以前版本的一些bug和局限，解决backspace不能使用的问题 set nocompatible set backspace=indent,eol,start set backspace=2 &amp;#34; 启用自动对齐功能，把上一行的对齐格式应用到下一行 set autoindent &amp;#34; 依据上面的格式，智能的选择对齐方式，对于类似C语言编写很有用处 set smartindent &amp;#34; vim禁用自动备份 set nobackup set nowritebackup set noswapfile &amp;#34; 用空格代替tab set expandtab &amp;#34; 设置显示制表符的空格字符个数,改进tab缩进值，默认为8，现改为4 set tabstop=4 &amp;#34; 统一缩进为4，方便在开启了et后使用退格(backspace)键，每次退格将删除X个空格 set softtabstop=4 &amp;#34; 设定自动缩进为4个字符，程序中自动缩进所使用的空白长度 set shiftwidth=4 &amp;#34; 设置帮助文件为中文(需要安装vimcdoc文档set helplang=cn &amp;#34; 显示匹配的括号 set showmatch &amp;#34; 文件缩进及tab个数 au FileType html,python,vim,javascript setl shiftwidth=4 au FileType html,python,vim,javascript setl tabstop=4 au FileType java,php setl shiftwidth=4 au FileType java,php setl tabstop=4 &amp;#34; 高亮搜索的字符串 set hlsearch &amp;#34; 检测文件的类型 filetype on filetype plugin on filetype indent on &amp;#34; C风格缩进 set cindent set completeopt=longest,menu &amp;#34; 功能设置 &amp;#34; 去掉输入错误提示声音 set noeb &amp;#34; 自动保存 set autowrite &amp;#34; 突出显示当前行 set cursorline &amp;#34; 突出显示当前列 set cursorcolumn &amp;#34;设置光标样式为竖线vertical bar &amp;#34; Change cursor shape between insert and normal mode in iTerm2.</description>
+&amp;quot; 显示行号 set number &amp;quot; 启用鼠标 set mouse=a &amp;quot; 显示标尺 set ruler &amp;quot; 历史纪录 set history=1000 &amp;quot; 输入的命令显示出来，看的清楚些 set showcmd &amp;quot; 状态行显示的内容 set statusline=%F%m%r%h%w\ [FORMAT=%{&amp;amp;ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\&amp;quot;%d/%m/%y\ -\ %H:%M\&amp;quot;)} &amp;quot; 启动显示状态行1，总是显示状态行2 set laststatus=2 &amp;quot; 语法高亮显示 syntax on set fileencodings=utf-8,gb2312,gbk,cp936,latin-1 set fileencoding=utf-8 set termencoding=utf-8 set fileformat=unix set encoding=utf-8 &amp;quot; 配色方案 colorscheme desert &amp;quot; 指定配色方案是256色 set t_Co=256 set wildmenu &amp;quot; 去掉有关vi一致性模式，避免以前版本的一些bug和局限，解决backspace不能使用的问题 set nocompatible set backspace=indent,eol,start set backspace=2 &amp;quot; 启用自动对齐功能，把上一行的对齐格式应用到下一行 set autoindent &amp;quot; 依据上面的格式，智能的选择对齐方式，对于类似C语言编写很有用处 set smartindent &amp;quot; vim禁用自动备份 set nobackup set nowritebackup set noswapfile &amp;quot; 用空格代替tab set expandtab &amp;quot; 设置显示制表符的空格字符个数,改进tab缩进值，默认为8，现改为4 set tabstop=4 &amp;quot; 统一缩进为4，方便在开启了et后使用退格(backspace)键，每次退格将删除X个空格 set softtabstop=4 &amp;quot; 设定自动缩进为4个字符，程序中自动缩进所使用的空白长度 set shiftwidth=4 &amp;quot; 设置帮助文件为中文(需要安装vimcdoc文档set helplang=cn &amp;quot; 显示匹配的括号 set showmatch &amp;quot; 文件缩进及tab个数 au FileType html,python,vim,javascript setl shiftwidth=4 au FileType html,python,vim,javascript setl tabstop=4 au FileType java,php setl shiftwidth=4 au FileType java,php setl tabstop=4 &amp;quot; 高亮搜索的字符串 set hlsearch &amp;quot; 检测文件的类型 filetype on filetype plugin on filetype indent on &amp;quot; C风格缩进 set cindent set completeopt=longest,menu &amp;quot; 功能设置 &amp;quot; 去掉输入错误提示声音 set noeb &amp;quot; 自动保存 set autowrite &amp;quot; 突出显示当前行 set cursorline &amp;quot; 突出显示当前列 set cursorcolumn &amp;quot;设置光标样式为竖线vertical bar &amp;quot; Change cursor shape between insert and normal mode in iTerm2.</description>
     </item>
     
     <item>
@@ -2091,7 +2100,7 @@ qdel -u [user] 这两个能很好地进行PBS程序的批量删除。</descripti
       <guid>https://kongjianyang.github.io/cn/2018/11/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E4%BD%BF%E7%94%A8igv/</guid>
       <description>1. 打开IGV 终端打开IGV
 module load igv module show igv 提示以下信息
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- /depot/bioinfo/apps/modules/igv/2.3.60: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- whatis(&amp;#34;Visualization tool for interactive exploration of genomic datasets &amp;#34;) load(&amp;#34;java&amp;#34;) prepend_path(&amp;#34;PATH&amp;#34;,&amp;#34;/group/bioinfo/apps/apps/IGV_2.3.60&amp;#34;) help([[ Notes: IGV (Integrative Genomics Viewer) version 2.3.60 Visualization tool for interactive exploration of genomic datasets http://www.broadinstitute.org/software/igv/home User Guide: http://www.broadinstitute.org/software/igv/UserGuide FAQ: http://www.broadinstitute.org/software/igv/FAQ Forum: https://groups.google.com/forum/#!forum/igv-help Info: /group/bioinfo/apps/apps/IGV_2.3.60/readme.txt Start with &amp;#34;igv.sh&amp;#34; Need X11 display: More config info at: https://www.rcac.purdue.edu/compute/carter/guide/#accounts_login_x11 ]]) 提示打开IGV通过igv.sh， 输入
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- /depot/bioinfo/apps/modules/igv/2.3.60: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- whatis(&amp;quot;Visualization tool for interactive exploration of genomic datasets &amp;quot;) load(&amp;quot;java&amp;quot;) prepend_path(&amp;quot;PATH&amp;quot;,&amp;quot;/group/bioinfo/apps/apps/IGV_2.3.60&amp;quot;) help([[ Notes: IGV (Integrative Genomics Viewer) version 2.3.60 Visualization tool for interactive exploration of genomic datasets http://www.broadinstitute.org/software/igv/home User Guide: http://www.broadinstitute.org/software/igv/UserGuide FAQ: http://www.broadinstitute.org/software/igv/FAQ Forum: https://groups.google.com/forum/#!forum/igv-help Info: /group/bioinfo/apps/apps/IGV_2.3.60/readme.txt Start with &amp;quot;igv.sh&amp;quot; Need X11 display: More config info at: https://www.rcac.purdue.edu/compute/carter/guide/#accounts_login_x11 ]]) 提示打开IGV通过igv.sh， 输入
 igv.sh &amp;amp; 2. 搭配使用igvtools module load igvtools module show igvtools 提示以下信息</description>
     </item>
     
@@ -2142,8 +2151,8 @@ source deactivate py36 </description>
 PATH=$PATH:/usr/local/mysql/bin 添加完成后，按esc，然后输入wq保存。最后在命令行输入source ~/.bash_profile。 现在你就可以通过mysql -uroot -p登录mysql了，会让你输入密码，就是之前弹窗中记录的密码
 至此MySQL成功安装到mac电脑下，可以进行下面的开发了。
 02. 安装RMySQL 安装RMySQL非常简单，安装之后可以使用help命令查询包的介绍信息
-install.packages(&amp;#34;RMySQL&amp;#34;) library(RMySQL) help(&amp;#34;RMySQL&amp;#34;) 03. RMySQL基本操作 创造一个新的数据库并使用，SQL查询可以通过dbSendQuery或dbGetQuery传给数据库管理系统。dbGetQuery传送查询语句，把结果以数据框形式返回。dbSendQuery传送查询，返回的结果是继承&amp;quot;DBIResult&amp;quot;的一个子类的对象。函数fetch用于获得查询结果的部分或全部行，并以列表返回。函数dbHasCompleted确定是否所有行已经获得了，而dbGetRowCount返回结果中行的数目。如果只是简单的读整个表，也可以用dbReadTable函数。
-library(RMySQL) mydb = dbConnect(MySQL(), #数据库平台类型 user=&amp;#39;root&amp;#39;, #登录账号（MySQL初始安装时设置的账号） password=&amp;#39;password&amp;#39;, #登录密码（MySQL初始安装时设置的密码） host=&amp;#39;localhost&amp;#39;) # creating a database using RMySQL in R dbSendQuery(mydb, &amp;#34;CREATE DATABASE bookstore;&amp;#34;) dbSendQuery(mydb, &amp;#34;USE bookstore;&amp;#34;) # reconnecting to database we just created using following command in R : mydb = dbConnect(MySQL(), user=&amp;#39;root&amp;#39;, password=&amp;#39;password&amp;#39;, host=&amp;#39;localhost&amp;#39;, dbname=&amp;#34;bookstore&amp;#34;) # 重连数据库 dbSendQuery(mydb, &amp;#34;drop table if exists books, authors&amp;#34;) 在数据库中创造表：</description>
+install.packages(&amp;quot;RMySQL&amp;quot;) library(RMySQL) help(&amp;quot;RMySQL&amp;quot;) 03. RMySQL基本操作 创造一个新的数据库并使用，SQL查询可以通过dbSendQuery或dbGetQuery传给数据库管理系统。dbGetQuery传送查询语句，把结果以数据框形式返回。dbSendQuery传送查询，返回的结果是继承&amp;quot;DBIResult&amp;quot;的一个子类的对象。函数fetch用于获得查询结果的部分或全部行，并以列表返回。函数dbHasCompleted确定是否所有行已经获得了，而dbGetRowCount返回结果中行的数目。如果只是简单的读整个表，也可以用dbReadTable函数。
+library(RMySQL) mydb = dbConnect(MySQL(), #数据库平台类型 user=&#39;root&#39;, #登录账号（MySQL初始安装时设置的账号） password=&#39;password&#39;, #登录密码（MySQL初始安装时设置的密码） host=&#39;localhost&#39;) # creating a database using RMySQL in R dbSendQuery(mydb, &amp;quot;CREATE DATABASE bookstore;&amp;quot;) dbSendQuery(mydb, &amp;quot;USE bookstore;&amp;quot;) # reconnecting to database we just created using following command in R : mydb = dbConnect(MySQL(), user=&#39;root&#39;, password=&#39;password&#39;, host=&#39;localhost&#39;, dbname=&amp;quot;bookstore&amp;quot;) # 重连数据库 dbSendQuery(mydb, &amp;quot;drop table if exists books, authors&amp;quot;) 在数据库中创造表：</description>
     </item>
     
     <item>

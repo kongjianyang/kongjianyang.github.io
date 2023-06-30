@@ -97,7 +97,7 @@ df3 &lt;- data.frame(cell=c(3,67,23),val=c(23,8,34))
 首先创建一个空list，利用get()将所有数据框写入，形成一个2维的list，然后利用do.call()进行合并。</p>
 <pre tabindex="0"><code>l &lt;- list()
 for(i in 1:3){
-  df.now &lt;- get(paste0(&#34;df&#34;,i))
+  df.now &lt;- get(paste0(&quot;df&quot;,i))
   l[[i]] &lt;- df.now
 }
 
@@ -105,7 +105,7 @@ do.call(rbind,l)
 </code></pre><p>经过评论提醒，还有一种方法可能会显得更加易于理解些，即先形成一个空的data.frame，然后直接利用rbind将变量数据框合并到最终的数据框中。</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">l &lt;- data.frame()
 for(i in 1:3){
-df.now &lt;- get(paste0(&#34;df&#34;,i))
+df.now &lt;- get(paste0(&quot;df&quot;,i))
 l &lt;- rbind(l, df.now)
 }
 </code></pre><p>两种方法最后得到的结果都是：</p>

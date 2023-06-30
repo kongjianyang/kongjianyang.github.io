@@ -91,16 +91,16 @@
 <h2 id="2用法">2.用法<a href="#2用法" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>下面实用例子介绍unite函数的用法：</p>
 <pre tabindex="0"><code>library(tidyr)
-name1 &lt;- c(&#34;Bob&#34;,&#34;Mary&#34;,&#34;Jane&#34;,&#34;Kim&#34;)
-birth &lt;- c(&#34;1990-1&#34;,&#34;1980-2&#34;,&#34;1995-5&#34;,&#34;1996-4&#34;)
+name1 &lt;- c(&quot;Bob&quot;,&quot;Mary&quot;,&quot;Jane&quot;,&quot;Kim&quot;)
+birth &lt;- c(&quot;1990-1&quot;,&quot;1980-2&quot;,&quot;1995-5&quot;,&quot;1996-4&quot;)
 df &lt;- data.frame(name1, birth)
 </code></pre><p>构造一个名为<code>df</code>的数据框，<code>df</code>结构如下：
 <img src="https://upload-images.jianshu.io/upload_images/3014937-385169a589c71593.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="df结构"></p>
 <p>下面我们想将birth列和name1列以<code>-</code>进行合并，可以使用<code>unite</code>函数了，
 <code>unite</code>语法如下：</p>
-<pre tabindex="0"><code>unite(data, col, ..., sep = &#34;_&#34;, remove = TRUE)
+<pre tabindex="0"><code>unite(data, col, ..., sep = &quot;_&quot;, remove = TRUE)
 </code></pre><p>利用该语法，我们将<code>name1</code>和<code>birth</code>列按照<code>-</code>进行合并，合并结果存到新的列<code>name-birth</code>中，并保留原始的列。</p>
-<pre tabindex="0"><code>unite(df,&#34;name-birth&#34;,c(&#34;name1&#34;,&#34;birth&#34;), sep=&#34;-&#34;, remove = F)
+<pre tabindex="0"><code>unite(df,&quot;name-birth&quot;,c(&quot;name1&quot;,&quot;birth&quot;), sep=&quot;-&quot;, remove = F)
 </code></pre><p>合并的结果如下：
 <img src="https://upload-images.jianshu.io/upload_images/3014937-a8df5b0831f44eec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="合并后的df结构"></p>
 <h2 id="3总结">3.总结<a href="#3总结" class="header-anchor" ariaLabel="Anchor"> # </a></h2>

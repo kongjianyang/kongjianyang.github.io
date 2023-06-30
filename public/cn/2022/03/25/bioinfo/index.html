@@ -128,7 +128,7 @@ module load macs2/2.2.7.1-py39
 
 for i in `ls [A-H][1-9][A-H][1-9][A-H][1-9].bam`;
 do
-msg=&#34;macs2 predictd -i $i&#34;;
+msg=&quot;macs2 predictd -i $i&quot;;
 echo $msg;
 macs2 predictd -i $i;
 </code></pre><h4 id="2-peak--calling">2. peak  calling<a href="#2-peak--calling" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
@@ -145,7 +145,7 @@ macs2 callpeak -B -t cond1_ChIP.bam -c cond1_Control.bam -n cond1 --outdir Macs2
 <li><code>-q</code>： q值(最小的FDR)的阈值。可以根据结果进行修正。q值是p值经Benjamini–Hochberg–Yekutieli修正后的值。<em>默认，0.01，对于 broad marks(组蛋白修饰的chipseq)，可以使用0.05；</em></li>
 <li><code>--broad--cutoff</code>: 用于过滤 <code>broad</code>得到的peak，默认是q值，如果设置 <code>-p</code>就用p值。</li>
 <li><code>--nomodel</code>: 这个参数说明不需要MACS去构建模型，也就是说下面的参数除了 <code>--shift, --extsize</code>外都会被无视。</li>
-<li><code>--extsize</code>： MACS使用这个参数将read以5&rsquo;-&gt; 3&rsquo;衍生至等长片段。比如说你知道你的转录因子的结合区域是200bp，那么参数就是 <code>--extsize 200</code>。当且仅当 <code>--nomodel</code>和 <code>--fix-bimodal</code>设置使用。</li>
+<li><code>--extsize</code>： MACS使用这个参数将read以5'-&gt; 3&rsquo;衍生至等长片段。比如说你知道你的转录因子的结合区域是200bp，那么参数就是 <code>--extsize 200</code>。当且仅当 <code>--nomodel</code>和 <code>--fix-bimodal</code>设置使用。</li>
 <li><code>-g</code>表示可比对的基因组大小。比如说人类是2.7e9，也就是2.7G，拟南芥根据NCBI显示是119,667,750，也就是1.2e8. 这个参数设置的原因，根据我读发表MACS的那篇文献推测，是因为MACS需要进行全基因组扫描构建双峰模型估计shift size。这个只是我猜测而已，反正根据自己物种来就对了。由于基因组序列的重复性，基因组实际可以mapping的大小小于原始的基因组。这个参数要根据实际物种计算基因组的有效大小。</li>
 <li>-f/&ndash;format FORMAT<code>用来声明输入的文件格式，目前MACS能够识别的格式有 'ELAND', 'BED', 'ELANDMULTI', 'ELANDEXPORT', 'ELANDMULTIPET' (双端测序), 'SAM', 'BAM', 'BOWTIE', 'BAMPE', 'BEDPE'. 除'BAMPE', 'BEDPE'需要特别声明外，其他格式都可以用 </code>AUTO</li>
 </ul>
@@ -246,32 +246,32 @@ bdg文件适合导入UCSC或IGV进行谱图可视化，或者转换为bigwig格�
 </blockquote>
 <p>命令如下</p>
 <pre tabindex="0"><code>macs2 bdgdiff --t1 cond1_treat_pileup.bdg --c1 cond1_control_lambda.bdg --t2 cond2_treat_pileup.bdg \--c2 cond2_control_lambda.bdg --d1 12914669 --d2 14444786 -g 60 -l 120 --o-prefix diff_c1_vs_c2
-</code></pre><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>查询命令使用：
-</span></span><span style="display:flex;"><span>macs2 bdgdiff -h
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>用法说明：
-</span></span><span style="display:flex;"><span>usage: macs2 bdgdiff <span style="color:#666">[</span>-h<span style="color:#666">]</span> --t1 T1BDG --t2 T2BDG --c1 C1BDG --c2 C2BDG
-</span></span><span style="display:flex;"><span>                     <span style="color:#666">[</span>-C CUTOFF<span style="color:#666">]</span> <span style="color:#666">[</span>-l MINLEN<span style="color:#666">]</span> <span style="color:#666">[</span>-g MAXGAP<span style="color:#666">]</span> <span style="color:#666">[</span>--d1 DEPTH1<span style="color:#666">]</span>
-</span></span><span style="display:flex;"><span>                     <span style="color:#666">[</span>--d2 DEPTH2<span style="color:#666">]</span> <span style="color:#666">[</span>--outdir OUTDIR<span style="color:#666">]</span>
-</span></span><span style="display:flex;"><span>                     <span style="color:#666">(</span>--o-prefix OPREFIX | -o OFILE OFILE OFILE<span style="color:#666">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 可选参数：</span>
-</span></span><span style="display:flex;"><span>optional arguments:
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 参数 --t1是读取MACS pileup bedGraph for condition 1. </span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 参数 --t2是读取MACS pileup bedGraph for condition 2. </span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 参数 --c1是读取MACS control lambda bedGraph for condition 1.</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 参数 --c2是读取MACS control lambda bedGraph for condition 2.</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 参数 --d1  Sequencing depth (# of non-redundant reads in million) for condition 1. </span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 参数 --d2  Sequencing depth (# of non-redundant reads in million) for condition 2. </span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 参数 --o-prefix diff_c1_vs_c2保存输出文件名。</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#  -l MINLEN, --min-len MINLEN</span>
-</span></span><span style="display:flex;"><span>                        Minimum length of differential region. Try bigger
-</span></span><span style="display:flex;"><span>                        value to remove small regions. DEFAULT: <span style="color:#666">200</span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#  -g MAXGAP, --max-gap MAXGAP</span>
-</span></span><span style="display:flex;"><span>                        Maximum gap to merge nearby differential regions.
-</span></span><span style="display:flex;"><span>                        Consider a wider gap <span style="color:#008000;font-weight:bold">for</span> broad marks. Maximum gap
-</span></span><span style="display:flex;"><span>                        should be smaller than minimum length <span style="color:#666">(</span>-g<span style="color:#666">)</span>. DEFAULT:
-</span></span><span style="display:flex;"><span>                        <span style="color:#666">100</span>
-</span></span></code></pre></div><p>其中<code>-d1</code>和<code>-d2</code>的值就是第二步运行时输出的reads数目，<code>-o</code>参数指定输出文件的前缀。运行成功后，会产生3个文件</p>
+</code></pre><div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">查询命令使用：
+macs2 bdgdiff -h
+
+用法说明：
+usage: macs2 bdgdiff <span style="color:#666">[</span>-h<span style="color:#666">]</span> --t1 T1BDG --t2 T2BDG --c1 C1BDG --c2 C2BDG
+                     <span style="color:#666">[</span>-C CUTOFF<span style="color:#666">]</span> <span style="color:#666">[</span>-l MINLEN<span style="color:#666">]</span> <span style="color:#666">[</span>-g MAXGAP<span style="color:#666">]</span> <span style="color:#666">[</span>--d1 DEPTH1<span style="color:#666">]</span>
+                     <span style="color:#666">[</span>--d2 DEPTH2<span style="color:#666">]</span> <span style="color:#666">[</span>--outdir OUTDIR<span style="color:#666">]</span>
+                     <span style="color:#666">(</span>--o-prefix OPREFIX | -o OFILE OFILE OFILE<span style="color:#666">)</span>
+<span style="color:#408080;font-style:italic"># 可选参数：</span>
+optional arguments:
+<span style="color:#408080;font-style:italic"># 参数 --t1是读取MACS pileup bedGraph for condition 1. </span>
+<span style="color:#408080;font-style:italic"># 参数 --t2是读取MACS pileup bedGraph for condition 2. </span>
+<span style="color:#408080;font-style:italic"># 参数 --c1是读取MACS control lambda bedGraph for condition 1.</span>
+<span style="color:#408080;font-style:italic"># 参数 --c2是读取MACS control lambda bedGraph for condition 2.</span>
+<span style="color:#408080;font-style:italic"># 参数 --d1  Sequencing depth (# of non-redundant reads in million) for condition 1. </span>
+<span style="color:#408080;font-style:italic"># 参数 --d2  Sequencing depth (# of non-redundant reads in million) for condition 2. </span>
+<span style="color:#408080;font-style:italic"># 参数 --o-prefix diff_c1_vs_c2保存输出文件名。</span>
+<span style="color:#408080;font-style:italic">#  -l MINLEN, --min-len MINLEN</span>
+                        Minimum length of differential region. Try bigger
+                        value to remove small regions. DEFAULT: <span style="color:#666">200</span>
+<span style="color:#408080;font-style:italic">#  -g MAXGAP, --max-gap MAXGAP</span>
+                        Maximum gap to merge nearby differential regions.
+                        Consider a wider gap <span style="color:#008000;font-weight:bold">for</span> broad marks. Maximum gap
+                        should be smaller than minimum length <span style="color:#666">(</span>-g<span style="color:#666">)</span>. DEFAULT:
+                        <span style="color:#666">100</span>
+</code></pre></div><p>其中<code>-d1</code>和<code>-d2</code>的值就是第二步运行时输出的reads数目，<code>-o</code>参数指定输出文件的前缀。运行成功后，会产生3个文件</p>
 <ol>
 <li>
 <p>diff_c1_vs_c2_c3.0_cond1.bed</p>

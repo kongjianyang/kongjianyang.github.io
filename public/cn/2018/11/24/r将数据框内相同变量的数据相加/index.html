@@ -90,16 +90,16 @@
 <p>有的时候从原始数据读入到R中的数据会有很多的重复数据，并没有进行数据合并，对于后续的处理中会造成麻烦，因为R处理这种数据的时候会只取用第一次出现的结果。处理这个问题有很多方法，记录如下。</p>
 <h2 id="2-解决">2. 解决<a href="#2-解决" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>首先建立一个数据框，用来测试我们的方法：</p>
-<pre tabindex="0"><code>bevs &lt;- data.frame(cbind(name = c(&#34;Bill&#34;, &#34;Llib&#34;), drink = c(&#34;coffee&#34;, &#34;tea&#34;, &#34;cocoa&#34;, &#34;water&#34;), cost = seq(1:8)))
+<pre tabindex="0"><code>bevs &lt;- data.frame(cbind(name = c(&quot;Bill&quot;, &quot;Llib&quot;), drink = c(&quot;coffee&quot;, &quot;tea&quot;, &quot;cocoa&quot;, &quot;water&quot;), cost = seq(1:8)))
 bevs$cost &lt;- as.integer(bevs$cost)
 bevs
 </code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-7fd0a4878c21f301.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="bevs数据结构"></p>
 <p>下面利用<code>plyr </code>包里面的<code>count </code>函数进行相加</p>
 <pre tabindex="0"><code>library(plyr)
-count(bevs, &#34;name&#34;)
+count(bevs, &quot;name&quot;)
 </code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-00277791eedfa909.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="name出现的次数">
 同时统计两列，结果如下：</p>
-<pre tabindex="0"><code>count(bevs, c(&#34;name&#34;, &#34;drink&#34;))
+<pre tabindex="0"><code>count(bevs, c(&quot;name&quot;, &quot;drink&quot;))
 </code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-0775e365a5c5385d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="name和drink统计"></p>
 <p>如果想知道Bill和Llib在不同drink上花费的钱是多少呢？可以使用 <code>aggregate</code>函数。</p>
 <pre tabindex="0"><code>aggregate(cost ~ name + drink, data = bevs, sum)

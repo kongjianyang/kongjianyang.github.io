@@ -110,17 +110,17 @@ Table of Contents:
 <pre tabindex="0"><code>pip3 install snakemake
 </code></pre><p>虽然snakemake广泛的应用于生物信息方面的流程编写，但是snakemake的应用并不局限于编写生物信息学的流程，这里以一个简单的合并文件的例子开始介绍snakemake的简单使用。</p>
 <pre tabindex="0"><code>#首先我们建立两个文件
-echo &#34;Here is hello.&#34; &gt; hello.txt
-echo &#34;Here is world.&#34; &gt; world.txt
+echo &quot;Here is hello.&quot; &gt; hello.txt
+echo &quot;Here is world.&quot; &gt; world.txt
 
 #接下来开始编写我们的Snakefile
 rule concat:  # 这里的rule可视为snakemake定义的关键字，concat是我们自定义的这一步任务的名称
     input:   # input同样是snakemake的关键字，定义了在这个任务中的输入文件 
-        expand(&#34;{file}.txt&#34;, file=[&#34;hello&#34;, &#34;world&#34;]) #expand是一个snakemake定义的替换命令
+        expand(&quot;{file}.txt&quot;, file=[&quot;hello&quot;, &quot;world&quot;]) #expand是一个snakemake定义的替换命令
     output:   # output也是snakemake的关键字，定义输出结果的保存文件
-        &#34;merged.txt&#34;
+        &quot;merged.txt&quot;
     shell:  # 这里表示我们下面的命令将在命令行中执行
-        &#34;cat {input} &gt; {output}&#34;
+        &quot;cat {input} &gt; {output}&quot;
 
 #最后就可以在Snakefile的路径执行snakemake命令即可
 snakemake
@@ -146,12 +146,12 @@ cat merge.txt
 <li>Rule Dependencies。可通过快捷方式指定前一个rule的输出文件为此rule的输入文件：</li>
 </ol>
 <pre tabindex="0"><code>rule a:
-    input:  &#34;path/to/input&#34;
-    output: &#34;path/to/output&#34;
+    input:  &quot;path/to/input&quot;
+    output: &quot;path/to/output&quot;
     shell:  ...
 rule b:
     input:  rules.a.output   #直接通过rules.a.output 指定rule a的输出
-    output: &#34;path/to/output/of/b&#34;
+    output: &quot;path/to/output/of/b&quot;
     shell:  ...
 </code></pre><h2 id="snakemake的执行">snakemake的执行<a href="#snakemake的执行" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>一般讲所有的参数配置写入Snakefile后直接在Snakefile所在路径执行snakemake命令即可开始执行流程任务。一些常用的参数：</p>
@@ -167,7 +167,7 @@ rule b:
 # 其本身还提供了简单却够用的可视化流程帮助我们了解代码的运行逻辑，可以使用下面的方式将流程可视化
 $ snakemake --dag | dot -Tpdf &gt; dag.pdf
 #集群投递
-snakemake --cluster &#34;qsub -V -cwd -q 节点队列&#34; -j 10
+snakemake --cluster &quot;qsub -V -cwd -q 节点队列&quot; -j 10
 # --cluster /-c CMD: 集群运行指令
 # qusb -V -cwd -q， 表示输出当前环境变量(-V),在当前目录下运行(-cwd), 投递到指定的队列(-q), 如果不指定则使用任何可用队列
 # --local-cores N: 在每个集群中最多并行N核

@@ -1,12 +1,42 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>bioinfo on KJY</title>
+    <title>-Bioinfo on KJY</title>
     <link>https://kongjianyang.github.io/categories/bioinfo/</link>
-    <description>Recent content in bioinfo on KJY</description>
+    <description>Recent content in -Bioinfo on KJY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Mar 2022 14:32:27 -0500</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/bioinfo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 23 May 2022 16:03:40 -0600</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/bioinfo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Single_cell_sequencing入门</title>
+      <link>https://kongjianyang.github.io/cn/2022/05/23/scrna/</link>
+      <pubDate>Mon, 23 May 2022 16:03:40 -0600</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/05/23/scrna/</guid>
+      <description>Reference:
+https://broadinstitute.github.io/KrumlovSingleCellWorkshop2020/index.html https://satijalab.org/seurat/articles/pbmc3k_tutorial.html#finding-differentially-expressed-features-cluster-biomarkers- https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html Background 单细胞RNA-seq能够独立地提供每个细胞的RNA表达谱，并鉴定异质细胞群中的稀有细胞。尽管肿瘤异质性可归因于累积突变，但即使是遗传上相同的细胞在相同环境下也可能表现出基因和蛋白表达水平的差异，从而导致耐药性的产生。单细胞RNA-seq就能够发现这些稀有个体。
+单细胞RNA-seq的流程
+当然，单细胞RNA-seq的开展绝非易事，需要用到一系列尖端技术。大家首先要高效分离单细胞，然后进行RNA提取、逆转录、文库制备和测序，最后再通过生物信息学软件进行数据分析。其中，第一步 – 单细胞分离就相当棘手。
+单细胞分离 从异质性的细胞群体中分离单细胞，目前的选择有不少，新方法也在不断面世。选择分离方法时，您可能需要考虑它是高通量还是低通量，以及是盲选还是有偏向的选择（基于某个参数）。
+一些高通量的技术，比如最常用的荧光激活细胞分选（FACS）和磁性激活细胞分选（MACS），可根据细胞的大小/形状或细胞表面标志物的表达进行有偏向的选择，而基于微流体和液滴的技术可实现细胞的无偏向分离。不过，需要注意的是，组织/细胞的解离过程可能会改变RNA的表达谱。
+RNA-Seq方案 标准的文库制备方案适用于10-100 ng的DNA起始材料。然而，单个细胞平均只含有10 pg的总RNA。因此，RNA提取和文库制备的流程必须经过调整和优化，才能用于单细胞材料。
+首先，需要裂解分离出的单细胞，以获得RNA。这个步骤可通过自动化设备完成。当然，细胞裂解和RNA纯化的操作可同时进行。
+然后，大多数方案是通过polyA选择来富集mRNA，并利用经过修饰的oligo dT引物来进行逆转录。在逆转录的过程中，有些方案利用独特分子标识符（UMI）对单分子进行标记，这些是随机的六核苷酸，可以更精确地定量单细胞中mRNA分子的初始量。之后，通过体外转录或PCR扩增cDNA，然后将扩增好的cDNA文库用于文库制备和高通量测序。
+PCR方法的优点在于能够产生全长cDNA。不过，对于不同片段（如GC含量较高），PCR的效率可能不同，导致文库的覆盖度不均匀。另一方面，体外转录产生的文库能够避免PCR的序列偏向，但有些序列的转录效率低，导致序列drop-out或不完整。
+数据分析 由于每个单细胞都是独特的，不可能开展重复实验并评估噪音。因此，必须采取一些质量控制手段，以确保数据的可靠性。专家建议，向每个细胞裂解液中加入已知序列和数量的合成mRNA，如外源RNA对照联盟（ERCC）开发的加标RNA。这些RNA的读数将提供样本间差异的信息。
+总的来说，单细胞水平的转录组分析可以揭示细胞群体中的细胞异质性，强调了个别细胞的与众不同。此外，同时分析多种分子（如DNA、RNA和蛋白质）的方法也不断被开发出来。这种更全面的单细胞组图有望进一步加深我们对生物学过程的了解，对未来的科研及临床研究大有裨益。
+Data analysis In contrast to bulk RNA-seq, scRNA-seq provides quantitative measurements of the expression of every gene in a single cell.</description>
+    </item>
+    
+    <item>
+      <title>Single_cell_sequencing入门</title>
+      <link>https://kongjianyang.github.io/cn/2022/05/23/scrna/</link>
+      <pubDate>Mon, 23 May 2022 16:03:40 -0600</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2022/05/23/scrna/</guid>
+      <description>Single_cell_sequencing入门 // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child&#34;); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;;var t=[],r=Object.</description>
+    </item>
+    
     <item>
       <title>R语言数据导入rio包</title>
       <link>https://kongjianyang.github.io/cn/2022/03/30/rio/</link>
@@ -29,9 +59,9 @@ CRAN - Package rio (r-project.org) 笔记说明 在读《Modern R with the tidyv
 R语言面向对象编程 (dataxujing.github.io) S3对象的介绍 在R语言中，基于S3对象的面向对象编程，是一种基于泛型函数的实现方式。泛型函数是一种特殊的函数，根据传入对象的类型决定调用那个具体的方法。基于S3对象实现面向对象编程，不同其他语言的面型对象编程，是一种动态函数调用的模拟实现。S3对象被广泛应用于R的早期的开发包中。
 R的S3系统有三个组成部分:属性(attribute)(尤其是class属性)、泛型函数(genericfunction)和方法(method)
 创建S3对象 注意：本文会用到pryr,为了方便我们检查对象的类型，引入pryr包作为辅助工具。
-library(pryr) #通过变量创建S3对象 x &amp;lt;- 1 attr(x,&amp;#39;class&amp;#39;) &amp;lt;- &amp;#39;foo&amp;#39; x ## [1] 1 ## attr(,&amp;#34;class&amp;#34;) ## [1] &amp;#34;foo&amp;#34; ## [1] &amp;#34;foo&amp;#34; ## [1] &amp;#34;foo&amp;#34; #用pryr包的otype函数,检查x的类型 otype(x) ## [1] &amp;#34;S3&amp;#34; 通过structure()函数创建S3对象
-y &amp;lt;- structure(2,class=&amp;#34;foo&amp;#34;) y ## [1] 2 ## attr(,&amp;#34;class&amp;#34;) ## [1] &amp;#34;foo&amp;#34; ## [1] &amp;#34;foo&amp;#34; ## [1] &amp;#34;foo&amp;#34; ## [1] &amp;#34;S3&amp;#34; 创建一个多类型的S3对象，S3独享没有明确结构关系，一个S3对象可以有多个类型，S3对象的class属性可以是一个向量，包括多种类型
-x &amp;lt;- 1 attr(x,&amp;#34;class&amp;#34;) &amp;lt;- c(&amp;#34;foo&amp;#34;,&amp;#34;bar&amp;#34;) # 给了x对象两个class属性 class(x) ## [1] &amp;#34;foo&amp;#34; &amp;#34;bar&amp;#34; ## [1] &amp;#34;S3&amp;#34; 如果分配至少一个class属性，就是S3对象，如果没有class属性，就是base对象。</description>
+library(pryr) #通过变量创建S3对象 x &amp;lt;- 1 attr(x,&#39;class&#39;) &amp;lt;- &#39;foo&#39; x ## [1] 1 ## attr(,&amp;quot;class&amp;quot;) ## [1] &amp;quot;foo&amp;quot; ## [1] &amp;quot;foo&amp;quot; ## [1] &amp;quot;foo&amp;quot; #用pryr包的otype函数,检查x的类型 otype(x) ## [1] &amp;quot;S3&amp;quot; 通过structure()函数创建S3对象
+y &amp;lt;- structure(2,class=&amp;quot;foo&amp;quot;) y ## [1] 2 ## attr(,&amp;quot;class&amp;quot;) ## [1] &amp;quot;foo&amp;quot; ## [1] &amp;quot;foo&amp;quot; ## [1] &amp;quot;foo&amp;quot; ## [1] &amp;quot;S3&amp;quot; 创建一个多类型的S3对象，S3独享没有明确结构关系，一个S3对象可以有多个类型，S3对象的class属性可以是一个向量，包括多种类型
+x &amp;lt;- 1 attr(x,&amp;quot;class&amp;quot;) &amp;lt;- c(&amp;quot;foo&amp;quot;,&amp;quot;bar&amp;quot;) # 给了x对象两个class属性 class(x) ## [1] &amp;quot;foo&amp;quot; &amp;quot;bar&amp;quot; ## [1] &amp;quot;S3&amp;quot; 如果分配至少一个class属性，就是S3对象，如果没有class属性，就是base对象。</description>
     </item>
     
     <item>
@@ -47,8 +77,17 @@ MACS2作为使用最广泛的peak calling软件，在v2版本中添加了差异p
 对于使用macs2来进行差异peak的完整流程，官方给出了详细的说明文档，链接如下
  https://github.com/taoliu/MACS/wiki/Call-differential-binding-events  可以分为以下3步
 1. 预测插入片段长度 通过predictd子命令可以预测样本的fragment size，命令如下
-macs2 predictd -i input.bam #!/bin/bash module load bioinfo module load biocontainers/default module load macs2/2.2.7.1-py39 for i in `ls [A-H][1-9][A-H][1-9][A-H][1-9].bam`; do msg=&amp;#34;macs2 predictd -i $i&amp;#34;; echo $msg; macs2 predictd -i $i; 2. peak calling 在peak calling时，需要添加-B参数，这样才可以输出样本对应的bedgraph文件，同时需要保证peak calling时采用一致的--extsize的值，就是第一步预测出来的数值，取多个样本的均值即可。官方也给出了推荐值，对于大多数的转录因子chip_seq数据，推荐值为200， 对于大部分组蛋白修饰的chip_seq数据，推荐值为147，命令如下
+macs2 predictd -i input.bam #!/bin/bash module load bioinfo module load biocontainers/default module load macs2/2.2.7.1-py39 for i in `ls [A-H][1-9][A-H][1-9][A-H][1-9].bam`; do msg=&amp;quot;macs2 predictd -i $i&amp;quot;; echo $msg; macs2 predictd -i $i; 2. peak calling 在peak calling时，需要添加-B参数，这样才可以输出样本对应的bedgraph文件，同时需要保证peak calling时采用一致的--extsize的值，就是第一步预测出来的数值，取多个样本的均值即可。官方也给出了推荐值，对于大多数的转录因子chip_seq数据，推荐值为200， 对于大部分组蛋白修饰的chip_seq数据，推荐值为147，命令如下
 # condition1 macs2 callpeak -B -t cond1_ChIP.bam -c cond1_Control.bam -n cond1 --nomodel --extsize 147 # condition2 # broad peak calling: macs2 callpeak -B -t cond1_ChIP.</description>
+    </item>
+    
+    <item>
+      <title>GSEA富集分析</title>
+      <link>https://kongjianyang.github.io/cn/2021/08/13/gsea/</link>
+      <pubDate>Fri, 13 Aug 2021 16:03:40 -0600</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2021/08/13/gsea/</guid>
+      <description>GSEA富集分析 // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child&#34;); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;;var t=[],r=Object.</description>
     </item>
     
     <item>
@@ -69,7 +108,7 @@ macs2 predictd -i input.bam #!/bin/bash module load bioinfo module load bioconta
       
       <guid>https://kongjianyang.github.io/cn/2018/12/25/rmd/</guid>
       <description>首先将Rmd文件转换为md文件
-library(rmarkdown) a &amp;lt;- list.files(&amp;#34;./&amp;#34;, pattern = &amp;#34;.Rmd&amp;#34;) map(a, render, md_document()) #会将当前文件下所有的Rmd文件转化为md文件  on the Mac you could use the following commands to open RStudio (respectively) in the &amp;lsquo;~/projects/foo&amp;rsquo; directory or the current working directory:
+library(rmarkdown) a &amp;lt;- list.files(&amp;quot;./&amp;quot;, pattern = &amp;quot;.Rmd&amp;quot;) map(a, render, md_document()) #会将当前文件下所有的Rmd文件转化为md文件  on the Mac you could use the following commands to open RStudio (respectively) in the &amp;lsquo;~/projects/foo&amp;rsquo; directory or the current working directory:
  $ open -a RStudio ~/projects/foo $ open -a RStudio . 这里的open命令很有用
 MacOS用户如果有用命令行的话，大多数人应该知道open .会打开Finder。事实上它能打开所有的目录，比如:
 $ open ~/Library/Preferences $ open /etc $ open ../.. 你还能同时打开多个目录：

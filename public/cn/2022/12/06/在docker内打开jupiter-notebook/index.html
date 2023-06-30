@@ -155,8 +155,8 @@ docker container run --name jupyter -p 8888:8888 -v ~/Desktop/jupyter_notebook j
 <h1 id="常用方法">常用方法：<a href="#常用方法" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
 <p>将 image 文件从仓库抓取到本地。</p>
 <blockquote>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker image pull library/hello-world
-</span></span></code></pre></div></blockquote>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker image pull library/hello-world
+</code></pre></div></blockquote>
 <p>上面代码中，<code>docker image pull</code>是抓取 image 文件的命令。<code>library/hello-world</code>是 image 文件在仓库里面的位置，其中<code>library</code>是 image 文件所在的组，<code>hello-world</code>是 image 文件的名字。</p>
 <p>查看image</p>
 <pre tabindex="0"><code>$ docker images
@@ -177,26 +177,26 @@ $ docker container ls --all
 
 命令删除。</p>
 <blockquote>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker container rm <span style="color:#666">[</span>containerID<span style="color:#666">]</span>/<span style="color:#666">[</span>containerName<span style="color:#666">]</span>
-</span></span></code></pre></div></blockquote>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker container rm <span style="color:#666">[</span>containerID<span style="color:#666">]</span>/<span style="color:#666">[</span>containerName<span style="color:#666">]</span>
+</code></pre></div></blockquote>
 <p>运行上面的命令之后，再使用<code>docker container ls --all</code>命令，就会发现被删除的容器文件已经消失了。</p>
 <p><code>docker container run</code>命令是新建容器，每运行一次，就会新建一个容器。同样的命令运行两次，就会生成两个一模一样的容器文件。如果希望重复使用容器，就要使用<code>docker container start</code>命令，它用来启动已经生成、已经停止运行的容器文件。</p>
 <p><code>docker container kill</code>命令终止容器运行，相当于向容器里面的主进程发出 SIGKILL 信号。而<code>docker container stop</code>命令也是用来终止容器运行，相当于向容器里面的主进程发出 SIGTERM 信号，然后过一段时间再发出 SIGKILL 信号。</p>
 <blockquote>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker container stop <span style="color:#666">[</span>containerID<span style="color:#666">]</span>/<span style="color:#666">[</span>containerName<span style="color:#666">]</span>
-</span></span></code></pre></div></blockquote>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker container stop <span style="color:#666">[</span>containerID<span style="color:#666">]</span>/<span style="color:#666">[</span>containerName<span style="color:#666">]</span>
+</code></pre></div></blockquote>
 <p><code>docker container logs</code>命令用来查看 docker 容器的输出，即容器里面 Shell 的标准输出。如果<code>docker run</code>命令运行容器的时候，没有使用<code>-it</code>参数，就要用这个命令查看输出。</p>
 <blockquote>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker container logs <span style="color:#666">[</span>containerID<span style="color:#666">]</span>
-</span></span></code></pre></div></blockquote>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker container logs <span style="color:#666">[</span>containerID<span style="color:#666">]</span>
+</code></pre></div></blockquote>
 <p><code>docker container exec</code>命令用于进入一个正在运行的 docker 容器。如果<code>docker run</code>命令运行容器的时候，没有使用<code>-it</code>参数，就要用这个命令进入容器。一旦进入了容器，就可以在容器的 Shell 执行命令了。</p>
 <blockquote>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker container <span style="color:#008000">exec</span> -it <span style="color:#666">[</span>containerID<span style="color:#666">]</span> /bin/bash
-</span></span></code></pre></div></blockquote>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker container <span style="color:#008000">exec</span> -it <span style="color:#666">[</span>containerID<span style="color:#666">]</span> /bin/bash
+</code></pre></div></blockquote>
 <p><code>docker container cp</code>命令用于从正在运行的 Docker 容器里面，将文件拷贝到本机。下面是拷贝到当前目录的写法。</p>
 <blockquote>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker container cp <span style="color:#666">[</span>containID<span style="color:#666">]</span>:<span style="color:#666">[</span>/path/to/file<span style="color:#666">]</span> .
-</span></span></code></pre></div></blockquote>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker container cp <span style="color:#666">[</span>containID<span style="color:#666">]</span>:<span style="color:#666">[</span>/path/to/file<span style="color:#666">]</span> .
+</code></pre></div></blockquote>
 <h1 id="简单流程">简单流程<a href="#简单流程" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
 <pre tabindex="0"><code>docker container ls --all
 docker container start jupyter

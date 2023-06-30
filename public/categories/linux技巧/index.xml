@@ -64,7 +64,7 @@ crontab -l 删除任务
 # 打开定时任务设定文件 crontab -e 可以像使用vi编辑其他任何文件那样修改crontab文件并退出。
 删除crontab文件
 crontab -r 可以加上邮件通知
-# send email to me MAILTO=&amp;#34;your email stress&amp;#34; git push origin master 如果上步错误的话，可以用下面的命令
+# send email to me MAILTO=&amp;quot;your email stress&amp;quot; git push origin master 如果上步错误的话，可以用下面的命令
 git remote set-url origin git@github.com:username/repo.git 3. 语法 格式：分 时 日 月 星期几 命令 # 每天12点1分执行[/example/laohou-cron.</description>
     </item>
     
@@ -115,11 +115,11 @@ find ./ -mmin -60 | xargs -I {} cp {} ../ </description>
       <guid>https://kongjianyang.github.io/cn/2018/11/24/linux%E4%B8%8B%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E5%90%8D/</guid>
       <description>方法一：Rename函数 Linux下修改文件名有mv和rename。其中mv命令只能对单个文件重命名，这是mv命令和rename命令的在重命名方面的根本区别。
 linux的rename命令有两个版本，一个是c语言版本的，一个是perl语言版本的，判断方法： 输入man rename 看到第一行是： RENAME(1) Linux Programmer’s Manual RENAME(1) 这个就是C语言版本的 而如果出现： RENAME(1) Perl Programmers Reference Guide RENAME(1) 则是Perl版本的了
-C语言版本格式：rename 原字符串 新字符串 文件名 Perl语言版本格式：rename &amp;rsquo;s/原字符串/新字符串/&amp;rsquo; 文件名
+C语言版本格式：rename 原字符串 新字符串 文件名 Perl语言版本格式：rename &amp;rsquo;s/原字符串/新字符串/&#39; 文件名
 rename支持正则表达式
 例子：
 字母的替换rename &amp;quot;s/AA/aa/&amp;quot; * //把文件名中的AA替换成aa 修改文件的后缀rename &amp;quot;s//.html//.php/&amp;quot; * //把.html 后缀的改成 .php后缀 批量添加文件后缀rename &amp;quot;s/$//.txt/&amp;quot; * //把所有的文件名都以txt结尾 批量删除文件名rename &amp;quot;s//.txt//&amp;quot; * //把所有以.txt结尾的文件名的.txt删掉
-方法二：mv函数  在文件夹shell下创建文件10个文件  touch tmp_{1..10}.txt 找到含有“_“”的文件夹。  find ./ -name &amp;#34;*_*&amp;#34; 读取id, 用mv改名，$为自己理解为赋值后的id，格式为while； do； done  find ./ -name &amp;#34;*_*&amp;#34; | while read id; do mv $id ${id/_/-}; done </description>
+方法二：mv函数  在文件夹shell下创建文件10个文件  touch tmp_{1..10}.txt 找到含有“_“”的文件夹。  find ./ -name &amp;quot;*_*&amp;quot; 读取id, 用mv改名，$为自己理解为赋值后的id，格式为while； do； done  find ./ -name &amp;quot;*_*&amp;quot; | while read id; do mv $id ${id/_/-}; done </description>
     </item>
     
     <item>
@@ -129,7 +129,7 @@ rename支持正则表达式
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/linux%E4%B8%8B%E9%80%92%E5%BD%92%E6%9F%A5%E6%89%BE%E6%9F%90%E6%96%87%E4%BB%B6%E5%B9%B6%E7%A7%BB%E5%8A%A8/</guid>
       <description>Linux下递归查找某类型文件可以使用find命令，例如我想查找所有的.sh文件，可以使用一下命令
-find . -name &amp;#34;*.sh&amp;#34; 而如果我们希望移动所有这类型的文件到指定文件夹，在zsh下可以使用
+find . -name &amp;quot;*.sh&amp;quot; 而如果我们希望移动所有这类型的文件到指定文件夹，在zsh下可以使用
 cp **/*.sh sh_file </description>
     </item>
     
@@ -152,7 +152,7 @@ cp **/*.sh sh_file </description>
       <guid>https://kongjianyang.github.io/cn/2018/11/24/shell%E7%BC%96%E7%A8%8B-bash-shell%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E5%8F%98%E9%87%8F/</guid>
       <description>1.介绍 shell有很多以$开头的特殊变量，以下是对于这些变量的说明：
    变量 意义     $$ Shell本身的PID（ProcessID）   $! Shell最后运行的后台Process的PID   $? 最后运行的命令的结束代码（返回值）   $- 使用Set命令设定的Flag一览   $* 所有参数列表。如&amp;quot;$*&amp;ldquo;用「&amp;quot;」括起来的情况、以&amp;rdquo;$1 $2 … $n&amp;quot;的形式输出所有参数。   $@ 所有参数列表。如&amp;quot;$@&amp;ldquo;用「&amp;quot;」括起来的情况、以&amp;rdquo;$1&amp;quot; &amp;ldquo;$2&amp;rdquo; … &amp;ldquo;$n&amp;rdquo; 的形式输出所有参数。   $# 添加到Shell的参数个数   $0 Shell本身的文件名   $1～$n 添加到Shell的各参数值。$1是第1参数、$2是第2参数…    2.例子 下面通过一个例子解释怎么使用这些特殊变量 命令一个variable.sh的简单脚本，其内容如下
-#!/bin/bash echo &amp;#34;number:$#&amp;#34; # $# 是传给脚本的参数个数 echo &amp;#34;scname:$0&amp;#34; # $0 是脚本本身的名字 echo &amp;#34;first :$1&amp;#34; # $1是传递给该shell脚本的第一个参数 echo &amp;#34;second:$2&amp;#34; # $2是传递给该shell脚本的第二个参数 echo &amp;#34;argume:$@&amp;#34; # $@ 是传给脚本的所有参数的列表 echo &amp;#34;all argume:$*&amp;#34; # $* 所有参数列表 echo &amp;#34;finish code:$?</description>
+#!/bin/bash echo &amp;quot;number:$#&amp;quot; # $# 是传给脚本的参数个数 echo &amp;quot;scname:$0&amp;quot; # $0 是脚本本身的名字 echo &amp;quot;first :$1&amp;quot; # $1是传递给该shell脚本的第一个参数 echo &amp;quot;second:$2&amp;quot; # $2是传递给该shell脚本的第二个参数 echo &amp;quot;argume:$@&amp;quot; # $@ 是传给脚本的所有参数的列表 echo &amp;quot;all argume:$*&amp;quot; # $* 所有参数列表 echo &amp;quot;finish code:$?</description>
     </item>
     
     <item>
@@ -163,11 +163,11 @@ cp **/*.sh sh_file </description>
       <guid>https://kongjianyang.github.io/cn/2018/11/24/shell%E7%BC%96%E7%A8%8B-bash-shell%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/</guid>
       <description>1.字符串属性 字符有可能是数字、字母、空格、其他特殊字符，而字符串有可能是它们中的一种或者多种的组合，在组合之后还可能形成具有特定意义的字符串，诸如邮件地址，URL地址等。
 数字或者数字组合
-$ i=5;j=9423483247234; $ echo $i | grep &amp;#34;^[0-9]$&amp;#34; 5 $ echo $j | grep &amp;#34;^[0-9]\+$&amp;#34; 9423483247234 字符组合
-$ c=&amp;#34;A&amp;#34;; d=&amp;#34;fwefewjuew&amp;#34;; e=&amp;#34;fewfEFWefwefe&amp;#34; $ echo $c | grep &amp;#34;^[A-Z]$&amp;#34; A $ echo $d | grep &amp;#34;^[a-z]\+&amp;#34; fwefewjuew $ echo $e | grep &amp;#34;^[a-zA-Z]\+$&amp;#34; fewfEFWefwefe 字母和数字的组合
-$ ic=&amp;#34;432fwfwefeFWEwefwef&amp;#34; $ echo $ic | grep &amp;#34;^[0-9a-zA-Z]\+$&amp;#34; 432fwfwefeFWEwefwef 匹配邮件地址
-$ echo &amp;#34;test2007@lzu.cn&amp;#34; | grep &amp;#34;[0-9a-zA-Z\.]*@[0-9a-zA-Z\.]*&amp;#34; test2007@lzu.cn 匹配 URL 地址
-$ echo &amp;#34;http://news.lzu.edu.cn/article.jsp?newsid=10135&amp;#34; | grep &amp;#34;^http://[0-9a-zA-Z\.</description>
+$ i=5;j=9423483247234; $ echo $i | grep &amp;quot;^[0-9]$&amp;quot; 5 $ echo $j | grep &amp;quot;^[0-9]\+$&amp;quot; 9423483247234 字符组合
+$ c=&amp;quot;A&amp;quot;; d=&amp;quot;fwefewjuew&amp;quot;; e=&amp;quot;fewfEFWefwefe&amp;quot; $ echo $c | grep &amp;quot;^[A-Z]$&amp;quot; A $ echo $d | grep &amp;quot;^[a-z]\+&amp;quot; fwefewjuew $ echo $e | grep &amp;quot;^[a-zA-Z]\+$&amp;quot; fewfEFWefwefe 字母和数字的组合
+$ ic=&amp;quot;432fwfwefeFWEwefwef&amp;quot; $ echo $ic | grep &amp;quot;^[0-9a-zA-Z]\+$&amp;quot; 432fwfwefeFWEwefwef 匹配邮件地址
+$ echo &amp;quot;test2007@lzu.cn&amp;quot; | grep &amp;quot;[0-9a-zA-Z\.]*@[0-9a-zA-Z\.]*&amp;quot; test2007@lzu.cn 匹配 URL 地址
+$ echo &amp;quot;http://news.lzu.edu.cn/article.jsp?newsid=10135&amp;quot; | grep &amp;quot;^http://[0-9a-zA-Z\.</description>
     </item>
     
     <item>
@@ -177,8 +177,8 @@ $ echo &amp;#34;http://news.lzu.edu.cn/article.jsp?newsid=10135&amp;#34; | grep 
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/shell%E7%BC%96%E7%A8%8B-bash-shell%E7%9A%84%E5%B8%83%E5%B0%94%E8%BF%90%E7%AE%97/</guid>
       <description>在 Bash 里有这样的常量(实际上是两个内置命令，在这里我们姑且这么认为，后面将介绍)，即 true 和 false，一个表示真，一个表示假。对它们可以进行与、或、非运算等常规的逻辑运算。
-1. 与或非运算 $ if true;then echo &amp;#34;YES&amp;#34;; else echo &amp;#34;NO&amp;#34;; fi YES $ if false;then echo &amp;#34;YES&amp;#34;; else echo &amp;#34;NO&amp;#34;; fi NO 与运算用&amp;amp;&amp;amp;表示
-$ if true &amp;amp;&amp;amp; true;then echo &amp;#34;YES&amp;#34;; else echo &amp;#34;NO&amp;#34;; fi YES $ if true &amp;amp;&amp;amp; false;then echo &amp;#34;YES&amp;#34;; else echo &amp;#34;NO&amp;#34;; fi NO $ if false &amp;amp;&amp;amp; false;then echo &amp;#34;YES&amp;#34;; else echo &amp;#34;NO&amp;#34;; fi NO $ if false &amp;amp;&amp;amp; true;then echo &amp;#34;YES&amp;#34;; else echo &amp;#34;NO&amp;#34;; fi NO 或运算用||表示</description>
+1. 与或非运算 $ if true;then echo &amp;quot;YES&amp;quot;; else echo &amp;quot;NO&amp;quot;; fi YES $ if false;then echo &amp;quot;YES&amp;quot;; else echo &amp;quot;NO&amp;quot;; fi NO 与运算用&amp;amp;&amp;amp;表示
+$ if true &amp;amp;&amp;amp; true;then echo &amp;quot;YES&amp;quot;; else echo &amp;quot;NO&amp;quot;; fi YES $ if true &amp;amp;&amp;amp; false;then echo &amp;quot;YES&amp;quot;; else echo &amp;quot;NO&amp;quot;; fi NO $ if false &amp;amp;&amp;amp; false;then echo &amp;quot;YES&amp;quot;; else echo &amp;quot;NO&amp;quot;; fi NO $ if false &amp;amp;&amp;amp; true;then echo &amp;quot;YES&amp;quot;; else echo &amp;quot;NO&amp;quot;; fi NO 或运算用||表示</description>
     </item>
     
     <item>
@@ -192,7 +192,7 @@ man test info test 可以使用type查看一个命令是否是shell内置的函�
 $ type type type is a shell builti $ type awk awk is /usr/bin/awk 从结果可知： let 是 Shell 内置命令，awk是外部命令，在 /usr/bin 目录下
 expr命令是一个手工命令行计数器，用于在UNIX/LINUX下求表达式变量的值，一般用于整数值，也可用于字符串。
 $ expr 5 % 2 1 bc 命令是任意精度计算器语言，通常在linux下当计算器用。它类似基本的计算器, 使用这个计算器可以做基本的数学运算。
-$ bc bc 1.06 Copyright 1991-1994, 1997, 1998, 2000 Free Software Foundation, Inc. This is free software with ABSOLUTELY NO WARRANTY. For details type `warranty&amp;#39;. 3^2 9 let 命令是 BASH 中用于计算的工具，用于执行一个或多个表达式，变量计算中不需要加上 $ 来表示变量。如果表达式中包含了空格或其他特殊字符，则必须引起来。</description>
+$ bc bc 1.06 Copyright 1991-1994, 1997, 1998, 2000 Free Software Foundation, Inc. This is free software with ABSOLUTELY NO WARRANTY. For details type `warranty&#39;. 3^2 9 let 命令是 BASH 中用于计算的工具，用于执行一个或多个表达式，变量计算中不需要加上 $ 来表示变量。如果表达式中包含了空格或其他特殊字符，则必须引起来。</description>
     </item>
     
     <item>
@@ -202,7 +202,7 @@ $ bc bc 1.06 Copyright 1991-1994, 1997, 1998, 2000 Free Software Foundation, Inc
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/shell%E7%BC%96%E7%A8%8B-bash-shell%E7%9A%84%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</guid>
       <description>1. 基本操作 ls 命令显示文件基本属性，d 表示目录，- 表示普通文件（或者硬链接），l 表示符号链接，p 表示管道文件，b 和 c 分别表示块设备和字符设备。除此之外还可以使用stat命令，stat以文字的格式来显示inode的内容。
-$ stat bin/ 16777220 8608385535 drwxr-xr-x 37 root wheel 0 1184 &amp;#34;Nov 23 09:06:38 2018&amp;#34; &amp;#34;Nov 10 01:38:56 2018&amp;#34; &amp;#34;Nov 10 01:38:56 2018&amp;#34; &amp;#34;Sep 21 00:17:17 2018&amp;#34; 4096 0 0x88000 bin/ file命令也可以给出文件的基本信息
+$ stat bin/ 16777220 8608385535 drwxr-xr-x 37 root wheel 0 1184 &amp;quot;Nov 23 09:06:38 2018&amp;quot; &amp;quot;Nov 10 01:38:56 2018&amp;quot; &amp;quot;Nov 10 01:38:56 2018&amp;quot; &amp;quot;Sep 21 00:17:17 2018&amp;quot; 4096 0 0x88000 bin/ file命令也可以给出文件的基本信息
 $ file bin bin: directory 可以使用chmod给文件添加权限
 chmod 777 regular_file 可以使用passwd命令给用户修改自己的密码
 passwd #普通用户通过执行该命令，修改自己的密码 可以使用tree显示目录树
@@ -219,7 +219,7 @@ $ tree #当前目录 2. 压缩与解压缩文件 #tar $ tar -cf file.tar file #�
 一图看shell在操作系统中的位置 使用命令查看当前shell
 echo $SHELL #/bin/zsh ls -l /bin/zsh #-rwxr-xr-x 1 root wheel 610224 Sep 21 00:17 /bin/zsh 如果你发现当前 Shell 不是 Bash，请用下面的方法替换它：
 $ bash $ echo $SHELL # 确认一下 /bin/bash ##2.简单的shell脚本 假设我们设计一个test.sh的脚本，内容如下
-#!/bin/bash # test.sh echo &amp;#34;Hello, World&amp;#34; 重点是该文件的第一行，当我们直接运行该脚本文件时，该行告诉操作系统使用用#! 符号之后面的解释器以及相应的参数来解释该脚本文件，通过分析第一行，我们发现对应的解释器是 /bin/bash。
+#!/bin/bash # test.sh echo &amp;quot;Hello, World&amp;quot; 重点是该文件的第一行，当我们直接运行该脚本文件时，该行告诉操作系统使用用#! 符号之后面的解释器以及相应的参数来解释该脚本文件，通过分析第一行，我们发现对应的解释器是 /bin/bash。
 3.shell的执行原理 Shell 接收用户输入的脚本名，并进行分析。如果文件被标记为可执行，但不是被编译过的程序，Shell 就认为它是一个 Shell 脚本。 Shell 将读取其中的内容，并加以解释执行。所以，从用户的观点看，执行 Shell 脚本的方式与执行一般的可执行文件的方式相似。
 因此，用户开发的 Shell 脚本可以驻留在命令搜索路径的目录之下（通常是 /bin、/usr/bin等），像普通命令一样使用。这样，也就开发出自己的新命令。如果打算反复使用编好的 Shell 脚本，那么采用这种方式就比较方便。</description>
     </item>
@@ -241,10 +241,10 @@ $ bash $ echo $SHELL # 确认一下 /bin/bash ##2.简单的shell脚本 假设我
       <guid>https://kongjianyang.github.io/cn/2018/11/24/xargs%E5%91%BD%E4%BB%A4%E4%B8%8E%E7%AE%A1%E9%81%93%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
       <description>xargs是一条Unix 和类Unix 操作系统 的常用命令。它的作用是将参数列表转换成小块分段传递给其他命令，以避免参数列表过长的问题。
 下面两个例子解释xargs命令与管道之间的区别
-echo &amp;#39;main&amp;#39; | cat # main 这条命令中cat会从其标准输入中读取内容并处理，也就是会输出 &amp;lsquo;main&amp;rsquo; 字符串。echo命令将其标准输出的内容 &amp;lsquo;main&amp;rsquo; 通过管道定向到 cat 的标准输入中
-echo &amp;#39;--help&amp;#39; | xargs cat #cat: illegal option -- - #usage: cat [-benstuv] [file ...] 上述的命令类似
+echo &#39;main&#39; | cat # main 这条命令中cat会从其标准输入中读取内容并处理，也就是会输出 &amp;lsquo;main&amp;rsquo; 字符串。echo命令将其标准输出的内容 &amp;lsquo;main&amp;rsquo; 通过管道定向到 cat 的标准输入中
+echo &#39;--help&#39; | xargs cat #cat: illegal option -- - #usage: cat [-benstuv] [file ...] 上述的命令类似
 cat --help 可以看到 echo &amp;lsquo;&amp;ndash;help&amp;rsquo; | cat 该命令输出的是echo的内容，也就是说将echo的内容当作cat处理的文件内容了，实际上就是echo命令的输出通过管道定向到cat的输入了。然后cat从其标准输入中读取待处理的文本内容。这等价于在test.txt文件中有一行字符 &amp;lsquo;&amp;ndash;help&amp;rsquo; 然后运行 cat test.txt 的效果。
-而 echo &amp;lsquo;&amp;ndash;help&amp;rsquo; | xargs cat 等价于 cat &amp;ndash;help 什么意思呢，就是xargs将其接受的字符串 &amp;ndash;help 做成cat的一个命令参数来运行cat命令，同样 echo &amp;rsquo;test.c test.cpp&amp;rsquo; | xargs cat 等价于 cat test.c test.cpp 此时会将test.c和test.cpp的内容都显示出来。</description>
+而 echo &amp;lsquo;&amp;ndash;help&amp;rsquo; | xargs cat 等价于 cat &amp;ndash;help 什么意思呢，就是xargs将其接受的字符串 &amp;ndash;help 做成cat的一个命令参数来运行cat命令，同样 echo &amp;lsquo;test.c test.cpp&amp;rsquo; | xargs cat 等价于 cat test.c test.cpp 此时会将test.c和test.cpp的内容都显示出来。</description>
     </item>
     
     <item>
@@ -255,7 +255,7 @@ cat --help 可以看到 echo &amp;lsquo;&amp;ndash;help&amp;rsquo; | cat 该命�
       <guid>https://kongjianyang.github.io/cn/2018/11/24/%E6%88%91%E7%9A%84vim%E4%B8%AA%E6%80%A7%E9%85%8D%E7%BD%AE/</guid>
       <description>mac下安装vim
 brew install vim 我的一些vim配置信息
-&amp;#34; 显示行号 set number &amp;#34; 启用鼠标 set mouse=a &amp;#34; 显示标尺 set ruler &amp;#34; 历史纪录 set history=1000 &amp;#34; 输入的命令显示出来，看的清楚些 set showcmd &amp;#34; 状态行显示的内容 set statusline=%F%m%r%h%w\ [FORMAT=%{&amp;amp;ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\&amp;#34;%d/%m/%y\ -\ %H:%M\&amp;#34;)} &amp;#34; 启动显示状态行1，总是显示状态行2 set laststatus=2 &amp;#34; 语法高亮显示 syntax on set fileencodings=utf-8,gb2312,gbk,cp936,latin-1 set fileencoding=utf-8 set termencoding=utf-8 set fileformat=unix set encoding=utf-8 &amp;#34; 配色方案 colorscheme desert &amp;#34; 指定配色方案是256色 set t_Co=256 set wildmenu &amp;#34; 去掉有关vi一致性模式，避免以前版本的一些bug和局限，解决backspace不能使用的问题 set nocompatible set backspace=indent,eol,start set backspace=2 &amp;#34; 启用自动对齐功能，把上一行的对齐格式应用到下一行 set autoindent &amp;#34; 依据上面的格式，智能的选择对齐方式，对于类似C语言编写很有用处 set smartindent &amp;#34; vim禁用自动备份 set nobackup set nowritebackup set noswapfile &amp;#34; 用空格代替tab set expandtab &amp;#34; 设置显示制表符的空格字符个数,改进tab缩进值，默认为8，现改为4 set tabstop=4 &amp;#34; 统一缩进为4，方便在开启了et后使用退格(backspace)键，每次退格将删除X个空格 set softtabstop=4 &amp;#34; 设定自动缩进为4个字符，程序中自动缩进所使用的空白长度 set shiftwidth=4 &amp;#34; 设置帮助文件为中文(需要安装vimcdoc文档set helplang=cn &amp;#34; 显示匹配的括号 set showmatch &amp;#34; 文件缩进及tab个数 au FileType html,python,vim,javascript setl shiftwidth=4 au FileType html,python,vim,javascript setl tabstop=4 au FileType java,php setl shiftwidth=4 au FileType java,php setl tabstop=4 &amp;#34; 高亮搜索的字符串 set hlsearch &amp;#34; 检测文件的类型 filetype on filetype plugin on filetype indent on &amp;#34; C风格缩进 set cindent set completeopt=longest,menu &amp;#34; 功能设置 &amp;#34; 去掉输入错误提示声音 set noeb &amp;#34; 自动保存 set autowrite &amp;#34; 突出显示当前行 set cursorline &amp;#34; 突出显示当前列 set cursorcolumn &amp;#34;设置光标样式为竖线vertical bar &amp;#34; Change cursor shape between insert and normal mode in iTerm2.</description>
+&amp;quot; 显示行号 set number &amp;quot; 启用鼠标 set mouse=a &amp;quot; 显示标尺 set ruler &amp;quot; 历史纪录 set history=1000 &amp;quot; 输入的命令显示出来，看的清楚些 set showcmd &amp;quot; 状态行显示的内容 set statusline=%F%m%r%h%w\ [FORMAT=%{&amp;amp;ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\&amp;quot;%d/%m/%y\ -\ %H:%M\&amp;quot;)} &amp;quot; 启动显示状态行1，总是显示状态行2 set laststatus=2 &amp;quot; 语法高亮显示 syntax on set fileencodings=utf-8,gb2312,gbk,cp936,latin-1 set fileencoding=utf-8 set termencoding=utf-8 set fileformat=unix set encoding=utf-8 &amp;quot; 配色方案 colorscheme desert &amp;quot; 指定配色方案是256色 set t_Co=256 set wildmenu &amp;quot; 去掉有关vi一致性模式，避免以前版本的一些bug和局限，解决backspace不能使用的问题 set nocompatible set backspace=indent,eol,start set backspace=2 &amp;quot; 启用自动对齐功能，把上一行的对齐格式应用到下一行 set autoindent &amp;quot; 依据上面的格式，智能的选择对齐方式，对于类似C语言编写很有用处 set smartindent &amp;quot; vim禁用自动备份 set nobackup set nowritebackup set noswapfile &amp;quot; 用空格代替tab set expandtab &amp;quot; 设置显示制表符的空格字符个数,改进tab缩进值，默认为8，现改为4 set tabstop=4 &amp;quot; 统一缩进为4，方便在开启了et后使用退格(backspace)键，每次退格将删除X个空格 set softtabstop=4 &amp;quot; 设定自动缩进为4个字符，程序中自动缩进所使用的空白长度 set shiftwidth=4 &amp;quot; 设置帮助文件为中文(需要安装vimcdoc文档set helplang=cn &amp;quot; 显示匹配的括号 set showmatch &amp;quot; 文件缩进及tab个数 au FileType html,python,vim,javascript setl shiftwidth=4 au FileType html,python,vim,javascript setl tabstop=4 au FileType java,php setl shiftwidth=4 au FileType java,php setl tabstop=4 &amp;quot; 高亮搜索的字符串 set hlsearch &amp;quot; 检测文件的类型 filetype on filetype plugin on filetype indent on &amp;quot; C风格缩进 set cindent set completeopt=longest,menu &amp;quot; 功能设置 &amp;quot; 去掉输入错误提示声音 set noeb &amp;quot; 自动保存 set autowrite &amp;quot; 突出显示当前行 set cursorline &amp;quot; 突出显示当前列 set cursorcolumn &amp;quot;设置光标样式为竖线vertical bar &amp;quot; Change cursor shape between insert and normal mode in iTerm2.</description>
     </item>
     
     <item>

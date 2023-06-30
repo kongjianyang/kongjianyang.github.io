@@ -92,10 +92,10 @@
 <p>PyPDF2 包括了 PdfFileReader PdfFileMerger PageObject PdfFileWriter 四个常用的主要 Class。</p>
 <p>以下命令可以解释这个库是怎么工作的</p>
 <pre tabindex="0"><code>from PyPDF2 import PdfFileReader, PdfFileWriter
-readFile = &#39;read.pdf&#39;
-writeFile = &#39;write.pdf&#39;
+readFile = 'read.pdf'
+writeFile = 'write.pdf'
 # 获取一个 PdfFileReader 工具
-pdfReader = PdfFileReader(open(readFile, &#39;rb&#39;))
+pdfReader = PdfFileReader(open(readFile, 'rb'))
 # 获取 PDF 的页数
 pageCount = pdfReader.getNumPages()
 print(pageCount)
@@ -106,25 +106,25 @@ pdfWriter = PdfFileWriter()
 # 将一个 PageObject 插手到 PdfFileWriter 中
 pdfWriter.addPage(page)
 # 输出到文件中
-pdfWriter.write(open(writeFile, &#39;wb&#39;))
+pdfWriter.write(open(writeFile, 'wb'))
 </code></pre><p>接下来的命令是一个实例</p>
 <pre tabindex="0"><code>from PyPDF2 import PdfFileMerger
 
-pdfs = [&#39;file1.pdf&#39;, &#39;file2.pdf&#39;, &#39;file3.pdf&#39;, &#39;file4.pdf&#39;]
+pdfs = ['file1.pdf', 'file2.pdf', 'file3.pdf', 'file4.pdf']
 
 merger = PdfFileMerger()
 
 for pdf in pdfs:
-    merger.append(open(pdf, &#39;rb&#39;))
+    merger.append(open(pdf, 'rb'))
 
-with open(&#39;result.pdf&#39;, &#39;wb&#39;) as fout:
+with open('result.pdf', 'wb') as fout:
     merger.write(fout)
 </code></pre><p>另外一个技巧</p>
 <p>在Python列表中提取匹配到的元素</p>
-<pre tabindex="0"><code>mylist = [&#34;aa123&#34;, &#34;bb2322&#34;, &#34;aa354&#34;, &#34;cc332&#34;, &#34;ab334&#34;, &#34;333aa&#34;]
-l = [i for i in mylist if &#39;aa&#39; in i]
+<pre tabindex="0"><code>mylist = [&quot;aa123&quot;, &quot;bb2322&quot;, &quot;aa354&quot;, &quot;cc332&quot;, &quot;ab334&quot;, &quot;333aa&quot;]
+l = [i for i in mylist if 'aa' in i]
 l
-#[&#39;aa123&#39;, &#39;aa354&#39;, &#39;333aa&#39;]
+#['aa123', 'aa354', '333aa']
 </code></pre>
 <p style="color:#777;">最后一次修改于 2018-11-24</p>
 </div>

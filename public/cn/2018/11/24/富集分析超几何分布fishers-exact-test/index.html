@@ -102,7 +102,7 @@ k^m 表示在m个样本中，抽出k个的方法数目。剩下来的样本都�
 <p>以文章Gene Expre ssion in Ovarian Cancer Reflects Both Morphology and Biological Behavior, Distinguishing Clear Cell from Other Poor-Prognosis Ovarian Carcinomas所鉴定的差异基因为例。</p>
 <p>测试一下这些基因和化学刺激响应的相关性。</p>
 <p>样本的大小是n，属于“化学刺激响应”这个分类的基因有k个。</p>
-<pre tabindex="0"><code>eg &lt;- c(&#34;7980&#34;, &#34;3081&#34;, &#34;3162&#34;, &#34;3059&#34;, &#34;1545&#34;, &#34;1917&#34;, &#34;6696&#34;, &#34;5797&#34;, &#34;6648&#34; , &#34;10397&#34; , &#34;6781&#34;, &#34;5817&#34;, &#34;1282&#34;, &#34;1284&#34;, &#34;6948&#34;, &#34;7077&#34;)
+<pre tabindex="0"><code>eg &lt;- c(&quot;7980&quot;, &quot;3081&quot;, &quot;3162&quot;, &quot;3059&quot;, &quot;1545&quot;, &quot;1917&quot;, &quot;6696&quot;, &quot;5797&quot;, &quot;6648&quot; , &quot;10397&quot; , &quot;6781&quot;, &quot;5817&quot;, &quot;1282&quot;, &quot;1284&quot;, &quot;6948&quot;, &quot;7077&quot;)
 n &lt;- length(eg)
 k &lt;- sum(eg %in% allgeneInCategory)
 n
@@ -111,7 +111,7 @@ k
 #12
 </code></pre><p>那么做为背景，总体基因为N，属于“化学刺激响应”这个分类的基因有M个。</p>
 <pre tabindex="0"><code>library(org.Hs.eg.db)
-goid &lt;- &#34;GO:0042221&#34;
+goid &lt;- &quot;GO:0042221&quot;
 allgeneInCategory &lt;- unique(get(goid, org.Hs.egGO2ALLEGS))
 M &lt;- length(allgeneInCategory)
 N &lt;- length(mappedkeys(org.Hs.egGO))
@@ -129,21 +129,21 @@ N
 #1.289306e-05
 </code></pre><p>用2x2表做独立性分析</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">d &lt;- data.frame(gene.not.interest=c(M-k, N-M-n+k), gene.in.interest=c(k, n-k))
-row.names(d) &lt;- c(&#34;In_category&#34;, &#34;not_in_category&#34;)
+row.names(d) &lt;- c(&quot;In_category&quot;, &quot;not_in_category&quot;)
 d
 </code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-b7e20d37f208921f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2x2表分析"></p>
 <p>##2.3 卡方检验
 对于２x２表来说，卡方检验通常也只能做为近似估计值，特别是当sample size或expected ell count比较小的时候，计算并不准确。</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">chisq.test(d, )
 #Chi-squared approximation may be incorrect
-#	Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+#	Pearson's Chi-squared test with Yates' continuity correction
 
 #data:  d
 #X-squared = 22.148, df = 1, p-value = 2.525e-06
 </code></pre><p>##2.4 Fisher精确检验
 名副其实，真的就比较exact，因为它使用的是超几何分布来计算p值。Fisher精确检验是基于超几何分布计算的，它分为两种，分别是单边检验（等同于超几何检验）和双边检验。</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">fisher.test(d)
-#	Fisher&#39;s Exact Test for Count Data
+#	Fisher's Exact Test for Count Data
 
 #data:  d
 #p-value = 1.289e-05

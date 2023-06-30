@@ -90,45 +90,45 @@
 <p>字符有可能是数字、字母、空格、其他特殊字符，而字符串有可能是它们中的一种或者多种的组合，在组合之后还可能形成具有特定意义的字符串，诸如邮件地址，URL地址等。</p>
 <p>数字或者数字组合</p>
 <pre tabindex="0"><code>$ i=5;j=9423483247234;
-$ echo $i | grep &#34;^[0-9]$&#34;
+$ echo $i | grep &quot;^[0-9]$&quot;
 5
-$ echo $j | grep &#34;^[0-9]\+$&#34;
+$ echo $j | grep &quot;^[0-9]\+$&quot;
 9423483247234
 </code></pre><p>字符组合</p>
-<pre tabindex="0"><code>$ c=&#34;A&#34;; d=&#34;fwefewjuew&#34;; e=&#34;fewfEFWefwefe&#34;
-$ echo $c | grep &#34;^[A-Z]$&#34;
+<pre tabindex="0"><code>$ c=&quot;A&quot;; d=&quot;fwefewjuew&quot;; e=&quot;fewfEFWefwefe&quot;
+$ echo $c | grep &quot;^[A-Z]$&quot;
 A
-$ echo $d | grep &#34;^[a-z]\+&#34;
+$ echo $d | grep &quot;^[a-z]\+&quot;
 fwefewjuew
-$ echo $e | grep &#34;^[a-zA-Z]\+$&#34;
+$ echo $e | grep &quot;^[a-zA-Z]\+$&quot;
 fewfEFWefwefe
 </code></pre><p>字母和数字的组合</p>
-<pre tabindex="0"><code>$ ic=&#34;432fwfwefeFWEwefwef&#34;
-$ echo $ic | grep &#34;^[0-9a-zA-Z]\+$&#34;
+<pre tabindex="0"><code>$ ic=&quot;432fwfwefeFWEwefwef&quot;
+$ echo $ic | grep &quot;^[0-9a-zA-Z]\+$&quot;
 432fwfwefeFWEwefwef
 </code></pre><p>匹配邮件地址</p>
-<pre tabindex="0"><code>$ echo &#34;test2007@lzu.cn&#34; | grep &#34;[0-9a-zA-Z\.]*@[0-9a-zA-Z\.]*&#34;
+<pre tabindex="0"><code>$ echo &quot;test2007@lzu.cn&quot; | grep &quot;[0-9a-zA-Z\.]*@[0-9a-zA-Z\.]*&quot;
 test2007@lzu.cn
 </code></pre><p>匹配 URL 地址</p>
-<pre tabindex="0"><code>$ echo &#34;http://news.lzu.edu.cn/article.jsp?newsid=10135&#34; | grep &#34;^http://[0-9a-zA-Z\./=?]\+$&#34;
+<pre tabindex="0"><code>$ echo &quot;http://news.lzu.edu.cn/article.jsp?newsid=10135&quot; | grep &quot;^http://[0-9a-zA-Z\./=?]\+$&quot;
 http://news.lzu.edu.cn/article.jsp?newsid=10135
 </code></pre><h2 id="2字符串长度">2.字符串长度<a href="#2字符串长度" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>即计算所有字符的个数，计算方法五花八门，下面是几个例子</p>
-<pre tabindex="0"><code>$ var=&#34;get the length of me&#34;
+<pre tabindex="0"><code>$ var=&quot;get the length of me&quot;
 $ echo ${var}     # 这里等同于$var
 get the length of me
 $ echo ${#var}
 20
-$ expr length &#34;$var&#34;
+$ expr length &quot;$var&quot;
 20
-$ echo $var | awk &#39;{printf(&#34;%d\n&#34;, length($0));}&#39;
+$ echo $var | awk '{printf(&quot;%d\n&quot;, length($0));}'
 20
 $ echo -n $var |  wc -c
 20
 </code></pre><h2 id="3拆分字符串">3.拆分字符串<a href="#3拆分字符串" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>Bash 提供的数组数据结构，以数字为下标的，和 C 语言从 0 开始的下标一样，我们写个脚本，命名为split_string.sh，内容如下</p>
 <pre tabindex="0"><code>#!/bin/bas
-var=&#34;get the length of me&#34;
+var=&quot;get the length of me&quot;
 var_arr=($var)    #把字符串var存放到字符串数组var_arr中，默认以空格作为分割符
 echo ${var_arr[0]} ${var_arr[1]} ${var_arr[2]} ${var_arr[3]} ${var_arr[4]}
 echo ${var_arr[@]}    #整个字符串，可以用*代替@，下同
@@ -140,55 +140,55 @@ get the length of me
 </code></pre><h2 id="4-字符串常规操作">4. 字符串常规操作<a href="#4-字符串常规操作" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p><strong>取子串</strong></p>
 <p>awk 默认把一行按照空格分割为多个域，并可以通过 $1，$2，$3 &hellip; 来获取，$0 表示整行。</p>
-<pre tabindex="0"><code>$ var=&#34;get the length of me&#34;
+<pre tabindex="0"><code>$ var=&quot;get the length of me&quot;
 $ echo ${var:0:3}
 get
 $ echo ${var:(-2)}   # 方向相反呢
 me
-$ echo $var | awk &#39;{printf(&#34;%s\n&#34;, substr($0, 9, 6))}&#39;
+$ echo $var | awk '{printf(&quot;%s\n&quot;, substr($0, 9, 6))}'
 length
-$ echo $var | awk &#39;{printf(&#34;%s\n&#34;, $1)}&#39;
+$ echo $var | awk '{printf(&quot;%s\n&quot;, $1)}'
 get
-$ echo $var | awk &#39;{printf(&#34;%s\n&#34;, $5)}&#39;
+$ echo $var | awk '{printf(&quot;%s\n&quot;, $5)}'
 me
 </code></pre><p>cut也可以用来截取子串，-d指定分割符，如同awk用-F指定分割符一样；-f指定“域”，如同awk的$数字。</p>
-<pre tabindex="0"><code>echo $var | cut -d &#34; &#34; -f 5
+<pre tabindex="0"><code>echo $var | cut -d &quot; &quot; -f 5
 </code></pre><p><strong>匹配字符求子串</strong>
 tr 也可以用来取子串，它可以类似#和 % 来“拿掉”一些字符串来实现取子串，tr 的 -c 选项是 complement 的缩写，即 invert，而 -d 选项是删除，tr -cd &ldquo;[a-z]&rdquo; 这样一来就变成保留所有的字母</p>
-<pre tabindex="0"><code>$ echo $var | tr -d &#34; &#34;
+<pre tabindex="0"><code>$ echo $var | tr -d &quot; &quot;
 getthelengthofme
-$ echo $var | tr -cd &#34;[a-z]&#34; #把所有的空格都拿掉了，仅仅保留字母字符串，注意-c和-d的用法
+$ echo $var | tr -cd &quot;[a-z]&quot; #把所有的空格都拿掉了，仅仅保留字母字符串，注意-c和-d的用法
 getthelengthofme
 </code></pre><p>还可以使用head和tail截取字符串</p>
-<pre tabindex="0"><code>$ echo &#34;abcdefghijk&#34; | head -c 4
+<pre tabindex="0"><code>$ echo &quot;abcdefghijk&quot; | head -c 4
 abcd
-$ echo -n &#34;abcdefghijk&#34; | tail -c 4
+$ echo -n &quot;abcdefghijk&quot; | tail -c 4
 hijk
 </code></pre><p><strong>查询子串在目标串中的位置</strong></p>
-<pre tabindex="0"><code>$ var=&#34;get the length of me&#34;
-$ echo $var | awk &#39;{printf(&#34;%d\n&#34;, match($0, &#34;the&#34;))}&#39;
+<pre tabindex="0"><code>$ var=&quot;get the length of me&quot;
+$ echo $var | awk '{printf(&quot;%d\n&quot;, match($0, &quot;the&quot;))}'
 5
 </code></pre><p><strong>子串替换</strong>
 使用{}替换</p>
-<pre tabindex="0"><code>$ var=&#34;get the length of me&#34;
+<pre tabindex="0"><code>$ var=&quot;get the length of me&quot;
 $ echo ${var/ /_}        #把第一个空格替换成下划线
 get_the length of me
 $ echo ${var// /_}       #把所有空格都替换成下划线
 get_the_length_of_me
 </code></pre><p>用 awk，awk 提供了转换的最小替换函数 sub 和全局替换函数 gsub，类似 / 和 //</p>
-<pre tabindex="0"><code>$ echo $var | awk &#39;{sub(&#34; &#34;, &#34;_&#34;, $0); printf(&#34;%s\n&#34;, $0);}&#39; #先替换之后再输出，sub最小替换
+<pre tabindex="0"><code>$ echo $var | awk '{sub(&quot; &quot;, &quot;_&quot;, $0); printf(&quot;%s\n&quot;, $0);}' #先替换之后再输出，sub最小替换
 get_the length of me
-$ echo $var | awk &#39;{gsub(&#34; &#34;, &#34;_&#34;, $0); printf(&#34;%s\n&#34;, $0);}&#39; #gsub全局替换
+$ echo $var | awk '{gsub(&quot; &quot;, &quot;_&quot;, $0); printf(&quot;%s\n&quot;, $0);}' #gsub全局替换
 get_the_length_of_me
 </code></pre><p>用 sed，流编辑器，sed全名叫stream editor，用程序的方式来编辑文本：</p>
-<pre tabindex="0"><code>$ echo $var | sed -e &#39;s/ /_/&#39;    #s &lt;= substitude
+<pre tabindex="0"><code>$ echo $var | sed -e 's/ /_/'    #s &lt;= substitude
 get_the length of me
-$ echo $var | sed -e &#39;s/ /_/g&#39;   #看到没有，简短两个命令就实现了最小匹配和最大匹配g &lt;= global
+$ echo $var | sed -e 's/ /_/g'   #看到没有，简短两个命令就实现了最小匹配和最大匹配g &lt;= global
 get_the_length_of_me
 </code></pre><p>用tr命令替换，tr(translate)命令是sed命令的简化版，tr命令能实现的功能， sed都能实现</p>
-<pre tabindex="0"><code>$ echo $var | tr &#34; &#34; &#34;_&#34;
+<pre tabindex="0"><code>$ echo $var | tr &quot; &quot; &quot;_&quot;
 get_the_length_of_me
-$ echo $var | tr &#39;[a-z]&#39; &#39;[A-Z]&#39;   #这个可有意思了，把所有小写字母都替换为大写字母
+$ echo $var | tr '[a-z]' '[A-Z]'   #这个可有意思了，把所有小写字母都替换为大写字母
 GET THE LENGTH OF ME
 </code></pre>
 <p style="color:#777;">最后一次修改于 2018-11-24</p>

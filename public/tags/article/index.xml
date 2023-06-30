@@ -6,7 +6,16 @@
     <description>Recent content in article on KJY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 23 Dec 2022 19:10:27 -0400</lastBuildDate><atom:link href="https://kongjianyang.github.io/tags/article/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 07 Feb 2023 14:42:27 -0500</lastBuildDate><atom:link href="https://kongjianyang.github.io/tags/article/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>R语言编程补充</title>
+      <link>https://kongjianyang.github.io/cn/2023/02/07/advanced_r/</link>
+      <pubDate>Tue, 07 Feb 2023 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2023/02/07/advanced_r/</guid>
+      <description>R编程补充 // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child&#34;); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;;var t=[],r=Object.</description>
+    </item>
+    
     <item>
       <title>Python机器学习</title>
       <link>https://kongjianyang.github.io/cn/2022/12/23/python-ml/</link>
@@ -41,7 +50,7 @@
       <pubDate>Sat, 24 Sep 2022 19:10:27 -0400</pubDate>
       
       <guid>https://kongjianyang.github.io/cn/2022/09/24/python/</guid>
-      <description># !#/usr/bin/python3 import os import re import datetime  dir = os.getcwd() files = os.listdir(&amp;#34;./&amp;#34;) # 判断字符串 oldStr = r&amp;#34;(\d{4}-\d{1,2}-\d{1,2}-)&amp;#34; newStr = &amp;#34;&amp;#34;  #判断生成时间 now = datetime.datetime.now() deltaH = datetime.timedelta(days=360)  d = os.walk(dir) for path,dirList,fileList in d:  for fileName in fileList:  oldFile = os.path.join(path, fileName)  if re.findall(oldStr, fileName):  f = datetime.datetime.fromtimestamp(os.path.getmtime(oldFile))  if f &amp;gt; (now-deltaH):  print(oldFile)  newName = re.sub(oldStr, newStr, fileName)  newFile = os.</description>
+      <description># !#/usr/bin/python3 import os import re import datetime dir = os.getcwd() files = os.listdir(&amp;#34;./&amp;#34;) # 判断字符串 oldStr = r&amp;#34;(\d{4}-\d{1,2}-\d{1,2}-)&amp;#34; newStr = &amp;#34;&amp;#34; #判断生成时间 now = datetime.datetime.now() deltaH = datetime.timedelta(days=360) d = os.walk(dir) for path,dirList,fileList in d: for fileName in fileList: oldFile = os.path.join(path, fileName) if re.findall(oldStr, fileName): f = datetime.datetime.fromtimestamp(os.path.getmtime(oldFile)) if f &amp;gt; (now-deltaH): print(oldFile) newName = re.sub(oldStr, newStr, fileName) newFile = os.path.join(path, newName) if os.path.isfile(oldFile): os.rename(os.path.join(path, fileName),newFile) print(newFile) pass else: pass </description>
     </item>
     
     <item>
@@ -200,7 +209,7 @@ alfred搜索到文件后打开所在目录
       <guid>https://kongjianyang.github.io/cn/2022/05/07/html/</guid>
       <description>迁移博客系统之后之前一些产生的html文件不能在hugo系统中显示了，例如从rmd或者jupyter生产的html文件，尝试之后发现问题是生产的html文件没有frontmatter，加上之后就能解决问题。
 参考：[SOLVED] Using HTML for content pages instead of Markdown - support - HUGO (gohugo.io) 所以在html文件上加下如下内容就能使之显示。
-+++ title = &amp;#34;R语言元编程&amp;#34; date = &amp;#34;2020-04-17T12:15:02-00:00&amp;#34; categories = &amp;#34;R&amp;#34; tags = &amp;#34;R&amp;#34; +++ &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; Front-matter 是文件最上方以 --- 分隔的区域，用于指定个别文件的变量，举例来说：
++++ title = &amp;quot;R语言元编程&amp;quot; date = &amp;quot;2020-04-17T12:15:02-00:00&amp;quot; categories = &amp;quot;R&amp;quot; tags = &amp;quot;R&amp;quot; +++ &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; Front-matter 是文件最上方以 --- 分隔的区域，用于指定个别文件的变量，举例来说：
 --- title: Hello World date: 2013/7/13 20:46:25 --- 补充知识 仅仅使用 markdown 格式写完文章是不够的，还需要在 .md 文档前面声明文档的信息，告诉 Hugo 这篇文章的标题、写作时间，这个时候就需要用到 Hugo Front Matter Formats 元数据格式。
 Front Matter一般放在文章的最顶部，Hugo支持三种书写格式，
  TOML使用+++来包裹内容 YAML使用---来包裹内容 JSON使用{和}来包裹内容  可配置的内容见Hugo官方文档: front-matter 。
@@ -299,12 +308,12 @@ stringi：一个快速字符串处理工具</description>
       
       <guid>https://kongjianyang.github.io/cn/2022/04/25/dirt_space/</guid>
       <description>有时候在macos下会有很多空格的目录文件需要处理，很麻烦，可以使用下面的命令自动处理带有空格的文件
-alias cwd=&amp;#39;printf &amp;#34;%q\n&amp;#34; &amp;#34;$(pwd)&amp;#34; | tee &amp;gt;(pbcopy)&amp;#39; printf命令 printf 命令模仿 C 程序库（library）里的 printf() 程序。
+alias cwd=&#39;printf &amp;quot;%q\n&amp;quot; &amp;quot;$(pwd)&amp;quot; | tee &amp;gt;(pbcopy)&#39; printf命令 printf 命令模仿 C 程序库（library）里的 printf() 程序。
 printf 由 POSIX 标准所定义，因此使用 printf 的脚本比使用 echo 移植性好。
 printf 使用引用文本或空格分隔的参数，外面可以在 printf 中使用格式化字符串，还可以制定字符串的宽度、左右对齐方式等。默认的 printf 不会像 echo 自动添加换行符，我们可以手动添加 \n。
 printf 命令的语法：
 printf format-string [arguments...] 参数说明：
- format-string: 为格式控制字符串 arguments: 为参数列表。  #!/bin/bash # author:菜鸟教程 # url:www.runoob.com printf &amp;#34;%-10s %-8s %-4s\n&amp;#34; 姓名 性别 体重kg printf &amp;#34;%-10s %-8s %-4.2f\n&amp;#34; 郭靖 男 66.1234 printf &amp;#34;%-10s %-8s %-4.2f\n&amp;#34; 杨过 男 48.6543 printf &amp;#34;%-10s %-8s %-4.</description>
+ format-string: 为格式控制字符串 arguments: 为参数列表。  #!/bin/bash # author:菜鸟教程 # url:www.runoob.com printf &amp;quot;%-10s %-8s %-4s\n&amp;quot; 姓名 性别 体重kg printf &amp;quot;%-10s %-8s %-4.2f\n&amp;quot; 郭靖 男 66.1234 printf &amp;quot;%-10s %-8s %-4.2f\n&amp;quot; 杨过 男 48.6543 printf &amp;quot;%-10s %-8s %-4.</description>
     </item>
     
     <item>
@@ -361,9 +370,9 @@ CRAN - Package rio (r-project.org) 笔记说明 在读《Modern R with the tidyv
 R语言面向对象编程 (dataxujing.github.io) S3对象的介绍 在R语言中，基于S3对象的面向对象编程，是一种基于泛型函数的实现方式。泛型函数是一种特殊的函数，根据传入对象的类型决定调用那个具体的方法。基于S3对象实现面向对象编程，不同其他语言的面型对象编程，是一种动态函数调用的模拟实现。S3对象被广泛应用于R的早期的开发包中。
 R的S3系统有三个组成部分:属性(attribute)(尤其是class属性)、泛型函数(genericfunction)和方法(method)
 创建S3对象 注意：本文会用到pryr,为了方便我们检查对象的类型，引入pryr包作为辅助工具。
-library(pryr) #通过变量创建S3对象 x &amp;lt;- 1 attr(x,&amp;#39;class&amp;#39;) &amp;lt;- &amp;#39;foo&amp;#39; x ## [1] 1 ## attr(,&amp;#34;class&amp;#34;) ## [1] &amp;#34;foo&amp;#34; ## [1] &amp;#34;foo&amp;#34; ## [1] &amp;#34;foo&amp;#34; #用pryr包的otype函数,检查x的类型 otype(x) ## [1] &amp;#34;S3&amp;#34; 通过structure()函数创建S3对象
-y &amp;lt;- structure(2,class=&amp;#34;foo&amp;#34;) y ## [1] 2 ## attr(,&amp;#34;class&amp;#34;) ## [1] &amp;#34;foo&amp;#34; ## [1] &amp;#34;foo&amp;#34; ## [1] &amp;#34;foo&amp;#34; ## [1] &amp;#34;S3&amp;#34; 创建一个多类型的S3对象，S3独享没有明确结构关系，一个S3对象可以有多个类型，S3对象的class属性可以是一个向量，包括多种类型
-x &amp;lt;- 1 attr(x,&amp;#34;class&amp;#34;) &amp;lt;- c(&amp;#34;foo&amp;#34;,&amp;#34;bar&amp;#34;) # 给了x对象两个class属性 class(x) ## [1] &amp;#34;foo&amp;#34; &amp;#34;bar&amp;#34; ## [1] &amp;#34;S3&amp;#34; 如果分配至少一个class属性，就是S3对象，如果没有class属性，就是base对象。</description>
+library(pryr) #通过变量创建S3对象 x &amp;lt;- 1 attr(x,&#39;class&#39;) &amp;lt;- &#39;foo&#39; x ## [1] 1 ## attr(,&amp;quot;class&amp;quot;) ## [1] &amp;quot;foo&amp;quot; ## [1] &amp;quot;foo&amp;quot; ## [1] &amp;quot;foo&amp;quot; #用pryr包的otype函数,检查x的类型 otype(x) ## [1] &amp;quot;S3&amp;quot; 通过structure()函数创建S3对象
+y &amp;lt;- structure(2,class=&amp;quot;foo&amp;quot;) y ## [1] 2 ## attr(,&amp;quot;class&amp;quot;) ## [1] &amp;quot;foo&amp;quot; ## [1] &amp;quot;foo&amp;quot; ## [1] &amp;quot;foo&amp;quot; ## [1] &amp;quot;S3&amp;quot; 创建一个多类型的S3对象，S3独享没有明确结构关系，一个S3对象可以有多个类型，S3对象的class属性可以是一个向量，包括多种类型
+x &amp;lt;- 1 attr(x,&amp;quot;class&amp;quot;) &amp;lt;- c(&amp;quot;foo&amp;quot;,&amp;quot;bar&amp;quot;) # 给了x对象两个class属性 class(x) ## [1] &amp;quot;foo&amp;quot; &amp;quot;bar&amp;quot; ## [1] &amp;quot;S3&amp;quot; 如果分配至少一个class属性，就是S3对象，如果没有class属性，就是base对象。</description>
     </item>
     
     <item>
@@ -423,7 +432,7 @@ MACS2作为使用最广泛的peak calling软件，在v2版本中添加了差异p
 对于使用macs2来进行差异peak的完整流程，官方给出了详细的说明文档，链接如下
  https://github.com/taoliu/MACS/wiki/Call-differential-binding-events  可以分为以下3步
 1. 预测插入片段长度 通过predictd子命令可以预测样本的fragment size，命令如下
-macs2 predictd -i input.bam #!/bin/bash module load bioinfo module load biocontainers/default module load macs2/2.2.7.1-py39 for i in `ls [A-H][1-9][A-H][1-9][A-H][1-9].bam`; do msg=&amp;#34;macs2 predictd -i $i&amp;#34;; echo $msg; macs2 predictd -i $i; 2. peak calling 在peak calling时，需要添加-B参数，这样才可以输出样本对应的bedgraph文件，同时需要保证peak calling时采用一致的--extsize的值，就是第一步预测出来的数值，取多个样本的均值即可。官方也给出了推荐值，对于大多数的转录因子chip_seq数据，推荐值为200， 对于大部分组蛋白修饰的chip_seq数据，推荐值为147，命令如下
+macs2 predictd -i input.bam #!/bin/bash module load bioinfo module load biocontainers/default module load macs2/2.2.7.1-py39 for i in `ls [A-H][1-9][A-H][1-9][A-H][1-9].bam`; do msg=&amp;quot;macs2 predictd -i $i&amp;quot;; echo $msg; macs2 predictd -i $i; 2. peak calling 在peak calling时，需要添加-B参数，这样才可以输出样本对应的bedgraph文件，同时需要保证peak calling时采用一致的--extsize的值，就是第一步预测出来的数值，取多个样本的均值即可。官方也给出了推荐值，对于大多数的转录因子chip_seq数据，推荐值为200， 对于大部分组蛋白修饰的chip_seq数据，推荐值为147，命令如下
 # condition1 macs2 callpeak -B -t cond1_ChIP.bam -c cond1_Control.bam -n cond1 --nomodel --extsize 147 # condition2 # broad peak calling: macs2 callpeak -B -t cond1_ChIP.</description>
     </item>
     
@@ -491,10 +500,10 @@ hugo new site liang.github.io **# quickstart 可以换成任何你想用的名�
       <description>glue 提供了轻巧、快速和无依赖的可解释字符串，glue 通过将 R 表达式嵌入到花括号中，然后对其求值并将其插入字符串中。
 glue包可用于自定义变量，然后通过传参的方式，对字符串部分内容进行自适应修改。
 例如：可将日期赋值为：date = as.Date(&amp;ldquo;2019-12-05&amp;rdquo;)，然后通过字符串拼接的形式，实现文件名称自动更新，glue(&amp;ldquo;The day is {date}.&amp;quot;。
-安装 install.packages(&amp;#34;glue&amp;#34;) # or install.packages(&amp;#34;glue&amp;#34;) # install.packages(&amp;#34;devtools&amp;#34;) devtools::install_github(&amp;#34;tidyverse/glue&amp;#34;) 使用 1. 导入 2. 简单使用 将变量直接传递到字符串中
-&amp;gt; name &amp;lt;- &amp;#34;Fred&amp;#34; &amp;gt; glue(&amp;#39;My name is {name}.&amp;#39;) My name is Fred. 通过将变量名放置在一对花括号之间，glue 会将变量名替换为相应的值
+安装 install.packages(&amp;quot;glue&amp;quot;) # or install.packages(&amp;quot;glue&amp;quot;) # install.packages(&amp;quot;devtools&amp;quot;) devtools::install_github(&amp;quot;tidyverse/glue&amp;quot;) 使用 1. 导入 2. 简单使用 将变量直接传递到字符串中
+&amp;gt; name &amp;lt;- &amp;quot;Fred&amp;quot; &amp;gt; glue(&#39;My name is {name}.&#39;) My name is Fred. 通过将变量名放置在一对花括号之间，glue 会将变量名替换为相应的值
 字符串可以写成多行的形式，最后会自动将这些行连接起来
-&amp;gt; name &amp;lt;- &amp;#34;Fred&amp;#34; &amp;gt; age &amp;lt;- 50 &amp;gt; anniversary &amp;lt;- as.Date(&amp;#34;1991-10-12&amp;#34;) &amp;gt; glue(&amp;#39;My name is {name},&amp;#39;, + &amp;#39; my age next year is {age + 1},&amp;#39;, + &amp;#39; my anniversary is {format(anniversary, &amp;#34;%A, %B %d, %Y&amp;#34;)}.</description>
+&amp;gt; name &amp;lt;- &amp;quot;Fred&amp;quot; &amp;gt; age &amp;lt;- 50 &amp;gt; anniversary &amp;lt;- as.Date(&amp;quot;1991-10-12&amp;quot;) &amp;gt; glue(&#39;My name is {name},&#39;, + &#39; my age next year is {age + 1},&#39;, + &#39; my anniversary is {format(anniversary, &amp;quot;%A, %B %d, %Y&amp;quot;)}.</description>
     </item>
     
     <item>
@@ -582,7 +591,7 @@ Jan Gorecki 曾对比过不同开源软件及程序包在数据处理方面的�
 data.table之后，一些常规的data.frame的操作就失效了，譬如：
 data[,-1]、data[,1]这样的操作就不是这么用的了。
 使用data.table包操作数据 data.table包提供了一个加强版的data.frame，它运行效率极高，而且能够处理适合内存的大数据集，它使用[]实现了一种自然地数据操作语法。使用下面命令进行安装：
-install.packages(&amp;#34;data.table&amp;#34;) 载入包：</description>
+install.packages(&amp;quot;data.table&amp;quot;) 载入包：</description>
     </item>
     
     <item>
@@ -623,7 +632,7 @@ http://style.tidyverse.org 三、命名规范
       <guid>https://kongjianyang.github.io/cn/2020/01/12/multiple_intersects/</guid>
       <description>一个简单的例子讲解怎么做多重数据的交集
 首先创造一个嵌套的list
-l &amp;lt;- list(A=c(&amp;#34;one&amp;#34;, &amp;#34;two&amp;#34;, &amp;#34;three&amp;#34;, &amp;#34;four&amp;#34;), B=c(&amp;#34;one&amp;#34;, &amp;#34;two&amp;#34;), C=c(&amp;#34;two&amp;#34;, &amp;#34;four&amp;#34;, &amp;#34;five&amp;#34;, &amp;#34;six&amp;#34;), D=c(&amp;#34;six&amp;#34;, &amp;#34;seven&amp;#34;)) crossprod(table(stack(l))) l $A [1] &amp;#34;one&amp;#34; &amp;#34;two&amp;#34; &amp;#34;three&amp;#34; &amp;#34;four&amp;#34; $B [1] &amp;#34;one&amp;#34; &amp;#34;two&amp;#34; $C [1] &amp;#34;two&amp;#34; &amp;#34;four&amp;#34; &amp;#34;five&amp;#34; &amp;#34;six&amp;#34; $D [1] &amp;#34;six&amp;#34; &amp;#34;seven&amp;#34; crossprod(table(stack(l))) #的到结果 ind ind A B C D A 4 2 2 0 B 2 2 1 0 C 2 1 4 1 D 0 0 1 2 开始解释这些命令
+l &amp;lt;- list(A=c(&amp;quot;one&amp;quot;, &amp;quot;two&amp;quot;, &amp;quot;three&amp;quot;, &amp;quot;four&amp;quot;), B=c(&amp;quot;one&amp;quot;, &amp;quot;two&amp;quot;), C=c(&amp;quot;two&amp;quot;, &amp;quot;four&amp;quot;, &amp;quot;five&amp;quot;, &amp;quot;six&amp;quot;), D=c(&amp;quot;six&amp;quot;, &amp;quot;seven&amp;quot;)) crossprod(table(stack(l))) l $A [1] &amp;quot;one&amp;quot; &amp;quot;two&amp;quot; &amp;quot;three&amp;quot; &amp;quot;four&amp;quot; $B [1] &amp;quot;one&amp;quot; &amp;quot;two&amp;quot; $C [1] &amp;quot;two&amp;quot; &amp;quot;four&amp;quot; &amp;quot;five&amp;quot; &amp;quot;six&amp;quot; $D [1] &amp;quot;six&amp;quot; &amp;quot;seven&amp;quot; crossprod(table(stack(l))) #的到结果 ind ind A B C D A 4 2 2 0 B 2 2 1 0 C 2 1 4 1 D 0 0 1 2 开始解释这些命令
 首先是stack命令，将潜逃列表变平
 &amp;gt; stack(l) values ind 1 one A 2 two A 3 three A 4 four A 5 one B 6 two B 7 two C 8 four C 9 five C 10 six C 11 six D 12 seven D Stacking vectors concatenates multiple vectors into a single vector along with a factor indicating where each observation originated.</description>
     </item>
@@ -693,7 +702,7 @@ Snakemake和Make功能一致，只不过用Python实现，增加了许多Python�
 Snakemake是一个工作流程管理系统。它是基于Python的、用于创建可重现和可扩展的数据分析的工具（当然现在也可以直接将它当做Python的一个模块）。Snakemake所创建的流程还可以无缝扩展到服务器、集群和云环境等不同环境，当然前提是你需要提前将所需的软件和依赖配置好，一起打包封装在conda环境中。
 安装软件
 pip3 install snakemake 虽然snakemake广泛的应用于生物信息方面的流程编写，但是snakemake的应用并不局限于编写生物信息学的流程，这里以一个简单的合并文件的例子开始介绍snakemake的简单使用。
-#首先我们建立两个文件 echo &amp;#34;Here is hello.&amp;#34; &amp;gt; hello.txt echo &amp;#34;Here is world.&amp;#34; &amp;gt; world.txt #接下来开始编写我们的Snakefile rule concat: # 这里的rule可视为snakemake定义的关键字，concat是我们自定义的这一步任务的名称 input: # input同样是snakemake的关键字，定义了在这个任务中的输入文件 expand(&amp;#34;{file}.txt&amp;#34;, file=[&amp;#34;hello&amp;#34;, &amp;#34;world&amp;#34;]) #expand是一个snakemake定义的替换命令 output: # output也是snakemake的关键字，定义输出结果的保存文件 &amp;#34;merged.txt&amp;#34; shell: # 这里表示我们下面的命令将在命令行中执行 &amp;#34;cat {input} &amp;gt; {output}&amp;#34; #最后就可以在Snakefile的路径执行snakemake命令即可 snakemake cat merge.txt # Here is hello. # Here is world. 在上面的Snakefile脚本中，rule、input、output、shell、expand均为snakemake中的关键字或者命令。同时Snakefile中的每一个rule其实都可以看作是一个简单的shell脚本，通过Snakefile将多个rule组织在一起并按照我们定义的顺序来执行。另外，在output中的结果文件可以是未存在目录中的文件,这时会自动创建不存在的目录。
+#首先我们建立两个文件 echo &amp;quot;Here is hello.&amp;quot; &amp;gt; hello.txt echo &amp;quot;Here is world.&amp;quot; &amp;gt; world.txt #接下来开始编写我们的Snakefile rule concat: # 这里的rule可视为snakemake定义的关键字，concat是我们自定义的这一步任务的名称 input: # input同样是snakemake的关键字，定义了在这个任务中的输入文件 expand(&amp;quot;{file}.txt&amp;quot;, file=[&amp;quot;hello&amp;quot;, &amp;quot;world&amp;quot;]) #expand是一个snakemake定义的替换命令 output: # output也是snakemake的关键字，定义输出结果的保存文件 &amp;quot;merged.txt&amp;quot; shell: # 这里表示我们下面的命令将在命令行中执行 &amp;quot;cat {input} &amp;gt; {output}&amp;quot; #最后就可以在Snakefile的路径执行snakemake命令即可 snakemake cat merge.txt # Here is hello. # Here is world. 在上面的Snakefile脚本中，rule、input、output、shell、expand均为snakemake中的关键字或者命令。同时Snakefile中的每一个rule其实都可以看作是一个简单的shell脚本，通过Snakefile将多个rule组织在一起并按照我们定义的顺序来执行。另外，在output中的结果文件可以是未存在目录中的文件,这时会自动创建不存在的目录。
 snakemake中的规则 rule是Snakefile中最主要的部分。如上面的例子所说，每一个rule定义了一系列pipe中的一步，每一个rule都可以当作一个shell脚本来处理，一般主要包括input、output、shell3个部分。同时还有许多上面没有列出来的用法：
  wildcards。用来获取通配符匹配到的部分，例如对于通配符&amp;quot;{dataset}/file.{group}.txt&amp;quot;匹配到文件101/file.A.txt，则{wildcards.dataset}就是101，{wildcards.group}就是A。 threads。通过在rule里面指定threads参数来指定分配给程序的线程数，egthreads: 8。 resources。可用来指定程序运行的内存，eg. resources: mem_mb=800。 message。使用message参数可以指定每运行到一个rule时，在终端中给出提示信息，eg.</description>
     </item>
@@ -726,9 +735,9 @@ snakemake中的规则 rule是Snakefile中最主要的部分。如上面的例子
 &amp;lt;p&amp;gt;我的猫咪脾气&amp;lt;strong&amp;gt;非常&amp;lt;/strong&amp;gt;暴躁:)&amp;lt;/p&amp;gt; 但是，要确保元素正确嵌套。在上面的示例中，我们&amp;lt;p&amp;gt; 首先打开了元素，然后打开了&amp;lt;strong&amp;gt;元素；因此，我们必须先关闭&amp;lt;strong&amp;gt;元素，然后再关闭&amp;lt;p&amp;gt;元素。以下是不正确的：
 # right &amp;lt;p&amp;gt;我的猫咪脾气&amp;lt;strong&amp;gt;非常暴躁&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt; # wong &amp;lt;p&amp;gt;我的猫咪脾气&amp;lt;strong&amp;gt;非常&amp;lt;/p&amp;gt;暴躁&amp;lt;/strong&amp;gt; 这些元素必须正确地打开和关闭，以使它们清楚地位于彼此内部或外部。如果它们如上所示重叠，则您的Web浏览器将尝试对您要说的内容做出最佳猜测，这可能会导致意外结果。
  空元素 一些元素没有内容，被称为空元素。采取&amp;lt;img&amp;gt; 我们在HTML页面中已经拥有的元素：
-&amp;lt;img src=&amp;#34;/img/earth.jpg&amp;#34; alt=&amp;#34;地球&amp;#34;&amp;gt; 它包含两个属性，但是没有结束&amp;lt;/img&amp;gt;标记，也没有内部内容。其目的是将图像嵌入HTML页面中。
+&amp;lt;img src=&amp;quot;/img/earth.jpg&amp;quot; alt=&amp;quot;地球&amp;quot;&amp;gt; 它包含两个属性，但是没有结束&amp;lt;/img&amp;gt;标记，也没有内部内容。其目的是将图像嵌入HTML页面中。
  HTML文档剖析 总结了各个HTML元素的基础知识。现在，我们将研究如何将单个元素组合以形成整个HTML页面。让我们重新看一下index.html示例中放入的代码：
-&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;utf-8&amp;#34;&amp;gt; &amp;lt;title&amp;gt;测试页面&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;img src=&amp;#34;/img/earth.</description>
+&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt; &amp;lt;title&amp;gt;测试页面&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;img src=&amp;quot;/img/earth.</description>
     </item>
     
     <item>
@@ -738,12 +747,12 @@ snakemake中的规则 rule是Snakefile中最主要的部分。如上面的例子
       
       <guid>https://kongjianyang.github.io/cn/2019/06/07/r_errors/</guid>
       <description>方案一：使用try语句  使用方法
-在R语言中，try语句的用法如下所示:  try(expr, silent = FALSE, outFile = getOption(&amp;#34;try.outFile&amp;#34;, default = stderr())) 可以看到，try语句共有三个参数，常用的是前两个参数。第一个参数expr为我们所要使用的表达式，第二个参数silent表示当错误出现时是否需要报告错误信息，其输入值应为逻辑变量，默认为FALSE，即选择不保持“沉默”，当错误出现时会立即报告错误信息。
+在R语言中，try语句的用法如下所示:  try(expr, silent = FALSE, outFile = getOption(&amp;quot;try.outFile&amp;quot;, default = stderr())) 可以看到，try语句共有三个参数，常用的是前两个参数。第一个参数expr为我们所要使用的表达式，第二个参数silent表示当错误出现时是否需要报告错误信息，其输入值应为逻辑变量，默认为FALSE，即选择不保持“沉默”，当错误出现时会立即报告错误信息。
 如果参数expr所代表的表达式可以正确运行，则try语句的输出即为该表达式的运行结果，如果表达式无法正确运行，则try语句会输出一个“try-error”类的不可见对象，因此可以通过if语句对try语句的输出结果进行判断从而进行下一步的处理。
 如果大段代码中有错误，想忽略错误，可以采用try()，但大段代码需放在**{ }**中：
-你可以捕获**try()的输出，如果程序运行成功，返回计算结果；如果程序运行不成功，则可以通过class()**函数返回，错误类型 &amp;rsquo;try-error&amp;rsquo;。
-使用示例  A = list(a=1,b=&amp;#39;abc&amp;#39;,c=-2,d=3) # 运行log(&amp;#39;abc&amp;#39;)会报错，运行log(-2)会出现警告 B = list() for (nm in names(A)) {  x &amp;lt;- A[[nm]]  temp &amp;lt;- try(log(x),silent=FALSE)  if(&amp;#39;try-error&amp;#39; %in% class(temp)) # 判断当前循环的try语句中的表达式是否运行正确  {  temp &amp;lt;- NA # 此处可以对运行错误的情况进行处理应对  }  B[[nm]] &amp;lt;- temp } 方案二：使用tryCatch语句  使用方法
-相较于try语句，tryCatch语句更为全面，能够处理和应对更为复杂的问题。其不仅能够处理表达式出现错误error的情形，还能够处理出现警告warning的情况。主要用法如下所示：  tryCatch(  { expr },  warning = function(w) { warning-handler-code },  error = function(e) { error-handler-code },  finally = { cleanup-code }  ) 可以看到，tryCatch语句的内部可以被划分为四个不同的部分。</description>
+你可以捕获**try()的输出，如果程序运行成功，返回计算结果；如果程序运行不成功，则可以通过class()**函数返回，错误类型 &amp;lsquo;try-error&amp;rsquo;。
+使用示例  A = list(a=1,b=&amp;#39;abc&amp;#39;,c=-2,d=3) # 运行log(&amp;#39;abc&amp;#39;)会报错，运行log(-2)会出现警告 B = list() for (nm in names(A)) { x &amp;lt;- A[[nm]] temp &amp;lt;- try(log(x),silent=FALSE) if(&amp;#39;try-error&amp;#39; %in% class(temp)) # 判断当前循环的try语句中的表达式是否运行正确 { temp &amp;lt;- NA # 此处可以对运行错误的情况进行处理应对 } B[[nm]] &amp;lt;- temp } 方案二：使用tryCatch语句  使用方法
+相较于try语句，tryCatch语句更为全面，能够处理和应对更为复杂的问题。其不仅能够处理表达式出现错误error的情形，还能够处理出现警告warning的情况。主要用法如下所示：  tryCatch( { expr }, warning = function(w) { warning-handler-code }, error = function(e) { error-handler-code }, finally = { cleanup-code } ) 可以看到，tryCatch语句的内部可以被划分为四个不同的部分。</description>
     </item>
     
     <item>
@@ -800,7 +809,7 @@ VS Code 检测到操作系统的 UI 语言，并会提示您安装适当的语�
       
       <guid>https://kongjianyang.github.io/cn/2018/12/25/rmd/</guid>
       <description>首先将Rmd文件转换为md文件
-library(rmarkdown) a &amp;lt;- list.files(&amp;#34;./&amp;#34;, pattern = &amp;#34;.Rmd&amp;#34;) map(a, render, md_document()) #会将当前文件下所有的Rmd文件转化为md文件  on the Mac you could use the following commands to open RStudio (respectively) in the &amp;lsquo;~/projects/foo&amp;rsquo; directory or the current working directory:
+library(rmarkdown) a &amp;lt;- list.files(&amp;quot;./&amp;quot;, pattern = &amp;quot;.Rmd&amp;quot;) map(a, render, md_document()) #会将当前文件下所有的Rmd文件转化为md文件  on the Mac you could use the following commands to open RStudio (respectively) in the &amp;lsquo;~/projects/foo&amp;rsquo; directory or the current working directory:
  $ open -a RStudio ~/projects/foo $ open -a RStudio . 这里的open命令很有用
 MacOS用户如果有用命令行的话，大多数人应该知道open .会打开Finder。事实上它能打开所有的目录，比如:
 $ open ~/Library/Preferences $ open /etc $ open ../.. 你还能同时打开多个目录：

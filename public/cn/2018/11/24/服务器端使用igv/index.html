@@ -94,9 +94,9 @@ module show igv
 <pre tabindex="0"><code>--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
    /depot/bioinfo/apps/modules/igv/2.3.60:
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-whatis(&#34;Visualization tool for interactive exploration of genomic datasets &#34;)
-load(&#34;java&#34;)
-prepend_path(&#34;PATH&#34;,&#34;/group/bioinfo/apps/apps/IGV_2.3.60&#34;)
+whatis(&quot;Visualization tool for interactive exploration of genomic datasets &quot;)
+load(&quot;java&quot;)
+prepend_path(&quot;PATH&quot;,&quot;/group/bioinfo/apps/apps/IGV_2.3.60&quot;)
 help([[
 Notes:
 IGV (Integrative Genomics Viewer)
@@ -107,7 +107,7 @@ User Guide: http://www.broadinstitute.org/software/igv/UserGuide
 FAQ: http://www.broadinstitute.org/software/igv/FAQ
 Forum: https://groups.google.com/forum/#!forum/igv-help
 Info: /group/bioinfo/apps/apps/IGV_2.3.60/readme.txt
-Start with &#34;igv.sh&#34; 
+Start with &quot;igv.sh&quot; 
 Need X11 display: More config info at:
 https://www.rcac.purdue.edu/compute/carter/guide/#accounts_login_x11
 
@@ -121,9 +121,9 @@ module show igvtools
 <pre tabindex="0"><code>----------------------------------------------------------------------------
    /depot/bioinfo/apps/modules/igvtools/2.3.60:
 ----------------------------------------------------------------------------
-whatis(&#34;Utilities for preprocessing data files &#34;)
-load(&#34;java&#34;)
-prepend_path(&#34;PATH&#34;,&#34;/group/bioinfo/apps/apps/IGVTools-2.3.60&#34;)
+whatis(&quot;Utilities for preprocessing data files &quot;)
+load(&quot;java&quot;)
+prepend_path(&quot;PATH&quot;,&quot;/group/bioinfo/apps/apps/IGVTools-2.3.60&quot;)
 help([[
 Notes:
 IGV Tools
@@ -151,8 +151,8 @@ igvtools index zea_mays.protein_coding.sorted.gff
 <pre tabindex="0"><code>#!/bin/bash
 for i in *.bam
 do
-echo &#34;Indexing: &#34;$i
-samtools index $i $i&#34;.bai&#34;
+echo &quot;Indexing: &quot;$i
+samtools index $i $i&quot;.bai&quot;
 done
 </code></pre><p>注意将.bam和.bai放在同一个文件夹下。
 建立完索引后 load bam 文件:

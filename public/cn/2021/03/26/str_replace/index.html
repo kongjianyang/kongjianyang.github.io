@@ -98,11 +98,11 @@ Table of Contents:
 <p>主要参考这个回答：<a href="https://stackoverflow.com/questions/60129058/stringr-str-replace-on-multiple-patterns-and-replacements" target="_blank" rel="noreferrer noopener">r - stringr str_replace on multiple patterns and replacements? - Stack Overflow</a>
 
 </p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#00f">library</span>(stringr)
-</span></span><span style="display:flex;"><span><span style="color:#00f">library</span>(purrr)
-</span></span><span style="display:flex;"><span><span style="color:#00f">reduce2</span>(<span style="color:#00f">c</span>(<span style="color:#ba2121">&#39;b&#39;</span>, <span style="color:#ba2121">&#39;d&#39;</span>), <span style="color:#00f">c</span>(<span style="color:#ba2121">&#39;B&#39;</span>, <span style="color:#ba2121">&#39;D&#39;</span>),  .init <span style="color:#666">=</span> <span style="color:#ba2121">&#39;abcdef&#39;</span>, str_replace)
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic">#[1] &#34;aBcDef&#34;</span>
-</span></span></code></pre></div><p>这种方法在大批量替换rowname的时候很有用，所以解析一下。</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#00f">library</span>(stringr)
+<span style="color:#00f">library</span>(purrr)
+<span style="color:#00f">reduce2</span>(<span style="color:#00f">c</span>(<span style="color:#ba2121">&#39;b&#39;</span>, <span style="color:#ba2121">&#39;d&#39;</span>), <span style="color:#00f">c</span>(<span style="color:#ba2121">&#39;B&#39;</span>, <span style="color:#ba2121">&#39;D&#39;</span>),  .init <span style="color:#666">=</span> <span style="color:#ba2121">&#39;abcdef&#39;</span>, str_replace)
+<span style="color:#408080;font-style:italic">#[1] &#34;aBcDef&#34;</span>
+</code></pre></div><p>这种方法在大批量替换rowname的时候很有用，所以解析一下。</p>
 <p>在purrr包中</p>
 <p><code>map</code>表示映射，可以在一个或多个列表/向量的每个位置上应用相同函数进行计算。<code>map</code>函数的映射对象只有一个。</p>
 <p><img src="https://img-blog.csdnimg.cn/img_convert/ff19dbc1bbe38c449e69ddf80bf8e27e.png" alt="map.png"></p>
@@ -150,9 +150,9 @@ Table of Contents:
 </blockquote>
 <p><code>reduce2(x, y, f)</code>中的<code>x</code>是要进行连续运算的数据列表或向量， 而<code>y</code>是给这些运算提供不同的参数。 如果没有<code>.init</code>初始值， <code>f</code>仅需调用<code>length(x)-1</code>次， 所以<code>y</code>仅需要有<code>length(x)-1</code>个元素； 如果有<code>.init</code>初始值， <code>f</code>需要调用<code>length(x)</code>次， <code>y</code>也需要与<code>x</code>等长。</p>
 <p>​</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#00f">reduce2</span>(<span style="color:#666">1</span><span style="color:#666">:</span><span style="color:#666">4</span>, <span style="color:#00f">c</span>(<span style="color:#666">1</span>,<span style="color:#666">1</span>,<span style="color:#666">1</span>), <span style="color:#00f">function</span>(x,y,z) x<span style="color:#666">+</span>y<span style="color:#666">-</span>z)
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># [1] 7</span>
-</span></span></code></pre></div><p>计算逻辑为第一次：1+2-1=2，第二次2+3-1=4，第三次4+4-1=7。</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#00f">reduce2</span>(<span style="color:#666">1</span><span style="color:#666">:</span><span style="color:#666">4</span>, <span style="color:#00f">c</span>(<span style="color:#666">1</span>,<span style="color:#666">1</span>,<span style="color:#666">1</span>), <span style="color:#00f">function</span>(x,y,z) x<span style="color:#666">+</span>y<span style="color:#666">-</span>z)
+<span style="color:#408080;font-style:italic"># [1] 7</span>
+</code></pre></div><p>计算逻辑为第一次：1+2-1=2，第二次2+3-1=4，第三次4+4-1=7。</p>
 
 <p style="color:#777;">最后一次修改于 2021-03-26</p>
 </div>

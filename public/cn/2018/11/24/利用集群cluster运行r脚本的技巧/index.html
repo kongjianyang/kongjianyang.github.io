@@ -89,19 +89,19 @@
 <h3 id="1-编写脚本">1. 编写脚本<a href="#1-编写脚本" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
 <p>首先编写一个R脚本保存在当前目录下，例如HeatMap.R</p>
 <pre tabindex="0"><code>library(gplots)
-qlf_path &lt;- &#34;../07DEgene/QLF_DEG/&#34;
+qlf_path &lt;- &quot;../07DEgene/QLF_DEG/&quot;
 file_name &lt;- dir(qlf_path)
-figure_path &lt;- &#34;../07DEgene/figure/qlf_heatmap/&#34;
+figure_path &lt;- &quot;../07DEgene/figure/qlf_heatmap/&quot;
 for (k in 21:21){
-  mymain &lt;- strsplit(file_name[k], &#34;_&#34;)[[1]][c(1,2,4,5)]
-  mymain &lt;- paste(mymain, collapse = &#34;_&#34;)
-  figure_name &lt;- paste0(figure_path, mymain, &#34;.pdf&#34;)
+  mymain &lt;- strsplit(file_name[k], &quot;_&quot;)[[1]][c(1,2,4,5)]
+  mymain &lt;- paste(mymain, collapse = &quot;_&quot;)
+  figure_name &lt;- paste0(figure_path, mymain, &quot;.pdf&quot;)
   pdf(figure_name)
   qlf_file &lt;- paste0(qlf_path, file_name[k])
   data &lt;- read.table(qlf_file)
   data &lt;- as.matrix(data)
-  mycol &lt;- colorpanel(n=40,low=&#34;blue&#34;,high=&#34;yellow&#34;) 
-  heatmap.2(data, col = mycol, scale = &#34;row&#34;, key=TRUE, trace=&#34;none&#34;,cexCol=1,cexRow=0.5, srtRow=45, adjRow=c(0, 1), srtCol=45, adjCol=c(1,1), Rowv= T, Colv = F, lmat=rbind( c(0, 3), c(2,1), c(4,0) ), lhei=c(1.5, 4, 2), lwid = c(3,4), labRow = &#34;&#34;, main = mymain)
+  mycol &lt;- colorpanel(n=40,low=&quot;blue&quot;,high=&quot;yellow&quot;) 
+  heatmap.2(data, col = mycol, scale = &quot;row&quot;, key=TRUE, trace=&quot;none&quot;,cexCol=1,cexRow=0.5, srtRow=45, adjRow=c(0, 1), srtCol=45, adjCol=c(1,1), Rowv= T, Colv = F, lmat=rbind( c(0, 3), c(2,1), c(4,0) ), lhei=c(1.5, 4, 2), lwid = c(3,4), labRow = &quot;&quot;, main = mymain)
   dev.off()
 }
 </code></pre><p>然后编写一个串行作业脚本，例如pbs_heatmap.sh</p>
@@ -131,20 +131,20 @@ qrls ID 把挂起的作业释放</p>
 <h3 id="4-额外知识">4. 额外知识<a href="#4-额外知识" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
 <p>有的时候需要在cluster上安装R包和装载R包。
 安装R包：</p>
-<pre tabindex="0"><code>install.packages(&#34;gplots”,lib=“/data/user/Rlib”)
+<pre tabindex="0"><code>install.packages(&quot;gplots”,lib=“/data/user/Rlib”)
 </code></pre><p>lib 的参数值为需要将R 包安装的路径。
 查看自己已经安装的R包的路径可以使用命令：</p>
 <pre tabindex="0"><code>&gt; .libPaths()
-[1] &#34;C:/Users/jmzeng/Documents/R/win-library/3.1&#34;
-[2] &#34;C:/Program Files/R/R-3.1.0/library&#34;
+[1] &quot;C:/Users/jmzeng/Documents/R/win-library/3.1&quot;
+[2] &quot;C:/Program Files/R/R-3.1.0/library&quot;
 </code></pre><p>查看自己已经安装的R包有哪些，使用命令:</p>
 <pre tabindex="0"><code>&gt; colnames(installed.packages())
- [1] &#34;Package&#34;               &#34;LibPath&#34;               &#34;Version&#34;              
- [4] &#34;Priority&#34;              &#34;Depends&#34;               &#34;Imports&#34;              
- [7] &#34;LinkingTo&#34;             &#34;Suggests&#34;              &#34;Enhances&#34;             
-[10] &#34;License&#34;               &#34;License_is_FOSS&#34;       &#34;License_restricts_use&#34;
-[13] &#34;OS_type&#34;               &#34;MD5sum&#34;                &#34;NeedsCompilation&#34;     
-[16] &#34;Built&#34;
+ [1] &quot;Package&quot;               &quot;LibPath&quot;               &quot;Version&quot;              
+ [4] &quot;Priority&quot;              &quot;Depends&quot;               &quot;Imports&quot;              
+ [7] &quot;LinkingTo&quot;             &quot;Suggests&quot;              &quot;Enhances&quot;             
+[10] &quot;License&quot;               &quot;License_is_FOSS&quot;       &quot;License_restricts_use&quot;
+[13] &quot;OS_type&quot;               &quot;MD5sum&quot;                &quot;NeedsCompilation&quot;     
+[16] &quot;Built&quot;
 </code></pre>
 <p style="color:#777;">最后一次修改于 2018-11-24</p>
 </div>

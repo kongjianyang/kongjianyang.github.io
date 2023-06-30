@@ -103,7 +103,7 @@ chr1    5347979 5358384 ref Del Het 228
 </code></pre><p>我们可以根据以下命令进行实现</p>
 <pre tabindex="0"><code>df1 &lt;- aggregate(df[7], df[-7], unique)
 # 或者
-df2 &lt;- aggregate(df[7], df[-7], FUN = function(X) paste(unique(X), collapse=&#34;, &#34;))
+df2 &lt;- aggregate(df[7], df[-7], FUN = function(X) paste(unique(X), collapse=&quot;, &quot;))
 </code></pre><h1 id="2-解释">2. 解释<a href="#2-解释" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
 <p>aggregate函数应该是数据处理中常用到的函数，它首先将数据进行分组（按行），然后对每一组数据进行函数统计。简单说有点类似sql语言中的group by，可以按照要求把数据打组聚合，然后对聚合以后的数据进行加和、求平均等各种操作。</p>
 <blockquote>

@@ -36,7 +36,7 @@ http://geneontology.org/page/downloads
       <guid>https://kongjianyang.github.io/cn/2018/11/24/bedgraphbed%E4%BB%A5%E5%8F%8Abam%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/</guid>
       <description>感兴趣的基因信息包含在bedGraph文件中，下面命令是对其文件格式进行转换，一般进行到bam文件可视化的效果比较好。
 1. bedGraph转bed文件 BedGraph ，的数据和bed文件很类似，ChIPseq数据做完peak calling后的bed文件最短只有三列，染色体序号，染色体起始位置和结束位置。如下所示，前面的声明和Wig类似，后面的四列分别表示染色体序号，起始位置，结束位置和value值。相当于为bed文件的延伸格式。
-track type=bedGraph name=&amp;#34;BedGraph Format&amp;#34; description=&amp;#34;BedGraph format&amp;#34; visibility=full color=200,100,0 altColor=0,100,200 priority=20 chr19 49302000 49302300 -1.0 chr19 49302300 49302600 -0.75 chr19 49302600 49302900 -0.50 chr19 49302900 49303200 -0.25 chr19 49303200 49303500 0.0 chr19 49303500 49303800 0.25 chr19 49303800 49304100 0.50 chr19 49304100 49304400 0.75 chr19 49304400 49304700 1.00 所以我们想要得到bed文件只需要提取bedGraph的前三列即可，同时注意不要第一行，利用grep -v命令
+track type=bedGraph name=&amp;quot;BedGraph Format&amp;quot; description=&amp;quot;BedGraph format&amp;quot; visibility=full color=200,100,0 altColor=0,100,200 priority=20 chr19 49302000 49302300 -1.0 chr19 49302300 49302600 -0.75 chr19 49302600 49302900 -0.50 chr19 49302900 49303200 -0.25 chr19 49303200 49303500 0.0 chr19 49303500 49303800 0.25 chr19 49303800 49304100 0.50 chr19 49304100 49304400 0.75 chr19 49304400 49304700 1.00 所以我们想要得到bed文件只需要提取bedGraph的前三列即可，同时注意不要第一行，利用grep -v命令
 # Convert bedGraph to bed file grep -v track GSM1252087_edm2-4_RNAseq.bedGraph | cut -f 1-3 &amp;gt; GSM1252087_edm2-4_RNAseq.bed 2.</description>
     </item>
     
@@ -94,10 +94,10 @@ right_join right_join连接后的记录数等于”b的记录数“。</descript
       <description>1.问题 heatmap.2是一种绘画热图的gplots包中的一个功能，十分强大，得到一个精美的热图，命令行不超过20行。
 有一个不方便的地方是得到这份热图之后希望知道聚类之后的行名以及具体的数值，以备后续的分析。
 2.解决 查阅之后可以通过以下方法进行解决. 首先制造一个绘图的矩阵
-y &amp;lt;- matrix(rnorm(50), 10, 5, dimnames=list(paste(&amp;#34;g&amp;#34;, 1:10, sep=&amp;#34;&amp;#34;), paste(&amp;#34;t&amp;#34;, 1:5, sep=&amp;#34;&amp;#34;))) 按行进行聚类
-hr &amp;lt;- hclust(as.dist(1-cor(t(y), method=&amp;#34;pearson&amp;#34;)), method=&amp;#34;complete&amp;#34;) 按列进行聚类
-hc &amp;lt;- hclust(as.dist(1-cor(y, method=&amp;#34;spearman&amp;#34;)), method=&amp;#34;complete&amp;#34;) 绘制热图
-library(gplots) heatmap.2(y, Rowv=as.dendrogram(hr), Colv=as.dendrogram(hc), scale=&amp;#34;row&amp;#34;, density.info=&amp;#34;none&amp;#34;, trace=&amp;#34;none&amp;#34;) 得到聚类之后的矩阵结果：
+y &amp;lt;- matrix(rnorm(50), 10, 5, dimnames=list(paste(&amp;quot;g&amp;quot;, 1:10, sep=&amp;quot;&amp;quot;), paste(&amp;quot;t&amp;quot;, 1:5, sep=&amp;quot;&amp;quot;))) 按行进行聚类
+hr &amp;lt;- hclust(as.dist(1-cor(t(y), method=&amp;quot;pearson&amp;quot;)), method=&amp;quot;complete&amp;quot;) 按列进行聚类
+hc &amp;lt;- hclust(as.dist(1-cor(y, method=&amp;quot;spearman&amp;quot;)), method=&amp;quot;complete&amp;quot;) 绘制热图
+library(gplots) heatmap.2(y, Rowv=as.dendrogram(hr), Colv=as.dendrogram(hc), scale=&amp;quot;row&amp;quot;, density.info=&amp;quot;none&amp;quot;, trace=&amp;quot;none&amp;quot;) 得到聚类之后的矩阵结果：
 y[rev(hr$labels[hr$order]), hc$labels[hc$order]] </description>
     </item>
     
@@ -140,7 +140,7 @@ Enter 向下n行，需要定义。默认为1行 Ctrl+F 向下滚动一屏 空格
       <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/macos%E4%B8%8B%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%87%E7%BA%A7r%E5%92%8Cr%E5%8C%85%E7%9A%84%E6%96%B9%E5%BC%8F/</guid>
-      <description>升级R #安装devtools包（如果已经安装 跳过此步，进入到下一步） install.packages(&amp;#39;devtools&amp;#39;) library(&amp;#39;devtools&amp;#39;) #安装updateR install_github(&amp;#39;andreacirilloac/updateR&amp;#39;) library(updateR) #更新 updateR(admin_password = &amp;#39;os_admin_user_password&amp;#39;) Reference:
+      <description>升级R #安装devtools包（如果已经安装 跳过此步，进入到下一步） install.packages(&#39;devtools&#39;) library(&#39;devtools&#39;) #安装updateR install_github(&#39;andreacirilloac/updateR&#39;) library(updateR) #更新 updateR(admin_password = &#39;os_admin_user_password&#39;) Reference:
 UpdateR package: update R version with a function (on MAC OSX) 升级R包 使用rvcheck::update_all()可以自动更新CRAN, Bioconductor和Github上的R包。其实可以放到系统任务里，每月自动更新一次，然后就可以完全不用管升级的事情。</description>
     </item>
     
@@ -188,7 +188,7 @@ purrr已经集成在tidyverse中，所以如果已经安装了tidyverse的话则
       <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%AD%E5%88%A9%E7%94%A8aggregate%E5%87%BD%E6%95%B0%E8%BF%9B%E8%A1%8C%E5%A4%9A%E5%9B%A0%E5%AD%90%E7%BB%9F%E8%AE%A1/</guid>
       <description>1.介绍 R中aggregate函数的功能强大，它首先将数据进行分组（按行），然后对每一组数据进行函数统计，最后把结果组合成一个比较nice的表格返回。简单说有点类似sql语言中的group by，可以按照要求把数据打组聚合，然后对聚合以后的数据进行加和、求平均等各种操作。
 2.详解 通过 mtcars 数据集的操作对这个函数进行简单了解。mtcars 是不同类型汽车道路测试的数据框类型数据：
-str(mtcars) &amp;#39;data.frame&amp;#39;:	32 obs. of 11 variables: $ mpg : num 21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ... $ cyl : num 6 6 4 6 8 6 8 4 4 6 ... $ disp: num 160 160 108 258 360 ... $ hp : num 110 110 93 110 175 105 245 62 95 123 ... $ drat: num 3.</description>
+str(mtcars) &#39;data.frame&#39;:	32 obs. of 11 variables: $ mpg : num 21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ... $ cyl : num 6 6 4 6 8 6 8 4 4 6 ... $ disp: num 160 160 108 258 360 ... $ hp : num 110 110 93 110 175 105 245 62 95 123 ... $ drat: num 3.</description>
     </item>
     
     <item>
@@ -199,9 +199,9 @@ str(mtcars) &amp;#39;data.frame&amp;#39;:	32 obs. of 11 variables: $ mpg : num 2
       <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%AD%E5%88%A9%E7%94%A8unite%E5%87%BD%E6%95%B0%E8%BF%9B%E8%A1%8C%E5%88%97%E5%90%88%E5%B9%B6/</guid>
       <description>1. 介绍 unite函数是tidyr包中的一个非常实用的函数，和separate函数相对应，可以对于数据框进行按照格式的列合并。
 2.用法 下面实用例子介绍unite函数的用法：
-library(tidyr) name1 &amp;lt;- c(&amp;#34;Bob&amp;#34;,&amp;#34;Mary&amp;#34;,&amp;#34;Jane&amp;#34;,&amp;#34;Kim&amp;#34;) birth &amp;lt;- c(&amp;#34;1990-1&amp;#34;,&amp;#34;1980-2&amp;#34;,&amp;#34;1995-5&amp;#34;,&amp;#34;1996-4&amp;#34;) df &amp;lt;- data.frame(name1, birth) 构造一个名为df的数据框，df结构如下： 下面我们想将birth列和name1列以-进行合并，可以使用unite函数了， unite语法如下：
-unite(data, col, ..., sep = &amp;#34;_&amp;#34;, remove = TRUE) 利用该语法，我们将name1和birth列按照-进行合并，合并结果存到新的列name-birth中，并保留原始的列。
-unite(df,&amp;#34;name-birth&amp;#34;,c(&amp;#34;name1&amp;#34;,&amp;#34;birth&amp;#34;), sep=&amp;#34;-&amp;#34;, remove = F) 合并的结果如下： 3.总结 tidyr包中有很多类似的功能强大的函数，这只是用来进行列合并的其中一列，当然会有很多其他的方法，会在之后详解</description>
+library(tidyr) name1 &amp;lt;- c(&amp;quot;Bob&amp;quot;,&amp;quot;Mary&amp;quot;,&amp;quot;Jane&amp;quot;,&amp;quot;Kim&amp;quot;) birth &amp;lt;- c(&amp;quot;1990-1&amp;quot;,&amp;quot;1980-2&amp;quot;,&amp;quot;1995-5&amp;quot;,&amp;quot;1996-4&amp;quot;) df &amp;lt;- data.frame(name1, birth) 构造一个名为df的数据框，df结构如下： 下面我们想将birth列和name1列以-进行合并，可以使用unite函数了， unite语法如下：
+unite(data, col, ..., sep = &amp;quot;_&amp;quot;, remove = TRUE) 利用该语法，我们将name1和birth列按照-进行合并，合并结果存到新的列name-birth中，并保留原始的列。
+unite(df,&amp;quot;name-birth&amp;quot;,c(&amp;quot;name1&amp;quot;,&amp;quot;birth&amp;quot;), sep=&amp;quot;-&amp;quot;, remove = F) 合并的结果如下： 3.总结 tidyr包中有很多类似的功能强大的函数，这只是用来进行列合并的其中一列，当然会有很多其他的方法，会在之后详解</description>
     </item>
     
     <item>
@@ -213,8 +213,8 @@ unite(df,&amp;#34;name-birth&amp;#34;,c(&amp;#34;name1&amp;#34;,&amp;#34;birth&a
       <description>##1.问题 今天利用R写循环的时候出现了一个问题，循环内会产生多个数据框，希望将这多个数据库合并并生产一个最终的数据框，最后利用了list和do.call()功能进行了实现。
 ##2.解决 例如假设我们有如下三个数据框
 df1 &amp;lt;- data.frame(cell=c(1,2,3),val=c(345,123,466)) df2 &amp;lt;- data.frame(cell=c(67,3,2),val=c(234,234,56)) df3 &amp;lt;- data.frame(cell=c(3,67,23),val=c(23,8,34)) 现在我们希望将这三个数据框进行合并： 首先创建一个空list，利用get()将所有数据框写入，形成一个2维的list，然后利用do.call()进行合并。
-l &amp;lt;- list() for(i in 1:3){ df.now &amp;lt;- get(paste0(&amp;#34;df&amp;#34;,i)) l[[i]] &amp;lt;- df.now } do.call(rbind,l) 经过评论提醒，还有一种方法可能会显得更加易于理解些，即先形成一个空的data.frame，然后直接利用rbind将变量数据框合并到最终的数据框中。
-l &amp;lt;- data.frame() for(i in 1:3){ df.now &amp;lt;- get(paste0(&amp;#34;df&amp;#34;,i)) l &amp;lt;- rbind(l, df.now) } 两种方法最后得到的结果都是：
+l &amp;lt;- list() for(i in 1:3){ df.now &amp;lt;- get(paste0(&amp;quot;df&amp;quot;,i)) l[[i]] &amp;lt;- df.now } do.call(rbind,l) 经过评论提醒，还有一种方法可能会显得更加易于理解些，即先形成一个空的data.frame，然后直接利用rbind将变量数据框合并到最终的数据框中。
+l &amp;lt;- data.frame() for(i in 1:3){ df.now &amp;lt;- get(paste0(&amp;quot;df&amp;quot;,i)) l &amp;lt;- rbind(l, df.now) } 两种方法最后得到的结果都是：
  cell val 1 1 345 2 2 123 3 3 466 4 67 234 5 3 234 6 2 56 7 3 23 8 67 8 9 23 34 ##3.</description>
     </item>
     
@@ -239,9 +239,9 @@ S3 S3是想了一种基于泛型函数的面对对象方式。泛型函数可以
 result &amp;lt;- mean(v1) 要比
 result = v1.mean() 更加容易理解。
 S3对象是一个list并且有一个名为class的属性，举例说明创建一个foo类的对象并且用class查看他的类
-x &amp;lt;- 1 attr(x, &amp;#34;class&amp;#34;) &amp;lt;- &amp;#34;foo&amp;#34; x [1] 1 attr(,&amp;#34;class&amp;#34;) [1] &amp;#34;foo&amp;#34; class(x) [1] &amp;#34;foo&amp;#34; S3没有正式的类型间关系的定义，一个对象可以有多个类型，表现为其class属性是一个向量
-class(x) &amp;lt;- c(&amp;#34;foo&amp;#34;, &amp;#34;bar&amp;#34;) class(x) [1] &amp;#34;foo&amp;#34; &amp;#34;bar&amp;#34; 方法分派是指由泛型函数 (generic function) 来决定对某个对象使用的方法. 所有泛型函数都有类似的形式: 一个广义的函数名, 并调用 UseMethod() 来决定为对象分派哪个方法. 这也使得泛型函数的形式都很简单, 比如 mean()
-mean function (x, ...) UseMethod(&amp;#34;mean&amp;#34;) &amp;lt;bytecode: 0x103792920&amp;gt; &amp;lt;environment: namespace:base&amp;gt; UseMethod() 会根据对象的 class 属性来决定分派什么方法,所以方法必须以 generic.class 的方式命名才能被 UseMethod() 找到, 比如:
+x &amp;lt;- 1 attr(x, &amp;quot;class&amp;quot;) &amp;lt;- &amp;quot;foo&amp;quot; x [1] 1 attr(,&amp;quot;class&amp;quot;) [1] &amp;quot;foo&amp;quot; class(x) [1] &amp;quot;foo&amp;quot; S3没有正式的类型间关系的定义，一个对象可以有多个类型，表现为其class属性是一个向量
+class(x) &amp;lt;- c(&amp;quot;foo&amp;quot;, &amp;quot;bar&amp;quot;) class(x) [1] &amp;quot;foo&amp;quot; &amp;quot;bar&amp;quot; 方法分派是指由泛型函数 (generic function) 来决定对某个对象使用的方法. 所有泛型函数都有类似的形式: 一个广义的函数名, 并调用 UseMethod() 来决定为对象分派哪个方法. 这也使得泛型函数的形式都很简单, 比如 mean()
+mean function (x, ...) UseMethod(&amp;quot;mean&amp;quot;) &amp;lt;bytecode: 0x103792920&amp;gt; &amp;lt;environment: namespace:base&amp;gt; UseMethod() 会根据对象的 class 属性来决定分派什么方法,所以方法必须以 generic.class 的方式命名才能被 UseMethod() 找到, 比如:
 mean.numeric &amp;lt;- function(x, .</description>
     </item>
     
@@ -253,7 +253,7 @@ mean.numeric &amp;lt;- function(x, .</description>
       <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E4%B8%AD%E7%9A%84sweep%E5%87%BD%E6%95%B0/</guid>
       <description>函数的用途 base包中sweep()函数是处理统计量的工具。所以一般结合apply()函数来使用，一般我们需要将apply()统计出来的统计量要代回原数据集去对应操作的时候就需要用到sweep()。
  扫除、清除也是sweep单词的本义。
- 函数的参数 sweep(x, MARGIN, STATS, FUN = &amp;#34;-&amp;#34;, check.margin = TRUE, ...)  x:即要处理的原数据集 MARGIN：对行或列，或者数列的其他维度进行操作 STATS：需要对原数据集操作用到的统计量 FUN：操作需要用到的四则运算，默认为减法&amp;quot;-&amp;quot;，当然可以修改成&amp;quot;+&amp;quot;,&amp;quot;*&amp;quot;,&amp;quot;/&amp;ldquo;即加、乘、除 check.margin:是否需要检查维度是否适宜的问题，默认为TRUE。 ……  实例分析 1、比如我们需要将原数据集所有数据都减去各列的平均数，所以我们需要用apply()计算出每列的平均数，然后用sweep()完成。
+ 函数的参数 sweep(x, MARGIN, STATS, FUN = &amp;quot;-&amp;quot;, check.margin = TRUE, ...)  x:即要处理的原数据集 MARGIN：对行或列，或者数列的其他维度进行操作 STATS：需要对原数据集操作用到的统计量 FUN：操作需要用到的四则运算，默认为减法&amp;quot;-&amp;quot;，当然可以修改成&amp;quot;+&amp;quot;,&amp;quot;*&amp;quot;,&amp;quot;/&amp;ldquo;即加、乘、除 check.margin:是否需要检查维度是否适宜的问题，默认为TRUE。 ……  实例分析 1、比如我们需要将原数据集所有数据都减去各列的平均数，所以我们需要用apply()计算出每列的平均数，然后用sweep()完成。
 require(stats) # for mean head(attitude, 10) ## rating complaints privileges learning raises critical advance ## 1 43 51 30 39 61 92 45 ## 2 63 64 51 54 63 73 47 ## 3 71 70 68 69 76 86 48 ## 4 61 63 45 47 54 84 35 ## 5 81 78 56 66 71 83 47 ## 6 43 55 49 44 54 49 34 ## 7 58 67 42 56 66 68 35 ## 8 71 75 50 55 70 66 41 ## 9 72 82 72 67 71 83 31 ## 10 67 61 45 47 62 80 41 mean.</description>
     </item>
     
@@ -306,19 +306,19 @@ library(ggplot2) df &amp;lt;- ToothGrowth df$dose &amp;lt;- as.factor(df$dose) h
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E5%8C%85%E7%9A%84%E6%9F%A5%E7%9C%8B%E5%8D%B8%E9%99%A4%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8D%B8%E8%BD%BD/</guid>
       <description>01. 卸载自己古老的包 查看自己的包
-mypackages &amp;lt;- installed.packages()[,c(&amp;#39;Package&amp;#39;,&amp;#39;Version&amp;#39;,&amp;#39;LibPath&amp;#39;)] %&amp;gt;% as.data.frame() write.csv(mypackages, &amp;#34;~/Desktop/mypackages.csv&amp;#34;) 从存的文档中找到自己想要卸载的R包
-remove.packages(c(&amp;#34;BSgenome.Athaliana.TAIR.TAIR9&amp;#34;, &amp;#34;BSgenome.Hsapiens.UCSC.hg19&amp;#34;, &amp;#34;GenomeInfoDb&amp;#34;, &amp;#34;GenomeInfoDbData&amp;#34;, &amp;#34;GenomicAlignments&amp;#34;, &amp;#34;GenomicFeatures&amp;#34;, &amp;#34;GenomicRanges&amp;#34;, &amp;#34;GO.db&amp;#34;, &amp;#34;GSEABase&amp;#34;, &amp;#34;KEGGgraph&amp;#34;, &amp;#34;KEGGREST&amp;#34;, &amp;#34;learnr&amp;#34;, &amp;#34;RgoogleMaps&amp;#34;, &amp;#34;RSQLite&amp;#34;, &amp;#34;yeastRNASeq&amp;#34;, &amp;#34;yyplot&amp;#34;), lib = .libPaths()[1]) remove.packages(c(&amp;#34;IRdisplay&amp;#34;, &amp;#34;IRkernel&amp;#34;), lib = .libPaths()[2]) mypackages &amp;lt;- installed.packages()[,c(&amp;#39;Package&amp;#39;,&amp;#39;Version&amp;#39;,&amp;#39;LibPath&amp;#39;)] %&amp;gt;% as.data.frame() write.csv(mypackages, &amp;#34;~/Desktop/mypackages_new.csv&amp;#34;) 查看之后上述的包已经被卸载了。
+mypackages &amp;lt;- installed.packages()[,c(&#39;Package&#39;,&#39;Version&#39;,&#39;LibPath&#39;)] %&amp;gt;% as.data.frame() write.csv(mypackages, &amp;quot;~/Desktop/mypackages.csv&amp;quot;) 从存的文档中找到自己想要卸载的R包
+remove.packages(c(&amp;quot;BSgenome.Athaliana.TAIR.TAIR9&amp;quot;, &amp;quot;BSgenome.Hsapiens.UCSC.hg19&amp;quot;, &amp;quot;GenomeInfoDb&amp;quot;, &amp;quot;GenomeInfoDbData&amp;quot;, &amp;quot;GenomicAlignments&amp;quot;, &amp;quot;GenomicFeatures&amp;quot;, &amp;quot;GenomicRanges&amp;quot;, &amp;quot;GO.db&amp;quot;, &amp;quot;GSEABase&amp;quot;, &amp;quot;KEGGgraph&amp;quot;, &amp;quot;KEGGREST&amp;quot;, &amp;quot;learnr&amp;quot;, &amp;quot;RgoogleMaps&amp;quot;, &amp;quot;RSQLite&amp;quot;, &amp;quot;yeastRNASeq&amp;quot;, &amp;quot;yyplot&amp;quot;), lib = .libPaths()[1]) remove.packages(c(&amp;quot;IRdisplay&amp;quot;, &amp;quot;IRkernel&amp;quot;), lib = .libPaths()[2]) mypackages &amp;lt;- installed.packages()[,c(&#39;Package&#39;,&#39;Version&#39;,&#39;LibPath&#39;)] %&amp;gt;% as.data.frame() write.csv(mypackages, &amp;quot;~/Desktop/mypackages_new.csv&amp;quot;) 查看之后上述的包已经被卸载了。
 02. 补充部分 查看已加载的包
 (.packages()) 卸除已加载的包
-detach(&amp;#34;package:RMySQL&amp;#34;) 注意是卸除，不是卸载，也就是说不是把包从R运行环境中彻底删除，只是不希望该包被加载使用。
+detach(&amp;quot;package:RMySQL&amp;quot;) 注意是卸除，不是卸载，也就是说不是把包从R运行环境中彻底删除，只是不希望该包被加载使用。
 在包使用函数冲突，检验函数依赖时比较有用。
 安装包
-install.packages(&amp;#34;TSA&amp;#34;) 列出包所在库的路径
+install.packages(&amp;quot;TSA&amp;quot;) 列出包所在库的路径
 .libPaths() 包的载入
 library() 或 require() 安装完包后，需要加载才能使用其中的函数，此时括号中不使用引号。两者的不同之处在于library()载入之后不返回任何信息，而require()载入后则会返回TRUE，因此require()适合用于程序的书写。
 包的更新
 update.packages() 彻底删除已安装的包：
-remove. packages(c(&amp;#34;pkg1&amp;#34;,&amp;#34;pkg2&amp;#34;) , lib = file.path(&amp;#34;path&amp;#34;, &amp;#34;to&amp;#34;, &amp;#34;library&amp;#34;)) 查看已安装的包</description>
+remove. packages(c(&amp;quot;pkg1&amp;quot;,&amp;quot;pkg2&amp;quot;) , lib = file.path(&amp;quot;path&amp;quot;, &amp;quot;to&amp;quot;, &amp;quot;library&amp;quot;)) 查看已安装的包</description>
     </item>
     
     <item>
@@ -340,9 +340,9 @@ Chr start stop ref alt Hom/het ID chr1 5179574 5183384 ref Del Het 719 chr1 5179
       <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E5%B0%86%E6%95%B0%E6%8D%AE%E6%A1%86%E5%86%85%E7%9B%B8%E5%90%8C%E5%8F%98%E9%87%8F%E7%9A%84%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%8A%A0/</guid>
       <description>1. 问题 有的时候从原始数据读入到R中的数据会有很多的重复数据，并没有进行数据合并，对于后续的处理中会造成麻烦，因为R处理这种数据的时候会只取用第一次出现的结果。处理这个问题有很多方法，记录如下。
 2. 解决 首先建立一个数据框，用来测试我们的方法：
-bevs &amp;lt;- data.frame(cbind(name = c(&amp;#34;Bill&amp;#34;, &amp;#34;Llib&amp;#34;), drink = c(&amp;#34;coffee&amp;#34;, &amp;#34;tea&amp;#34;, &amp;#34;cocoa&amp;#34;, &amp;#34;water&amp;#34;), cost = seq(1:8))) bevs$cost &amp;lt;- as.integer(bevs$cost) bevs 下面利用plyr 包里面的count 函数进行相加
-library(plyr) count(bevs, &amp;#34;name&amp;#34;) 同时统计两列，结果如下：
-count(bevs, c(&amp;#34;name&amp;#34;, &amp;#34;drink&amp;#34;)) 如果想知道Bill和Llib在不同drink上花费的钱是多少呢？可以使用 aggregate函数。
+bevs &amp;lt;- data.frame(cbind(name = c(&amp;quot;Bill&amp;quot;, &amp;quot;Llib&amp;quot;), drink = c(&amp;quot;coffee&amp;quot;, &amp;quot;tea&amp;quot;, &amp;quot;cocoa&amp;quot;, &amp;quot;water&amp;quot;), cost = seq(1:8))) bevs$cost &amp;lt;- as.integer(bevs$cost) bevs 下面利用plyr 包里面的count 函数进行相加
+library(plyr) count(bevs, &amp;quot;name&amp;quot;) 同时统计两列，结果如下：
+count(bevs, c(&amp;quot;name&amp;quot;, &amp;quot;drink&amp;quot;)) 如果想知道Bill和Llib在不同drink上花费的钱是多少呢？可以使用 aggregate函数。
 aggregate(cost ~ name + drink, data = bevs, sum) 统计Bill和Llib的总花费
 aggregate(cost ~ name, data = bevs, sum) 3. 总结 总结而言，利用count和aggregate可以很方便的帮助我们整理数据，将重复出现的变量归到一起进行计算。</description>
     </item>
@@ -354,10 +354,10 @@ aggregate(cost ~ name, data = bevs, sum) 3. 总结 总结而言，利用count和
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E6%95%B0%E6%8D%AE%E6%A1%86%E9%80%89%E4%B8%AD%E6%9F%90%E5%88%97%E4%B9%8B%E5%90%8E%E4%B8%8D%E9%99%8D%E4%B8%BA%E6%88%90%E5%88%97%E8%A1%A8/</guid>
       <description>1. 问题 数据处理中一个令人头疼的事情是选中数据框中的某列时经常会被降维成列表而不是保持原来数据框的结构，如下：
-student &amp;lt;- data.frame(ID=c(11,12,13),Name=c(&amp;#34;Devin&amp;#34;,&amp;#34;Edward&amp;#34;,&amp;#34;Wenli&amp;#34;),Gender=c(&amp;#34;M&amp;#34;,&amp;#34;M&amp;#34;,&amp;#34;F&amp;#34;)) student 当我们想得到name这一行的时候会采用以下方法
-name1 &amp;lt;- student$Name name2 &amp;lt;- student[,2] str(name1) str(name2) #Factor w/ 3 levels &amp;#34;Devin&amp;#34;,&amp;#34;Edward&amp;#34;,..: 1 2 3 #Factor w/ 3 levels &amp;#34;Devin&amp;#34;,&amp;#34;Edward&amp;#34;,..: 1 2 3 可以看到数据都是factor类型的，没有保持为数据框，而这是不方面的
+student &amp;lt;- data.frame(ID=c(11,12,13),Name=c(&amp;quot;Devin&amp;quot;,&amp;quot;Edward&amp;quot;,&amp;quot;Wenli&amp;quot;),Gender=c(&amp;quot;M&amp;quot;,&amp;quot;M&amp;quot;,&amp;quot;F&amp;quot;)) student 当我们想得到name这一行的时候会采用以下方法
+name1 &amp;lt;- student$Name name2 &amp;lt;- student[,2] str(name1) str(name2) #Factor w/ 3 levels &amp;quot;Devin&amp;quot;,&amp;quot;Edward&amp;quot;,..: 1 2 3 #Factor w/ 3 levels &amp;quot;Devin&amp;quot;,&amp;quot;Edward&amp;quot;,..: 1 2 3 可以看到数据都是factor类型的，没有保持为数据框，而这是不方面的
 #2. 解决 我们可以利用以下两种方式避免这种情况的发生
-name3 &amp;lt;- student[,2,drop = FALSE] name4 &amp;lt;- student[&amp;#34;Name&amp;#34;] str(name3) str(name4) #&amp;#39;data.frame&amp;#39;:	3 obs. of 1 variable: #$ Name: Factor w/ 3 levels &amp;#34;Devin&amp;#34;,&amp;#34;Edward&amp;#34;,..: 1 2 3 #&amp;#39;data.frame&amp;#39;:	3 obs. of 1 variable: #$ Name: Factor w/ 3 levels &amp;#34;Devin&amp;#34;,&amp;#34;Edward&amp;#34;,.</description>
+name3 &amp;lt;- student[,2,drop = FALSE] name4 &amp;lt;- student[&amp;quot;Name&amp;quot;] str(name3) str(name4) #&#39;data.frame&#39;:	3 obs. of 1 variable: #$ Name: Factor w/ 3 levels &amp;quot;Devin&amp;quot;,&amp;quot;Edward&amp;quot;,..: 1 2 3 #&#39;data.frame&#39;:	3 obs. of 1 variable: #$ Name: Factor w/ 3 levels &amp;quot;Devin&amp;quot;,&amp;quot;Edward&amp;quot;,.</description>
     </item>
     
     <item>
@@ -392,7 +392,7 @@ BAD: calculate_avg_clicks , calculateAvgClicks
 Make function names verbs.
 Exception: When creating a classed object, the function name
  3.0 间距(Spacing) 当使用所有二进制运算符(如=,+,-,&amp;lt;,等)在两端空格。例外:当符号 = 是函数调用时的传递参数周围不用空格隔开。 不要在符号“，”前空格隔开，但需要在“，”后添加空格 good style
-tab.prior &amp;lt;- table(df[df$days.from.opt &amp;lt; 0, &amp;#34;campaign.id&amp;#34;]) total &amp;lt;- sum(x[, 1]) total &amp;lt;- sum(x[1, ])123 bad style</description>
+tab.prior &amp;lt;- table(df[df$days.from.opt &amp;lt; 0, &amp;quot;campaign.id&amp;quot;]) total &amp;lt;- sum(x[, 1]) total &amp;lt;- sum(x[1, ])123 bad style</description>
     </item>
     
     <item>
@@ -411,7 +411,7 @@ tab.prior &amp;lt;- table(df[df$days.from.opt &amp;lt; 0, &amp;#34;campaign.id&a
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/r%E8%AF%AD%E8%A8%80%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8-rvest%E6%95%99%E7%A8%8B/</guid>
       <description>安装包
-# install.packages(&amp;#34;rvest&amp;#34;) 查看rvest包的详细信息
+# install.packages(&amp;quot;rvest&amp;quot;) 查看rvest包的详细信息
 library(help = rvest) ###包的用法：
   read_html() 读取html文档的函数，其输入可以是线上的url，也可以是本地的html文件，甚至是包含html的字符串也可以。
   html_nodes() 选择提取文档中制定元素的部分。可以使用css selectors，例如html_nodes(doc, &amp;ldquo;table td&amp;rdquo;)；也可以使用xpath selectors，例如html_nodes(doc, xpath = &amp;ldquo;//table//td&amp;rdquo;)。
@@ -420,7 +420,7 @@ library(help = rvest) ###包的用法：
   html_form(),set_values()和submit_form() 分别表示提取、修改和提交表单。
   在中文网页中我们经常会遇到乱码的问题，这里提供了两个函数来解决：guess_encoding()用来探测文档的编码，方便我们在读入html文档时设置正确的编码格式，repair_encoding()用来修复html文档读入后的乱码问题。
 还有一些函数，用来模拟网上的浏览行为，如html_session(),jump_to(),follow_link(),back(),forward(),submit_form()等等。
-library(rvest) web&amp;lt;-read_html(&amp;#34;https://book.douban.com/top250?icn=index-book250-all&amp;#34;,encoding=&amp;#34;UTF-8&amp;#34;) position &amp;lt;- web %&amp;gt;% html_nodes(&amp;#34;p.pl&amp;#34;) %&amp;gt;% html_text() web position 第一行是加载Rvest包。
+library(rvest) web&amp;lt;-read_html(&amp;quot;https://book.douban.com/top250?icn=index-book250-all&amp;quot;,encoding=&amp;quot;UTF-8&amp;quot;) position &amp;lt;- web %&amp;gt;% html_nodes(&amp;quot;p.pl&amp;quot;) %&amp;gt;% html_text() web position 第一行是加载Rvest包。
 第二行是用read_html函数读取网页信息（类似Rcurl里的getURL），在这个函数里只需写清楚网址和编码（一般就是UTF-8）即可。
 第三行是获取节点信息。用%&amp;gt;%符号进行层级划分。web就是之前存储网页信息的变量，所以我们从这里开始，然后html_nodes()函数获取网页里的相应节点。在下面代码里我简单的重现了原网页里的一个层级结构。可以看到，实际上我们要爬取的信息在25个class属性为pl的标签里的文本。
 [清] 曹雪芹 著 / 人民文学出版社 / 1996-12 / 59.70元 而对于这样的结构，在htmlnodes()函数里的写法就是简单的 &#34;p.pl&#34;，其中“.”表示class属性的值，如果是id属性则用“#”，如果大家学过CSS选择器就很好理解了，是完全一致的。 最后我们用html_text()函数表示获取文本信息，否则返回的是整个标签。总体上用以下一行代码就可以实现：
@@ -488,7 +488,7 @@ Hi-C技术在3C的基础上，在酶切后将缺口进行补平（dCTP 进行生
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/%E5%88%A9%E7%94%A8ggplot%E7%BB%98%E5%88%B6%E5%B8%A6%E7%99%BE%E5%88%86%E6%AF%94%E9%A5%BC%E5%9B%BE/</guid>
       <description>1. 介绍 有的时候我们需要利用饼图进行统计结果的占比展示，在R中可以利用ggplot进行绘制，但是ggplot中实际上并没有直接的函数可以绘制饼图，饼图实际上是geom_bar的一个变形。下面我们就来看看如何利用ggplot绘制带百分比的饼图。
-2. 步骤 library(dplyr) library(ggplot2) library(ggmap) # 为了引用主题theme_nothing，用来消除原始ggplot绘图自带的一切标签 df &amp;lt;- data.frame(value = c(52, 239, 9), Group = c(&amp;#34;Positive&amp;#34;, &amp;#34;Negative&amp;#34;, &amp;#34;Neutral&amp;#34;)) %&amp;gt;% # factor levels need to be the opposite order of the cumulative sum of the values mutate(Group = factor(Group, levels = c(&amp;#34;Neutral&amp;#34;, &amp;#34;Negative&amp;#34;, &amp;#34;Positive&amp;#34;)), cumulative = cumsum(value), midpoint = cumulative - value / 2, label = paste0(Group, &amp;#34; &amp;#34;, round(value / sum(value) * 100, 1), &amp;#34;%&amp;#34;)) ggplot(df, aes(x = 1, weight = value, fill = Group)) + geom_bar(width = 1, position = &amp;#34;stack&amp;#34;) + coord_polar(theta = &amp;#34;y&amp;#34;) ## 以y轴建立极坐标 + geom_text(aes(x = 1.</description>
+2. 步骤 library(dplyr) library(ggplot2) library(ggmap) # 为了引用主题theme_nothing，用来消除原始ggplot绘图自带的一切标签 df &amp;lt;- data.frame(value = c(52, 239, 9), Group = c(&amp;quot;Positive&amp;quot;, &amp;quot;Negative&amp;quot;, &amp;quot;Neutral&amp;quot;)) %&amp;gt;% # factor levels need to be the opposite order of the cumulative sum of the values mutate(Group = factor(Group, levels = c(&amp;quot;Neutral&amp;quot;, &amp;quot;Negative&amp;quot;, &amp;quot;Positive&amp;quot;)), cumulative = cumsum(value), midpoint = cumulative - value / 2, label = paste0(Group, &amp;quot; &amp;quot;, round(value / sum(value) * 100, 1), &amp;quot;%&amp;quot;)) ggplot(df, aes(x = 1, weight = value, fill = Group)) + geom_bar(width = 1, position = &amp;quot;stack&amp;quot;) + coord_polar(theta = &amp;quot;y&amp;quot;) ## 以y轴建立极坐标 + geom_text(aes(x = 1.</description>
     </item>
     
     <item>
@@ -498,7 +498,7 @@ Hi-C技术在3C的基础上，在酶切后将缺口进行补平（dCTP 进行生
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/%E5%88%A9%E7%94%A8%E9%9B%86%E7%BE%A4cluster%E8%BF%90%E8%A1%8Cr%E8%84%9A%E6%9C%AC%E7%9A%84%E6%8A%80%E5%B7%A7/</guid>
       <description>1. 编写脚本 首先编写一个R脚本保存在当前目录下，例如HeatMap.R
-library(gplots) qlf_path &amp;lt;- &amp;#34;../07DEgene/QLF_DEG/&amp;#34; file_name &amp;lt;- dir(qlf_path) figure_path &amp;lt;- &amp;#34;../07DEgene/figure/qlf_heatmap/&amp;#34; for (k in 21:21){ mymain &amp;lt;- strsplit(file_name[k], &amp;#34;_&amp;#34;)[[1]][c(1,2,4,5)] mymain &amp;lt;- paste(mymain, collapse = &amp;#34;_&amp;#34;) figure_name &amp;lt;- paste0(figure_path, mymain, &amp;#34;.pdf&amp;#34;) pdf(figure_name) qlf_file &amp;lt;- paste0(qlf_path, file_name[k]) data &amp;lt;- read.table(qlf_file) data &amp;lt;- as.matrix(data) mycol &amp;lt;- colorpanel(n=40,low=&amp;#34;blue&amp;#34;,high=&amp;#34;yellow&amp;#34;) heatmap.2(data, col = mycol, scale = &amp;#34;row&amp;#34;, key=TRUE, trace=&amp;#34;none&amp;#34;,cexCol=1,cexRow=0.5, srtRow=45, adjRow=c(0, 1), srtCol=45, adjCol=c(1,1), Rowv= T, Colv = F, lmat=rbind( c(0, 3), c(2,1), c(4,0) ), lhei=c(1.</description>
+library(gplots) qlf_path &amp;lt;- &amp;quot;../07DEgene/QLF_DEG/&amp;quot; file_name &amp;lt;- dir(qlf_path) figure_path &amp;lt;- &amp;quot;../07DEgene/figure/qlf_heatmap/&amp;quot; for (k in 21:21){ mymain &amp;lt;- strsplit(file_name[k], &amp;quot;_&amp;quot;)[[1]][c(1,2,4,5)] mymain &amp;lt;- paste(mymain, collapse = &amp;quot;_&amp;quot;) figure_name &amp;lt;- paste0(figure_path, mymain, &amp;quot;.pdf&amp;quot;) pdf(figure_name) qlf_file &amp;lt;- paste0(qlf_path, file_name[k]) data &amp;lt;- read.table(qlf_file) data &amp;lt;- as.matrix(data) mycol &amp;lt;- colorpanel(n=40,low=&amp;quot;blue&amp;quot;,high=&amp;quot;yellow&amp;quot;) heatmap.2(data, col = mycol, scale = &amp;quot;row&amp;quot;, key=TRUE, trace=&amp;quot;none&amp;quot;,cexCol=1,cexRow=0.5, srtRow=45, adjRow=c(0, 1), srtCol=45, adjCol=c(1,1), Rowv= T, Colv = F, lmat=rbind( c(0, 3), c(2,1), c(4,0) ), lhei=c(1.</description>
     </item>
     
     <item>
@@ -508,9 +508,9 @@ library(gplots) qlf_path &amp;lt;- &amp;#34;../07DEgene/QLF_DEG/&amp;#34; file_n
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/%E5%9F%BA%E5%9B%A0%E7%9A%84%E5%88%86%E5%AD%90%E7%BB%93%E6%9E%84/</guid>
       <description>人类结构基因4个区域：①编码区，包括外显子与内含子；②前导区，位于编码区上游，相当于RNA5’末端非编码区（非翻译区）；③尾部区，位于RNA3’编码区下游，相当于末端非编码区（非翻译区）；④调控区，包括启动子和增强子等。基因编码区的两侧也称为侧翼顺序。
-基因经过转录形成Pre mRNA，这里面包含着内含子和外显子（5端是以外显子打头，但是这段外显子不仅包含CDS，还包含5&amp;rsquo; UTR；3端是以外显子结束，但是这段外显子不仅包含CDS，还包含3&amp;rsquo; UTR），经过剪接形成成熟mRNA,内含子已减掉，如果抛开后来加上去的cap和poly A的话，这时全是外显子，但是不全是CDS，因为只有中间的那部分以起始密码子开始、以终止密码子结束的片段才是CDS，只有这部分才会被翻译成蛋白质。
+基因经过转录形成Pre mRNA，这里面包含着内含子和外显子（5端是以外显子打头，但是这段外显子不仅包含CDS，还包含5&#39; UTR；3端是以外显子结束，但是这段外显子不仅包含CDS，还包含3&#39; UTR），经过剪接形成成熟mRNA,内含子已减掉，如果抛开后来加上去的cap和poly A的话，这时全是外显子，但是不全是CDS，因为只有中间的那部分以起始密码子开始、以终止密码子结束的片段才是CDS，只有这部分才会被翻译成蛋白质。
 一个mRNA EXON可能仅部分编码蛋白质，恰恰是上游或下游非编码区存在时。每个Exon的蛋白质编码部分由CDS元件表示。CDS元件还编码终止密码子。
-对于存在非翻译区的区域，将出现UTR。UTR代表Exon的非蛋白质编码部分。UTR（Untranslated Regions)即非翻译区，是信使RNA（mRNA）分子两端的非编码片段。5&amp;rsquo;-UTR从mRNA起点的甲基化鸟嘌呤核苷酸帽延伸至AUG起始密码子，3&amp;rsquo;-UTR从编码区末端的终止密码子延伸至多聚A尾巴（Poly-A）的末端。
+对于存在非翻译区的区域，将出现UTR。UTR代表Exon的非蛋白质编码部分。UTR（Untranslated Regions)即非翻译区，是信使RNA（mRNA）分子两端的非编码片段。5&#39;-UTR从mRNA起点的甲基化鸟嘌呤核苷酸帽延伸至AUG起始密码子，3&#39;-UTR从编码区末端的终止密码子延伸至多聚A尾巴（Poly-A）的末端。
 其中一个基因有可能有多个转录本，原因是由于不同的剪接方式造成的。我们都知道，基因转录之后，首先是形成前体mRNA，通过剪切内含子连接外显子，5’端加帽及3’端加尾之后形成成熟的mRNA。
 但是在剪切的过程中可能会剪切掉外显子，也有可能保留部分内含子，这样就形成了多种mRNA即多个转录本。
 其中注意平时经常说到的promoter不属于intron和Exon的任何一个，属于Non Coding Sequence也是Regulatory Sequence。</description>
@@ -534,7 +534,7 @@ library(gplots) qlf_path &amp;lt;- &amp;#34;../07DEgene/QLF_DEG/&amp;#34; file_n
 2. 例子 以文章Gene Expre ssion in Ovarian Cancer Reflects Both Morphology and Biological Behavior, Distinguishing Clear Cell from Other Poor-Prognosis Ovarian Carcinomas所鉴定的差异基因为例。
 测试一下这些基因和化学刺激响应的相关性。
 样本的大小是n，属于“化学刺激响应”这个分类的基因有k个。
-eg &amp;lt;- c(&amp;#34;7980&amp;#34;, &amp;#34;3081&amp;#34;, &amp;#34;3162&amp;#34;, &amp;#34;3059&amp;#34;, &amp;#34;1545&amp;#34;, &amp;#34;1917&amp;#34;, &amp;#34;6696&amp;#34;, &amp;#34;5797&amp;#34;, &amp;#34;6648&amp;#34; , &amp;#34;10397&amp;#34; , &amp;#34;6781&amp;#34;, &amp;#34;5817&amp;#34;, &amp;#34;1282&amp;#34;, &amp;#34;1284&amp;#34;, &amp;#34;6948&amp;#34;, &amp;#34;7077&amp;#34;) n &amp;lt;- length(eg) k &amp;lt;- sum(eg %in% allgeneInCategory) n k #16 #12 那么做为背景，总体基因为N，属于“化学刺激响应”这个分类的基因有M个。</description>
+eg &amp;lt;- c(&amp;quot;7980&amp;quot;, &amp;quot;3081&amp;quot;, &amp;quot;3162&amp;quot;, &amp;quot;3059&amp;quot;, &amp;quot;1545&amp;quot;, &amp;quot;1917&amp;quot;, &amp;quot;6696&amp;quot;, &amp;quot;5797&amp;quot;, &amp;quot;6648&amp;quot; , &amp;quot;10397&amp;quot; , &amp;quot;6781&amp;quot;, &amp;quot;5817&amp;quot;, &amp;quot;1282&amp;quot;, &amp;quot;1284&amp;quot;, &amp;quot;6948&amp;quot;, &amp;quot;7077&amp;quot;) n &amp;lt;- length(eg) k &amp;lt;- sum(eg %in% allgeneInCategory) n k #16 #12 那么做为背景，总体基因为N，属于“化学刺激响应”这个分类的基因有M个。</description>
     </item>
     
     <item>
@@ -564,7 +564,7 @@ ClustalW采用的是全局比对的算法，所以当我们用BLAST和ClustalW�
       <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/%E5%BE%AA%E7%8E%AF%E5%AD%98%E5%A4%9A%E5%BC%A0%E5%9B%BE%E7%89%87/</guid>
-      <description>library(ggpubr) trait_names &amp;lt;- colnames(Het_Ind)[5:18] plot &amp;lt;- list() for (i in 1:length(trait_names)){ trait_data &amp;lt;- Het_Ind[, c(&amp;#34;Genotype&amp;#34;, &amp;#34;NRate&amp;#34;, trait_names[i])] colnames(trait_data) &amp;lt;- c(&amp;#34;Genotype&amp;#34;, &amp;#34;Nitrogen&amp;#34;, &amp;#34;Value&amp;#34;) trait_data$Genotype &amp;lt;- factor(trait_data$Genotype, levels = sort(c(&amp;#34;B73xILP1&amp;#34;, &amp;#34;B73xPH207&amp;#34;, &amp;#34;B73xIHP1&amp;#34;, &amp;#34;B73xPHG84&amp;#34;, &amp;#34;B73xLH82&amp;#34;, &amp;#34;B73xMo17&amp;#34;))) trait_data$Nitrogen &amp;lt;- factor(trait_data$Nitrogen, levels = c(&amp;#34;LN&amp;#34;, &amp;#34;HN&amp;#34;)) plot[[i]] &amp;lt;- ggplot(trait_data, aes(x=Genotype, y=Value, fill = Nitrogen)) + geom_bar(stat = &amp;#34;identity&amp;#34;, position= &amp;#34;dodge&amp;#34;, width=0.8) + theme_bw() + geom_text(aes(label=round(trait_data$Value, digits = 2)), position = position_dodge(width = 0.8), size =2.5) + labs(title= trait_names[i], x = &amp;#34;Genotype&amp;#34;, y = &amp;#34;log2(Hybrid / MP)&amp;#34;) + theme(axis.</description>
+      <description>library(ggpubr) trait_names &amp;lt;- colnames(Het_Ind)[5:18] plot &amp;lt;- list() for (i in 1:length(trait_names)){ trait_data &amp;lt;- Het_Ind[, c(&amp;quot;Genotype&amp;quot;, &amp;quot;NRate&amp;quot;, trait_names[i])] colnames(trait_data) &amp;lt;- c(&amp;quot;Genotype&amp;quot;, &amp;quot;Nitrogen&amp;quot;, &amp;quot;Value&amp;quot;) trait_data$Genotype &amp;lt;- factor(trait_data$Genotype, levels = sort(c(&amp;quot;B73xILP1&amp;quot;, &amp;quot;B73xPH207&amp;quot;, &amp;quot;B73xIHP1&amp;quot;, &amp;quot;B73xPHG84&amp;quot;, &amp;quot;B73xLH82&amp;quot;, &amp;quot;B73xMo17&amp;quot;))) trait_data$Nitrogen &amp;lt;- factor(trait_data$Nitrogen, levels = c(&amp;quot;LN&amp;quot;, &amp;quot;HN&amp;quot;)) plot[[i]] &amp;lt;- ggplot(trait_data, aes(x=Genotype, y=Value, fill = Nitrogen)) + geom_bar(stat = &amp;quot;identity&amp;quot;, position= &amp;quot;dodge&amp;quot;, width=0.8) + theme_bw() + geom_text(aes(label=round(trait_data$Value, digits = 2)), position = position_dodge(width = 0.8), size =2.5) + labs(title= trait_names[i], x = &amp;quot;Genotype&amp;quot;, y = &amp;quot;log2(Hybrid / MP)&amp;quot;) + theme(axis.</description>
     </item>
     
     <item>
@@ -587,7 +587,7 @@ qdel -u [user] 这两个能很好地进行PBS程序的批量删除。</descripti
       <guid>https://kongjianyang.github.io/cn/2018/11/24/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E4%BD%BF%E7%94%A8igv/</guid>
       <description>1. 打开IGV 终端打开IGV
 module load igv module show igv 提示以下信息
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- /depot/bioinfo/apps/modules/igv/2.3.60: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- whatis(&amp;#34;Visualization tool for interactive exploration of genomic datasets &amp;#34;) load(&amp;#34;java&amp;#34;) prepend_path(&amp;#34;PATH&amp;#34;,&amp;#34;/group/bioinfo/apps/apps/IGV_2.3.60&amp;#34;) help([[ Notes: IGV (Integrative Genomics Viewer) version 2.3.60 Visualization tool for interactive exploration of genomic datasets http://www.broadinstitute.org/software/igv/home User Guide: http://www.broadinstitute.org/software/igv/UserGuide FAQ: http://www.broadinstitute.org/software/igv/FAQ Forum: https://groups.google.com/forum/#!forum/igv-help Info: /group/bioinfo/apps/apps/IGV_2.3.60/readme.txt Start with &amp;#34;igv.sh&amp;#34; Need X11 display: More config info at: https://www.rcac.purdue.edu/compute/carter/guide/#accounts_login_x11 ]]) 提示打开IGV通过igv.sh， 输入
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- /depot/bioinfo/apps/modules/igv/2.3.60: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- whatis(&amp;quot;Visualization tool for interactive exploration of genomic datasets &amp;quot;) load(&amp;quot;java&amp;quot;) prepend_path(&amp;quot;PATH&amp;quot;,&amp;quot;/group/bioinfo/apps/apps/IGV_2.3.60&amp;quot;) help([[ Notes: IGV (Integrative Genomics Viewer) version 2.3.60 Visualization tool for interactive exploration of genomic datasets http://www.broadinstitute.org/software/igv/home User Guide: http://www.broadinstitute.org/software/igv/UserGuide FAQ: http://www.broadinstitute.org/software/igv/FAQ Forum: https://groups.google.com/forum/#!forum/igv-help Info: /group/bioinfo/apps/apps/IGV_2.3.60/readme.txt Start with &amp;quot;igv.sh&amp;quot; Need X11 display: More config info at: https://www.rcac.purdue.edu/compute/carter/guide/#accounts_login_x11 ]]) 提示打开IGV通过igv.sh， 输入
 igv.sh &amp;amp; 2. 搭配使用igvtools module load igvtools module show igvtools 提示以下信息</description>
     </item>
     
@@ -622,8 +622,8 @@ igv.sh &amp;amp; 2. 搭配使用igvtools module load igvtools module show igvtoo
 PATH=$PATH:/usr/local/mysql/bin 添加完成后，按esc，然后输入wq保存。最后在命令行输入source ~/.bash_profile。 现在你就可以通过mysql -uroot -p登录mysql了，会让你输入密码，就是之前弹窗中记录的密码
 至此MySQL成功安装到mac电脑下，可以进行下面的开发了。
 02. 安装RMySQL 安装RMySQL非常简单，安装之后可以使用help命令查询包的介绍信息
-install.packages(&amp;#34;RMySQL&amp;#34;) library(RMySQL) help(&amp;#34;RMySQL&amp;#34;) 03. RMySQL基本操作 创造一个新的数据库并使用，SQL查询可以通过dbSendQuery或dbGetQuery传给数据库管理系统。dbGetQuery传送查询语句，把结果以数据框形式返回。dbSendQuery传送查询，返回的结果是继承&amp;quot;DBIResult&amp;quot;的一个子类的对象。函数fetch用于获得查询结果的部分或全部行，并以列表返回。函数dbHasCompleted确定是否所有行已经获得了，而dbGetRowCount返回结果中行的数目。如果只是简单的读整个表，也可以用dbReadTable函数。
-library(RMySQL) mydb = dbConnect(MySQL(), #数据库平台类型 user=&amp;#39;root&amp;#39;, #登录账号（MySQL初始安装时设置的账号） password=&amp;#39;password&amp;#39;, #登录密码（MySQL初始安装时设置的密码） host=&amp;#39;localhost&amp;#39;) # creating a database using RMySQL in R dbSendQuery(mydb, &amp;#34;CREATE DATABASE bookstore;&amp;#34;) dbSendQuery(mydb, &amp;#34;USE bookstore;&amp;#34;) # reconnecting to database we just created using following command in R : mydb = dbConnect(MySQL(), user=&amp;#39;root&amp;#39;, password=&amp;#39;password&amp;#39;, host=&amp;#39;localhost&amp;#39;, dbname=&amp;#34;bookstore&amp;#34;) # 重连数据库 dbSendQuery(mydb, &amp;#34;drop table if exists books, authors&amp;#34;) 在数据库中创造表：</description>
+install.packages(&amp;quot;RMySQL&amp;quot;) library(RMySQL) help(&amp;quot;RMySQL&amp;quot;) 03. RMySQL基本操作 创造一个新的数据库并使用，SQL查询可以通过dbSendQuery或dbGetQuery传给数据库管理系统。dbGetQuery传送查询语句，把结果以数据框形式返回。dbSendQuery传送查询，返回的结果是继承&amp;quot;DBIResult&amp;quot;的一个子类的对象。函数fetch用于获得查询结果的部分或全部行，并以列表返回。函数dbHasCompleted确定是否所有行已经获得了，而dbGetRowCount返回结果中行的数目。如果只是简单的读整个表，也可以用dbReadTable函数。
+library(RMySQL) mydb = dbConnect(MySQL(), #数据库平台类型 user=&#39;root&#39;, #登录账号（MySQL初始安装时设置的账号） password=&#39;password&#39;, #登录密码（MySQL初始安装时设置的密码） host=&#39;localhost&#39;) # creating a database using RMySQL in R dbSendQuery(mydb, &amp;quot;CREATE DATABASE bookstore;&amp;quot;) dbSendQuery(mydb, &amp;quot;USE bookstore;&amp;quot;) # reconnecting to database we just created using following command in R : mydb = dbConnect(MySQL(), user=&#39;root&#39;, password=&#39;password&#39;, host=&#39;localhost&#39;, dbname=&amp;quot;bookstore&amp;quot;) # 重连数据库 dbSendQuery(mydb, &amp;quot;drop table if exists books, authors&amp;quot;) 在数据库中创造表：</description>
     </item>
     
     <item>

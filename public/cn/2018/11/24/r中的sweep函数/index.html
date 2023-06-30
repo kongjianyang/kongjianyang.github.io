@@ -92,7 +92,7 @@
 <p>扫除、清除也是sweep单词的本义。</p>
 </blockquote>
 <h3 id="函数的参数">函数的参数<a href="#函数的参数" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
-<pre tabindex="0"><code class="language-source-r" data-lang="source-r">sweep(x, MARGIN, STATS, FUN = &#34;-&#34;, check.margin = TRUE, ...)
+<pre tabindex="0"><code class="language-source-r" data-lang="source-r">sweep(x, MARGIN, STATS, FUN = &quot;-&quot;, check.margin = TRUE, ...)
 </code></pre><ul>
 <li>x:即要处理的原数据集</li>
 <li>MARGIN：对行或列，或者数列的其他维度进行操作</li>
@@ -123,7 +123,7 @@ mean.att
 ##    advance 
 ##      42.93
 </code></pre><p>所有数据都减去各列的平均数</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">head(sweep(data.matrix(attitude), 2, mean.att, FUN = &#34;-&#34;), 10) 
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">head(sweep(data.matrix(attitude), 2, mean.att, FUN = &quot;-&quot;), 10) 
 </code></pre><pre tabindex="0"><code>##        rating complaints privileges learning  raises critical advance
 ##  [1,] -21.633      -15.6    -23.133 -17.3667  -3.633   17.233   2.067
 ##  [2,]  -1.633       -2.6     -2.133  -2.3667  -1.633   -1.767   4.067

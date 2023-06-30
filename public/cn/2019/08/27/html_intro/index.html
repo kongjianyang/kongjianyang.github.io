@@ -151,7 +151,7 @@ Table of Contents:
 <p>一些元素没有内容，被称为<strong>空元素</strong>。采取<a href="https://www.runoon.com/html/tags/html-img-tag.html" target="_blank" rel="noreferrer noopener"><code>&lt;img&gt;</code></a>
 
 我们在HTML页面中已经拥有的元素：</p>
-<pre tabindex="0"><code>&lt;img src=&#34;/img/earth.jpg&#34; alt=&#34;地球&#34;&gt;
+<pre tabindex="0"><code>&lt;img src=&quot;/img/earth.jpg&quot; alt=&quot;地球&quot;&gt;
 </code></pre><p>它包含两个属性，但是没有结束<code>&lt;/img&gt;</code>标记，也没有内部内容。其目的是将图像嵌入HTML页面中。</p>
 <hr>
 <h3 id="html文档剖析">HTML文档剖析<a href="#html文档剖析" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
@@ -159,11 +159,11 @@ Table of Contents:
 <pre tabindex="0"><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;
-    &lt;meta charset=&#34;utf-8&#34;&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
     &lt;title&gt;测试页面&lt;/title&gt;
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;img src=&#34;/img/earth.jpg&#34; alt=&#34;地球&#34;&gt;
+    &lt;img src=&quot;/img/earth.jpg&quot; alt=&quot;地球&quot;&gt;
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre><p>在这里，我们有以下内容：</p>
@@ -195,7 +195,7 @@ Table of Contents:
 </code></pre><hr>
 <h3 id="图片元素">图片元素<a href="#图片元素" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
 <p>让我们<code>[&lt;img&gt;](https://www.runoon.com/html/tags/html-img-tag.html)</code>再次将注意力转移到元素上：</p>
-<pre tabindex="0"><code>&lt;img src=&#34;/img/earth.jpg&#34; alt=&#34;地球&#34;/&gt;  
+<pre tabindex="0"><code>&lt;img src=&quot;/img/earth.jpg&quot; alt=&quot;地球&quot;/&gt;  
 </code></pre><p>如我们之前所说，它将图像按其出现位置嵌入到我们的页面中。它通过<code>src</code>（source）属性执行此操作，该属性包含我们图像文件的路径。</p>
 <p>我们还包括了<code>alt</code>（替代）属性。在此属性中，可能由于以下原因，为无法看到图像的用户指定描述性文本：</p>
 <ol>
@@ -299,27 +299,27 @@ Table of Contents:
 3、JavaScript是一种脚本语言，其源代码在发往客户端运行之前不需经过编译，而是将文本格式的字符代码发送给<strong>浏览器</strong>由浏览器解释运行</p>
 <p>对于一个网页，HTML定义网页的结构，CSS描述网页的样子，JavaScript设置一个很经典的例子是说HTML就像 一个人的骨骼、器官，而CSS就是人的皮肤，有了这两样也就构成了一个植物人了，加上javascript这个植物人就可以对外界刺激做出反应，可以思 考、运动、可以给自己整容化妆（改变CSS）等等，成为一个活生生的人。</p>
 <p>在 Web 开发中，后端有很多编程语言可以选择，但前端只有 JavaScript，JavaScript是所有浏览器唯一都支持的编程语言。JavaScript如此强势，尽量再不喜欢，不管是前端还是后端都要求有一定的javascript编程能力，但是有没有什么方法来简化Javascript的开发呢？答案是有的，各种javascript程序库应运而生，如jQuery、Prototype、MooTools。</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">details</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">font</span>: <span style="color:#666">16</span><span style="color:#b00040">px</span> <span style="color:#ba2121">&#34;Open Sans&#34;</span>, <span style="color:#ba2121">&#34;Arial&#34;</span>, <span style="color:#008000;font-weight:bold">sans-serif</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">width</span>: <span style="color:#666">620</span><span style="color:#b00040">px</span>;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">details</span> <span style="color:#666">&gt;</span> <span style="color:#008000;font-weight:bold">summary</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">padding</span>: <span style="color:#666">2</span><span style="color:#b00040">px</span> <span style="color:#666">6</span><span style="color:#b00040">px</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">width</span>: <span style="color:#666">15</span><span style="color:#b00040">em</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">background-color</span>: <span style="color:#666">#ddd</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">border</span>: <span style="color:#008000;font-weight:bold">none</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">box-shadow</span>: <span style="color:#666">3</span><span style="color:#b00040">px</span> <span style="color:#666">3</span><span style="color:#b00040">px</span> <span style="color:#666">4</span><span style="color:#b00040">px</span> <span style="color:#008000;font-weight:bold">black</span>;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#008000;font-weight:bold">details</span> <span style="color:#666">&gt;</span> <span style="color:#008000;font-weight:bold">p</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">border-radius</span>: <span style="color:#666">0</span> <span style="color:#666">0</span> <span style="color:#666">10</span><span style="color:#b00040">px</span> <span style="color:#666">10</span><span style="color:#b00040">px</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">background-color</span>: <span style="color:#666">#ddd</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">padding</span>: <span style="color:#666">2</span><span style="color:#b00040">px</span> <span style="color:#666">6</span><span style="color:#b00040">px</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">margin</span>: <span style="color:#666">0</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#008000;font-weight:bold">box-shadow</span>: <span style="color:#666">3</span><span style="color:#b00040">px</span> <span style="color:#666">3</span><span style="color:#b00040">px</span> <span style="color:#666">4</span><span style="color:#b00040">px</span> <span style="color:#008000;font-weight:bold">black</span>;
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><pre tabindex="0"><code>&lt;details&gt;
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="color:#008000;font-weight:bold">details</span> {
+  <span style="color:#008000;font-weight:bold">font</span>: <span style="color:#666">16</span><span style="color:#b00040">px</span> <span style="color:#ba2121">&#34;Open Sans&#34;</span>, <span style="color:#ba2121">&#34;Arial&#34;</span>, <span style="color:#008000;font-weight:bold">sans-serif</span>;
+  <span style="color:#008000;font-weight:bold">width</span>: <span style="color:#666">620</span><span style="color:#b00040">px</span>;
+}
+
+<span style="color:#008000;font-weight:bold">details</span> <span style="color:#666">&gt;</span> <span style="color:#008000;font-weight:bold">summary</span> {
+  <span style="color:#008000;font-weight:bold">padding</span>: <span style="color:#666">2</span><span style="color:#b00040">px</span> <span style="color:#666">6</span><span style="color:#b00040">px</span>;
+  <span style="color:#008000;font-weight:bold">width</span>: <span style="color:#666">15</span><span style="color:#b00040">em</span>;
+  <span style="color:#008000;font-weight:bold">background-color</span>: <span style="color:#666">#ddd</span>;
+  <span style="color:#008000;font-weight:bold">border</span>: <span style="color:#008000;font-weight:bold">none</span>;
+  <span style="color:#008000;font-weight:bold">box-shadow</span>: <span style="color:#666">3</span><span style="color:#b00040">px</span> <span style="color:#666">3</span><span style="color:#b00040">px</span> <span style="color:#666">4</span><span style="color:#b00040">px</span> <span style="color:#008000;font-weight:bold">black</span>;
+}
+
+<span style="color:#008000;font-weight:bold">details</span> <span style="color:#666">&gt;</span> <span style="color:#008000;font-weight:bold">p</span> {
+  <span style="color:#008000;font-weight:bold">border-radius</span>: <span style="color:#666">0</span> <span style="color:#666">0</span> <span style="color:#666">10</span><span style="color:#b00040">px</span> <span style="color:#666">10</span><span style="color:#b00040">px</span>;
+  <span style="color:#008000;font-weight:bold">background-color</span>: <span style="color:#666">#ddd</span>;
+  <span style="color:#008000;font-weight:bold">padding</span>: <span style="color:#666">2</span><span style="color:#b00040">px</span> <span style="color:#666">6</span><span style="color:#b00040">px</span>;
+  <span style="color:#008000;font-weight:bold">margin</span>: <span style="color:#666">0</span>;
+  <span style="color:#008000;font-weight:bold">box-shadow</span>: <span style="color:#666">3</span><span style="color:#b00040">px</span> <span style="color:#666">3</span><span style="color:#b00040">px</span> <span style="color:#666">4</span><span style="color:#b00040">px</span> <span style="color:#008000;font-weight:bold">black</span>;
+}
+</code></pre></div><pre tabindex="0"><code>&lt;details&gt;
 &lt;summary&gt;Copyright 1999-2011.&lt;/summary&gt;
 &lt;p&gt; - by Refsnes Data. All Rights Reserved.&lt;/p&gt;
 &lt;p&gt;All content and graphics on this web site are the property of the company Refsnes Data.&lt;/p&gt;

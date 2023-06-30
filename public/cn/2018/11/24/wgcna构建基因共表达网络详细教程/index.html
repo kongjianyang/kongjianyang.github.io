@@ -133,7 +133,7 @@ library(Hmisc)
 library(WGCNA)
 options(stringsAsFactors = F)
 </code></pre><p>读取基因表达数据，注意要做一个转换，保证基因在列，样品在行，官方推荐使用Deseq2的<code>varianceStabilizingTransformation</code>或<code>log2(x+1)</code>对标准化后的数据做个转换。如果数据来自不同的批次，需要先移除批次效应。如果数据存在系统偏移，需要做下quantile normalization。一般要求样本数多于15个。样本数多于20时效果更好，样本越多，结果越稳定。</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">dat0 &lt;- read.csv(&#34;./01raw_data/GBM55and65and8000.csv&#34;)
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">dat0 &lt;- read.csv(&quot;./01raw_data/GBM55and65and8000.csv&quot;)
 datExprdataOne &lt;- t(dat0[,15:69])
 datExprdataTwo &lt;- t(dat0[, 70:134])
 datSummary &lt;- dat0[, c(1:14)]
@@ -147,19 +147,19 @@ rm(dat0)
 if (!gsg$allOK){
   # Optionally, print the gene and sample names that were removed:
   if (sum(!gsg$goodGenes)&gt;0) 
-    printFlush(paste(&#34;Removing genes:&#34;, 
-                     paste(names(datExprdataOne)[!gsg$goodGenes], collapse = &#34;,&#34;)));
+    printFlush(paste(&quot;Removing genes:&quot;, 
+                     paste(names(datExprdataOne)[!gsg$goodGenes], collapse = &quot;,&quot;)));
   if (sum(!gsg$goodSamples)&gt;0) 
-    printFlush(paste(&#34;Removing samples:&#34;, 
-                     paste(rownames(datExprdataOne)[!gsg$goodSamples], collapse = &#34;,&#34;)));
+    printFlush(paste(&quot;Removing samples:&quot;, 
+                     paste(rownames(datExprdataOne)[!gsg$goodSamples], collapse = &quot;,&quot;)));
   # Remove the offending genes and samples from the data:
   datExprdataOne = datExprdataOne[gsg$goodSamples, gsg$goodGenes]
 }
 #Flagging genes and samples with too many missing values...
 #  ..step 1
 </code></pre><p>检查是否有离群值，结果显示无</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">sampleTree = hclust(dist(datExprdataOne), method = &#34;average&#34;)
-plot(sampleTree, main = &#34;Sample clustering to detect outliers&#34;, sub=&#34;&#34;, xlab=&#34;&#34;)
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">sampleTree = hclust(dist(datExprdataOne), method = &quot;average&quot;)
+plot(sampleTree, main = &quot;Sample clustering to detect outliers&quot;, sub=&quot;&quot;, xlab=&quot;&quot;)
 </code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-7ae3b977b3e3966f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="离群值检测"></p>
 <p>筛选软阈值， 无向网络在power小于15或有向网络power小于30内，没有一个power值可以使无标度网络图谱结构R^2达到0.8或平均连接度降到100以下，则可能是由于部分样品与其他样品差别太大造成的。这可能由批次效应、样品异质性或实验条件对表达影响太大等造成，需要移除。</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">powers1 &lt;- c(seq(1, 10, by=1), seq(12, 20, by=2))
@@ -167,11 +167,11 @@ sft &lt;- pickSoftThreshold(datExprdataOne, powerVector = powers1)
 RpowerTable &lt;- pickSoftThreshold(datExprdataOne, powerVector = powers1)[[2]]
 </code></pre><pre tabindex="0"><code class="language-{r}" data-lang="{r}">cex1 = 0.7
 par(mfrow = c(1,2))
-plot(RpowerTable[,1], -sign(RpowerTable[,3])*RpowerTable[,2], xlab = &#34;soft threshold (power)&#34;, ylab = &#34;scale free topology model fit, signes R^2&#34;, type = &#34;n&#34;)
-text(RpowerTable[,1], -sign(RpowerTable[,3])*RpowerTable[,2], labels = powers1, cex = cex1, col = &#34;red&#34;)
-abline(h = 0.95, col = &#34;red&#34;)
-plot(RpowerTable[,1], RpowerTable[,5], xlab = &#34;soft threshold (power)&#34;, ylab = &#34;mean connectivity&#34;, type = &#34;n&#34;)
-text(RpowerTable[,1], RpowerTable[,5], labels = powers1, cex = cex1, col = &#34;red&#34;)
+plot(RpowerTable[,1], -sign(RpowerTable[,3])*RpowerTable[,2], xlab = &quot;soft threshold (power)&quot;, ylab = &quot;scale free topology model fit, signes R^2&quot;, type = &quot;n&quot;)
+text(RpowerTable[,1], -sign(RpowerTable[,3])*RpowerTable[,2], labels = powers1, cex = cex1, col = &quot;red&quot;)
+abline(h = 0.95, col = &quot;red&quot;)
+plot(RpowerTable[,1], RpowerTable[,5], xlab = &quot;soft threshold (power)&quot;, ylab = &quot;mean connectivity&quot;, type = &quot;n&quot;)
+text(RpowerTable[,1], RpowerTable[,5], labels = powers1, cex = cex1, col = &quot;red&quot;)
 </code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-983815e8026ebdb0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="软阈值筛选"></p>
 <p>横轴是Soft threshold (power)，纵轴是无标度网络的评估参数，数值越高，网络越符合无标度特征 (non-scale)。
 我们可以使用系统给的参数帮助我们得到soft threshold，可以是</p>
@@ -183,8 +183,8 @@ text(RpowerTable[,1], RpowerTable[,5], labels = powers1, cex = cex1, col = &#34;
 k.dataOne &lt;- softConnectivity(datExprdataOne, power = betal) -1
 k.dataTwo &lt;- softConnectivity(datExprdataTwo, power = betal) - 1
 par(mfrow=c(2,2))
-scaleFreePlot(k.dataOne, main = paste(&#34;data set I, power=&#34;, betal), truncated = F)
-scaleFreePlot(k.dataTwo, main = paste(&#34;data set II, power=&#34;, betal), truncated = F)
+scaleFreePlot(k.dataOne, main = paste(&quot;data set I, power=&quot;, betal), truncated = F)
+scaleFreePlot(k.dataTwo, main = paste(&quot;data set II, power=&quot;, betal), truncated = F)
 </code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-11b57ae3e23638cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Data I scale free plot">
 <img src="https://upload-images.jianshu.io/upload_images/3014937-fabcfec8b4df355b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Data II scale free plot"></p>
 <p>筛选连通性最高的3600个基因做为后续分析，不过一般不在这一步进行筛选，因为生物体内的基因网络图更多的是无尺度的。</p>
@@ -195,25 +195,25 @@ vardataTwo &lt;- apply(datExprdataTwo, 2, var)
 restK &lt;- kRank &lt;= kCut &amp; vardataOne &gt;0 &amp; vardataTwo &gt; 0 
 ADJdataOne &lt;- adjacency(datExpr = datExprdataOne[,restK], power = betal)
 dissTOMdataOne &lt;- TOMdist(ADJdataOne)
-hierTOMdataOne &lt;- hclust(as.dist(dissTOMdataOne), method = &#34;average&#34;)
+hierTOMdataOne &lt;- hclust(as.dist(dissTOMdataOne), method = &quot;average&quot;)
 par(mfrow = c(1,1))
-plot(hierTOMdataOne, labels = F, main = &#34;dendrogram, 3600 mast connected in data set I&#34;)
+plot(hierTOMdataOne, labels = F, main = &quot;dendrogram, 3600 mast connected in data set I&quot;)
 </code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-82bacf08123d508b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Data I的层级聚类图"></p>
 <p>层级聚类树展示各个模块, 灰色的为<strong>未分类</strong>到模块的基因，这里使用的<code>cutreeStaticColor</code>检测module，但是对于复杂的基因结构建议使用 <code>cutreeDynamic</code>。其中也有一些具体的参数可以选择得到合适的module。</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">colordataOne &lt;- cutreeStaticColor(hierTOMdataOne, cutHeight = 0.94, minSize = 125)
 par(mfrow=c(2,1), mar = c(2,4,1,1))
-plot(hierTOMdataOne, main = &#34;Glioblastoma data set 1, n = 55&#34;, labels = F, xlab = &#34;&#34;, sub = &#34;&#34;)
+plot(hierTOMdataOne, main = &quot;Glioblastoma data set 1, n = 55&quot;, labels = F, xlab = &quot;&quot;, sub = &quot;&quot;)
 plotColorUnderTree(hierTOMdataOne, colors = data.frame(module = colordataOne))
-title(&#34;module membership data set I&#34;)
+title(&quot;module membership data set I&quot;)
 </code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-e0c5b0fcdd39d7ee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Data I层级聚类图"></p>
 <p>后续换了一种方法希望得到更多module以期得到更多的eigegene。</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">dataOne_net = blockwiseModules(datExprdataOne, power = 6, maxBlockSize = 200,
-                       TOMType = &#34;signed&#34;, minModuleSize = 30,
+                       TOMType = &quot;signed&quot;, minModuleSize = 30,
                        reassignThreshold = 0, mergeCutHeight = 0.25,
                        numericLabels = TRUE, pamRespectsDendro = FALSE,
-                       saveTOMs=TRUE, corType = &#34;pearson&#34;, 
+                       saveTOMs=TRUE, corType = &quot;pearson&quot;, 
                        loadTOMs=TRUE,
-                       saveTOMFileBase = &#34;DataI.tom&#34;,
+                       saveTOMFileBase = &quot;DataI.tom&quot;,
                        verbose = 3)
 
 # Calculating module eigengenes block-wise from all genes
@@ -227,7 +227,7 @@ title(&#34;module membership data set I&#34;)
 </code></pre><p>绘制模块之间相关性图</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">dataOne_MEs &lt;- dataOne_net$MEs
 
-plotEigengeneNetworks(dataOne_MEs, &#34;Eigengene adjacency heatmap&#34;, 
+plotEigengeneNetworks(dataOne_MEs, &quot;Eigengene adjacency heatmap&quot;, 
                       marDendro = c(3,3,2,4),
                       marHeatmap = c(3,4,2,2), plotDendrograms = T, 
                       xLabelsAngle = 90)
@@ -249,15 +249,15 @@ diag(plotTOM) = NA
 # Call the plot function
 
 TOMplot(plotTOM, dataOne_net$dendrograms, 
-        main = &#34;Network heatmap plot, all genes&#34;)
+        main = &quot;Network heatmap plot, all genes&quot;)
 </code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-e87b0b493dff54dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Data I的TOM plot"></p>
 <p>导出网络图</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">probes = colnames(dat0[,15:69])
 dimnames(TOM) &lt;- list(probes, probes)
 # Export the network into edge and node list files Cytoscape can read
 cyt = exportNetworkToCytoscape(TOM,
-             edgeFile = &#34;edges.txt&#34;,
-             nodeFile = &#34;nodes.txt&#34;,
+             edgeFile = &quot;edges.txt&quot;,
+             nodeFile = &quot;nodes.txt&quot;,
              weighted = TRUE, threshold = 0,
              nodeNames = probes, nodeAttr = dataOne_net$colors)
 </code></pre><p>部分参考：</p>

@@ -89,7 +89,7 @@
 <p>感兴趣的基因信息包含在bedGraph文件中，下面命令是对其文件格式进行转换，一般进行到bam文件可视化的效果比较好。</p>
 <h1 id="1-bedgraph转bed文件">1. bedGraph转bed文件<a href="#1-bedgraph转bed文件" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
 <p>BedGraph ，的数据和bed文件很类似，ChIPseq数据做完peak calling后的bed文件最短只有三列，染色体序号，染色体起始位置和结束位置。如下所示，前面的声明和Wig类似，后面的四列分别表示染色体序号，起始位置，结束位置和value值。相当于为bed文件的延伸格式。</p>
-<pre tabindex="0"><code>track type=bedGraph name=&#34;BedGraph Format&#34; description=&#34;BedGraph format&#34; visibility=full color=200,100,0 altColor=0,100,200 priority=20
+<pre tabindex="0"><code>track type=bedGraph name=&quot;BedGraph Format&quot; description=&quot;BedGraph format&quot; visibility=full color=200,100,0 altColor=0,100,200 priority=20
 chr19 49302000 49302300 -1.0
 chr19 49302300 49302600 -0.75
 chr19 49302600 49302900 -0.50
@@ -109,11 +109,11 @@ samtools faidx Arabidopsis_thaliana.TAIR10.dna.toplevel.fa
 </code></pre><p>生成的索引文件genome.fasta.fai,是一个文本文件，分成了5列。第一列是子序列的名称；第二列是子序列的长度；个人认为“第三列是序列所在的位置”，因为该数字从上往下逐渐变大，最后的数字是genome.fasta文件的大小；第4和5列不知是啥意思。于是通过此文件，可以定位子序列在fasta文件在磁盘上的存放位置，直接快速调出子序列。</p>
 <p>genome size文件包含index文件的前两行，也就是chromosome信息和子序列的长度，所以我们可以提取作为genome size。</p>
 <pre tabindex="0"><code># Build the genome size file
-awk {&#39;print &#34;Chr&#34;$1,&#34;\t&#34;,$2&#39;} Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.fai &gt; Arabidopsis_genomeFile.txt
+awk {'print &quot;Chr&quot;$1,&quot;\t&quot;,$2'} Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.fai &gt; Arabidopsis_genomeFile.txt
 </code></pre><h1 id="3-bed转bam">3. bed转bam<a href="#3-bed转bam" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
 <p>bedtools工具提供的bedtobam命令</p>
 <pre tabindex="0"><code># Change the bed file to bam file
-cat GSM1252087_edm2-4_RNAseq.bed | awk &#39;{x++; printf &#34;%s\tread%d\n&#34;,$0,x}&#39; | bedtools bedtobam -g Arabidopsis_genomeFile.txt -i - &gt; GSM1252087_edm2-4_RNAseq.bam
+cat GSM1252087_edm2-4_RNAseq.bed | awk '{x++; printf &quot;%s\tread%d\n&quot;,$0,x}' | bedtools bedtobam -g Arabidopsis_genomeFile.txt -i - &gt; GSM1252087_edm2-4_RNAseq.bam
 </code></pre><p>Ref:
 <a href="http://www.chenlianfu.com/?p=1399" target="_blank" rel="noreferrer noopener">http://www.chenlianfu.com/?p=1399</a>
 

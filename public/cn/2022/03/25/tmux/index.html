@@ -113,13 +113,13 @@ Table of Contents:
 
 </p>
 <p>安装tmux</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install tmux
-</span></span></code></pre></div><h3 id="会话管理">会话管理<a href="#会话管理" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brew install tmux
+</code></pre></div><h3 id="会话管理">会话管理<a href="#会话管理" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
 <p><strong>新建 session</strong></p>
 <p>使用 tmux 之前我们首先需要新建一个 <strong>Session</strong>，命令如下：</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 新建 session，使用 -s 自定义 session 名字</span>
-</span></span><span style="display:flex;"><span>tmux new -s &lt;session-name&gt;
-</span></span></code></pre></div><p><strong>保存会话</strong></p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#408080;font-style:italic"># 新建 session，使用 -s 自定义 session 名字</span>
+tmux new -s &lt;session-name&gt;
+</code></pre></div><p><strong>保存会话</strong></p>
 <p>进入会话之后，进行相关操作，比如使用 SSH 连上远端服务器。这时如果想退出去的时候，可以保存当前会话信息。下次可以直接重新进入这个会话，不用重新再次使用 SSH 连接了。</p>
 <pre tabindex="0"><code># 保存当前会话
 tmux detach
@@ -129,32 +129,32 @@ tmux detach
 tmux attach -t &lt;session-name&gt;
 </code></pre><p><strong>查看会话</strong></p>
 <p>如果之前同时保存了多个会话，我们可以使用 <strong>tmux ls</strong> 查看当前所有会话。</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="">#</span> 查看会话
-</span></span><span style="display:flex;"><span>tmux ls
-</span></span></code></pre></div><p><strong>杀死会话</strong></p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="">#</span> 查看会话
+tmux ls
+</code></pre></div><p><strong>杀死会话</strong></p>
 <p>使用 <strong>tmux kill-session</strong> 我们可以杀死某个会话。</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="">#</span> 使用 <span style="color:#666">-</span>t 指定会话名称
-</span></span><span style="display:flex;"><span>tmux kill<span style="color:#666">-</span>session <span style="color:#666">-</span>t &lt;session<span style="color:#666">-</span>name&gt;
-</span></span></code></pre></div><h3 id="窗口管理">窗口管理<a href="#窗口管理" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="">#</span> 使用 <span style="color:#666">-</span>t 指定会话名称
+tmux kill<span style="color:#666">-</span>session <span style="color:#666">-</span>t &lt;session<span style="color:#666">-</span>name&gt;
+</code></pre></div><h3 id="窗口管理">窗口管理<a href="#窗口管理" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
 <p><strong>新建窗口</strong></p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="">#</span> 新建一个指定名称的窗口
-</span></span><span style="display:flex;"><span>tmux new<span style="color:#666">-</span>window <span style="color:#666">-</span>n &lt;window<span style="color:#666">-</span>name&gt;
-</span></span></code></pre></div><p><strong>切换窗口</strong></p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="">#</span> 切换到指定名称的窗口
-</span></span><span style="display:flex;"><span>tmux <span style="color:#008000;font-weight:bold">select</span><span style="color:#666">-</span>window <span style="color:#666">-</span>t &lt;window<span style="color:#666">-</span>name&gt;
-</span></span></code></pre></div><p>这里推荐使用快捷键 <strong>Ctrl+b w</strong>：从列表中选择窗口。</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="">#</span> 新建一个指定名称的窗口
+tmux new<span style="color:#666">-</span>window <span style="color:#666">-</span>n &lt;window<span style="color:#666">-</span>name&gt;
+</code></pre></div><p><strong>切换窗口</strong></p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="">#</span> 切换到指定名称的窗口
+tmux <span style="color:#008000;font-weight:bold">select</span><span style="color:#666">-</span>window <span style="color:#666">-</span>t &lt;window<span style="color:#666">-</span>name&gt;
+</code></pre></div><p>这里推荐使用快捷键 <strong>Ctrl+b w</strong>：从列表中选择窗口。</p>
 <h3 id="窗格操作">窗格操作<a href="#窗格操作" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
 <p>窗格操作这是阿粉认为最强大的功能，我们使用命令可以将一个窗口划分为多个窗格，不过阿粉还是建议使用快键键操作。</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="">#</span> 划分上下两个窗格 命令<span style="">：</span>tmux split<span style="color:#666">-</span>window
-</span></span><span style="display:flex;"><span>Ctrl<span style="color:#666">+</span>b <span style="color:#666">%</span>
-</span></span><span style="display:flex;"><span><span style="">#</span> 划分上下两个窗格 命令<span style="">：</span>tmux split<span style="color:#666">-</span>window <span style="color:#666">-</span>h
-</span></span><span style="display:flex;"><span>Ctrl<span style="color:#666">+</span>b <span style="">&#34;</span>
-</span></span></code></pre></div><p><strong>切换 pane</strong></p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="">##</span> 切换当前所在窗格
-</span></span><span style="display:flex;"><span>Ctrl<span style="color:#666">+</span>b 方向键
-</span></span></code></pre></div><p><strong>窗格大小调整</strong></p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>Ctrl<span style="color:#666">+</span>b alt<span style="color:#666">+</span><span style="">：</span>方向键 调整窗格大小<span style="">。</span>
-</span></span></code></pre></div><p><strong>其他窗格常用快捷键</strong></p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="">#</span> 划分上下两个窗格 命令<span style="">：</span>tmux split<span style="color:#666">-</span>window
+Ctrl<span style="color:#666">+</span>b <span style="color:#666">%</span>
+<span style="">#</span> 划分上下两个窗格 命令<span style="">：</span>tmux split<span style="color:#666">-</span>window <span style="color:#666">-</span>h
+Ctrl<span style="color:#666">+</span>b <span style="">&#34;</span>
+</code></pre></div><p><strong>切换 pane</strong></p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="">##</span> 切换当前所在窗格
+Ctrl<span style="color:#666">+</span>b 方向键
+</code></pre></div><p><strong>窗格大小调整</strong></p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">Ctrl<span style="color:#666">+</span>b alt<span style="color:#666">+</span><span style="">：</span>方向键 调整窗格大小<span style="">。</span>
+</code></pre></div><p><strong>其他窗格常用快捷键</strong></p>
 <ul>
 <li><code>Ctrl+b x</code>：关闭当前窗格。</li>
 <li><code>Ctrl+b !</code>：将当前窗格拆分为一个独立窗口。</li>
@@ -163,18 +163,18 @@ tmux attach -t &lt;session-name&gt;
 </ul>
 <h3 id="其他命令">其他命令<a href="#其他命令" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
 <p>下面是一些其他命令。</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 列出所有快捷键，及其对应的 Tmux 命令</span>
-</span></span><span style="display:flex;"><span>$ tmux list-keys
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 列出所有 Tmux 命令及其参数</span>
-</span></span><span style="display:flex;"><span>$ tmux list-commands
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 列出当前所有 Tmux 会话的信息</span>
-</span></span><span style="display:flex;"><span>$ tmux info
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"># 重新加载当前的 Tmux 配置</span>
-</span></span><span style="display:flex;"><span>$ tmux source-file ~/.tmux.conf
-</span></span></code></pre></div><h3 id="持久保存-tmux-会话">持久保存 Tmux 会话<a href="#持久保存-tmux-会话" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#408080;font-style:italic"># 列出所有快捷键，及其对应的 Tmux 命令</span>
+$ tmux list-keys
+
+<span style="color:#408080;font-style:italic"># 列出所有 Tmux 命令及其参数</span>
+$ tmux list-commands
+
+<span style="color:#408080;font-style:italic"># 列出当前所有 Tmux 会话的信息</span>
+$ tmux info
+
+<span style="color:#408080;font-style:italic"># 重新加载当前的 Tmux 配置</span>
+$ tmux source-file ~/.tmux.conf
+</code></pre></div><h3 id="持久保存-tmux-会话">持久保存 Tmux 会话<a href="#持久保存-tmux-会话" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
 <p>如果机器重启，那么 Tmux 会话就消失了，包括打开的各个窗口、窗格布局、以及其中跑的程序等。Tmux Resurrect 和 Tmux Continuum 这两个 Tmux 插件可以解决这个问题。</p>
 <p>首先安装 tmux 专属的插件管理器，一般都是用这个：tmux plugin manager，即 tpm。注意：文档里面都会提到 prefix + …，其中 prefix 指的是 tmux 的命令前缀，默认是 ctrl+b。</p>
 <p>项目地址在这：https://github.com/tmux-plugins/tpm</p>
@@ -184,22 +184,22 @@ tmux attach -t &lt;session-name&gt;
 <pre tabindex="0"><code>git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 </code></pre><pre tabindex="0"><code># 将下面内容复制到`~/.tmux.conf.local`
 # List of plugins
-set -g @plugin &#39;tmux-plugins/tpm&#39;
-set -g @plugin &#39;tmux-plugins/tmux-sensible&#39;
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
 # Other examples:
-# set -g @plugin &#39;github_username/plugin_name&#39;
-# set -g @plugin &#39;git@github.com/user/plugin&#39;
-# set -g @plugin &#39;git@bitbucket.com/user/plugin&#39;
+# set -g @plugin 'github_username/plugin_name'
+# set -g @plugin 'git@github.com/user/plugin'
+# set -g @plugin 'git@bitbucket.com/user/plugin'
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run &#39;~/.tmux/plugins/tpm/tpm&#39; 
+run '~/.tmux/plugins/tpm/tpm' 
 
 # 在tmux运行的时候，找到任意窗口输入下面这个完成安装管理器：
 tmux source ~/.tmux.conf.local
 </code></pre><pre tabindex="0"><code>#在`~/.tmux.conf.local`添加如下命令
-set -g @plugin &#39;tmux-plugins/tmux-resurrect&#39;
-set -g @plugin &#39;tmux-plugins/tmux-continuum&#39;
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
 </code></pre><p>Tmux Continuum 默认每隔 15 分钟备份一次，如果你觉得频率过高，可以设置为 1 小时一次：</p>
-<pre tabindex="0"><code>set -g @continuum-save-interval &#39;60&#39;
+<pre tabindex="0"><code>set -g @continuum-save-interval '60'
 </code></pre><p>同样，需要重载 Tmux 配置 <code>tmux source-file ~/.tmux.conf.local</code>。</p>
 <p>保存好后，在 tmux 的任意窗口按 ctrl+b 及大写的 I，即可完成下载安装。</p>
 <p>用法</p>
@@ -212,27 +212,27 @@ set -g @plugin &#39;tmux-plugins/tmux-continuum&#39;
 <p>我们可以修改 tmux 相关配置开启鼠标，复制/粘贴功能。</p>
 <p>不过这里不推荐大家一个个去官网找配置参数，Github 上有个大神开开源其 tmux 配置，我们可以将 tmux 配置如下:</p>
 <p>安装方法：</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="">$</span> cd
-</span></span><span style="display:flex;"><span><span style="">$</span> git clone https:<span style="color:#408080;font-style:italic">//github.com/gpakosz/.tmux.git
-</span></span></span><span style="display:flex;"><span><span style="color:#408080;font-style:italic"></span><span style="">$</span> ln <span style="color:#666">-</span>s <span style="color:#666">-</span>f .tmux<span style="color:#666">/</span>.tmux.conf
-</span></span><span style="display:flex;"><span><span style="">$</span> cp .tmux<span style="color:#666">/</span>.tmux.conf.local .
-</span></span></code></pre></div><p>如果需要修改配置，建议在  <code>~/.tmux.conf.local</code> 中配置。</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="">$</span> cd
+<span style="">$</span> git clone https:<span style="color:#408080;font-style:italic">//github.com/gpakosz/.tmux.git
+</span><span style="color:#408080;font-style:italic"></span><span style="">$</span> ln <span style="color:#666">-</span>s <span style="color:#666">-</span>f .tmux<span style="color:#666">/</span>.tmux.conf
+<span style="">$</span> cp .tmux<span style="color:#666">/</span>.tmux.conf.local .
+</code></pre></div><p>如果需要修改配置，建议在  <code>~/.tmux.conf.local</code> 中配置。</p>
 <p>上面操作完成之后，重新打开 tmux ，就可以看到界面变化了。若未生效，可以运行如下配置：</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>tmux source <span style="">~</span><span style="color:#666">/</span>.tmux.conf
-</span></span></code></pre></div><p>默认情况下，未开启鼠标模式，需要使用如下如下快捷键打开；</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>Ctrl<span style="color:#666">+</span>b m
-</span></span></code></pre></div><p>开启之后，就可以愉快使用鼠标。</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">tmux source <span style="">~</span><span style="color:#666">/</span>.tmux.conf
+</code></pre></div><p>默认情况下，未开启鼠标模式，需要使用如下如下快捷键打开；</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">Ctrl<span style="color:#666">+</span>b m
+</code></pre></div><p>开启之后，就可以愉快使用鼠标。</p>
 <p>也可以修改这个启用鼠标</p>
 <pre tabindex="0"><code># start with mouse mode enabled
 set -g mouse on
 </code></pre><p>tmux 会话窗口中，我们是无法访问 macos 系统剪贴板，我们需要安装 <strong>reattach-to-user-namespace</strong>。</p>
 <p>安装方式如下：</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="">$</span> brew install reattach<span style="color:#666">-</span>to<span style="color:#666">-</span>user<span style="color:#666">-</span>namespace
-</span></span></code></pre></div><h3 id="日常使用流程">日常使用流程<a href="#日常使用流程" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tmux new -s working
-</span></span><span style="display:flex;"><span>tmux detach
-</span></span><span style="display:flex;"><span>tmux attach -t working
-</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="">$</span> brew install reattach<span style="color:#666">-</span>to<span style="color:#666">-</span>user<span style="color:#666">-</span>namespace
+</code></pre></div><h3 id="日常使用流程">日常使用流程<a href="#日常使用流程" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tmux new -s working
+tmux detach
+tmux attach -t working
+</code></pre></div>
 <p style="color:#777;">最后一次修改于 2022-03-25</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>

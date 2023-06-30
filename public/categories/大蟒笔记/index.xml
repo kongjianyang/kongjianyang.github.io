@@ -67,7 +67,7 @@ conda remove -n python3 --all ##3.总结 以上是使用conda的一些基本命�
 3.技巧 3.1 配置及打开 安装方法之类的不多讲，安装之后希望在任何地方打开Jupyter的话在Terminal下cd到目标文件夹，键入Jupyter Notebook自然能在你的浏览器下打开Jupyter，则工作目录即为你的目标目录。
 希望查看Jupyter的配置文件的话键入jupyter notebook --generate-config则能看到配置文件。
 3.2 加载本地.py文件 还可以将本地的.py文件load到jupyter的一个cell中 例如有一个test.py文件，需要将其载入到jupyter的一个cell中 test.py内容如下：
-import caffe SolverName = &amp;#34;/root/workspace&amp;#34; sovler = caffe.AdamSolver(SolverName) 在需要导入该段代码的cell中只需要输入如下
+import caffe SolverName = &amp;quot;/root/workspace&amp;quot; sovler = caffe.AdamSolver(SolverName) 在需要导入该段代码的cell中只需要输入如下
 %load test.py #test.py是当前路径下的一个python文件 3.3 作为unix command使用 jupyter的cell还可以作为unix command使用，具体方法为：在unix command前面加入一个感叹号“！”
 例子： 查看python版本：!python --version 运行python文件：!python myfile.py 3.4 添加目录功能 还可以为Jupyter Notebook添加目录功能，原始的Jupyter是不支持markdown添加目录功能的，实际上，可以利用Jupyter notebook extensions 去使得这种功能实现，具体方法：  `conda install -c conda-forge jupyter_contrib_nbextensions`  打开Jupyter Notebook，在它的（新增的）Nbextensions标签下勾选“Table of Contents(2)” ，关于extensions还有很多其他的功能可以自行查看。
 3.5 魔法命令 (magic function) 所有以%开头的方法，都是Jupyter里面的所谓魔术方法(Magic function)，也就是ipython内置的一些方法。需要注意的是，魔术方法有%和%%之分，比如%timeit和%%timeit。在ipython中有专门的叫法，前者叫line magic后者叫cell magic。顾名思义，前者是专门针对一行的命令，后者针对多行的命令。</description>
@@ -80,7 +80,7 @@ import caffe SolverName = &amp;#34;/root/workspace&amp;#34; sovler = caffe.AdamS
       
       <guid>https://kongjianyang.github.io/cn/2018/11/24/jupyter%E4%B8%8D%E6%98%BE%E7%A4%BAwarming-message/</guid>
       <description>运行Jupyter notebook的时候偶尔会提醒有错误信息，让人很烦恼，解决这个问题只需要在cell行内添加一下命令。
-#隐藏警告 import warnings warnings.filterwarnings(&amp;#39;ignore&amp;#39;) </description>
+#隐藏警告 import warnings warnings.filterwarnings(&#39;ignore&#39;) </description>
     </item>
     
     <item>
@@ -108,11 +108,11 @@ import mpl_finance as mpf </description>
       <guid>https://kongjianyang.github.io/cn/2018/11/24/pandas%E5%88%86%E7%BB%84%E5%87%BD%E6%95%B0groupbypivot_table%E5%8F%8Acrosstab/</guid>
       <description>1. 起因 利用python的pandas库进行数据分组分析十分便捷，其中应用最多的方法包括：groupby、pivot_table及crosstab，以下分别进行介绍。
 2. 详解 首先构造数据
-import numpy as np import pandas as pd df = pd.DataFrame({&amp;#39;key1&amp;#39;:[&amp;#39;a&amp;#39;,&amp;#39;a&amp;#39;,&amp;#39;b&amp;#39;,&amp;#39;b&amp;#39;,&amp;#39;a&amp;#39;],&amp;#39;key2&amp;#39;:[&amp;#39;one&amp;#39;,&amp;#39;two&amp;#39;,&amp;#39;one&amp;#39;,&amp;#39;two&amp;#39;,&amp;#39;one&amp;#39;],&amp;#39;data1&amp;#39;:np.random.randn(5),&amp;#39;data2&amp;#39;:np.random.randn(5)}) 2.1 group函数 分组groupby Pandas中最为常用和有效的分组函数。
+import numpy as np import pandas as pd df = pd.DataFrame({&#39;key1&#39;:[&#39;a&#39;,&#39;a&#39;,&#39;b&#39;,&#39;b&#39;,&#39;a&#39;],&#39;key2&#39;:[&#39;one&#39;,&#39;two&#39;,&#39;one&#39;,&#39;two&#39;,&#39;one&#39;],&#39;data1&#39;:np.random.randn(5),&#39;data2&#39;:np.random.randn(5)}) 2.1 group函数 分组groupby Pandas中最为常用和有效的分组函数。
 1）按列分组
 注意以下使用groupby()函数生成的group1是一个中间分组变量，为GroupBy类型。
-group1 = df.groupby(&amp;#39;key1&amp;#39;) group2 = df.groupby([&amp;#39;key1&amp;#39;,&amp;#39;key2&amp;#39;]) 使用推导式[x for x in group1]可显示分组内容。
-[x for x in group1] [(&amp;#39;a&amp;#39;, data1 data2 key1 key2 0 1.830651 0.407903 a one 1 -0.973132 -0.056084 a two 4 -1.069184 0.043338 a one), (&amp;#39;b&amp;#39;, data1 data2 key1 key2 2 -0.477718 -1.488174 b one 3 -0.</description>
+group1 = df.groupby(&#39;key1&#39;) group2 = df.groupby([&#39;key1&#39;,&#39;key2&#39;]) 使用推导式[x for x in group1]可显示分组内容。
+[x for x in group1] [(&#39;a&#39;, data1 data2 key1 key2 0 1.830651 0.407903 a one 1 -0.973132 -0.056084 a two 4 -1.069184 0.043338 a one), (&#39;b&#39;, data1 data2 key1 key2 2 -0.477718 -1.488174 b one 3 -0.</description>
     </item>
     
     <item>
@@ -150,7 +150,7 @@ def myFunc(): B = 10 def inFunc(A): global B B = A ** 5 return B B = 25 myFunc()
 %matplotlib notebook import matplotlib.pyplot as plt import numpy as np data = np.arange(10) data plt.plot(data) matplotlib的图像都位于Figure对象中。你可以用plt.figure创建一个新的Figure： 如果用的是IPython，这时会弹出一个空窗口，但在Jupyter中，必须再输入更多命令才能看到。plt.figure有一些选项，特别是figsize，它用于确保当图片保存到磁盘时具有一定的大小和纵横比。
 不能通过空Figure绘图。必须用add_subplot创建一个或多个subplot才行：
 # 代码的意思是：图像应该是2×2的（即最多4张图）， # 且当前选中的是4个subplot中的第一个（编号从1开始）。 # 如果再把后面两个subplot也创建出来，最终得到的图像如图所示： fig = plt.figure() ax1 = fig.add_subplot(2, 2, 1) ax2 = fig.add_subplot(2, 2, 2) ax3 = fig.add_subplot(2, 2, 3) 使用Jupyter notebook有一点不同，即每个小窗重新执行后，图形会被重置。因此，对于复杂的图形，，你必须将所有的绘图命令存在一个小窗里。 加的绘图命令会在最后一个subplot上.
-fig = plt.figure() ax1 = fig.add_subplot(2, 2, 1) ax2 = fig.add_subplot(2, 2, 2) ax3 = fig.add_subplot(2, 2, 3) plt.plot(np.random.randn(50).cumsum(), &amp;#39;k--&amp;#39;) #plt.plot(np.random.randn(50).cumsum(), &amp;#39;k--&amp;#39;) # ax1.</description>
+fig = plt.figure() ax1 = fig.add_subplot(2, 2, 1) ax2 = fig.add_subplot(2, 2, 2) ax3 = fig.add_subplot(2, 2, 3) plt.plot(np.random.randn(50).cumsum(), &#39;k--&#39;) #plt.plot(np.random.randn(50).cumsum(), &#39;k--&#39;) # ax1.</description>
     </item>
     
     <item>
@@ -194,8 +194,8 @@ conda install -c conda-forge jupyter_contrib_nbextensions 第三步, 开启toc2�
       <description>1. 问题 有的时候我们有一系列PDF文件我们希望合并到一个PDF中进行查看和打印，这个时候合并PDF文件就非常有用，PyPDF2库可以帮助我们做到这点。
 2. 用法 PyPDF2 包括了 PdfFileReader PdfFileMerger PageObject PdfFileWriter 四个常用的主要 Class。
 以下命令可以解释这个库是怎么工作的
-from PyPDF2 import PdfFileReader, PdfFileWriter readFile = &amp;#39;read.pdf&amp;#39; writeFile = &amp;#39;write.pdf&amp;#39; # 获取一个 PdfFileReader 工具 pdfReader = PdfFileReader(open(readFile, &amp;#39;rb&amp;#39;)) # 获取 PDF 的页数 pageCount = pdfReader.getNumPages() print(pageCount) # 返回一个 PageObject page = pdfReader.getPage(i) # 获取一个 PdfFileWriter 工具 pdfWriter = PdfFileWriter() # 将一个 PageObject 插手到 PdfFileWriter 中 pdfWriter.addPage(page) # 输出到文件中 pdfWriter.write(open(writeFile, &amp;#39;wb&amp;#39;)) 接下来的命令是一个实例
-from PyPDF2 import PdfFileMerger pdfs = [&amp;#39;file1.</description>
+from PyPDF2 import PdfFileReader, PdfFileWriter readFile = &#39;read.pdf&#39; writeFile = &#39;write.pdf&#39; # 获取一个 PdfFileReader 工具 pdfReader = PdfFileReader(open(readFile, &#39;rb&#39;)) # 获取 PDF 的页数 pageCount = pdfReader.getNumPages() print(pageCount) # 返回一个 PageObject page = pdfReader.getPage(i) # 获取一个 PdfFileWriter 工具 pdfWriter = PdfFileWriter() # 将一个 PageObject 插手到 PdfFileWriter 中 pdfWriter.addPage(page) # 输出到文件中 pdfWriter.write(open(writeFile, &#39;wb&#39;)) 接下来的命令是一个实例
+from PyPDF2 import PdfFileMerger pdfs = [&#39;file1.</description>
     </item>
     
     <item>
@@ -206,8 +206,8 @@ from PyPDF2 import PdfFileMerger pdfs = [&amp;#39;file1.</description>
       <guid>https://kongjianyang.github.io/cn/2018/11/24/%E5%88%A9%E7%94%A8python%E5%B0%86%E5%9F%BA%E5%9B%A0%E8%A1%A8%E8%BE%BE%E6%95%B0%E6%8D%AE%E5%AD%98%E4%B8%BA%E5%AD%97%E5%85%B8/</guid>
       <description>1. 问题 我们的基因表达数据如下表所示
  cond1 cond2 cond3 gene1 1.57 2.52 12.05 gene2 0.01 8.90 31.20 gene3 57.05 12.14 50.76 我们希望能够利用Python将这个基因表达文件存为一个dictionary，这样我们能很容易的通过基因名和样品名得到基因的表达量，我们还可以筛选表达量大于某个值的所有基因和样品， 如下：
-myDict[(&amp;#39;gene1&amp;#39;,&amp;#39;cond1&amp;#39;)] = 1.57 myDict[(&amp;#39;gene1&amp;#39;,&amp;#39;cond2&amp;#39;)] = 2.52 myDict[(&amp;#39;gene1&amp;#39;,&amp;#39;cond3&amp;#39;)] = 12.05 myDict[(&amp;#39;gene2&amp;#39;,&amp;#39;cond1&amp;#39;)] = 0.01 ... 2. Python解决 利用Python的逻辑是首先将基因名和样品名存为一个元祖，然后将此元祖作为字典里面的key，将基因表达量作为字典里面的value。
-data = open(input_file, &amp;#39;rU&amp;#39;) l = data.readline().rstrip(&amp;#34;\r\n&amp;#34;) conds = l.split(&amp;#34;\t&amp;#34;) conds.pop(0) d = dict() for l in data: l = l.rstrip(&amp;#34;\r\n&amp;#34;) vals = l.split(&amp;#34;\t&amp;#34;) gene = vals[0] vals.pop(0) valIdx = 0 for val in vals: cond = conds[valIdx] d[(gene, cond)] = float(val) valIdx += 1 ## 额外部分，想得到基因表达量大于12的基因和样品 value12={k:v for k,v in d.</description>
+myDict[(&#39;gene1&#39;,&#39;cond1&#39;)] = 1.57 myDict[(&#39;gene1&#39;,&#39;cond2&#39;)] = 2.52 myDict[(&#39;gene1&#39;,&#39;cond3&#39;)] = 12.05 myDict[(&#39;gene2&#39;,&#39;cond1&#39;)] = 0.01 ... 2. Python解决 利用Python的逻辑是首先将基因名和样品名存为一个元祖，然后将此元祖作为字典里面的key，将基因表达量作为字典里面的value。
+data = open(input_file, &#39;rU&#39;) l = data.readline().rstrip(&amp;quot;\r\n&amp;quot;) conds = l.split(&amp;quot;\t&amp;quot;) conds.pop(0) d = dict() for l in data: l = l.rstrip(&amp;quot;\r\n&amp;quot;) vals = l.split(&amp;quot;\t&amp;quot;) gene = vals[0] vals.pop(0) valIdx = 0 for val in vals: cond = conds[valIdx] d[(gene, cond)] = float(val) valIdx += 1 ## 额外部分，想得到基因表达量大于12的基因和样品 value12={k:v for k,v in d.</description>
     </item>
     
     <item>

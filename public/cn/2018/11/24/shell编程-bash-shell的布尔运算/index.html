@@ -88,32 +88,32 @@
 <div class="body-text list-text">
 <p>在 Bash 里有这样的常量(实际上是两个内置命令，在这里我们姑且这么认为，后面将介绍)，即 true 和 false，一个表示真，一个表示假。对它们可以进行与、或、非运算等常规的逻辑运算。</p>
 <h2 id="1-与或非运算">1. 与或非运算<a href="#1-与或非运算" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
-<pre tabindex="0"><code>$ if true;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
+<pre tabindex="0"><code>$ if true;then echo &quot;YES&quot;; else echo &quot;NO&quot;; fi
 YES
-$ if false;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
+$ if false;then echo &quot;YES&quot;; else echo &quot;NO&quot;; fi
 NO
 </code></pre><p>与运算用&amp;&amp;表示</p>
-<pre tabindex="0"><code>$ if true &amp;&amp; true;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
+<pre tabindex="0"><code>$ if true &amp;&amp; true;then echo &quot;YES&quot;; else echo &quot;NO&quot;; fi
 YES
-$ if true &amp;&amp; false;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
+$ if true &amp;&amp; false;then echo &quot;YES&quot;; else echo &quot;NO&quot;; fi
 NO
-$ if false &amp;&amp; false;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
+$ if false &amp;&amp; false;then echo &quot;YES&quot;; else echo &quot;NO&quot;; fi
 NO
-$ if false &amp;&amp; true;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
+$ if false &amp;&amp; true;then echo &quot;YES&quot;; else echo &quot;NO&quot;; fi
 NO
 </code></pre><p>或运算用||表示</p>
-<pre tabindex="0"><code>$ if true || true;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
+<pre tabindex="0"><code>$ if true || true;then echo &quot;YES&quot;; else echo &quot;NO&quot;; fi
 YES
-$ if true || false;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
+$ if true || false;then echo &quot;YES&quot;; else echo &quot;NO&quot;; fi
 YES
-$ if false || true;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
+$ if false || true;then echo &quot;YES&quot;; else echo &quot;NO&quot;; fi
 YES
-$ if false || false;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
+$ if false || false;then echo &quot;YES&quot;; else echo &quot;NO&quot;; fi
 NO
 </code></pre><p>非运算，即取反用!表示</p>
-<pre tabindex="0"><code>$ if ! false;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
+<pre tabindex="0"><code>$ if ! false;then echo &quot;YES&quot;; else echo &quot;NO&quot;; fi
 YES
-$ if ! true;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
+$ if ! true;then echo &quot;YES&quot;; else echo &quot;NO&quot;; fi
 NO
 </code></pre><h2 id="2-true和false的本质">2. true和false的本质<a href="#2-true和false的本质" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>true 和 false 都是 Shell 的内置命令，它们的返回值是一个“逻辑值”，其中true 返回了 0，而 false 则返回了 1</p>
@@ -155,9 +155,9 @@ NO
 </tr>
 </tbody>
 </table>
-<pre tabindex="0"><code>$ if test 5 -eq 5;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi #两数相等
+<pre tabindex="0"><code>$ if test 5 -eq 5;then echo &quot;YES&quot;; else echo &quot;NO&quot;; fi #两数相等
 YES
-$ if test 5 -ne 5;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi #两数不相等
+$ if test 5 -ne 5;then echo &quot;YES&quot;; else echo &quot;NO&quot;; fi #两数不相等
 NO
 </code></pre><p><strong>字符串测试</strong></p>
 <table>
@@ -194,13 +194,13 @@ NO
 </tr>
 </tbody>
 </table>
-<pre tabindex="0"><code>$ if test -n &#34;not empty&#34;;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
+<pre tabindex="0"><code>$ if test -n &quot;not empty&quot;;then echo &quot;YES&quot;; else echo &quot;NO&quot;; fi
 YES
-$ if test -z &#34;not empty&#34;;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
+$ if test -z &quot;not empty&quot;;then echo &quot;YES&quot;; else echo &quot;NO&quot;; fi
 NO
-$ if test -z &#34;&#34;;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
+$ if test -z &quot;&quot;;then echo &quot;YES&quot;; else echo &quot;NO&quot;; fi
 YES
-$ if test -n &#34;&#34;;then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
+$ if test -n &quot;&quot;;then echo &quot;YES&quot;; else echo &quot;NO&quot;; fi
 NO
 </code></pre><p><strong>文件测试</strong></p>
 <table>
@@ -257,9 +257,9 @@ NO
 </tr>
 </tbody>
 </table>
-<pre tabindex="0"><code>$ if test -f /bin/bash; then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
+<pre tabindex="0"><code>$ if test -f /bin/bash; then echo &quot;YES&quot;; else echo &quot;NO&quot;; fi
 YES
-$ if test -d /bin/bash; then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
+$ if test -d /bin/bash; then echo &quot;YES&quot;; else echo &quot;NO&quot;; fi
 NO
 </code></pre><h2 id="4逻辑运算符">4.逻辑运算符<a href="#4逻辑运算符" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>test 命令内部的逻辑运算和 Shell 的逻辑运算符有一些区别，对应的为 -a 和 &amp;&amp;，-o 与 ||，这两者不能混淆使用。而非运算都是 !</p>
@@ -271,17 +271,17 @@ NO
 </ul>
 <p>用 [ ] 可以取代 test，这样看上去会“美观”很多</p>
 <pre tabindex="0"><code>$ i=5 #赋值不要空行
-$ if [ $i -eq 5 ]; then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
+$ if [ $i -eq 5 ]; then echo &quot;YES&quot;; else echo &quot;NO&quot;; fi
 YES
-$ if [ $i -gt 4 ] &amp;&amp; [ $i -lt 6 ]; then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
+$ if [ $i -gt 4 ] &amp;&amp; [ $i -lt 6 ]; then echo &quot;YES&quot;; else echo &quot;NO&quot;; fi
 YES
 </code></pre><p>记得给一些字符串变量加上 &ldquo;&quot;，记得 [ 之后与 ] 之前多加一个空格，不然会出现问题</p>
-<pre tabindex="0"><code>$ str=&#34;&#34;
-$ if [ &#34;$str&#34; = &#34;test&#34; ]; then echo &#34;YES&#34;; else echo &#34;NO&#34;; fi
+<pre tabindex="0"><code>$ str=&quot;&quot;
+$ if [ &quot;$str&quot; = &quot;test&quot; ]; then echo &quot;YES&quot;; else echo &quot;NO&quot;; fi
 NO
 </code></pre><h2 id="5-命令列表">5. 命令列表<a href="#5-命令列表" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>命令列表的执行规律符合逻辑运算的运算规律，用 &amp;&amp; 连接起来的命令，如果前者成功返回，将执行后面的命令，反之不然；用 || 连接起来的命令，如果前者成功返回，将不执行后续命令，反之不然。这个时候的&amp;&amp;和||和上面的与运算和或运算不同。</p>
-<pre tabindex="0"><code>$ ping -c 1 www.google.com -W 1 &amp;&amp; echo &#34;=======connected=======&#34; # ping -c 指定ping的次数 -W 指定等待响应时间（单位是毫秒） 
+<pre tabindex="0"><code>$ ping -c 1 www.google.com -W 1 &amp;&amp; echo &quot;=======connected=======&quot; # ping -c 指定ping的次数 -W 指定等待响应时间（单位是毫秒） 
 PING www.google.com (216.58.192.228): 56 data bytes
 
 --- www.google.com ping statistics ---

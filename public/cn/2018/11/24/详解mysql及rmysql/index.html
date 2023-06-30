@@ -97,85 +97,85 @@
 <p>至此MySQL成功安装到mac电脑下，可以进行下面的开发了。</p>
 <h1 id="02-安装rmysql">02. 安装RMySQL<a href="#02-安装rmysql" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
 <p>安装<em>RMySQL</em>非常简单，安装之后可以使用<code>help</code>命令查询包的介绍信息</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">install.packages(&#34;RMySQL&#34;)
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">install.packages(&quot;RMySQL&quot;)
 library(RMySQL)
-</code></pre><pre tabindex="0"><code class="language-{r}" data-lang="{r}">help(&#34;RMySQL&#34;)
+</code></pre><pre tabindex="0"><code class="language-{r}" data-lang="{r}">help(&quot;RMySQL&quot;)
 </code></pre><h1 id="03-rmysql基本操作">03. RMySQL基本操作<a href="#03-rmysql基本操作" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
 <p>创造一个新的数据库并使用，SQL查询可以通过dbSendQuery或dbGetQuery传给数据库管理系统。dbGetQuery传送查询语句，把结果以数据框形式返回。dbSendQuery传送查询，返回的结果是继承&quot;DBIResult&quot;的一个子类的对象。函数fetch用于获得查询结果的部分或全部行，并以列表返回。函数dbHasCompleted确定是否所有行已经获得了，而dbGetRowCount返回结果中行的数目。如果只是简单的读整个表，也可以用dbReadTable函数。</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">library(RMySQL)
 
 mydb = dbConnect(MySQL(), #数据库平台类型
-                 user=&#39;root&#39;, #登录账号（MySQL初始安装时设置的账号）
-                 password=&#39;password&#39;, #登录密码（MySQL初始安装时设置的密码）
-                 host=&#39;localhost&#39;)
+                 user='root', #登录账号（MySQL初始安装时设置的账号）
+                 password='password', #登录密码（MySQL初始安装时设置的密码）
+                 host='localhost')
 # creating a database using RMySQL in R
-dbSendQuery(mydb, &#34;CREATE DATABASE bookstore;&#34;)
-dbSendQuery(mydb, &#34;USE bookstore;&#34;)
+dbSendQuery(mydb, &quot;CREATE DATABASE bookstore;&quot;)
+dbSendQuery(mydb, &quot;USE bookstore;&quot;)
 # reconnecting to database we just created using following command in R :
-mydb = dbConnect(MySQL(), user=&#39;root&#39;, password=&#39;password&#39;, host=&#39;localhost&#39;, dbname=&#34;bookstore&#34;) # 重连数据库
-dbSendQuery(mydb, &#34;drop table if exists books, authors&#34;)
+mydb = dbConnect(MySQL(), user='root', password='password', host='localhost', dbname=&quot;bookstore&quot;) # 重连数据库
+dbSendQuery(mydb, &quot;drop table if exists books, authors&quot;)
 </code></pre><p>在数据库中创造表：</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}"># creating tables in bookstore:
-dbSendQuery(mydb, &#34;
+dbSendQuery(mydb, &quot;
 CREATE TABLE books (
 book_id INT,
 title VARCHAR(50),
-author VARCHAR(50));&#34;)
+author VARCHAR(50));&quot;)
 </code></pre><p>显示数据库中的表：</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}"># Show table using R:
 dbListTables(mydb)
 </code></pre><p>在包中插入新的列：</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">dbSendQuery(mydb, &#34;ALTER TABLE books
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">dbSendQuery(mydb, &quot;ALTER TABLE books
 CHANGE COLUMN book_id book_id INT AUTO_INCREMENT PRIMARY KEY,
 CHANGE COLUMN author author_id INT,
 ADD COLUMN description TEXT,
-ADD COLUMN genre ENUM(&#39;novel&#39;,&#39;poetry&#39;,&#39;drama&#39;, &#39;tutorials&#39;, &#39;text&#39;, &#39;other&#39;),
+ADD COLUMN genre ENUM('novel','poetry','drama', 'tutorials', 'text', 'other'),
 ADD COLUMN publisher_id INT,
 ADD COLUMN pub_year VARCHAR(4),
-ADD COLUMN isbn VARCHAR(20);&#34;)
+ADD COLUMN isbn VARCHAR(20);&quot;)
 </code></pre><p>创造新的表并创造一些列名：</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># Now, Before moving on to adding data to our books table, let&#39;s quickly set up the authors table.
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># Now, Before moving on to adding data to our books table, let's quickly set up the authors table.
 
-dbSendQuery(mydb, &#34;CREATE TABLE authors
+dbSendQuery(mydb, &quot;CREATE TABLE authors
 (author_id INT AUTO_INCREMENT PRIMARY KEY,
 author_last VARCHAR(50),
 author_first VARCHAR(50),
-country VARCHAR(50));&#34;)
+country VARCHAR(50));&quot;)
 </code></pre><p>往新的表中插入数据：</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}"># Adding data into tables
-dbSendQuery(mydb, &#34;INSERT INTO authors
+dbSendQuery(mydb, &quot;INSERT INTO authors
 (author_last, author_first, country)
-VALUES(&#39;Kumar&#39;,&#39;Manoj&#39;,&#39;India&#39;);&#34;)
+VALUES('Kumar','Manoj','India');&quot;)
 </code></pre><p>从数据库中获取选取结果：</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}"># fetching last data insert id number:
-last_id = fetch(dbSendQuery(mydb, &#34;SELECT LAST_INSERT_ID();&#34;))
+last_id = fetch(dbSendQuery(mydb, &quot;SELECT LAST_INSERT_ID();&quot;))
 last_id
 </code></pre><p>插入新的值到book表，并查看插入的值：</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}"># Inserting data into books table and using last insert ID number:
 
-dbSendQuery(mydb, &#34;INSERT INTO books
+dbSendQuery(mydb, &quot;INSERT INTO books
 (title, author_id, isbn, genre, pub_year)
-VALUES(&#39;R and MySQL&#39;, 1,&#39;6900690075&#39;,&#39;tutorials&#39;,&#39;2014&#39;);&#34;)
+VALUES('R and MySQL', 1,'6900690075','tutorials','2014');&quot;)
 
-try1 = fetch(dbSendQuery(mydb, &#34;SELECT book_id, title, description FROM books WHERE genre = &#39;tutorials&#39;;&#34;))
+try1 = fetch(dbSendQuery(mydb, &quot;SELECT book_id, title, description FROM books WHERE genre = 'tutorials';&quot;))
 </code></pre><p>显示所有的表并插入数值到新的表：</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">dbListTables(mydb) # 显示所有的表
-dbWriteTable(mydb, name = &#34;mtcars&#34;, value = mtcars[,]) # 插入R自带的数据mtcars形成新的表
+dbWriteTable(mydb, name = &quot;mtcars&quot;, value = mtcars[,]) # 插入R自带的数据mtcars形成新的表
 dbListTables(mydb)
 </code></pre><p>插入表格的时候如果有错误的话如：</p>
 <pre tabindex="0"><code>Error in .local(conn, statement, ...) : could not run statement: The used command is not allowed with this MySQL version
 </code></pre><p>则是因为MySQL的一些安全问题，可以在MySQL的命令界面通过命令查询：</p>
-<pre tabindex="0"><code>SHOW VARIABLES LIKE &#39;local_infile&#39;;
+<pre tabindex="0"><code>SHOW VARIABLES LIKE 'local_infile';
 </code></pre><p>全局更改则可以依据以下命令：</p>
 <pre tabindex="0"><code>SET GLOBAL local_infile = 1;
 </code></pre><p>读取数据库里面的表格：</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">mtcars &lt;- dbReadTable(mydb, &#34;mtcars&#34;)
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">mtcars &lt;- dbReadTable(mydb, &quot;mtcars&quot;)
 head(mtcars)
 </code></pre><p>删除表格：</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">dbGetQuery(mydb,&#34;DROP TABLE mtcars&#34;)
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">dbGetQuery(mydb,&quot;DROP TABLE mtcars&quot;)
 dbListTables(mydb)
 </code></pre><p>删除数据库：</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">dbGetQuery(mydb,&#34;DROP DATABASE bookstore;&#34;)
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">dbGetQuery(mydb,&quot;DROP DATABASE bookstore;&quot;)
 </code></pre><p>断开连接：</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">dbDisconnect(mydb)
 </code></pre><h1 id="查询配置文件">查询配置文件<a href="#查询配置文件" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
@@ -191,7 +191,7 @@ dbListTables(mydb)
 </ul>
 <h1 id="04-相关">04. 相关<a href="#04-相关" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
 <p>查询mysql数据存放的位置</p>
-<pre tabindex="0"><code>mysql&gt; show global variables like &#34;%datadir%&#34;;
+<pre tabindex="0"><code>mysql&gt; show global variables like &quot;%datadir%&quot;;
 </code></pre><p>Mac系统下默认是没有MySQL的配置文件my.cnf的，如果需求的话需要自己创建并修改。</p>
 
 <p style="color:#777;">最后一次修改于 2018-11-24</p>

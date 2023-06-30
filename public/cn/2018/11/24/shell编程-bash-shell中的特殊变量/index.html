@@ -138,13 +138,13 @@
 <p>下面通过一个例子解释怎么使用这些特殊变量
 命令一个variable.sh的简单脚本，其内容如下</p>
 <pre tabindex="0"><code>#!/bin/bash
-echo &#34;number:$#&#34; # $# 是传给脚本的参数个数
-echo &#34;scname:$0&#34; # $0 是脚本本身的名字
-echo &#34;first :$1&#34; # $1是传递给该shell脚本的第一个参数
-echo &#34;second:$2&#34; # $2是传递给该shell脚本的第二个参数
-echo &#34;argume:$@&#34; # $@ 是传给脚本的所有参数的列表
-echo &#34;all argume:$*&#34; # $* 所有参数列表
-echo &#34;finish code:$?&#34; # $? 最后运行命令的结束代码
+echo &quot;number:$#&quot; # $# 是传给脚本的参数个数
+echo &quot;scname:$0&quot; # $0 是脚本本身的名字
+echo &quot;first :$1&quot; # $1是传递给该shell脚本的第一个参数
+echo &quot;second:$2&quot; # $2是传递给该shell脚本的第二个参数
+echo &quot;argume:$@&quot; # $@ 是传给脚本的所有参数的列表
+echo &quot;all argume:$*&quot; # $* 所有参数列表
+echo &quot;finish code:$?&quot; # $? 最后运行命令的结束代码
 </code></pre><p>执行该脚本并传入aa和bb两个参数</p>
 <pre tabindex="0"><code>bash variable.sh aa bb
 </code></pre><p>得到如下结果</p>

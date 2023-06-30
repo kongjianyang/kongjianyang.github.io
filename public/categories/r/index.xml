@@ -6,7 +6,16 @@
     <description>Recent content in R on KJY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 05 Dec 2022 14:42:27 -0500</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 07 Feb 2023 14:42:27 -0500</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>R语言编程补充</title>
+      <link>https://kongjianyang.github.io/cn/2023/02/07/advanced_r/</link>
+      <pubDate>Tue, 07 Feb 2023 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2023/02/07/advanced_r/</guid>
+      <description>R编程补充 // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child&#34;); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;;var t=[],r=Object.</description>
+    </item>
+    
     <item>
       <title>R整洁代码</title>
       <link>https://kongjianyang.github.io/cn/2022/12/05/rtidy/</link>
@@ -166,7 +175,7 @@ Jan Gorecki 曾对比过不同开源软件及程序包在数据处理方面的�
 data.table之后，一些常规的data.frame的操作就失效了，譬如：
 data[,-1]、data[,1]这样的操作就不是这么用的了。
 使用data.table包操作数据 data.table包提供了一个加强版的data.frame，它运行效率极高，而且能够处理适合内存的大数据集，它使用[]实现了一种自然地数据操作语法。使用下面命令进行安装：
-install.packages(&amp;#34;data.table&amp;#34;) 载入包：</description>
+install.packages(&amp;quot;data.table&amp;quot;) 载入包：</description>
     </item>
     
     <item>
@@ -203,12 +212,12 @@ install.packages(&amp;#34;data.table&amp;#34;) 载入包：</description>
       
       <guid>https://kongjianyang.github.io/cn/2019/06/07/r_errors/</guid>
       <description>方案一：使用try语句  使用方法
-在R语言中，try语句的用法如下所示:  try(expr, silent = FALSE, outFile = getOption(&amp;#34;try.outFile&amp;#34;, default = stderr())) 可以看到，try语句共有三个参数，常用的是前两个参数。第一个参数expr为我们所要使用的表达式，第二个参数silent表示当错误出现时是否需要报告错误信息，其输入值应为逻辑变量，默认为FALSE，即选择不保持“沉默”，当错误出现时会立即报告错误信息。
+在R语言中，try语句的用法如下所示:  try(expr, silent = FALSE, outFile = getOption(&amp;quot;try.outFile&amp;quot;, default = stderr())) 可以看到，try语句共有三个参数，常用的是前两个参数。第一个参数expr为我们所要使用的表达式，第二个参数silent表示当错误出现时是否需要报告错误信息，其输入值应为逻辑变量，默认为FALSE，即选择不保持“沉默”，当错误出现时会立即报告错误信息。
 如果参数expr所代表的表达式可以正确运行，则try语句的输出即为该表达式的运行结果，如果表达式无法正确运行，则try语句会输出一个“try-error”类的不可见对象，因此可以通过if语句对try语句的输出结果进行判断从而进行下一步的处理。
 如果大段代码中有错误，想忽略错误，可以采用try()，但大段代码需放在**{ }**中：
-你可以捕获**try()的输出，如果程序运行成功，返回计算结果；如果程序运行不成功，则可以通过class()**函数返回，错误类型 &amp;rsquo;try-error&amp;rsquo;。
-使用示例  A = list(a=1,b=&amp;#39;abc&amp;#39;,c=-2,d=3) # 运行log(&amp;#39;abc&amp;#39;)会报错，运行log(-2)会出现警告 B = list() for (nm in names(A)) {  x &amp;lt;- A[[nm]]  temp &amp;lt;- try(log(x),silent=FALSE)  if(&amp;#39;try-error&amp;#39; %in% class(temp)) # 判断当前循环的try语句中的表达式是否运行正确  {  temp &amp;lt;- NA # 此处可以对运行错误的情况进行处理应对  }  B[[nm]] &amp;lt;- temp } 方案二：使用tryCatch语句  使用方法
-相较于try语句，tryCatch语句更为全面，能够处理和应对更为复杂的问题。其不仅能够处理表达式出现错误error的情形，还能够处理出现警告warning的情况。主要用法如下所示：  tryCatch(  { expr },  warning = function(w) { warning-handler-code },  error = function(e) { error-handler-code },  finally = { cleanup-code }  ) 可以看到，tryCatch语句的内部可以被划分为四个不同的部分。</description>
+你可以捕获**try()的输出，如果程序运行成功，返回计算结果；如果程序运行不成功，则可以通过class()**函数返回，错误类型 &amp;lsquo;try-error&amp;rsquo;。
+使用示例  A = list(a=1,b=&amp;#39;abc&amp;#39;,c=-2,d=3) # 运行log(&amp;#39;abc&amp;#39;)会报错，运行log(-2)会出现警告 B = list() for (nm in names(A)) { x &amp;lt;- A[[nm]] temp &amp;lt;- try(log(x),silent=FALSE) if(&amp;#39;try-error&amp;#39; %in% class(temp)) # 判断当前循环的try语句中的表达式是否运行正确 { temp &amp;lt;- NA # 此处可以对运行错误的情况进行处理应对 } B[[nm]] &amp;lt;- temp } 方案二：使用tryCatch语句  使用方法
+相较于try语句，tryCatch语句更为全面，能够处理和应对更为复杂的问题。其不仅能够处理表达式出现错误error的情形，还能够处理出现警告warning的情况。主要用法如下所示：  tryCatch( { expr }, warning = function(w) { warning-handler-code }, error = function(e) { error-handler-code }, finally = { cleanup-code } ) 可以看到，tryCatch语句的内部可以被划分为四个不同的部分。</description>
     </item>
     
     <item>
@@ -349,10 +358,10 @@ library(cowplot) ## ## Attaching package: &amp;#39;cowplot&amp;#39; ## The follo
       <description>bookdown支持采用Rmarkdown (R代码可以运行)或普通markdown编写文档，然后编译成HTML, WORD, PDF, Epub等格式。
 1. 基本使用 使用要求：
  安装Rstudio 安装Pandoc  conda install -c conda-forge pandoc 接下来需要到.Renviron中设置环境：
-RSTUDIO_PANDOC=/Applications/RStudio.app/Contents/MacOS/pandoc  安装bookdown  install.packages(&amp;#34;bookdown&amp;#34;) 下载demo：
+RSTUDIO_PANDOC=/Applications/RStudio.app/Contents/MacOS/pandoc  安装bookdown  install.packages(&amp;quot;bookdown&amp;quot;) 下载demo：
 git clone https://github.com/rstudio/bookdown-demo 然后进行编译，运行下载的示例中的bash _build.sh，_book目录下就是成书。
-#!/bin/sh Rscript -e &amp;#34;bookdown::render_book(&amp;#39;index.Rmd&amp;#39;, &amp;#39;bookdown::gitbook&amp;#39;)&amp;#34; # 生成pdf需要安装好latex，如果不需要可以注释掉 Rscript -e &amp;#34;bookdown::render_book(&amp;#39;index.Rmd&amp;#39;, &amp;#39;bookdown::pdf_book&amp;#39;)&amp;#34; 如果想在Rstudio中进行预览：
-bookdown:::serve_book(&amp;#34;./01Demo/bookdown-demo/&amp;#34;) 2. 文件格式   一个典型的bookdown文档包含多个章节，每个章节在一个R Markdown文件里面 (文件的语法可以是pandoc支持的markdown语法，但后缀必须为Rmd)。
+#!/bin/sh Rscript -e &amp;quot;bookdown::render_book(&#39;index.Rmd&#39;, &#39;bookdown::gitbook&#39;)&amp;quot; # 生成pdf需要安装好latex，如果不需要可以注释掉 Rscript -e &amp;quot;bookdown::render_book(&#39;index.Rmd&#39;, &#39;bookdown::pdf_book&#39;)&amp;quot; 如果想在Rstudio中进行预览：
+bookdown:::serve_book(&amp;quot;./01Demo/bookdown-demo/&amp;quot;) 2. 文件格式   一个典型的bookdown文档包含多个章节，每个章节在一个R Markdown文件里面 (文件的语法可以是pandoc支持的markdown语法，但后缀必须为Rmd)。
   每一个章节都必须以# Chapter title开头。后面可以跟一段概括性语句，概述本章的内容，方便理解，同时也防止二级标题出现在这一页。默认系统会按照文件名的顺序合并Rmd文件。
   另外章节的顺序也可在_bookdown.yml文件中通过rmd_files:[&amp;quot;file1.Rmd&amp;quot;, &amp;quot;file2.Rmd&amp;quot;, ..]指定。
   如果有index.Rmd，index.Rmd总是出现在第一个位置。通常index.Rmd里面也需要有一章节，如果不需要对这一章节编号的话，可以写作# Preface {-}, 关键是{-}。
@@ -370,7 +379,7 @@ bookdown:::serve_book(&amp;#34;./01Demo/bookdown-demo/&amp;#34;) 2. 文件格式
 RStudio会在当前目录（默认是个人目录下）创建一个R包文件夹，主要文件（夹）包括：man，R，DESCRIPTION，NAMESPACE以及xx.Rproj。下面是文件目录解释：
 testR(包的名字，这里包的名字叫testR) | |--DESCRIPTION(描述文件，包括包的名字，版本号，标题，描述，依赖关系) |--R(函数源文件) |--function1.R |--function2.R |--... |--man(帮助文档) |--function1.Rd |--function2.Rd |--testR-package.Rd |--... |--NAMESPACE(命名空间) |--vignettes(包的描述文件，可以用rmarkdown写) |--src(非R脚本eg.C.C++,Python) |--data(R包中的数据，最好是.rda格式) |--demo(R包中的demo) |--test(R包中的测试代码) |--... DESCRIPTION文件写了这个R的描述信息，主要为了告诉别人（或者自己）这个R包的一些重要的元数据（官方说法），可以按照自己的需要进行修改：
 Package: Rtools Type: Package Title: My First R Package Version: 0.1.0 Author: Liang Maintainer: The package maintainer &amp;lt;yourself@somewhere.net&amp;gt; Description: Just for learn License: GPL Encoding: UTF-8 LazyData: true RoxygenNote: 6.1.1 接下来需要准备好一个写好的R自定义函数，比如在R文件夹创建一个uniprot.R文件，然后将函数写入该文件；我们使用R包就是将输入参数导入函数中，然后函数给我们一个结果。比如我的函数如下：
-idmapping &amp;lt;- function(query, inputid, outputid, fmt){ query &amp;lt;- paste(query, collapse = &amp;#34;,&amp;#34;) r &amp;lt;- httr::POST(&amp;#39;http://www.</description>
+idmapping &amp;lt;- function(query, inputid, outputid, fmt){ query &amp;lt;- paste(query, collapse = &amp;quot;,&amp;quot;) r &amp;lt;- httr::POST(&#39;http://www.</description>
     </item>
     
     <item>

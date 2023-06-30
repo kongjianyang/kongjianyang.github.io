@@ -97,7 +97,7 @@ Table of Contents:
 
 <div class="body-text list-text">
 <p>有时候在macos下会有很多空格的目录文件需要处理，很麻烦，可以使用下面的命令自动处理带有空格的文件</p>
-<pre tabindex="0"><code>alias cwd=&#39;printf &#34;%q\n&#34; &#34;$(pwd)&#34; | tee &gt;(pbcopy)&#39;
+<pre tabindex="0"><code>alias cwd='printf &quot;%q\n&quot; &quot;$(pwd)&quot; | tee &gt;(pbcopy)'
 </code></pre><h2 id="printf命令">printf命令<a href="#printf命令" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>printf 命令模仿 C 程序库（library）里的 printf() 程序。</p>
 <p>printf 由 POSIX 标准所定义，因此使用 printf 的脚本比使用 echo 移植性好。</p>
@@ -113,10 +113,10 @@ Table of Contents:
 # author:菜鸟教程
 # url:www.runoob.com
  
-printf &#34;%-10s %-8s %-4s\n&#34; 姓名 性别 体重kg  
-printf &#34;%-10s %-8s %-4.2f\n&#34; 郭靖 男 66.1234
-printf &#34;%-10s %-8s %-4.2f\n&#34; 杨过 男 48.6543
-printf &#34;%-10s %-8s %-4.2f\n&#34; 郭芙 女 47.9876
+printf &quot;%-10s %-8s %-4s\n&quot; 姓名 性别 体重kg  
+printf &quot;%-10s %-8s %-4.2f\n&quot; 郭靖 男 66.1234
+printf &quot;%-10s %-8s %-4.2f\n&quot; 杨过 男 48.6543
+printf &quot;%-10s %-8s %-4.2f\n&quot; 郭芙 女 47.9876
 </code></pre><p>执行脚本，输出结果如下所示：</p>
 <pre tabindex="0"><code>姓名     性别   体重kg
 郭靖     男      66.12

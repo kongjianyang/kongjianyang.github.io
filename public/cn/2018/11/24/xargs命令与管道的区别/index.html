@@ -94,16 +94,16 @@
 
 的常用命令。它的作用是将参数列表转换成小块分段传递给其他命令，以避免参数列表过长的问题。</p>
 <p>下面两个例子解释xargs命令与管道之间的区别</p>
-<pre tabindex="0"><code>echo &#39;main&#39; | cat
+<pre tabindex="0"><code>echo 'main' | cat
 # main
 </code></pre><p>这条命令中cat会从其标准输入中读取内容并处理，也就是会输出 &lsquo;main&rsquo; 字符串。echo命令将其标准输出的内容 &lsquo;main&rsquo; 通过管道定向到 cat 的标准输入中</p>
-<pre tabindex="0"><code>echo &#39;--help&#39; | xargs cat
+<pre tabindex="0"><code>echo '--help' | xargs cat
 #cat: illegal option -- -
 #usage: cat [-benstuv] [file ...]
 </code></pre><p>上述的命令类似</p>
 <pre tabindex="0"><code>cat --help
 </code></pre><p>可以看到 echo &lsquo;&ndash;help&rsquo; | cat   该命令输出的是echo的内容，也就是说将echo的内容当作cat处理的文件内容了，实际上就是echo命令的输出通过管道定向到cat的输入了。然后cat从其标准输入中读取待处理的文本内容。这等价于在test.txt文件中有一行字符 &lsquo;&ndash;help&rsquo; 然后运行  cat test.txt 的效果。</p>
-<p>而 echo &lsquo;&ndash;help&rsquo; | xargs cat 等价于 cat &ndash;help 什么意思呢，就是xargs将其接受的字符串 &ndash;help 做成cat的一个命令参数来运行cat命令，同样  echo &rsquo;test.c test.cpp&rsquo; | xargs cat 等价于 cat test.c test.cpp 此时会将test.c和test.cpp的内容都显示出来。</p>
+<p>而 echo &lsquo;&ndash;help&rsquo; | xargs cat 等价于 cat &ndash;help 什么意思呢，就是xargs将其接受的字符串 &ndash;help 做成cat的一个命令参数来运行cat命令，同样  echo &lsquo;test.c test.cpp&rsquo; | xargs cat 等价于 cat test.c test.cpp 此时会将test.c和test.cpp的内容都显示出来。</p>
 
 <p style="color:#777;">最后一次修改于 2018-11-24</p>
 </div>

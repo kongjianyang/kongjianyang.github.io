@@ -14,12 +14,12 @@
       
       <guid>https://kongjianyang.github.io/cn/2022/04/25/dirt_space/</guid>
       <description>有时候在macos下会有很多空格的目录文件需要处理，很麻烦，可以使用下面的命令自动处理带有空格的文件
-alias cwd=&amp;#39;printf &amp;#34;%q\n&amp;#34; &amp;#34;$(pwd)&amp;#34; | tee &amp;gt;(pbcopy)&amp;#39; printf命令 printf 命令模仿 C 程序库（library）里的 printf() 程序。
+alias cwd=&#39;printf &amp;quot;%q\n&amp;quot; &amp;quot;$(pwd)&amp;quot; | tee &amp;gt;(pbcopy)&#39; printf命令 printf 命令模仿 C 程序库（library）里的 printf() 程序。
 printf 由 POSIX 标准所定义，因此使用 printf 的脚本比使用 echo 移植性好。
 printf 使用引用文本或空格分隔的参数，外面可以在 printf 中使用格式化字符串，还可以制定字符串的宽度、左右对齐方式等。默认的 printf 不会像 echo 自动添加换行符，我们可以手动添加 \n。
 printf 命令的语法：
 printf format-string [arguments...] 参数说明：
- format-string: 为格式控制字符串 arguments: 为参数列表。  #!/bin/bash # author:菜鸟教程 # url:www.runoob.com printf &amp;#34;%-10s %-8s %-4s\n&amp;#34; 姓名 性别 体重kg printf &amp;#34;%-10s %-8s %-4.2f\n&amp;#34; 郭靖 男 66.1234 printf &amp;#34;%-10s %-8s %-4.2f\n&amp;#34; 杨过 男 48.6543 printf &amp;#34;%-10s %-8s %-4.</description>
+ format-string: 为格式控制字符串 arguments: 为参数列表。  #!/bin/bash # author:菜鸟教程 # url:www.runoob.com printf &amp;quot;%-10s %-8s %-4s\n&amp;quot; 姓名 性别 体重kg printf &amp;quot;%-10s %-8s %-4.2f\n&amp;quot; 郭靖 男 66.1234 printf &amp;quot;%-10s %-8s %-4.2f\n&amp;quot; 杨过 男 48.6543 printf &amp;quot;%-10s %-8s %-4.</description>
     </item>
     
     <item>
@@ -127,7 +127,7 @@ http://style.tidyverse.org 三、命名规范
       <guid>https://kongjianyang.github.io/cn/2020/01/12/multiple_intersects/</guid>
       <description>一个简单的例子讲解怎么做多重数据的交集
 首先创造一个嵌套的list
-l &amp;lt;- list(A=c(&amp;#34;one&amp;#34;, &amp;#34;two&amp;#34;, &amp;#34;three&amp;#34;, &amp;#34;four&amp;#34;), B=c(&amp;#34;one&amp;#34;, &amp;#34;two&amp;#34;), C=c(&amp;#34;two&amp;#34;, &amp;#34;four&amp;#34;, &amp;#34;five&amp;#34;, &amp;#34;six&amp;#34;), D=c(&amp;#34;six&amp;#34;, &amp;#34;seven&amp;#34;)) crossprod(table(stack(l))) l $A [1] &amp;#34;one&amp;#34; &amp;#34;two&amp;#34; &amp;#34;three&amp;#34; &amp;#34;four&amp;#34; $B [1] &amp;#34;one&amp;#34; &amp;#34;two&amp;#34; $C [1] &amp;#34;two&amp;#34; &amp;#34;four&amp;#34; &amp;#34;five&amp;#34; &amp;#34;six&amp;#34; $D [1] &amp;#34;six&amp;#34; &amp;#34;seven&amp;#34; crossprod(table(stack(l))) #的到结果 ind ind A B C D A 4 2 2 0 B 2 2 1 0 C 2 1 4 1 D 0 0 1 2 开始解释这些命令
+l &amp;lt;- list(A=c(&amp;quot;one&amp;quot;, &amp;quot;two&amp;quot;, &amp;quot;three&amp;quot;, &amp;quot;four&amp;quot;), B=c(&amp;quot;one&amp;quot;, &amp;quot;two&amp;quot;), C=c(&amp;quot;two&amp;quot;, &amp;quot;four&amp;quot;, &amp;quot;five&amp;quot;, &amp;quot;six&amp;quot;), D=c(&amp;quot;six&amp;quot;, &amp;quot;seven&amp;quot;)) crossprod(table(stack(l))) l $A [1] &amp;quot;one&amp;quot; &amp;quot;two&amp;quot; &amp;quot;three&amp;quot; &amp;quot;four&amp;quot; $B [1] &amp;quot;one&amp;quot; &amp;quot;two&amp;quot; $C [1] &amp;quot;two&amp;quot; &amp;quot;four&amp;quot; &amp;quot;five&amp;quot; &amp;quot;six&amp;quot; $D [1] &amp;quot;six&amp;quot; &amp;quot;seven&amp;quot; crossprod(table(stack(l))) #的到结果 ind ind A B C D A 4 2 2 0 B 2 2 1 0 C 2 1 4 1 D 0 0 1 2 开始解释这些命令
 首先是stack命令，将潜逃列表变平
 &amp;gt; stack(l) values ind 1 one A 2 two A 3 three A 4 four A 5 one B 6 two B 7 two C 8 four C 9 five C 10 six C 11 six D 12 seven D Stacking vectors concatenates multiple vectors into a single vector along with a factor indicating where each observation originated.</description>
     </item>
@@ -151,9 +151,9 @@ l &amp;lt;- list(A=c(&amp;#34;one&amp;#34;, &amp;#34;two&amp;#34;, &amp;#34;thre
 &amp;lt;p&amp;gt;我的猫咪脾气&amp;lt;strong&amp;gt;非常&amp;lt;/strong&amp;gt;暴躁:)&amp;lt;/p&amp;gt; 但是，要确保元素正确嵌套。在上面的示例中，我们&amp;lt;p&amp;gt; 首先打开了元素，然后打开了&amp;lt;strong&amp;gt;元素；因此，我们必须先关闭&amp;lt;strong&amp;gt;元素，然后再关闭&amp;lt;p&amp;gt;元素。以下是不正确的：
 # right &amp;lt;p&amp;gt;我的猫咪脾气&amp;lt;strong&amp;gt;非常暴躁&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt; # wong &amp;lt;p&amp;gt;我的猫咪脾气&amp;lt;strong&amp;gt;非常&amp;lt;/p&amp;gt;暴躁&amp;lt;/strong&amp;gt; 这些元素必须正确地打开和关闭，以使它们清楚地位于彼此内部或外部。如果它们如上所示重叠，则您的Web浏览器将尝试对您要说的内容做出最佳猜测，这可能会导致意外结果。
  空元素 一些元素没有内容，被称为空元素。采取&amp;lt;img&amp;gt; 我们在HTML页面中已经拥有的元素：
-&amp;lt;img src=&amp;#34;/img/earth.jpg&amp;#34; alt=&amp;#34;地球&amp;#34;&amp;gt; 它包含两个属性，但是没有结束&amp;lt;/img&amp;gt;标记，也没有内部内容。其目的是将图像嵌入HTML页面中。
+&amp;lt;img src=&amp;quot;/img/earth.jpg&amp;quot; alt=&amp;quot;地球&amp;quot;&amp;gt; 它包含两个属性，但是没有结束&amp;lt;/img&amp;gt;标记，也没有内部内容。其目的是将图像嵌入HTML页面中。
  HTML文档剖析 总结了各个HTML元素的基础知识。现在，我们将研究如何将单个元素组合以形成整个HTML页面。让我们重新看一下index.html示例中放入的代码：
-&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;utf-8&amp;#34;&amp;gt; &amp;lt;title&amp;gt;测试页面&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;img src=&amp;#34;/img/earth.</description>
+&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt; &amp;lt;title&amp;gt;测试页面&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;img src=&amp;quot;/img/earth.</description>
     </item>
     
     <item>

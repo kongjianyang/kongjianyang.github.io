@@ -113,11 +113,11 @@ data_summary &lt;- function(data, varname, groupnames){
       sd = sd(x[[col]], na.rm = T))
   }
   data_sum &lt;- ddply(data, groupnames, .fun = summary_func, varname)
-  data_sum &lt;- rename(data_sum, c(&#34;mean&#34; = varname))
+  data_sum &lt;- rename(data_sum, c(&quot;mean&quot; = varname))
   return(data_sum)
 }
 </code></pre><p>测试下新的函数功能</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">df2 &lt;- data_summary(ToothGrowth, varname = &#34;len&#34;, groupnames = c(&#34;supp&#34;, &#34;dose&#34;))
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">df2 &lt;- data_summary(ToothGrowth, varname = &quot;len&quot;, groupnames = c(&quot;supp&quot;, &quot;dose&quot;))
 df2$dose &lt;- as.factor(df2$dose)
 head(df2)
 </code></pre><pre tabindex="0"><code>##   supp dose   len       sd
@@ -132,13 +132,13 @@ head(df2)
 <pre tabindex="0"><code>library(ggplot2)
 # Default bar plot
 p&lt;- ggplot(df2, aes(x=dose, y=len, fill=supp)) + 
-  geom_bar(stat=&#34;identity&#34;, color=&#34;black&#34;, position=position_dodge()) +
+  geom_bar(stat=&quot;identity&quot;, color=&quot;black&quot;, position=position_dodge()) +
   geom_errorbar(aes(ymin=len-sd, ymax=len+sd), width=.2, position=position_dodge(.9)) 
 
 # Finished bar plot
-p+labs(title=&#34;Tooth length per dose&#34;, x=&#34;Dose (mg)&#34;, y = &#34;Length&#34;)+
+p+labs(title=&quot;Tooth length per dose&quot;, x=&quot;Dose (mg)&quot;, y = &quot;Length&quot;)+
    theme_classic() +
-   scale_fill_manual(values=c(&#39;#999999&#39;,&#39;#E69F00&#39;))
+   scale_fill_manual(values=c('#999999','#E69F00'))
 </code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-2551cabcdacda28c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 
 <p style="color:#777;">最后一次修改于 2018-11-24</p>

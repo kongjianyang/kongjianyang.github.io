@@ -92,12 +92,12 @@ Table of Contents:
 
 <div class="body-text list-text">
 <p>有时候folder下会有奇怪前缀名的文件，如下</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>./~<span style="color:#19177c">$Varian_Intern3</span>.pptx
-</span></span><span style="display:flex;"><span>./~<span style="color:#19177c">$Varian_Interview_With_Director</span>.pptx
-</span></span><span style="display:flex;"><span>./~<span style="color:#19177c">$Varian_Intern2</span>.pptx
-</span></span></code></pre></div><p>通过正常rm是没有办法删除的，这时候可以使用find的功能进行删除</p>
-<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>find . -name ~$<span style="color:#b62;font-weight:bold">\*</span> -delete
-</span></span></code></pre></div><p>这样就可以找到并且删除文件了</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">./~<span style="color:#19177c">$Varian_Intern3</span>.pptx
+./~<span style="color:#19177c">$Varian_Interview_With_Director</span>.pptx
+./~<span style="color:#19177c">$Varian_Intern2</span>.pptx
+</code></pre></div><p>通过正常rm是没有办法删除的，这时候可以使用find的功能进行删除</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">find . -name ~$<span style="color:#b62;font-weight:bold">\*</span> -delete
+</code></pre></div><p>这样就可以找到并且删除文件了</p>
 
 <p style="color:#777;">最后一次修改于 2022-05-22</p>
 </div>

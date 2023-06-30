@@ -113,11 +113,11 @@ Table of Contents:
 <li>字符串长度</li>
 </ul>
 <pre tabindex="0"><code>library(stringr)
-char &lt;- &#34;我是R语言学习者&#34;
+char &lt;- &quot;我是R语言学习者&quot;
 str_length(char)
 #&gt; [1] 8
 # 向量化
-str_length(c(&#34;a&#34;, &#34;R for data science&#34;, NA))
+str_length(c(&quot;a&quot;, &quot;R for data science&quot;, NA))
 #&gt; [1]  1 18 NA
 </code></pre><ul>
 <li>连接字符串</li>
@@ -125,28 +125,28 @@ str_length(c(&#34;a&#34;, &#34;R for data science&#34;, NA))
 <p>R中字符串不像python中可以用加号连接字符串,如下所示:</p>
 <p>R 版本</p>
 <pre tabindex="0"><code>#base R
-paste0(&#39;a&#39;,&#39;b&#39;)
-#&gt; [1] &#34;ab&#34;
+paste0('a','b')
+#&gt; [1] &quot;ab&quot;
 
 #stringr
-str_c(&#34;a&#34;,&#34;b&#34;)
-#&gt; [1] &#34;ab&#34;
-str_c(&#34;a&#34;, &#34;b&#34;, sep = &#34;, &#34;) #sep 参数控制分隔符
-#&gt; [1] &#34;a, b&#34;
+str_c(&quot;a&quot;,&quot;b&quot;)
+#&gt; [1] &quot;ab&quot;
+str_c(&quot;a&quot;, &quot;b&quot;, sep = &quot;, &quot;) #sep 参数控制分隔符
+#&gt; [1] &quot;a, b&quot;
 </code></pre><p>Python 版本</p>
 <p>多个字符串合并为一个字符,<code>stringr</code>中的函数都是向量化的，合并一个和多个字符都是同样道理。</p>
 <pre tabindex="0"><code>#base R
-paste0(c(&#39;a&#39;,&#39;b&#39;,&#39;d&#39;,&#39;e&#39;),collapse = &#39;,&#39;)
-#&gt; [1] &#34;a,b,d,e&#34;
+paste0(c('a','b','d','e'),collapse = ',')
+#&gt; [1] &quot;a,b,d,e&quot;
 #stringr
-str_c(c(&#39;a&#39;,&#39;b&#39;,&#39;d&#39;,&#39;e&#39;),collapse = &#39;,&#39;)  #collapse 参数控制
-#&gt; [1] &#34;a,b,d,e&#34;
+str_c(c('a','b','d','e'),collapse = ',')  #collapse 参数控制
+#&gt; [1] &quot;a,b,d,e&quot;
 </code></pre><ul>
 <li>移除</li>
 </ul>
 <p>在正则表达式中 有特殊含义,有时需要两个 ，多体会下面这段，代码实现移除“||”的功能。</p>
-<pre tabindex="0"><code>str_remove(string = &#39;a||b&#39;,pattern = &#34;\\|\\|&#34;)
-#&gt; [1] &#34;ab&#34;
+<pre tabindex="0"><code>str_remove(string = 'a||b',pattern = &quot;\\|\\|&quot;)
+#&gt; [1] &quot;ab&quot;
 </code></pre><p>另外常见的\n, \t需要被转义处理,在字符清洗,如小说语义分析,网页爬虫后整理等数据清洗过程中经常用到.</p>
 <h4 id="截取字符">截取字符<a href="#截取字符" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
 <p>与<code>Excle</code>中<code>left</code>,<code>mid</code>,<code>right</code>函数功能类似</p>
@@ -155,10 +155,10 @@ str_c(c(&#39;a&#39;,&#39;b&#39;,&#39;d&#39;,&#39;e&#39;),collapse = &#39;,&#39;)
 <p>start: 默认1L,即从最开始截取</p>
 <p>end:默认-1L,即截取到最后</p>
 <pre tabindex="0"><code>#注意end 3 和 -3的区别
-str_sub(string = &#39;我是R语言学习者&#39;,start = 2,end = 3)
-#&gt; [1] &#34;是R&#34;
-str_sub(string = &#39;我是R语言学习者&#39;,start = 2,end = -3)
-#&gt; [1] &#34;是R语言学&#34;
+str_sub(string = '我是R语言学习者',start = 2,end = 3)
+#&gt; [1] &quot;是R&quot;
+str_sub(string = '我是R语言学习者',start = 2,end = -3)
+#&gt; [1] &quot;是R语言学&quot;
 </code></pre><h4 id="匹配字符">匹配字符<a href="#匹配字符" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
 <p>查看函数帮助文档,str_match()按照指定pattern(正则表达式)查找字符。困难点在于正则表达式的编写。</p>
 <pre tabindex="0"><code>str_match(string, pattern)
@@ -167,177 +167,177 @@ str_extract(string, pattern)
 str_extract_all(string, pattern, simplify = FALSE)
 </code></pre><p>str_extract()函数返回向量,str_match()函数返回矩阵.</p>
 <pre tabindex="0"><code># 测试文字来源烽火戏诸侯的&lt;剑来&gt;
-strings &lt;- c(&#39;陈平安放下新折的那根桃枝,吹灭蜡烛,走出屋子后,坐在台阶上,仰头望去,星空璀璨.&#39;) 
-str_extract(strings,&#39;陈平安&#39;)
-#&gt; [1] &#34;陈平安&#34;
-str_match(strings,&#39;陈平安&#39;)
+strings &lt;- c('陈平安放下新折的那根桃枝,吹灭蜡烛,走出屋子后,坐在台阶上,仰头望去,星空璀璨.') 
+str_extract(strings,'陈平安')
+#&gt; [1] &quot;陈平安&quot;
+str_match(strings,'陈平安')
 #&gt;      [,1]    
-#&gt; [1,] &#34;陈平安&#34;
+#&gt; [1,] &quot;陈平安&quot;
 </code></pre><ul>
 <li>匹配中文</li>
 </ul>
 <p>匹配中文的正则表达式\[-]</p>
-<pre tabindex="0"><code>str_extract_all(strings,&#39;[\u4e00-\u9fa5]&#39;) #返回list
+<pre tabindex="0"><code>str_extract_all(strings,'[\u4e00-\u9fa5]') #返回list
 #&gt; [[1]]
-#&gt;  [1] &#34;陈&#34; &#34;平&#34; &#34;安&#34; &#34;放&#34; &#34;下&#34; &#34;新&#34; &#34;折&#34; &#34;的&#34; &#34;那&#34; &#34;根&#34; &#34;桃&#34; &#34;枝&#34; &#34;吹&#34; &#34;灭&#34; &#34;蜡&#34;
-#&gt; [16] &#34;烛&#34; &#34;走&#34; &#34;出&#34; &#34;屋&#34; &#34;子&#34; &#34;后&#34; &#34;坐&#34; &#34;在&#34; &#34;台&#34; &#34;阶&#34; &#34;上&#34; &#34;仰&#34; &#34;头&#34; &#34;望&#34; &#34;去&#34;
-#&gt; [31] &#34;星&#34; &#34;空&#34; &#34;璀&#34; &#34;璨&#34;
+#&gt;  [1] &quot;陈&quot; &quot;平&quot; &quot;安&quot; &quot;放&quot; &quot;下&quot; &quot;新&quot; &quot;折&quot; &quot;的&quot; &quot;那&quot; &quot;根&quot; &quot;桃&quot; &quot;枝&quot; &quot;吹&quot; &quot;灭&quot; &quot;蜡&quot;
+#&gt; [16] &quot;烛&quot; &quot;走&quot; &quot;出&quot; &quot;屋&quot; &quot;子&quot; &quot;后&quot; &quot;坐&quot; &quot;在&quot; &quot;台&quot; &quot;阶&quot; &quot;上&quot; &quot;仰&quot; &quot;头&quot; &quot;望&quot; &quot;去&quot;
+#&gt; [31] &quot;星&quot; &quot;空&quot; &quot;璀&quot; &quot;璨&quot;
 </code></pre><ul>
 <li>匹配数字或英文</li>
 </ul>
 <p>查找数字的正则表达式[0-9];查找英文的正则表达式:[a-zA-Z]</p>
-<pre tabindex="0"><code>strings &lt;- c(&#39;00123545&#39;,&#39;LOL league of legends&#39;)
-str_extract_all(strings,&#39;[0-9]&#39;)
+<pre tabindex="0"><code>strings &lt;- c('00123545','LOL league of legends')
+str_extract_all(strings,'[0-9]')
 #&gt; [[1]]
-#&gt; [1] &#34;0&#34; &#34;0&#34; &#34;1&#34; &#34;2&#34; &#34;3&#34; &#34;5&#34; &#34;4&#34; &#34;5&#34;
+#&gt; [1] &quot;0&quot; &quot;0&quot; &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;5&quot; &quot;4&quot; &quot;5&quot;
 #&gt; 
 #&gt; [[2]]
 #&gt; character(0)
-str_extract_all(strings,&#39;[a-zA-Z]&#39;) 
+str_extract_all(strings,'[a-zA-Z]') 
 #&gt; [[1]]
 #&gt; character(0)
 #&gt; 
 #&gt; [[2]]
-#&gt;  [1] &#34;L&#34; &#34;O&#34; &#34;L&#34; &#34;l&#34; &#34;e&#34; &#34;a&#34; &#34;g&#34; &#34;u&#34; &#34;e&#34; &#34;o&#34; &#34;f&#34; &#34;l&#34; &#34;e&#34; &#34;g&#34; &#34;e&#34; &#34;n&#34; &#34;d&#34; &#34;s&#34;
+#&gt;  [1] &quot;L&quot; &quot;O&quot; &quot;L&quot; &quot;l&quot; &quot;e&quot; &quot;a&quot; &quot;g&quot; &quot;u&quot; &quot;e&quot; &quot;o&quot; &quot;f&quot; &quot;l&quot; &quot;e&quot; &quot;g&quot; &quot;e&quot; &quot;n&quot; &quot;d&quot; &quot;s&quot;
 </code></pre><h4 id="添加字符">添加字符<a href="#添加字符" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
 <p>str_pad() 函数向字符串添加字符。像工作中处理月份的时候,1,2,3,4,5,6,7,8,9,10,11,12变成01,02,03,04,05,06,07,08,09,10,11,12.按照日期时间输出文件名称,如下所示:</p>
-<pre tabindex="0"><code>str_pad(string = 1:12,width = 2,side = &#39;left&#39;,pad = &#39;0&#39;)
-#&gt;  [1] &#34;01&#34; &#34;02&#34; &#34;03&#34; &#34;04&#34; &#34;05&#34; &#34;06&#34; &#34;07&#34; &#34;08&#34; &#34;09&#34; &#34;10&#34; &#34;11&#34; &#34;12&#34;
+<pre tabindex="0"><code>str_pad(string = 1:12,width = 2,side = 'left',pad = '0')
+#&gt;  [1] &quot;01&quot; &quot;02&quot; &quot;03&quot; &quot;04&quot; &quot;05&quot; &quot;06&quot; &quot;07&quot; &quot;08&quot; &quot;09&quot; &quot;10&quot; &quot;11&quot; &quot;12&quot;
 </code></pre><h4 id="去除空格">去除空格<a href="#去除空格" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
 <p>与<code>excel</code>中<code>trim</code>函数功能类似，剔除字符中的空格，但是不可以剔除字符中的空格</p>
 <pre tabindex="0"><code># side 可选 both  left right
-str_trim(&#39; ab af &#39;,side = &#39;both&#39;)
-#&gt; [1] &#34;ab af&#34;
+str_trim(' ab af ',side = 'both')
+#&gt; [1] &quot;ab af&quot;
 </code></pre><h4 id="分割字符">分割字符<a href="#分割字符" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
 <p><code>str_split()</code>处理后的结果是列表</p>
 <pre tabindex="0"><code># 得到列表,需要向量化
-str_split(&#34;a,b,d,e&#34;,pattern = &#39;,&#39;)
+str_split(&quot;a,b,d,e&quot;,pattern = ',')
 #&gt; [[1]]
-#&gt; [1] &#34;a&#34; &#34;b&#34; &#34;d&#34; &#34;e&#34;
+#&gt; [1] &quot;a&quot; &quot;b&quot; &quot;d&quot; &quot;e&quot;
 
-str_split(&#39;ab||cd&#39;,&#39;\\|\\|&#39;) %&gt;% unlist()
-#&gt; [1] &#34;ab&#34; &#34;cd&#34;
+str_split('ab||cd','\\|\\|') %&gt;% unlist()
+#&gt; [1] &quot;ab&quot; &quot;cd&quot;
 # same above
-#str_split(&#39;ab||cd&#39;,&#39;\\|\\|&#39;) %&gt;% purrr::as_vector()
+#str_split('ab||cd','\\|\\|') %&gt;% purrr::as_vector()
 </code></pre><p>当待处理的字符串是字符串向量时，得到的列表长度与向量长度一致</p>
 <pre tabindex="0"><code>fruits &lt;- c(
-  &#34;apples and oranges and pears and bananas&#34;,
-  &#34;pineapples and mangos and guavas&#34;
+  &quot;apples and oranges and pears and bananas&quot;,
+  &quot;pineapples and mangos and guavas&quot;
 )
 
-str_split(fruits, &#34; and &#34;)
+str_split(fruits, &quot; and &quot;)
 #&gt; [[1]]
-#&gt; [1] &#34;apples&#34;  &#34;oranges&#34; &#34;pears&#34;   &#34;bananas&#34;
+#&gt; [1] &quot;apples&quot;  &quot;oranges&quot; &quot;pears&quot;   &quot;bananas&quot;
 #&gt; 
 #&gt; [[2]]
-#&gt; [1] &#34;pineapples&#34; &#34;mangos&#34;     &#34;guavas&#34;
+#&gt; [1] &quot;pineapples&quot; &quot;mangos&quot;     &quot;guavas&quot;
 </code></pre><h4 id="替换字符">替换字符<a href="#替换字符" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
 <p><code>str_replace()</code>，<code>str_replace_all()</code>函数用来替换字符</p>
-<pre tabindex="0"><code>fruits &lt;- c(&#34;one apple&#34;, &#34;two pears&#34;, &#34;three bananas&#34;)
-str_replace(fruits, &#34;[aeiou]&#34;, &#34;-&#34;)
-#&gt; [1] &#34;-ne apple&#34;     &#34;tw- pears&#34;     &#34;thr-e bananas&#34;
-str_replace_all(fruits, &#34;[aeiou]&#34;, &#34;-&#34;)
-#&gt; [1] &#34;-n- -ppl-&#34;     &#34;tw- p--rs&#34;     &#34;thr-- b-n-n-s&#34;
+<pre tabindex="0"><code>fruits &lt;- c(&quot;one apple&quot;, &quot;two pears&quot;, &quot;three bananas&quot;)
+str_replace(fruits, &quot;[aeiou]&quot;, &quot;-&quot;)
+#&gt; [1] &quot;-ne apple&quot;     &quot;tw- pears&quot;     &quot;thr-e bananas&quot;
+str_replace_all(fruits, &quot;[aeiou]&quot;, &quot;-&quot;)
+#&gt; [1] &quot;-n- -ppl-&quot;     &quot;tw- p--rs&quot;     &quot;thr-- b-n-n-s&quot;
 </code></pre><h4 id="移除字符">移除字符<a href="#移除字符" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
 <p><code>str_remove()</code>,<code>str_remove_all()</code>移除字符。本人常用该函数剔除文本中的空格。</p>
-<pre tabindex="0"><code>fruits &lt;- c(&#34;one apple&#34;, &#34;two pears&#34;, &#34;three bananas&#34;)
-str_remove(fruits, &#34;[aeiou]&#34;)
-#&gt; [1] &#34;ne apple&#34;     &#34;tw pears&#34;     &#34;thre bananas&#34;
-str_remove_all(fruits, &#34;[aeiou]&#34;)
-#&gt; [1] &#34;n ppl&#34;    &#34;tw prs&#34;   &#34;thr bnns&#34;
+<pre tabindex="0"><code>fruits &lt;- c(&quot;one apple&quot;, &quot;two pears&quot;, &quot;three bananas&quot;)
+str_remove(fruits, &quot;[aeiou]&quot;)
+#&gt; [1] &quot;ne apple&quot;     &quot;tw pears&quot;     &quot;thre bananas&quot;
+str_remove_all(fruits, &quot;[aeiou]&quot;)
+#&gt; [1] &quot;n ppl&quot;    &quot;tw prs&quot;   &quot;thr bnns&quot;
 </code></pre><p>移除文本中空格</p>
-<pre tabindex="0"><code>str_replace_all(string = &#39; d a  b &#39;,pattern = &#39; &#39;,replacement = &#39;&#39;)
-#&gt; [1] &#34;dab&#34;
+<pre tabindex="0"><code>str_replace_all(string = ' d a  b ',pattern = ' ',replacement = '')
+#&gt; [1] &quot;dab&quot;
 </code></pre><h4 id="字符排序">字符排序<a href="#字符排序" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
 <p>numeric 参数决定是否按照数字排序。</p>
-<pre tabindex="0"><code>str_order(x, decreasing = FALSE, na_last = TRUE, locale = &#34;en&#34;,
+<pre tabindex="0"><code>str_order(x, decreasing = FALSE, na_last = TRUE, locale = &quot;en&quot;,
   numeric = FALSE, ...)
 
-str_sort(x, decreasing = FALSE, na_last = TRUE, locale = &#34;en&#34;,
+str_sort(x, decreasing = FALSE, na_last = TRUE, locale = &quot;en&quot;,
   numeric = FALSE, ...)
 </code></pre><pre tabindex="0"><code>str_order(letters)
 #&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
 #&gt; [26] 26
 str_sort(letters)
-#&gt;  [1] &#34;a&#34; &#34;b&#34; &#34;c&#34; &#34;d&#34; &#34;e&#34; &#34;f&#34; &#34;g&#34; &#34;h&#34; &#34;i&#34; &#34;j&#34; &#34;k&#34; &#34;l&#34; &#34;m&#34; &#34;n&#34; &#34;o&#34; &#34;p&#34; &#34;q&#34; &#34;r&#34; &#34;s&#34;
-#&gt; [20] &#34;t&#34; &#34;u&#34; &#34;v&#34; &#34;w&#34; &#34;x&#34; &#34;y&#34; &#34;z&#34;
+#&gt;  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;
+#&gt; [20] &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;
 </code></pre><p>numeric参数</p>
-<pre tabindex="0"><code>x &lt;- c(&#34;100a10&#34;, &#34;100a5&#34;, &#34;2b&#34;, &#34;2a&#34;)
+<pre tabindex="0"><code>x &lt;- c(&quot;100a10&quot;, &quot;100a5&quot;, &quot;2b&quot;, &quot;2a&quot;)
 str_sort(x)
-#&gt; [1] &#34;100a10&#34; &#34;100a5&#34;  &#34;2a&#34;     &#34;2b&#34;
+#&gt; [1] &quot;100a10&quot; &quot;100a5&quot;  &quot;2a&quot;     &quot;2b&quot;
 str_sort(x, numeric = TRUE)
-#&gt; [1] &#34;2a&#34;     &#34;2b&#34;     &#34;100a5&#34;  &#34;100a10&#34;
+#&gt; [1] &quot;2a&quot;     &quot;2b&quot;     &quot;100a5&quot;  &quot;100a10&quot;
 </code></pre><h4 id="提取单词">提取单词<a href="#提取单词" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
 <p>从句子中提取单词。</p>
 <ul>
 <li>参数</li>
 </ul>
-<pre tabindex="0"><code>word(string, start = 1L, end = start, sep = fixed(&#34; &#34;))
+<pre tabindex="0"><code>word(string, start = 1L, end = start, sep = fixed(&quot; &quot;))
 </code></pre><ul>
 <li>案例</li>
 </ul>
-<pre tabindex="0"><code>sentences &lt;- c(&#34;Jane saw a cat&#34;, &#34;Jane sat down&#34;)
+<pre tabindex="0"><code>sentences &lt;- c(&quot;Jane saw a cat&quot;, &quot;Jane sat down&quot;)
 word(sentences, 2, -1)
-#&gt; [1] &#34;saw a cat&#34; &#34;sat down&#34;
+#&gt; [1] &quot;saw a cat&quot; &quot;sat down&quot;
 word(sentences[1], 1:3, -1)
-#&gt; [1] &#34;Jane saw a cat&#34; &#34;saw a cat&#34;      &#34;a cat&#34;
+#&gt; [1] &quot;Jane saw a cat&quot; &quot;saw a cat&quot;      &quot;a cat&quot;
 </code></pre><p>指定分隔符</p>
 <pre tabindex="0"><code># Can define words by other separators
-str &lt;- &#39;abc.def..123.4568.999&#39;
-word(str, 1, sep = fixed(&#39;..&#39;))
-#&gt; [1] &#34;abc.def&#34;
-word(str, 2, sep = fixed(&#39;..&#39;))
-#&gt; [1] &#34;123.4568.999&#34;
+str &lt;- 'abc.def..123.4568.999'
+word(str, 1, sep = fixed('..'))
+#&gt; [1] &quot;abc.def&quot;
+word(str, 2, sep = fixed('..'))
+#&gt; [1] &quot;123.4568.999&quot;
 </code></pre><h4 id="其他函数">其他函数<a href="#其他函数" class="header-anchor" ariaLabel="Anchor"> # </a></h4>
 <ul>
 <li>str_subset str_which</li>
 </ul>
 <p><code>str_subset()</code>是对x[str_detect(x,pattern)]的包装，<code>str_which()</code>是which(str_detect(x,pattern))的包装。</p>
-<pre tabindex="0"><code>fruit &lt;- c(&#34;apple&#34;, &#34;banana&#34;, &#34;pear&#34;, &#34;pinapple&#34;)
-str_subset(fruit, &#34;a&#34;)
-#&gt; [1] &#34;apple&#34;    &#34;banana&#34;   &#34;pear&#34;     &#34;pinapple&#34;
+<pre tabindex="0"><code>fruit &lt;- c(&quot;apple&quot;, &quot;banana&quot;, &quot;pear&quot;, &quot;pinapple&quot;)
+str_subset(fruit, &quot;a&quot;)
+#&gt; [1] &quot;apple&quot;    &quot;banana&quot;   &quot;pear&quot;     &quot;pinapple&quot;
 # 匹配字符首次出现的位置
-str_which(fruit, &#34;a&#34;) 
+str_which(fruit, &quot;a&quot;) 
 #&gt; [1] 1 2 3 4
 </code></pre><p>匹配字符串本身做行筛选。</p>
 <pre tabindex="0"><code>#筛选出字母行
 set.seed(24)
 dt &lt;- data.table::data.table(col=sample(c(letters,1:10),100,replace = T))
-head(dt[str_which(col,pattern = &#39;[a-z]&#39;)])
+head(dt[str_which(col,pattern = '[a-z]')])
 </code></pre><ul>
 <li>str_dup()</li>
 </ul>
 <p><code>str_dup()</code>功能是复制字符串。</p>
-<pre tabindex="0"><code>fruit &lt;- c(&#34;apple&#34;, &#34;pear&#34;, &#34;banana&#34;)
+<pre tabindex="0"><code>fruit &lt;- c(&quot;apple&quot;, &quot;pear&quot;, &quot;banana&quot;)
 str_dup(fruit, 2)
 str_dup(fruit, 1:3)
-str_c(&#34;ba&#34;, str_dup(&#34;na&#34;, 0:5))
+str_c(&quot;ba&quot;, str_dup(&quot;na&quot;, 0:5))
 </code></pre><ul>
 <li>str_starts() str_ends()</li>
 </ul>
 <p>从str_detect()包装得到.</p>
-<pre tabindex="0"><code>str_starts(&#39;abd&#39;,&#39;a&#39;)
+<pre tabindex="0"><code>str_starts('abd','a')
 #&gt; [1] TRUE
-str_detect(&#39;abd&#39;,&#39;^a&#39;)
+str_detect('abd','^a')
 #&gt; [1] TRUE
 
-str_ends(&#39;abd&#39;,&#39;d&#39;)
+str_ends('abd','d')
 #&gt; [1] TRUE
-str_detect(&#39;abd&#39;,&#39;d$&#39;)
+str_detect('abd','d$')
 #&gt; [1] TRUE
 </code></pre><ul>
 <li>大小写转换</li>
 </ul>
 <p><code>str_to_upper()</code>函数将全部字符转换为大写，<code>str_to_lower()</code>函数将全部字符转换为小写，<code>str_to_title()</code>将每个单词的首字母转换为大写，<code>str_to_sentence()</code>将一个字符的首字母转换为大写。</p>
-<pre tabindex="0"><code>dog &lt;- &#34;The quick brown dog&#34;
+<pre tabindex="0"><code>dog &lt;- &quot;The quick brown dog&quot;
 str_to_upper(dog)
-#&gt; [1] &#34;THE QUICK BROWN DOG&#34;
+#&gt; [1] &quot;THE QUICK BROWN DOG&quot;
 str_to_lower(dog)
-#&gt; [1] &#34;the quick brown dog&#34;
+#&gt; [1] &quot;the quick brown dog&quot;
 str_to_title(dog)
-#&gt; [1] &#34;The Quick Brown Dog&#34;
-str_to_sentence(&#34;the quick brown dog&#34;)
-#&gt; [1] &#34;The quick brown dog&#34;
+#&gt; [1] &quot;The Quick Brown Dog&quot;
+str_to_sentence(&quot;the quick brown dog&quot;)
+#&gt; [1] &quot;The quick brown dog&quot;
 </code></pre>
 <p style="color:#777;">最后一次修改于 2022-05-05</p>
 </div>

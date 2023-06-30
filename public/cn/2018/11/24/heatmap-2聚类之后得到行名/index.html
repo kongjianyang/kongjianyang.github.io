@@ -92,18 +92,18 @@
 <h2 id="2解决">2.解决<a href="#2解决" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>查阅之后可以通过以下方法进行解决.
 首先制造一个绘图的矩阵</p>
-<pre tabindex="0"><code>y &lt;- matrix(rnorm(50), 10, 5, dimnames=list(paste(&#34;g&#34;, 1:10, sep=&#34;&#34;),
-paste(&#34;t&#34;, 1:5, sep=&#34;&#34;)))
+<pre tabindex="0"><code>y &lt;- matrix(rnorm(50), 10, 5, dimnames=list(paste(&quot;g&quot;, 1:10, sep=&quot;&quot;),
+paste(&quot;t&quot;, 1:5, sep=&quot;&quot;)))
 </code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-4e6187f5899aaa7e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="建造的矩阵"></p>
 <p>按行进行聚类</p>
-<pre tabindex="0"><code>hr &lt;- hclust(as.dist(1-cor(t(y), method=&#34;pearson&#34;)),
-method=&#34;complete&#34;)
+<pre tabindex="0"><code>hr &lt;- hclust(as.dist(1-cor(t(y), method=&quot;pearson&quot;)),
+method=&quot;complete&quot;)
 </code></pre><p>按列进行聚类</p>
-<pre tabindex="0"><code>hc &lt;- hclust(as.dist(1-cor(y, method=&#34;spearman&#34;)), method=&#34;complete&#34;)
+<pre tabindex="0"><code>hc &lt;- hclust(as.dist(1-cor(y, method=&quot;spearman&quot;)), method=&quot;complete&quot;)
 </code></pre><p>绘制热图</p>
 <pre tabindex="0"><code>library(gplots)
 heatmap.2(y, Rowv=as.dendrogram(hr), Colv=as.dendrogram(hc),
-scale=&#34;row&#34;, density.info=&#34;none&#34;, trace=&#34;none&#34;)
+scale=&quot;row&quot;, density.info=&quot;none&quot;, trace=&quot;none&quot;)
 </code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-5da3414fc9957aba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="heatmap.2绘图范例"></p>
 <p>得到聚类之后的矩阵结果：</p>
 <pre tabindex="0"><code>y[rev(hr$labels[hr$order]), hc$labels[hc$order]]

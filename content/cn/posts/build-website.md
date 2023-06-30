@@ -154,7 +154,7 @@ git push -u origin master
 Your site is published at https://USERNAME.github.io/
 ```
 
-## 5.一些修改
+## 5. 一些修改
 
 Hugo 文件夹根目录下的 config.toml 有几个地方需要你自己改：
 
@@ -280,7 +280,7 @@ tags:
 ---
 ```
 
-## Hexo和Hugo的区别
+## 7. Hexo和Hugo的区别
 
 [Jekyll](https://jekyllrb.com/) 是最早开始流行的静态网站构建工具，使用Ruby语言开发，开源已有9个年头了，是Github Pages默认的静态网站构建工具。当前互联网上有大量基于jekyll构建的静态网站，包括现在流行的开源容器编排调度引擎[kubernetes的官网](https://kubernetes/io)。
 
@@ -298,15 +298,11 @@ tags:
 
 以上工具都可以将markdown内容转换为静态页面。
 
-
-
-
-
-## 原型模板
+## 8. 原型模板
 
 ***Note:** 这一步不是必须的，因为生成的每一篇文章都可以单独配置下面提到的 front matter。这里只是简单介绍，可以根据自己的需求修改，以减少重复工作、提升效率。*
 
-### 默认模板
+默认模板
 
 还记得前面说过的 `archetypes` 原型模板目录吧，这个目录下默认会创建一个 `default.md`， 在 [新建文章](https://niceram.xyz/2021/03/04/20210304_1125/#新建文章) 的时候会将其作为原型自动为新的 Markdown 添加 [front matter](https://gohugo.io/content-management/front-matter/)。
 
@@ -345,3 +341,27 @@ hugo
 ```
 
 你的博客根目录 `blog` 下将会生成一个 `public` 目录，这里面就是你博客真正要发布的静态网站， 之后就是 `Nginx`, `Apache`, `Caddy` 等静态网站中间件的工作了。
+
+## 9. 更换电脑
+
+新换了一台Windows电脑，需要重新维护网站，使用进行如下的操作
+
+Generate SSH key using `ssh-keygen -t rsa -b 4096 -C "your_email@example.com"`
+
+Copy the output of cat id_rsa.pub
+
+Paste the above copied outpur into your `Github profile -> Settings -> SSH and GPG Keys -> Add new SSH key`
+
+然后可以download 这个库了
+
+```
+git clone git@github.com:kongjianyang/kongjianyang.github.io.git
+```
+
+进行一些修改，或者更新，然后尝试提交
+
+这里使用的是wsl，所以还要安装一下hugo
+
+```
+apt-get install hugo
+```

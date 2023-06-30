@@ -112,14 +112,14 @@ Exception: When creating a classed object, the function name</p>
 <p>当使用所有二进制运算符(如=,+,-,&lt;,等)在两端空格。例外:当符号 = 是函数调用时的传递参数周围不用空格隔开。
 不要在符号“，”前空格隔开，但需要在“，”后添加空格
 good style</p>
-<pre tabindex="0"><code>tab.prior &lt;- table(df[df$days.from.opt &lt; 0, &#34;campaign.id&#34;]) 
+<pre tabindex="0"><code>tab.prior &lt;- table(df[df$days.from.opt &lt; 0, &quot;campaign.id&quot;]) 
 total &lt;- sum(x[, 1]) 
 total &lt;- sum(x[1, ])123
 </code></pre><p>bad style</p>
-<pre tabindex="0"><code>tab.prior &lt;- table(df[df$days.from.opt&lt;0, &#34;campaign.id&#34;])  # Needs spaces around &#39;&lt;&#39; 
-tab.prior &lt;- table(df[df$days.from.opt &lt; 0,&#34;campaign.id&#34;])  # Needs a space after the comma
-tab.prior&lt;- table(df[df$days.from.opt &lt; 0, &#34;campaign.id&#34;])  # Needs a space before &lt;
-tab.prior&lt;-table(df[df$days.from.opt &lt; 0, &#34;campaign.id&#34;])  # Needs spaces around &lt;
+<pre tabindex="0"><code>tab.prior &lt;- table(df[df$days.from.opt&lt;0, &quot;campaign.id&quot;])  # Needs spaces around '&lt;' 
+tab.prior &lt;- table(df[df$days.from.opt &lt; 0,&quot;campaign.id&quot;])  # Needs a space after the comma
+tab.prior&lt;- table(df[df$days.from.opt &lt; 0, &quot;campaign.id&quot;])  # Needs a space before &lt;
+tab.prior&lt;-table(df[df$days.from.opt &lt; 0, &quot;campaign.id&quot;])  # Needs spaces around &lt;
 total &lt;- sum(x[,1])  # Needs a space after the comma 
 total &lt;- sum(x[ ,1])  # Needs a space after the comma, not before123456
 </code></pre><h2 id="40-花括号curly-braces">4.0 花括号(Curly braces)<a href="#40-花括号curly-braces" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
@@ -133,10 +133,10 @@ total &lt;- sum(x[ ,1])  # Needs a space after the comma, not before123456
 <p>整行注释应以#后接一个空格开始，行内短注释应在代码后接两个空格, #, 再接一个空格。</p>
 <pre tabindex="0"><code># Create histogram of frequency of campaigns by pct budget spent.
 hist(df$pct.spent,
-     breaks = &#34;scott&#34;,  # method for choosing number of buckets
-     main   = &#34;Histogram: fraction budget spent by campaignid&#34;,
-     xlab   = &#34;Fraction of budget spent&#34;,
-     ylab   = &#34;Frequency (count of campaignids)&#34;)
+     breaks = &quot;scott&quot;,  # method for choosing number of buckets
+     main   = &quot;Histogram: fraction budget spent by campaignid&quot;,
+     xlab   = &quot;Fraction of budget spent&quot;,
+     ylab   = &quot;Frequency (count of campaignids)&quot;)
 </code></pre><h2 id="70-函数的定义和调用">7.0 函数的定义和调用<a href="#70-函数的定义和调用" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>函数定义应首先列出无默认值的参数, 然后再列出有默认值的参数。函数定义和函数调用中, 允许每行写多个参数; 折行只允许在赋值语句外进行。</p>
 <h2 id="80-分号">8.0 分号<a href="#80-分号" class="header-anchor" ariaLabel="Anchor"> # </a></h2>

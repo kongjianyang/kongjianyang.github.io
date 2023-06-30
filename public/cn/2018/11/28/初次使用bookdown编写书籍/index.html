@@ -104,16 +104,16 @@ Table of Contents:
 </code></pre><ul>
 <li>安装bookdown</li>
 </ul>
-<pre tabindex="0"><code>install.packages(&#34;bookdown&#34;)
+<pre tabindex="0"><code>install.packages(&quot;bookdown&quot;)
 </code></pre><p>下载demo：</p>
 <pre tabindex="0"><code>git clone https://github.com/rstudio/bookdown-demo
 </code></pre><p>然后进行编译，运行下载的示例中的bash _build.sh，_book目录下就是成书。</p>
 <pre tabindex="0"><code>#!/bin/sh
-Rscript -e &#34;bookdown::render_book(&#39;index.Rmd&#39;, &#39;bookdown::gitbook&#39;)&#34;
+Rscript -e &quot;bookdown::render_book('index.Rmd', 'bookdown::gitbook')&quot;
 # 生成pdf需要安装好latex，如果不需要可以注释掉
-Rscript -e &#34;bookdown::render_book(&#39;index.Rmd&#39;, &#39;bookdown::pdf_book&#39;)&#34;
+Rscript -e &quot;bookdown::render_book('index.Rmd', 'bookdown::pdf_book')&quot;
 </code></pre><p>如果想在Rstudio中进行预览：</p>
-<pre tabindex="0"><code>bookdown:::serve_book(&#34;./01Demo/bookdown-demo/&#34;)
+<pre tabindex="0"><code>bookdown:::serve_book(&quot;./01Demo/bookdown-demo/&quot;)
 </code></pre><h1 id="2-文件格式">2. 文件格式<a href="#2-文件格式" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
 <ul>
 <li>
@@ -133,9 +133,9 @@ Rscript -e &#34;bookdown::render_book(&#39;index.Rmd&#39;, &#39;bookdown::pdf_bo
 </li>
 </ul>
 <pre tabindex="0"><code>--- 
-title: &#34;A Minimal Book Example&#34;
-author: &#34;Yihui Xie&#34;
-date: &#34;`r Sys.Date()`&#34;
+title: &quot;A Minimal Book Example&quot;
+author: &quot;Yihui Xie&quot;
+date: &quot;`r Sys.Date()`&quot;
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -143,7 +143,7 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: rstudio/bookdown-demo
-description: &#34;This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook.&#34;
+description: &quot;This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook.&quot;
 ---
 </code></pre><p>插入脚注:</p>
 <p><code>text^[footnote]</code> is used to get the footnote.</p>

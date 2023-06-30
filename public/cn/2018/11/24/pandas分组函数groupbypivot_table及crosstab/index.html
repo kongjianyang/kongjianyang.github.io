@@ -92,20 +92,20 @@
 <p>首先构造数据</p>
 <pre tabindex="0"><code>import numpy as np
 import pandas as pd
-df = pd.DataFrame({&#39;key1&#39;:[&#39;a&#39;,&#39;a&#39;,&#39;b&#39;,&#39;b&#39;,&#39;a&#39;],&#39;key2&#39;:[&#39;one&#39;,&#39;two&#39;,&#39;one&#39;,&#39;two&#39;,&#39;one&#39;],&#39;data1&#39;:np.random.randn(5),&#39;data2&#39;:np.random.randn(5)}) 
+df = pd.DataFrame({'key1':['a','a','b','b','a'],'key2':['one','two','one','two','one'],'data1':np.random.randn(5),'data2':np.random.randn(5)}) 
 </code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-11ff3c5d648d57f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="df数据结构"></p>
 <h3 id="21-group函数">2.1 group函数<a href="#21-group函数" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
 <p>分组groupby Pandas中最为常用和有效的分组函数。</p>
 <p>1）按列分组</p>
 <p>注意以下使用groupby()函数生成的group1是一个中间分组变量，为GroupBy类型。</p>
-<pre tabindex="0"><code>group1 = df.groupby(&#39;key1&#39;)  
-</code></pre><pre tabindex="0"><code>group2 = df.groupby([&#39;key1&#39;,&#39;key2&#39;])  
+<pre tabindex="0"><code>group1 = df.groupby('key1')  
+</code></pre><pre tabindex="0"><code>group2 = df.groupby(['key1','key2'])  
 </code></pre><p>使用推导式[x for x in group1]可显示分组内容。</p>
 <pre tabindex="0"><code>[x for x in group1]
-</code></pre><pre tabindex="0"><code>[(&#39;a&#39;,       data1     data2 key1 key2
+</code></pre><pre tabindex="0"><code>[('a',       data1     data2 key1 key2
   0  1.830651  0.407903    a  one
   1 -0.973132 -0.056084    a  two
-  4 -1.069184  0.043338    a  one), (&#39;b&#39;,       data1     data2 key1 key2
+  4 -1.069184  0.043338    a  one), ('b',       data1     data2 key1 key2
   2 -0.477718 -1.488174    b  one
   3 -0.227680 -0.825671    b  two)]
 </code></pre><p>在分组group1、group2上可以应用size()、sum()、count()等统计函数，能分别统计分组数量、不同列的分组和、不同列的分组数量。</p>
@@ -117,11 +117,11 @@ dtype: int64
 </code></pre><pre tabindex="0"><code>group1.sum() 
 </code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-adea589538eba249.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="">
 对于分组的某一列或者多个列，应用agg(func)可以对分组后的数据应用func函数。例如：用group1[&lsquo;data1&rsquo;].agg(&lsquo;mean&rsquo;)对分组后的’data1’列求均值。当然也可以推广到同时作用于多个列和使用多个函数上。</p>
-<pre tabindex="0"><code>group1[&#39;data1&#39;].agg([&#39;mean&#39;,&#39;sum&#39;])  
+<pre tabindex="0"><code>group1['data1'].agg(['mean','sum'])  
 </code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-70c021a78edf61fb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <h3 id="22-透视表pivot_table">2.2 透视表pivot_table<a href="#22-透视表pivot_table" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
 <p>pivot_table可以产生类似于excel数据透视表的结果，相当的直观。其中参数index指定“行”键，columns指定“列”键。</p>
-<pre tabindex="0"><code>pd.pivot_table(df, index = &#39;key1&#39;, columns= &#39;key2&#39;)
+<pre tabindex="0"><code>pd.pivot_table(df, index = 'key1', columns= 'key2')
 </code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-cea0b1f52aee88ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <h3 id="23-交叉表crosstab">2.3 交叉表crosstab<a href="#23-交叉表crosstab" class="header-anchor" ariaLabel="Anchor"> # </a></h3>
 <p>交叉表crosstab 可以按照指定的行和列统计分组频数，用起来非常方便；当然同样的功能也可采用groupby实现。</p>

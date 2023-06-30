@@ -95,7 +95,7 @@ RENAME(1) Linux Programmer’s Manual RENAME(1)
 而如果出现：
 RENAME(1) Perl Programmers Reference Guide RENAME(1) 则是Perl版本的了</p>
 <p>C语言版本格式：rename 原字符串 新字符串 文件名
-Perl语言版本格式：rename &rsquo;s/原字符串/新字符串/&rsquo; 文件名</p>
+Perl语言版本格式：rename &rsquo;s/原字符串/新字符串/' 文件名</p>
 <p>rename支持正则表达式</p>
 <p>例子：</p>
 <p>字母的替换<code>rename &quot;s/AA/aa/&quot; *  //</code>把文件名中的AA替换成aa
@@ -110,11 +110,11 @@ Perl语言版本格式：rename &rsquo;s/原字符串/新字符串/&rsquo; 文�
 </code></pre><ol start="2">
 <li>找到含有“_“”的文件夹。</li>
 </ol>
-<pre tabindex="0"><code>find ./ -name &#34;*_*&#34;   
+<pre tabindex="0"><code>find ./ -name &quot;*_*&quot;   
 </code></pre><ol start="3">
 <li>读取id, 用mv改名，$为自己理解为赋值后的id，格式为while； do； done</li>
 </ol>
-<pre tabindex="0"><code>find ./ -name &#34;*_*&#34; | while read id; do mv $id ${id/_/-}; done
+<pre tabindex="0"><code>find ./ -name &quot;*_*&quot; | while read id; do mv $id ${id/_/-}; done
 </code></pre>
 <p style="color:#777;">最后一次修改于 2018-11-24</p>
 </div>

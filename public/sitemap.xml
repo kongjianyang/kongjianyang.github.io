@@ -3,27 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://kongjianyang.github.io/tags/article/</loc>
-    <lastmod>2022-12-23T19:10:27-04:00</lastmod>
+    <lastmod>2023-02-07T14:42:27-05:00</lastmod>
   </url><url>
     <loc>https://kongjianyang.github.io/categories/</loc>
-    <lastmod>2022-12-23T19:10:27-04:00</lastmod>
+    <lastmod>2023-02-07T14:42:27-05:00</lastmod>
   </url><url>
     <loc>https://kongjianyang.github.io/</loc>
-    <lastmod>2022-12-23T19:10:27-04:00</lastmod>
+    <lastmod>2023-02-07T14:42:27-05:00</lastmod>
+  </url><url>
+    <loc>https://kongjianyang.github.io/categories/r/</loc>
+    <lastmod>2023-02-07T14:42:27-05:00</lastmod>
+  </url><url>
+    <loc>https://kongjianyang.github.io/cn/2023/02/07/advanced_r/</loc>
+    <lastmod>2023-02-07T14:42:27-05:00</lastmod>
+  </url><url>
+    <loc>https://kongjianyang.github.io/tags/</loc>
+    <lastmod>2023-02-07T14:42:27-05:00</lastmod>
+  </url><url>
+    <loc>https://kongjianyang.github.io/cn/posts/</loc>
+    <lastmod>2023-02-07T14:42:27-05:00</lastmod>
+  </url><url>
+    <loc>https://kongjianyang.github.io/cn/</loc>
+    <lastmod>2023-02-07T14:42:27-05:00</lastmod>
   </url><url>
     <loc>https://kongjianyang.github.io/categories/ml/</loc>
     <lastmod>2022-12-23T19:10:27-04:00</lastmod>
   </url><url>
     <loc>https://kongjianyang.github.io/cn/2022/12/23/python-ml/</loc>
-    <lastmod>2022-12-23T19:10:27-04:00</lastmod>
-  </url><url>
-    <loc>https://kongjianyang.github.io/tags/</loc>
-    <lastmod>2022-12-23T19:10:27-04:00</lastmod>
-  </url><url>
-    <loc>https://kongjianyang.github.io/cn/posts/</loc>
-    <lastmod>2022-12-23T19:10:27-04:00</lastmod>
-  </url><url>
-    <loc>https://kongjianyang.github.io/cn/</loc>
     <lastmod>2022-12-23T19:10:27-04:00</lastmod>
   </url><url>
     <loc>https://kongjianyang.github.io/categories/mysql/</loc>
@@ -37,9 +43,6 @@
   </url><url>
     <loc>https://kongjianyang.github.io/cn/2022/12/06/%E5%9C%A8docker%E5%86%85%E6%89%93%E5%BC%80jupiter-notebook/</loc>
     <lastmod>2022-12-06T22:51:22-04:00</lastmod>
-  </url><url>
-    <loc>https://kongjianyang.github.io/categories/r/</loc>
-    <lastmod>2022-12-05T14:42:27-05:00</lastmod>
   </url><url>
     <loc>https://kongjianyang.github.io/cn/2022/12/05/rtidy/</loc>
     <lastmod>2022-12-05T14:42:27-05:00</lastmod>
@@ -59,13 +62,13 @@
     <loc>https://kongjianyang.github.io/cn/2022/06/03/single-cell-rna-seq%E5%88%86%E6%9E%90%E5%85%A5%E9%97%A8/</loc>
     <lastmod>2022-06-03T14:42:27-05:00</lastmod>
   </url><url>
-    <loc>https://kongjianyang.github.io/categories/-statis/</loc>
+    <loc>https://kongjianyang.github.io/categories/statis/</loc>
     <lastmod>2022-05-28T16:03:40-06:00</lastmod>
   </url><url>
     <loc>https://kongjianyang.github.io/cn/2022/05/28/one_sample_proportion/</loc>
     <lastmod>2022-05-28T16:03:40-06:00</lastmod>
   </url><url>
-    <loc>https://kongjianyang.github.io/categories/-bioinfo/</loc>
+    <loc>https://kongjianyang.github.io/categories/bioinfo/</loc>
     <lastmod>2022-05-23T16:03:40-06:00</lastmod>
   </url><url>
     <loc>https://kongjianyang.github.io/cn/2022/05/23/scrna/</loc>
@@ -74,7 +77,7 @@
     <loc>https://kongjianyang.github.io/cn/2022/05/23/scrna/</loc>
     <lastmod>2022-05-23T16:03:40-06:00</lastmod>
   </url><url>
-    <loc>https://kongjianyang.github.io/categories/-linux/</loc>
+    <loc>https://kongjianyang.github.io/categories/linux/</loc>
     <lastmod>2022-05-22T10:43:55-06:00</lastmod>
   </url><url>
     <loc>https://kongjianyang.github.io/cn/2022/05/22/find_remove/</loc>
@@ -88,9 +91,6 @@
   </url><url>
     <loc>https://kongjianyang.github.io/cn/2022/05/18/html/</loc>
     <lastmod>2022-05-18T19:10:27-04:00</lastmod>
-  </url><url>
-    <loc>https://kongjianyang.github.io/categories/linux/</loc>
-    <lastmod>2022-05-17T19:10:27-04:00</lastmod>
   </url><url>
     <loc>https://kongjianyang.github.io/cn/2022/05/17/crontab/</loc>
     <lastmod>2022-05-17T19:10:27-04:00</lastmod>
@@ -133,9 +133,6 @@
   </url><url>
     <loc>https://kongjianyang.github.io/cn/2022/03/31/s4/</loc>
     <lastmod>2022-03-31T13:42:27-05:00</lastmod>
-  </url><url>
-    <loc>https://kongjianyang.github.io/categories/bioinfo/</loc>
-    <lastmod>2022-03-30T14:32:27-05:00</lastmod>
   </url><url>
     <loc>https://kongjianyang.github.io/cn/2022/03/30/rio/</loc>
     <lastmod>2022-03-30T14:32:27-05:00</lastmod>
@@ -185,7 +182,7 @@
     <loc>https://kongjianyang.github.io/cn/2021/05/17/anova_advance/</loc>
     <lastmod>2021-05-17T14:42:27-05:00</lastmod>
   </url><url>
-    <loc>https://kongjianyang.github.io/categories/-glue/</loc>
+    <loc>https://kongjianyang.github.io/categories/glue/</loc>
     <lastmod>2021-04-22T14:42:27-05:00</lastmod>
   </url><url>
     <loc>https://kongjianyang.github.io/cn/2021/04/22/glue/</loc>

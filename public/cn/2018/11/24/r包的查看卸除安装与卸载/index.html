@@ -88,23 +88,23 @@
 <div class="body-text list-text">
 <h1 id="01-卸载自己古老的包">01. 卸载自己古老的包<a href="#01-卸载自己古老的包" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
 <p>查看自己的包</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">mypackages &lt;- installed.packages()[,c(&#39;Package&#39;,&#39;Version&#39;,&#39;LibPath&#39;)] %&gt;% as.data.frame()
-write.csv(mypackages, &#34;~/Desktop/mypackages.csv&#34;)
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">mypackages &lt;- installed.packages()[,c('Package','Version','LibPath')] %&gt;% as.data.frame()
+write.csv(mypackages, &quot;~/Desktop/mypackages.csv&quot;)
 </code></pre><p>从存的文档中找到自己想要卸载的R包</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">remove.packages(c(&#34;BSgenome.Athaliana.TAIR.TAIR9&#34;, &#34;BSgenome.Hsapiens.UCSC.hg19&#34;, &#34;GenomeInfoDb&#34;, &#34;GenomeInfoDbData&#34;, &#34;GenomicAlignments&#34;, &#34;GenomicFeatures&#34;, &#34;GenomicRanges&#34;, &#34;GO.db&#34;, &#34;GSEABase&#34;, &#34;KEGGgraph&#34;, &#34;KEGGREST&#34;, &#34;learnr&#34;, &#34;RgoogleMaps&#34;, &#34;RSQLite&#34;, &#34;yeastRNASeq&#34;, &#34;yyplot&#34;), lib = .libPaths()[1])
-remove.packages(c(&#34;IRdisplay&#34;, &#34;IRkernel&#34;), lib = .libPaths()[2])
-</code></pre><pre tabindex="0"><code class="language-{r}" data-lang="{r}">mypackages &lt;- installed.packages()[,c(&#39;Package&#39;,&#39;Version&#39;,&#39;LibPath&#39;)] %&gt;% as.data.frame()
-write.csv(mypackages, &#34;~/Desktop/mypackages_new.csv&#34;)
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">remove.packages(c(&quot;BSgenome.Athaliana.TAIR.TAIR9&quot;, &quot;BSgenome.Hsapiens.UCSC.hg19&quot;, &quot;GenomeInfoDb&quot;, &quot;GenomeInfoDbData&quot;, &quot;GenomicAlignments&quot;, &quot;GenomicFeatures&quot;, &quot;GenomicRanges&quot;, &quot;GO.db&quot;, &quot;GSEABase&quot;, &quot;KEGGgraph&quot;, &quot;KEGGREST&quot;, &quot;learnr&quot;, &quot;RgoogleMaps&quot;, &quot;RSQLite&quot;, &quot;yeastRNASeq&quot;, &quot;yyplot&quot;), lib = .libPaths()[1])
+remove.packages(c(&quot;IRdisplay&quot;, &quot;IRkernel&quot;), lib = .libPaths()[2])
+</code></pre><pre tabindex="0"><code class="language-{r}" data-lang="{r}">mypackages &lt;- installed.packages()[,c('Package','Version','LibPath')] %&gt;% as.data.frame()
+write.csv(mypackages, &quot;~/Desktop/mypackages_new.csv&quot;)
 </code></pre><p>查看之后上述的包已经被卸载了。</p>
 <h1 id="02-补充部分">02. 补充部分<a href="#02-补充部分" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
 <p>查看已加载的包</p>
 <pre tabindex="0"><code>(.packages())
 </code></pre><p>卸除已加载的包</p>
-<pre tabindex="0"><code>detach(&#34;package:RMySQL&#34;)
+<pre tabindex="0"><code>detach(&quot;package:RMySQL&quot;)
 </code></pre><p>注意是卸除，不是卸载，也就是说不是把包从R运行环境中彻底删除，只是不希望该包被加载使用。</p>
 <p>在包使用函数冲突，检验函数依赖时比较有用。</p>
 <p>安装包</p>
-<pre tabindex="0"><code>install.packages(&#34;TSA&#34;)
+<pre tabindex="0"><code>install.packages(&quot;TSA&quot;)
 </code></pre><p>列出包所在库的路径</p>
 <pre tabindex="0"><code>.libPaths()
 </code></pre><p>包的载入</p>
@@ -113,12 +113,12 @@ write.csv(mypackages, &#34;~/Desktop/mypackages_new.csv&#34;)
 <p>包的更新</p>
 <pre tabindex="0"><code>update.packages()
 </code></pre><p>彻底删除已安装的包：</p>
-<pre tabindex="0"><code>remove. packages(c(&#34;pkg1&#34;,&#34;pkg2&#34;) , lib = file.path(&#34;path&#34;, &#34;to&#34;, &#34;library&#34;))
+<pre tabindex="0"><code>remove. packages(c(&quot;pkg1&quot;,&quot;pkg2&quot;) , lib = file.path(&quot;path&quot;, &quot;to&quot;, &quot;library&quot;))
 </code></pre><p>查看已安装的包</p>
-<pre tabindex="0"><code>installed.packages()[,c(&#39;Package&#39;,&#39;Version&#39;,&#39;LibPath&#39;)]
+<pre tabindex="0"><code>installed.packages()[,c('Package','Version','LibPath')]
 </code></pre><p>其中c(‘Package’,’Version’,’LibPath’) 表示显示包名、版本、库路径信息，若无[,c(‘Package’,’Version’,’LibPath’)]参数，则显示所有信息。</p>
 <p>查看某个包提供的函数</p>
-<pre tabindex="0"><code>help(package=&#39;TSA&#39;)
+<pre tabindex="0"><code>help(package='TSA')
 </code></pre>
 <p style="color:#777;">最后一次修改于 2018-11-24</p>
 </div>

@@ -103,7 +103,7 @@ $ echo $SHELL  # 确认一下
 假设我们设计一个test.sh的脚本，内容如下</p>
 <pre tabindex="0"><code>#!/bin/bash
 # test.sh
-echo &#34;Hello, World&#34;
+echo &quot;Hello, World&quot;
 </code></pre><p>重点是该文件的第一行，当我们直接运行该脚本文件时，该行告诉操作系统使用用#! 符号之后面的解释器以及相应的参数来解释该脚本文件，通过分析第一行，我们发现对应的解释器是 /bin/bash。</p>
 <h2 id="3shell的执行原理">3.shell的执行原理<a href="#3shell的执行原理" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>Shell 接收用户输入的脚本名，并进行分析。如果文件被标记为可执行，但不是被编译过的程序，Shell 就认为它是一个 Shell 脚本。 Shell 将读取其中的内容，并加以解释执行。所以，从用户的观点看，执行 Shell 脚本的方式与执行一般的可执行文件的方式相似。</p>

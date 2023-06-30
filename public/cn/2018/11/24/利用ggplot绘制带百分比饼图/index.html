@@ -93,16 +93,16 @@
 library(ggplot2)
 library(ggmap) # 为了引用主题theme_nothing，用来消除原始ggplot绘图自带的一切标签
 df &lt;- data.frame(value = c(52, 239, 9),
-                 Group = c(&#34;Positive&#34;, &#34;Negative&#34;, &#34;Neutral&#34;)) %&gt;%
+                 Group = c(&quot;Positive&quot;, &quot;Negative&quot;, &quot;Neutral&quot;)) %&gt;%
    # factor levels need to be the opposite order of the cumulative sum of the values
-   mutate(Group = factor(Group, levels = c(&#34;Neutral&#34;, &#34;Negative&#34;, &#34;Positive&#34;)),
+   mutate(Group = factor(Group, levels = c(&quot;Neutral&quot;, &quot;Negative&quot;, &quot;Positive&quot;)),
           cumulative = cumsum(value),
           midpoint = cumulative - value / 2,
-          label = paste0(Group, &#34; &#34;, round(value / sum(value) * 100, 1), &#34;%&#34;))
+          label = paste0(Group, &quot; &quot;, round(value / sum(value) * 100, 1), &quot;%&quot;))
 
 ggplot(df, aes(x = 1, weight = value, fill = Group)) +
-   geom_bar(width = 1, position = &#34;stack&#34;) +
-   coord_polar(theta = &#34;y&#34;) ## 以y轴建立极坐标
+   geom_bar(width = 1, position = &quot;stack&quot;) +
+   coord_polar(theta = &quot;y&quot;) ## 以y轴建立极坐标
    +
    geom_text(aes(x = 1.3, y = midpoint, label = label)) ## 加上百分比标签的位置和数值
    +

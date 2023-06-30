@@ -109,21 +109,21 @@ ax3 = fig.add_subplot(2, 2, 3)
 ax1 = fig.add_subplot(2, 2, 1)
 ax2 = fig.add_subplot(2, 2, 2)
 ax3 = fig.add_subplot(2, 2, 3)
-plt.plot(np.random.randn(50).cumsum(), &#39;k--&#39;) #plt.plot(np.random.randn(50).cumsum(), &#39;k--&#39;) # 
-ax1.hist(np.random.randn(100), bins=20, color=&#39;k&#39;, alpha=0.3)
+plt.plot(np.random.randn(50).cumsum(), 'k--') #plt.plot(np.random.randn(50).cumsum(), 'k--') # 
+ax1.hist(np.random.randn(100), bins=20, color='k', alpha=0.3)
 ax2.scatter(np.arange(30), np.arange(30) + 3 * np.random.randn(30))
 </code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-5e66e1368276f2f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="">
 默认情况下，matplotlib会在subplot外围留下一定的边距，并在subplot之间留下一定的间距。间距跟图像的高度和宽度有关，因此，如果你调整了图像大小（不管是编程还是手工），间距也会自动调整。利用Figure的subplots_adjust方法可以轻而易举地修改间距。wspace和hspace用于控制宽度和高度的百分比，可以用作subplot之间的间距。下面是一个简单的例子，其中我将间距收缩到了0</p>
 <pre tabindex="0"><code>fig, axes = plt.subplots(2, 2, sharex=True, sharey=True)
 for i in range(2):
     for j in range(2):
-        axes[i, j].hist(np.random.randn(500), bins=50, color=&#39;k&#39;, alpha=0.5)
+        axes[i, j].hist(np.random.randn(500), bins=50, color='k', alpha=0.5)
 plt.subplots_adjust(wspace=0, hspace=0)
 </code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-b840e059ebccc4b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <pre tabindex="0"><code>plt.figure() 
 from numpy.random import randn
 plt.plot()
-plt.plot(randn(30).cumsum(), &#39;ko--&#39;)
+plt.plot(randn(30).cumsum(), 'ko--')
 </code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-a455657224ee6548.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <h2 id="设置标题轴标签刻度以及刻度标签">设置标题、轴标签、刻度以及刻度标签<a href="#设置标题轴标签刻度以及刻度标签" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <pre tabindex="0"><code># 随机漫步图
@@ -131,9 +131,9 @@ fig = plt.figure()
 ax = fig.add_subplot(1, 1, 1)
 ax.plot(np.random.randn(1000).cumsum())
 ticks = ax.set_xticks([0, 250, 500, 750, 1000]) # 将刻度放到哪些位置
-labels = ax.set_xticklabels([&#39;one&#39;, &#39;two&#39;, &#39;three&#39;, &#39;four&#39;, &#39;five&#39;], rotation=30, fontsize=&#39;small&#39;) # 刻度标签，旋转三十度
-ax.set_title(&#39;My first matplotlib plot&#39;) # 设置标题
-ax.set_xlabel(&#39;Stages&#39;) # 设置X轴label
+labels = ax.set_xticklabels(['one', 'two', 'three', 'four', 'five'], rotation=30, fontsize='small') # 刻度标签，旋转三十度
+ax.set_title('My first matplotlib plot') # 设置标题
+ax.set_xlabel('Stages') # 设置X轴label
 # cumsum: cumulative sum
 # Cumsum ：计算轴向元素累加和，返回由中间结果组成的数组
 # 重点就是返回值是“由中间结果组成的数组”
@@ -141,10 +141,10 @@ ax.set_xlabel(&#39;Stages&#39;) # 设置X轴label
 <h2 id="添加图例">添加图例<a href="#添加图例" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <pre tabindex="0"><code>from numpy.random import randn
 fig = plt.figure(); ax = fig.add_subplot(1, 1, 1)
-ax.plot(randn(1000).cumsum(), &#39;k&#39;, label = &#39;one&#39;)
-ax.plot(randn(1000).cumsum(), &#39;k--&#39;, label = &#39;two&#39;)
-ax.plot(randn(1000).cumsum(), &#39;k.&#39;, label = &#39;three&#39;)
-ax.legend(loc=&#39;best&#39;)
+ax.plot(randn(1000).cumsum(), 'k', label = 'one')
+ax.plot(randn(1000).cumsum(), 'k--', label = 'two')
+ax.plot(randn(1000).cumsum(), 'k.', label = 'three')
+ax.legend(loc='best')
 </code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-cd86cb834753556f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <h2 id="图上加注解">图上加注解<a href="#图上加注解" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>ax.annotate方法可以在指定的x和y坐标轴绘制标签。使用set_xlim和set_ylim人工设定起始和结束边界</p>
@@ -153,30 +153,30 @@ from datetime import datetime
 
 fig = plt.figure()
 ax = fig.add_subplot(1, 1, 1)
-data = pd.read_csv(&#39;examples/spx.csv&#39;, index_col=0, parse_dates=True)
-spx = data[&#39;SPX&#39;]
+data = pd.read_csv('examples/spx.csv', index_col=0, parse_dates=True)
+spx = data['SPX']
 
-spx.plot(ax=ax, style=&#39;k-&#39;)
+spx.plot(ax=ax, style='k-')
 
 #需要标注的点作为元组
 crisis_data = [
-    (datetime(2007, 10, 11), &#39;Peak of bull market&#39;),
-    (datetime(2008, 3, 12), &#39;Bear Stearns Fails&#39;),
-    (datetime(2008, 9, 15), &#39;Lehman Bankruptcy&#39;)
+    (datetime(2007, 10, 11), 'Peak of bull market'),
+    (datetime(2008, 3, 12), 'Bear Stearns Fails'),
+    (datetime(2008, 9, 15), 'Lehman Bankruptcy')
 ]
 
 for date, label in crisis_data:
     ax.annotate(label, xy=(date, spx.asof(date) + 75),
                 xytext=(date, spx.asof(date) + 225),
-                arrowprops=dict(facecolor=&#39;black&#39;, headwidth=4, width=2,
+                arrowprops=dict(facecolor='black', headwidth=4, width=2,
                                 headlength=4),
-                horizontalalignment=&#39;left&#39;, verticalalignment=&#39;top&#39;)
+                horizontalalignment='left', verticalalignment='top')
 
 # Zoom in on 2007-2010
-ax.set_xlim([&#39;1/1/2007&#39;, &#39;1/1/2011&#39;])
+ax.set_xlim(['1/1/2007', '1/1/2011'])
 ax.set_ylim([600, 1800])
 # 加上title
-ax.set_title(&#39;Important dates in the 2008-2009 financial crisis&#39;)
+ax.set_title('Important dates in the 2008-2009 financial crisis')
 </code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-28298790548a97a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 
 <p style="color:#777;">最后一次修改于 2018-11-24</p>

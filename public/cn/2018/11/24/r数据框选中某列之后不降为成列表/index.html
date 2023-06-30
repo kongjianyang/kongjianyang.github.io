@@ -88,7 +88,7 @@
 <div class="body-text list-text">
 <h1 id="1-问题">1. 问题<a href="#1-问题" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
 <p>数据处理中一个令人头疼的事情是选中数据框中的某列时经常会被降维成列表而不是保持原来数据框的结构，如下：</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">student &lt;- data.frame(ID=c(11,12,13),Name=c(&#34;Devin&#34;,&#34;Edward&#34;,&#34;Wenli&#34;),Gender=c(&#34;M&#34;,&#34;M&#34;,&#34;F&#34;))
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">student &lt;- data.frame(ID=c(11,12,13),Name=c(&quot;Devin&quot;,&quot;Edward&quot;,&quot;Wenli&quot;),Gender=c(&quot;M&quot;,&quot;M&quot;,&quot;F&quot;))
 student
 </code></pre><p><img src="https://upload-images.jianshu.io/upload_images/3014937-316c1b956cd56903.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数据框"></p>
 <p>当我们想得到name这一行的时候会采用以下方法</p>
@@ -96,23 +96,23 @@ student
 name2 &lt;- student[,2]
 str(name1)
 str(name2)
-#Factor w/ 3 levels &#34;Devin&#34;,&#34;Edward&#34;,..: 1 2 3
-#Factor w/ 3 levels &#34;Devin&#34;,&#34;Edward&#34;,..: 1 2 3
+#Factor w/ 3 levels &quot;Devin&quot;,&quot;Edward&quot;,..: 1 2 3
+#Factor w/ 3 levels &quot;Devin&quot;,&quot;Edward&quot;,..: 1 2 3
 </code></pre><p>可以看到数据都是factor类型的，没有保持为数据框，而这是不方面的</p>
 <p>#2. 解决
 我们可以利用以下两种方式避免这种情况的发生</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">name3 &lt;- student[,2,drop = FALSE]
-name4 &lt;- student[&#34;Name&#34;]
+name4 &lt;- student[&quot;Name&quot;]
 str(name3)
 str(name4)
-#&#39;data.frame&#39;:	3 obs. of  1 variable:
-#$ Name: Factor w/ 3 levels &#34;Devin&#34;,&#34;Edward&#34;,..: 1 2 3
-#&#39;data.frame&#39;:	3 obs. of  1 variable:
-#$ Name: Factor w/ 3 levels &#34;Devin&#34;,&#34;Edward&#34;,..: 1 2 3
+#'data.frame':	3 obs. of  1 variable:
+#$ Name: Factor w/ 3 levels &quot;Devin&quot;,&quot;Edward&quot;,..: 1 2 3
+#'data.frame':	3 obs. of  1 variable:
+#$ Name: Factor w/ 3 levels &quot;Devin&quot;,&quot;Edward&quot;,..: 1 2 3
 </code></pre><p>其中注意双中括号和单双括号的区别</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">name5 &lt;- student[[&#34;Name&#34;]]
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">name5 &lt;- student[[&quot;Name&quot;]]
 str(name5)
-#Factor w/ 3 levels &#34;Devin&#34;,&#34;Edward&#34;,..: 1 2 3
+#Factor w/ 3 levels &quot;Devin&quot;,&quot;Edward&quot;,..: 1 2 3
 </code></pre><p>双中括号类似于$功能了。</p>
 
 <p style="color:#777;">最后一次修改于 2018-11-24</p>

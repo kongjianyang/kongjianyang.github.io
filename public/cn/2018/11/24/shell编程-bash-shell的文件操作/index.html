@@ -89,7 +89,7 @@
 <h2 id="1-基本操作">1. 基本操作<a href="#1-基本操作" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>ls 命令显示文件基本属性，d 表示目录，- 表示普通文件（或者硬链接），l 表示符号链接，p 表示管道文件，b 和 c 分别表示块设备和字符设备。除此之外还可以使用stat命令，stat以文字的格式来显示inode的内容。</p>
 <pre tabindex="0"><code>$ stat bin/
-16777220 8608385535 drwxr-xr-x 37 root wheel 0 1184 &#34;Nov 23 09:06:38 2018&#34; &#34;Nov 10 01:38:56 2018&#34; &#34;Nov 10 01:38:56 2018&#34; &#34;Sep 21 00:17:17 2018&#34; 4096 0 0x88000 bin/
+16777220 8608385535 drwxr-xr-x 37 root wheel 0 1184 &quot;Nov 23 09:06:38 2018&quot; &quot;Nov 10 01:38:56 2018&quot; &quot;Nov 10 01:38:56 2018&quot; &quot;Sep 21 00:17:17 2018&quot; 4096 0 0x88000 bin/
 </code></pre><p>file命令也可以给出文件的基本信息</p>
 <pre tabindex="0"><code>$ file bin
 bin: directory
@@ -117,9 +117,9 @@ $ tar -jcf file.tar.bz2 file
 $ tar -jxf file.tar.bz2
 </code></pre><h2 id="3-文件搜索">3. 文件搜索<a href="#3-文件搜索" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>寻找目录下所有的.doc文件或者.pptx的文件</p>
-<pre tabindex="0"><code>$ find ./ -name &#34;*.doc&#34; -o -name &#34;*.pptx&#34; # -o是或者
+<pre tabindex="0"><code>$ find ./ -name &quot;*.doc&quot; -o -name &quot;*.pptx&quot; # -o是或者
 </code></pre><p>可以对找到的所有C文件移动到c_files文件夹下</p>
-<pre tabindex="0"><code>$ find ./ -name &#34;*.c&#34; -o -name &#34;*.h&#34; | xargs -i mv &#39;{}&#39; ./c_files/
+<pre tabindex="0"><code>$ find ./ -name &quot;*.c&quot; -o -name &quot;*.h&quot; | xargs -i mv '{}' ./c_files/
 </code></pre><p>此外，Linux 下还有命令查找工具：which 和 whereis，前者用于返回某个命令的全路径，而后者用于返回某个命令、源文件、man 文件的路径。例如，查找find` 命令的绝对路径：</p>
 <pre tabindex="0"><code>$ which find
 /usr/bin/find

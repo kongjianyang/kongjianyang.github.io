@@ -93,22 +93,22 @@ Table of Contents:
 <div class="body-text list-text">
 <p>一个简单的例子讲解怎么做多重数据的交集</p>
 <p>首先创造一个嵌套的list</p>
-<pre tabindex="0"><code class="language-{r}" data-lang="{r}">l &lt;- list(A=c(&#34;one&#34;, &#34;two&#34;, &#34;three&#34;, &#34;four&#34;), B=c(&#34;one&#34;, &#34;two&#34;), C=c(&#34;two&#34;, &#34;four&#34;, &#34;five&#34;, &#34;six&#34;), D=c(&#34;six&#34;, &#34;seven&#34;))
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">l &lt;- list(A=c(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;), B=c(&quot;one&quot;, &quot;two&quot;), C=c(&quot;two&quot;, &quot;four&quot;, &quot;five&quot;, &quot;six&quot;), D=c(&quot;six&quot;, &quot;seven&quot;))
 
 crossprod(table(stack(l)))
 </code></pre><pre tabindex="0"><code>l
 
 $A
-[1] &#34;one&#34;   &#34;two&#34;   &#34;three&#34; &#34;four&#34; 
+[1] &quot;one&quot;   &quot;two&quot;   &quot;three&quot; &quot;four&quot; 
 
 $B
-[1] &#34;one&#34; &#34;two&#34;
+[1] &quot;one&quot; &quot;two&quot;
 
 $C
-[1] &#34;two&#34;  &#34;four&#34; &#34;five&#34; &#34;six&#34; 
+[1] &quot;two&quot;  &quot;four&quot; &quot;five&quot; &quot;six&quot; 
 
 $D
-[1] &#34;six&#34;   &#34;seven&#34;
+[1] &quot;six&quot;   &quot;seven&quot;
 </code></pre><pre tabindex="0"><code>crossprod(table(stack(l)))
 
 #的到结果

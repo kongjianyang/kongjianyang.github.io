@@ -156,6 +156,7 @@ map2(numbers, numbers2, `+`)
 
 [[4]]
 [1] 18
+
 </code></pre><p>或者我们也可以使用pmap()函数将任意数量的列表映射到任何函数。</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">x &lt;- list(1, 10, 100)
 y &lt;- list(1, 2, 3)
@@ -173,7 +174,7 @@ pmap(list(x, y, z), sum)
 <h2 id="21-possibly函数">2.1 possibly函数<a href="#21-possibly函数" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
 <p>possibly()函数是即使报错，也要继续执行你的循环，结合map使用可以在loop中不中断循环，当然这种功能也可以使用tryCatch函数。</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">possible_sqrt &lt;- possibly(sqrt, otherwise = NA_real_)
-numbers_with_error &lt;- list(1, 2, 3, &#34;spam&#34;, 4)
+numbers_with_error &lt;- list(1, 2, 3, &quot;spam&quot;, 4)
 map(numbers_with_error, possible_sqrt)
 </code></pre><pre tabindex="0"><code>[[1]]
 [1] 1
