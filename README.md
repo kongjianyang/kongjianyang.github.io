@@ -1,7 +1,7 @@
 # 个人网站
 我的个人记录网站
 
-2021-01-01: 使用Rmarkdown以及netlify建站
+2018-06-08: 使用Rmarkdown以及netlify建站
 
 2022-03-20: 做出了一些内容上面的大的调整，使用了hugo和GitHub page作为了主题
 
