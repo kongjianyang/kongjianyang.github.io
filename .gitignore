@@ -7,3 +7,11 @@ public/content/cn/posts/filtered_gene_bc_matrices/GRCh38/matrix.mtx
 
 ./.DS_Store
 
+# log 不需要提交的任意包含后缀名为log的文件
+*.log
+
+# Package Files 不需要提交的任意包含后缀名为jar的文件
+*.jar
+
+# 不需要 DS_Store文件
+*.DS_Store
