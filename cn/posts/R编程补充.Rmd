@@ -1,0 +1,211 @@
+---
+title: "R编程补充"
+output: html_document
+date: "2023-02-07"
+---
+
+
+```{r}
+addn = function(y) {
+    function(x){
+        x + y
+    }
+}
+```
+
+addn不是一个加法器，而是一个生成加法器的工厂！
+
+
+```{r}
+add1 = addn(1)
+add2 = addn(2)
+```
+
+
+```{r}
+add1(10)
+add2(10)
+```
+
+```{r}
+add1
+
+add2
+```
+
+一个函数不在当前环境（例子中为全局环境）下，那么输出该函数就会一并显示其所属的环境。在add1的环境中，y是在addn(1)确定的
+
+
+```{r}
+environment(add1)$y
+```
+
+```{r}
+color_line = function(col){
+    function(...){
+        plot(..., type = "l", lty = 1, col = col)
+    }
+}
+
+red_line = color_line("red")
+red_line(rnorm(30), main = "Red line plot")
+
+```
+
+
+```{r}
+red_line
+```
+
+
+```{r}
+environment(red_line)$col
+```
+```{r}
+add = function(x, y, z ){
+    x + y + z
+}
+product = function(x, y, z){
+    x * y * z
+}
+combine = function(f, x, y, z){
+    f(x, y, z)
+}
+
+combine(add, 3, 4, 5)
+
+combine(product, 3, 4, 5)
+```
+
+```{r}
+iris[iris$Sepal.Length > quantile(iris$Sepal.Length, 0.8) & 
+         iris$Sepal.Width > quantile(iris$Sepal.Width, 0.8) & 
+         iris$Petal.Length > quantile(iris$Petal.Length, 0.8) &
+         iris$Petal.Width > quantile(iris$Petal.Width, 0.8), ]
+```
+
+
+```{r}
+subset(iris,
+       Sepal.Length > quantile(Sepal.Length, 0.8) & 
+         Sepal.Width > quantile(Sepal.Width, 0.8) & 
+         Petal.Length > quantile(Petal.Length, 0.8) &
+         Petal.Width > quantile(Petal.Width, 0.8))
+```
+
+subset()神奇之处在于它调整了参数被计算的环境，分两步完成，首先捕获表达式，然后调整表达式的计算。
+
+捕获表达式意味着防止表达式被执行，而将表达式本身存储为变量的形式。具有这个功能的函数为quote()
+
+
+```{r}
+call1 = quote(rnorm(5))
+call1
+```
+
+```{r}
+typeof(call1)
+
+class(call1)
+```
+call本质上是一个语言对象，并且是一个函数调用
+
+
+
+
+```{r}
+name1 = quote(rnorm)
+typeof(name1)
+class(name1)
+
+```
+name是一个符号（或名称）而不是函数调用
+
+事实上，quote()捕捉到函数调用时会返回调用，而捕获到变量名时则返回一个符号。
+
+```{r}
+as.list(call1)
+```
+
+quote()捕获一个已知的表达式，而substitute()可以作用于任意的用户输入表达式。
+
+
+```{r}
+
+rnorm(5)
+
+fun1 = function(x){
+    quote(x)
+}
+
+fun1(rnorm(5))
+```
+
+
+quote(x)捕获的是表达式x，而不是输入表达式rnorm(5)。下面使用substitute()：
+
+```{r}
+fun2 = function(x){
+    substitute(x)
+}
+fun2(rnorm(5))
+```
+
+
+```{r}
+substitute(x + y + x ^2, list(x = 1))
+
+substitute(f(x + f(y)), list(f = quote(sin)))
+
+substitute(x, list(x = quote(rnorm(5))))
+```
+
+表达式的捕获
+和
+执行表达式
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

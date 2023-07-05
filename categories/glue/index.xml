@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>-glue on KJY</title>
+    <link>https://kongjianyang.github.io/categories/glue/</link>
+    <description>Recent content in -glue on KJY</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 22 Apr 2021 14:42:27 -0500</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/glue/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>R语言glue包介绍</title>
+      <link>https://kongjianyang.github.io/cn/2021/04/22/glue/</link>
+      <pubDate>Thu, 22 Apr 2021 14:42:27 -0500</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2021/04/22/glue/</guid>
+      <description>glue 提供了轻巧、快速和无依赖的可解释字符串，glue 通过将 R 表达式嵌入到花括号中，然后对其求值并将其插入字符串中。
+glue包可用于自定义变量，然后通过传参的方式，对字符串部分内容进行自适应修改。
+例如：可将日期赋值为：date = as.Date(&amp;ldquo;2019-12-05&amp;rdquo;)，然后通过字符串拼接的形式，实现文件名称自动更新，glue(&amp;ldquo;The day is {date}.&amp;quot;。
+安装 install.packages(&amp;quot;glue&amp;quot;) # or install.packages(&amp;quot;glue&amp;quot;) # install.packages(&amp;quot;devtools&amp;quot;) devtools::install_github(&amp;quot;tidyverse/glue&amp;quot;) 使用 1. 导入 2. 简单使用 将变量直接传递到字符串中
+&amp;gt; name &amp;lt;- &amp;quot;Fred&amp;quot; &amp;gt; glue(&#39;My name is {name}.&#39;) My name is Fred. 通过将变量名放置在一对花括号之间，glue 会将变量名替换为相应的值
+字符串可以写成多行的形式，最后会自动将这些行连接起来
+&amp;gt; name &amp;lt;- &amp;quot;Fred&amp;quot; &amp;gt; age &amp;lt;- 50 &amp;gt; anniversary &amp;lt;- as.Date(&amp;quot;1991-10-12&amp;quot;) &amp;gt; glue(&#39;My name is {name},&#39;, + &#39; my age next year is {age + 1},&#39;, + &#39; my anniversary is {format(anniversary, &amp;quot;%A, %B %d, %Y&amp;quot;)}.</description>
+    </item>
+    
+  </channel>
+</rss>
