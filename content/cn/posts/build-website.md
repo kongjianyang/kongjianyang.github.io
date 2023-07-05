@@ -365,3 +365,15 @@ git clone git@github.com:kongjianyang/kongjianyang.github.io.git
 ```
 apt-get install hugo
 ```
+
+## 10. 使用VScode更新
+
+类似这样的使用方法，进行如下的操作
+
+Generate SSH key using `ssh-keygen -t rsa -b 4096 -C "your_email@example.com"`
+
+Copy the output of cat id_rsa.pub
+
+Paste the above copied outpur into your `Github profile -> Settings -> SSH and GPG Keys -> Add new SSH key`
+
+然后在vscode内部的terminal进行推送

@@ -97,6 +97,7 @@ Table of Contents:
     <li><a href="#7-hexo和hugo的区别">7. Hexo和Hugo的区别</a></li>
     <li><a href="#8-原型模板">8. 原型模板</a></li>
     <li><a href="#9-更换电脑">9. 更换电脑</a></li>
+    <li><a href="#10-使用vscode更新">10. 使用VScode更新</a></li>
   </ol>
 </nav>
 </aside>
@@ -381,7 +382,13 @@ draft: false
 </code></pre><p>进行一些修改，或者更新，然后尝试提交</p>
 <p>这里使用的是wsl，所以还要安装一下hugo</p>
 <pre tabindex="0"><code>apt-get install hugo
-</code></pre>
+</code></pre><h2 id="10-使用vscode更新">10. 使用VScode更新<a href="#10-使用vscode更新" class="header-anchor" ariaLabel="Anchor"> # </a></h2>
+<p>类似这样的使用方法，进行如下的操作</p>
+<p>Generate SSH key using <code>ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</code></p>
+<p>Copy the output of cat id_rsa.pub</p>
+<p>Paste the above copied outpur into your <code>Github profile -&gt; Settings -&gt; SSH and GPG Keys -&gt; Add new SSH key</code></p>
+<p>然后在vscode内部的terminal进行推送</p>
+
 <p style="color:#777;">最后一次修改于 2022-03-20</p>
 </div>
 <a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
