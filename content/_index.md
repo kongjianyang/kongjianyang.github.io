@@ -50,3 +50,10 @@ Leave me a message by utteranc.
 </details>
 
 
+
+About this blog: 
+- are my own,
+- do not represent any institution that I’ve been related to,
+- do not represent any past, present, or future employer,
+- are subject to change at any time without notice.
+
