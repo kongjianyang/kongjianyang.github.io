@@ -110,7 +110,7 @@ Table of Contents:
 <p>（1）显然，在观察开始的时候，所有个体都是存活的，所以S(t=0)=1；
 （2）时间越长，生存的概率越小，所以S(t)是递减的。</p>
 <p>表1展示了KM法的计算过程。</p>
-<p><img src="images/2023-08-08-21-02-37.png" alt=""></p>
+<p><img src="/img/2023-08-08-21-02-37.png" alt=""></p>
 <p>表1一共包含5列，最后两列可以通过前三列计算出来。第一列是生存时间t，注意不包含删失的时间，但包含时间0。第二列是t时刻事件发生个体数，可以看到大部分数据为1。第三列是t时刻仍然存活的个体数。</p>
 <p>前三行准备好后，第四行就是一个简单的数学计算。除了第一行外，其余各行的第五列等于上一行的第五列乘以本行的第四列。</p>
 <h1 id="假设检验log-rank">假设检验Log-rank<a href="#假设检验log-rank" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
@@ -175,7 +175,7 @@ head(res.sum)
        ggtheme = theme_bw(), # Change ggplot2 theme
        palette = c(&quot;#E7B800&quot;, &quot;#2E9FDF&quot;)
        )
-</code></pre><p><img src="images/2023-08-08-22-01-58.png" alt=""></p>
+</code></pre><p><img src="/img/2023-08-08-22-01-58.png" alt=""></p>
 <p>可以进行一些美化，添加曲线的置信区间，并增加long-rank检验的结果p值以及风险表格：</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">ggsurvplot(fit, conf.int=TRUE, pval=TRUE, risk.table=TRUE, 
            legend.labs=c(&quot;Male&quot;, &quot;Female&quot;), legend.title=&quot;Sex&quot;,  
@@ -183,10 +183,10 @@ head(res.sum)
            title=&quot;Kaplan-Meier Curve for Lung Cancer Survival&quot;,
            surv.median.line = &quot;hv&quot;, # Specify median survival
            )
-</code></pre><p><img src="images/2023-08-08-22-02-20.png" alt=""></p>
+</code></pre><p><img src="/img/2023-08-08-22-02-20.png" alt=""></p>
 <p>Kaplan-Meier曲线用来对两个分类变量差异的可视化非常合适，但是不能分析多分类的问题：</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">ggsurvplot(survfit(Surv(time, status)~nodes, data=survival::colon))
-</code></pre><p><img src="images/2023-08-08-22-04-07.png" alt=""></p>
+</code></pre><p><img src="/img/2023-08-08-22-04-07.png" alt=""></p>
 <p>而且生存曲线另外不能可视化的是连续型变量的风险，而Cox PH回归模型正好是处理这类问题的一把好手</p>
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">fit &lt;- coxph(Surv(time, status)~sex, data=lung)
 fit
@@ -205,7 +205,7 @@ fit
 <pre tabindex="0"><code class="language-{r}" data-lang="{r}">lung &lt;- lung %&gt;% 
   mutate(agecat=cut(age, breaks=c(0, 70, Inf), labels=c(&quot;young&quot;, &quot;old&quot;)))
 </code></pre><pre tabindex="0"><code class="language-{r}" data-lang="{r}">ggsurvplot(survfit(Surv(time, status)~agecat, data=lung), pval=TRUE)
-</code></pre><p><img src="images/2023-08-08-22-03-05.png" alt=""></p>
+</code></pre><p><img src="/img/2023-08-08-22-03-05.png" alt=""></p>
 
 <p style="color:#777;">最后一次修改于 2023-08-08</p>
 </div>

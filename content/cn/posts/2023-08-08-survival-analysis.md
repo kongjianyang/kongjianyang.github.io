@@ -44,7 +44,7 @@ S(t)是个体生存超过时间t的概率
 
 表1展示了KM法的计算过程。
 
-![](images/2023-08-08-21-02-37.png)
+![](/img/2023-08-08-21-02-37.png)
 
 
 表1一共包含5列，最后两列可以通过前三列计算出来。第一列是生存时间t，注意不包含删失的时间，但包含时间0。第二列是t时刻事件发生个体数，可以看到大部分数据为1。第三列是t时刻仍然存活的个体数。
@@ -159,7 +159,7 @@ ggsurvplot(fit,
        )
 ```
 
-![](images/2023-08-08-22-01-58.png)
+![](/img/2023-08-08-22-01-58.png)
 
 可以进行一些美化，添加曲线的置信区间，并增加long-rank检验的结果p值以及风险表格：
 
@@ -173,7 +173,7 @@ ggsurvplot(fit, conf.int=TRUE, pval=TRUE, risk.table=TRUE,
            )
 ```
 
-![](images/2023-08-08-22-02-20.png)
+![](/img/2023-08-08-22-02-20.png)
 
 Kaplan-Meier曲线用来对两个分类变量差异的可视化非常合适，但是不能分析多分类的问题：
 
@@ -181,7 +181,7 @@ Kaplan-Meier曲线用来对两个分类变量差异的可视化非常合适，�
 ggsurvplot(survfit(Surv(time, status)~nodes, data=survival::colon))
 ```
 
-![](images/2023-08-08-22-04-07.png)
+![](/img/2023-08-08-22-04-07.png)
 
 而且生存曲线另外不能可视化的是连续型变量的风险，而Cox PH回归模型正好是处理这类问题的一把好手
 
@@ -241,7 +241,7 @@ lung <- lung %>%
 ggsurvplot(survfit(Surv(time, status)~agecat, data=lung), pval=TRUE)
 ```
 
-![](images/2023-08-08-22-03-05.png)
+![](/img/2023-08-08-22-03-05.png)
 
 
 
