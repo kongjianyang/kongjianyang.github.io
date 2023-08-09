@@ -377,3 +377,27 @@ Copy the output of cat id_rsa.pub
 Paste the above copied outpur into your `Github profile -> Settings -> SSH and GPG Keys -> Add new SSH key`
 
 然后在vscode内部的terminal进行推送
+
+## 11. 显示图片
+
+我们先讲下Hugo的一个实现逻辑：
+
+1. Hugo博客的根目录有一个static目录，这个static目录就是用来存放一些静态文件，比如图片、css、js文件等。
+
+2. 执行hugo命令的时候，会把static目录下的子目录或文件复制到public目录下。比如我在static下添加了一个img子目录，并且在img子目录放了图片，那执行hugo命令后，就会把static\img文件的内容拷贝到public\img里面。
+
+3. 大家都知道Hugo博客网站展示的其实是public下的内容，因此markdown文章里引用图片的时候，得引用pubic下的图片才可以。
+
+具体操作非常简单，分2步：
+
+1. 在static目录下创建img子目录，把markdown要使用的图片放在static\img目录里。
+
+2. 在markdown文件里，按照如下格式引用图片(这里假设图片名称叫wechat.png)。这样最终public目录下生成的静态页面就可以引用到public\img下的图片了。
+
+```
+![](/img/wechat.png)
+```
+
+
+执行hugo命令，启动hugo server ，就可以在本地看到文章里的图片了。
+

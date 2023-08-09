@@ -253,5 +253,3 @@ ggsurvplot(survfit(Surv(time, status)~agecat, data=lung), pval=TRUE)
 
 
 
-
-
