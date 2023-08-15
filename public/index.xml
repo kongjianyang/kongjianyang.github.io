@@ -6,13 +6,27 @@
     <description>Recent content in Home on KJY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 08 Aug 2023 15:58:44 -0700</lastBuildDate><atom:link href="https://kongjianyang.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 15 Aug 2023 11:49:19 -0700</lastBuildDate><atom:link href="https://kongjianyang.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>R语言中的非标准计算</title>
+      <link>https://kongjianyang.github.io/cn/2023/08/15/nse/</link>
+      <pubDate>Tue, 15 Aug 2023 11:49:19 -0700</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2023/08/15/nse/</guid>
+      <description>首先R语言中的非标准计算现在很混乱，在发展过程中也不是很好理清，但是需要掌握，可以给日常工作带来便捷。
+R语言中有原生的非标准计算，主要是base包的函数，也有tidyeval，rlang包提供的非标准计算。
+ rlang是一个包，作者还是Hadley Wickham，提供了R语言的核心语言功能。它不是base R的一部分，但它是许多R包的基础。rlang提供了强大的工具来处理R语言的语法，这使得它非常适合编写高效和可扩展的R代码。
+ R base R base包中的实现非标准计算的函数有：
+ 语法解析：substitute(), parse(), deparse() 表达式构造：quote() 表达式求值：eval(), source() 表达式：expression()  # parse主要负责把字符解析为R语言表达式。 # 表达式是可以被求值的代码。 parse(text = &amp;quot;1+2&amp;quot;) # deparse是相反的，是把R表达式逆解析为字符。 deparse(expression(1+2)) # quote则是捕捉未计算的表达式，不进行计算（求值） quote(1+2) # eval来完成对表达式进行计算（求值） eval(quote(1+2)) 一个综合性例子
+rm(list = ls()) # quote是捕捉未计算的表达式 a1 &amp;lt;- quote(mean(mtcars$wt)) # expression是表达式 a2 &amp;lt;- expression(mean(mtcars$wt)) # 不加text会报错 a3 &amp;lt;- parse(text = &amp;quot;mean(mtcars$wt)&amp;quot;) # 都能计算出 3.21725 eval(a1) eval(a2) eval(a3) # 逆解析的结果不同 deparse(a1) deparse(a2) deparse(a3) tidyeval 在tidyverse工具链中，tidyeval提供比较一致的非标准计算服务。tidyeval的函数主要在rlang包中。</description>
+    </item>
+    
     <item>
       <title>生存分析入门</title>
-      <link>https://kongjianyang.github.io/cn/2023/08/08/%E7%94%9F%E5%AD%98%E5%88%86%E6%9E%90%E5%85%A5%E9%97%A8/</link>
+      <link>https://kongjianyang.github.io/cn/2023/08/08/%E7%94%9F%E5%AD%98%E5%88%86%E6%9E%90/</link>
       <pubDate>Tue, 08 Aug 2023 15:58:44 -0700</pubDate>
       
-      <guid>https://kongjianyang.github.io/cn/2023/08/08/%E7%94%9F%E5%AD%98%E5%88%86%E6%9E%90%E5%85%A5%E9%97%A8/</guid>
+      <guid>https://kongjianyang.github.io/cn/2023/08/08/%E7%94%9F%E5%AD%98%E5%88%86%E6%9E%90/</guid>
       <description>作为临床分析中的重要一环，今天入门生存分析。
 生存分析（survival analysis）是生物医学研究中常用的分析方法。在队列随访研究中，我们会事先定义一些观察终点，比如肿瘤复发、患者死亡、血压达标等，这些终点称为事件（event）。从研究开始到发生事件的时间间隔称为生存时间（survival time）。
 由于生存时间数据具有以下两个特点，所以提出生存分析这一特殊的分析方法：

@@ -2,11 +2,11 @@
 title: "生存分析入门"
 date: 2023-08-08T15:58:44-07:00
 author: KJY
-slug: ["生存分析"]
+slug: "生存分析"
 draft: false
 toc: true
 categories:  
-  -[ "Note" ]
+  -bioinfo
 tags:        
   - article
 ---

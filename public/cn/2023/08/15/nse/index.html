@@ -1,0 +1,309 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>R语言中的非标准计算</h1>
+
+<p>KJY 
+ / 2023-08-15 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2023-08-15-%e9%9d%9e%e6%a0%87%e5%87%86%e8%ae%a1%e7%ae%97.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+<aside class="toc">
+Table of Contents:
+<nav id="TableOfContents"></nav>
+</aside>
+
+
+<div class="body-text list-text">
+<p>首先R语言中的非标准计算现在很混乱，在发展过程中也不是很好理清，但是需要掌握，可以给日常工作带来便捷。</p>
+<p>R语言中有原生的非标准计算，主要是base包的函数，也有tidyeval，rlang包提供的非标准计算。</p>
+<blockquote>
+<p>rlang是一个包，作者还是Hadley Wickham，提供了R语言的核心语言功能。它不是base R的一部分，但它是许多R包的基础。rlang提供了强大的工具来处理R语言的语法，这使得它非常适合编写高效和可扩展的R代码。</p>
+</blockquote>
+<h1 id="r-base">R base<a href="#r-base" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
+<p>R base包中的实现非标准计算的函数有：</p>
+<ul>
+<li>语法解析：substitute(), parse(), deparse()</li>
+<li>表达式构造：quote()</li>
+<li>表达式求值：eval(), source()</li>
+<li>表达式：expression()</li>
+</ul>
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># parse主要负责把字符解析为R语言表达式。
+# 表达式是可以被求值的代码。
+parse(text = &quot;1+2&quot;)
+
+
+# deparse是相反的，是把R表达式逆解析为字符。
+deparse(expression(1+2))
+
+# quote则是捕捉未计算的表达式，不进行计算（求值）
+quote(1+2)
+
+# eval来完成对表达式进行计算（求值）
+eval(quote(1+2))
+</code></pre><p>一个综合性例子</p>
+<pre tabindex="0"><code class="language-{r," data-lang="{r,">rm(list = ls())
+
+# quote是捕捉未计算的表达式
+a1 &lt;- quote(mean(mtcars$wt))
+
+# expression是表达式
+a2 &lt;- expression(mean(mtcars$wt))
+
+# 不加text会报错
+a3 &lt;- parse(text = &quot;mean(mtcars$wt)&quot;)
+
+
+# 都能计算出 3.21725
+eval(a1)
+eval(a2)
+eval(a3)
+
+
+# 逆解析的结果不同
+deparse(a1)
+deparse(a2)
+deparse(a3)
+</code></pre><h1 id="tidyeval">tidyeval<a href="#tidyeval" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
+<p>在tidyverse工具链中，tidyeval提供比较一致的非标准计算服务。tidyeval的函数主要在rlang包中。</p>
+<p>rlang非标准计算函数比较多，目前坑还没有踩完。这是一种tidyverse的痛苦，有种认知过载（cognitive overload）的问题</p>
+<blockquote>
+<p>tidyeval是tidyverse中的一部分，用于处理非标准的评估。在R语言中，通常情况下，你无法直接在代码中传递变量名作为参数，因为R会将其视为字符而不是变量。tidyeval提供了一种方法来解决这个问题，允许你在代码中使用非标准的评估方式来操作变量。
+rlang是一个用于处理语言对象的R包，它是tidyeval的基础。tidyeval构建在rlang之上，为R用户提供了一种处理和操作语言对象的方式。rlang提供了许多底层功能，允许你创建和修改语言对象，这些功能为tidyeval提供了实现非标准评估的基础。</p>
+</blockquote>
+<p>tidy eval主要是引用（quote）和去引用（ unquote），Tidyverse 语法最重要的特性是它们让你的数据像实际工作空间中的对象一样被处理。简而言之，数据框本身变成了一个（临时的）工作空间。数据隐藏让读写数据操作代码变得简单和自然，但是它也有另一方面。当你事先知道隐藏对象的名字，指向它们会简单点，但在写代码的时候如果不知道的话就很麻烦了。特别是当使用存储在变量里面的列名创建间接指向（indirect references）或者作为函数参数时。Tidy evaluation 是一系列的概念和工具，它让当数据框列通过间接指定时使用 tidyverse 语法变得可能。</p>
+<p>一些主要函数：</p>
+<ul>
+<li>字符串quote：sym, syms</li>
+<li>多个字符串表达式quote：parse_expr &amp; parse_exprs</li>
+<li>表达式quote：quote(user), enquo &amp; enquos(developer)</li>
+<li>unquote: !! &amp; !!!</li>
+</ul>
+<p>第一步，用 enquo()把用户传递过来的参数引用起来（引用可以理解为冷冻起来）</p>
+<p>第二步，用 !! 解开这个引用（解引用可以理解为解冷），然后使用参数的内容</p>
+<p>rlang v0.4.0引入了新的非标准计算操作符 {{， 将需要执行非标准计算的变量名使用{{}}括起来即可，不再需要enquo()和!!操作符。</p>
+<p>一个例子</p>
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}"># parse_expr把字符转成表达式，然后用eval_tidy进行求值。
+
+library(rlang)
+library(dplyr)
+
+parse_expr(&quot;mean(mtcars$wt)&quot;) %&gt;% eval_tidy()
+
+
+# 如果需要在function里面使用的话，则需要quo和!!
+
+
+
+# quo,  捕捉环境极其参数表达式, R general quasure, quosureish
+# enquo, 作用于函数的参数，返回一个 quosure，成为 tidy eval quosure
+
+# quo()等价于base R 里面的quote()
+# enquo()等价于base R 里面的substitute()
+
+
+# quo 生成表达式
+# !!对表达式求解
+# 使用rlang非标准计算涉及到=时需要写成:=
+
+group_mean &lt;- function(data, var_group,varname, var_mean) {
+  data %&gt;%
+    # 对变量进行!!
+  group_by(!!var_group) %&gt;%
+  summarise(!!varname:=mean(!!var_mean))
+}
+# 调用的时候使用quo函数
+
+
+group_mean(data=iris,
+           var_group=quo(Species),
+           varname=&quot;mean_sepal.length&quot;,
+           var_mean=quo(Sepal.Length))
+
+
+# 上述函数实现了对字符和函数名的调用
+# 但是输入的时候需要书写quo
+# 这个时候可以使用enquo
+group_mean &lt;- function(data, var_group,varname, var_mean) {
+  var_group &lt;- enquo(var_group)
+  var_mean &lt;- enquo(var_mean)
+  data %&gt;%
+  group_by(!!var_group) %&gt;%
+  summarise(!!varname:=mean(!!var_mean))
+}
+group_mean(data=iris,
+           var_group=Species,
+           varname=&quot;mean_sepal.length&quot;,
+           var_mean=Sepal.Length)
+
+
+## 上述代码的两次引用还是不太方便
+## 使用大括号
+## 大括号同时包含的转换表达式和求解表达式
+group_mean &lt;- function(data, var_group,varname, var_mean) {
+  data %&gt;%
+  group_by({{var_group}}) %&gt;%
+  summarise({{varname}}:= mean ({{var_mean}}))
+}
+group_mean(data=iris,
+           var_group=Species,
+           varname=&quot;mean_sepal.length&quot;,
+           var_mean=Sepal.Length)
+
+
+# 处理多个参数
+# 使用... 代替传递参数
+
+grouped_mean &lt;- function(df, summary_var, ...) {
+  summary_var &lt;- enquo(summary_var)
+    group_var &lt;- enquos(...)
+ 
+  df %&gt;%
+    group_by(!!!group_var) %&gt;%
+    summarise(mean = mean(!!summary_var))
+}
+# 运行函数
+# 这里传递两个分组变量
+grouped_mean(mtcars, disp, cyl, am)
+</code></pre><p>• {{ }}（curly-curly 算符）: 若只是传递，可将“冻结+ 注入” 合成一步
+• enquo() 和!!（引用与反引用）：不只是传递，而是在冻结和注入之间仍需要做额外操作</p>
+<p>rlang网站中!!的文档页都提到在一般任务中尽量回避使用!!</p>
+<blockquote>
+<p>embrace operator {{ makes the defuse-and-inject pattern easier to learn and use.</p>
+</blockquote>
+
+<p style="color:#777;">最后一次修改于 2023-08-15</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       订阅 </a>
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+
