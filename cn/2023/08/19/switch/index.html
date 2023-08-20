@@ -1,0 +1,50 @@
+<a name=top></a><!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>KJY</title><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=/css/fonts.css><link href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css rel=stylesheet><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/vega@5.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-lite@4.17.0></script>
+<script src=https://cdn.jsdelivr.net/npm/vega-embed@6.12.2></script>
+<script>hljs.initHighlightingOnLoad()</script></head><body><div class=wrapper><header class=header><nav class=nav><a href=/ class=nav-logo><img src=/media/%3cnil%3e width height alt></a><ul class=nav-links><li><a href=/cn/about/>关于</a></li><li><a href=/cn/posts/>日志</a></li><li><a href=/cn/newsletter/>周刊</a></li><li><a href=/>English</a></li></ul></nav></header><main class=content role=main><div style=text-align:center><h1>Switch函数妙用</h1><p>KJY
+/ 2023-08-19</p><hr></div><span class=article-toolbar><a href=https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2023-08-19-switch%e5%87%bd%e6%95%b0%e5%a6%99%e7%94%a8.md style=font-size:24px;color:#000 target=_blank><i class="fa fa-edit" aria-hidden=true title=编辑本页></i></a></span><aside class=toc>Table of Contents:<nav id=TableOfContents></nav></aside><div class="body-text list-text"><p>R 中的 switch 函数是一种控制流程的函数，它允许您根据变量的值执行不同的操作。switch 函数的语法如下：</p><pre tabindex=0><code>switch(value,
+       case1 = statement1,
+       case2 = statement2,
+       ...,
+       default = statement_default)
+</code></pre><p>其中，<code>value</code> 是您要测试的变量，<code>case1</code>、<code>case2</code> 等是您要执行的操作，<code>statement_default</code> 是默认操作。</p><p>例如，以下代码使用 switch 函数根据变量 <code>day</code> 的值来打印不同的星期几：</p><pre tabindex=0><code class=language-{r} data-lang={r}>day &lt;- &#34;Monday&#34;
+
+switch(day,
+       Monday = &#34;今天是星期一&#34;,
+       Tuesday = &#34;今天是星期二&#34;,
+       Wednesday = &#34;今天是星期三&#34;,
+       Thursday = &#34;今天是星期四&#34;,
+       Friday = &#34;今天是星期五&#34;,
+       Saturday = &#34;今天是星期六&#34;,
+       Sunday = &#34;今天是星期天&#34;)
+</code></pre><p>这段代码将打印以下输出：</p><pre tabindex=0><code>今天是星期一
+</code></pre><p>与常用处理TRUE和FALSE条件的if相比，switch语句主要用于处理数字或者字符串，并根据输入返回某个分支。</p><p>switch 函数有许多好处，包括：</p><p>它易于使用。
+它可以简化代码。
+它可以提高代码的可读性和可维护性。
+它可以提高代码的性能。
+switch 函数可以用来替换 if-else 语句，从而简化代码。</p><p>除此之外，switch函数还能和function连用，实现复杂功能</p><pre tabindex=0><code class=language-{r} data-lang={r}>FUN &lt;- function(df, do.this){
+    switch(do.this,
+        T1={X &lt;- t(df)
+            P &lt;- nrow(df)
+        },
+        T2={X &lt;- colMeans(df)
+            P &lt;- ncol(df)
+        },
+        stop(&#34;Enter something that switches me!&#34;)
+    )
+    return(P)
+}
+
+FUN(mtcars, &#34;T1&#34;)
+FUN(mtcars, &#34;T2&#34;)
+FUN(mtcars, &#34;T3&#34;)
+</code></pre><p style=color:#777>最后一次修改于 2023-08-19</p></div><a href=#top><i class="fa fa-chevron-up" style=font-size:30px;color:#000></i></a></main><footer class=footer><script src=https://utteranc.es/client.js repo=kongjianyang/kongjianyang.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script><script type=text/javascript src=/js/math-code.js></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type=text/javascript src=/js/center-img.js></script><ul class=footer-links><li><a href=/cn/posts/index.xml type=application/rss+xml title="RSS feed">订阅</a></li><li><a href=http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>版权
+<i class="fa fa-cc" aria-hidden=true title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a></li></ul><div class=copyright-text>©
+KJY
+2018-2021</div></footer>
