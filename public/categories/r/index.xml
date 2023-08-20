@@ -6,7 +6,24 @@
     <description>Recent content in R on KJY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Aug 2023 11:49:19 -0700</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Aug 2023 21:14:13 -0700</lastBuildDate><atom:link href="https://kongjianyang.github.io/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Switch函数妙用</title>
+      <link>https://kongjianyang.github.io/cn/2023/08/19/switch/</link>
+      <pubDate>Sat, 19 Aug 2023 21:14:13 -0700</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2023/08/19/switch/</guid>
+      <description>R 中的 switch 函数是一种控制流程的函数，它允许您根据变量的值执行不同的操作。switch 函数的语法如下：
+switch(value, case1 = statement1, case2 = statement2, ..., default = statement_default) 其中，value 是您要测试的变量，case1、case2 等是您要执行的操作，statement_default 是默认操作。
+例如，以下代码使用 switch 函数根据变量 day 的值来打印不同的星期几：
+day &amp;lt;- &amp;quot;Monday&amp;quot; switch(day, Monday = &amp;quot;今天是星期一&amp;quot;, Tuesday = &amp;quot;今天是星期二&amp;quot;, Wednesday = &amp;quot;今天是星期三&amp;quot;, Thursday = &amp;quot;今天是星期四&amp;quot;, Friday = &amp;quot;今天是星期五&amp;quot;, Saturday = &amp;quot;今天是星期六&amp;quot;, Sunday = &amp;quot;今天是星期天&amp;quot;) 这段代码将打印以下输出：
+今天是星期一 与常用处理TRUE和FALSE条件的if相比，switch语句主要用于处理数字或者字符串，并根据输入返回某个分支。
+switch 函数有许多好处，包括：
+它易于使用。 它可以简化代码。 它可以提高代码的可读性和可维护性。 它可以提高代码的性能。 switch 函数可以用来替换 if-else 语句，从而简化代码。
+除此之外，switch函数还能和function连用，实现复杂功能
+FUN &amp;lt;- function(df, do.this){ switch(do.this, T1={X &amp;lt;- t(df) P &amp;lt;- nrow(df) }, T2={X &amp;lt;- colMeans(df) P &amp;lt;- ncol(df) }, stop(&amp;quot;Enter something that switches me!</description>
+    </item>
+    
     <item>
       <title>R语言中的非标准计算</title>
       <link>https://kongjianyang.github.io/cn/2023/08/15/nse/</link>
