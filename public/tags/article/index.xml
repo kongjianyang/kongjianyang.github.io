@@ -6,7 +6,19 @@
     <description>Recent content in article on KJY</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 19 Aug 2023 21:14:13 -0700</lastBuildDate><atom:link href="https://kongjianyang.github.io/tags/article/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 03 Sep 2023 13:26:03 -0700</lastBuildDate><atom:link href="https://kongjianyang.github.io/tags/article/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python批量下载被引文章</title>
+      <link>https://kongjianyang.github.io/cn/2023/09/03/python-google-scholar/</link>
+      <pubDate>Sun, 03 Sep 2023 13:26:03 -0700</pubDate>
+      
+      <guid>https://kongjianyang.github.io/cn/2023/09/03/python-google-scholar/</guid>
+      <description>问题 希望能批量下载自己的一篇文章被哪些文章所应用，需要知道被引文章的基本信息，包括发表日期，发表期刊等等。
+方法 使用python和R方案进行解决
+首先是python脚本抓取信息
+#!/usr/bin/env python import scholarly from scholarly import ProxyGenerator from scholarly import scholarly # pickle提供了一个简单的持久化功能。可以将对象以文件的形式存放在磁盘上 # python中几乎所有的数据类型（列表，字典，集合，类等）都可以用pickle来序列化 import pickle # Set up a ProxyGenerator object to use free proxies # This needs to be done only once per session # need to register and got the API pg = ProxyGenerator() success = pg.ScraperAPI(&amp;#34;YOUR API&amp;#34;) # Now search Google Scholar from behind a proxy scholarly.use_proxy(pg) search_query = scholarly.</description>
+    </item>
+    
     <item>
       <title>Switch函数妙用</title>
       <link>https://kongjianyang.github.io/cn/2023/08/19/switch/</link>

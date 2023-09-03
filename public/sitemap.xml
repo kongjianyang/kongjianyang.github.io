@@ -3,27 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://kongjianyang.github.io/tags/article/</loc>
-    <lastmod>2023-08-19T21:14:13-07:00</lastmod>
+    <lastmod>2023-09-03T13:26:03-07:00</lastmod>
   </url><url>
     <loc>https://kongjianyang.github.io/categories/</loc>
-    <lastmod>2023-08-19T21:14:13-07:00</lastmod>
+    <lastmod>2023-09-03T13:26:03-07:00</lastmod>
   </url><url>
     <loc>https://kongjianyang.github.io/</loc>
-    <lastmod>2023-08-19T21:14:13-07:00</lastmod>
+    <lastmod>2023-09-03T13:26:03-07:00</lastmod>
+  </url><url>
+    <loc>https://kongjianyang.github.io/categories/python/</loc>
+    <lastmod>2023-09-03T13:26:03-07:00</lastmod>
+  </url><url>
+    <loc>https://kongjianyang.github.io/cn/2023/09/03/python-google-scholar/</loc>
+    <lastmod>2023-09-03T13:26:03-07:00</lastmod>
+  </url><url>
+    <loc>https://kongjianyang.github.io/tags/</loc>
+    <lastmod>2023-09-03T13:26:03-07:00</lastmod>
+  </url><url>
+    <loc>https://kongjianyang.github.io/cn/posts/</loc>
+    <lastmod>2023-09-03T13:26:03-07:00</lastmod>
+  </url><url>
+    <loc>https://kongjianyang.github.io/cn/</loc>
+    <lastmod>2023-09-03T13:26:03-07:00</lastmod>
   </url><url>
     <loc>https://kongjianyang.github.io/categories/r/</loc>
     <lastmod>2023-08-19T21:14:13-07:00</lastmod>
   </url><url>
     <loc>https://kongjianyang.github.io/cn/2023/08/19/switch/</loc>
-    <lastmod>2023-08-19T21:14:13-07:00</lastmod>
-  </url><url>
-    <loc>https://kongjianyang.github.io/tags/</loc>
-    <lastmod>2023-08-19T21:14:13-07:00</lastmod>
-  </url><url>
-    <loc>https://kongjianyang.github.io/cn/posts/</loc>
-    <lastmod>2023-08-19T21:14:13-07:00</lastmod>
-  </url><url>
-    <loc>https://kongjianyang.github.io/cn/</loc>
     <lastmod>2023-08-19T21:14:13-07:00</lastmod>
   </url><url>
     <loc>https://kongjianyang.github.io/cn/2023/08/15/nse/</loc>
@@ -91,9 +97,6 @@
   </url><url>
     <loc>https://kongjianyang.github.io/cn/2022/05/22/find_remove/</loc>
     <lastmod>2022-05-22T10:43:55-06:00</lastmod>
-  </url><url>
-    <loc>https://kongjianyang.github.io/categories/python/</loc>
-    <lastmod>2022-05-21T14:42:27-05:00</lastmod>
   </url><url>
     <loc>https://kongjianyang.github.io/cn/2022/05/21/map_heatmap/</loc>
     <lastmod>2022-05-21T14:42:27-05:00</lastmod>

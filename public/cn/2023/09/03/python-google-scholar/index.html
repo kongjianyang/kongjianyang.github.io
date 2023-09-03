@@ -1,0 +1,244 @@
+<a name="top"></a>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KJY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav" >
+      <a href="/" class="nav-logo">
+        <img src="/media/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+      </a>
+
+      <ul class="nav-links" >
+        
+        
+           <li><a href="/cn/about/">关于</a></li>
+       
+           <li><a href="/cn/posts/">日志</a></li>
+       
+           <li><a href="/cn/newsletter/">周刊</a></li>
+       
+           <li><a href="/">English</a></li>
+       
+       
+      </ul>
+</nav>
+      </header>
+
+<main class = "content" role="main">
+<div style="text-align: center">
+
+<h1>Python批量下载被引文章</h1>
+
+<p>KJY 
+ / 2023-09-03 </p>
+
+<hr/>
+</div>
+
+<span class="article-toolbar">
+  
+  
+  
+  
+  
+  
+  
+  <a href='https://github.com/kongjianyang/kongjianyang.github.io/edit/master/content/cn/posts/2023-09-03-python%e6%89%b9%e9%87%8f%e4%b8%8b%e8%bd%bd%e8%a2%ab%e5%bc%95%e6%96%87%e7%ab%a0.md'style="font-size: 24px; color: black;" target="_blank"><i class="fa fa-edit" aria-hidden="true" title="编辑本页"></i>
+  </a>
+  
+  
+  
+</span>
+
+
+<aside class="toc">
+Table of Contents:
+<nav id="TableOfContents"></nav>
+</aside>
+
+
+<div class="body-text list-text">
+<h1 id="问题">问题<a href="#问题" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
+<p>希望能批量下载自己的一篇文章被哪些文章所应用，需要知道被引文章的基本信息，包括发表日期，发表期刊等等。</p>
+<h1 id="方法">方法<a href="#方法" class="header-anchor" ariaLabel="Anchor"> # </a></h1>
+<p>使用python和R方案进行解决</p>
+<p>首先是python脚本抓取信息</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#408080;font-style:italic">#!/usr/bin/env python</span>
+
+<span style="color:#008000;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">scholarly</span>
+<span style="color:#008000;font-weight:bold">from</span> <span style="color:#00f;font-weight:bold">scholarly</span> <span style="color:#008000;font-weight:bold">import</span> ProxyGenerator
+<span style="color:#008000;font-weight:bold">from</span> <span style="color:#00f;font-weight:bold">scholarly</span> <span style="color:#008000;font-weight:bold">import</span> scholarly
+
+<span style="color:#408080;font-style:italic"># pickle提供了一个简单的持久化功能。可以将对象以文件的形式存放在磁盘上</span>
+<span style="color:#408080;font-style:italic"># python中几乎所有的数据类型（列表，字典，集合，类等）都可以用pickle来序列化</span>
+<span style="color:#008000;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">pickle</span>
+
+<span style="color:#408080;font-style:italic"># Set up a ProxyGenerator object to use free proxies</span>
+<span style="color:#408080;font-style:italic"># This needs to be done only once per session</span>
+<span style="color:#408080;font-style:italic"># need to register and got the API</span>
+pg <span style="color:#666">=</span> ProxyGenerator()
+success <span style="color:#666">=</span> pg<span style="color:#666">.</span>ScraperAPI(<span style="color:#ba2121">&#34;YOUR API&#34;</span>)
+
+<span style="color:#408080;font-style:italic"># Now search Google Scholar from behind a proxy</span>
+scholarly<span style="color:#666">.</span>use_proxy(pg)
+
+
+search_query <span style="color:#666">=</span> scholarly<span style="color:#666">.</span>search_author(<span style="color:#ba2121">&#39;AUTHOR NAME&#39;</span>)
+
+first_author_result <span style="color:#666">=</span> <span style="color:#008000">next</span>(search_query)
+author <span style="color:#666">=</span> scholarly<span style="color:#666">.</span>fill(first_author_result)
+first_publication <span style="color:#666">=</span> author[<span style="color:#ba2121">&#39;publications&#39;</span>][<span style="color:#666">1</span>]
+
+first_publication_filled <span style="color:#666">=</span> scholarly<span style="color:#666">.</span>fill(first_publication)
+
+<span style="color:#408080;font-style:italic"># Which papers cited that publication?</span>
+citations_all <span style="color:#666">=</span> [citation <span style="color:#008000;font-weight:bold">for</span> citation <span style="color:#a2f;font-weight:bold">in</span> scholarly<span style="color:#666">.</span>citedby(first_publication_filled)]
+
+<span style="color:#408080;font-style:italic"># Save all files into a file</span>
+file <span style="color:#666">=</span> <span style="color:#008000">open</span>(<span style="color:#ba2121">&#34;dictionary_data.pkl&#34;</span>, <span style="color:#ba2121">&#34;wb&#34;</span>)
+pickle<span style="color:#666">.</span>dump(citations_all, file)
+file<span style="color:#666">.</span>close()
+</code></pre></div><p>然后是python脚本整理信息</p>
+<div class="highlight"><pre tabindex="0" style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#008000;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">pickle</span>
+<span style="color:#008000;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">pandas</span> <span style="color:#008000;font-weight:bold">as</span> <span style="color:#00f;font-weight:bold">pd</span>
+
+file <span style="color:#666">=</span> <span style="color:#008000">open</span>(<span style="color:#ba2121">&#34;dictionary_data.pkl&#34;</span>, <span style="color:#ba2121">&#34;rb&#34;</span>)
+citations_all <span style="color:#666">=</span> pickle<span style="color:#666">.</span>load(file)
+
+<span style="color:#408080;font-style:italic"># 提取每个引用字典中的所需信息，构建一个列表</span>
+data <span style="color:#666">=</span> []
+<span style="color:#008000;font-weight:bold">for</span> citation <span style="color:#a2f;font-weight:bold">in</span> citations_all:
+    bib <span style="color:#666">=</span> citation[<span style="color:#ba2121">&#39;bib&#39;</span>]
+    
+    <span style="color:#008000;font-weight:bold">if</span> <span style="color:#ba2121">&#39;citedby_url&#39;</span> <span style="color:#a2f;font-weight:bold">in</span> citation:
+        citedby_url <span style="color:#666">=</span> citation[<span style="color:#ba2121">&#39;citedby_url&#39;</span>]
+    <span style="color:#008000;font-weight:bold">else</span>:
+        citedby_url <span style="color:#666">=</span> <span style="color:#ba2121">&#39;NA&#39;</span>
+        
+    <span style="color:#008000;font-weight:bold">if</span> <span style="color:#ba2121">&#39;pub_url&#39;</span> <span style="color:#a2f;font-weight:bold">in</span> citation:
+        pub_url <span style="color:#666">=</span> citation[<span style="color:#ba2121">&#39;pub_url&#39;</span>]
+    <span style="color:#008000;font-weight:bold">else</span>:
+        pub_url <span style="color:#666">=</span> <span style="color:#ba2121">&#39;NA&#39;</span>
+        
+    <span style="color:#008000;font-weight:bold">if</span> <span style="color:#ba2121">&#39;eprint_url&#39;</span> <span style="color:#a2f;font-weight:bold">in</span> citation:
+        eprint_url <span style="color:#666">=</span> citation[<span style="color:#ba2121">&#39;eprint_url&#39;</span>]
+    <span style="color:#008000;font-weight:bold">else</span>:
+        eprint_url <span style="color:#666">=</span> <span style="color:#ba2121">&#39;NA&#39;</span>
+    
+    <span style="color:#408080;font-style:italic"># else</span>
+    <span style="color:#008000;font-weight:bold">if</span> <span style="color:#ba2121">&#39;num_citations&#39;</span> <span style="color:#a2f;font-weight:bold">in</span> citation:
+        num_citations <span style="color:#666">=</span> citation[<span style="color:#ba2121">&#39;num_citations&#39;</span>]
+    <span style="color:#008000;font-weight:bold">else</span>:
+        num_citations <span style="color:#666">=</span> <span style="color:#ba2121">&#39;NA&#39;</span>
+    
+    data<span style="color:#666">.</span>append([
+        bib[<span style="color:#ba2121">&#39;title&#39;</span>],
+        <span style="color:#ba2121">&#39;, &#39;</span><span style="color:#666">.</span>join(bib[<span style="color:#ba2121">&#39;author&#39;</span>]),
+        bib[<span style="color:#ba2121">&#39;venue&#39;</span>],
+        bib[<span style="color:#ba2121">&#39;pub_year&#39;</span>],
+        <span style="color:#ba2121">&#39;, &#39;</span><span style="color:#666">.</span>join(citation[<span style="color:#ba2121">&#39;author_id&#39;</span>]),
+        citedby_url,
+        pub_url,
+        eprint_url,
+        num_citations
+    ])
+
+<span style="color:#408080;font-style:italic"># 构建 DataFrame</span>
+columns <span style="color:#666">=</span> [<span style="color:#ba2121">&#39;title&#39;</span>, <span style="color:#ba2121">&#39;author&#39;</span>, <span style="color:#ba2121">&#39;venue&#39;</span>, <span style="color:#ba2121">&#39;pub_year&#39;</span>, <span style="color:#ba2121">&#39;author_id&#39;</span>, <span style="color:#ba2121">&#39;citedby_url&#39;</span>, <span style="color:#ba2121">&#39;pub_url&#39;</span>, <span style="color:#ba2121">&#39;eprint_url&#39;</span>, <span style="color:#ba2121">&#39;num_citations&#39;</span>]
+df <span style="color:#666">=</span> pd<span style="color:#666">.</span>DataFrame(data, columns<span style="color:#666">=</span>columns)
+
+<span style="color:#408080;font-style:italic"># 将 DataFrame 保存为 CSV 文件</span>
+df<span style="color:#666">.</span>to_csv(<span style="color:#ba2121">&#39;citations.csv&#39;</span>, index<span style="color:#666">=</span><span style="color:#008000;font-weight:bold">False</span>)
+</code></pre></div>
+<p style="color:#777;">最后一次修改于 2023-09-03</p>
+</div>
+<a href="#top"><i class="fa fa-chevron-up" style="font-size: 30px; color: black;"></i></a>
+
+</main>
+
+<footer class="footer">
+
+<script src="https://utteranc.es/client.js"
+        repo="kongjianyang/kongjianyang.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+  <script type="text/javascript" src="/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/js/center-img.js"></script>
+
+
+
+     <ul class="footer-links">
+      
+       
+       
+       
+       <li><a href="/cn/posts/index.xml" type="application/rss+xml" title="RSS feed">
+       订阅 </a>
+       </li>
+       
+       
+       <li>
+       
+       <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">
+       
+        版权
+        <i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i> 
+        </a>
+       </li>
+       
+     </ul>
+     <div class="copyright-text">
+            
+            ©
+            
+            KJY
+            
+            2018-2021
+            
+     </div>
+
+</footer>
+
+
+
+
+
